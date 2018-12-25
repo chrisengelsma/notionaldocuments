@@ -19,25 +19,15 @@ In discussion, we state information, as well as comment on and justify ourselves
 
 In notional documents, punctuation marks [ .  !  ? : ] serve like logical operators and provide these cues. They tell the software how to update common information - the document.
 
-[Image of a remark that marks up a paragraph]
-Positive feedback
-Critical feedback
-
 ### Paragraph / Idea Ownership
 
 Conventional paragraphs start with a topic sentence that states a main idea, followed by supporting sentences that expand upon or justify it. An acceptable paragraph is often a more complete and complex thought than a single sentence.
 
 In notional documents, an author has a kind of sovereignty over their own paragraphs just as they do over their own thoughts. By design, users may mark up sentences in another author's paragraph with remarks or criticisms, but the author can replace these with justifications or elaborations, thereby building up the paragraph.
 
-[Image of an author dispelling remarks]
-Einstein and the special theory
-Ultraviolet catastrophe
-
 ### Questions Create New Sections
 
 In discussion, we use questions to prompt others to share information that is not already common knowledge. In a document, a new section explores information not already stated to the reader. Notional Documents connects the function of a question to the usefulness of supposing an additional section of a document about a complex idea.
-
-[Image of a location question]
 
 One further avenue for development involves constructing an algorithm to parse any question into the noun phrase that titles the new section.  
 
