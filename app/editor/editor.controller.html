@@ -1,0 +1,194 @@
+<div class="container " ng-init="initialize()">
+  <div class="row" id="firstrow">
+    <span class="app-title"> {{ title }} </span>
+
+  <div id="myNav" class="overlay" ng-click="closeNav()">
+    <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <a href="javascript:void(0)"  ng-click="closeNav()">Click, type, and enter with a <.> to send out a sentence as a message, and also place the sentence into the common document.</a>
+
+        <a  href="javascript:void(0)"  ng-click="closeNav()">Click, type, and enter with a <!> to send out a remark upon an incoming sentence, or to dispel another's remark on one of your sentences. Remarking on a sentence will underline it before it is sent out, marking up the sentence and becoming part of a message thread. Dispelling a remark adds to the thread, and replaces the remark in the document.</a>
+
+        <a  href="javascript:void(0)"  ng-click="closeNav()">Click, type, and enter with a <?> to ask a question. It will introduce a new topic for threads, as well as a new section of the document. It is possible that any question can be given a counterpart noun phrase suitable for draft section headings for the paragraphs that will contain its answer (e.g. "Where is Paris?" could be translated into "Location of Paris").</a>
+      </div>
+  </div>
+
+
+    <div class="ml-auto">
+      <button class="btn btn-dark" ui-sref="app.backoffice.profile">
+         {{ profile.displayName }}
+      </button>
+      <button class="btn cog"
+              data-target="#settingsModal"
+              data-toggle="modal" >
+        <i class="fa fa-cog"></i>
+      </button>
+      <!--
+      <button class="btn"
+              ng-class="{ 'btn-light': !options.highlightOwned,
+                          'btn-dark': options.highlightOwned
+                        }"
+              ng-click="options.highlightOwned = !options.highlightOwned">
+        <i class="fa fa-search"></i>
+      </button>
+      -->
+      <button class="btn btn-secondary help" ng-click="openNav()">
+        <i class="fa fa-asterisk"></i>
+      </button>      
+
+      <button class="btn btn-dark signout" ng-click="logout()">
+        <i class="fa fa-sign-out"></i>
+      </button>
+      <div class="text-center">
+        <a id="treeicon" data-toggle="modal" data-target="#treemodal" href="#treemodal" style="display: none;">
+
+        </a>
+
+        <!-- Modal -->
+        <div id="treemodal" class="modal fade" role="dialog" style="color:white">
+          <div class="modal-dialog-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body" style="background-color: rgb(9,13,14)"></div>
+              <!--               <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="row mainview">
+    <!--       <div class="col-md-2 topiclist" style="padding: 7px">
+            <form role="form">
+              <div class="form-group">
+                <input ng-model="keyword" placeholder="Navigate" onfocus="this.placeholder = ''" class= "form-control navigate-box"  />
+              </div>
+            </form>
+            <div class="library" style=" padding: 5px" ng-click="selectedProposition.dialogueSide = true;">
+              <div style="text-align: center; border-bottom: 1px solid white;">
+                <strong style="">Library</strong> <span class="glyphicon glyphicon-menu-down pull-right"></span>
+              </div>
+              <div ng-repeat="book in library" ng-click="selectBook(book)">
+                <ul class="booklist">
+                  <li style="" class="">{{book.title}}</li>
+                </ul>
+              </div>
+            </div>
+            <br>
+          </div> -->
+
+    <div class="col-md-8" ng-click="selectedProposition.dialogueSide = false">
+
+      <div ui-tree="treeOptions"
+           data-drag-enabled="false"
+           id=“tree-root”
+           class="angular-ui-tree textlist">
+
+        <ol ui-tree-nodes ng-model='data' style="" class="angular-ui-tree-nodes">
+          <li ng-repeat="node in data | orderBy: 'class'"
+              ui-tree-node
+              ng-class="{ mousedovernode: node.mouseOver === true }"
+              ng-mouseover="node.mouseOver = true;"
+              ng-mouseleave="node.mouseOver = false;"
+              ng-include="'./app/editor/views/text_renderer.html'"
+              class="angular-ui-tree-node node"
+              ng-click="selectNode(node); $event.stopPropagation();"></li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-md-4" ng-click="" id="dialoguepane">
+
+      <div ui-tree id="dialoguelist"
+           data-drop-enabled="false"
+           data-drag-enabled="false"
+           data-empty-placeholder-enabled="false"
+           class="angular-ui-tree dialoguelist">
+        <ol ui-tree-nodes ng-model='data[0].dialogue' style="list-style-type: none; padding-left: 0"
+            class="angular-ui-tree-nodes">
+          <li ng-repeat="thread in data[0].dialogue | orderBy: 'messageNumber'"
+              ng-if="thread.hidden !== true"
+              ui-tree-node
+              ng-include="'./app/editor/views/dialogue_renderer.html'"
+              class="angular-ui-tree-node">
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </div><!-- Row -->
+  <div class="row" style="border-top: 1px solid black">
+    <div class="col-md-2"></div>
+    <div class="col-md-6"></div>
+    <div class="col-md-4"
+         style="margin-top: 10px"
+         ng-click="selectedProposition.dialogueSide = true;">
+      <div class="dialoguetopic"></div>
+
+      <!--         <div>
+                <form role='form' class="form-group" ng-submit="prepProposition(inputs.chatProposition)" novalidate name='form'>
+
+                  <div class="">
+                    <span class="input-group-btn" >
+                      <button id="sendbutton" class='btn btn-default' ng-enable='form.$valid' style="display: none">
+                        <strong>Send</strong>
+                      </button>
+                    </span>
+                  <input type='text' class="form-control" required ng-max='500' id="chatinput" ng-model='inputs.chatProposition' ng-keyup="$event.keyCode === 13 ? prepProposition(inputs.chatProposition) : inputs.blah" style="height: 39px; font-size: 16px">
+                  </div>
+
+                </form>
+              </div>
+       -->
+    </div>
+  </div><!-- Row -->
+
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row col-sm-12">
+
+              <div class="col-sm-9"> Highlight authored propositions </div>
+              <button type="button"
+                      class="btn btn-block col-sm-3"
+                      ng-click="options.highlightOwned = !options.highlightOwned"
+                      ng-class="{ 'btn-success': options.highlightOwned,
+                                  'btn-light': !options.highlightOwned}" >
+                <i class="fa fa-2x fa-check-circle-o" ng-if="options.highlightOwned"></i>
+                <i class="fa fa-2x fa-circle-o" ng-if="!options.highlightOwned"></i>
+              </button>
+              <div class="col-sm-9"> Dim other propositions </div>
+              <button type="button"
+                      class="btn btn-block col-sm-3"
+                      ng-click="options.dimNotOwned = !options.dimNotOwned"
+                      ng-class="{ 'btn-success': options.dimNotOwned,
+                                  'btn-light': !options.dimNotOwned}" >
+                <i class="fa fa-2x fa-check-circle-o" ng-if="options.dimNotOwned"></i>
+                <i class="fa fa-2x fa-circle-o" ng-if="!options.dimNotOwned"></i>
+              </button>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- Controller -->

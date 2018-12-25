@@ -1,0 +1,65 @@
+<div class="thread" ng-click="selectThread(thread)" id="{{thread.threadId}}">
+  <div class="tree-node tree-node-content dialoguetopic"
+       ng-class="{ 'topicselected': selectedNode.topic === thread.topic }"
+       
+       ng-click="selectNodeByClass(thread)"
+       style="margin-bottom: 7px"> {{thread.topic}} </div>
+
+  <p ng-repeat="remark in thread.remarks track by $index">
+		<span class="tree-node tree-node-content remark"
+          ng-class="{'remarkselected': selectedProposition.id === remark.id,
+                     'deleted': remark.deleted === true,
+                     'rejoinder': (selectedProposition.of.id === remark.id && selectedProposition.of.type === 'assertion' && selectedProposition.of.author === userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) =='!')),
+                     'alignright': remark.type === 'negation',
+                     'alignleft': remark.type.some(['assertion','rejoinder','question','topic'])
+                     }"
+          ng-click="selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
+          ng-mouseover="remark.mouseOver = true;" ng-mouseleave="remark.mouseOver = false;"
+          style="cursor: pointer; margin-bottom: 7px;  width: 320px;">
+
+		<span style=""
+          ng-class="{'underline': remark.mouseOver === true,
+                     'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
+                    }">{{remark.text}}</span>
+		</span>
+
+
+    <!-- ng-if="selectedProposition.dialogueSide === true && selectedProposition.id === remark.id" -->
+
+
+    <textarea
+      title="{{ remark.id }}"
+      ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
+      ng-hide="remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false"
+      ng-model="inputs.chatProposition" class="expanding chatinput" id="{{remark.id}}{{thread.threadId}}"
+      ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition), inputs.chatProposition = '', clearExpandingClass(thread.threadId), inputs.remarkselected = false, selectedProposition.dialogueSide = false] : inputs.nothing"
+      spellcheck="false" style="height: 22px; font-size: 20px; width: 100%; color: black; margin-top: 10px"></textarea>
+
+
+    <!-- ng-show="inputs.remarkselected" -->
+  </p>
+</div>
+<br>
+<!-- <ol ui-tree-nodes ng-model="node.nodes" style="list-style-type: none; list-style: none; padding-left: 20px" ng-class="{hidden: collapsed}" class="angular-ui-tree-nodes">
+  <li ng-repeat="node in node.nodes" style="" ui-tree-node ng-include="'text_renderer.html'" ng-click="selectNode(node); $event.stopPropagation();">
+  </li>
+</ol> -->
+
+<!-- 'data' is an array of class objects
+	on these objects are class letter and topic
+	'paragraphs' is an array of proposition objects
+		on these objects are id, author, text, and position
+	also in these objects are nodes
+		'nodes' is an array of class objects
+
+this renderer should contain the recipe for a node
+
+paragraphs are stored on the node,
+and propositions are stored in paragraphs
+so they should be able to be printed with nested ng-repeats
+
+nodes cannot be represented simply with ng-repeats. we
+would need a new nesting for each level of node
+
+paragraphs and the propositions within them do not have further
+complexity, hence they have no new levels -->

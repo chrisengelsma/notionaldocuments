@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Notional Documents</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="assets/images/favicon-16x16.png">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+  <!-- build:css css/notional.min.css -->
+  <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" />
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="node_modules/angular-ui-tree/dist/angular-ui-tree.min.css">
+  <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.min.css" />
+  <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.structure.min.css" />
+  <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.theme.min.css" />
+  <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.min.css">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/login.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <!-- endbuild -->
+
+  <!-- build:js js/notional.min.js -->
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript" src="node_modules/firebase/firebase.js"></script>
+  <script type="text/javascript" src="node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script type="text/javascript" src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="node_modules/es5-shim/es5-shim.min.js"></script>
+  <script type="text/javascript" src="node_modules/json3/lib/json3.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-cookies/angular-cookies.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-socket-io/socket.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-typed/dist/angular-typed.min.js"></script>
+  <script type="text/javascript" src="node_modules/jquery-scrollto/out/lib/jquery-scrollto.js"></script>
+  <script type="text/javascript" src="node_modules/expanding-textareas/dist/expanding.jquery.js"></script>
+  <script type="text/javascript" src="node_modules/expanding-textareas/dist/expanding.js"></script>
+  <script type="text/javascript" src="node_modules/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-ui-tree/dist/angular-ui-tree.js"></script>
+  <script type="text/javascript" src="node_modules/d3/dist/d3.min.js"></script>
+  <script type="text/javascript" src="node_modules/d3-hierarchy/dist/d3-hierarchy.js"></script>
+  <script type="text/javascript" src="node_modules/moment/moment.js"></script>
+  <script type="text/javascript" src="node_modules/angular-moment/angular-moment.min.js"></script>
+  <script type="text/javascript" src="app/app.module.js"></script>
+  <script type="text/javascript" src="app/app.routes.js"></script>
+  <script type="text/javascript" src="app/app.config.js"></script>
+  <script type="text/javascript" src="app/editor/editor.controller.js"></script>
+  <script type="text/javascript" src="app/backoffice/backoffice.controller.js"></script>
+  <script type="text/javascript" src="app/library/library.controller.js"></script>
+  <script type="text/javascript" src="app/auth/auth.controller.js"></script>
+  <script type="text/javascript" src="app/services/api.service.js"></script>
+  <script type="text/javascript" src="app/services/library.service.js"></script>
+  <script type="text/javascript" src="app/services/profile.service.js"></script>
+  <script type="text/javascript" src="app/services/book.factory.js"></script>
+  <script type="text/javascript" src="app/directives/chatbox.directive.js"></script>
+  <script type="text/javascript" src="app/directives/enter.directive.js"></script>
+  <script type="text/javascript" src="app/directives/eventfocus.directive.js"></script>
+  <script type="text/javascript" src="app/services/socket.factory.js"></script>
+  <script type="text/javascript" src="app/services/notification.service.js"></script>
+  <script type="text/javascript" src="app/services/messageformatter.service.js"></script>
+  <script type="text/javascript" src="app/services/focus.factory.js"></script>
+  <script type="text/javascript" src="app/services/id.factory.js"></script>
+  <!-- endbuild -->
+
+  <script>
+    // Initialize Firebase
+    const config = {
+    //
+    //
+    //  Firebase details go here
+    //
+    //
+    //
+    };
+    firebase.initializeApp(config);
+  </script>
+
+</head>
+<body ng-app="notionalApp">
+  <ui-view></ui-view>
+</body>
+</html>
