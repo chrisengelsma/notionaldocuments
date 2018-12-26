@@ -1,6 +1,6 @@
 # Notional Documents
 
-!(assets/images/overview.gif)
+![Overview gif](/assets/images/overview.gif)
 
 Demonstrating a way to combine word processing and messaging for easier collaboration.
 
