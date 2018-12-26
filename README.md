@@ -1,5 +1,7 @@
 # Notional Documents
 
+!(assets/images/overview.gif)
+
 Demonstrating a way to combine word processing and messaging for easier collaboration.
 
 Discuss a topic by trading sentences to build documents made up of sentences. The application connects your interactions with the logical structure of the document to enable:
