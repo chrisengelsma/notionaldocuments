@@ -1,12 +1,12 @@
-#Notional Documents
+# Notional Documents
 
-####A propositional-logic approach to crafting documents
+#### A propositional-logic approach to crafting documents
 
 ![Badge](https://img.shields.io/github/package-json/v/notionaldocuments/notionaldocuments.svg?style=flat) [![license](https://img.shields.io/github/license/notionaldocuments/notionaldocuments.svg)](https://github.com/notionaldocuments/notionaldocuments/blob/master/LICENSE) [![Build Status](https://travis-ci.org/notionaldocuments/notionaldocuments.svg?branch=master)](https://travis-ci.org/notionaldocuments/notionaldocuments)
 
 ![Overview gif](/assets/images/overview.gif)
 
-####What is Propositional Logic?
+#### What is Propositional Logic?
 
 From Stanford's [Intro to Logic, Chapter 2](http://intrologic.stanford.edu/notes/chapter_02.html): 
 
@@ -15,7 +15,7 @@ Roughly speaking, a proposition is a possible condition of the world that is eit
 
 ***
 
-####Table of Contents
+#### Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -33,25 +33,25 @@ Roughly speaking, a proposition is a possible condition of the world that is eit
 
 ***
 
-###Overview
+### Overview
 
 Notional Documents is a propositional-logic approach to collaboration and document crafting.
 Discuss a topic by trading sentences to build documents made up of sentences. 
 
-###Features 
+### Features 
 
 - Draft and edit at close-to messaging speed
 - Feedback and debate to draw out ideas and develop paragraphs rationalistically
 - Manage a library of different projects
 
-###Installation Guide
+### Installation Guide
 
 Before installing ensure you hae the following:
 
 * [Nodejs](https://nodejs.org/en/) 
 * [npm](https://www.npmjs.com/)
 
-###Installing Dependencies
+### Installing Dependencies
 Navigate to the project root and run the following command:
 
 ```bash
@@ -60,7 +60,7 @@ $ npm install
 
 This will install all the necessary dependencies.
 
-####Connect to Firebase
+#### Connect to Firebase
 
 Before you run, you'll need to set up your app's config to point to your Firebase database.
 
@@ -89,7 +89,7 @@ Before you run, you'll need to set up your app's config to point to your Firebas
 * Your project will now link to your firebase account.
 * Finally, click "Authentication" on the left to configure auth.
 
-####Running
+#### Running
 
 After installing and linking to Firebase, type this into a terminal: 
 
@@ -99,36 +99,36 @@ $ npm start
 
 When the application finishes initializing, open up a browser and navigate to [http://localhost:3000]()
 
-###How to use
+### How to use
 
-####Punctuation 
+#### Punctuation 
 
 In discussion, we state information, as well as comment on and justify ourselves against, the sentences of others. We also ask questions. These interactions prompt others and make them aware of how we feel about common information, and why.
 
 In notional documents, punctuation marks [ .  !  ? : ] serve like logical operators and provide these cues. They tell the software how to update common information - the document.
 
-####Paragraph / Idea Ownership
+#### Paragraph / Idea Ownership
 
 Conventional paragraphs start with a topic sentence that states a main idea, followed by supporting sentences that expand upon or justify it. An acceptable paragraph is often a more complete and complex thought than a single sentence.
 
 In notional documents, an author has a kind of sovereignty over their own paragraphs just as they do over their own thoughts. By design, users may mark up sentences in another author's paragraph with remarks or criticisms, but the author can replace these with justifications or elaborations, thereby building up the paragraph.
 
-####Questions Create New Sections
+#### Questions Create New Sections
 
 In discussion, we use questions to prompt others to share information that is not already common knowledge. In a document, a new section explores information not already stated to the reader. Notional Documents connects the function of a question to the usefulness of supposing an additional section of a document about a complex idea.
 
 One further avenue for development involves constructing an algorithm to parse any question into the noun phrase that titles the new section.  
 
-###Roadmap
+### Roadmap
 
 - Non-blocking collaboration: share the document's outline and settle with an unlimited number of co-authors over entire paragraphs of ideas rather than individual words (in development)
 - Document drafting without the need to view the document (nearly there)
 
-###API Documentation
+### API Documentation
 
 [Api documentation can be found here](docs/README.md)
 
-###Resources
+### Resources
 
 * [Intro to Logic, Stanford](http://intrologic.stanford.edu/notes/chapter_02.html)
 * ["Propositional Logic" from the Internet Encyclopedia of Philosophy](https://www.iep.utm.edu/prop-log/)
