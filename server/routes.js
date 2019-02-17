@@ -111,6 +111,16 @@ module.exports = function(admin, express) {
     });
   });
 
+  router.delete(`/library/book/:id`, (req, res, next) => {
+    const bookId = req.params.id;
+    const bookRef = db.ref('books/'+bookId);
+    bookRef.remove().then(() => {
+      return res.end();
+    }).catch((error) => {
+      next(error);
+    });
+  });
+
   // propositions ============================================================
 
   router.post(`/library/props/:uid`, (req, res, next) => {

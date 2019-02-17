@@ -13,6 +13,7 @@
       getLibrary: getLibrary,
       addBook: addBook,
       getBooks: getBooks,
+      removeBook: removeBook,
       clear: clear
     };
 
@@ -31,6 +32,10 @@
         library = {};
       }
       library[uid] = value;
+    }
+
+    function removeBook(uid) {
+      delete library[uid];
     }
 
     function setLibrary(value) {

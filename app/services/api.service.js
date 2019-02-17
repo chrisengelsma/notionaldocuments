@@ -19,6 +19,8 @@
       readBook: (bookId) => { return get('/library/book/' + bookId); },
       updateBook: (bookId, book) => { return post('/library/book/' + bookId + '/update', { book: book }); },
 
+      removeBook: (bookId) => { return del('/library/book/' + bookId) },
+
       updatePropositions: (bookId, propositions) => { return post('/library/props/' + bookId, { propositions: propositions }); },
       readPropositions: (bookId) => { return get('/library/props/' + bookId); }
     };

@@ -1,42 +1,53 @@
 <div class="animate-me">
-  <h2 class="typewriter" > Library</h2>
+  <h2 class="typewriter"> Library</h2>
   <table class="table">
     <thead>
-      <tr>
-        <th style="text-align: center; vertical-align: center;">Add</th>
-        <th style="text-align: center; vertical-align: center;">Topic</th>
-        <th style="text-align: center; vertical-align: center;">Last Modified</th>
-        <th style="text-align: center; vertical-align: center;">Date Created</th>
-      </tr>
+    <tr>
+      <th class="library-cell">Add</th>
+      <th class="library-cell">Topic</th>
+      <th class="library-cell">Last Modified</th>
+      <th class="library-cell">Date Created</th>
+      <th class="library-cell"></th>
+    </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="(uid, book) in libraryCtrl.library">
-        <td style="vertical-align: middle; text-align: center;">
-          <button type="button"
-                  name="{{ uid }}"
-                  class="btn btn-block"
-                  ng-click="libraryCtrl.toggleSelection(uid)"
-                  ng-class="{ 'btn-success': libraryCtrl.selected.indexOf(uid) > -1,
-                              'btn-light': libraryCtrl.selected.indexOf(uid) === -1}" >
-            <i class="fa fa-2x fa-check-circle-o" ng-if="libraryCtrl.selected.indexOf(uid) > -1"></i>
-            <i class="fa fa-2x fa-circle-o" ng-if="libraryCtrl.selected.indexOf(uid) === -1"></i>
-          </button>
-        </td>
-        <td style="vertical-align: middle; text-align: center;">
-          {{ book.topic }}
-        </td>
-        <td style="vertical-align: middle; text-align: center;">
-          {{ book.lastModified * 1000 | date:'short' }}
-        </td>
-        <td style="vertical-align: middle; text-align: center;">
-          {{ book.dateCreated * 1000 | date:'short' }}
-        </td>
-      </tr>
+    <tr ng-repeat="(uid, book) in libraryCtrl.library">
+      <td class="library-cell">
+        <button type="button"
+                name="{{ uid }}"
+                class="btn btn-block"
+                ng-click="libraryCtrl.toggleSelection(uid)"
+                ng-class="{ 'btn-success': libraryCtrl.selected.indexOf(uid) > -1,
+                              'btn-light': libraryCtrl.selected.indexOf(uid) === -1}">
+          <i class="fa fa-2x fa-check-circle-o"
+             ng-if="libraryCtrl.selected.indexOf(uid) > -1"></i>
+          <i class="fa fa-2x fa-circle-o"
+             ng-if="libraryCtrl.selected.indexOf(uid) === -1"></i>
+        </button>
+      </td>
+      <td class="library-cell">
+        {{ book.topic }}
+      </td>
+      <td class="library-cell">
+        {{ book.lastModified * 1000 | date:'short' }}
+      </td>
+      <td class="library-cell">
+        {{ book.dateCreated * 1000 | date:'short' }}
+      </td>
+      <td class="library-cell">
+        <button type="button"
+                ng-click="libraryCtrl.removeBook(uid)"
+                class="btn btn-danger"
+                name="remove-{{ uuid }}">
+          <i class="fa fa-times"></i>
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
 
-<hr />
+<hr/>
 
 <h2>Add Book</h2>
 
@@ -50,13 +61,14 @@
     <input id="bookTitle"
            class="form-control offset-1 col-md-9"
            ng-model="libraryCtrl.newBook.topic"
-           placeholder="Topic" />
+           placeholder="Topic"/>
   </div>
 </form>
 
 
 <br>
-<div style="font-size: 24px">
-  Go to <a ng-class="{active: $state.includes('mybooks')}" ui-sref="app.backoffice.mybooks">my books</a>
+<div class="text-lg-center">
+  Go to <a ng-class="{active: $state.includes('mybooks')}"
+           ui-sref="app.backoffice.mybooks">my books</a>
 </div>
 

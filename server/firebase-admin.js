@@ -5,7 +5,8 @@ const admin = require('firebase-admin');
 const serviceAccount = require('../config/serviceAccountKey.json');
 
 admin.initializeApp({
-	// Credentials go here
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://notional-test.firebaseio.com"
 });
 
 module.exports = admin;

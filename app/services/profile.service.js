@@ -14,6 +14,8 @@
       getProfile: getProfile,
       getBookIds: getBookIds,
       setBookIds: setBookIds,
+      removeBookId: removeBookId,
+      addBookId: addBookId,
       setSelectedBook: setSelectedBook,
       getSelectedBook: getSelectedBook,
       clear: clear
@@ -24,12 +26,26 @@
     }
 
     function getProfile() {
-      console.log(profile);
       return profile;
     }
 
     function setBookIds(value) {
       profile.books = value;
+    }
+
+    function addBookId(bookId) {
+      if (profile.books) {
+        const existingId = profile.books.filter(x => x === bookId);
+        if (!existingId) {
+          profile.books.push(bookId);
+        }
+      }
+    }
+
+    function removeBookId(value) {
+      if (profile.books) {
+        profile = profile.books.filter(x => x !== value);
+      }
     }
 
     function getBookIds() {
