@@ -1,0 +1,11 @@
+<nav class="nav flex-column">
+  <a class="nav-link" ng-class="{active: $state.includes('profile')}" ui-sref="app.backoffice.profile">Profile</a>
+  <a class="nav-link" ng-class="{active: $state.includes('mybooks')}" ui-sref="app.backoffice.mybooks">My Books</a>
+  <a class="nav-link" ng-class="{active: $state.includes('library')}" ui-sref="app.backoffice.library">Library</a>
+</nav>
+
+<div class="container" style="padding-top: 20px">
+  <div class="body-content-wrapper">
+    <ui-view></ui-view>
+  </div>
+</div>

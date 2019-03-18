@@ -1,0 +1,34 @@
+<div class="animate-me">
+  <h2 class="typewriter"> My Books</h2>
+  <hr />
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Last Modified</th>
+      <th>Date Created</th>
+    </tr>
+    </thead>
+    <tr class="book-select" ng-repeat="($index, book) in backofficeCtrl.books"
+        ng-click="backofficeCtrl.selectBook($index, book)"
+        ng-class="{'table-primary': hover }"
+        ng-init="hover = false",
+        ng-mouseenter="hover = true"
+        ng-mouseleave="hover = false">
+      <td>
+        {{ book.topic }}
+      </td>
+      <td>
+        {{ book.lastModified * 1000 | date:'short' }}
+      </td>
+      <td>
+        {{ book.dateCreated * 1000 | date:'short' }}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+<div style="font-size: 24px">
+  Go to the <a style="display: inline" ng-class="{active: $state.includes('library')}" ui-sref="app.backoffice.library">library</a>
+</div>
