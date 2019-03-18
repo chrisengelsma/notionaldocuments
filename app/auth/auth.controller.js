@@ -21,13 +21,13 @@
           authCtrl.errorMessage = error.message;
         });
       }).catch((error) => {
-        console.error(error);
+        // console.error(error);
       });
     };
 
     authCtrl.register = function() {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(() => {
-        console.log(authCtrl.user);
+        // console.log(authCtrl.user);
         apiService.registerWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(() => {
           const now = moment().unix();
           let data = {
@@ -45,7 +45,7 @@
           authCtrl.errorMessage = error.message;
         });
       }).catch((error) => {
-        console.error(error);
+        // console.error(error);
       });
     };
   }
