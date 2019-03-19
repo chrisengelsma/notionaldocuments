@@ -51,7 +51,7 @@
                     ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition) : inputs.nothing; ($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true) ? deleteProposition() : inputs.nothing; ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true) ? markProposition(proposition) : inputs.nothing; (inputs.proposition === '' && $event.keyCode === 8 && userId === proposition.author) ? highlightProposition(proposition) : inputs.nothing; "
                     spellcheck="false"></textarea>
 
-          <span class="right-text" ng-if="selectedProposition.id === proposition.id">
+          <span class="right-text" ng-if="selectedProposition.id === proposition.id" ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}">
               {{inputs.proposition}}
             </span>
 
