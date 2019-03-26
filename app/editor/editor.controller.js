@@ -1410,7 +1410,6 @@
         remarks: [payload.proposition]
       });
       $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].deleted = true;
-      $scope.$apply();
 
       callback();
     }
