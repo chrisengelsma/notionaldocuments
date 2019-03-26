@@ -243,7 +243,7 @@
 
                       /*
             focus
-            copy value
+            copy value                      // must be rewritten to hide the paragraph rather than deleting it
             blank input
             paste value
             */
@@ -255,7 +255,6 @@
 
 
       if (payload.blanksProposition) {
-        // for (let i = payload.proposition.position + 1; i < apply.paragraphDestination.propositions.length; i++) {
           apply.propositionDestination.hidden = true;
           console.log("Hid proposition: ", apply.propositionDestination)
           if ($scope.selectedProposition.id === payload.proposition.id && payload.proposition.author !== $scope.userId){
@@ -271,21 +270,21 @@
       }
 
 
-      for (let i = 0; i < $scope.propositions.length; i++) {
-        if ($scope.propositions[i].id === payload.proposition.id) {
-          $scope.propositions[i] = {
-                id: 'Ngmyk1lP1KfffhSAw333',
-                type: 'blank',
-                author: '',
-                text: '',
-                position: 0,
-                of: {},
-                remarks: [],
-                dialogueSide: false
-              };
-          break;
-        }
-      }
+      // for (let i = 0; i < $scope.propositions.length; i++) {
+      //   if ($scope.propositions[i].id === payload.proposition.id) {
+      //     $scope.propositions[i] = {
+      //           id: 'Ngmyk1lP1KfffhSAw333',
+      //           type: 'blank',
+      //           author: '',
+      //           text: '',                                            // Don't blank propositions in the propositions array
+      //           position: 0,
+      //           of: {},
+      //           remarks: [],
+      //           dialogueSide: false
+      //         };
+      //     break;
+      //   }
+      // }
 
 
             for (let i = 0; i < apply.paragraphDestination.propositions.length; i++) {
@@ -654,71 +653,6 @@
             $scope.selectedProposition.of.author === $scope.userId &&
             $scope.selectedProposition.type === 'negation' &&
             $scope.selectedProposition.cowsComeHome) {
-
-/*
-
-          prep.topic = $scope.selectedNode.topic;
-          prep.type = 'rejoinder';
-          console.log('period rejoinder');                                 //  IF THE LASTCHAR IS . AND THE SELECTED PROPOSITION HAS AN OF AND IT'S OF YOUR NICKNAME
-          prep.adjustedText = input.substring(0, input.length - 1) + '.';  //  AND YOU'VE SELECTED A NEGATION THAT'S AN OF OF YOUR NICKNAME, IT'S A REJOINDER
-          prep.assertionId = $scope.selectedProposition.assertionId;
-          prep.paragraphPosition = $scope.selectedParagraph.position;
-
-          prep.position = $scope.selectedProposition.position + 1;
-
-          prep.getsOwnProposition = true;
-          prep.of = {
-            id:     $scope.selectedProposition.id,
-            type:   $scope.selectedProposition.type,
-            author: $scope.selectedProposition.author,                    // REJOINDER CALCULATIONS
-            text:   $scope.selectedProposition.text,
-          };
-          prep.class = $scope.selectedNode.class;
-          prep.nodePath = '$scope.data';                                  // STARTING POINT FOR THIS CALCULATION
-          prep.address = $scope.selectedNode.address;
-
-
-          for (let i = 0; i < prep.address.length; i++) {                 //  MAKE THE PATH TO THE SELECTED PROPOSITION
-            if (i < prep.address.length - 1) {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-            } else {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
-            }
-          }
-
-          prep.assertionPath = $scope.selectedProposition.assertionPath;
-          if ($scope.selectedProposition.remarkAddress) {                                 // only if it's a negation of a rejoinder
-            let start = $scope.selectedProposition.assertionPath;                         // start with the path taking you to the assertion
-            for (let i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {   // calculate the path to the selectedProposition's remark location
-
-              start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
-
-            }
-            prep.remarkAddress = $scope.selectedProposition.remarkAddress;  // the new remark address will be based on the selectedProposition's remark address array
-            prep.check = eval(start);                                       // check the selectedProposition's remark location
-            if (prep.check.remarks.length > 0) {                            // if the remark has remarks,
-              prep.remarkAddress.push(prep.check.remarks.length)
-            } else {
-              prep.remarkAddress.push(0);
-              prep.remarkPath = $scope.selectedProposition.assertionPath;
-              for (let i = 0; i < prep.remarkAddress.length; i++) {         // calculate the path to the selectedProposition's remark location
-                prep.remarkPath = prep.remarkPath + '.remarks[' + prep.remarkAddress[i].toString() + ']';
-              }
-            }
-          } else {
-            prep.remarkAddress = $scope.selectedProposition.remarkAddress;
-            prep.remarkAddress.push(0);
-            prep.remarkPath = prep.assertionPath + '.remarks[0]';
-          }
-
-
-          console.log('Path to assertion: ', prep.assertionPath);
-          console.log('New remark address: ', prep.remarkAddress);
-          console.log('Node position: ', prep.nodePath);                                    //      CONSOLE LOGS
-          console.log('Question/Topic: ', prep.topic);
-          console.log('Destination: ', prep.class);
-
-*/
 
         } else {
 
