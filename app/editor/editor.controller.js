@@ -256,7 +256,9 @@
 
       if (payload.blanksProposition) {
           apply.propositionDestination.hidden = true;
-          console.log("Hid proposition: ", apply.propositionDestination)
+          apply.propositionDestination[$scope.userId] = 'hidden';
+          console.log("Hid proposition: ", apply.propositionDestination);
+
           if ($scope.selectedProposition.id === payload.proposition.id && payload.proposition.author !== $scope.userId){
             $scope.selectedParagraph = {};
             $scope.selectedProposition = {};                      // Deletions to ones being worked on just drop the discussion
@@ -656,57 +658,7 @@
 
         } else {
 
-          //   FIRSTCHAR SORT  -          >               :
-
           if (prep.firstChar === '>' || prep.firstChar === '<') {
-
-            if (input.charAt(1) === ' ') {
-              prep.adjustedText = input.substring(2, input.length);
-            } else {
-              prep.adjustedText = input.substring(1, input.length);
-            }
-
-
-            prep.position = 0;
-            if (prep.firstChar === '>') {
-              prep.paragraphPosition = $scope.selectedParagraph.position + 1;
-              prep.isConsequent = true;
-            } else {
-              prep.paragraphPosition = $scope.selectedParagraph.position - 1;
-              prep.isAntecedent = true;
-            }
-            prep.getsOwnParagraph = true;
-
-            prep.topic = $scope.selectedNode.topic;
-            prep.class = $scope.selectedNode.class;
-            prep.type = 'assertion';
-
-            prep.nodePath = '$scope.data';
-            prep.address = $scope.selectedNode.address;
-
-            for (let i = 0; i < prep.address.length; i++) {                                          //    CALCULATES PATH TO THE NODE
-              if (i < prep.address.length - 1) {
-                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-              } else {
-                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
-              }
-            }
-
-            prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';    //   INITIAL ASSERTION PATH
-            prep.assertionDestination = eval(prep.assertionPath);
-
-            if (prep.assertionDestination) {
-              $scope.selectedProposition = eval(prep.assertionPath);  //   SET SELECTEDPROPOSITION EQUAL TO THE PLACE IT IS BEING PUT
-            }
-
-            prep.of = {
-              id:     $scope.selectedProposition.id,     //    THE OF WILL BE WHAT'S AT THE PLACE WHERE IT'S PUT
-              type:   $scope.selectedProposition.type,
-              author: $scope.selectedProposition.author,
-              text:   $scope.selectedProposition.text,
-            };
-
-            $scope.selectedProposition = {};             //   THEN IT'S BLANKED
 
           } else {
 
@@ -988,6 +940,8 @@
             for (let i = 0; i < apply.paragraphDestination.propositions.length; i++) {
               if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {                     //   REJOINDERS SET NEGATIONS TO 'REJOINED' STATUS
                 apply.paragraphDestination.propositions[i].rejoined = true;
+                let apply.toBeRejoined = apply.paragraphDestination.propositions[i];
+                apply.toBeRejoined[$scope.userId] = 'hidden';
               }
             }
           }
@@ -1435,28 +1389,6 @@
         d.y0 = d.y;
       });
 
-// //Toggle children on click.
-// $scope.click = function(d) {
-//   if (d.children) {
-//   d._children = d.children;
-//   d.children = null;
-//   } else {
-//   d.children = d._children;
-//   d._children = null;
-//   }
-//   $scope.update(d);
-// }
-
-
-// d3.select('svg')
-
-// .attr('width', 132);
-// .attr('height', 69);
-
-// d3.select('svg')
-//   .attr('preserveAspectRatio','xMinYMin meet')
-//   .attr('width', '100%')
-//   .attr('viewbox', '0 0 132 69');
     };
 
     function scrollMessagesToBottom() {

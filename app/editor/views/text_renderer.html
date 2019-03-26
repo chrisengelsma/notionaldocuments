@@ -19,14 +19,9 @@
             ng-mouseleave="proposition.preSelected = false;"
             ui-tree-node
             ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false;"
-            ng-if="proposition.hidden !== true"
+            ng-if="proposition.hidden !== true && !proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
 
-          <!--     <span ng-if="(paragraph.propositions[0].type === 'blank') && selectedParagraph != paragraph" ng-click="selectedProposition.dialogueSide = false; selectParagraph(paragraph);  paragraph.cursor = false;" class="paragraphplaceholder">
-                <span ng-if="paragraph.mouseOver && selectedProposition.id != proposition.id"
-                     class="glyphicon glyphicon-plus" style="">
-                </span>
-              </span> -->
           <span event-focus="click"
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
@@ -40,7 +35,7 @@
                 ng-mouseover="mouseOver(proposition)"
                 ng-mouseleave="mouseLeave(proposition)"
                 event-focus-id="{{proposition.id}}"
-                ng-if="!proposition.rejoined"
+                ng-if=""
                 class="proposition-text">{{proposition.text}}</span>
 
           <textarea id="{{proposition.id}}"
@@ -48,7 +43,7 @@
                     class="right-textarea"
                     ng-if="selectedProposition.id === proposition.id"
                     ng-model="inputs.proposition"
-                    ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition) : inputs.nothing; ($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true) ? deleteProposition() : inputs.nothing; ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true) ? markProposition(proposition) : inputs.nothing; (inputs.proposition === '' && $event.keyCode === 8 && userId === proposition.author) ? highlightProposition(proposition) : inputs.nothing; "
+                    ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition) : inputs.nothing; ($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true) ? deleteProposition() : inputs.nothing; ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true) ? markProposition(proposition) : inputs.nothing; (inputs.proposition === '' && $event.keyCode === 8 && (userId === proposition.author || (proposition.type !== 'negation' && proposition.of.author === userId)) ? highlightProposition(proposition) : inputs.nothing; "
                     spellcheck="false"></textarea>
 
           <span class="right-text" ng-if="selectedProposition.id === proposition.id" ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}">
