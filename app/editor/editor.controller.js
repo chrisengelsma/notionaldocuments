@@ -255,7 +255,6 @@
 
 
       if (payload.blanksProposition) {
-          apply.propositionDestination.hidden = true;
           apply.propositionDestination[$scope.userId] = 'hidden';
           console.log("Hid proposition: ", apply.propositionDestination);
 
