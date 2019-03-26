@@ -940,7 +940,7 @@
             for (let i = 0; i < apply.paragraphDestination.propositions.length; i++) {
               if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {                     //   REJOINDERS SET NEGATIONS TO 'REJOINED' STATUS
                 apply.paragraphDestination.propositions[i].rejoined = true;
-                let apply.toBeRejoined = apply.paragraphDestination.propositions[i];
+                apply.toBeRejoined = apply.paragraphDestination.propositions[i];
                 apply.toBeRejoined[$scope.userId] = 'hidden';
               }
             }
