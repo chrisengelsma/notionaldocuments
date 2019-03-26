@@ -19,7 +19,7 @@
             ng-mouseleave="proposition.preSelected = false;"
             ui-tree-node
             ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false;"
-            ng-if="proposition.hidden !== true && !proposition.rejoined && proposition[userId] !== 'hidden'"
+            ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
 
           <span event-focus="click"
