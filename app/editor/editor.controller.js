@@ -226,9 +226,8 @@
 
       if (payload.blanksParagraph) {
         console.log('blanks paragraph');
+        apply.paragraphDestination[$scope.userId] = 'hidden';
         for (let i = payload.paragraphPosition; i < apply.nodeDestination.paragraphs.length-1; i++) {
-          apply.nodeDestination.paragraphs[i+1].position--;
-          apply.nodeDestination.paragraphs[i] = apply.nodeDestination.paragraphs[i + 1];
           if ($scope.selectedProposition.id === payload.proposition.id && $scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].paragraphId){
             $scope.selectedParagraph = {};
             $scope.selectedProposition = {};                      // Deletions to ones being worked on just drop the discussion
@@ -249,7 +248,6 @@
             */
 
         }
-        apply.nodeDestination.paragraphs.pop();
       }
 
 

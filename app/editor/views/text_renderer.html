@@ -10,6 +10,7 @@
       ng-mouseover="paragraph.mouseOver = true"
       ng-mouseleave="paragraph.mouseOver = false;"
       class="tree-node tree-node-content paragraph"
+      ng-if="paragraph[userId] !== 'hidden'"
       ng-class="{paragraphcursor: paragraph.cursor === true, paragraphoffcursor: paragraph.cursor === false}">
 
     <div>
@@ -45,7 +46,7 @@
                     ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition) : inputs.nothing; ($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true) ? deleteProposition() : inputs.nothing; ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true) ? markProposition(proposition) : inputs.nothing; (inputs.proposition === '' && $event.keyCode === 8 && !(proposition.type === 'negation' && proposition.of.author === userId)) ? highlightProposition(proposition) : inputs.nothing; "
                     spellcheck="false"></textarea>
 
-          <span class="right-text" ng-if="selectedProposition.id === proposition.id" ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}">
+          <span class="right-text" ng-if="selectedProposition.id === proposition.id" ng-class="{'negation': inputs.proposition.charAt(inputs.proposition.length - 1) === '!'}">
               {{inputs.proposition}}
             </span>
 
