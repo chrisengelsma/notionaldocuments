@@ -197,10 +197,10 @@ input {
 
 .cursor.blinking-cursor {
   color: #212121 !important;
-  -webkit-animation: 4s blink step-end infinite; /*1s*/
+  -webkit-animation: 1s blink step-end infinite; /*1s*/
   -moz-animation: 1s blink step-end infinite;
   -o-animation: 1s blink step-end infinite;
-  animation: 4s blink step-end infinite; /*1s*/
+  animation: 1s blink step-end infinite; /*1s*/
   position: absolute;
 }
 
