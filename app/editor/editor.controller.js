@@ -84,12 +84,13 @@
     $scope.messageLog = '';
     $scope.inputs = {};
 
-    $scope.selectedNode = $scope.data[0];
-    $scope.selectedParagraph = null;
-    $scope.selectedProposition = null;
+    if (!$scope.data[0].paragraphs[0].propositions[0].author){
+      $scope.selectedProposition.textSide = true;
+      $scope.selectedNode = $scope.data[0];
+      $scope.selectedParagraph = $scope.data[0].paragraphs[0];
+      $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
+    }
 
-    $scope.selectedParagraph = $scope.data[0].paragraphs[0];
-    $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
     $scope.selectedProposition.textSide = true;
     $scope.selectedThread = {};
     $scope.preselectedProposition = {};
