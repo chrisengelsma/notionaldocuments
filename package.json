@@ -39,6 +39,7 @@
     "express-firebase-middleware": "^2.0.0",
     "firebase": "^5.4.1",
     "firebase-admin": "^6.0.0",
+    "firebase-tools": "^6.5.0",
     "font-awesome": "^4.7.0",
     "iconv-lite": "^0.4.13",
     "jquery": "^3.3.1",
