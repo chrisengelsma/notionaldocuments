@@ -83,6 +83,9 @@
 
       textFile = window.URL.createObjectURL(data);
 
+
+      console.log("Textfile is now: ", textFile)
+
       return textFile;
   };
 
@@ -97,8 +100,7 @@
     }, false);
 
 
-
-
+    var textFile = $scope.data[0];
 
 
 
@@ -108,7 +110,6 @@
     $scope.topics = [{}];
     $scope.scroll = {};
     $scope.keyword = {};
-    $scope.textFile = null,
 
 
 
