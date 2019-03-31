@@ -95,6 +95,8 @@
       link.href = $scope.makeTextFile(theBook.value);
     }, false);
 
+    console.log("The Book: ", theBook)
+
 
 
 
