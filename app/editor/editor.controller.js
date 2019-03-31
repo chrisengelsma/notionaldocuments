@@ -119,7 +119,6 @@
       $scope.selectedProposition.textSide = true;
     }
 
-    $scope.selectedProposition.textSide = true;
     $scope.selectedThread = {};
     $scope.preselectedProposition = {};
     $scope.selectedRemark = {};
