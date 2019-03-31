@@ -80,7 +80,7 @@
 
       console.log("Textfile is now: ", textFile)
 
-      
+
       if (textFile !== null) {
         window.URL.revokeObjectURL(textFile);
       }
@@ -95,7 +95,7 @@
 
 
     let create = document.getElementById('downloadlink');
-    let theBook = document.getElementById('bookdata');
+    let theBook = document.getElementById('myNav');
 
     create.addEventListener('click', function () {
       console.log("The Book: ", theBook)
