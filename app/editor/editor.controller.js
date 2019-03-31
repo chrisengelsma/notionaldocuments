@@ -92,7 +92,7 @@
 
     create.addEventListener('click', function () {
       var link = document.getElementById('downloadlink');
-      link.href = makeTextFile(theBook.value);
+      link.href = $scope.makeTextFile(theBook.value);
     }, false);
 
 
