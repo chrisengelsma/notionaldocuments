@@ -72,12 +72,40 @@
       $scope.selectedParagraph = null;
     };
 
+    $scope.makeTextFile = function (text) {
+      var data = new Blob([text], {type: 'text/plain'});
+
+      // If we are replacing a previously generated file we need to
+      // manually revoke the object URL to avoid memory leaks.
+      if (textFile !== null) {
+        window.URL.revokeObjectURL(textFile);
+      }
+
+      textFile = window.URL.createObjectURL(data);
+
+      return textFile;
+  };
+
+
+    let create = document.getElementById('downloadlink');
+    let theBook = document.getElementById('tree-root');
+
+    create.addEventListener('click', function () {
+      var link = document.getElementById('downloadlink');
+      link.href = makeTextFile(theBook.value);
+    }, false);
+
+
+
+
+
 
 
 
     $scope.topics = [{}];
     $scope.scroll = {};
     $scope.keyword = {};
+    $scope.textFile = null,
 
 
 
@@ -89,6 +117,7 @@
       $scope.selectedNode = $scope.data[0];
       $scope.selectedParagraph = $scope.data[0].paragraphs[0];
       $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
+      $scope.selectedProposition.textSide = true;
     }
 
     $scope.selectedProposition.textSide = true;
