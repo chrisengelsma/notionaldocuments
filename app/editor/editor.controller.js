@@ -91,11 +91,12 @@
     let theBook = document.getElementById('bookdata');
 
     create.addEventListener('click', function () {
+      console.log("The Book: ", theBook)
       var link = document.getElementById('downloadlink');
       link.href = $scope.makeTextFile(theBook.value);
     }, false);
 
-    console.log("The Book: ", theBook)
+
 
 
 
