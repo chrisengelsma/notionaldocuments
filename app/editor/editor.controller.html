@@ -98,6 +98,7 @@
 
         <ol ui-tree-nodes ng-model='data' style="" class="angular-ui-tree-nodes">
           <li ng-repeat="node in data | orderBy: 'class'"
+              id="bookData"
               ui-tree-node
               ng-class="{ mousedovernode: node.mouseOver === true }"
               ng-mouseover="node.mouseOver = true;"
