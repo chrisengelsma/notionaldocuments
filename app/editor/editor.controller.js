@@ -79,6 +79,7 @@
       // manually revoke the object URL to avoid memory leaks.
 
       console.log("Textfile is now: ", textFile)
+      console.log("Data: ", data)
 
 
       if (textFile !== null) {
