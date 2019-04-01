@@ -97,7 +97,7 @@
 
 
     let create = document.getElementById('downloadlink');
-    let theBook = document.getElementById('myNav').getAttribute('value');
+    let theBook = document.getElementById('myNav').textContent;
     $scope.textFile = $scope.data[0];
 
     create.addEventListener('click', function () {
