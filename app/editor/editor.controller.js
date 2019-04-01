@@ -92,7 +92,7 @@
 
       console.log("Textfile is now: ", $scope.textFile)
 
-      return textFile;
+      return $scope.textFile;
   };
 
 
