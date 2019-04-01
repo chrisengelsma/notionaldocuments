@@ -97,7 +97,7 @@
 
 
     let create = document.getElementById('downloadlink');
-    let theBook = document.getElementById('myNav').textContent;
+    let theBook = document.getElementById('tree-root').textContent;
     console.log(theBook);
     $scope.textFile = $scope.data[0];
 
