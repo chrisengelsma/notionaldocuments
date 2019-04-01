@@ -104,7 +104,7 @@
     }, false);
 
 
-    var textFile = $scope.data[0];
+    // var textFile = $scope.data[0];
 
 
 
