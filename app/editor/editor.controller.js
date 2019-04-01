@@ -73,6 +73,7 @@
     };
 
     $scope.makeTextFile = function (text) {
+      console.log("Text is: ", text)
       var data = new Blob([text], {type: 'text/plain'});
 
       // If we are replacing a previously generated file we need to
