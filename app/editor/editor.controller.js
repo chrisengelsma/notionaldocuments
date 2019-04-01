@@ -100,6 +100,7 @@
     let theBook;
     console.log(theBook);
     $scope.textFile = $scope.data[0];
+    //works
 
     create.addEventListener('click', function () {
       let theBook = document.getElementById('testing').textContent;
