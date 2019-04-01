@@ -97,13 +97,14 @@
 
 
     let create = document.getElementById('downloadlink');
-    let theBook = document.getElementById('myNav');
+    let theBook = $('myNav').text();
     $scope.textFile = $scope.data[0];
 
     create.addEventListener('click', function () {
+      let theBook = $('myNav').text();
       console.log("The Book: ", theBook)
       var link = document.getElementById('downloadlink');
-      link.href = $scope.makeTextFile(theBook.value);
+      link.href = $scope.makeTextFile(theBook);
     }, false);
 
 
