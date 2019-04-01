@@ -79,18 +79,18 @@
       // If we are replacing a previously generated file we need to
       // manually revoke the object URL to avoid memory leaks.
 
-      console.log("Textfile is now: ", textFile)
+      console.log("Textfile is now: ", $scope.textFile)
       console.log("Data: ", data)
 
 
       if (textFile !== null) {
-        window.URL.revokeObjectURL(textFile);
+        window.URL.revokeObjectURL($scope.textFile);
       }
 
       textFile = window.URL.createObjectURL(data);
 
 
-      console.log("Textfile is now: ", textFile)
+      console.log("Textfile is now: ", $scope.textFile)
 
       return textFile;
   };
@@ -101,7 +101,7 @@
 
     create.addEventListener('click', function () {
       console.log("The Book: ", theBook)
-      let textFile = $scope.data[0];
+      let $scope.textFile = $scope.data[0];
       var link = document.getElementById('downloadlink');
       link.href = $scope.makeTextFile(theBook.value);
     }, false);
