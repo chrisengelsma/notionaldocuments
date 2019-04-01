@@ -100,14 +100,13 @@
 
     create.addEventListener('click', function () {
       console.log("The Book: ", theBook)
+      let textFile = $scope.data[0];
       var link = document.getElementById('downloadlink');
       link.href = $scope.makeTextFile(theBook.value);
     }, false);
 
 
     // var textFile = $scope.data[0];
-
-    let textFile = $scope.data[0];
 
 
 
