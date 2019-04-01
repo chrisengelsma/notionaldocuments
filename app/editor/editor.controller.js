@@ -83,7 +83,7 @@
       console.log("Data: ", data)
 
 
-      if (textFile !== null) {
+      if ($scope.textFile !== null) {
         window.URL.revokeObjectURL($scope.textFile);
       }
 
@@ -103,7 +103,7 @@
     create.addEventListener('click', function () {
       console.log("The Book: ", theBook)
       var link = document.getElementById('downloadlink');
-      link.href = $scope.makeTextFile(theBook.value);
+      link.href = $scope.makeTextFile(theBook);
     }, false);
 
 
