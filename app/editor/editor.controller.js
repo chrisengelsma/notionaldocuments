@@ -87,7 +87,7 @@
         window.URL.revokeObjectURL($scope.textFile);
       }
 
-      textFile = window.URL.createObjectURL(data);
+      $scope.textFile = window.URL.createObjectURL(data);
 
 
       console.log("Textfile is now: ", $scope.textFile)
