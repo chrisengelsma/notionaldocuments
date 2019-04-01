@@ -107,7 +107,7 @@
 
     // var textFile = $scope.data[0];
 
-
+    let textFile = $scope.data[0];
 
 
 
