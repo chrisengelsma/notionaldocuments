@@ -98,7 +98,7 @@
     let create = document.getElementById('downloadlink');
     let theBook = document.getElementById('myNav');
 
-    create.addEventListener('load', function () {
+    create.addEventListener('click', function () {
       console.log("The Book: ", theBook)
       var link = document.getElementById('downloadlink');
       link.href = $scope.makeTextFile(theBook.value);
