@@ -77,7 +77,7 @@
 
       // Build the book into a text string
 
-      let $scope.bookBeingCompiled = '';
+      $scope.bookBeingCompiled = '';
 
       for (var i = 0; i < $scope.data.length; i++){
         if($scope.data[i].topic){
