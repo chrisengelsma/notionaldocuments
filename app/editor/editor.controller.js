@@ -74,20 +74,6 @@
 
     $scope.makeTextFile = function (text) {
       console.log("Text is: ", text)
-      var data = new Blob([text], {type: 'text/plain'});
-
-      // If we are replacing a previously generated file we need to
-      // manually revoke the object URL to avoid memory leaks.
-
-      console.log("Textfile is now: ", $scope.textFile)
-      console.log("Data: ", data)
-
-
-      if ($scope.textFile !== null) {
-        window.URL.revokeObjectURL($scope.textFile);
-      }
-
-      $scope.textFile = window.URL.createObjectURL(data);
 
       // Build the book into a text string
 
@@ -109,6 +95,21 @@
           }
         }
       }
+
+      var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
+
+      // If we are replacing a previously generated file we need to
+      // manually revoke the object URL to avoid memory leaks.
+
+      console.log("Textfile is now: ", $scope.textFile)
+      console.log("Data: ", data)
+
+
+      if ($scope.textFile !== null) {
+        window.URL.revokeObjectURL($scope.textFile);
+      }
+
+      $scope.textFile = window.URL.createObjectURL(data);
 
 
 
