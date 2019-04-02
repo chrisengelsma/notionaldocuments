@@ -89,6 +89,28 @@
 
       $scope.textFile = window.URL.createObjectURL(data);
 
+      // Build the book into a text string
+
+      let $scope.bookBeingCompiled = '';
+
+      for (var i = 0; i < $scope.data.length; i++){
+        if($scope.data[i].topic){
+          $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.data[i].topic + "\r\n";
+        }
+        if($scope.data[i].paragraphs){
+          for(var j = 0; j < $scope.data[i].paragraphs.length){
+            if ($scope.data[i].paragraphs[j].propositions){
+              for(var k = 0; k < $scope.data[i].paragraphs[j].propositions.length){
+                if($scope.data[i].paragraphs[j].propositions[k].type !== "negation" && $scope.data[i].paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
+                  $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.data[i].paragraphs[j].propositions[k].text + ' ';
+                }
+              }
+            }
+          }
+        }
+      }
+
+
 
       console.log("Textfile is now: ", $scope.textFile)
 
