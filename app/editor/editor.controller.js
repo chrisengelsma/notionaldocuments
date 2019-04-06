@@ -72,6 +72,66 @@
       $scope.selectedParagraph = null;
     };
 
+    $scope.readBookLevel = function(address){
+
+      $scope.compilationPath = $scope.buildNodePath(address);
+      $scope.compilationTarget = eval($scope.compilationPath);
+
+      $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
+                       // if it has paragraphs
+        for(var j = 0; j < $scope.compilationTarget.paragraphs.length; j++){                  // if it has propositions
+          for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
+            if($scope.compilationTarget[level].paragraphs[j].propositions[k].type !== "negation" && $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
+              $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[level].paragraphs[j].propositions[k].text + ' '; 
+            }
+          }
+          $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n\r\n";
+        }
+        
+        address.push(0);
+        $scope.compilationPath = $scope.buildNodePath(address);
+        $scope.compilationTarget = eval($scope.compilationPath);
+        if ($scope.compilationTarget){
+          $scope.readBookLevel(address);
+          break;
+        } else{
+          address.pop();
+          address[address.length-1]++;
+          $scope.compilationPath = $scope.buildNodePath(address);
+          $scope.compilationTarget = eval($scope.compilationPath);
+          if($scope.compilationTarget){
+            $scope.readBookLevel(address);
+            break;
+          } else {
+            address.pop();
+            for(let i = address.length-1; i > 0; i--){
+              address.pop();
+              $scope.compilationPath = $scope.buildNodePath(address);
+              $scope.compilationTarget = eval($scope.compilationPath);
+              if ($scope.compilationTarget){
+                $scope.readBookLevel(address);
+                break;
+              } else{
+                break;
+              }
+            }
+          }
+        }
+
+    $scope.buildNodePath = function (address){
+      $scope.compilationPath = '$scope.data[0]';
+      if (address.length === 1){
+        return $scope.compilationPath;
+      } else{
+        for(let i = 1; i < address.length; i++){
+          $scope.compilationpath = $scope.compilationPath + '.children[' + i + ']' 
+        }
+        return $scope.compilationPath;
+      }
+    }
+    
+
+
     $scope.makeTextFile = function (text) {
       console.log("Text is: ", text)
 
@@ -79,27 +139,34 @@
 
       $scope.bookBeingCompiled = '';
 
-      for (var i = 0; i < $scope.data.length; i++){
-        if($scope.data[i].topic){
-          $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.data[i].topic + "\r\n";
-        }
-        if($scope.data[i].paragraphs){
-          for(var j = 0; j < $scope.data[i].paragraphs.length; j++){
-            if ($scope.data[i].paragraphs[j].propositions){
-              for(var k = 0; k < $scope.data[i].paragraphs[j].propositions.length; k++){
-                if($scope.data[i].paragraphs[j].propositions[k].type !== "negation" && $scope.data[i].paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
-                  $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.data[i].paragraphs[j].propositions[k].text + ' ';
-                }
-              }
-            }
-          }
-        }
-      }
+      $scope.readBookLevel([0]);
+
+
+      // for (var i = 0; i < $scope.compilationTarget.length; i++){
+      //   if($scope.compilationTarget.topic){
+      //     $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
+      //   }
+      //   if($scope.compilationTarget.paragraphs){
+      //     for(var j = 0; j < $scope.compilationTarget[i].paragraphs.length; j++){
+      //       if ($scope.compilationTarget.paragraphs[j].propositions){
+      //         for(var k = 0; k < $scope.compilationTarget.data[i].paragraphs[j].propositions.length; k++){
+      //           if($scope.compilationTarget[i].paragraphs[j].propositions[k].type !== "negation" && $scope.compilationTarget[i].paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
+      //             $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[i].paragraphs[j].propositions[k].text + ' ';
+      //             if($scope.compilationTarget[i].paragraphs[j].propositions.length === $scope.compilationTarget[i].paragraphs[j].propositions[k]){
+      //               $scope.bookBeingCompiled = $scope.bookBeingCompiled + '\r\n\r\n';
+      //             }
+      //           }
+      //         }
+      //       }
+      //     }
+      //   }
+      //   if($scope.compilationTarget[i].children){
+      //     $scope.compilationPath = $scope.compilationPath + '[' + i + ']' + ".children";
+      //     $scope.readBookLevel($scope.compilationPath, i)
+      //   }
+      // }
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
-
-      // If we are replacing a previously generated file we need to
-      // manually revoke the object URL to avoid memory leaks.
 
       console.log("Textfile is now: ", $scope.textFile)
       console.log("Data: ", data)
