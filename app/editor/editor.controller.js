@@ -83,7 +83,7 @@
         for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
           if($scope.compilationTarget.paragraphs[j].propositions[k].type !== "negation" && 
             $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
-            $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[level].paragraphs[j].propositions[k].text + ' '; 
+            $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget.paragraphs[j].propositions[k].text + ' '; 
           }
         }
         $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n\r\n";
