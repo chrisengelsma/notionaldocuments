@@ -86,21 +86,24 @@
             $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget.paragraphs[j].propositions[k].text + ' '; 
           }
         }
-        $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n\r\n";
+        $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n";
       }
         
       address.push(0);
+      console.log("Address is: ", address);
       $scope.compilationPath = $scope.buildNodePath(address);
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
         $scope.returnAddress = address;
         return;
+        console.log("Found under the rug")
       } else {
         address.pop();
         address[address.length-1]++;
         $scope.compilationPath = $scope.buildNodePath(address);
         $scope.compilationTarget = eval($scope.compilationPath);
         if($scope.compilationTarget){
+          console.log("Found in the next room")
           $scope.returnAddress = address;
           return;
         } else {
@@ -112,6 +115,7 @@
             $scope.compilationTarget = eval($scope.compilationPath);
             if ($scope.compilationTarget){
               $scope.returnAddress = address;
+              console.log("Found in a corner in the attic")
               return;
             } else {
               return;
