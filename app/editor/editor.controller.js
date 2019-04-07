@@ -1229,6 +1229,7 @@
 
     $scope.selectPropositionById = function (id) {
       console.log('Selecting Proposition by Id');
+      console.log('Id is: ', id)
       console.log('Propositions: ', $scope.propositions);
       for (let i = 0; i < $scope.propositions.length; i++) {
         if ($scope.propositions[i].id === id) {
