@@ -73,10 +73,10 @@
     };
 
     $scope.readBookLevel = function(address){
-
+      $scope.copyOfAddress = angular.copy(address);
       console.log("Reading level at address: ", address);
 
-      $scope.compilationPath = $scope.buildNodePath(address);
+      $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
       console.log("Compilation Path: ", $scope.compilationPath);
       $scope.compilationTarget = eval($scope.compilationPath);
 
@@ -92,7 +92,7 @@
         }
         $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n";
       }
-      $scope.copyOfAddress = angular.copy(address);  
+        
       console.log("Address is: ", $scope.copyOfAddress);
       $scope.copyOfAddress.push(0);
       
@@ -104,7 +104,7 @@
         return;
         
       } else {
-        $scope.copyOfAddresss.pop();
+        $scope.copyOfAddress.pop();
         $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
         $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
         $scope.compilationTarget = eval($scope.compilationPath);
