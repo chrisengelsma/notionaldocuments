@@ -93,14 +93,16 @@
       $scope.compilationPath = $scope.buildNodePath(address);
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
-        $scope.readBookLevel(address);
+        $scope.returnAddress = address;
+        return;
       } else {
         address.pop();
         address[address.length-1]++;
         $scope.compilationPath = $scope.buildNodePath(address);
         $scope.compilationTarget = eval($scope.compilationPath);
         if($scope.compilationTarget){
-          $scope.readBookLevel(address);
+          $scope.returnAddress = address;
+          return;
         } else {
           address.pop();
           for(let i = address.length-1; i > 0; i--){
@@ -108,7 +110,8 @@
             $scope.compilationPath = $scope.buildNodePath(address);
             $scope.compilationTarget = eval($scope.compilationPath);
             if ($scope.compilationTarget){
-              $scope.readBookLevel(address);
+              $scope.returnAddress = address;
+              return;
             } else {
               break;
             }
@@ -138,6 +141,8 @@
       $scope.bookBeingCompiled = '';
 
       $scope.readBookLevel([0]);
+      if ($scope.returnAddress === [0]);
+
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
@@ -166,10 +171,9 @@
     //works
 
     create.addEventListener('click', function () {
-      let theBook = document.getElementById('testing').textContent;
-      console.log("The Book: ", theBook)
       var link = document.getElementById('downloadlink');
       link.href = $scope.makeTextFile();
+      console.log("Link HREF: ", link.href)
     }, false);
 
 
