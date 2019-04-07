@@ -149,6 +149,7 @@
       $scope.bookBeingCompiled = '';
 
       $scope.readBookLevel([0]);
+      console.log('Return address:', $scope.returnAddress)
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
       }
@@ -174,9 +175,7 @@
     }
 
 
-    let create = document.getElementById('downloadlink');
-    let theBook;
-    console.log(theBook);
+
     $scope.textFile = $scope.data[0];
     //works
 
