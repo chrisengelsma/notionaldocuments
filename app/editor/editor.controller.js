@@ -107,13 +107,14 @@
           address.pop();
           for(let i = address.length-1; i > 0; i--){
             address.pop();
+            address[address.length-1]++;
             $scope.compilationPath = $scope.buildNodePath(address);
             $scope.compilationTarget = eval($scope.compilationPath);
             if ($scope.compilationTarget){
               $scope.returnAddress = address;
               return;
             } else {
-              break;
+              return;
             }
           }
         }
