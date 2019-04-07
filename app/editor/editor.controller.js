@@ -81,7 +81,7 @@
                        // if it has paragraphs
       for(var j = 0; j < $scope.compilationTarget.paragraphs.length; j++){                  // if it has propositions
         for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
-          if($scope.compilationTarget[level].paragraphs[j].propositions[k].type !== "negation" && 
+          if($scope.compilationTarget.paragraphs[j].propositions[k].type !== "negation" && 
             $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
             $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[level].paragraphs[j].propositions[k].text + ' '; 
           }
