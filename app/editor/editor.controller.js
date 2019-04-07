@@ -135,14 +135,14 @@
       $scope.copyOfAddress = {};
     }
 
-    $scope.buildNodePath = function (address){
+    $scope.buildNodePath = function (location){
       $scope.compilationPath = '$scope.data[0]';
-      if (address.length === 1){
+      if (location.length === 1){
         return $scope.compilationPath;
       } else {
 
-          for(let i = 1; i < address.length; i++){
-            $scope.compilationpath = $scope.compilationPath + '.children[' + i + ']' 
+          for(let i = 1; i < location.length; i++){
+            $scope.compilationpath = $scope.compilationPath + '.children[' + location[i] + ']' 
           }
           return $scope.compilationPath;
         }
