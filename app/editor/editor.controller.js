@@ -77,6 +77,7 @@
       console.log("Reading level at address: ", address);
 
       $scope.compilationPath = $scope.buildNodePath(address);
+      console.log("Compilation Path: ", $scope.compilationPath);
       $scope.compilationTarget = eval($scope.compilationPath);
 
       $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
@@ -92,8 +93,9 @@
         $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n";
       }
       $scope.copyOfAddress = angular.copy(address);  
-      $scope.copyOfAddress.push(0);
       console.log("Address is: ", $scope.copyOfAddress);
+      $scope.copyOfAddress.push(0);
+      
       $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
