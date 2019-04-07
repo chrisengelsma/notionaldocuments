@@ -80,6 +80,7 @@
       $scope.compilationTarget = eval($scope.compilationPath);
 
       $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
+      console.log("Compilation Target Topic: ", $scope.compilationTarget.topic)
                        // if it has paragraphs
       for(var j = 0; j < $scope.compilationTarget.paragraphs.length; j++){                  // if it has propositions
         for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
@@ -97,8 +98,9 @@
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
         $scope.returnAddress = $scope.copyOfAddress;
-        return;
         console.log("Found under the rug")
+        return;
+        
       } else {
         $scope.copyOfAddresss.pop();
         $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
@@ -151,7 +153,7 @@
       $scope.readBookLevel([0]);
 
       console.log('Return address:',$scope.returnAddress)
-      
+
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
       }
