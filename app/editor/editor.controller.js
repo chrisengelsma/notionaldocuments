@@ -74,6 +74,8 @@
 
     $scope.readBookLevel = function(address){
 
+      console.log("Reading level at address: ", address);
+
       $scope.compilationPath = $scope.buildNodePath(address);
       $scope.compilationTarget = eval($scope.compilationPath);
 
