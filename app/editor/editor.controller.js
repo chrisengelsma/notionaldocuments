@@ -132,39 +132,13 @@
     
 
 
-    $scope.makeTextFile = function (text) {
-      console.log("Text is: ", text)
+    $scope.makeTextFile = function () {
 
       // Build the book into a text string
 
       $scope.bookBeingCompiled = '';
 
       $scope.readBookLevel([0]);
-
-
-      // for (var i = 0; i < $scope.compilationTarget.length; i++){
-      //   if($scope.compilationTarget.topic){
-      //     $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
-      //   }
-      //   if($scope.compilationTarget.paragraphs){
-      //     for(var j = 0; j < $scope.compilationTarget[i].paragraphs.length; j++){
-      //       if ($scope.compilationTarget.paragraphs[j].propositions){
-      //         for(var k = 0; k < $scope.compilationTarget.data[i].paragraphs[j].propositions.length; k++){
-      //           if($scope.compilationTarget[i].paragraphs[j].propositions[k].type !== "negation" && $scope.compilationTarget[i].paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
-      //             $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[i].paragraphs[j].propositions[k].text + ' ';
-      //             if($scope.compilationTarget[i].paragraphs[j].propositions.length === $scope.compilationTarget[i].paragraphs[j].propositions[k]){
-      //               $scope.bookBeingCompiled = $scope.bookBeingCompiled + '\r\n\r\n';
-      //             }
-      //           }
-      //         }
-      //       }
-      //     }
-      //   }
-      //   if($scope.compilationTarget[i].children){
-      //     $scope.compilationPath = $scope.compilationPath + '[' + i + ']' + ".children";
-      //     $scope.readBookLevel($scope.compilationPath, i)
-      //   }
-      // }
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
@@ -196,7 +170,7 @@
       let theBook = document.getElementById('testing').textContent;
       console.log("The Book: ", theBook)
       var link = document.getElementById('downloadlink');
-      link.href = $scope.makeTextFile(theBook);
+      link.href = $scope.makeTextFile();
     }, false);
 
 
