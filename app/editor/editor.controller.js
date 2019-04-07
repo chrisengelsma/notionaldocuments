@@ -131,6 +131,7 @@
           }
         }
       }
+      $scope.copyOfAddress = {};
     }
 
     $scope.buildNodePath = function (address){
@@ -138,6 +139,7 @@
       if (address.length === 1){
         return $scope.compilationPath;
       } else {
+          
           for(let i = 1; i < address.length; i++){
             $scope.compilationpath = $scope.compilationPath + '.children[' + i + ']' 
           }
