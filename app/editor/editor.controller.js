@@ -142,7 +142,9 @@
       $scope.bookBeingCompiled = '';
 
       $scope.readBookLevel([0]);
-      if ($scope.returnAddress === [0]);
+      if ($scope.returnAddress !== [0]){
+        $scope.readBookLevel($scope.returnAddress);
+      }
 
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
