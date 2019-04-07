@@ -113,7 +113,7 @@
           $scope.returnAddress = $scope.copyOfAddress;
           return;
         } else {
-          $scope.copyOfAddresss.pop();
+          $scope.copyOfAddress.pop();
           for(let i = $scope.copyOfAddress.length-1; i > 0; i--){
             $scope.copyOfAddress.pop();
             $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
@@ -159,6 +159,8 @@
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
       }
+
+      $scope.returnAddress = {};
 
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
