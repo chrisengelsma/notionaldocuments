@@ -1250,6 +1250,7 @@
         for (let i = 0; i < temp.paragraphDestination.propositions.length; i++) {
           if (temp.paragraphDestination.propositions[i].id === id) {
             console.log('Id found in paragraph: ', temp.paragraphDestination.propositions[i].id);
+            console.log('Selected Proposition: ', $scope.selectedProposition)
             if ($scope.selectedProposition){
               $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
             } else {
