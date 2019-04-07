@@ -1252,7 +1252,10 @@
             console.log('Id found in paragraph: ', temp.paragraphDestination.propositions[i].id);
             if ($scope.selectedProposition){
               $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
-            } 
+            } else {
+            $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+            console.log('Selected Proposition: ', $scope.selectedProposition);
+            }
             console.log('Id found in paragraph: ', temp.paragraphDestination.propositions[i].id);
 
             $scope.selectedProposition = temp.paragraphDestination.propositions[i];
