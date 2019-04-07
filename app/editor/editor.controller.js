@@ -88,36 +88,37 @@
         }
         $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n";
       }
-        
-      address.push(0);
-      console.log("Address is: ", address);
-      $scope.compilationPath = $scope.buildNodePath(address);
+      $scope.copyOfAddress = angular.copy(address);  
+      $scope.copyOfAddress.push(0);
+      console.log("Address is: ", $scope.copyOfAddress);
+      $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
-        $scope.returnAddress = address;
+        $scope.returnAddress = $scope.copyOfAddress;
         return;
         console.log("Found under the rug")
       } else {
-        address.pop();
-        address[address.length-1]++;
-        $scope.compilationPath = $scope.buildNodePath(address);
+        $scope.copyOfAddresss.pop();
+        $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
+        $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
         $scope.compilationTarget = eval($scope.compilationPath);
         if($scope.compilationTarget){
           console.log("Found in the next room")
-          $scope.returnAddress = address;
+          $scope.returnAddress = $scope.copyOfAddress;
           return;
         } else {
-          address.pop();
-          for(let i = address.length-1; i > 0; i--){
-            address.pop();
-            address[address.length-1]++;
-            $scope.compilationPath = $scope.buildNodePath(address);
+          $scope.copyOfAddresss.pop();
+          for(let i = $scope.copyOfAddress.length-1; i > 0; i--){
+            $scope.copyOfAddress.pop();
+            $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
+            $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
             $scope.compilationTarget = eval($scope.compilationPath);
             if ($scope.compilationTarget){
-              $scope.returnAddress = address;
+              $scope.returnAddress = $scope.copyOfAddress;
               console.log("Found in a corner in the attic")
               return;
             } else {
+              console.log('Didnt find')
               return;
             }
           }
