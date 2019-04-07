@@ -79,46 +79,46 @@
 
       $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
                        // if it has paragraphs
-        for(var j = 0; j < $scope.compilationTarget.paragraphs.length; j++){                  // if it has propositions
-          for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
-            if($scope.compilationTarget[level].paragraphs[j].propositions[k].type !== "negation" && 
-              $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
-              $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[level].paragraphs[j].propositions[k].text + ' '; 
-            }
+      for(var j = 0; j < $scope.compilationTarget.paragraphs.length; j++){                  // if it has propositions
+        for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
+          if($scope.compilationTarget[level].paragraphs[j].propositions[k].type !== "negation" && 
+            $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
+            $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[level].paragraphs[j].propositions[k].text + ' '; 
           }
-          $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n\r\n";
         }
+        $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n\r\n";
+      }
         
-        address.push(0);
+      address.push(0);
+      $scope.compilationPath = $scope.buildNodePath(address);
+      $scope.compilationTarget = eval($scope.compilationPath);
+      if ($scope.compilationTarget){
+        $scope.readBookLevel(address);
+        break;
+      } else {
+        address.pop();
+        address[address.length-1]++;
         $scope.compilationPath = $scope.buildNodePath(address);
         $scope.compilationTarget = eval($scope.compilationPath);
-        if ($scope.compilationTarget){
+        if($scope.compilationTarget){
           $scope.readBookLevel(address);
           break;
-        } else{
+        } else {
+          address.pop();
+          for(let i = address.length-1; i > 0; i--){
             address.pop();
-            address[address.length-1]++;
             $scope.compilationPath = $scope.buildNodePath(address);
             $scope.compilationTarget = eval($scope.compilationPath);
-            if($scope.compilationTarget){
+            if ($scope.compilationTarget){
               $scope.readBookLevel(address);
               break;
             } else {
-              address.pop();
-              for(let i = address.length-1; i > 0; i--){
-                address.pop();
-                $scope.compilationPath = $scope.buildNodePath(address);
-                $scope.compilationTarget = eval($scope.compilationPath);
-                if ($scope.compilationTarget){
-                  $scope.readBookLevel(address);
-                  break;
-                } else {
-                  break;
-                }
-              }
+              break;
             }
           }
+        }
       }
+    }
 
     $scope.buildNodePath = function (address){
       $scope.compilationPath = '$scope.data[0]';
