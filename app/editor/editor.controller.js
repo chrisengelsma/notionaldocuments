@@ -94,7 +94,6 @@
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
         $scope.readBookLevel(address);
-        break;
       } else {
         address.pop();
         address[address.length-1]++;
@@ -102,7 +101,6 @@
         $scope.compilationTarget = eval($scope.compilationPath);
         if($scope.compilationTarget){
           $scope.readBookLevel(address);
-          break;
         } else {
           address.pop();
           for(let i = address.length-1; i > 0; i--){
@@ -111,7 +109,6 @@
             $scope.compilationTarget = eval($scope.compilationPath);
             if ($scope.compilationTarget){
               $scope.readBookLevel(address);
-              break;
             } else {
               break;
             }
