@@ -74,6 +74,7 @@
 
     $scope.readBookLevel = function(address){
       console.log("Address equals: ", address)
+      console.log("Copy of Address equals: ", $scope.copyOfAddress)
       $scope.copyOfAddress = angular.copy(address);
       console.log("Reading level at address: ", $scope.copyOfAddress);
 
@@ -139,7 +140,7 @@
       if (address.length === 1){
         return $scope.compilationPath;
       } else {
-          
+
           for(let i = 1; i < address.length; i++){
             $scope.compilationpath = $scope.compilationPath + '.children[' + i + ']' 
           }
@@ -157,7 +158,7 @@
 
       $scope.readBookLevel([0]);
 
-      console.log('Return address:',$scope.returnAddress)
+      console.log('Return address:', $scope.returnAddress)
 
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
