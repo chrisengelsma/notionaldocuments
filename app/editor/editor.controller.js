@@ -1237,7 +1237,7 @@
           break;
         }
       }
-
+      console.log('Assertion path: ', temp.assertionPath);
       $scope.mark = {};
       $scope.highlight = {};
       console.log("Has own property assertion path: ", temp.hasOwnProperty('assertionPath'));
