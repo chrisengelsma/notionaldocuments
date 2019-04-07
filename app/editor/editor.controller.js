@@ -1240,7 +1240,8 @@
 
       $scope.mark = {};
       $scope.highlight = {};
-
+      console.log("Has own property assertion path: ", temp.hasOwnProperty('assertionPath'));
+      console.log("Assertion path not undefined: ", temp.assertionPath !== undefined)
       if (temp.hasOwnProperty('assertionPath') && temp.assertionPath !== undefined) {
         temp.sliceStartingAt = temp.assertionPath.indexOf('.propositions');
         temp.paragraphPath = temp.assertionPath.slice(0, temp.sliceStartingAt);
