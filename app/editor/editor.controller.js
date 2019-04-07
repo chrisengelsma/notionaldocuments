@@ -117,6 +117,7 @@
             }
           }
         }
+      }
 
     $scope.buildNodePath = function (address){
       $scope.compilationPath = '$scope.data[0]';
@@ -157,7 +158,7 @@
       console.log("Textfile is now: ", $scope.textFile)
 
       return $scope.textFile;
-  };
+    }
 
 
     let create = document.getElementById('downloadlink');
