@@ -81,7 +81,8 @@
                        // if it has paragraphs
         for(var j = 0; j < $scope.compilationTarget.paragraphs.length; j++){                  // if it has propositions
           for(var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++){
-            if($scope.compilationTarget[level].paragraphs[j].propositions[k].type !== "negation" && $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
+            if($scope.compilationTarget[level].paragraphs[j].propositions[k].type !== "negation" && 
+              $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== "hidden"){
               $scope.bookBeingCompiled = $scope.bookBeingCompiled +  $scope.compilationTarget[level].paragraphs[j].propositions[k].text + ' '; 
             }
           }
@@ -95,41 +96,41 @@
           $scope.readBookLevel(address);
           break;
         } else{
-          address.pop();
-          address[address.length-1]++;
-          $scope.compilationPath = $scope.buildNodePath(address);
-          $scope.compilationTarget = eval($scope.compilationPath);
-          if($scope.compilationTarget){
-            $scope.readBookLevel(address);
-            break;
-          } else {
             address.pop();
-            for(let i = address.length-1; i > 0; i--){
+            address[address.length-1]++;
+            $scope.compilationPath = $scope.buildNodePath(address);
+            $scope.compilationTarget = eval($scope.compilationPath);
+            if($scope.compilationTarget){
+              $scope.readBookLevel(address);
+              break;
+            } else {
               address.pop();
-              $scope.compilationPath = $scope.buildNodePath(address);
-              $scope.compilationTarget = eval($scope.compilationPath);
-              if ($scope.compilationTarget){
-                $scope.readBookLevel(address);
-                break;
-              } else{
-                break;
+              for(let i = address.length-1; i > 0; i--){
+                address.pop();
+                $scope.compilationPath = $scope.buildNodePath(address);
+                $scope.compilationTarget = eval($scope.compilationPath);
+                if ($scope.compilationTarget){
+                  $scope.readBookLevel(address);
+                  break;
+                } else {
+                  break;
+                }
               }
             }
           }
-        }
       }
 
     $scope.buildNodePath = function (address){
       $scope.compilationPath = '$scope.data[0]';
       if (address.length === 1){
         return $scope.compilationPath;
-      } else{
-        for(let i = 1; i < address.length; i++){
-          $scope.compilationpath = $scope.compilationPath + '.children[' + i + ']' 
+      } else {
+          for(let i = 1; i < address.length; i++){
+            $scope.compilationpath = $scope.compilationPath + '.children[' + i + ']' 
+          }
+          return $scope.compilationPath;
         }
-        return $scope.compilationPath;
       }
-    }
     
 
 
