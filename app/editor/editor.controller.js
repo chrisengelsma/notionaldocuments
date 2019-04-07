@@ -1250,10 +1250,12 @@
         for (let i = 0; i < temp.paragraphDestination.propositions.length; i++) {
           if (temp.paragraphDestination.propositions[i].id === id) {
             console.log('Id found in paragraph: ', temp.paragraphDestination.propositions[i].id);
-            $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
+            if ($scope.selectedProposition.id){
+              $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
+            } 
             $scope.selectedProposition = temp.paragraphDestination.propositions[i];
             $scope.selectedProposition.dialogueSide = true;
-            //get the remark to satisfy the ng-if so the form appears
+              //get the remark to satisfy the ng-if so the form appears
             break;
           }
         }
