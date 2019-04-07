@@ -1253,7 +1253,10 @@
             if ($scope.selectedProposition){
               $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
             } 
+            console.log('Id found in paragraph: ', temp.paragraphDestination.propositions[i].id);
+
             $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+            console.log("Selected Proposition now: ", $scope.selectedProposition)
             $scope.selectedProposition.dialogueSide = true;
               //get the remark to satisfy the ng-if so the form appears
             break;
