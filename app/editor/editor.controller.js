@@ -75,7 +75,7 @@
     $scope.readBookLevel = function(address){
       console.log("Address equals: ", address)
       console.log("Copy of Address equals: ", $scope.copyOfAddress)
-      $scope.copyOfAddress = angular.copy(address, $scope.copyOfAddress);
+      angular.copy(address, $scope.copyOfAddress);
       console.log("Address NOW equals: ", address)
       console.log("Reading level at address: ", address);
 
