@@ -75,11 +75,11 @@
     $scope.readBookLevel = function(address){
       console.log("Address equals: ", address)
       console.log("Copy of Address equals: ", $scope.copyOfAddress)
-      $scope.copyOfAddress = angular.copy(address);
+      $scope.copyOfAddress = angular.copy(address, $scope.copyOfAddress);
       console.log("Address NOW equals: ", address)
-      console.log("Reading level at address: ", $scope.copyOfAddress);
+      console.log("Reading level at address: ", address);
 
-      $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
+      $scope.compilationPath = $scope.buildNodePath(address);
       console.log("Compilation Path: ", $scope.compilationPath);
       $scope.compilationTarget = eval($scope.compilationPath);
 
