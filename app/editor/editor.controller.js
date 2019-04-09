@@ -96,34 +96,34 @@
         $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n";
       }
         
-      console.log("Address before peeking around is: ", $scope.copyOfAddress);
-      $scope.copyOfAddress.push(0);
+      console.log("Address before peeking around is: ", address);
+      address.push(0);
       
-      $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
+      $scope.compilationPath = $scope.buildNodePath(address);
       $scope.compilationTarget = eval($scope.compilationPath);
       if ($scope.compilationTarget){
-        $scope.returnAddress = $scope.copyOfAddress;
+        $scope.returnAddress = address;
         console.log("Found under the rug")
         return;
         
       } else {
-        $scope.copyOfAddress.pop();
-        $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
-        $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
+        address.pop();
+        address[address.length-1]++;
+        $scope.compilationPath = $scope.buildNodePath(address);
         $scope.compilationTarget = eval($scope.compilationPath);
         if($scope.compilationTarget){
           console.log("Found in the next room")
-          $scope.returnAddress = $scope.copyOfAddress;
+          $scope.returnAddress = address;
           return;
         } else {
-          $scope.copyOfAddress.pop();
-          for(let i = $scope.copyOfAddress.length-1; i > 0; i--){
-            $scope.copyOfAddress.pop();
-            $scope.copyOfAddress[$scope.copyOfAddress.length-1]++;
-            $scope.compilationPath = $scope.buildNodePath($scope.copyOfAddress);
+          address.pop();
+          for(let i = address.length-1; i > 0; i--){
+            address.pop();
+            address[address.length-1]++;
+            $scope.compilationPath = $scope.buildNodePath(address);
             $scope.compilationTarget = eval($scope.compilationPath);
             if ($scope.compilationTarget){
-              $scope.returnAddress = $scope.copyOfAddress;
+              $scope.returnAddress = address;
               console.log("Found in a corner in the attic")
               return;
             } else {
@@ -133,7 +133,7 @@
           }
         }
       }
-      $scope.copyOfAddress = {};
+      address = {};
     }
 
     $scope.buildNodePath = function (location){
