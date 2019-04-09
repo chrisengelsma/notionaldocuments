@@ -82,6 +82,7 @@
       $scope.compilationPath = $scope.buildNodePath(address);
       console.log("Compilation Path: ", $scope.compilationPath);
       $scope.compilationTarget = eval($scope.compilationPath);
+      console.log("Address NOW equals after building node path: ", address)
 
       $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + "\r\n\r\n";
       console.log("Compilation Target Topic: ", $scope.compilationTarget.topic)
