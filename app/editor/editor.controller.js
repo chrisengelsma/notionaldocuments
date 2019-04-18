@@ -105,7 +105,6 @@
         $scope.returnAddress = address;
         console.log("Found under the rug")
         console.log("Return address is ", $scope.returnAddress )
-        debugger;
         return;
         
       } else {
@@ -168,7 +167,7 @@
       $scope.readBookLevel([0]);
 
       console.log('Return address:', $scope.returnAddress)
-
+      debugger;
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
       }
