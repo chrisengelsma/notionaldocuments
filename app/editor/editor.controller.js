@@ -77,7 +77,6 @@
       console.log("Copy of Address equals: ", $scope.copyOfAddress)
       angular.copy(address, $scope.copyOfAddress);
       console.log("Address NOW equals: ", address)
-      debugger;
 
       $scope.compilationPath = $scope.buildNodePath(address);
       console.log("Compilation Path: ", $scope.compilationPath);
@@ -105,6 +104,8 @@
       if ($scope.compilationTarget){
         $scope.returnAddress = address;
         console.log("Found under the rug")
+        console.log("Return address is ", $scope.returnAddress )
+        debugger;
         return;
         
       } else {
@@ -115,6 +116,8 @@
         if($scope.compilationTarget){
           console.log("Found in the next room")
           $scope.returnAddress = address;
+          console.log("Return address is ", $scope.returnAddress )
+          debugger;
           return;
         } else {
           address.pop();
@@ -126,9 +129,13 @@
             if ($scope.compilationTarget){
               $scope.returnAddress = address;
               console.log("Found in a corner in the attic")
+              console.log("Return address is ", $scope.returnAddress )
+              debugger;
               return;
             } else {
               console.log('Didnt find')
+              console.log("Return address is ", $scope.returnAddress )
+              debugger;
               return;
             }
           }
