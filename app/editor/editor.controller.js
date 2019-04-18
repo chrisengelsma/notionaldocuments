@@ -158,7 +158,6 @@
             $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']' 
           }
           console.log('Compilation path: ', $scope.compilationPath)
-          debugger;
           return $scope.compilationPath;
         }
       }
