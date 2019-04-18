@@ -77,7 +77,7 @@
       console.log("Copy of Address equals: ", $scope.copyOfAddress)
       angular.copy(address, $scope.copyOfAddress);
       console.log("Address NOW equals: ", address)
-      console.log("Reading level at address: ", address);
+      debugger;
 
       $scope.compilationPath = $scope.buildNodePath(address);
       console.log("Compilation Path: ", $scope.compilationPath);
