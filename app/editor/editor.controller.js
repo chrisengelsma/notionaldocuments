@@ -155,7 +155,7 @@
       } else {
 
           for(let i = 1; i < location.length; i++){
-            $scope.compilationpath = $scope.compilationPath + '.children[' + location[i] + ']' 
+            $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']' 
           }
           console.log('Compilation path: ', $scope.compilationPath)
           debugger;
