@@ -167,6 +167,7 @@
       $scope.readBookLevel([0]);
 
       console.log('Return address:', $scope.returnAddress)
+      console.log('Return address equals array consisting of zero: ', $scope.returnAddress !== [0])
       debugger;
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
