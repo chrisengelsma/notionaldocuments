@@ -82,9 +82,6 @@
       $scope.compilationPath = $scope.buildNodePath(address);
       console.log("Compilation Path: ", $scope.compilationPath);
 
-      if (address = [0,0]){
-        debugger;
-      }
 
       $scope.compilationTarget = eval($scope.compilationPath);
       console.log("Address NOW equals after building node path: ", address)
@@ -151,6 +148,8 @@
 
     $scope.buildNodePath = function (location){
       $scope.compilationPath = '$scope.data[0]';
+      console.log("Location length is 1: ", location.length === 1)
+      console.log("Location is: ", location)
       if (location.length === 1){
         return $scope.compilationPath;
       } else {
