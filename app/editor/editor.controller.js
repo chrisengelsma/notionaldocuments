@@ -78,8 +78,14 @@
       angular.copy(address, $scope.copyOfAddress);
       console.log("Address NOW equals: ", address)
 
+
       $scope.compilationPath = $scope.buildNodePath(address);
       console.log("Compilation Path: ", $scope.compilationPath);
+
+      if (address = [0,0]){
+        debugger;
+      }
+
       $scope.compilationTarget = eval($scope.compilationPath);
       console.log("Address NOW equals after building node path: ", address)
 
@@ -168,7 +174,6 @@
 
       console.log('Return address:', $scope.returnAddress)
       console.log('Return address equals array consisting of zero: ', $scope.returnAddress !== [0])
-      debugger;
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
       }
