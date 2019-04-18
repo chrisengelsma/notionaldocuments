@@ -106,7 +106,6 @@
         console.log("Found under the rug")
         console.log("Return address is ", $scope.returnAddress )
         debugger;
-        return;
         
       } else {
         address.pop();
