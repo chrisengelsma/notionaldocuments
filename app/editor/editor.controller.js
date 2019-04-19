@@ -166,6 +166,7 @@
             $scope.compilationPath = $scope.buildNodePath(address);
             if (eval($scope.compilationPath)){
               $scope.returnAddress = address;
+              console.log("Compilation Destination: ", eval($scope.compilationPath))
               console.log("Found in a corner in the attic")
               console.log("Return address is ", $scope.returnAddress )
               return;
