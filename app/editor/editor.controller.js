@@ -168,11 +168,13 @@
               $scope.returnAddress = address;
               console.log("Found in a corner in the attic")
               console.log("Return address is ", $scope.returnAddress )
+              debugger;
               return;
             } else {
               console.log('Didnt find')
               console.log("Return address is ", $scope.returnAddress )
               $scope.returnAddress = [0];
+              debugger;
               return;
             }
           
