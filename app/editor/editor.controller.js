@@ -102,7 +102,8 @@
       if (address === [0]){
         $scope.compilationCandidate = '$scope.data[0]';
       } else if (address === [1]){
-        $scope.compilationCandidate = '$scope.data[1]';
+        $scope.returnAddress = [1];
+        return;
       } else {
           for(let i = 1; i < address.length-1; i++){
             $scope.compilationCandidate = $scope.compilationCandidate + '.children[' + address[i] + ']' 
