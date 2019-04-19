@@ -100,7 +100,18 @@
       address.push(0);
       
       $scope.compilationPath = $scope.buildNodePath(address);
-      if (eval($scope.compilationPath)){
+
+      $scope.compilationCandidate = '$scope.data[0]';
+      if (address.length === 1){
+        $scope.compilationCandidate = '$scope.data[0]';
+      } else {
+          for(let i = 1; i < address.length-1; i++){
+            $scope.compilationCandidate = $scope.compilationCandidate + '.children[' + address[i] + ']' 
+          }
+          $scope.compilationCandidate = $scope.compilationCandidate + '.children';
+        }
+      if (eval($scope.compilationCandidate)){
+        if (eval($scope.compilationPath)){
         $scope.returnAddress = address;
         console.log("Found under the rug")
         console.log("Return address is ", $scope.returnAddress )
@@ -137,12 +148,42 @@
         }
       }
       address = {};
+      } else {
+
+        address.pop();
+        address[address.length-1]++;
+        $scope.compilationPath = $scope.buildNodePath(address);
+        if(eval($scope.compilationPath)){
+          console.log("Found in the next room")
+          $scope.returnAddress = address;
+          console.log("Return address is ", $scope.returnAddress )
+          return;
+        } else {
+          address.pop();
+          
+            
+            address[address.length-1]++;
+            $scope.compilationPath = $scope.buildNodePath(address);
+            if (eval($scope.compilationPath)){
+              $scope.returnAddress = address;
+              console.log("Found in a corner in the attic")
+              console.log("Return address is ", $scope.returnAddress )
+              return;
+            } else {
+              console.log('Didnt find')
+              console.log("Return address is ", $scope.returnAddress )
+              $scope.returnAddress = [0];
+              return;
+            }
+          
+        }
+      }
+
+      
     }
 
     $scope.buildNodePath = function (location){
       $scope.compilationPath = '$scope.data[0]';
-      console.log("Location length is 1: ", location.length === 1)
-      console.log("Location is: ", location)
       if (location.length === 1){
         return $scope.compilationPath;
       } else {
