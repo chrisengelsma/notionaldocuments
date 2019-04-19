@@ -218,6 +218,10 @@
         $scope.readBookLevel($scope.returnAddress);
       }
 
+      if ($scope.returnAddress !== [0]){
+        $scope.readBookLevel($scope.returnAddress);
+      }
+
       $scope.returnAddress = {};
 
 
