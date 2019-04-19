@@ -99,8 +99,10 @@
       $scope.compilationPath = $scope.buildNodePath(address);
 
       $scope.compilationCandidate = '$scope.data[0]';
-      if (address.length === 1){
+      if (address === [0]){
         $scope.compilationCandidate = '$scope.data[0]';
+      } else if (address === [1]){
+        $scope.compilationCandidate = '$scope.data[1]';
       } else {
           for(let i = 1; i < address.length-1; i++){
             $scope.compilationCandidate = $scope.compilationCandidate + '.children[' + address[i] + ']' 
