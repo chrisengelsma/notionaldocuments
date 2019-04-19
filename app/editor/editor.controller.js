@@ -108,6 +108,9 @@
         $scope.returnAddress = address;
         console.log("Found under the rug")
         console.log("Return address is ", $scope.returnAddress )
+        if (address = [0,0,0]){
+          debugger;
+        }
         return;
         
       } else {
