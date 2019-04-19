@@ -163,6 +163,10 @@
           
             
             address[address.length-1]++;
+            if (address === [1]){
+              $scope.returnAddress = [1];
+              return;
+            }
             $scope.compilationPath = $scope.buildNodePath(address);
             if (eval($scope.compilationPath)){
               $scope.returnAddress = address;
@@ -209,22 +213,22 @@
 
       $scope.readBookLevel([0]);
 
-      if ($scope.returnAddress !== [0] || [1]){
+      while ($scope.returnAddress !== [0] || [1]){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress !== [0] || [1]){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
+      // if ($scope.returnAddress !== [0] || [1]){
+      //   console.log("Return address: ", $scope.returnAddress)
+      //   $scope.readBookLevel($scope.returnAddress);
         
-      }
+      // }
 
-      if ($scope.returnAddress !== [0] || [1]){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
-        debugger;
-      }
+      // if ($scope.returnAddress !== [0] || [1]){
+      //   console.log("Return address: ", $scope.returnAddress)
+      //   $scope.readBookLevel($scope.returnAddress);
+      //   debugger;
+      // }
 
       $scope.returnAddress = {};
 
