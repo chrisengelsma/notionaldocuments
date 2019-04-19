@@ -185,7 +185,7 @@
 
     $scope.buildNodePath = function (location){
       $scope.compilationPath = '$scope.data[0]';
-      if (location.length === 1){
+      if (location === [0]){
         return $scope.compilationPath;
       } else {
 
