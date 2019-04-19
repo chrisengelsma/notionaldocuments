@@ -168,13 +168,11 @@
               $scope.returnAddress = address;
               console.log("Found in a corner in the attic")
               console.log("Return address is ", $scope.returnAddress )
-              debugger;
               return;
             } else {
               console.log('Didnt find')
               console.log("Return address is ", $scope.returnAddress )
               $scope.returnAddress = [0];
-              debugger;
               return;
             }
           
@@ -213,6 +211,7 @@
       console.log('Return address equals array consisting of zero: ', $scope.returnAddress !== [0])
       while ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
+        debugger;
       }
 
       $scope.returnAddress = {};
