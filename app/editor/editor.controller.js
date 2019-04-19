@@ -73,12 +73,10 @@
     };
 
     $scope.readBookLevel = function(address){
-      console.log("Address equals: ", address)
       angular.copy(address, $scope.copyOfAddress);
 
 
       $scope.compilationPath = $scope.buildNodePath(address);
-      console.log("Compilation Path: ", $scope.compilationPath);
 
 
       $scope.compilationTarget = eval($scope.compilationPath);
@@ -96,7 +94,6 @@
         $scope.bookBeingCompiled = $scope.bookBeingCompiled + "\r\n";
       }
         
-      console.log("Address before peeking around is: ", address);
       address.push(0);
       
       $scope.compilationPath = $scope.buildNodePath(address);
@@ -193,7 +190,6 @@
             $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']' 
           }
 
-          console.log('Compilation path: ', $scope.compilationPath)
           return $scope.compilationPath;
         }
       }
@@ -208,14 +204,13 @@
 
       $scope.readBookLevel([0]);
 
-      console.log('Return address:', $scope.returnAddress)
-      console.log('Return address equals array consisting of zero: ', $scope.returnAddress !== [0])
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
       }
 
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
+        console.log("Return address: ", $scope.returnAddress)
       }
 
       if ($scope.returnAddress !== [0]){
@@ -229,9 +224,6 @@
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
-      console.log("Textfile is now: ", $scope.textFile)
-      console.log("Data: ", data)
-
 
       if ($scope.textFile !== null) {
         window.URL.revokeObjectURL($scope.textFile);
@@ -241,7 +233,6 @@
 
 
 
-      console.log("Textfile is now: ", $scope.textFile)
 
       return $scope.textFile;
     }
