@@ -220,6 +220,7 @@
 
       if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
+        console.log("Return address: ", $scope.returnAddress)
         debugger;
       }
 
