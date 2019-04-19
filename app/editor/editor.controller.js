@@ -205,17 +205,19 @@
       $scope.readBookLevel([0]);
 
       if ($scope.returnAddress !== [0]){
+        console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
       if ($scope.returnAddress !== [0]){
-        $scope.readBookLevel($scope.returnAddress);
         console.log("Return address: ", $scope.returnAddress)
+        $scope.readBookLevel($scope.returnAddress);
+        
       }
 
       if ($scope.returnAddress !== [0]){
-        $scope.readBookLevel($scope.returnAddress);
         console.log("Return address: ", $scope.returnAddress)
+        $scope.readBookLevel($scope.returnAddress);
         debugger;
       }
 
