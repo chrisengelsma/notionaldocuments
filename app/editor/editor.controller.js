@@ -184,15 +184,17 @@
       $scope.compilationPath = '$scope.data[0]';
       if (location === [0]){
         return $scope.compilationPath;
-      } else {
+      } else if (location === [1]){
+        return '$scope.data[1]';
+      } else{
 
-          for(let i = 1; i < location.length; i++){
-            $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']' 
-          }
-
-          return $scope.compilationPath;
+        for(let i = 1; i < location.length; i++){
+          $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']' 
         }
+
+        return $scope.compilationPath;
       }
+    }
     
 
 
@@ -204,22 +206,22 @@
 
       $scope.readBookLevel([0]);
 
-      if ($scope.returnAddress !== [0] || [1]){
+      while ($scope.returnAddress !== [0] || [1]){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress !== [0] || [1]){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
+      // if ($scope.returnAddress !== [0] || [1]){
+      //   console.log("Return address: ", $scope.returnAddress)
+      //   $scope.readBookLevel($scope.returnAddress);
         
-      }
+      // }
 
-      if ($scope.returnAddress !== [0] || [1]){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
-        debugger;
-      }
+      // if ($scope.returnAddress !== [0] || [1]){
+      //   console.log("Return address: ", $scope.returnAddress)
+      //   $scope.readBookLevel($scope.returnAddress);
+      //   debugger;
+      // }
 
       $scope.returnAddress = {};
 
