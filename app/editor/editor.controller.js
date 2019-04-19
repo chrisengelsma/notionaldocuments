@@ -209,9 +209,12 @@
 
       console.log('Return address:', $scope.returnAddress)
       console.log('Return address equals array consisting of zero: ', $scope.returnAddress !== [0])
-      while ($scope.returnAddress !== [0]){
+      if ($scope.returnAddress !== [0]){
         $scope.readBookLevel($scope.returnAddress);
-        debugger;
+      }
+
+      if ($scope.returnAddress !== [0]){
+        $scope.readBookLevel($scope.returnAddress);
       }
 
       $scope.returnAddress = {};
