@@ -100,47 +100,40 @@
       address.push(0);
       
       $scope.compilationPath = $scope.buildNodePath(address);
-      $scope.compilationTarget = eval($scope.compilationPath);
-      if ($scope.compilationTarget){
+      if (eval($scope.compilationPath)){
         $scope.returnAddress = address;
         console.log("Found under the rug")
         console.log("Return address is ", $scope.returnAddress )
-        if (address = [0,0,0]){
-          debugger;
-        }
+
         return;
         
       } else {
         address.pop();
         address[address.length-1]++;
         $scope.compilationPath = $scope.buildNodePath(address);
-        $scope.compilationTarget = eval($scope.compilationPath);
-        if($scope.compilationTarget){
+        if(eval($scope.compilationPath)){
           console.log("Found in the next room")
           $scope.returnAddress = address;
           console.log("Return address is ", $scope.returnAddress )
-          debugger;
           return;
         } else {
           address.pop();
-          for(let i = address.length-1; i > 0; i--){
-            address.pop();
+          
+            
             address[address.length-1]++;
             $scope.compilationPath = $scope.buildNodePath(address);
-            $scope.compilationTarget = eval($scope.compilationPath);
-            if ($scope.compilationTarget){
+            if (eval($scope.compilationPath)){
               $scope.returnAddress = address;
               console.log("Found in a corner in the attic")
               console.log("Return address is ", $scope.returnAddress )
-              debugger;
               return;
             } else {
               console.log('Didnt find')
               console.log("Return address is ", $scope.returnAddress )
-              debugger;
+              $scope.returnAddress = [0];
               return;
             }
-          }
+          
         }
       }
       address = {};
@@ -157,6 +150,7 @@
           for(let i = 1; i < location.length; i++){
             $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']' 
           }
+
           console.log('Compilation path: ', $scope.compilationPath)
           return $scope.compilationPath;
         }
