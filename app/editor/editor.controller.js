@@ -165,7 +165,7 @@
             address[address.length-1]++;
             console.log("Address trying to cash out:", address);
             console.log("Address equals a one", address === [1]);
-            debugger;
+            
             if (address[0] === 1){
               $scope.returnAddress = [1];
               return;
