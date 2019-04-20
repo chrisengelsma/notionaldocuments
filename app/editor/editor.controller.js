@@ -167,6 +167,8 @@
             if (address === [1]){
               $scope.returnAddress = [1];
               return;
+              console.log("Hit the end");
+              debugger;
             }
             $scope.compilationPath = $scope.buildNodePath(address);
             if (eval($scope.compilationPath)){
@@ -227,7 +229,6 @@
       if ($scope.returnAddress !== [0] || [1]){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
-        debugger;
       }
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
