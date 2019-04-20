@@ -1394,7 +1394,7 @@
           $(query).expanding();
           $(query).focus();
         })
-
+        debugger;
       }
       , 10);
       temp = {};
