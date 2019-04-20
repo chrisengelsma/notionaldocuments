@@ -1381,7 +1381,7 @@
         // console.log(query);
         // $(query).expanding();
         // $(query).focus();
-
+        debugger;
       setTimeout(() => {
 
         let destination = document.getElementById($scope.selectedProposition.id);
