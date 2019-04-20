@@ -164,6 +164,7 @@
             
             address[address.length-1]++;
             console.log("Address trying to cash out:", address);
+            debugger;
             if (address === [1]){
               $scope.returnAddress = [1];
               return;
