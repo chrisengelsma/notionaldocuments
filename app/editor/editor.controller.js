@@ -1377,7 +1377,7 @@
         console.log(query);
         $(query).expanding();
         $(query).focus();
-      
+
       setTimeout(() => {
 
         let destination = document.getElementById($scope.selectedProposition.id);
@@ -1393,8 +1393,11 @@
       temp = {};
     };
 
-    $scope.clearExpandingClass = function (/*id*/) {
-
+    $scope.clearExpandingClass = function (remark) {
+      if (!remark.assertionPath){
+        console.log ("No assertion path")
+        return;
+      }
       console.log('trying to hide ', '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
       $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).parent().hide();
 
