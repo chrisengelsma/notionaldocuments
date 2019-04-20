@@ -3,7 +3,7 @@
        ng-class="{ 'topicselected': selectedNode.topic === thread.topic }"
        
        ng-click="selectNodeByClass(thread)"
-       style="margin-bottom: 7px"> {{thread.topic}} </div>
+       style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}} </div>
 
   <p ng-repeat="remark in thread.remarks track by $index">
 		<span class="tree-node tree-node-content remark"
