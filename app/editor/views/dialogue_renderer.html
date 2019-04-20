@@ -6,6 +6,7 @@
        style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}} </div>
 
   <p ng-repeat="remark in thread.remarks track by $index">
+    {{remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId}}
 		<span class="tree-node tree-node-content remark"
           ng-class="{'remarkselected': selectedProposition.id === remark.id,
                      'deleted': remark.deleted === true,
