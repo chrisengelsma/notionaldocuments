@@ -1368,7 +1368,7 @@
       console.log('selected Proposition:', $scope.selectedProposition);
 
       console.log('trying to focus on chatinput');
-      setTimeout(() => {
+      // setTimeout(() => {
 
         let destination = document.getElementById($scope.selectedProposition.id);
         if (destination) {
@@ -1378,7 +1378,8 @@
         console.log(query);
         $(query).expanding();
         $(query).focus();
-      }, 0);
+      // }
+      // , 0);
       temp = {};
     };
 
