@@ -1390,6 +1390,7 @@
         }
         let query = '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId;
         console.log(query);
+        debugger;
         $scope.$apply(function() {
           $(query).expanding();
           $(query).focus();
