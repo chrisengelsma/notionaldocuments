@@ -214,17 +214,21 @@
 
       $scope.readBookLevel([0]);
 
-      while ($scope.returnAddress !== [0] || [1]){
-        if ($scope.returnAddress === [1]){
-          break;
-        }
+      if ($scope.returnAddress !== [0] || [1]){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
-        if ($scope.returnAddress === [1]){
-          break;
-        }
       }
 
+      if ($scope.returnAddress !== [0] || [1]){
+        console.log("Return address: ", $scope.returnAddress)
+        $scope.readBookLevel($scope.returnAddress);
+      }
+
+      if ($scope.returnAddress !== [0] || [1]){
+        console.log("Return address: ", $scope.returnAddress)
+        $scope.readBookLevel($scope.returnAddress);
+        debugger;
+      }
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
