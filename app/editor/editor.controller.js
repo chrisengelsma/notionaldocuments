@@ -1391,6 +1391,10 @@
 
 
     $scope.selectNodeByClass = (thread) => {
+      if !(thread.remarks[0].assertionId){
+        console.log("No actual remarks, returning")
+        return;
+      }
       temp.nodeDestination = eval(thread.nodePath);
       $scope.selectedNode = temp.nodeDestination;
       console.log('selected node: ', $scope.selectedNode);
