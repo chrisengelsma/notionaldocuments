@@ -1393,10 +1393,8 @@
         $scope.$apply(function() {
 
           $(query).expanding();
-          $(query).addClass('chatinput');
           $(query).focus();
         })
-        debugger;
       }
       , 10);
       temp = {};
