@@ -164,7 +164,7 @@
             
             address[address.length-1]++;
             console.log("Address trying to cash out:", address);
-            console.log("Address equals a one", address === [1]);
+            console.log("Address equals one", address[0] === 1);
             
             if (address[0] === 1){
               $scope.returnAddress = [1];
@@ -218,17 +218,17 @@
 
       $scope.readBookLevel([0]);
 
-      if ($scope.returnAddress !== [0] || [1]){
+      if ($scope.returnAddress[0] !== 0 || 1){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress !== [0] || [1]){
+      if ($scope.returnAddress[0] !== 0 || 1){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress !== [0] || [1]){
+      if ($scope.returnAddress[0] !== 0 || 1){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
