@@ -1,4 +1,4 @@
-<div class="thread" ng-click="selectThread(thread)" id="{{thread.threadId}}">
+<div class="thread" id="{{thread.threadId}}">
   <div class="tree-node tree-node-content dialoguetopic"
        ng-class="{ 'topicselected': selectedNode.topic === thread.topic }"
        
@@ -13,7 +13,7 @@
                      'alignright': remark.type === 'negation',
                      'alignleft': remark.type.some(['assertion','rejoinder','question','topic'])
                      }"
-          ng-click="clearExpandingClass(remark); selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
+          ng-click="clearExpandingClass(remark); selectThread(thread); selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
           ng-mouseover="remark.mouseOver = true;" ng-mouseleave="remark.mouseOver = false;"
           style="cursor: pointer; margin-bottom: 7px;  width: 320px;">
 
