@@ -280,7 +280,7 @@
       $scope.selectedParagraph = $scope.data[0].paragraphs[0];
       $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
       $scope.selectedProposition.textSide = true;
-      focusFactory($scope.select
+      focusFactory($scope.selectedProposition.id);
     } else {
       $scope.selectedProposition = {};
     }
