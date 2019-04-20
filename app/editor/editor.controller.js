@@ -1318,6 +1318,7 @@
 
     $scope.selectPropositionById = function (id) {
       if (!id){
+        console.log('Returning having no found an id')
         return;
       }
       console.log('Selecting Proposition by Id');
