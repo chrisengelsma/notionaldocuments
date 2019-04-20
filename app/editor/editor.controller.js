@@ -1391,7 +1391,7 @@
 
 
     $scope.selectNodeByClass = (thread) => {
-      if !(thread.remarks[0].assertionId){
+      if (!thread.remarks[0].assertionId){
         console.log("No actual remarks, returning")
         return;
       }
