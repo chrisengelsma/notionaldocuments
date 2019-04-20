@@ -280,6 +280,9 @@
       $scope.selectedParagraph = $scope.data[0].paragraphs[0];
       $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
       $scope.selectedProposition.textSide = true;
+      focusFactory($scope.select
+    } else {
+      $scope.selectedProposition = {};
     }
 
     $scope.selectedThread = {};
@@ -295,9 +298,7 @@
     $scope.highlight = {};
     $scope.mark = {};
 
-    if ($scope.selectedProposition) {
-      focusFactory($scope.selectedProposition.id);
-    }
+
 
 
     $scope.selectNode = function (node) {
