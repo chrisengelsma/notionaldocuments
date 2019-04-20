@@ -13,7 +13,7 @@
                      'alignright': remark.type === 'negation',
                      'alignleft': remark.type.some(['assertion','rejoinder','question','topic'])
                      }"
-          ng-click="selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
+          ng-click="clearExpandingClass(); selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
           ng-mouseover="remark.mouseOver = true;" ng-mouseleave="remark.mouseOver = false;"
           style="cursor: pointer; margin-bottom: 7px;  width: 320px;">
 
