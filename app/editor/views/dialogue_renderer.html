@@ -32,7 +32,7 @@
       <textarea
         title="{{ remark.id }}"
         ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
-        ng-hide="remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false"
+        ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false)"
         ng-model="inputs.chatProposition" class="expanding chatinput dialogueinput" id="{{remark.id}}{{thread.threadId}}"
         ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition), inputs.chatProposition = '', clearExpandingClass(thread.threadId), inputs.remarkselected = false, selectedProposition.dialogueSide = false] : inputs.nothing"
         ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"

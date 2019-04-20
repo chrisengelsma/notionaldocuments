@@ -1393,7 +1393,7 @@
         $(query).expanding();
         $(query).focus();
       }
-      , 0);
+      , 10);
       temp = {};
     };
 
