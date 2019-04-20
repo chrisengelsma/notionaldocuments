@@ -1391,8 +1391,9 @@
         let query = '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId;
         console.log(query);
         $scope.$apply(function() {
-          $(query).addClass('chatinput');
+
           $(query).expanding();
+          $(query).addClass('chatinput');
           $(query).focus();
         })
         debugger;
