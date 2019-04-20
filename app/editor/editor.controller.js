@@ -167,9 +167,10 @@
             console.log("Address equals one", address[0] === 1);
             
             if (address[0] === 1){
+              console.log("Hit the end");
               $scope.returnAddress = [1];
               return;
-              console.log("Hit the end");
+              
               debugger;
             }
             $scope.compilationPath = $scope.buildNodePath(address);
@@ -218,17 +219,17 @@
 
       $scope.readBookLevel([0]);
 
-      if ($scope.returnAddress[0] !== 0 || 1){
+      if ($scope.returnAddress[0] !== 1) && $scope.returnAddress[$scope.returnAddress.length-1] !== 1{
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress[0] !== 0 || 1){
+      if ($scope.returnAddress[0] !== 1){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress[0] !== 0 || 1){
+      if ($scope.returnAddress[0] !== 1){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
