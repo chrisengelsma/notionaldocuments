@@ -164,7 +164,7 @@
             
             address[address.length-1]++;
             console.log("Address trying to cash out:", address);
-            debugger;
+            
             if (address === [1]){
               $scope.returnAddress = [1];
               return;
@@ -223,16 +223,13 @@
       if ($scope.returnAddress !== [0] || [1]){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
-        
       }
 
       if ($scope.returnAddress !== [0] || [1]){
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
+        debugger;
       }
-
-      $scope.returnAddress = {};
-
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
