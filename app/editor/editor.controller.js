@@ -1314,6 +1314,7 @@
     });
 
     $scope.selectThread = (thread) => {
+      console.log("Thread's first remark assertionId: ", thread.remarks[0].assertionId )
       if (!thread.remarks[0].assertionId){
         console.log("Returning from selectThread");
         return;
