@@ -165,7 +165,8 @@
             address[address.length-1]++;
             console.log("Address trying to cash out:", address);
             if (address === [1]){
-              break;
+              $scope.returnAddress = [1];
+              return;
             }
             $scope.compilationPath = $scope.buildNodePath(address);
             if (eval($scope.compilationPath)){
@@ -213,21 +214,17 @@
 
       $scope.readBookLevel([0]);
 
-      if ($scope.returnAddress !== [0] || [1]){
+      while ($scope.returnAddress !== [0] || [1]){
+        if ($scope.returnAddress === [1]){
+          break;
+        }
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
+        if ($scope.returnAddress === [1]){
+          break;
+        }
       }
 
-      if ($scope.returnAddress !== [0] || [1]){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
-      }
-
-      if ($scope.returnAddress !== [0] || [1]){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
-        debugger;
-      }
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
