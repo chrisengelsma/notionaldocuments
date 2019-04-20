@@ -224,15 +224,15 @@
         $scope.readBookLevel($scope.returnAddress);
       }
 
-      if ($scope.returnAddress[0] !== 1){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
-      }
+      // if ($scope.returnAddress[0] !== 1){
+      //   console.log("Return address: ", $scope.returnAddress)
+      //   $scope.readBookLevel($scope.returnAddress);
+      // }
 
-      if ($scope.returnAddress[0] !== 1){
-        console.log("Return address: ", $scope.returnAddress)
-        $scope.readBookLevel($scope.returnAddress);
-      }
+      // if ($scope.returnAddress[0] !== 1){
+      //   console.log("Return address: ", $scope.returnAddress)
+      //   $scope.readBookLevel($scope.returnAddress);
+      // }
 
       var data = new Blob([$scope.bookBeingCompiled], {type: 'text/plain'});
 
