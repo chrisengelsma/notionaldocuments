@@ -1317,6 +1317,9 @@
     };
 
     $scope.selectPropositionById = function (id) {
+      if (!id){
+        return;
+      }
       console.log('Selecting Proposition by Id');
       console.log('Id is: ', id)
       console.log('Propositions: ', $scope.propositions);
