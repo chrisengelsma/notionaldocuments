@@ -1314,6 +1314,10 @@
     });
 
     $scope.selectThread = (thread) => {
+      if (!thread.remarks[0].assertionId){
+        console.log("Returning from selectThread");
+        return;
+      }
       $scope.selectedThread = thread;
     };
 
@@ -1368,7 +1372,6 @@
       console.log('selected Proposition:', $scope.selectedProposition);
 
       console.log('trying to focus on chatinput');
-
         let destination = document.getElementById($scope.selectedProposition.id);
         if (destination) {
           destination.scrollIntoView({ behavior: 'smooth' });
