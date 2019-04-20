@@ -1381,8 +1381,7 @@
         // console.log(query);
         // $(query).expanding();
         // $(query).focus();
-        console.log("About to query: ",'#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
-        debugger;
+
       setTimeout(() => {
 
         let destination = document.getElementById($scope.selectedProposition.id);
@@ -1391,6 +1390,7 @@
         }
         let query = '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId;
         console.log(query);
+        debugger;
         $(query).expanding();
         $(query).focus();
       }
