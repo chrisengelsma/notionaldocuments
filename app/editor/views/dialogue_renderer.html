@@ -27,7 +27,7 @@
     <!-- ng-if="selectedProposition.dialogueSide === true && selectedProposition.id === remark.id" -->
 
 
-    <div style="overflow: hidden">
+    
       <textarea
         title="{{ remark.id }}"
         ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
@@ -37,7 +37,6 @@
         ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"
         spellcheck="false" style="height: 22px; font-size: 20px; width: 100%; color: black; margin-top: 10px">
       </textarea>
-    </div>
 
 
     <!-- ng-show="inputs.remarkselected" -->

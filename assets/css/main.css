@@ -381,6 +381,11 @@ input {
         user-select: none;
 }*/
 
+
+.tree-node.tree-node-content.remark.remarkselected:last-child{
+  margin-bottom: 0px;
+}
+
 .dialoguetopic{
   font-size: 20px; /*16px*/
   margin: 0 auto;
