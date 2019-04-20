@@ -28,7 +28,6 @@
 
 
     <textarea
-      style= "overflow: hidden"
       title="{{ remark.id }}"
       ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
       ng-hide="remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false"
