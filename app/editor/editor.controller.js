@@ -171,7 +171,6 @@
               $scope.returnAddress = [1];
               return;
               
-              debugger;
             }
             $scope.compilationPath = $scope.buildNodePath(address);
             if (eval($scope.compilationPath)){
@@ -219,7 +218,8 @@
 
       $scope.readBookLevel([0]);
 
-      if ($scope.returnAddress[0] !== 1 && $scope.returnAddress[$scope.returnAddress.length-1] !== 1){
+      while ($scope.returnAddress[0] !== 1){
+        // && $scope.returnAddress[$scope.returnAddress.length-1] !== 1
         console.log("Return address: ", $scope.returnAddress)
         $scope.readBookLevel($scope.returnAddress);
       }
