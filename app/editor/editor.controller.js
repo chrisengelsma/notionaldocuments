@@ -1159,6 +1159,7 @@
             $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks = [];                        // MAKES A THREAD FROM A TOPIC
             $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0] = payload.proposition;
             $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].text = apply.nodeDestination.topic;
+            $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].isDialogueTopic = true;
             $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].threadId = $scope.scroll.threadId;
 
           } else if (payload.proposition.type === 'assertion') {        // assertions dont need remarks to be tacked on when they are created
@@ -1317,10 +1318,7 @@
     };
 
     $scope.selectPropositionById = function (id) {
-      if (!id){
-        console.log('Returning having no found an id')
-        return;
-      }
+
       console.log('Selecting Proposition by Id');
       console.log('Id is: ', id)
       console.log('Propositions: ', $scope.propositions);
@@ -1329,6 +1327,10 @@
           temp.assertionPath = $scope.propositions[i].assertionPath;
           break;
         }
+      }
+      if (!temp.assertionPath){
+        console.log('Returning having not found a remark')
+        return;
       }
       console.log('Assertion path: ', temp.assertionPath);
       $scope.mark = {};
