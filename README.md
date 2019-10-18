@@ -15,7 +15,7 @@ Writing documents usually takes a lot of time. Here's the beginnings of a faster
 
 Instead of working on documents one character at a time on your own, simply message whole sentences to others. The software reads your ending punctuation to update, mark up, and structure the document. It taps into the logical structure common to all manuscripts.
 
-It's like building a document a block at a time, rather than by grains of sand, that thrives rather than stalls on differences of opinion. 
+It's like building a document a block at a time, rather than by grains of sand, by a process that thrives rather than stalls on differences of opinion. 
 
 ***
 
