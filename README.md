@@ -13,7 +13,7 @@ Notional documents provide a real bridge between discussion and work product.
 
 Writing documents usually takes a lot of time. Here's the beginnings of a faster, rationalistic way to get them written.
 
-Instead of working on documents one character at a time on your own, simply message whole sentences to others. The software reads your ending punctuation to update, mark up, and structure the document. It taps into the logical structure common to all manuscripts.
+Instead of working on documents one character at a time on your own, just message whole sentences to others. The software reads your ending punctuation to update, mark up, and structure the document. It taps into the logical structure common to all manuscripts.
 
 It's like building a document a block at a time, rather than by grains of sand, by a process that thrives rather than stalls on differences of opinion. 
 
@@ -44,9 +44,9 @@ Discuss a topic by trading sentences to build documents made up of sentences.
 
 ### Features 
 
-- Draft and edit at close-to messaging speed
-- Feedback and debate to draw out ideas and develop paragraphs rationalistically
-- Manage a library of different projects
+- Draft and edit at close to messaging speed
+- Engage in feedback and debate to draw out ideas and develop paragraphs by a rationalistic process
+- Manage a library of separate projects
 
 ### Installation Guide
 
@@ -109,7 +109,7 @@ When the application finishes initializing, open up a browser and navigate to [h
 
 In discussion, we state information, as well as comment on and justify ourselves against, the sentences of others. We also ask questions. These interactions prompt others and make them aware of how we feel about common information, and why.
 
-In notional documents, punctuation marks [ .  !  ? : ] serve like logical operators and provide these cues. They tell the software how to update common information - the document.
+In notional documents, punctuation marks [ .  !  ? : ] serve like logical operators, providing these cues. They tell the software how to update common information - the document.
 
 #### Paragraph / Idea Ownership
 
