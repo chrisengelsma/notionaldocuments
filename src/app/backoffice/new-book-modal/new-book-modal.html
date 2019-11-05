@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <div class="modal-title"
+       id="modal-title"><i class="fa fa-book"></i>&nbsp; Add a new book
+  </div>
+</div>
+<div class="modal-body"
+     id="modal-body">
+  <form name="form"
+        novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-12"
+           ng-class="{ 'has-error': form.title.$invalid && !form.title.$pristine }">
+        <label for="title">Title</label>
+        <input type="text"
+               class="form-control"
+               id="title"
+               name="title"
+               ng-model="vm.title"
+               required
+               placeholder="Title">
+        <p ng-show="form.title.$invalid && !form.title.$pristine"
+           class="help-block">
+          Book must have a title
+        </p>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-secondary"
+          ng-click="vm.cancel()">
+    Cancel
+  </button>
+  <button type="submit"
+          ng-disabled="form.$invalid || vm.processing"
+          ng-click="vm.addNewBook(form.$valid)"
+          class="btn btn-primary">
+    <div ng-if="vm.processing">
+      <i class="fas fa-spinner fa-spin"></i>&nbsp;
+    </div>
+    Submit
+  </button>
+</div>

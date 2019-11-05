@@ -1,6 +1,6 @@
 'use strict';
 
-const admin = require('firebase-admin');
+var admin = require('firebase-admin');
 
 admin.initializeApp({
   credential: admin.credential.cert({

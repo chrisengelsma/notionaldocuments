@@ -1,0 +1,42 @@
+<h2>My Books</h2>
+
+<table class="table col-md-12">
+  <thead>
+  <tr>
+    <th>Topic</th>
+    <th>Last Modified</th>
+    <th>Date Created</th>
+  </tr>
+  </thead>
+  <tr class="book-select"
+      ng-repeat="($index, book) in vm.books"
+      ng-click="vm.selectBook($index, book)"
+      ng-class="{'table-primary': hover }"
+      ng-init="hover = false"
+      ng-mouseenter="hover = true"
+      ng-mouseleave="hover = false">
+    <td>
+      {{ book.topic }}
+    </td>
+    <td>
+      {{ book.lastModified * 1000 | date:'short' }}
+    </td>
+    <td>
+      {{ book.dateCreated * 1000 | date:'short' }}
+    </td>
+  </tr>
+</table>
+<div ng-if="vm.books.length === 0">
+  <div class="col-md-12">
+    <div class="text-center text-muted">
+      There doesn't seem to be anything here yet.
+    </div>
+  </div>
+</div>
+
+<!--  <br>-->
+<!--  <div style="font-size: 24px">-->
+<!--    Go to the <a style="display: inline"-->
+<!--                 ng-class="{active: $state.includes('library')}"-->
+<!--                 ui-sref="app.backoffice.library">library</a>-->
+<!--  </div>-->

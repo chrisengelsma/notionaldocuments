@@ -1,33 +1,31 @@
-module.exports = function (io) {
-  'use strict';
+'use strict';
 
-  let userCount = 0;
-  io.on('connection', function (socket) {
+var ioRoutes = function(io) {
+  var userCount = 0;
+  io.on('connection', function(socket) {
     socket.broadcast.emit('user connected');
 
     io.sockets.emit('A user just connected');
 
     userCount++;
 
-    socket.on('message', (from, msg) => {
+    socket.on('message', function(from, msg) {
       io.sockets.emit('broadcast', {
         payload: msg,
         source: from
       });
     });
 
-    socket.on('proposition', (from, obj) => { //for first emission
+    socket.on('proposition', function(from, obj) { //for first emission
       io.sockets.emit('broadcastProposition', obj);
     });
 
-    socket.on('deletion', (from, obj) => { //for first emission
+    socket.on('deletion', function(from, obj) { //for first emission
       io.sockets.emit('broadcastDeletion', obj);
     });
 
-
-
-
-
   });
 };
+
+module.exports = ioRoutes;
 

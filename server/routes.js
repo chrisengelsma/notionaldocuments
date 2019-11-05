@@ -1,11 +1,11 @@
 module.exports = function(admin, express) {
   'use strict';
 
-  const router = express.Router(),
+  var router = express.Router(),
         moment = require('moment'),
         firebaseMiddleware = require('express-firebase-middleware');
 
-  let db = admin.database();
+  var db = admin.database();
 
   function errorHandler (err, req, res, next) {
     console.error(err.message);
@@ -14,33 +14,33 @@ module.exports = function(admin, express) {
 
   router.use('/', firebaseMiddleware.auth);
   router.use(errorHandler);
-  router.use((req, res, next) => { next(); });
+  router.use(function(req, res, next) { next(); });
 
 // user =====================================================================
 
-  router.get(`/user/:uid/profile`, (req, res, next) => {
-    let uid = req.params.uid;
-    db.ref('users/' + uid).once('value').then((snap) => {
+  router.get('/user/:uid/profile', function(req, res, next) {
+    var uid = req.params.uid;
+    db.ref('users/' + uid).once('value').then(function(snap) {
       res.end(JSON.stringify(snap.val()));
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
-  router.post(`/user/:uid/profile`, (req, res, next) => {
-    let uid = req.params.uid;
+  router.post('/user/:uid/profile', function (req, res, next) {
+    var uid = req.params.uid;
 
-    const u = 'users/' + uid;
+    var u = 'users/' + uid;
 
-    const p = req.body;
-    const displayName = (p.hasOwnProperty('displayName')) ? p.displayName : null;
-    const firstName = (p.hasOwnProperty('firstName')) ? p.firstName : null;
-    const lastName = (p.hasOwnProperty('lastName')) ? p.lastName : null;
-    const emailAddress = (p.hasOwnProperty('emailAddress')) ? p.emailAddress : null;
-    const lastEditedBook = (p.hasOwnProperty('lastEditedBook')) ? p.lastEditedBook : null;
-    const books = (p.hasOwnProperty('books')) ? p.books : null;
+    var p = req.body;
+    var displayName = (p.hasOwnProperty('displayName')) ? p.displayName : null;
+    var firstName = (p.hasOwnProperty('firstName')) ? p.firstName : null;
+    var lastName = (p.hasOwnProperty('lastName')) ? p.lastName : null;
+    var emailAddress = (p.hasOwnProperty('emailAddress')) ? p.emailAddress : null;
+    var lastEditedBook = (p.hasOwnProperty('lastEditedBook')) ? p.lastEditedBook : null;
+    var books = (p.hasOwnProperty('books')) ? p.books : null;
 
-    let updates = {};
+    var updates = {};
     updates[u + '/displayName'] = displayName;
     updates[u + '/lastEditedBook'] = lastEditedBook;
     updates[u + '/lastModified'] = moment().unix();
@@ -49,101 +49,101 @@ module.exports = function(admin, express) {
     updates[u + '/emailAddress'] = emailAddress;
     updates[u + '/books'] = books;
 
-    db.ref().update(updates).then(() => {
-      db.ref(u).once('value').then((snap) => {
+    db.ref().update(updates).then(function() {
+      db.ref(u).once('value').then(function(snap) {
         return res.end(JSON.stringify(snap.val()));
-      }).catch((error) => {
+      }).catch(function(error) {
         next(error);
       });
 
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
 // books ====================================================================
 
-  router.post(`/library/book`, (req, res, next) => {
-    const newKey = db.ref().child('books').push().key;
-    db.ref('books/' + newKey).set(req.body.book).then(() => {
+  router.post('/library/book', function(req, res, next) {
+    var newKey = db.ref().child('books').push().key;
+    db.ref('books/' + newKey).set(req.body.book).then(function() {
       res.status(201).end(newKey);
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
-  router.get(`/library/book/:uid`, (req, res, next) => {
-    db.ref('books/' + req.params.uid).once('value').then((snap) => {
+  router.get('/library/book/:uid', function(req, res, next) {
+    db.ref('books/' + req.params.uid).once('value').then(function(snap) {
       res.end(JSON.stringify(snap.val()));
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
-  router.get(`/library`, (req, res, next) => {
-    db.ref('books').once('value').then((snap) => {
+  router.get('/library', function(req, res, next) {
+    db.ref('books').once('value').then(function(snap) {
       if (snap.val() === null) {
         return res.end();
       } else {
         return res.end(JSON.stringify(snap.val()));
       }
-    }).catch((error) => {
+    }).catch(function(error) {
       return next(error);
     });
   });
 
-  router.post(`/library/book/:uid/update`, (req, res, next) => {
-    const bookId = req.params.uid;
-    const book = Object.assign({}, req.body.book);
-    const now = moment().unix();
+  router.post('/library/book/:uid/update', function(req, res, next) {
+    var bookId = req.params.uid;
+    var book = Object.assign({}, req.body.book);
+    var now = moment().unix();
 
     book.lastModified = now;
 
-    db.ref('books/' + bookId).set(book).then(() => {
-      db.ref('books/' + bookId).once('value').then((snap) => {
+    db.ref('books/' + bookId).set(book).then(function() {
+      db.ref('books/' + bookId).once('value').then(function(snap) {
         res.end(JSON.stringify(snap.val()));
-      }).catch((error) => {
+      }).catch(function(error) {
         next(error);
       });
 
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
-  router.delete(`/library/book/:id`, (req, res, next) => {
-    const bookId = req.params.id;
-    const bookRef = db.ref('books/'+bookId);
-    bookRef.remove().then(() => {
+  router.delete('/library/book/:id', function(req, res, next) {
+    var bookId = req.params.id;
+    var bookRef = db.ref('books/'+bookId);
+    bookRef.remove().then(function() {
       return res.end();
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
   // propositions ============================================================
 
-  router.post(`/library/props/:uid`, (req, res, next) => {
-    const bookId = req.params.uid;
-    const propositions = Object.assign({}, req.body.propositions);
+  router.post('/library/props/:uid', function(req, res, next) {
+    var bookId = req.params.uid;
+    var propositions = Object.assign({}, req.body.propositions);
 
-    db.ref('propositions/' + bookId).set(propositions).then(() => {
-      db.ref('propositions/' + bookId).once('value').then((snap) => {
+    db.ref('propositions/' + bookId).set(propositions).then(function() {
+      db.ref('propositions/' + bookId).once('value').then(function(snap) {
         return res.end(JSON.stringify(snap.val()));
-      }).catch((error) => {
+      }).catch(function(error) {
         next(error);
       });
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });
 
-  router.get(`/library/props/:uid`, (req, res, next) => {
-    const bookId = req.params.uid;
-    db.ref('propositions/' + bookId).once('value').then((snap) => {
-      let result = (snap.val() === null) ? [] : snap.val();
+  router.get('/library/props/:uid', function(req, res, next) {
+    var bookId = req.params.uid;
+    db.ref('propositions/' + bookId).once('value').then(function(snap) {
+      var result = (snap.val() === null) ? [] : snap.val();
       return res.end(JSON.stringify(result));
-    }).catch((error) => {
+    }).catch(function(error) {
       next(error);
     });
   });

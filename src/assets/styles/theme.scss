@@ -1,0 +1,63 @@
+html, body, body.ng-scope {
+  background-color: #FFFFFF;
+  color: #212121;
+}
+
+.form-control{
+  color: #212121;
+}
+
+form input::-webkit-input-placeholder{
+  color: #212121 !important;
+
+}
+
+.thread.ng-scope:hover > .tree-node.tree-node-content.dialoguetopic {
+  background-color: #448AFF;
+  color: #FFFFFF;
+}
+
+.thread.ng-scope:hover > p.ng-scope  {
+  background-color: #FFFFFF;
+}
+
+.thread.ng-scope:hover {
+  background-color: #FFFFFF;
+}
+
+nav.nav > a.nav-link:hover {
+  background-color: #735b56;
+  color: #f2eeeb
+}
+
+nav.nav > a.nav-link {
+  font-family: "Times New Roman", serif;
+  font-size: 20pt;
+  color: #212121;
+}
+
+nav.nav {
+  background-color: #d9cec1;
+}
+
+h2.typewriter {
+  font-family: "Times New Roman", serif;
+  text-align: center;
+}
+
+.cursor {
+  color: #212121;
+}
+
+.notowned {
+  color: #AAA;
+}
+
+.owned {
+  /*  background-color: #212121;
+    color: white;*/
+}
+
+p {
+  color: #212121;
+}

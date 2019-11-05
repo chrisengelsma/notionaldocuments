@@ -1,0 +1,26 @@
+{
+  "extends": "eslint:recommended",
+  "plugins": ["angular"],
+  "parserOptions": {
+    "ecmaVersion": 2015
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jasmine": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-prototype-builtins": "off",
+    "no-redeclare": "off"
+  },
+  "globals": {
+    "$": true,
+    "d3": true,
+    "moment": true,
+    "firebase": true,
+    "angular": true,
+    "module": true,
+    "inject": true
+  }
+}

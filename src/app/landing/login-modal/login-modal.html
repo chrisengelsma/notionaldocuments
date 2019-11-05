@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <div class="modal-title"
+       id="modal-title">Welcome Back!
+  </div>
+</div>
+<div class="modal-body"
+     id="modal-body">
+  <form name="form"
+        novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-12"
+           ng-class="{ 'has-error': form.email.$invalid && !form.email.$pristine }">
+        <label for="email">Email</label>
+        <input type="email"
+               class="form-control"
+               id="email"
+               name="email"
+               ng-model="vm.user.email"
+               required
+               placeholder="Email">
+        <p ng-show="form.email.$invalid && !form.email.$pristine"
+           class="help-block">
+          Enter a valid email
+        </p>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12"
+           ng-class="{ 'has-error': form.password.$invalid && !form.password.$pristine }">
+        <label for="password">Password</label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               name="password"
+               ng-model="vm.user.password"
+               required
+               placeholder="Password">
+        <p ng-show="form.password.$invalid && !form.email.$pristine"
+           class="help-block">
+          Password is required
+        </p>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-secondary"
+          ng-click="vm.cancel()">
+    Cancel
+  </button>
+  <button type="submit"
+          ng-disabled="form.$invalid || vm.processing"
+          ng-click="vm.login(form.$valid)"
+          class="btn btn-primary">
+    <div ng-if="vm.processing">
+      <i class="fa fa-spinner fa-spin"></i>&nbsp;
+    </div>
+    Submit
+  </button>
+</div>
