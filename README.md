@@ -54,6 +54,7 @@ Before installing ensure you hae the following:
 
 * [Nodejs](https://nodejs.org/en/) 
 * [npm](https://www.npmjs.com/)
+* [gulp-cli](https://gulpjs.com/)
 
 ### Installing Dependencies
 Navigate to the project root and run the following command:
@@ -63,6 +64,12 @@ $ npm install
 ```
 
 This will install all the necessary dependencies.
+
+Then to build the angular app run 
+
+```bash
+$ gulp build
+```
 
 #### Connect to Firebase
 

@@ -1,10 +1,10 @@
 <div class="modal-header">
   <div class="modal-title"
-       id="modal-title">Register
+       id="modal-title-register">Register
   </div>
 </div>
 <div class="modal-body"
-     id="modal-body">
+     id="modal-body-register">
   <form name="form"
         ng-submit="vm.register(form.$valid)"
         novalidate>
@@ -109,8 +109,14 @@
     Cancel
   </button>
   <button type="submit"
-          ng-disabled="form.$invalid"
+          ng-disabled="form.$invalid || vm.processing"
+          ng-click="vm.register(form.$valid)"
           class="btn btn-primary">
-    Submit
+    <span>
+      <span ng-if="vm.processing">
+        <i ng-if="vm.processing"
+           class="fa fa-spinner fa-spin"></i>&nbsp;
+        </span> Submit
+    </span>
   </button>
 </div>

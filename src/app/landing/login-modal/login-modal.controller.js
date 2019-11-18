@@ -2,8 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function LoginModalController(
-    $uibModalInstance, $rootScope, $state, ApiService) {
+  function LoginModalController($uibModalInstance, ApiService) {
     var vm = this;
     vm.apiService = new ApiService();
     vm.processing = false;
@@ -18,9 +17,8 @@
         vm.processing = true;
         vm.apiService.signInWithEmailAndPassword(vm.user.email, vm.user.password)
           .then(function() {
-            $uibModalInstance.close(true);
-            $state.go('main.backoffice.my-books');
             vm.processing = false;
+            $uibModalInstance.dismiss(true);
           }, function(error) {
             console.error(error);
             vm.processing = false;
@@ -29,7 +27,7 @@
     };
 
     vm.cancel = function() {
-      $uibModalInstance.close(false);
+      $uibModalInstance.dismiss(false);
     };
 
   }

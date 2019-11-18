@@ -4,7 +4,7 @@
   /** @ngInject */
   function EditorController(
     $log, $state, $rootScope, $scope, $stateParams, chatSocket,
-    apiService, profileService, libraryService,
+    apiService, profileService, libraryService, $uibModal,
     messageFormatter, propositions, book, focusFactory, Notification,
     $document, $timeout, IdFactory) {
 
@@ -14,6 +14,25 @@
       dimNotOwned: false
     };
 
+    $scope.openOptionsModal = function() {
+      var optionsModalInstance = $uibModal.open({
+        ariaLabelledBy: 'modal-title-editor-options',
+        ariaDescribedBy: 'modal-body-editor-options',
+        templateUrl: 'app/editor/editor-options-modal/editor-options-modal.html',
+        controller: 'EditorOptionsModalController',
+        controllerAs: 'vm',
+        size: 'md',
+        resolve: {
+          options: function() { return $scope.options; }
+        }
+      });
+
+
+      optionsModalInstance.result.then(function(res) {
+        $scope.options = res;
+      });
+
+    };
 
     // If it loads nothing, go back to profile
     // $scope.data = profileService.getSelectedBook();
