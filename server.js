@@ -16,7 +16,7 @@ var express    = require('express'),
 
 var distDir = path.resolve(__dirname, './dist');
 
-var port = process.env.PORT || 3002;
+var port = process.env.PORT || 3000;
 
 // set up our socket server
 require('./sockets/base')(io);

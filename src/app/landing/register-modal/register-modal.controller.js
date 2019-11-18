@@ -2,8 +2,9 @@
   'use strict';
 
   /** @ngInject */
-  function RegisterModalController($uibModalInstance, $state) {
+  function RegisterModalController($uibModalInstance, $state, ApiService) {
     var vm = this;
+    vm.apiService = new ApiService();
 
     vm.errors = {
       passwordsMatch: null,
@@ -25,9 +26,20 @@
         vm.processing = true;
         vm.apiService.registerWithEmailAndPassword(vm.user.email, vm.user.password)
           .then(function() {
-            $uibModalInstance.close(true);
-            $state.go('main.backoffice.my-books');
-            vm.processing = false;
+            vm.apiService.updateProfile({
+              displayName: vm.user.firstName + ' ' + vm.user.lastName,
+              firstName: vm.user.firstName,
+              lastName: vm.user.lastName,
+              email: vm.user.email
+            }).then(function() {
+              vm.processing = false;
+              $uibModalInstance.dismiss();
+              $state.go('main.backoffice.my-books');
+              vm.processing = false;
+            }).catch(function(error) {
+              console.error(error);
+              vm.processing = false;
+            });
           }, function(error) {
             console.error(error);
             vm.processing = false;
@@ -36,7 +48,7 @@
     };
 
     vm.cancel = function() {
-      $uibModalInstance.close(false);
+      $uibModalInstance.dismiss();
     };
 
   }

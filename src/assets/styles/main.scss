@@ -1,0 +1,706 @@
+/* Space out content a bit */
+
+html, body, body.ng-scope {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0 auto;
+  outline: 0;
+  height: 100vh;
+  width: 100vw;
+  font-size: 110%;  /*100%*/
+  vertical-align: baseline;
+}
+
+@font-face {
+  font-family: "Tox Typewriter";
+  src: url("../fonts/Tox Typewriter.ttf");
+}
+
+/*
+::-webkit-scrollbar {
+  width: 2px;
+}
+*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgray;
+  border-radius: 10px;
+}
+
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#dialoguepane{
+  padding-right: 0;
+  padding-left: 0;
+  overflow-y: auto;
+}
+
+.dialogueblurrer{
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.dialogueblurrermouseover{
+  background-color: grey;
+  cursor: pointer;
+}
+
+.notyourparagraph{
+  background-color: #d0d0d0;
+}
+
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+#sendbutton{
+  /*  padding-top: 2px;
+    padding-bottom: 2px;*/
+}
+
+code {
+  background-color: #282828;
+  color: white;
+}
+
+.dialogue{
+  min-height: 60rem;
+}
+
+.send{
+  font-size: 18px;
+  padding: 6px;
+  vertical-align: text-top;
+}
+
+.col-md-12 {
+  padding-top: 10px;
+}
+
+.container {
+  /*
+font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;*/
+
+}
+
+.subject{
+  /*  background-color: rgba(255,255,255,0.5);*/
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+input, select, textarea{
+  color: white;
+}
+
+input{
+  width: 400px;
+  border: none;
+  background: transparent
+}
+
+input {
+  background-color: grey;
+}
+
+.app-title {
+  font-size: 2.25em;
+  color: #212121;
+  margin-bottom: 5px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.subject-list {
+  width: 180px;
+  height: 300px;
+  overflow: scroll;
+}
+
+
+.navigate-box {
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+}
+
+.paragraph{
+  font-size: 20px; /*18px*/
+  text-indent: 20px;
+  clear: left;
+  display:block;
+  list-style-type: none;
+}
+
+
+.addparagraph{
+  text-indent: 24px;
+  background-color: white;
+}
+.col-md-9 {
+  padding-left: 15px;
+}
+
+.negation{
+  border-bottom: 1px solid #212121 !important;
+}
+
+.nocursor{
+  cursor: none !important;
+}
+
+.proposition{
+  list-style-type: none;
+  display: inline;
+  margin-bottom: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  min-width: 1px !important;
+  min-height: 1px !important;
+}
+
+.ghostspan{
+  color: #d0d0d0;
+  padding: 2px;
+}
+
+.proposition-text{
+  font-size: 20px; /*18px*/
+  margin-left: 0;
+  margin-right: 0;
+  cursor: default;
+  min-width: 1px !important;
+  min-height: 1px !important;
+}
+
+.right-textarea{
+  opacity: .5;
+  height: 0px;
+  width: 0px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-image-width: 0;
+  font-size: 20px; /*18px*/
+}
+
+.right-text{
+  margin: 0;
+  font-size: 20px;   /*18px*/
+}
+
+
+.cursor.blinking-cursor {
+  color: #212121 !important;
+  -webkit-animation: 1s blink step-end infinite; /*1s*/
+  -moz-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite; /*1s*/
+}
+
+@keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #212121;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #212121;
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #212121;
+  }
+}
+
+@-ms-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #212121;
+  }
+}
+
+@-o-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #212121;
+  }
+}
+
+.cursor.solid-cursor{
+  color: #212121 !important;
+}
+
+.cursor::after {
+  content: "|";
+}
+
+.booklist{
+  padding-top: 10px;
+  list-style-type: none !important;
+  padding-left: 0;
+  font-size: 18px;
+}
+
+.chat-input-field{
+
+  background-color: white;
+  font-size: 18px;
+}
+
+
+
+.underline{
+  /*  border-bottom: 1px solid white; */
+}
+
+.highlight {
+  background-color: #545454;
+}
+
+.mark {
+  color: white;
+}
+
+.nodetitle{
+  cursor: default;
+
+}
+
+.titlestyling{
+  display: none;
+  height: 0;
+}
+
+.sectionstyling{
+
+}
+
+.topicselected{
+  font-weight: bold;
+}
+
+.dialoguelist{
+  /*  min-height: 50rem;
+    max-height: 50rem;*/
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  margin-bottom: 10px;
+  min-height: 82.5vh;
+  max-height: 82.5vh;
+
+}
+
+.mainview{
+  min-height: 84vh;
+  max-height: 84vh;
+}
+
+.textlist{
+  /*  min-height: 60rem;
+    max-height: 60rem;*/
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid #212121;
+  /*  min-height: 50rem;
+    max-height: 50rem;*/
+  cursor: text;
+  font-family: "Times New Roman", Times, serif;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 82.5vh;
+  max-height: 82.5vh;
+  border-right: 1px solid #c9c9c9;
+}
+
+.remarkselected{
+  font-weight: bold;
+}
+
+.thread{
+  border-top-left-radius: 5px;
+  border: 1px solid #aaaaaa;
+  background-color: #fafafa;
+  padding: 0;
+  margin: 10px;
+}
+
+.texttopic{
+  font-size: 22px; /*20px*/
+  padding-top:5px;
+  padding-bottom:10px;
+  font-style: italic;
+}
+
+
+.paragraphplaceholder{
+  color: #dbdbdb;
+  cursor: text;
+  height: 26px;
+}
+
+/*.paragraphcursor{
+}
+
+.paragraphoffcursor{
+  cursor: none;
+  -webkit-user-select: none;
+   -moz-user-select: none;
+    -ms-user-select: none;
+     -o-user-select: none;
+        user-select: none;
+}*/
+
+
+.tree-node.tree-node-content.remark.remarkselected:last-child{
+  margin-bottom: 0px;
+}
+
+.dialoguetopic{
+  font-size: 20px; /*16px*/
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.remark{
+  margin-bottom: 10px;
+  display: block;
+
+}
+
+.dialogueinput{
+  overflow-x: hidden;
+}
+
+
+
+.chatinput{
+  display: block;
+  background: transparent;
+  padding: 0;
+  border: none;
+  outline: none !important;
+  resize: none;
+
+}
+
+.deleted{
+  text-decoration: line-through;
+}
+
+.topiclist{
+  min-height: 50rem;
+  max-height: 50rem;
+}
+
+#firstrow{
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.paragraphbackdrop{
+  background: #e2e2e2 !important;
+  border: 1px solid white !important;
+}
+
+.chatinputappear{
+  display: block;
+}
+
+.alignright{
+  padding-left: 40px;
+;
+}
+
+.alignleft{
+  padding-right:40px;
+;
+}
+
+/*SVG CSS*/
+
+.node {
+  /*  background-color: rgba(0,0,0,.2);*/
+}
+
+.node circle {
+  fill: #fff;
+  stroke: rgb(31,137,195);
+  stroke-width: 3px;
+}
+
+.node text {
+  font: 12px sans-serif;
+  width: 40px;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 8px;
+}
+
+#iconspace{
+  width: 80px;
+  height: 57px;
+  padding-bottom: 5px;
+}
+
+.library{
+  border-top: 1px solid white;
+  /*padding: 5px;*/
+  cursor: pointer;
+}
+
+.librarytitle{
+  text-align: center;
+}
+
+.topiclist{
+  /*margin-top: 20px;*/
+}
+
+.nodeynode:nth-child(0){
+  font-weight: bold;
+}
+
+/*  #ad1{
+    border: 1px solid #212121;
+    border-radius: 5px;
+    padding: 5px 20px;
+  }*/
+
+.bold{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-wrapper > .jumbotron {
+  background: none;
+}
+
+
+
+.tree-node.tree-node-content.dialoguetopic {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.thread.ng-scope > p.ng-scope {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+tr.book-select:hover {
+  cursor: pointer;
+}
+
+nav.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 250px;
+  width: 250px;
+  height: 100vh;
+  max-width: 250px;
+  box-sizing: border-box;
+  moz-box-sizing: border-box;
+  webkit-box-sizing: border-box;
+}
+
+.body-content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 10px 10px 10px 260px;
+}
+
+/*Tips modal*/
+
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+
+
+
+
+.overlay-content {
+
+  width: 100%;
+  color: white;
+  margin-top: 30px;
+  font-size: 24px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+/*Buttons*/
+
+.buttonscontainer{
+  position: relative;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.signout:hover{
+  background-color: #c82333;
+  border-color: #bd2130;
+  border: 1px solid transparent;
+}
+
+.help:hover{
+  background-color: #28a745;
+  border-color: #28a745;
+  border: 1px solid transparent;
+}
+
+.cog:hover{
+  background-color: white;
+  border-color: white;
+  border: 1px solid transparent;
+}
+
+.topparagraphadder{
+  height: 5px;
+  width: 50%;
+  margin-bottom: 5px;
+  /*padding-bottom: 1px;*/
+  cursor: pointer;
+}
+
+.bottomparagraphadder{
+  height: 5px;
+  width: 50%;
+  margin-top: 5px;
+  /*padding-top: 1px;*/
+  cursor: pointer;
+}
+
+.blackline{
+  background-color: #a9a9a9;
+}
+
+.leftpropositionadder{
+  height: auto;
+  width: 4px;
+  cursor: none;
+  margin: 2px;
+  margin-right: 4px;
+  padding: 2px;
+  padding-right: 2px;
+}
+
+.blur{
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+}

@@ -6,50 +6,11 @@
     var apiService = function() {
     };
 
-    apiService.prototype = {
-      registerWithEmailAndPassword: registerWithEmailAndPassword,
-
-      signInWithEmailAndPassword: signInWithEmailAndPassword,
-
-      signOut: signOut,
-
-      readProfile: function() {
-        return get('/user/' + $rootScope.uid + '/profile');
-      },
-
-      updateProfile: function(profile) {
-        return post('/user/' + $rootScope.uid + '/profile', profile);
-      },
-
-      readLibrary: function() {
-        return get('/library');
-      },
-      createBook: function(book) {
-        return post('/library/book', { book: book });
-      },
-      readBook: function(bookId) {
-        return get('/library/book/' + bookId);
-      },
-      updateBook: function(bookId, book) {
-        return post('/library/book/' + bookId + '/update', { book: book });
-      },
-
-      removeBook: function(bookId) {
-        return del('/library/book/' + bookId);
-      },
-
-      updatePropositions: function(bookId, propositions) {
-        return post('/library/props/' + bookId, { propositions: propositions });
-      },
-      readPropositions: function(bookId) {
-        return get('/library/props/' + bookId);
-      }
-    };
 
     function registerWithEmailAndPassword(email, password) {
       var d = $q.defer();
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(function(/*userRecord*/) {
+        .then(function() {
           firebase.auth().onAuthStateChanged(function(user) {
             $rootScope.uid = user.uid;
             user.getIdToken(true).then(function(token) {
@@ -68,7 +29,7 @@
     function signInWithEmailAndPassword(email, password) {
       var d = $q.defer();
       firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(function(/*userRecord*/) {
+        .then(function() {
           firebase.auth().onAuthStateChanged(function(user) {
             $rootScope.uid = user.uid;
             user.getIdToken(true).then(function(token) {
@@ -150,6 +111,47 @@
         });
       return d.promise;
     }
+
+    apiService.prototype = {
+      registerWithEmailAndPassword: registerWithEmailAndPassword,
+
+      signInWithEmailAndPassword: signInWithEmailAndPassword,
+
+      signOut: signOut,
+
+      readProfile: function() {
+        return get('/user/' + $rootScope.uid + '/profile');
+      },
+
+      updateProfile: function(profile) {
+        return post('/user/' + $rootScope.uid + '/profile', profile);
+      },
+
+      readLibrary: function() {
+        return get('/library');
+      },
+      createBook: function(book) {
+        return post('/library/book', { book: book });
+      },
+      readBook: function(bookId) {
+        return get('/library/book/' + bookId);
+      },
+      updateBook: function(bookId, book) {
+        return post('/library/book/' + bookId + '/update', { book: book });
+      },
+
+      removeBook: function(bookId) {
+        return del('/library/book/' + bookId);
+      },
+
+      updatePropositions: function(bookId, propositions) {
+        return post('/library/props/' + bookId, { propositions: propositions });
+      },
+      readPropositions: function(bookId) {
+        return get('/library/props/' + bookId);
+      }
+    };
+
 
     return apiService;
   }
