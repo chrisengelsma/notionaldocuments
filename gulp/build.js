@@ -124,4 +124,3 @@ gulp.task('build', ['html', 'fonts', 'other']);
 
 gulp.task('build-watch', ['html-watch']);
 
-gulp.task('heroku:production', ['build']);
