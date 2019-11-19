@@ -65,10 +65,8 @@
     "karma-ng-html2js-preprocessor": "~0.2.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-phantomjs-shim": "~1.2.0",
-    "lodash": "^4.17.15",
-
+    "lodash": "^4.17.15"
   },
-
   "engines": {
     "node": "10.15.3"
   }
