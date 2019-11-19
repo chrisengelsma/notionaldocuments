@@ -26,7 +26,6 @@
         }
       }).result.then(function(bookId) {
         if (bookId) {
-          libraryService.
           $state.go('main.editor', { bookId: bookId });
         }
       });

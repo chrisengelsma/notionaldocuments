@@ -19,11 +19,17 @@
       book.lastModified = now;
       book.lastModifiedBy = profileService.getProfile().uid;
       apiService.createBook(book).then(function(result) {
-        console.log(result);
-        libraryService.addBook(result.data, book);
-        profileService.addBookId(result.data);
-        vm.processing = false;
-        $uibModalInstance.close(result.data);
+        var bookId = result.data;
+        libraryService.addBook(bookId, book);
+        var bookIds = profileService.getBookIds();
+        bookIds.push(bookId);
+        profileService.setBookIds(bookIds);
+        apiService.updateProfile(profileService.getProfile()).then(function() {
+          vm.processing = false;
+          $uibModalInstance.close(bookId);
+        }).catch(function(error) {
+          console.log(error);
+        });
       }).catch(function(error) {
         vm.processing = false;
         console.error(error);

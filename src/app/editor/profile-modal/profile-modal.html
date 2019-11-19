@@ -48,7 +48,7 @@
         <input type="email"
                class="form-control"
                id="email"
-               name="emai"
+               name="email"
                aria-describedby="emailAddressHelp"
                ng-model="vm.profile.email" />
         <small id="emailAddressHelp"
@@ -56,28 +56,25 @@
       </div>
 
     </div>
-
-    <button type="submit"
-            class="btn btn-primary">
-      <i class="fa fa-floppy-o"></i>&nbsp; Save
-    </button>
   </form>
 </div>
 
 <div class="modal-footer">
   <button type="button"
           class="btn btn-secondary"
-          ng-click="vm.cancel()">
+          ng-click="vm.dismiss()">
     Close
   </button>
   <button type="submit"
           ng-disabled="form.$invalid || vm.processing"
           ng-click="vm.updateProfile()"
           class="btn btn-primary">
-    <div ng-if="vm.processing">
+    <span>
+    <span ng-if="vm.processing">
       <i class="fas fa-spinner fa-spin"></i>&nbsp;
-    </div>
+    </span>
     Save
+    </span>
   </button>
 </div>
 

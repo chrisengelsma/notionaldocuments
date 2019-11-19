@@ -8,14 +8,12 @@
     vm.profile = profileService.getProfile();
     vm.processing = false;
 
-    vm.updateProfile = function(callback) {
+    vm.updateProfile = function() {
       vm.processing = true;
       return apiService.updateProfile(vm.profile).then(function(result) {
         vm.profile = result.data;
         profileService.setProfile(result.data);
-        if (typeof callback === 'function') {
-          callback();
-        }
+        vm.dismiss();
       }).catch(function(error) {
         vm.profileError = error.message;
       });
