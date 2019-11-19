@@ -2,8 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function BackOfficeProfileController(
-    profileService, libraryService, apiService) {
+  function ProfileModalController($uibModalInstance, profileService, libraryService, apiService) {
     var vm = this;
 
     vm.profile = profileService.getProfile();
@@ -21,9 +20,13 @@
         vm.profileError = error.message;
       });
     };
+
+    vm.dismiss = function() {
+      $uibModalInstance.dismiss();
+    };
   }
 
   angular.module('ndApp')
-    .controller('BackOfficeProfileController', BackOfficeProfileController);
+    .controller('ProfileModalController', ProfileModalController);
 
 })();

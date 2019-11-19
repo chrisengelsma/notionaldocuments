@@ -1,6 +1,6 @@
 {
   "name": "notional-documents",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Server and build package for Notional Documents",
   "license": "Apache2",
   "private": true,

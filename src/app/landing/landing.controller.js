@@ -3,7 +3,6 @@
 
   /** @ngInject */
   function LandingController($uibModal, $uibModalStack, $state, $log, $document, $rootScope) {
-    var vm = this;
 
     if ($rootScope.$$listenerCount.openRegisterModal === undefined) {
       $rootScope.$on('openRegisterModal', function() {
@@ -13,7 +12,6 @@
           ariaDescribedBy: 'modal-body-register',
           templateUrl: 'app/landing/register-modal/register-modal.html',
           size: 'lg',
-          appendTo: undefined,
           controller: 'RegisterModalController',
           controllerAs: 'vm'
         });
@@ -28,7 +26,6 @@
           ariaDescribedBy: 'modal-body-login',
           templateUrl: 'app/landing/login-modal/login-modal.html',
           size: 'lg',
-          appendTo: undefined,
           controller: 'LoginModalController',
           controllerAs: 'vm'
         });
