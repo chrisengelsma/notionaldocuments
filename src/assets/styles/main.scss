@@ -131,7 +131,7 @@ input, select, textarea{
 
 input{
   width: 400px;
-  border: none;
+  border: none !important;
   background: transparent
 }
 
@@ -214,7 +214,7 @@ input {
   width: 0px;
   padding: 0;
   margin: 0;
-  border: none;
+  border: none !important;
   border-image-width: 0;
   font-size: 20px; /*18px*/
 }
