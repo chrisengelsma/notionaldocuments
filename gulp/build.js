@@ -40,6 +40,7 @@ gulp.task('html-watch', ['inject', 'partials'], function() {
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe($.useref())
     .pipe(jsFilter)
+<<<<<<< HEAD
     // .pipe($.sourcemaps.init())
     .pipe($.ngAnnotate())
     // .pipe($.uglify())
@@ -63,6 +64,10 @@ gulp.task('html-watch', ['inject', 'partials'], function() {
     //   collapseWhitespace: true
     // }))
     // .pipe(htmlFilter.restore)
+=======
+    .pipe($.ngAnnotate())
+    .pipe(jsFilter.restore)
+>>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({
       title: path.join(conf.paths.dist, '/'),
@@ -144,3 +149,7 @@ gulp.task('clean', function() {
 gulp.task('build', ['html', 'fonts', 'other']);
 
 gulp.task('build-watch', ['html-watch']);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd

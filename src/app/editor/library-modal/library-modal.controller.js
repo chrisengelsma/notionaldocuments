@@ -2,8 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function BackOfficeLibraryController(
-    libraryService, profileService, apiService) {
+  function LibraryModalController($uibModalInstance, profileService, libraryService, apiService) {
     var vm = this;
 
     vm.lastClickDelete = null;
@@ -61,9 +60,12 @@
       }
     };
 
+    vm.dismiss = function() {
+      $uibModalInstance.dismiss();
+    };
   }
 
   angular.module('ndApp')
-    .controller('BackOfficeLibraryController', BackOfficeLibraryController);
+    .controller('LibraryModalController', LibraryModalController);
 
 })();
