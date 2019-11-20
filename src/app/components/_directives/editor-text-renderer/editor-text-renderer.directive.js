@@ -10,6 +10,7 @@
   function ndEditorTextRenderer() {
     return {
       restrict: 'E',
+      scope: true,
       templateUrl: 'app/components/_directives/editor-text-renderer/editor-text-renderer.html',
       controller: EditorTextRendererController,
       controllerAs: 'vm',

@@ -1,10 +1,10 @@
 <div class="modal-header">
   <div class="modal-title"
-       id="modal-title">Welcome Back!
+       id="modal-title-login">Welcome Back!
   </div>
 </div>
 <div class="modal-body"
-     id="modal-body">
+     id="modal-body-login">
   <form name="form"
         novalidate>
     <div class="form-row">
@@ -56,9 +56,11 @@
           ng-disabled="form.$invalid || vm.processing"
           ng-click="vm.login(form.$valid)"
           class="btn btn-primary">
-    <div ng-if="vm.processing">
-      <i class="fa fa-spinner fa-spin"></i>&nbsp;
-    </div>
-    Submit
+    <span>
+      <span ng-if="vm.processing">
+        <i ng-if="vm.processing"
+           class="fa fa-spinner fa-spin"></i>&nbsp;
+        </span> Submit
+    </span>
   </button>
 </div>
