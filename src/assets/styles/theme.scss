@@ -3,25 +3,28 @@ html, body, body.ng-scope {
   color: #212121;
 }
 
+*:focus {
+  outline: 0 !important;
+}
+
 .form-control{
   color: #212121;
 }
 
 form input::-webkit-input-placeholder{
   color: #212121 !important;
-
 }
 
-.thread.ng-scope:hover > .tree-node.tree-node-content.dialoguetopic {
-  background-color: #448AFF;
+.thread:hover > .tree-node.tree-node-content.dialoguetopic {
+  background-color: #448AFF !important;
   color: #FFFFFF;
 }
 
-.thread.ng-scope:hover > p.ng-scope  {
+.thread:hover > p  {
   background-color: #FFFFFF;
 }
 
-.thread.ng-scope:hover {
+.thread:hover {
   background-color: #FFFFFF;
 }
 

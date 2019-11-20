@@ -20,7 +20,7 @@
       var books = [];
       for (var key in library) {
         if (uids.includes(key)) {
-          books.push(library[key]);
+          books.push({ book: library[key], uid: key });
         }
       }
       return books;
