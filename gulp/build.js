@@ -40,34 +40,8 @@ gulp.task('html-watch', ['inject', 'partials'], function() {
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe($.useref())
     .pipe(jsFilter)
-<<<<<<< HEAD
-    // .pipe($.sourcemaps.init())
-    .pipe($.ngAnnotate())
-    // .pipe($.uglify())
-    // .on('error', conf.errorHandler('Uglify'))
-    // .pipe($.rev())
-    // .pipe($.sourcemaps.write('maps'))
-    .pipe(jsFilter.restore)
-    // .pipe(cssFilter)
-    // .pipe($.sourcemaps.init())
-    // .pipe($.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
-    // .pipe($.cssnano())
-    // .pipe($.rev())
-    // .pipe($.sourcemaps.write('maps'))
-    // .pipe(cssFilter.restore)
-    // .pipe($.revReplace())
-    // .pipe(htmlFilter)
-    // .pipe($.htmlmin({
-    //   removeEmptyAttributes: true,
-    //   removeAttributeQuotes: true,
-    //   collapseBooleanAttributes: true,
-    //   collapseWhitespace: true
-    // }))
-    // .pipe(htmlFilter.restore)
-=======
     .pipe($.ngAnnotate())
     .pipe(jsFilter.restore)
->>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({
       title: path.join(conf.paths.dist, '/'),
@@ -149,7 +123,4 @@ gulp.task('clean', function() {
 gulp.task('build', ['html', 'fonts', 'other']);
 
 gulp.task('build-watch', ['html-watch']);
-<<<<<<< HEAD
-=======
 
->>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd

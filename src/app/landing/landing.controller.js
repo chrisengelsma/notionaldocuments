@@ -3,10 +3,6 @@
 
   /** @ngInject */
   function LandingController($uibModal, $uibModalStack, $state, $log, $document, $rootScope) {
-<<<<<<< HEAD
-    var vm = this;
-=======
->>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd
 
     if ($rootScope.$$listenerCount.openRegisterModal === undefined) {
       $rootScope.$on('openRegisterModal', function() {
@@ -16,10 +12,6 @@
           ariaDescribedBy: 'modal-body-register',
           templateUrl: 'app/landing/register-modal/register-modal.html',
           size: 'lg',
-<<<<<<< HEAD
-          appendTo: undefined,
-=======
->>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd
           controller: 'RegisterModalController',
           controllerAs: 'vm'
         });
@@ -34,10 +26,6 @@
           ariaDescribedBy: 'modal-body-login',
           templateUrl: 'app/landing/login-modal/login-modal.html',
           size: 'lg',
-<<<<<<< HEAD
-          appendTo: undefined,
-=======
->>>>>>> e2455a5e4295771b470ca018820c5947e9ba3edd
           controller: 'LoginModalController',
           controllerAs: 'vm'
         });
