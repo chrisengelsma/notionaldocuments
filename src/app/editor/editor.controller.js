@@ -2276,8 +2276,8 @@
                 console.log('about to select:', temp.paragraphDestination.propositions[i])
                 console.log('selected thread threadid:', $scope.selectedThread.threadId)
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding('destroy');
+                // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                //   .expanding('destroy');
                 
                 console.log('First make expanding else')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
