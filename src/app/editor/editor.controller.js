@@ -2273,7 +2273,7 @@
                   .expanding();
               } else {
                 console.log('First expanding destroy else;')
-                console.log('I:' i)
+                console.log('I:', i);
                 console.log('Paragraph destination:' temp.paragraphDestination)
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
