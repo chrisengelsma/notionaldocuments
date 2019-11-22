@@ -2264,8 +2264,7 @@
               if ($scope.selectedProposition) {
                 console.log('First expanding destroy')
                 console.log('Jquery picking up?' + $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId))
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding('destroy');
+                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 console.log('First make expanding')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
