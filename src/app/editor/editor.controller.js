@@ -2259,6 +2259,7 @@
           temp.paragraphDestination = eval(temp.paragraphPath);
 
           $scope.selectedParagraph = temp.paragraphDestination;
+          console.log("Running loop looking through paragraph looking for id")
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
               if ($scope.selectedProposition) {
