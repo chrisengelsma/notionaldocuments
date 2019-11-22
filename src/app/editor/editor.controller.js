@@ -2273,8 +2273,8 @@
                   .expanding();
               } else {
                 console.log('First expanding destroy else;')
-                console.log('I:', i);
-                console.log('Paragraph destination:', temp.paragraphDestination)
+                console.log('about to select:', temp.paragraphDestination.propositions[i])
+                console.log('selected thread threadid:', $scope.selectedThread.threadId)
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding('destroy');
