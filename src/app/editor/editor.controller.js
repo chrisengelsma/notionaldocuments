@@ -2261,7 +2261,7 @@
           $scope.selectedParagraph = temp.paragraphDestination;
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
-              if ($scope.selectedProposition) {
+              if ($scope.selectedProposition.id) {
                 console.log('First expanding destroy')
                 console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)));
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
@@ -2273,9 +2273,10 @@
                   .expanding();
               } else {
                 console.log('First expanding destroy else')
+                $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding('destroy');
-                $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                
                 console.log('First make expanding else')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
