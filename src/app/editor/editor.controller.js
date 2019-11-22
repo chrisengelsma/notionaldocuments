@@ -2280,10 +2280,9 @@
                 //   .expanding('destroy');
                 
                 console.log('First make expanding else')
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
+                console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)))
+                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding();
+                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding();
               }
 
               $scope.selectedProposition.dialogueSide = true;
