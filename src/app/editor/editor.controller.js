@@ -2259,21 +2259,24 @@
           temp.paragraphDestination = eval(temp.paragraphPath);
 
           $scope.selectedParagraph = temp.paragraphDestination;
-          console.log("Running loop looking through paragraph looking for id")
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
               if ($scope.selectedProposition) {
+                console.log('First expanding destroy')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                console.log('First make expanding')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
               } else {
+                console.log('First expanding destroy else')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                console.log('First make expanding else')
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
