@@ -779,10 +779,6 @@
         profileService.setSelectedBook($scope.data[0]);
       };
 
-      // Deleting anothers paragraph has to save space on which to write
-      // Hide all of their propositions, shift them up, add a blank at the beginning
-      // Code it so the blank inserts a nueva paragraph above which will hide the blank
-      // Make it possible to get rid of the blank by backspace
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
 
@@ -999,11 +995,6 @@
 
       $scope.prepProposition = function(input, paragraph) {
 
-        // console.log('Has Of: ', $scope.selectedProposition.of)
-        // console.log('Of author is you: ', $scope.selectedProposition.of.author === $scope.userId)
-        // console.log('Selected Proposition is negation: ', $scope.selectedProposition.type === 'negation');
-        // console.log('Not a question: ', !$scope.selectedProposition.question);
-
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
         apply = {};
@@ -1014,13 +1005,6 @@
         // Bounce bad inputs:
         // Those on nodes with no paragraphs
         // Those that are blank
-
-        // if (!$scope.selectedNode.paragraphs || input.length === 0 ||
-        //   ((prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== ':'))) {
-        //   console.log('Returning');
-        //   $scope.inputs.proposition = '';
-        //   return;
-        // }
 
 
         // Sort propositions into types and calculate things
@@ -1281,88 +1265,159 @@
           $scope.selectedProposition.type === 'negation' &&
           !$scope.selectedProposition.question) {
           prep.topic = $scope.selectedNode.topic;
-          prep.type = 'rejoinder';                              //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
+          prep.type = 'rejoinder';                              
+
+          //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
           //   IN THE FORM OF A NEGATION, IT'S A REJOINDER
 
           prep.adjustedText = input.substring(0, input.length - 1) + '.';
           prep.assertionId = $scope.selectedProposition.assertionId;
-          prep.paragraphPosition = $scope.selectedParagraph.position;
-
-          for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
-            if ($scope.selectedParagraph.propositions[i].id === $scope.selectedProposition.id) {
-              prep.preliminaryPosition = i;
-              break;
-            }
-          }
-          for (var i = prep.preliminaryPosition; i < $scope.selectedParagraph.propositions.length; i++) {
-            if ($scope.selectedParagraph.propositions[i] && $scope.selectedParagraph.propositions[i].type !== 'negation') {
-              prep.position = i;
-              console.log('gets own proposition');
-              break;
-            }
-          }
-          if (!prep.position) {
-            prep.position = $scope.selectedParagraph.propositions.length;                                 //    IF THE NEGATION MUST BE PUT AT THE END OF THE PARAGRAPH
-            prep.getsOwnProposition = true;
-            console.log('gets own place');
-          }
-
-          prep.getsOwnProposition = true;
-          prep.of = {
-            id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
-            type: $scope.selectedProposition.type,
-            author: $scope.selectedProposition.author,
-            text: $scope.selectedProposition.text,
-          };
-          prep.class = $scope.selectedNode.class;
-
-          prep.nodePath = '$scope.data';
-          prep.address = $scope.selectedNode.address;
-
-          for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
-            if (i < prep.address.length - 1) {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-            } else {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
-            }
-          }
-
-          prep.assertionPath = $scope.selectedProposition.assertionPath;                    //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-
-          if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
-            var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
-            console.log('selected proposition remark address is: ', $scope.selectedProposition.remarkAddress);
-            for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
-
-              start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
-              console.log('start is now: ', start, ' and i is now: ', i);
-            }
-
-            console.log('Calculated start value: ', start);
 
 
-            prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
-            prep.check = eval(start);                                         //  check the selectedProposition's remark location
-            start = '';
-            if (prep.check && prep.check.remarks.length > 0) {                              //  if the remark has remarks
-              prep.remarkAddress.push(prep.check.remarks.length);             //  make a new index
-              console.log('pushed onto last index of the remark address array array: ', prep.check.remarks.length);
-            } else {
-              prep.remarkAddress.push(0);                                     //  otherwise the index is 0
-              console.log('pushed a 0 onto the last index of the remark address array');
 
 
-              prep.remarkPath = prep.assertionPath;
-              for (var i = 0; i < prep.remarkAddress.length; i++) {                            // calculate the path to the selectedProposition's remark location
-                prep.remarkPath = prep.remarkPath + '.remarks[' + prep.remarkAddress[i].toString() + ']';
+          if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.author === $scope.userId){
+            prep.paragraphPosition = $scope.selectedParagraph.position + 1;
+            prep.position = 0;
+            prep.getsOwnParagraph = true;
+            prep.of = {
+              id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
+              type: $scope.selectedProposition.type,
+              author: $scope.selectedProposition.author,
+              text: $scope.selectedProposition.text,
+            };
+            prep.class = $scope.selectedNode.class;
+
+            prep.nodePath = '$scope.data';
+            prep.address = $scope.selectedNode.address;
+
+            for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
+              if (i < prep.address.length - 1) {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+              } else {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
               }
             }
+
+            prep.assertionPath = $scope.selectedProposition.assertionPath;                    //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
+
+            if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
+              var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
+              console.log('selected proposition remark address is: ', $scope.selectedProposition.remarkAddress);
+              for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
+
+                start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
+                console.log('start is now: ', start, ' and i is now: ', i);
+              }
+
+              console.log('Calculated start value: ', start);
+
+
+              prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
+              prep.check = eval(start);                                         //  check the selectedProposition's remark location
+              start = '';
+              if (prep.check && prep.check.remarks.length > 0) {                              //  if the remark has remarks
+                prep.remarkAddress.push(prep.check.remarks.length);             //  make a new index
+                console.log('pushed onto last index of the remark address array: ', prep.check.remarks.length);
+              } else {
+                prep.remarkAddress.push(0);                                     //  otherwise the index is 0
+                console.log('pushed a 0 onto the last index of the remark address array');
+
+
+                prep.remarkPath = prep.assertionPath;
+                for (var i = 0; i < prep.remarkAddress.length; i++) {                            // calculate the path to the selectedProposition's remark location
+                  prep.remarkPath = prep.remarkPath + '.remarks[' + prep.remarkAddress[i].toString() + ']';
+                }
+              }
+            } else {
+              prep.remarkAddress = $scope.selectedProposition.remarkAddress;          // shouldn't trigger
+              prep.remarkAddress.push(0);
+              prep.remarkPath = prep.assertionPath + '.remarks[0]';
+              console.log('just pushed a zero');
+            }
+
+
           } else {
-            prep.remarkAddress = $scope.selectedProposition.remarkAddress;          // shouldn't trigger
-            prep.remarkAddress.push(0);
-            prep.remarkPath = prep.assertionPath + '.remarks[0]';
-            console.log('just pushed a zero');
+            prep.paragraphPosition = $scope.selectedParagraph.position;
+            for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
+              if ($scope.selectedParagraph.propositions[i].id === $scope.selectedProposition.id) {
+                prep.preliminaryPosition = i;
+                break;
+              }
+            }
+            for (var i = prep.preliminaryPosition; i < $scope.selectedParagraph.propositions.length; i++) {
+              if ($scope.selectedParagraph.propositions[i] && $scope.selectedParagraph.propositions[i].type !== 'negation') {
+                prep.position = i;
+                console.log('gets own proposition');
+                break;
+              }
+            }
+            if (!prep.position) {
+              prep.position = $scope.selectedParagraph.propositions.length;                                 //    IF THE NEGATION MUST BE PUT AT THE END OF THE PARAGRAPH
+              prep.getsOwnProposition = true;
+              console.log('gets own place');
+            }
+
+            prep.getsOwnProposition = true;
+            prep.of = {
+              id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
+              type: $scope.selectedProposition.type,
+              author: $scope.selectedProposition.author,
+              text: $scope.selectedProposition.text,
+            };
+            prep.class = $scope.selectedNode.class;
+
+            prep.nodePath = '$scope.data';
+            prep.address = $scope.selectedNode.address;
+
+            for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
+              if (i < prep.address.length - 1) {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+              } else {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+              }
+            }
+
+            prep.assertionPath = $scope.selectedProposition.assertionPath;                    //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
+
+            if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
+              var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
+              console.log('selected proposition remark address is: ', $scope.selectedProposition.remarkAddress);
+              for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
+
+                start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
+                console.log('start is now: ', start, ' and i is now: ', i);
+              }
+
+              console.log('Calculated start value: ', start);
+
+
+              prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
+              prep.check = eval(start);                                         //  check the selectedProposition's remark location
+              start = '';
+              if (prep.check && prep.check.remarks.length > 0) {                              //  if the remark has remarks
+                prep.remarkAddress.push(prep.check.remarks.length);             //  make a new index
+                console.log('pushed onto last index of the remark address array: ', prep.check.remarks.length);
+              } else {
+                prep.remarkAddress.push(0);                                     //  otherwise the index is 0
+                console.log('pushed a 0 onto the last index of the remark address array');
+
+
+                prep.remarkPath = prep.assertionPath;
+                for (var i = 0; i < prep.remarkAddress.length; i++) {                            // calculate the path to the selectedProposition's remark location
+                  prep.remarkPath = prep.remarkPath + '.remarks[' + prep.remarkAddress[i].toString() + ']';
+                }
+              }
+            } else {
+              prep.remarkAddress = $scope.selectedProposition.remarkAddress;          // shouldn't trigger
+              prep.remarkAddress.push(0);
+              prep.remarkPath = prep.assertionPath + '.remarks[0]';
+              console.log('just pushed a zero');
+            }
           }
+          
+
+
 
         } else if ($scope.selectedProposition.question) {
           prep.type = 'assertion';
