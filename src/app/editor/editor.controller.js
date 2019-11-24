@@ -1279,7 +1279,7 @@
           if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.author === $scope.userId){
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
-            prep.getsOwnParagraph = true;
+            prep.insertsBelow = true;
             prep.of = {
               id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
               type: $scope.selectedProposition.type,
@@ -1564,7 +1564,7 @@
         }
 
 
-        if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion) {
+        if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion && prep.type !== 'rejoinder') {
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
 
@@ -1968,6 +1968,7 @@
             } else if (payload.proposition.insertsBelow) {
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+              apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']';
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
               // apply.propositionDestination = eval(apply.propositionPath);
 
@@ -2014,6 +2015,7 @@
               }
 
               apply.paragraphDestination = eval(apply.paragraphPath);
+              apply.paragraphAboveDestination = eval(apply.paragraphAbovePath);
 
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
@@ -2076,13 +2078,22 @@
             }
 
 
-            if (payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) {
+
+            // Hides rejoined propositions
+            if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && payload.proposition.insertsBelow) {
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {
                   apply.paragraphDestination.propositions[i].rejoined = true;
                   apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
                 }
               }
+            } else if(payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion){
+              for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
+                if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {
+                  apply.paragraphDestination.propositions[i].rejoined = true;
+                  apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
+                }
+              }            
             }
 
             $scope.scroll.threadId = IdFactory.next();
