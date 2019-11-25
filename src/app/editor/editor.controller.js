@@ -2163,13 +2163,22 @@
 
               temp.remarkAddress = payload.proposition.remarkAddress;
 
-
-              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-                if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
-                  apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                  apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
-                  apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
-                }
+              if (!payload.proposition.insertsBelow){
+                for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
+                  if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
+                    apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                    apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
+                    apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
+                  }
+                } 
+              } else {
+                for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
+                  if (apply.paragraphAboveDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
+                    apply.paragraphAboveDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                    apply.propositionPath = apply.paragraphAbovePath + '.propositions[' + i.toString() + ']';
+                    apply.paragraphAboveDestination.propositions[i].assertionPath = apply.propositionPath;
+                  }
+                }        
               }
 
 
