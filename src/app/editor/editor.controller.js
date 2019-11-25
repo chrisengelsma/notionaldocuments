@@ -2081,14 +2081,14 @@
 
             // Hides rejoined propositions
             if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && payload.proposition.insertsBelow) {
-              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-                if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {
-                  apply.paragraphDestination.propositions[i].rejoined = true;
-                  apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
+              for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
+                if (payload.proposition.of.id === apply.paragraphAboveDestination.propositions[i].id) {
+                  apply.paragraphAboveDestination.propositions[i].rejoined = true;
+                  apply.paragraphAboveDestination.propositions[i][$scope.userId] = 'hidden';
                 }
               }
-            } else if(payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion){
-              for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
+            } else if (payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion){
+              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {
                   apply.paragraphDestination.propositions[i].rejoined = true;
                   apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
@@ -2278,7 +2278,6 @@
             // applyRemark = {};   //     CLEARS THINGS
             // notification = {};
             temp = {};
-
             $scope.scroll = {};
 
             $scope.propositions.push(payload.proposition);  // PUSHES THE PROPOSITION TO THE PROPOSITIONS ARRAY
