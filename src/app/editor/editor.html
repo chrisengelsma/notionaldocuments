@@ -40,7 +40,7 @@
 
       <button class="btn btn-dark"
               ng-click="openProfileModal()">
-        {{profile.displayName}} 
+        {{profile.displayName}}{{$scope.selectedProposition.type === 'negation'}}{{$scope.selectedProposition.of.type === 'rejoinder'}}{{$scope.selectedProposition.author === $scope.userId}} 
       </button>
       <button class="btn cog"
               ng-click="openOptionsModal()">
