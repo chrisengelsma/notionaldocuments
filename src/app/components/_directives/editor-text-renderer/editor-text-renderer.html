@@ -92,7 +92,7 @@
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId)
                           }"
                 ng-click="(proposition.type !== 'negation' && proposition.author !== userId) ? 
-                        (selectProposition(proposition),
+                        [selectProposition(proposition),
                         selectedParagraph.highlightAll = false,
                         selectedParagraph.markAll = false,
                         mark.id = '',
@@ -101,7 +101,7 @@
                         selectedProposition.dialogueSide = false, 
                         paragraph.topAdd = false, 
                         paragraph.bottomAdd = false,
-                        paragraph.leftAdd = false) : inputs.nothing"
+                        paragraph.leftAdd = false] : inputs.nothing"
                 event-focus-id="{{proposition.id}}"
                 class="proposition-text">{{proposition.text}}</span>
           <textarea
