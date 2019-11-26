@@ -91,7 +91,7 @@
                             'owned': proposition.author === userId && options.highlightOwned,
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId)
                           }"
-                ng-click="(proposition.type !== 'negation' && proposition.author !== userId) ? 
+                ng-click="((proposition.type !== 'negation' && proposition.author !== userId) || (proposition.type === 'negation' && proposition.of.author === userId)) ? 
                         [selectProposition(proposition),
                         selectedParagraph.highlightAll = false,
                         selectedParagraph.markAll = false,
