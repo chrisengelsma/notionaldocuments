@@ -1276,7 +1276,7 @@
 
 
 
-          if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.author === $scope.userId){
+          if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.of.author === $scope.userId){
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
             prep.insertsBelow = true;
