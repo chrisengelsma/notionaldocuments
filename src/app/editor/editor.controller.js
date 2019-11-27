@@ -1543,7 +1543,7 @@
             prep.paragraphPosition = $scope.selectedParagraph.position;
             prep.position = $scope.selectedProposition.position;
             prep.insertsLeft = true;
-          } else {
+          } else if (prep.type !== 'rejoinder'){
             console.log('Adding to existing paragraph');
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
