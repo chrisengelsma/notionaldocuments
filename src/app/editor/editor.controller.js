@@ -1282,15 +1282,11 @@
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation' 
               && prep.paragraphDestination.propositions[i].deleted !== true){
               prep.capacityCount++;
-              if (prep.capacityCount > 1){
-
-              }
             }
           }
 
 
-          if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.of.author === $scope.userId
-            && !$scope.selectedProposition.insertsBelow){
+          if ( prep.capacityCount > 1){
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
             prep.insertsBelow = true;
