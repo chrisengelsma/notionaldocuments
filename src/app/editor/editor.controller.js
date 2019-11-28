@@ -2164,6 +2164,7 @@ console.log('capacity count: ', prep.capacityCount)
               console.log('Theres a remarkpath')
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
+              console.log(payload.nodePath);
               // apply.paragraphPath = payload.nodePath + payload.paragraphPosition.toString();
               // apply.paragraphDestination = eval(apply.paragraphPath)
 
