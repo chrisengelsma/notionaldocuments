@@ -1259,8 +1259,9 @@
           console.log('its a rejoinder')
           //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
           //   IN THE FORM OF A NEGATION, IT'S A REJOINDER
-
+          console.log('before adjusted text')
           prep.adjustedText = input.substring(0, input.length - 1) + '.';
+          console.log('after adjusted text')
           prep.assertionId = $scope.selectedProposition.assertionId;
 
           prep.nodePath = '$scope.data';
