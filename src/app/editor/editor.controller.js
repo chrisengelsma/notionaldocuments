@@ -2164,14 +2164,14 @@ console.log('capacity count: ', prep.capacityCount)
               console.log('Theres a remarkpath')
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
-              // apply.paragraphPath = payload.nodePath + payload.paragraphPosition.toString();
-              // apply.paragraphDestination = eval(apply.paragraphPath)
+              apply.paragraphPath = payload.nodePath + payload.paragraphPosition.toString();
+              apply.paragraphDestination = eval(apply.paragraphPath)
 
               if (!payload.proposition.insertsBelow){
                 for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                   if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
                     apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                    apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
+                    apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + '].propositions[' + i.toString() + ']';
                     apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
                   }
                 } 
@@ -2180,7 +2180,7 @@ console.log('capacity count: ', prep.capacityCount)
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
                     if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
                       apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                        apply.propositionPath = apply.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
+                        apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
                         apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
                     }
 
