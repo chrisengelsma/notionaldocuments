@@ -2164,7 +2164,6 @@ console.log('capacity count: ', prep.capacityCount)
               console.log('Theres a remarkpath')
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
-              console.log(payload.nodePath);
               // apply.paragraphPath = payload.nodePath + payload.paragraphPosition.toString();
               // apply.paragraphDestination = eval(apply.paragraphPath)
 
@@ -2191,6 +2190,7 @@ console.log('capacity count: ', prep.capacityCount)
 
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
+                    console.log("apply node destination: ", apply.nodeDestination)
                     if (apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
                         apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
                       }
