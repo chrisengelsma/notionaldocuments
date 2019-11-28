@@ -1255,18 +1255,14 @@
           $scope.selectedProposition.type === 'negation' &&
           !$scope.selectedProposition.question) {
           prep.topic = $scope.selectedNode.topic;
-          prep.type = 'rejoinder';                              
-          console.log('its a rejoinder')
+          prep.type = 'rejoinder';        
           //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
           //   IN THE FORM OF A NEGATION, IT'S A REJOINDER
-          console.log('before adjusted text')
           prep.adjustedText = input.substring(0, input.length - 1) + '.';
-          console.log('after adjusted text')
           prep.assertionId = $scope.selectedProposition.assertionId;
 
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
-          console.log('before node loop')
           for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
             if (i < prep.address.length - 1) {
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
@@ -1274,7 +1270,6 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-          console.log('after node loop')
           prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position.toString() + ']';
           console.log('paragraph path: ', prep.paragraphPath)
           prep.paragraphDestination = eval(prep.paragraphPath);
@@ -1286,7 +1281,7 @@
               prep.capacityCount++;
             }
           }
-
+console.log('capacity count: ', prep.capacityCount)
 console.log('Capacity count test')
           if ( prep.capacityCount > 1){
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
