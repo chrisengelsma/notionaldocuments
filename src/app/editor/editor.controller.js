@@ -1971,7 +1971,7 @@ console.log('capacity count: ', prep.capacityCount)
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']';
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
-              // apply.propositionDestination = eval(apply.propositionPath);
+              apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
@@ -2204,9 +2204,7 @@ console.log('capacity count: ', prep.capacityCount)
                 }
               }
 
-              console.log("remark path")
               temp.remarkPath = apply.propositionPath;          // the path to the assertion is the starting basis for the remark path
-              console.log("remark destination")
               temp.remarkDestination = eval(temp.remarkPath);
 
 
@@ -2216,6 +2214,7 @@ console.log('capacity count: ', prep.capacityCount)
 
 
               temp.remarkDestination = eval(temp.remarkPath);
+              console.log('Temp remark destination: ', temp.remarkDestination)
               if (temp.remarkDestination && temp.remarkDestination.remarks) {
                 temp.remarkDestination.remarks[temp.remarkDestination.remarks.length] = payload.proposition;
               } else {
