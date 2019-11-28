@@ -1275,7 +1275,7 @@
             }
           }
           console.log('after node loop')
-          prep.paragraphPath = prep.nodePath + $scope.selectedParagraph.position.toString();
+          prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position.toString() + ']';
           console.log('paragraph path: ', prep.paragraphPath)
           prep.paragraphDestination = eval(prep.paragraphPath);
           prep.capacityCount = 0;
