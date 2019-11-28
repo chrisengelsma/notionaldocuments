@@ -2199,16 +2199,14 @@ console.log('capacity count: ', prep.capacityCount)
                  
 
               for (var i = 0; i < $scope.propositions.length; i++) {
-                console.log('Running the loop')
                 if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
-                  console.log('Proposition path: ', apply.propositionPath)
-                  console.log('Propositions [i] assertion path: ', $scope.propositions[i].assertionPath)
                   $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
                 }
               }
 
-
+              console.log("remark path")
               temp.remarkPath = apply.propositionPath;          // the path to the assertion is the starting basis for the remark path
+              console.log("remark destination")
               temp.remarkDestination = eval(temp.remarkPath);
 
 
