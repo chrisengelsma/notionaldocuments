@@ -1266,7 +1266,7 @@
 
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
-
+          console.log('before node loop')
           for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
             if (i < prep.address.length - 1) {
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
@@ -1274,7 +1274,7 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-
+          console.log('after node loop')
           prep.paragraphPath = prep.nodePath + $scope.selectedParagraph.position.toString();
           prep.paragraphDestination = eval(prep.paragraphPath);
           prep.capacityCount = 0;
