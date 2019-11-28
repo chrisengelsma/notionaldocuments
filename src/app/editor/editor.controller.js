@@ -1278,7 +1278,7 @@
           prep.paragraphPath = prep.nodePath + $scope.selectedParagraph.position.toString();
           prep.paragraphDestination = eval(prep.paragraphPath);
           prep.capacityCount = 0;
-
+          console.log('Capacity count init')
           for (var i = 0; i < prep.paragraphDestination.propositions[i]; i++){
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation' 
               && prep.paragraphDestination.propositions[i].deleted !== true){
@@ -1286,7 +1286,7 @@
             }
           }
 
-
+console.log('Capacity count test')
           if ( prep.capacityCount > 1){
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
