@@ -2167,26 +2167,18 @@ console.log('capacity count: ', prep.capacityCount)
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath)
 
-              if (!payload.proposition.insertsBelow){
-                for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-                  if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
-                    apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                    apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + '].propositions[' + i.toString() + ']';
-                    apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
-                  }
-                } 
-              } else {
+            
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
                     if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
-                      apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                        apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
-                        apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
+                        apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                          apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
+                          apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
                     }
 
                   }  
                 }      
-              }
+              
 
                 // for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                 //   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
