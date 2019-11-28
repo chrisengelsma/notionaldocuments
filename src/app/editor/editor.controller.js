@@ -1971,7 +1971,7 @@ console.log('capacity count: ', prep.capacityCount)
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']';
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
-              apply.propositionDestination = eval(apply.propositionPath);
+              // apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
