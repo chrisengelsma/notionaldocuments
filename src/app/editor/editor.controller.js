@@ -2199,7 +2199,9 @@ console.log('capacity count: ', prep.capacityCount)
                  
 
               for (var i = 0; i < $scope.propositions.length; i++) {
+                console.log('Running the loop')
                 if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
+                  console.log('Something running in the loop')
                   $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
                 }
               }
