@@ -1275,7 +1275,7 @@
           prep.paragraphDestination = eval(prep.paragraphPath);
           prep.capacityCount = 0;
           console.log('Capacity count init')
-          for (var i = 0; i < prep.paragraphDestination.propositions[i]; i++){
+          for (var i = 0; i < prep.paragraphDestination.propositions[i].length; i++){
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation' 
               && prep.paragraphDestination.propositions[i].deleted !== true){
               console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].assertionId === prep.assertionId)
