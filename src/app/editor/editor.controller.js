@@ -139,16 +139,6 @@
       dimNotOwned: false
     };
 
-    // If it loads nothing, go back to profile
-    // $scope.data = profileService.getSelectedBook();
-    // if ($scope.data === null) {
-    //   $state.go('main.backoffice.profile');
-    //   return;
-    // }
-
-    // Assign variables
-    // $scope.propositions = propositions;
-    // $scope.data = book;
     $scope.title = '';
     $scope.profile = profileService.getProfile();
     $scope.userId = $rootScope.uid;
@@ -1273,10 +1263,34 @@
           prep.adjustedText = input.substring(0, input.length - 1) + '.';
           prep.assertionId = $scope.selectedProposition.assertionId;
 
+          prep.nodePath = '$scope.data';
+          prep.address = $scope.selectedNode.address;
+
+          for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
+            if (i < prep.address.length - 1) {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+            } else {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+            }
+          }
+
+          prep.paragraphPath = prep.nodePath + $scope.selectedParagraph.position.toString();
+          prep.paragraphDestination = eval(prep.paragraphPath);
+          prep.capacityCount = 0;
+
+          for (var i = 0; i < prep.paragraphDestination.propositions[i]; i++){
+            if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation' 
+              && prep.paragraphDestination.propositions[i].deleted !== true){
+              prep.capacityCount++;
+              if (prep.capacityCount > 1){
+
+              }
+            }
+          }
 
 
-
-          if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.of.author === $scope.userId){
+          if ( $scope.selectedProposition.type === 'negation' && $scope.selectedProposition.of.type === 'rejoinder' && $scope.selectedProposition.of.author === $scope.userId
+            && !$scope.selectedProposition.insertsBelow){
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
             prep.insertsBelow = true;
@@ -2172,21 +2186,26 @@
                   }
                 } 
               } else {
-                for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
-                  if (apply.paragraphAboveDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
-                    apply.paragraphAboveDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                    apply.propositionPath = apply.paragraphAbovePath + '.propositions[' + i.toString() + ']';
-                    apply.paragraphAboveDestination.propositions[i].assertionPath = apply.propositionPath;
-                  }
-                }        
+                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                  for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
+                    if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
+                      apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                        apply.propositionPath = apply.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
+                        apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
+                    }
+
+                  }  
+                }      
               }
 
-
-              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-                if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {                   //    UPDATES THE ASSERTIONPATH FOR ALL THE PROPOSITIONS
-                  apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
-                }
-              }
+                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                  for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
+                    if (apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                        apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
+                      }
+                    }
+                  }  
+                 
 
               for (var i = 0; i < $scope.propositions.length; i++) {
                 if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
