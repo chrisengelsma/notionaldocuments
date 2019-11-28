@@ -1278,6 +1278,9 @@
           for (var i = 0; i < prep.paragraphDestination.propositions[i]; i++){
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation' 
               && prep.paragraphDestination.propositions[i].deleted !== true){
+              console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].assertionId === prep.assertionId)
+              console.log('not negation: ', prep.paragraphDestination.propositions[i].type !== 'negation')
+              console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].deleted !== true)
               prep.capacityCount++;
             }
           }
