@@ -2170,7 +2170,7 @@
               }
 
             } else { // theres a remarkPath
-
+              console.log('Theres a remarkpath')
               temp.remarkAddress = payload.proposition.remarkAddress;
 
               if (!payload.proposition.insertsBelow){
