@@ -2188,14 +2188,14 @@ console.log('capacity count: ', prep.capacityCount)
                 }      
               }
 
-                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-                  for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
-                    console.log("apply node destination: ", apply.nodeDestination.paragraphs[i])
-                    if (apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                        apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
-                      }
-                    }
-                  }  
+                // for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                //   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
+                //     console.log("apply node destination: ", apply.nodeDestination.paragraphs[i])
+                //     if (apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           
+                //         apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;                               
+                //       }
+                //     }
+                //   }  
                  
 
               for (var i = 0; i < $scope.propositions.length; i++) {
