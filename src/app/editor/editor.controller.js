@@ -1256,7 +1256,7 @@
           !$scope.selectedProposition.question) {
           prep.topic = $scope.selectedNode.topic;
           prep.type = 'rejoinder';                              
-
+          console.log('its a rejoinder')
           //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
           //   IN THE FORM OF A NEGATION, IT'S A REJOINDER
 
