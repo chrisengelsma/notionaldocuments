@@ -6,7 +6,6 @@
     var apiService = function() {
     };
 
-
     function registerWithEmailAndPassword(email, password) {
       var d = $q.defer();
       firebase.auth().createUserWithEmailAndPassword(email, password)

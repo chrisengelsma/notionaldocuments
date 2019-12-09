@@ -6,7 +6,7 @@
 
     if ($rootScope.$$listenerCount.openRegisterModal === undefined) {
       $rootScope.$on('openRegisterModal', function() {
-        var registerModalInstance = $uibModal.open({
+        $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title-register',
           ariaDescribedBy: 'modal-body-register',
@@ -14,13 +14,17 @@
           size: 'lg',
           controller: 'RegisterModalController',
           controllerAs: 'vm'
+        }).result.then(function(success) {
+          if (success) {
+            $state.go('main.editor');
+          }
         });
       });
     }
 
     if ($rootScope.$$listenerCount.openLoginModal === undefined) {
       $rootScope.$on('openLoginModal', function() {
-        var loginModalInstance = $uibModal.open({
+        $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title-login',
           ariaDescribedBy: 'modal-body-login',
@@ -28,6 +32,10 @@
           size: 'lg',
           controller: 'LoginModalController',
           controllerAs: 'vm'
+        }).result.then(function(success) {
+          if (success) {
+            $state.go('main.editor');
+          }
         });
       });
     }
