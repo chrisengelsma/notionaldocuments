@@ -12,9 +12,40 @@ module.exports = function(admin, express) {
     res.status(500).end(err.message);
   }
 
-  router.use('/', firebaseMiddleware.auth);
   router.use(errorHandler);
   router.use(function(req, res, next) { next(); });
+
+  router.get('/library/props/:uid', function(req, res, next) {
+    var bookId = req.params.uid;
+    db.ref('propositions/' + bookId).once('value').then(function(snap) {
+      var result = (snap.val() === null) ? [] : snap.val();
+      return res.end(JSON.stringify(result));
+    }).catch(function(error) {
+      next(error);
+    });
+  });
+
+  router.get('/library/book/:uid', function(req, res, next) {
+    db.ref('books/' + req.params.uid).once('value').then(function(snap) {
+      res.end(JSON.stringify(snap.val()));
+    }).catch(function(error) {
+      next(error);
+    });
+  });
+
+  router.get('/library', function(req, res, next) {
+    db.ref('books').once('value').then(function(snap) {
+      if (snap.val() === null) {
+        return res.end();
+      } else {
+        return res.end(JSON.stringify(snap.val()));
+      }
+    }).catch(function(error) {
+      return next(error);
+    });
+  });
+
+  router.use('/', firebaseMiddleware.auth);
 
 // user =====================================================================
 
@@ -72,26 +103,6 @@ module.exports = function(admin, express) {
     });
   });
 
-  router.get('/library/book/:uid', function(req, res, next) {
-    db.ref('books/' + req.params.uid).once('value').then(function(snap) {
-      res.end(JSON.stringify(snap.val()));
-    }).catch(function(error) {
-      next(error);
-    });
-  });
-
-  router.get('/library', function(req, res, next) {
-    db.ref('books').once('value').then(function(snap) {
-      if (snap.val() === null) {
-        return res.end();
-      } else {
-        return res.end(JSON.stringify(snap.val()));
-      }
-    }).catch(function(error) {
-      return next(error);
-    });
-  });
-
   router.post('/library/book/:uid/update', function(req, res, next) {
     var bookId = req.params.uid;
     var book = Object.assign({}, req.body.book);
@@ -133,16 +144,6 @@ module.exports = function(admin, express) {
       }).catch(function(error) {
         next(error);
       });
-    }).catch(function(error) {
-      next(error);
-    });
-  });
-
-  router.get('/library/props/:uid', function(req, res, next) {
-    var bookId = req.params.uid;
-    db.ref('propositions/' + bookId).once('value').then(function(snap) {
-      var result = (snap.val() === null) ? [] : snap.val();
-      return res.end(JSON.stringify(result));
     }).catch(function(error) {
       next(error);
     });

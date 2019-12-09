@@ -3,10 +3,29 @@
 
   /** @ngInject */
   function EditorController(
-    $log, $state, $rootScope, $scope, $stateParams, chatSocket,
+    $log, $state, $location, $interval, $rootScope, $scope, $stateParams, chatSocket,
     apiService, profileService, libraryService, profile, library, $uibModal,
     messageFormatter, focusFactory, Notification,
     $document, $timeout, IdFactory) {
+
+    // Check to load profile if we're logged in and profile isn't loaded for some reason
+    $interval(function() {
+      if ($rootScope.uid && $rootScope.token && $scope.profile === undefined) {
+        apiService.readProfile().then(function(res) {
+          if (res.status === 200) {
+            profileService.setProfile(res.data);
+            $scope.profile = profileService.getProfile();
+            $scope.userId = $rootScope.uid;
+          }
+        });
+        apiService.readLibrary().then(function(res) {
+          if (res.status === 200) {
+            libraryService.setLibrary(res.data);
+            $scope.library = libraryService.getLibrary();
+          }
+        });
+      }
+    }, 1000);
 
     // All the modal buttons.
 
@@ -44,6 +63,38 @@
           profileService: profileService,
           libraryService: libraryService,
           apiService: apiService
+        }
+      });
+    };
+
+    $scope.openLoginModal = function() {
+      $scope.loginModalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title-login',
+        ariaDescribedBy: 'modal-body-login',
+        templateUrl: 'app/landing/login-modal/login-modal.html',
+        size: 'lg',
+        controller: 'LoginModalController',
+        controllerAs: 'vm'
+      }).result.then(function(success) {
+        if (success) {
+          $location.reload();
+        }
+      });
+    };
+
+    $scope.openRegisterModal = function() {
+      $scope.loginModalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title-register',
+        ariaDescribedBy: 'modal-body-register',
+        templateUrl: 'app/landing/register-modal/register-modal.html',
+        size: 'lg',
+        controller: 'RegisterModalController',
+        controllerAs: 'vm'
+      }).result.then(function(success) {
+        if (success) {
+          $location.reload();
         }
       });
     };
@@ -99,9 +150,7 @@
         resolve: {
           options: function() { return $scope.options; }
         }
-      });
-
-      optionsModalInstance.result.then(function(res) {
+      }).result.then(function(res) {
         $scope.options = res;
       });
 
@@ -120,10 +169,10 @@
             $scope.mainLoop();
           }
         }).catch(function(error) {
-          console.error(error);
+          // console.error(error);
         });
       }).catch(function(error) {
-        console.error(error);
+        // console.error(error);
       });
 
     };
@@ -142,6 +191,10 @@
     $scope.title = '';
     $scope.profile = profileService.getProfile();
     $scope.userId = $rootScope.uid;
+
+    $scope.loggedIn = function() {
+      return $rootScope.uid !== undefined;
+    };
 
     // Just put it in a big function
     // Down the line, this needs to be re-architectured.
@@ -461,11 +514,13 @@
       $scope.textFile = $scope.data[0];
       //works
 
-      create.addEventListener('click', function() {
-        var link = document.getElementById('downloadlink');
-        link.href = $scope.makeTextFile();
-        console.log('Link HREF: ', link.href);
-      }, false);
+      if (create) {
+        create.addEventListener('click', function() {
+          var link = document.getElementById('downloadlink');
+          link.href = $scope.makeTextFile();
+          console.log('Link HREF: ', link.href);
+        }, false);
+      }
 
 
       setTimeout(function() {
@@ -1096,12 +1151,12 @@
 
 
 
-        // Negations
+          // Negations
 
 
-        // If the selected proposition is not your own
-        // and it's an assertion or rejoinder (not a blank)
-        // Or if it's a continuation of another negation
+          // If the selected proposition is not your own
+          // and it's an assertion or rejoinder (not a blank)
+          // Or if it's a continuation of another negation
         // it's a negation
         else if ((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
           $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' && $scope.selectedProposition.author === $scope.userId)) {
@@ -1255,7 +1310,7 @@
           $scope.selectedProposition.type === 'negation' &&
           !$scope.selectedProposition.question) {
           prep.topic = $scope.selectedNode.topic;
-          prep.type = 'rejoinder';        
+          prep.type = 'rejoinder';
           //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
           //   IN THE FORM OF A NEGATION, IT'S A REJOINDER
           prep.adjustedText = input.substring(0, input.length - 1) + '.';
@@ -1271,21 +1326,21 @@
             }
           }
           prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position.toString() + ']';
-          console.log('paragraph path: ', prep.paragraphPath)
+          console.log('paragraph path: ', prep.paragraphPath);
           prep.paragraphDestination = eval(prep.paragraphPath);
           prep.capacityCount = 0;
-          for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
-            console.log('running the loop')
-            if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation' 
-              && prep.paragraphDestination.propositions[i].deleted !== true){
-              console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].assertionId === prep.assertionId)
-              console.log('not negation: ', prep.paragraphDestination.propositions[i].type !== 'negation')
-              console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].deleted !== true)
+          for (var i = 0; i < prep.paragraphDestination.propositions.length; i++) {
+            console.log('running the loop');
+            if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation'
+              && prep.paragraphDestination.propositions[i].deleted !== true) {
+              console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].assertionId === prep.assertionId);
+              console.log('not negation: ', prep.paragraphDestination.propositions[i].type !== 'negation');
+              console.log('assertions ids match: ', prep.paragraphDestination.propositions[i].deleted !== true);
               prep.capacityCount++;
             }
           }
-console.log('capacity count: ', prep.capacityCount)
-          if ( prep.capacityCount > 1){
+          console.log('capacity count: ', prep.capacityCount);
+          if (prep.capacityCount > 1) {
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
             prep.insertsBelow = true;
@@ -1316,7 +1371,6 @@ console.log('capacity count: ', prep.capacityCount)
 
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
               }
-
 
 
               prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
@@ -1416,8 +1470,6 @@ console.log('capacity count: ', prep.capacityCount)
               console.log('just pushed a zero');
             }
           }
-          
-
 
 
         } else if ($scope.selectedProposition.question) {
@@ -1544,7 +1596,7 @@ console.log('capacity count: ', prep.capacityCount)
             prep.paragraphPosition = $scope.selectedParagraph.position;
             prep.position = $scope.selectedProposition.position;
             prep.insertsLeft = true;
-          } else if (prep.type !== 'rejoinder'){
+          } else if (prep.type !== 'rejoinder') {
             console.log('Adding to existing paragraph');
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
@@ -1969,7 +2021,7 @@ console.log('capacity count: ', prep.capacityCount)
             } else if (payload.proposition.insertsBelow) {
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-              apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']';
+              apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition - 1).toString() + ']';
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
               // apply.propositionDestination = eval(apply.propositionPath);
 
@@ -2079,7 +2131,6 @@ console.log('capacity count: ', prep.capacityCount)
             }
 
 
-
             // Hides rejoined propositions
             if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && payload.proposition.insertsBelow) {
               for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
@@ -2088,13 +2139,13 @@ console.log('capacity count: ', prep.capacityCount)
                   apply.paragraphAboveDestination.propositions[i][$scope.userId] = 'hidden';
                 }
               }
-            } else if (payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion){
+            } else if (payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) {
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {
                   apply.paragraphDestination.propositions[i].rejoined = true;
                   apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
                 }
-              }            
+              }
             }
 
             $scope.scroll.threadId = IdFactory.next();
@@ -2161,25 +2212,24 @@ console.log('capacity count: ', prep.capacityCount)
               }
 
             } else { // theres a remarkPath
-              console.log('Theres a remarkpath')
+              console.log('Theres a remarkpath');
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-              apply.paragraphDestination = eval(apply.paragraphPath)
+              apply.paragraphDestination = eval(apply.paragraphPath);
 
-            
-                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-                  for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
-                    if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
-                        apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                          apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
-                          apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
-                    }
 
-                  }  
-                }      
-              
-                 
+              for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++) {
+                for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
+                  if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
+                    apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                    apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
+                    apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
+                  }
+
+                }
+              }
+
 
               for (var i = 0; i < $scope.propositions.length; i++) {
                 if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
@@ -2197,7 +2247,7 @@ console.log('capacity count: ', prep.capacityCount)
 
 
               temp.remarkDestination = eval(temp.remarkPath);
-              console.log('Temp remark destination: ', temp.remarkDestination)
+              console.log('Temp remark destination: ', temp.remarkDestination);
               if (temp.remarkDestination && temp.remarkDestination.remarks) {
                 temp.remarkDestination.remarks[temp.remarkDestination.remarks.length] = payload.proposition;
               } else {
@@ -2329,27 +2379,30 @@ console.log('capacity count: ', prep.capacityCount)
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
               if ($scope.selectedProposition.id) {
-                console.log('First expanding destroy')
+                console.log('First expanding destroy');
                 console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)));
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding('destroy');
+                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                  .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                console.log('First make expanding')
+                console.log('First make expanding');
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
               } else {
-                console.log('First expanding destroy else;')
-                console.log('about to select:', temp.paragraphDestination.propositions[i])
-                console.log('selected thread threadid:', $scope.selectedThread.threadId)
+                console.log('First expanding destroy else;');
+                console.log('about to select:', temp.paragraphDestination.propositions[i]);
+                console.log('selected thread threadid:', $scope.selectedThread.threadId);
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                 //   .expanding('destroy');
-                
-                console.log('First make expanding else')
-                console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)))
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding();
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId).expanding();
+
+                console.log('First make expanding else');
+                console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)));
+                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                  .expanding();
+                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                  .expanding();
               }
 
               $scope.selectedProposition.dialogueSide = true;
@@ -2644,10 +2697,9 @@ console.log('capacity count: ', prep.capacityCount)
         }
         callback();
       };
-    } // end mainLoop
+    }; // end mainLoop
 
   }
-
 
 
   angular.module('ndApp')

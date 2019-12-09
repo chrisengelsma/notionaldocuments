@@ -1,5 +1,5 @@
 <div class="tree-node tree-node-content texttopic"
-     ng-class="{topicselected: selectedNode.class === node.class, titlestyling: node.isTitle}">
+     ng-class="{ topicselected: selectedNode.class === node.class, titlestyling: node.isTitle}">
   {{node.topic}}
 </div>
 <ol ui-tree-nodes
@@ -11,17 +11,26 @@
       ng-mouseleave="paragraph.mouseOver = false;"
       class="tree-node tree-node-content paragraph"
       ng-if="paragraph[userId] !== 'hidden'"
-      ng-class="{paragraphcursor: paragraph.cursor === true, paragraphoffcursor: paragraph.cursor === false,
-      notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}">
+      ng-class="{ paragraphcursor: paragraph.cursor === true,
+                  paragraphoffcursor: paragraph.cursor === false,
+                  notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}">
+
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
          ng-if="$first && paragraph.propositions[0].type !== 'blank' && !paragraph.topAdd"
-         ng-click="clearWithTopAdder(paragraph); selectedParagraph.highlightAll = false; selectedParagraph.markAll = false; clearPropositionInput(); paragraph.topMouseOver = false; paragraph.topAdd = true; paragraph.bottomAdd = false;"
+         ng-click="clearWithTopAdder(paragraph);
+                   selectedParagraph.highlightAll = false;
+                   selectedParagraph.markAll = false;
+                   clearPropositionInput();
+                   paragraph.topMouseOver = false;
+                   paragraph.topAdd = true;
+                   paragraph.bottomAdd = false;"
          event-focus="click"
          event-focus-id="{{topAdderId}}">
     </div>
+
     <div ng-if="paragraph.topAdd == true"
          class="paragraph addparagraph">
       <div class="proposition">
@@ -31,10 +40,9 @@
                   class="right-textarea"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
-                  ng-keyup="
-                  $event.keyCode === 13 &&
-                  selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
-                  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
+                  ng-keyup="$event.keyCode === 13 &&
+                            selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
+                            (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false">
         </textarea>
         <span class="right-text">{{inputs.proposition}}</span>
@@ -49,14 +57,23 @@
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="proposition.preSelected = false;"
             ui-tree-node
-            ng-click="selectedProposition.textSide = true; selectedProposition.dialogueSide = false;"
+            ng-click="selectedProposition.textSide = true;
+                      selectedProposition.dialogueSide = false;"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
           <span class="leftpropositionadder"
                 ng-mouseover="paragraph.leftMouseOver = true; paragraph.topMouseOver = false; paragraph.bottomMouseOver = false;"
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
-                ng-click="clearWithLeftAdder(); clearPropositionInput(); paragraph.topAdd = false; paragraph.bottomAdd = false; paragraph.leftAdd = true; paragraph.leftMouseOver = false; selectedParagraph.highlightAll = false; selectedParagraph.markAll = false;"
+                ng-click="
+                  clearWithLeftAdder();
+                  clearPropositionInput();
+                  paragraph.topAdd = false;
+                  paragraph.bottomAdd = false;
+                  paragraph.leftAdd = true;
+                  paragraph.leftMouseOver = false;
+                  selectedParagraph.highlightAll = false;
+                  selectedParagraph.markAll = false;"
                 event-focus-id="{{leftAdderId}}"
                 ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true">
             <span ng-if="paragraph.leftMouseOver == true"

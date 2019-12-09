@@ -1,3 +1,5 @@
+<nd-readonly-shield ng-if="!loggedIn()"></nd-readonly-shield>
+
 <div class="container "
      ng-init="initialize">
   <div class="row"
@@ -31,88 +33,103 @@
     </div>
 
 
-    <!-- Toolbar -->
-    <!-- Should be its own directive -->
-    <div style="text-align: right">
-
-      <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
-      <input type="button" id="copy-button" value="Copy"> -->
-
-      <button class="btn btn-dark"
-              ng-click="openProfileModal()">
-        {{profile.displayName}} {{selectedProposition.type === 'negation'}}{{selectedProposition.of.type === 'rejoinder'}}{{selectedProposition.of.author === userId}} 
-      </button>
-      <button class="btn cog"
-              ng-click="openOptionsModal()">
-        <i class="fa fa-cog"></i>
-      </button>
-      <button class="btn"
-              ng-click="openMyBooksModal()">
-        <i class="fa fa-bookmark"></i>
-      </button>
-      <button class="btn"
-              ng-click="openLibraryModal()">
-        <i class="fa fa-book"></i>
-      </button>
-      <button class="btn"
-              ng-click="openNewBookModal()">
-        <i class="fa fa-plus"></i>
-      </button>
-      <!--
-      <button class="btn"
-              ng-class="{ 'btn-light': !options.highlightOwned,
-                          'btn-dark': options.highlightOwned
-                        }"
-              ng-click="options.highlightOwned = !options.highlightOwned">
-        <i class="fa fa-search"></i>
-      </button>
-      -->
-      <button class="btn btn-secondary help"
-              ng-click="openNav()">
-        <i class="fa fa-asterisk"></i>
-      </button>
-
-      <a download="export.txt"
-         id="downloadlink">
-        <button class="btn btn-primary help">
-          <i class="fa fa-file-text-o"></i>
+    <div ng-if="!loggedIn()">
+      <div style="text-align: right">
+        <button class="btn btn-primary"
+                ng-click="openLoginModal()">
+          Login
         </button>
-      </a>
+        <button class="btn btn-default"
+                ng-click="openRegisterModal()">
+          Register
+        </button>
+      </div>
+    </div>
+    <div ng-if="loggedIn()">
+      <!-- Toolbar -->
+      <!-- Should be its own directive -->
+      <div style="text-align: right">
 
-      <button class="btn btn-dark signout"
-              ng-click="logout()">
-        <i class="fa fa-sign-out"></i>
-      </button>
-      <div class="text-center">
-        <a id="treeicon"
-           data-toggle="modal"
-           data-target="#treemodal"
-           href="#treemodal"
-           style="display: none;">
+        <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
+        <input type="button" id="copy-button" value="Copy"> -->
 
+        <button class="btn btn-dark"
+                ng-click="openProfileModal()">
+          {{profile.displayName}} {{selectedProposition.type === 'negation'}}{{selectedProposition.of.type ===
+          'rejoinder'}}{{selectedProposition.of.author === userId}}
+        </button>
+        <button class="btn cog"
+                ng-click="openOptionsModal()">
+          <i class="fa fa-cog"></i>
+        </button>
+        <button class="btn"
+                ng-click="openMyBooksModal()">
+          <i class="fa fa-bookmark"></i>
+        </button>
+        <button class="btn"
+                ng-click="openLibraryModal()">
+          <i class="fa fa-book"></i>
+        </button>
+        <button class="btn"
+                ng-click="openNewBookModal()">
+          <i class="fa fa-plus"></i>
+        </button>
+        <!--
+        <button class="btn"
+                ng-class="{ 'btn-light': !options.highlightOwned,
+                            'btn-dark': options.highlightOwned
+                          }"
+                ng-click="options.highlightOwned = !options.highlightOwned">
+          <i class="fa fa-search"></i>
+        </button>
+        -->
+        <button class="btn btn-secondary help"
+                ng-click="openNav()">
+          <i class="fa fa-asterisk"></i>
+        </button>
+
+        <a download="export.txt"
+           id="downloadlink">
+          <button class="btn btn-primary help">
+            <i class="fa fa-file-text-o"></i>
+          </button>
         </a>
 
-        <!-- Modal -->
-        <div id="treemodal"
-             class="modal fade"
-             role="dialog"
-             style="color:white">
-          <div class="modal-dialog-lg">
+        <button class="btn btn-dark signout"
+                ng-click="logout()">
+          <i class="fa fa-sign-out"></i>
+        </button>
+        <div class="text-center">
+          <a id="treeicon"
+             data-toggle="modal"
+             data-target="#treemodal"
+             href="#treemodal"
+             style="display: none;">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-body"
-                   style="background-color: rgb(9,13,14)"></div>
-              <!--               <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div> -->
+          </a>
+
+          <!-- Modal -->
+          <div id="treemodal"
+               class="modal fade"
+               role="dialog"
+               style="color:white">
+            <div class="modal-dialog-lg">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-body"
+                     style="background-color: rgb(9,13,14)"></div>
+                <!--               <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div> -->
+              </div>
+
             </div>
-
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
 
   </div>
   <div class="row mainview"

@@ -33,9 +33,7 @@
               email: vm.user.email
             }).then(function() {
               vm.processing = false;
-              $uibModalInstance.dismiss();
-              $state.go('main.backoffice.my-books');
-              vm.processing = false;
+              $uibModalInstance.dismiss(true);
             }).catch(function(error) {
               console.error(error);
               vm.processing = false;
