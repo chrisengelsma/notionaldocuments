@@ -3,10 +3,26 @@
 
   /** @ngInject */
   function EditorController(
-    $log, $state, $location, $interval, $rootScope, $scope, $stateParams, chatSocket,
-    apiService, profileService, libraryService, profile, library, $uibModal,
-    messageFormatter, focusFactory, Notification,
-    $document, $timeout, IdFactory) {
+    $log,
+    $state,
+    $location,
+    $interval,
+    $rootScope,
+    $scope,
+    $stateParams,
+    chatSocket,
+    apiService,
+    profileService,
+    libraryService,
+    profile,
+    library,
+    $uibModal,
+    messageFormatter,
+    focusFactory,
+    Notification,
+    $document,
+    $timeout,
+    IdFactory) {
 
     // Check to load profile if we're logged in and profile isn't loaded for some reason
     $interval(function() {
@@ -229,11 +245,6 @@
           libraryService.clear();
           $state.go('login');
         });
-      };
-
-      // Goes to profile
-      $scope.goToProfile = function() {
-        $state.go('main.backoffice.profile');
       };
 
       //For the direct link
@@ -677,6 +688,11 @@
 
 
       $scope.deleteAllPropositions = function(/*paragraph*/) {
+        // Don't delete if it ain't yours
+        if ($scope.selectedParagraph.author !== $scope.userId) {
+          return;
+        }
+
         console.log('deleting all');
         $scope.selectedParagraph.markAll = false;
         $scope.selectedParagraph.highlightAll = false;
@@ -740,8 +756,43 @@
         console.log('marked');
       };
 
+      $scope.updateProposition = function(proposition) {
+        if (proposition.author !== $scope.userId) {
+          return;
+        }
+        var index = $scope.propositions.findIndex(function(x) {
+          return x.id === proposition.id;
+        });
+        // Might be causing duplication?
+        var elem = document.getElementById('proposition' + proposition.id);
+
+        if (index >= 0 && elem) {
+
+          $scope.propositions[index].text = elem.innerText;
+          var prop = Object.assign({}, $scope.propositions[index]);
+
+          var position = prop.position;
+          var nodePath = prop.assertionPath.split(/\.(?=[^\.]+$)/)[0];
+          eval(nodePath).propositions[position].text = prop.text;
+
+          prep.payload = {
+            proposition: prop
+          };
+
+          chatSocket.emit('update', $scope.userId, prep.payload);
+          prep = {};
+
+          apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+          apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+          profileService.setSelectedBook($scope.data[0]);
+        }
+      };
 
       $scope.deleteProposition = function() {
+        // Don't delete if it ain't yours
+        if ($scope.selectedProposition.author !== $scope.userId) {
+          return;
+        }
 
         console.log('Just deleteProposition');
         prep.address = $scope.selectedNode.address;
@@ -824,6 +875,18 @@
         profileService.setSelectedBook($scope.data[0]);
       };
 
+      $scope.$on('socket:broadcastUpdate', function(event, payload) {
+        var index = $scope.propositions.findIndex(function(x) {
+          return x.id === payload.proposition.id;
+        });
+        var elem = document.getElementById('proposition' + payload.proposition.id);
+
+        if (elem && index >= 0) {
+          $scope.propositions[index] = payload.proposition;
+          elem.innerText = payload.proposition.text;
+          console.log($scope.propositions[index]);
+        }
+      });
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
 

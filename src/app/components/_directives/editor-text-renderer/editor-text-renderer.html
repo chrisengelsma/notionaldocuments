@@ -106,21 +106,40 @@
                             'highlight': highlight.id === proposition.id || (selectedParagraph.highlightAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'notowned': proposition.author !== userId && options.dimNotOwned,
                             'owned': proposition.author === userId && options.highlightOwned,
-                            'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId)
+                            'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
+                            'owned-cursor': proposition.author === userId
                           }"
-                ng-click="((proposition.type !== 'negation' && proposition.author !== userId) || (proposition.type === 'negation' && proposition.of.author === userId)) ? 
-                        [selectProposition(proposition),
-                        selectedParagraph.highlightAll = false,
-                        selectedParagraph.markAll = false,
-                        mark.id = '',
-                        highlight.id = '', 
-                        selectedProposition.textSide = true,
-                        selectedProposition.dialogueSide = false, 
-                        paragraph.topAdd = false, 
-                        paragraph.bottomAdd = false,
-                        paragraph.leftAdd = false] : inputs.nothing"
+                ng-enter="updateProposition(proposition)"
+                ng-click="
+                    (proposition.author === userId )
+                    ?  [ selectedProposition = proposition,
+                         selectedProposition.textSide = true,
+                         selectProposition.dialogueSide = false,
+                         selectedParagraph.highlightAll = false,
+                         selectedParagraph.markAll = false,
+                         paragraph.topAdd = false,
+                         paragraph.bottomAdd = false,
+                         paragraph.leftAdd = false
+                       ]
+                    :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||
+                        (proposition.type === 'negation' && proposition.of.author === userId)
+                       )
+                          ? [selectProposition(proposition),
+                            selectedParagraph.highlightAll = false,
+                            selectedParagraph.markAll = false,
+                            mark.id = '',
+                            highlight.id = '',
+                            selectedProposition.textSide = true,
+                            selectedProposition.dialogueSide = false,
+                            paragraph.topAdd = false,
+                            paragraph.bottomAdd = false,
+                            paragraph.leftAdd = false]
+                          : inputs.nothing"
                 event-focus-id="{{proposition.id}}"
-                class="proposition-text">{{proposition.text}}</span>
+                contenteditable="{{ proposition.author === userId }}"
+                class="proposition-text">
+            {{proposition.text}}
+          </span>
           <textarea
             autofocus
             id="{{proposition.id}}"
