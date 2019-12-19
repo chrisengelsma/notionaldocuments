@@ -5,7 +5,7 @@
   function chatSocket(socketFactory) {
     var socket = socketFactory();
     //add strings to the arguments array for each server emission
-    socket.forward(['broadcast', 'broadcastProposition', 'broadcastDeletion', 'broadcastNameAssignment']);
+    socket.forward(['broadcast', 'broadcastProposition', 'broadcastDeletion', 'broadcastUpdate', 'broadcastNameAssignment']);
     return socket;
   }
 

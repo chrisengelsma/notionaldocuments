@@ -24,6 +24,10 @@ var ioRoutes = function(io) {
       io.sockets.emit('broadcastDeletion', obj);
     });
 
+    socket.on('update', function(from, obj) { //for first emission
+      io.sockets.emit('broadcastUpdate', obj);
+    });
+
   });
 };
 
