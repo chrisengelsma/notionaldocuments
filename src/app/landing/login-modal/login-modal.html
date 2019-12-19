@@ -17,7 +17,8 @@
                name="email"
                ng-model="vm.user.email"
                required
-               placeholder="Email">
+               placeholder="Email"
+               ng-keyup="$event.keyCode === 13 ? vm.login(form.$valid) : form.nothing">
         <p ng-show="form.email.$invalid && !form.email.$pristine"
            class="help-block">
           Enter a valid email
@@ -35,7 +36,8 @@
                name="password"
                ng-model="vm.user.password"
                required
-               placeholder="Password">
+               placeholder="Password"
+               ng-keyup="$event.keyCode === 13 ? vm.login(form.$valid) : form.nothing">
         <p ng-show="form.password.$invalid && !form.email.$pristine"
            class="help-block">
           Password is required
