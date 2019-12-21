@@ -762,7 +762,7 @@
           setTimeout(function() {
             if (document.activeElement !== element) {
               element.contentEditable = false;
-              focusFactory(proposition.id);
+              // focusFactory(proposition.id);
             }
           }, 300);
       }
