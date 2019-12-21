@@ -762,12 +762,12 @@
             console.log('Listening for second click')
           }
           
-          setTimeout(function() {
-            if (document.activeElement !== element) {
-              element.contentEditable = false;
-              // focusFactory(proposition.id);
-            }
-          }, 300);
+          // setTimeout(function() {
+          //   if (document.activeElement !== element) {
+          //     element.contentEditable = false;
+              
+          //   }
+          // }, 300);
       }
 
       $scope.updateProposition = function(proposition) {
