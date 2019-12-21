@@ -98,7 +98,7 @@
                   ng-if="paragraph.leftAdd && proposition.id == selectedProposition.id">
             </span>
           </span>
-          <span event-focus="click"
+          <span 
                 id="proposition{{proposition.id}}"
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
@@ -111,7 +111,7 @@
                           }"
                 ng-enter="updateProposition(proposition)"
                 ng-click="
-                listenForDoubleClick(this);
+                listenForDoubleClick(this, proposition);
                     (proposition.author === userId )
                     ?  [ selectedProposition = proposition,
                          selectedProposition.textSide = true,
@@ -138,7 +138,7 @@
                           : inputs.nothing"
                  
                 ng-blur = "this.contentEditable=false"
-                event-focus-id="{{proposition.id}}"
+                
              
                 class="proposition-text">
             {{proposition.text}}

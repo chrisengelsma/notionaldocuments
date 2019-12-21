@@ -756,12 +756,13 @@
         console.log('marked');
       };
 
-      $scope.listenForDoubleClick = function (element) {
+      $scope.listenForDoubleClick = function (element, proposition) {
           element.contentEditable = true;
           console.log('Listening for second click')
           setTimeout(function() {
             if (document.activeElement !== element) {
               element.contentEditable = false;
+              focusFactory(proposition.id);
             }
           }, 300);
       }

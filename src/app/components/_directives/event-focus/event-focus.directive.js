@@ -3,7 +3,6 @@
 
   /** @ngInject */
   function eventFocus() {
-    console.log('Event focusing');
     return function(scope, elem, attr) {
       elem.on(attr.eventFocus, function() {
         eventFocus(attr.eventFocusId);
