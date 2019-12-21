@@ -111,6 +111,7 @@
                           }"
                 ng-enter="updateProposition(proposition)"
                 ng-click="
+                listenForDoubleClick(this);
                     (proposition.author === userId )
                     ?  [ selectedProposition = proposition,
                          selectedProposition.textSide = true,
@@ -135,8 +136,8 @@
                             paragraph.bottomAdd = false,
                             paragraph.leftAdd = false]
                           : inputs.nothing"
-                onclick="listenForDoubleClick(this);" 
-                onblur="this.contentEditable=false;"
+                 
+                ng-blur = "this.contentEditable=false"
                 event-focus-id="{{proposition.id}}"
              
                 class="proposition-text">

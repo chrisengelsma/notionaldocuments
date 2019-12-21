@@ -758,7 +758,7 @@
 
       $scope.listenForDoubleClick = function (element) {
           element.contentEditable = true;
-          console.log('Listening for second lick')
+          console.log('Listening for second click')
           setTimeout(function() {
             if (document.activeElement !== element) {
               element.contentEditable = false;
@@ -1701,6 +1701,9 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
+
+          // Had a toString of undefined about here, needs to be fixed
+
           prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';
 
           if (prep.assertionDestination) {
