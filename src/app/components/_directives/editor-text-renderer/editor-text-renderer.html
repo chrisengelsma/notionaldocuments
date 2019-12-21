@@ -135,8 +135,10 @@
                             paragraph.bottomAdd = false,
                             paragraph.leftAdd = false]
                           : inputs.nothing"
+                onclick="listenForDoubleClick(this);" 
+                onblur="this.contentEditable=false;"
                 event-focus-id="{{proposition.id}}"
-                contenteditable="{{ proposition.author === userId && proposition.type !== 'negation'}}"
+             
                 class="proposition-text">
             {{proposition.text}}
           </span>
