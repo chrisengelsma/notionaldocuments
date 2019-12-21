@@ -111,16 +111,12 @@
                           }"
                 ng-enter="updateProposition(proposition)"
                 ng-click="
-                listenForDoubleClick(this, proposition);
+                
                     (proposition.author === userId )
-                    ?  [ selectedProposition = proposition,
-                         selectedProposition.textSide = true,
-                         selectProposition.dialogueSide = false,
-                         selectedParagraph.highlightAll = false,
-                         selectedParagraph.markAll = false,
+                    ?  [ listenForDoubleClick(this, proposition),
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
-                         paragraph.leftAdd = false
+                         paragraph.leftAdd = false,
                        ]
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||
                         (proposition.type === 'negation' && proposition.of.author === userId)
