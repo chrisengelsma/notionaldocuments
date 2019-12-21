@@ -758,6 +758,7 @@
 
       $scope.listenForDoubleClick = function (element) {
           element.contentEditable = true;
+          console.log('Listening for second lick')
           setTimeout(function() {
             if (document.activeElement !== element) {
               element.contentEditable = false;
