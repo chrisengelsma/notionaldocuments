@@ -756,6 +756,15 @@
         console.log('marked');
       };
 
+      $scope.listenForDoubleClick = function (element) {
+          element.contentEditable = true;
+          setTimeout(function() {
+            if (document.activeElement !== element) {
+              element.contentEditable = false;
+            }
+          }, 300);
+      }
+
       $scope.updateProposition = function(proposition) {
         if (proposition.author !== $scope.userId) {
           return;

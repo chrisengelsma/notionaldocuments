@@ -136,7 +136,7 @@
                             paragraph.leftAdd = false]
                           : inputs.nothing"
                 event-focus-id="{{proposition.id}}"
-                contenteditable="{{ proposition.author === userId }}"
+                contenteditable="{{ proposition.author === userId && proposition.type !== 'negation'}}"
                 class="proposition-text">
             {{proposition.text}}
           </span>
