@@ -762,7 +762,7 @@
           string = string + id;
           document.getElementById(string).contentEditable = true;
           focusFactory(proposition.id);
-          console.log('Element contenteditable:', document.getElementById(string).contentEditable)
+          console.log('Active element: ', document.activeElement)
           
           setTimeout(function() {
             if (document.activeElement !== document.getElementById(string)) {
