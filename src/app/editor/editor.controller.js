@@ -770,7 +770,7 @@
           $scope.selectedParagraph.markAll = false;  
           console.log('Double click: ', $scope.doubleClick)
           if ($scope.doubleClick < 2){
-            var element = $window.document.getElementById(proposition.id);
+            var element = document.getElementById(proposition.id);
             if (element) {
               element.focus();
               $(id).focus();
