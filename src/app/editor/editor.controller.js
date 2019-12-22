@@ -766,7 +766,7 @@
           setTimeout(function() {
             if (document.activeElement !== element) {
               console.log('No second click')
-              console.log('Element:', element)
+              console.log('Element contenteditable:', element.contentEditable)
               document.getElementById(string).contentEditable = false;
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
