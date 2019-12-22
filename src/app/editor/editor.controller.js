@@ -778,6 +778,7 @@
               $scope.doubleClick = 0;
             } else {
               document.getElementById(string).contentEditable = true;
+              $scope.doubleClick = 0;
             }
           }, 300);
       }
