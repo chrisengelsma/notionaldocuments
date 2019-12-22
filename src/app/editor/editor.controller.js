@@ -770,7 +770,12 @@
           $scope.selectedParagraph.markAll = false;  
           console.log('Double click: ', $scope.doubleClick)
           if ($scope.doubleClick < 2){
-          focusFactory(proposition.id);
+            var element = $window.document.getElementById(proposition.id);
+            if (element) {
+              element.focus();
+              $(id).focus();
+              $(element).focus();
+            }
           }
           if ($scope.doubleClick == 1){
             document.getElementById(string).contentEditable = true;
