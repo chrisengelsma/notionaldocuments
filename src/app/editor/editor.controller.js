@@ -760,9 +760,8 @@
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
-          document.getElementById(string).contentEditable = true;
           focusFactory(proposition.id);
-          console.log('Active element: ', document.activeElement)
+          document.getElementById(string).contentEditable = true;
           
           setTimeout(function() {
             if (document.activeElement !== document.getElementById(string)) {
