@@ -99,6 +99,7 @@
             </span>
           </span>
           <span 
+
                 id="proposition{{proposition.id}}"
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
@@ -134,7 +135,8 @@
                           : inputs.nothing"
                  
               
-                
+                event-focus="click"
+                event-focus-id="{{proposition.id}}"
              
                 class="proposition-text">
             {{proposition.text}}
