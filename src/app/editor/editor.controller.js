@@ -773,6 +773,7 @@
               $scope.selectProposition.dialogueSide = false;
               $scope.selectedParagraph.highlightAll = false;
               $scope.selectedParagraph.markAll = false;  
+              focusFactory($scope.selectedProposition.id)
             }
           }, 300);
       }
