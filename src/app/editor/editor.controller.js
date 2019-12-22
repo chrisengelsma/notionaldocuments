@@ -770,8 +770,7 @@
           $scope.selectedParagraph.markAll = false;  
           if ($scope.doubleClick < 2){
           focusFactory(proposition.id);
-        }
-          // document.getElementById(string).contentEditable = true;
+          }
           if ($scope.doubleClick == 1){
             document.getElementById(string).contentEditable = true;
             setTimeout(function() {
@@ -782,7 +781,10 @@
 
                 
                 $scope.doubleClick = 0;
-              } 
+              } else {
+                $scope.inputs.proposition = '';
+                $scope.doubleClick = 0;
+              }
           }, 300)
         }
       }
