@@ -757,11 +757,12 @@
         console.log('marked');
       };
 
-      $scope.listenForDoubleClick = function (element, proposition) {
+      $scope.listenForDoubleClick = function (element, paragraph, proposition) {
           var string = 'proposition';
           var id = proposition.id;
           $scope.doubleClick++;
           string = string + id;
+          $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
           $scope.selectedProposition.textSide = true;
           $scope.selectProposition.dialogueSide = false;

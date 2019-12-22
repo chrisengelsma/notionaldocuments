@@ -118,7 +118,7 @@
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
                          paragraph.leftAdd = false,
-                         listenForDoubleClick(this, proposition),
+                         listenForDoubleClick(this, paragraph, proposition),
                        ]
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||
                         (proposition.type === 'negation' && proposition.of.author === userId)
