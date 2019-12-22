@@ -762,25 +762,26 @@
           var id = proposition.id;
           $scope.doubleClick++;
           string = string + id;
+          $scope.selectedProposition = proposition;
+          $scope.selectedProposition.textSide = true;
+          $scope.selectProposition.dialogueSide = false;
+          $scope.selectedParagraph.highlightAll = false;
+          $scope.selectedParagraph.markAll = false;  
+          if ($scope.doubleClick < 2){
+          document.getElementById(proposition.id).focus();
+        }
           // document.getElementById(string).contentEditable = true;
-          if ($scope.doubleClick == 0){
+          if ($scope.doubleClick == 1){
+            document.getElementById(string).contentEditable = true;
             setTimeout(function() {
               if ($scope.doubleClick < 2) {
                 console.log('No second click')
               
                 document.getElementById(string).contentEditable = false;
-                $scope.selectedProposition = proposition;
-                $scope.selectedProposition.textSide = true;
-                $scope.selectProposition.dialogueSide = false;
-                $scope.selectedParagraph.highlightAll = false;
-                $scope.selectedParagraph.markAll = false;  
-                focusFactory(proposition.id)
+
+                
                 $scope.doubleClick = 0;
-              } else {
-                document.getElementById(string).contentEditable = true;
-                focusFactory(string)
-                $scope.doubleClick = 0;
-              }
+              } 
           }, 300)
         }
       }
