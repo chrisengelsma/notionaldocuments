@@ -760,7 +760,6 @@
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
-          focusFactory(proposition.id);
           document.getElementById(string).contentEditable = true;
           
           setTimeout(function() {
