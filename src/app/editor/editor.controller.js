@@ -761,7 +761,7 @@
           var id = proposition.id;
           string = string + id;
           document.getElementById(string).contentEditable = true;
-          if (!element.contentEditable) {
+          
           
           setTimeout(function() {
             if (document.activeElement !== element) {
