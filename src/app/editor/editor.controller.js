@@ -767,7 +767,7 @@
             if (document.activeElement !== document.getElementById(string)) {
               console.log('No second click')
               
-              
+              document.getElementById(string).contentEditable = true;
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
               $scope.selectProposition.dialogueSide = false;
