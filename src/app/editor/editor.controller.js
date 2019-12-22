@@ -764,10 +764,10 @@
           console.log('Element contenteditable:', document.getElementById(string).contentEditable)
           
           setTimeout(function() {
-            if (document.activeElement !== element) {
+            if (!document.getElementById(string).contentEditable) {
               console.log('No second click')
               
-              document.getElementById(string).contentEditable = false;
+              document.activeElement !== document.getElementById(string);
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
               $scope.selectProposition.dialogueSide = false;
