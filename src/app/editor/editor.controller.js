@@ -757,16 +757,17 @@
       };
 
       $scope.listenForDoubleClick = function (element, proposition) {
-          element.contentEditable = true;
+          var string = 'proposition';
+          var id = proposition.id;
+          string = string + id;
+          document.getElementById(string).contentEditable = true;
           if (!element.contentEditable) {
-            console.log('Listening for second click')
-          }
           
           setTimeout(function() {
             if (document.activeElement !== element) {
               console.log('No second click')
               console.log('Element:', element)
-              element.contentEditable = false;
+              document.getElementById(string).contentEditable = true;
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
               $scope.selectProposition.dialogueSide = false;
