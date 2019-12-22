@@ -113,7 +113,7 @@
                 ng-click="
                 
                     (proposition.author === userId )
-                    ?  [ listenForDoubleClick(this, proposition);
+                    ?  [ listenForDoubleClick(this, proposition),
                          selectedProposition = proposition,
                          selectedProposition.textSide = true,
                          selectProposition.dialogueSide = false,
@@ -121,8 +121,7 @@
                          selectedParagraph.markAll = false,
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
-                         paragraph.leftAdd = false,
-                         listenForDoubleClick(this, proposition);
+                         paragraph.leftAdd = false
                        ]
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||
                         (proposition.type === 'negation' && proposition.of.author === userId)

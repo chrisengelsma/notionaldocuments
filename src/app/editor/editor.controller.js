@@ -765,11 +765,11 @@
           setTimeout(function() {
             if (document.activeElement !== element) {
               element.contentEditable = false;
-              $scope.selectedProposition = proposition,
-              $scope.selectedProposition.textSide = true,
-              $scope.selectProposition.dialogueSide = false,
-              $scope.selectedParagraph.highlightAll = false,
-              $scope.selectedParagraph.markAll = false,  
+              $scope.selectedProposition = proposition;
+              $scope.selectedProposition.textSide = true;
+              $scope.selectProposition.dialogueSide = false;
+              $scope.selectedParagraph.highlightAll = false;
+              $scope.selectedParagraph.markAll = false;  
             }
           }, 300);
       }
