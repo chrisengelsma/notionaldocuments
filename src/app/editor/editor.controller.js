@@ -761,12 +761,12 @@
           var id = proposition.id;
           string = string + id;
           document.getElementById(string).contentEditable = true;
-          
+          console.log('Element contenteditable:', document.getElementById(string).contentEditable)
           
           setTimeout(function() {
             if (document.activeElement !== element) {
               console.log('No second click')
-              console.log('Element contenteditable:', element.contentEditable)
+              
               document.getElementById(string).contentEditable = false;
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
