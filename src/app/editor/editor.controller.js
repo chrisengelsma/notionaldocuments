@@ -763,24 +763,25 @@
           $scope.doubleClick++;
           string = string + id;
           // document.getElementById(string).contentEditable = true;
-          
-          setTimeout(function() {
-            if ($scope.doubleClick < 2) {
-              console.log('No second click')
+          if ($scope.doubleClick == 0){
+            setTimeout(function() {
+              if ($scope.doubleClick < 2) {
+                console.log('No second click')
               
-              document.getElementById(string).contentEditable = false;
-              $scope.selectedProposition = proposition;
-              $scope.selectedProposition.textSide = true;
-              $scope.selectProposition.dialogueSide = false;
-              $scope.selectedParagraph.highlightAll = false;
-              $scope.selectedParagraph.markAll = false;  
-              focusFactory($scope.selectedProposition.id)
-              $scope.doubleClick = 0;
-            } else {
-              document.getElementById(string).contentEditable = true;
-              $scope.doubleClick = 0;
-            }
-          }, 300);
+                document.getElementById(string).contentEditable = false;
+                $scope.selectedProposition = proposition;
+                $scope.selectedProposition.textSide = true;
+                $scope.selectProposition.dialogueSide = false;
+                $scope.selectedParagraph.highlightAll = false;
+                $scope.selectedParagraph.markAll = false;  
+                focusFactory($scope.selectedProposition.id)
+                $scope.doubleClick = 0;
+              } else {
+                document.getElementById(string).contentEditable = true;
+                $scope.doubleClick = 0;
+              }
+          }, 300)
+        }
       }
 
       $scope.updateProposition = function(proposition) {
