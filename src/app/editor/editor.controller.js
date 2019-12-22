@@ -761,13 +761,14 @@
           var id = proposition.id;
           string = string + id;
           document.getElementById(string).contentEditable = true;
+          focusFactory(proposition.id);
           console.log('Element contenteditable:', document.getElementById(string).contentEditable)
           
           setTimeout(function() {
             if (document.activeElement !== document.getElementById(string)) {
               console.log('No second click')
               
-              document.getElementById(string).contentEditable = true;
+              document.getElementById(string).contentEditable = false;
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
               $scope.selectProposition.dialogueSide = false;
