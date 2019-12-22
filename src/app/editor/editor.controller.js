@@ -768,6 +768,7 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;  
+          console.log('Double click: ', $scope.doubleClick)
           if ($scope.doubleClick < 2){
           focusFactory(proposition.id);
           }
