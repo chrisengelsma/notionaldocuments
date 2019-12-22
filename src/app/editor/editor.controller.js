@@ -769,7 +769,7 @@
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;  
           if ($scope.doubleClick < 2){
-          document.getElementById(proposition.id).focus();
+          focusFactory(proposition.id);
         }
           // document.getElementById(string).contentEditable = true;
           if ($scope.doubleClick == 1){
