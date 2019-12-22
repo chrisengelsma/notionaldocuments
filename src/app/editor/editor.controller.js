@@ -760,14 +760,14 @@
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
-          document.getElementById(string).contenteditable = true;
+          document.getElementById(string).contentEditable = true;
           
           
           setTimeout(function() {
             if (document.activeElement !== element) {
               console.log('No second click')
               console.log('Element:', element)
-              document.getElementById(string).contenteditable = false;
+              document.getElementById(string).contentEditable = false;
               $scope.selectedProposition = proposition;
               $scope.selectedProposition.textSide = true;
               $scope.selectProposition.dialogueSide = false;
