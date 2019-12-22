@@ -774,10 +774,11 @@
                 $scope.selectProposition.dialogueSide = false;
                 $scope.selectedParagraph.highlightAll = false;
                 $scope.selectedParagraph.markAll = false;  
-                focusFactory($scope.selectedProposition.id)
+                focusFactory(proposition.id)
                 $scope.doubleClick = 0;
               } else {
                 document.getElementById(string).contentEditable = true;
+                focusFactory(string)
                 $scope.doubleClick = 0;
               }
           }, 300)
