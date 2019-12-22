@@ -229,6 +229,7 @@
       $scope.of = {};
       $scope.highlight = {};
       $scope.mark = {};
+      $scope.doubleClick = 0;
       var prep = {};
       var apply = {};
       var temp = {};
@@ -759,11 +760,12 @@
       $scope.listenForDoubleClick = function (element, proposition) {
           var string = 'proposition';
           var id = proposition.id;
+          $scope.doubleClick++;
           string = string + id;
-          document.getElementById(string).contentEditable = true;
+          // document.getElementById(string).contentEditable = true;
           
           setTimeout(function() {
-            if (document.activeElement !== document.getElementById(string)) {
+            if ($scope.doubleClick < 2) {
               console.log('No second click')
               
               document.getElementById(string).contentEditable = false;
@@ -773,6 +775,9 @@
               $scope.selectedParagraph.highlightAll = false;
               $scope.selectedParagraph.markAll = false;  
               focusFactory($scope.selectedProposition.id)
+              $scope.doubleClick = 0;
+            } else {
+              document.getElementById(string).contentEditable = true;
             }
           }, 300);
       }
