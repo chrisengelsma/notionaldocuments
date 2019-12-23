@@ -758,9 +758,12 @@
       };
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
+          if (document.activeElement == this){
+            return;
+          }
+          console.log('Active element: ', document.activeElement)
           var string = 'proposition';
           var id = proposition.id;
-          $scope.doubleClick++;
           string = string + id;
           $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
@@ -768,31 +771,16 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;  
-          console.log('Double click: ', $scope.doubleClick)
-          if ($scope.doubleClick < 2){
-            var element = document.getElementById(proposition.id);
-            if (element) {
-              element.focus();
-              $(id).focus();
-              $(element).focus();
-            }
+          var element = document.getElementById(proposition.id);
+          if (element) {
+            element.focus();
+            $(id).focus();
+            $(element).focus();
           }
-          if ($scope.doubleClick == 1){
-            document.getElementById(string).contentEditable = true;
-            setTimeout(function() {
-              if ($scope.doubleClick < 2) {
-                console.log('No second click')
-              
-                document.getElementById(string).contentEditable = false;
-
-                
-                $scope.doubleClick = 0;
-              } else {
-                $scope.inputs.proposition = '';
-                $scope.doubleClick = 0;
-              }
-          }, 300)
-        }
+          
+          document.getElementById(string).contentEditable = true;
+          $scope.inputs.proposition = '';
+          
       }
 
       $scope.updateProposition = function(proposition) {
