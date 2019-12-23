@@ -759,7 +759,8 @@
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
 
-          console.log("Activelement id before: ", document.activeElement.id)
+          
+          console.log('Focused: ', $(':focus'))
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
@@ -772,16 +773,18 @@
           console.log('Id has focus: ',$(id).is(':focus'))
           if ($(id).is(':focus') === false && ($(string).is(':focus') === false)) {
             focusFactory(id);
+            document.getElementById(string).contentEditable = true;
+            console.log("double false")
             
           }
 
-          console.log('Id has focus: ', $(id).is(':focus'))
+          
           
 
-          console.log("Activelement id after: ", document.activeElement.id)
+          
           
           $timeout( function(){
-            document.getElementById(string).contentEditable = true;
+            
           },0)
 
           $scope.inputs.proposition = '';
