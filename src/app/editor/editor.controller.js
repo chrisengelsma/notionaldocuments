@@ -770,7 +770,7 @@
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
 
-          if !($(id).is(':focus')){
+          if ($(id).is(':focus') === false) {
             focusFactory(id);
           }
 
