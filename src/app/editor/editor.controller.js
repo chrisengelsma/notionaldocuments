@@ -230,7 +230,7 @@
       $scope.highlight = {};
       $scope.mark = {};
       $scope.doubleClick = 0;
-      $scope.hasBeenClicked = {};
+      $scope.hasBeenClicked = false;
       var prep = {};
       var apply = {};
       var temp = {};
@@ -772,13 +772,13 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
-          if ($scope.hasBeenClicked !== true) {
+          if ($scope.hasBeenClicked == false) {
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
             $scope.hasBeenClicked = true;
             
           } else {
-            $scope.hasBeenClicked = {};
+            $scope.hasBeenClicked = false;
           }
 
           
