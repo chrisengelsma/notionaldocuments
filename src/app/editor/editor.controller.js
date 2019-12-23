@@ -758,11 +758,7 @@
       };
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-          if (document.activeElement == this){
-            console.log('returning')
-            return;
 
-          }
           console.log("Activelement id before: ", document.activeElement.id)
           var string = 'proposition';
           var id = proposition.id;
@@ -773,14 +769,20 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
-          focusFactory(id);
+
+          if !($(id).is(':focus')){
+            focusFactory(id);
+          }
+
+
+          
 
           console.log("Activelement id after: ", document.activeElement.id)
           
           $timeout( function(){
             document.getElementById(string).contentEditable = true;
           },0)
-          
+
           $scope.inputs.proposition = '';
           
       }
