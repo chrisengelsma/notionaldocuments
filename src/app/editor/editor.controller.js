@@ -769,9 +769,10 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
-
+          console.log('Id has focus: ',$(id).is(':focus'))
           if ($(id).is(':focus') === false) {
             focusFactory(id);
+            console.log('Id has focus: ', $(id).is(':focus'))
           }
 
 
