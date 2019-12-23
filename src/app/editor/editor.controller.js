@@ -772,17 +772,15 @@
           $scope.selectedProposition.textSide = true;
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
-          $scope.selectedParagraph.markAll = false;  
-          var element = document.getElementById(proposition.id);
-          if (element) {
-            element.focus();
-            $(id).focus();
-            $(element).focus();
-          }
+          $scope.selectedParagraph.markAll = false;
+          focusFactory(id);
 
           console.log("Activelement id after: ", document.activeElement.id)
           
-          // document.getElementById(string).contentEditable = true;
+          $timeout( function(){
+            document.getElementById(string).contentEditable = true;
+          },0)
+          
           $scope.inputs.proposition = '';
           
       }
