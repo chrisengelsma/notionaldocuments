@@ -779,7 +779,7 @@
             console.log("double false")
             
           } else {
-            $scope.hasBeenClicked = false;
+            $scope.hasBeenClicked = {};
           }
 
           
