@@ -763,7 +763,7 @@
             return;
 
           }
-          console.log("This: ", this)
+          console.log("Activelement id ", document.activeElement.id)
           console.log('Active element: ', document.activeElement)
           var string = 'proposition';
           var id = proposition.id;
