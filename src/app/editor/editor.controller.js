@@ -772,11 +772,10 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
-          if ($(':focus').id === ('proposition' + id) && $scope.hasBeenClicked !== true) {
+          if ($scope.hasBeenClicked !== true) {
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
             $scope.hasBeenClicked = true;
-            console.log("double false")
             
           } else {
             $scope.hasBeenClicked = {};
