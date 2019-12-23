@@ -771,6 +771,7 @@
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
           console.log('Id has focus: ',$(id).is(':focus'))
+          console.log('String has focus: ',$(string).is(':focus'))
           if ($(id).is(':focus') === false && ($(string).is(':focus') === false)) {
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
