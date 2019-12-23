@@ -763,8 +763,7 @@
             return;
 
           }
-          console.log("Activelement id ", document.activeElement.id)
-          console.log('Active element: ', document.activeElement)
+          console.log("Activelement id before: ", document.activeElement.id)
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
@@ -780,8 +779,10 @@
             $(id).focus();
             $(element).focus();
           }
+
+          console.log("Activelement id after: ", document.activeElement.id)
           
-          document.getElementById(string).contentEditable = true;
+          // document.getElementById(string).contentEditable = true;
           $scope.inputs.proposition = '';
           
       }
