@@ -759,8 +759,11 @@
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
           if (document.activeElement == this){
+            console.log('returning')
             return;
+
           }
+          console.log("This: ", this)
           console.log('Active element: ', document.activeElement)
           var string = 'proposition';
           var id = proposition.id;
