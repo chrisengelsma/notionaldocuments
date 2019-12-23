@@ -770,12 +770,12 @@
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
           console.log('Id has focus: ',$(id).is(':focus'))
-          if ($(id).is(':focus') === false) {
+          if ($(id).is(':focus') === false && ($(string).is(':focus') === false)) {
             focusFactory(id);
-            console.log('Id has focus: ', $(id).is(':focus'))
+            
           }
 
-
+          console.log('Id has focus: ', $(id).is(':focus'))
           
 
           console.log("Activelement id after: ", document.activeElement.id)
