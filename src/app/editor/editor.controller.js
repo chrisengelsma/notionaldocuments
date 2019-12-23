@@ -230,6 +230,7 @@
       $scope.highlight = {};
       $scope.mark = {};
       $scope.doubleClick = 0;
+      $scope.hasBeenClicked = {};
       var prep = {};
       var apply = {};
       var temp = {};
@@ -764,19 +765,21 @@
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
+          
           $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
           $scope.selectedProposition.textSide = true;
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
-          console.log('Id has focus: ',$(id).is(':focus'))
-          console.log('String has focus: ',$(string).is(':focus'))
-          if ($(id).is(':focus') === false && ($(string).is(':focus') === false)) {
+          if ($(':focus').id === ('proposition' + id) && $scope.hasBeenClicked !== true) {
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
+            $scope.hasBeenClicked = true;
             console.log("double false")
             
+          } else {
+            $scope.hasBeenClicked = false;
           }
 
           
