@@ -779,6 +779,7 @@
             
           } else {
             $scope.hasBeenClicked = false;
+            document.getElementById(string).contentEditable = false;
           }
 
           
