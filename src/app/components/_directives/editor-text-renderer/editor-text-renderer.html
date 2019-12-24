@@ -142,12 +142,17 @@
                 class="proposition-text">
             {{proposition.text}}
           </span>
-          <textarea
+          <span
             
             id="{{proposition.id}}"
             title="{{proposition.id}}"
-            class="right-textarea"
-            ng-if="selectedProposition.id === proposition.id && paragraph.topAdd !== true && paragraph.bottomAdd !== true"
+            class="right-text right-textarea"
+            ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
+            ng-class="{'negation': (selectedProposition.author !== userId && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation') || (selectedProposition.type === 'negation' && selectedProposition.author === userId)}"
+            ng-click=""
+
+
+            
             ng-model="inputs.proposition"
             ng-keyup="
                 $event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
@@ -158,20 +163,12 @@
                 ($event.keyCode === 8 && selectedParagraph.highlightAll == true) ? markAllPropositions(proposition) : inputs.nothing;
                 (inputs.proposition === '' && $event.keyCode === 8 && ((paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId))) ? highlightAllPropositions(node, paragraph, proposition) : inputs.nothing;"
             spellcheck="false">
-              </textarea>
-          <span class="right-text"
-                ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
-                ng-class="{'negation': (selectedProposition.author !== userId && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation') || (selectedProposition.type === 'negation' && selectedProposition.author === userId)}"
-                ng-click=""
-                event-focus="click"
-                event-focus-id="{{proposition.id}}">
-              {{inputs.proposition}}
               </span>
-          <span event-focus="click"
+<!--           <span event-focus="click"
                 event-focus-id="{{proposition.id}}"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
                 ng-if="selectedProposition.id === proposition.id && selectedProposition.textSide === true && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
-                class="cursor blinking-cursor"></span>
+                class="cursor blinking-cursor"></span> -->
           <span ng-if="proposition.preSelected === true && selectedProposition.id !== proposition.id && !paragraph.leftMouseOver == true"
                 class="cursor solid-cursor"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
