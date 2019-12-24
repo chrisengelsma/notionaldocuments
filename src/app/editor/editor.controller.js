@@ -791,7 +791,7 @@
             
           },0)
 
-          $scope.inputs.proposition = '';
+          
           
       }
 
