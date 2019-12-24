@@ -164,7 +164,7 @@
                 (inputs.proposition === '' && $event.keyCode === 8 && ((paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId))) ? highlightAllPropositions(node, paragraph, proposition) : inputs.nothing;"
             spellcheck="false"
             contenteditable="true"
-            style="color: black">
+            style="color: black;">
               </span>
 <!--           <span event-focus="click"
                 event-focus-id="{{proposition.id}}"
@@ -176,11 +176,11 @@
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
-          <span class="ghostspan"
+<!--           <span class="ghostspan"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
-                ng-if="$first && proposition.type === 'blank'">|</span>
+                ng-if="$first && proposition.type === 'blank'">|</span> -->
         </li>
       </ol>
     </div>
