@@ -2,7 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function editableSpanNgModel() {
+  function editableSpanNgModel($sce) {
     return {
       restrict: 'A', // only activate on element attribute
       require: '?ngModel', // get a hold of NgModelController
