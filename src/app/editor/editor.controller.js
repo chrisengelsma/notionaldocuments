@@ -9,6 +9,7 @@
     $interval,
     $rootScope,
     $scope,
+    $sce,
     $stateParams,
     chatSocket,
     apiService,
