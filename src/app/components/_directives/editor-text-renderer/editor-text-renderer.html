@@ -35,7 +35,10 @@
          class="paragraph addparagraph">
       <div class="proposition">
         <span class="proposition-text"></span>
-        <textarea id="{{topAdderId}}"
+        <span 
+                  editable-span-ng-model
+                  contenteditable="true"
+                  id="{{topAdderId}}"
                   title="{{paragraph.topAdderId}}"
                   class="right-textarea"
                   placeholder="textarea"
@@ -44,7 +47,7 @@
                             selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false">
-        </textarea>
+        </span>
         <span class="right-text">{{inputs.proposition}}</span>
         <span class="cursor blinking-cursor"></span>
       </div>
@@ -82,21 +85,24 @@
           </span>
           <span ng-if="paragraph.leftAdd == true"
                 class="proposition">
-            <textarea id="{{leftAdderId}}"
-                      class="right-textarea"
+            <span 
+                      editable-span-ng-model
+                      contenteditable="true"
+                      id="{{leftAdderId}}"
+                      class="right-textarea right-text"
                       placeholder="textarea"
                       ng-model="inputs.proposition"
                       ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false">
-            </textarea>
-            <span class="right-text"
+            </span>
+<!--             <span class="right-text"
                   ng-if="paragraph.leftAdd && proposition.id == selectedProposition.id">
               {{inputs.proposition}}
             </span>
             <span class="cursor blinking-cursor"
                   ng-if="paragraph.leftAdd && proposition.id == selectedProposition.id">
-            </span>
+            </span> -->
           </span>
           <span 
 
@@ -193,17 +199,20 @@
       <div class="proposition">
         <span class="proposition-text">
         </span>
-        <textarea id="{{bottomAdderId}}"
+        <span 
+                  editable-span-ng-model
+                  contenteditable="true"
+                  id="{{bottomAdderId}}"
                   title="{{bottomAdderId}}"
-                  class="right-textarea"
+                  class="right-textarea right-text"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
-                  spellcheck="false"></textarea>
-        <span class="right-text">
+                  spellcheck="false"></span>
+<!--         <span class="right-text">
           {{inputs.proposition}}
         </span>
-        <span class="cursor blinking-cursor"></span>
+        <span class="cursor blinking-cursor"></span> -->
       </div>
     </div>
     <div class="bottomparagraphadder"
