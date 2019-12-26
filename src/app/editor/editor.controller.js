@@ -324,6 +324,10 @@
         $scope.selectedParagraph = null;
       };
 
+      $scope.selectRight = function(proposition){
+        focusFactory(proposition.id);
+      }
+
       $scope.readBookLevel = function(address) {
         // Seems necessary for some reason
         // The first time this fires, the address is [0]
