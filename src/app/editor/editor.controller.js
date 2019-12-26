@@ -765,7 +765,7 @@
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
 
           
-          console.log('Focused: ', $(':focus'))
+          
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
