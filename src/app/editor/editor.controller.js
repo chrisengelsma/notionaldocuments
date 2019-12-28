@@ -484,8 +484,6 @@
         } else if (location === [1]) {
           return '$scope.data[1]';
         } else {
-          // not building node path to first level or non-existent [1] level, so build
-          // an address string
           for (var i = 1; i < location.length; i++) {
             $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']';
           }
@@ -548,28 +546,6 @@
             $scope.selectedParagraph = $scope.data[0].paragraphs[0];
             $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
             $scope.selectedProposition.textSide = true;
-            // console.log('timeout selected proposition', $scope.selectedProposition)
-            // var query1 = '#proposition'+'Ngmyk1lP1KfffhSAw333';
-
-            // var ids = document.querySelectorAll('[id]');
-
-            // Array.prototype.forEach.call( ids, function( el, i ) {
-            //  // "el" is your element
-            //  console.log( el.id ); // log the ID
-            // });
-
-            // var ids = {};
-
-
-            // if ($(query1).length) {
-            //   console.log('query 1 exists');
-            // }
-
-
-            // angular.element(query1).trigger('click');
-            // $(query1).click();
-
-            // query1 = '';
           });
           $scope.$apply(function() {
             focusFactory('Ngmyk1lP1KfffhSAw333');
@@ -591,16 +567,9 @@
 
         paragraph.cursor = false;
 
-        // if (event) {
-        // var x = event.clientX;
-        // var y = event.clientY;
-        // var elementMouseIsOver = document.elementFromPoint(x, y);
-        // }
-
-
       };
 
-      $scope.clearWithLeftAdder = function(/*paragraph*/) {
+      $scope.clearWithLeftAdder = function() {
 
 
         $scope.leftAdderId = IdFactory.next();
@@ -611,7 +580,7 @@
       };
 
 
-      $scope.clearWithTopAdder = function(/*paragraph*/) {
+      $scope.clearWithTopAdder = function() {
 
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
@@ -623,7 +592,7 @@
 
       };
 
-      $scope.clearWithBottomAdder = function(/*paragraph*/) {
+      $scope.clearWithBottomAdder = function() {
 
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
@@ -661,46 +630,22 @@
         $scope.mark.id = '';
       };
 
-      $scope.highlightAllPropositions = function(node,
-                                                 paragraph,
-                                                 proposition) {
-        // if($scope.selectedProposition.type === 'blank' && !paragraph.$first){
-        //     paragraph[$scope.userId] = 'hidden'
-        //     for(var i = $scope.selectedParagraph.position-1; i > -1; i--){
-        //         if ($scope.selectedNode.paragraphs[i][$scope.userId] !== 'hidden')
-        //     }
-        //     $scope.selectedParagraph =
-        // }
-        // for(var i = 0; i < paragraph.propositions.length; i++){
-        //   paragraph.propositions[i].highlightAll = true;
-        // }
-        if ($scope.highlight.id !== proposition.id) {
-          // $scope.highlight.id = proposition.id;
-          // $scope.highlight.highlit = true;
-          console.log('highlighted all');
-        }
+      $scope.highlightAllPropositions = function(node, paragraph, proposition) {
+
         $scope.selectedParagraph.highlightAll = true;
       };
 
-      $scope.markAllPropositions = function(/*proposition*/) {
-        // for(var i = 0; i < paragraph.propositions.length; i++){
-        //   paragraph.propositions[i].markAll = true;
-        // }
-        // $scope.mark.id = proposition.id;
-        // $scope.mark.marked = true;
-        console.log('marked all');
+      $scope.markAllPropositions = function() {
         $scope.selectedParagraph.markAll = true;
         $scope.selectedParagraph.highlightAll = false;
       };
 
 
-      $scope.deleteAllPropositions = function(/*paragraph*/) {
-        // Don't delete if it ain't yours
+      $scope.deleteAllPropositions = function() {
         if ($scope.selectedParagraph.author !== $scope.userId) {
           return;
         }
 
-        console.log('deleting all');
         $scope.selectedParagraph.markAll = false;
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
@@ -749,24 +694,19 @@
 
 
       $scope.highlightProposition = function(node, paragraph, proposition) {
-        console.log('Highlighting proposition');
         if ($scope.highlight.id !== proposition.id) {
           $scope.highlight.id = proposition.id;
           $scope.highlight.highlit = true;
-          console.log('highlit');
         }
       };
 
       $scope.markProposition = function(proposition) {
         $scope.mark.id = proposition.id;
         $scope.mark.marked = true;
-        console.log('marked');
       };
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
 
-          
-          
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
@@ -2191,8 +2131,6 @@
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                   $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                   $scope.selectedProposition.textSide = true;
-                  console.log('Selected paragraph: ', $scope.selectedParagraph);
-                  console.log('Selected proposition: ', $scope.selectedProposition);
                   focusFactory($scope.selectedProposition.id);
                   $($scope.selectedProposition.id).trigger('click');
                 }, 30);
@@ -2226,17 +2164,12 @@
                 $($scope.selectedProposition.id).trigger('click');
               }
             } else {
-//              console.log('placing at end of paragraph');
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               console.log('Placed at the end of the paragraph');
-              console.log('Selected Proposition Id: ', $scope.selectedProposition.id);
-              console.log('Placed your own: ', payload.proposition.author === $scope.userId);
-              console.log('Textside: ', $scope.selectedProposition.textSide === true);
               if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
-                console.log('Triggering the click');
                 $($scope.selectedProposition.id).trigger('click');
               }
             }
@@ -2429,8 +2362,6 @@
             }
 
             console.log('Propositions: ', $scope.propositions);
-            // applyRemark = {};   //     CLEARS THINGS
-            // notification = {};
             temp = {};
             $scope.scroll = {};
 
@@ -2476,11 +2407,8 @@
           console.log('Returning having not found a remark');
           return;
         }
-        console.log('Assertion path: ', temp.assertionPath);
         $scope.mark = {};
         $scope.highlight = {};
-        // console.log('Has own property assertion path: ', temp.hasOwnProperty('assertionPath'));
-        // console.log('Assertion path not undefined: ', temp.assertionPath !== undefined);
         if (temp.hasOwnProperty('assertionPath') && temp.assertionPath !== undefined) {
           temp.sliceStartingAt = temp.assertionPath.indexOf('.propositions');
           temp.paragraphPath = temp.assertionPath.slice(0, temp.sliceStartingAt);
@@ -2490,26 +2418,15 @@
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
               if ($scope.selectedProposition.id) {
-                console.log('First expanding destroy');
-                console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)));
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                console.log('First make expanding');
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
               } else {
-                console.log('First expanding destroy else;');
-                console.log('about to select:', temp.paragraphDestination.propositions[i]);
-                console.log('selected thread threadid:', $scope.selectedThread.threadId);
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                //   .expanding('destroy');
-
-                console.log('First make expanding else');
-                console.log('Jquery picking up?' + JSON.stringify($('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)));
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
@@ -2572,37 +2489,9 @@
         temp = {};
       };
 
-
-      /*
-      var treeData = [
-        {
-          'name': 'A',
-          'children': [
-            {
-              'name': 'B1',
-              'children': [
-                {
-                  'name': 'C1',
-                },
-                {
-                  'name': 'C2',
-                }
-              ]
-            },
-            {
-              'name': 'B2',
-            }
-          ]
-
-        }
-      ];
-      */
-
 // ************** Generate the tree diagram  *****************
 
       $scope.initialize = function() {
-
-        // var initialize = {};
 
         var margin = { top: 20, right: 120, bottom: 20, left: 120 },
             width  = 1200 - margin.right - margin.left,
@@ -2681,7 +2570,7 @@
           .attr('transform', function(/*d*/) {
             return 'translate(' + root.y0 + ',' + root.x0 + ')';
           });
-        // .on('click', click);
+
 
         nodeEnter.append('circle')
           .attr('r', 1e-6)
@@ -2689,13 +2578,6 @@
             return d._children ? 'rgb(30,135,193)' : 'rgb(30,135,193)';
           });
 
-        // nodeEnter.append('text')
-        //   .attr('x', function(d) { return d.children || d._children ? -13 : 13; })
-        //   .attr('dy', '-3em')
-        //   .attr('text-anchor', function(d) { return d.children || d._children ? 'end' : 'start'; })
-        //   .text(function(d) { return d.topic; })
-        //   .style('fill-opacity', 1)
-        //   .style('fill', 'white')
 
         nodeEnter.append('foreignObject')
           .attr('x', -18)
