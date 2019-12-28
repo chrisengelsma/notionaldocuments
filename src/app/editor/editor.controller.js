@@ -1815,6 +1815,7 @@
         paragraph.leftAdd = false;
         paragraph.leftMouseOver = false;
         paragraph.topMouseOver = false;
+        paragraph.bottomAdd = false;
         paragraph.bottomMouseOver = false;
       };
 
