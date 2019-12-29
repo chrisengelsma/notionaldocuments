@@ -208,7 +208,8 @@
                   placeholder="textarea"
                   ng-model="inputs.proposition"
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
-                  spellcheck="false"></span>
+                  spellcheck="false"
+                  style="min-height: 20px"></span>
 <!--         <span class="right-text">
           {{inputs.proposition}}
         </span>
