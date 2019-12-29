@@ -757,7 +757,7 @@
           var prop = Object.assign({}, $scope.propositions[index]);
 
           var position = prop.position;
-          var nodePath = prop.assertionPath.split(/\.(?=[^\.]+$)/)[0];
+          var nodePath = prop.assertionPath.split(/\.(?=[^.]+$)/)[0];
           eval(nodePath).propositions[position].text = prop.text;
 
           prep.payload = {
