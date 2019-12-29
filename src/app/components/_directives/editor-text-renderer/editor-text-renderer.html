@@ -119,7 +119,7 @@
                 ng-enter="updateProposition(proposition)"
                 ng-click="
                 
-                    (proposition.author === userId )
+                    (proposition.author === userId && proposition.type !== 'negation')
                     ?  [ 
                          selectedProposition = proposition,
                          paragraph.topAdd = false,

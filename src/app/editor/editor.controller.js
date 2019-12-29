@@ -326,6 +326,7 @@
       };
 
       $scope.selectRight = function(proposition){
+        $scope.inputs.proposition = ' ';
         focusFactory(proposition.id);
       }
 
@@ -718,6 +719,7 @@
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
           if ($scope.hasBeenClicked == false) {
+            $scope.inputs.proposition = ' ';
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
             $scope.hasBeenClicked = true;
@@ -726,7 +728,7 @@
             $scope.hasBeenClicked = false;
             
           }
-          
+
           $timeout( function(){
             
           },0)
