@@ -48,8 +48,6 @@
                             (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false">
         </span>
-        <span class="right-text">{{inputs.proposition}}</span>
-        <span class="cursor blinking-cursor"></span>
       </div>
     </div>
     <div>
@@ -210,10 +208,6 @@
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
                   spellcheck="false"
                   ></span>
-<!--         <span class="right-text">
-          {{inputs.proposition}}
-        </span>
-        <span class="cursor blinking-cursor"></span> -->
       </div>
     </div>
     <div class="bottomparagraphadder"
