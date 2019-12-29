@@ -23,7 +23,7 @@
                 id: IdFactory.next(),
                 type: 'blank',
                 author: '',
-                text: 'lol',
+                text: '',
                 position: 0,
                 of: {},
                 remarks: [],
