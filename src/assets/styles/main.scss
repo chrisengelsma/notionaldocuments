@@ -30,6 +30,10 @@ html, body, body.ng-scope {
   width: 5px;
 }
 
+.a:hover{
+  text-decoration: none;
+}
+
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
