@@ -7,7 +7,8 @@
     // TODO This needs to be defined as a typed object with enums and such
     var empty = function(title) {
       return {
-        class: 'HA', // What is this??
+        class: 'HA', // What is this?? 
+        // -- ND was originally going to use the Library of Congress' classification system. HA is Social Sciences - JC
         address: [0],
         topic: title,
         isTitle: true,

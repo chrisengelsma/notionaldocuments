@@ -236,6 +236,13 @@
       var apply = {};
       var temp = {};
 
+      // If an empty book, focus on the blank proposition
+      if (!$scope.data[0].paragraphs[0].propositions[0].author){
+        var id = $scope.data[0].paragraphs[0].propositions[0].id;
+        $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
+        focusFactory('proposition' + id);
+      }
+
       // If the data doesn't have a dialogue, make the dialogue empty
       if (!$scope.data[0].hasOwnProperty('dialogue')) {
         $scope.data[0].dialogue = [];
