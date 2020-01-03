@@ -1974,6 +1974,7 @@
                       // if an assertion is found matching 
                       apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
                       console.log('Found. i: ', i, ' j: ', j, ' k: ', k);
+                      debugger;
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
                     }
                   }
