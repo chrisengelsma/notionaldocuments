@@ -11,6 +11,7 @@
   },
   "rules": {
     "no-unused-vars": "off",
+    "no-debugger": "off",
     "no-prototype-builtins": "off",
     "no-redeclare": "off"
   },
