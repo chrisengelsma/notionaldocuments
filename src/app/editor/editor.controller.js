@@ -1956,6 +1956,7 @@
 
               // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
               for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
+                debugger;
                 // up the paragraph position
                 apply.nodeDestination.paragraphs[i].position++;
                 // if user has selected the paragraph being moved up, update selectedParagraph
@@ -1974,7 +1975,7 @@
                       // if an assertion is found matching 
                       apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
                       console.log('Found. i: ', i, ' j: ', j, ' k: ', k);
-                      debugger;
+
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
                     }
                   }
