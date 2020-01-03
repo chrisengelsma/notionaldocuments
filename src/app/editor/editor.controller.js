@@ -1956,7 +1956,7 @@
 
               // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
               for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
-                
+                console.log('outside loop')
                 // up the paragraph position
                 apply.nodeDestination.paragraphs[i].position++;
                 // if user has selected the paragraph being moved up, update selectedParagraph
@@ -1967,10 +1967,12 @@
                 apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
                 // increase index of assertion paths affected
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
+                  console.log('1st inside loop')
                   if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
                     apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
                   }
                   for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
+                    console.log('2nd inside loop')
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
                       // if an assertion is found matching 
 
