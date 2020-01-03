@@ -250,6 +250,9 @@
         $scope.data[0].dialogue = [];
       }
 
+      $scope.clickOnLastProposition = function () {
+
+      }
       // Signs out
       $scope.logout = function() {
         apiService.signOut().then(function() {
@@ -1951,22 +1954,26 @@
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
 
-
+              // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
               for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
+                // up the paragraph position
                 apply.nodeDestination.paragraphs[i].position++;
+                // if user has selected the paragraph being moved up, update selectedParagraph
                 if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
                   $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                 }
-
+                // copy the paragraph up
                 apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
+                // increase index of assertion paths affected
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                   if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
                     apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
                   }
                   for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
+                      // if an assertion is found matching 
                       apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
-                      console.log('Found: ', apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId);
+                      console.log('Found. i: ', i, ' j: ', j, ' k: ', k);
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
                     }
                   }
