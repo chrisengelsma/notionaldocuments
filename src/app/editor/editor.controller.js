@@ -1954,8 +1954,9 @@
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
 
+              var counter = angular.copy(apply.nodeDestination.paragraphs.length-1)
               // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
-              for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
+              for (var i =  counter; i > payload.paragraphPosition - 1; i--) {
                 console.log('outside loop')
                 // up the paragraph position
                 apply.nodeDestination.paragraphs[i].position++;
