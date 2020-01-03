@@ -1989,9 +1989,9 @@
                 // it's searching for the incoming assertion id in order to get its current position, but it won't find it because the assertion id is
 
 
-                for (var i = 0; i < $scope.propositions.length; i++) {
-                  if ($scope.propositions[i].assertionId === payload.proposition.assertionId) {
-                    $scope.propositions[i].assertionPath = payload.proposition.assertionPath;
+                for (var l = 0; l < $scope.propositions.length; l++) {
+                  if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
+                    $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
                   }
                 }
               }
