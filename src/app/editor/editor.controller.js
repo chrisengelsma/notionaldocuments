@@ -1911,6 +1911,7 @@
               }
 
               if (payload.proposition.author === $scope.userId) {
+                console.log('Are author of incoming prop')
                 $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                 $scope.selectedProposition.textSide = true;
                 if (payload.textSide === true) {
