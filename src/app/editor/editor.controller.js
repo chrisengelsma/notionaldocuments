@@ -2056,7 +2056,7 @@
                   }
 
 
-                  for (var i = 0; i < $scope.propositions.length; i++) {
+                  for (var l = 0; l < $scope.propositions.length; l++) {
                     if ($scope.propositions[i].assertionId === payload.proposition.assertionId) {
                       $scope.propositions[i].assertionPath = payload.proposition.assertionPath;
                     }
