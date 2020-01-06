@@ -48,7 +48,9 @@
                   ng-keyup="$event.keyCode === 13 &&
                             selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
-                  spellcheck="false">
+                  spellcheck="false"
+                  style="color: black; padding-left: 1px;"
+                  >
         </span>
       </div>
     </div>
@@ -94,7 +96,9 @@
                       ng-model="inputs.proposition"
                       ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
-                      spellcheck="false">
+                      spellcheck="false"
+                      style="color: black; padding-left: 1px;"
+                      >
             </span>
 <!--             <span class="right-text"
                   ng-if="paragraph.leftAdd && proposition.id == selectedProposition.id">
@@ -208,6 +212,7 @@
                   ng-model="inputs.proposition"
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
                   spellcheck="false"
+                  style="color: black; padding-left: 1px;"
                   ></span>
       </div>
     </div>
