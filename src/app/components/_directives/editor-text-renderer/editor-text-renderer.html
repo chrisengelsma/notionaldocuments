@@ -1,6 +1,6 @@
 <div 
     class="tree-node tree-node-content texttopic"
-     ng-class="{ topicselected: selectedNode.class === node.class, titlestyling: node.isTitle}"
+     ng-class="{ topicselected: selectedNode.class === node.class, titlestyling: node.isTitle, openfield: data[0].paragraphs[0].propositions[0].author == ''}"
      ng-click="">
   {{node.topic}}
 </div>
