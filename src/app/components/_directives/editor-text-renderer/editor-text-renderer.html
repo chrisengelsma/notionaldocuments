@@ -64,7 +64,8 @@
             ng-mouseleave="proposition.preSelected = false;"
             ui-tree-node
             ng-click="selectedProposition.textSide = true;
-                      selectedProposition.dialogueSide = false;"
+                      selectedProposition.dialogueSide = false;
+                      selectedProposition = proposition;"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">{{paragraph.leftAdd}}
           <span class="leftpropositionadder"
@@ -79,8 +80,7 @@
                   paragraph.leftAdd = true,
                   paragraph.leftMouseOver = false,
                   selectedParagraph.highlightAll = false,
-                  selectedParagraph.markAll = false,
-                  selectedProposition = proposition
+                  selectedParagraph.markAll = false
                   ]"
                 event-focus-id="{{leftAdderId}}"
                 ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true && proposition.preSelected">
