@@ -65,13 +65,12 @@
             ng-click="selectedProposition.textSide = true;
                       selectedProposition.dialogueSide = false;"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
-            class="proposition">{{paragraph.leftAdd}}
+            class="proposition">
           <span class="leftpropositionadder"
                 ng-mouseover="paragraph.leftMouseOver = true; paragraph.topMouseOver = false; paragraph.bottomMouseOver = false;"
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
                 ng-click="
-                  selectedProposition = proposition;
                   clearWithLeftAdder();
                   clearPropositionInput();
                   paragraph.topAdd = false;
@@ -84,8 +83,7 @@
                 event-focus-id="{{leftAdderId}}"
                 ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true">
             <span ng-if="paragraph.leftMouseOver == true"
-                  class="cursor solid-cursor"
-                  ng-click="selectProposition = proposition;">
+                  class="cursor solid-cursor">
             </span>
           </span>
           <span ng-if="paragraph.leftAdd == true"
@@ -97,7 +95,7 @@
                       class="right-textarea right-text"
                       placeholder="textarea"
                       ng-model="inputs.proposition"
-                      ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [selectedProposition = proposition, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
+                      ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? prepProposition(inputs.proposition, paragraph) : inputs.nothing;
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
