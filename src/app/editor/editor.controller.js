@@ -344,7 +344,7 @@
 
       $scope.selectLeft = function(proposition){
         console.log('Select left')
-        $scope.selectProposition = proposition
+        $scope.selectedProposition = proposition
       }
 
       $scope.readBookLevel = function(address) {
