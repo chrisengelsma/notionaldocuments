@@ -81,7 +81,7 @@
                   selectedParagraph.markAll = false;
                   selectedProposition = proposition;"
                 event-focus-id="{{leftAdderId}}"
-                ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true">
+                ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true && selectedProposition.id === proposition.id">
             <span ng-if="paragraph.leftMouseOver == true"
                   class="cursor solid-cursor">
             </span>
