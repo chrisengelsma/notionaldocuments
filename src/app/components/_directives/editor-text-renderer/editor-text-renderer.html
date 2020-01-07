@@ -67,7 +67,7 @@
                       selectedProposition.dialogueSide = false,
                       selectLeft(proposition)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
-            class="proposition">{{proposition.author == userId}} {{$first}} {{paragraph.leftAdd !== true}} {{proposition.preSelected}}
+            class="proposition">
           <span class="leftpropositionadder"
                 ng-mouseover="paragraph.leftMouseOver = true; paragraph.topMouseOver = false; paragraph.bottomMouseOver = false"
                 ng-mouseleave="paragraph.leftMouseOver = false"
@@ -102,6 +102,7 @@
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
+                      ng-if="selectedProposition.id === proposition.id"
                       >
             </span>
 <!--             <span class="right-text"
