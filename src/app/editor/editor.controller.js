@@ -1046,6 +1046,8 @@
 
       $scope.prepProposition = function(input, paragraph) {
 
+        console.log('Selected proposition text: ', $scope.selectedProposition.text);
+
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
         apply = {};
