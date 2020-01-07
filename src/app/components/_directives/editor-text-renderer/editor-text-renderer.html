@@ -65,7 +65,7 @@
             ui-tree-node
             ng-click="[selectedProposition.textSide = true,
                       selectedProposition.dialogueSide = false,
-                      selectLeft(proposition)]"
+                      selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
           <span class="leftpropositionadder"
