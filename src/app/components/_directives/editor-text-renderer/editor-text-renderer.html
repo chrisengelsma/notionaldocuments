@@ -70,16 +70,17 @@
                 ng-mouseover="paragraph.leftMouseOver = true; paragraph.topMouseOver = false; paragraph.bottomMouseOver = false;"
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
-                ng-click="
-                  clearWithLeftAdder();
-                  clearPropositionInput();
-                  paragraph.topAdd = false;
-                  paragraph.bottomAdd = false;
-                  paragraph.leftAdd = true;
-                  paragraph.leftMouseOver = false;
-                  selectedParagraph.highlightAll = false;
-                  selectedParagraph.markAll = false;
-                  selectedProposition = proposition;"
+                ng-click="[
+                  clearWithLeftAdder(),
+                  clearPropositionInput(),
+                  paragraph.topAdd = false,
+                  paragraph.bottomAdd = false,
+                  paragraph.leftAdd = true,
+                  paragraph.leftMouseOver = false,
+                  selectedParagraph.highlightAll = false,
+                  selectedParagraph.markAll = false,
+                  selectedProposition = proposition
+                  ]"
                 event-focus-id="{{leftAdderId}}"
                 ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true && proposition.preSelected">
                <!--  get rid of selected proposition condition though it's to prevent left adds for others in the same paragraph -->
