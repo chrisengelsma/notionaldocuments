@@ -1597,6 +1597,7 @@
             prep.paragraphPosition = $scope.selectedParagraph.position;
             prep.position = $scope.selectedProposition.position;
             prep.insertsLeft = true;
+            console.log('Paragraph position: ', prep.paragraphPosition, ' Position: ', prep.position )
           } else if (prep.type !== 'rejoinder') {
             console.log('Adding to existing paragraph');
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
@@ -1629,6 +1630,8 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
+
+          console.log('Prep nodepath: ' , prep.nodePath)
 
           // Had a toString of undefined about here, needs to be fixed
 
