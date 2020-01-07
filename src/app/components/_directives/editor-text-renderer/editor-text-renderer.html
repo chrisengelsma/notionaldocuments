@@ -65,7 +65,7 @@
             ng-click="selectedProposition.textSide = true;
                       selectedProposition.dialogueSide = false;"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
-            class="proposition">
+            class="proposition">{{paragraph.leftAdd}}
           <span class="leftpropositionadder"
                 ng-mouseover="paragraph.leftMouseOver = true; paragraph.topMouseOver = false; paragraph.bottomMouseOver = false;"
                 ng-mouseleave="paragraph.leftMouseOver = false"

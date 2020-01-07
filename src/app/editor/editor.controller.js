@@ -1058,6 +1058,9 @@
         // Bounce bad inputs:
         // Those on nodes with no paragraphs
         // Those that are blank
+        if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
+          return;
+        }
 
 
         // Sort propositions into types and calculate things
