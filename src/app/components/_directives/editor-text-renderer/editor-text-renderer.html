@@ -68,8 +68,9 @@
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
+            <!-- might need something to grab onto -->
           <span class="leftpropositionadder"
-                ng-mouseover="paragraph.leftMouseOver = true; paragraph.topMouseOver = false; paragraph.bottomMouseOver = false"
+                ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false]"
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
                 ng-click="[
