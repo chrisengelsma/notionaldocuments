@@ -339,6 +339,7 @@
 
       $scope.selectRight = function(proposition){
         focusFactory(proposition.id);
+        console.log('Select right')
       }
 
       $scope.readBookLevel = function(address) {
