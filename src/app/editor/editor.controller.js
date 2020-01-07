@@ -342,6 +342,11 @@
         console.log('Select right')
       }
 
+      $scope.selectLeft = function(proposition){
+        console.log('Select left')
+        $scope.selectProposition = proposition
+      }
+
       $scope.readBookLevel = function(address) {
         // Seems necessary for some reason
         // The first time this fires, the address is [0]
