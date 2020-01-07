@@ -25,9 +25,6 @@
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
                     }">{{remark.text}}</span>
 		</span>
-    <!-- clearExpandingClass(remark);  -->
-
-    <!-- ng-if="selectedProposition.dialogueSide === true && selectedProposition.id === remark.id" -->
 
 
     <textarea
@@ -44,30 +41,6 @@
       </textarea>
 
 
-    <!-- ng-show="inputs.remarkselected" -->
   </p>
 </div>
 <br>
-<!-- <ol ui-tree-nodes ng-model="node.nodes" style="list-style-type: none; list-style: none; padding-left: 20px" ng-class="{hidden: collapsed}" class="angular-ui-tree-nodes">
-  <li ng-repeat="node in node.nodes" style="" ui-tree-node ng-include="'text_renderer.html'" ng-click="selectNode(node); $event.stopPropagation();">
-  </li>
-</ol> -->
-
-<!-- 'data' is an array of class objects
-	on these objects are class letter and topic
-	'paragraphs' is an array of proposition objects
-		on these objects are id, author, text, and position
-	also in these objects are nodes
-		'nodes' is an array of class objects
-
-this renderer should contain the recipe for a node
-
-paragraphs are stored on the node,
-and propositions are stored in paragraphs
-so they should be able to be printed with nested ng-repeats
-
-nodes cannot be represented simply with ng-repeats. we
-would need a new nesting for each level of node
-
-paragraphs and the propositions within them do not have further
-complexity, hence they have no new levels -->

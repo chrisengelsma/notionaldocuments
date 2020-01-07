@@ -118,7 +118,7 @@
                             'notowned': proposition.author !== userId && options.dimNotOwned,
                             'owned': proposition.author === userId && options.highlightOwned,
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
-                            'owned-cursor': proposition.author === userId
+                            'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId)
                           }"
                 ng-enter="updateProposition(proposition)"
                 ng-click="
