@@ -71,6 +71,7 @@
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
                 ng-click="
+                  selectedProposition = proposition;
                   clearWithLeftAdder();
                   clearPropositionInput();
                   paragraph.topAdd = false;
@@ -83,7 +84,8 @@
                 event-focus-id="{{leftAdderId}}"
                 ng-if="(proposition.author == userId) && $first && paragraph.leftAdd !== true">
             <span ng-if="paragraph.leftMouseOver == true"
-                  class="cursor solid-cursor">
+                  class="cursor solid-cursor"
+                  ng-click="selectProposition = proposition;">
             </span>
           </span>
           <span ng-if="paragraph.leftAdd == true"
