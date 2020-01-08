@@ -17,7 +17,8 @@
                name="title"
                ng-model="vm.title"
                required
-               placeholder="Title">
+               placeholder="Title"
+               ng-keyup="$event.keyCode === 13 ? vm.addNewBook() : form.nothing">
         <p ng-show="form.title.$invalid && !form.title.$pristine"
            class="help-block">
           Book must have a title
