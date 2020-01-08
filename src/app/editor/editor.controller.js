@@ -231,7 +231,7 @@
       $scope.highlight = {};
       $scope.mark = {};
       $scope.doubleClick = 0;
-      $scope.hasBeenClicked = false;
+      $scope.whatHasBeenClicked = '';
       var prep = {};
       var apply = {};
       var temp = {};
@@ -739,15 +739,17 @@
           $scope.selectProposition.dialogueSide = false;
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
-          if ($scope.hasBeenClicked == false) {
+          if ($scope.whatHasBeenClicked !== proposition.id ) {
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
-            $scope.hasBeenClicked = true;
+            $scope.whatHasBeenClicked = proposition.id;
             
-          } else {
-            $scope.hasBeenClicked = false;
+          } 
+
+          // else {
+          //   $scope.hasBeenClicked = false;
             
-          }
+          // }
 
           $timeout( function(){
             
