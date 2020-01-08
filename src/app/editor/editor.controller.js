@@ -727,6 +727,11 @@
         $scope.mark.marked = true;
       };
 
+      $scope.clearEditable = function () {
+        document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
+        $scope.whatHasBeenClicked = '';
+      }
+
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
 
           var string = 'proposition';

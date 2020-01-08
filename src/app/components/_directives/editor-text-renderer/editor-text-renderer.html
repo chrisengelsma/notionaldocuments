@@ -30,7 +30,7 @@
                    paragraph.topAdd = true,
                    paragraph.bottomAdd = false,
                    paragraph.leftAdd = false,
-                   whatHasBeenClicked = '']"
+                   clearEditable()]"
          event-focus="click"
          event-focus-id="{{topAdderId}}">
     </div>
@@ -83,7 +83,7 @@
                   paragraph.leftMouseOver = false,
                   selectedParagraph.highlightAll = false,
                   selectedParagraph.markAll = false,
-                  whatHasBeenClicked = ''
+                  clearEditable()
                   ]"
                 event-focus-id="{{leftAdderId}}"
                 ng-if="(proposition.author == userId) && $index === 0 && paragraph.leftAdd !== true && proposition.preSelected">
@@ -129,7 +129,6 @@
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId)
                           }"
                 ng-enter="[proposition.preSelected = false, updateProposition(proposition)]"
-                ng-blur="this.contentEditable = false;"
                 ng-click="
                 
                     (proposition.author === userId && proposition.type !== 'negation')
@@ -232,7 +231,7 @@
          event-focus="click"
          ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && !paragraph.bottomAdd"
          ng-click="[clearWithBottomAdder(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false,
-         paragraph.bottomAdd = true, paragraph.topAdd = false, whatHasBeenClicked = '']"
+         paragraph.bottomAdd = true, paragraph.topAdd = false, clearEditable()]"
          event-focus-id="{{bottomAdderId}}"
          ng-if="paragraph.bottomAdd !== true">
     </div>
