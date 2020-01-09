@@ -881,6 +881,12 @@
           elem.innerText = payload.proposition.text;
           console.log($scope.propositions[index]);
         }
+
+        // go through the dialogue
+        // any proposition with the id being changed gets italicized
+
+
+
       });
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
