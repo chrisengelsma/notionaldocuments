@@ -126,7 +126,8 @@
                             'notowned': proposition.author !== userId && options.dimNotOwned,
                             'owned': proposition.author === userId && options.highlightOwned,
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
-                            'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId)
+                            'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId,
+                            'textcursor': whatHasBeenClicked == proposition.id)
                           }"
                 ng-enter="[proposition.preSelected = false, updateProposition(proposition)]"
                 ng-click="
@@ -159,7 +160,8 @@
               
 
              
-                class="proposition-text">
+                class="proposition-text"
+                >
             {{proposition.text}}
           </span>
           <span
