@@ -170,7 +170,6 @@
             title="{{proposition.id}}"
             class="right-text right-textarea"
             ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
-            ng-hide="selectedProposition.id !== proposition.id"
             ng-class="{'negation': (selectedProposition.author !== userId && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation') || (selectedProposition.type === 'negation' && selectedProposition.author === userId)}"
             ng-click=""
             ng-model="inputs.proposition"
@@ -185,8 +184,10 @@
             spellcheck="false"
             contenteditable="true"
             style="color: black; padding-left: 1px;"
-            ng-blur="this.contentEditable = true">
+            ng-blur="this.contentEditable = true">{{selectedProposition.id === proposition.id}}
               </span>
+            }
+            }
 <!--           <span event-focus="click"
                 event-focus-id="{{proposition.id}}"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
