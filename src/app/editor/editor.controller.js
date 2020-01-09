@@ -880,10 +880,14 @@
           $scope.propositions[index] = payload.proposition;
           elem.innerText = payload.proposition.text;
           console.log($scope.propositions[index]);
+          for (var i = 0; i < $scope.data[0].dialogue.length; i++){
+            for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
+              if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
+                $scope.data[0].dialogue[i].remarks[j].updated = true;
+              }
+            }
+          }
         }
-
-        // go through the dialogue
-        // any proposition with the id being changed gets italicized
 
 
 
