@@ -166,7 +166,6 @@
             ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
             ng-class="{'negation': (selectedProposition.author !== userId && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation') || (selectedProposition.type === 'negation' && selectedProposition.author === userId)}"
             ng-click=""
-            ng-hide="selectedProposition.id !== proposition.id"
             ng-model="inputs.proposition"
             ng-keyup="
                 $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.preSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;

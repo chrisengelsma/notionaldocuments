@@ -729,7 +729,7 @@
       }
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-
+        $scope.$apply(function() {
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
@@ -746,15 +746,16 @@
             $scope.whatHasBeenClicked = proposition.id;
             
           } 
+        });
 
           // else {
           //   $scope.hasBeenClicked = false;
             
           // }
 
-          $timeout( function(){
+          // $timeout( function(){
             
-          },0)
+          // },0)
       }
 
       $scope.updateProposition = function(proposition) {
