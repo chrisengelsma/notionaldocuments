@@ -343,11 +343,7 @@
       }
 
       $scope.selectLeft = function(proposition, paragraph){
-        console.log('Select left')
-        console.log('Proposition author is userid: ', proposition.author == $scope.userId)
-        console.log("Is first: ", proposition.$first)
-        console.log('Left add not true: ', paragraph.leftAdd !== true)
-        console.log('Proposition preselected: ', proposition.preSelected)
+
         $scope.selectedProposition = proposition
       }
 
