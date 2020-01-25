@@ -753,9 +753,9 @@
             
           // }
 
-          // $timeout( function(){
+          $timeout( function(){
             
-          // },0)
+          },0)
       }
 
       $scope.updateProposition = function(proposition) {
