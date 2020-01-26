@@ -127,6 +127,7 @@
                 
                     (proposition.author === userId && proposition.type !== 'negation')
                     ?  [ 
+                         selectedProposition = {},
                          selectedProposition = proposition,
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
