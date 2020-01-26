@@ -726,8 +726,10 @@
       };
 
       $scope.clearEditable = function () {
-        document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
-        $scope.whatHasBeenClicked = '';
+        if ($scope.selectedProposition.textSide == true){
+          document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
+          $scope.whatHasBeenClicked = '';
+        }
       }
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
