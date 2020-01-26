@@ -35,7 +35,7 @@
       ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false)"
       ng-blur="clearExpandingClass(remark)"
       ng-model="inputs.chatProposition"
-      class="expanding chatinput dialogueinput"
+      class="expanding chatinput dialogueinput alignleft"
       id="{{remark.id}}{{thread.threadId}}"
       ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition, selectedParagraph), inputs.chatProposition = '', clearExpandingClass(remark), inputs.remarkselected = false, selectedProposition.dialogueSide = false] : inputs.nothing"
       ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"
