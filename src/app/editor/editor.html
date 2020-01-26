@@ -55,7 +55,10 @@
 
         <button class="btn btn-dark"
                 ng-click="openProfileModal()">
-        </button>{{selectedProposition.id}}
+        </button>{{selectedProposition.id}}{{number}}
+
+        <button ng-click="number = number + 1">
+        </button>
 
         <button class="btn cog"
                 ng-click="openOptionsModal()">

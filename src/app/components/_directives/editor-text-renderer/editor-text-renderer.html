@@ -127,7 +127,6 @@
                 
                     (proposition.author === userId && proposition.type !== 'negation')
                     ?  [ 
-                         selectedProposition = {},
                          selectedProposition = proposition,
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
@@ -158,7 +157,7 @@
                 >
             {{proposition.text}}
           </span>
-          Equals:{{selectedProposition.id === proposition.id}} SP: {{selectedProposition.id}} P: {{proposition.id}}
+          Equals:{{selectedProposition.id === proposition.id}} SP: {{selectedProposition.id}} N: {{number}}
           <span
             editable-span-ng-model
             id="{{proposition.id}}"
@@ -179,7 +178,7 @@
             spellcheck="false"
             contenteditable="true"
             style="color: black; padding-left: 1px;"
-            ng-blur="this.contentEditable = true; selectedProposition = {};">
+            ng-blur="this.contentEditable = true; ">
               </span>
             
 <!--           <span event-focus="click"

@@ -232,6 +232,7 @@
       $scope.mark = {};
       $scope.doubleClick = 0;
       $scope.whatHasBeenClicked = '';
+      $scope.number = 0;
       var prep = {};
       var apply = {};
       var temp = {};
