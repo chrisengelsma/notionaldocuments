@@ -32,6 +32,7 @@
 
     $('#modal-body-login').on('loaded.bs.modal', function (e) {
       $('#modal-body-login').focus();
+      console.log('Loaded')
 
     })
 
