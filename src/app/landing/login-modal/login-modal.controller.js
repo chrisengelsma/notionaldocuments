@@ -30,10 +30,9 @@
       $uibModalInstance.dismiss(false);
     };
 
-    $('#modal-body-login').on('shown.bs.modal', function (e) {
-      $('#modal-body-login').focus();
+    $('#theloginmodal').on('shown.bs.modal', function () {
+      $('#email').focus();
       console.log('Modal loaded')
-
     })
 
   }
