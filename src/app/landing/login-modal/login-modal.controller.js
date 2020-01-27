@@ -30,6 +30,11 @@
       $uibModalInstance.dismiss(false);
     };
 
+    $('#modal-body-login').on('loaded.bs.modal', function (e) {
+      $('#modal-body-login').focus();
+
+    })
+
   }
 
   angular.module('ndApp')
