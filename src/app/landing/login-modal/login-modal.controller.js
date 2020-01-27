@@ -30,7 +30,7 @@
       $uibModalInstance.dismiss(false);
     };
 
-    $('#theloginmodal').on('shown.bs.modal', function () {
+    $('#modal-body-login').on('shown.bs.modal', function () {
       $('#email').focus();
       console.log('Modal loaded')
     })
