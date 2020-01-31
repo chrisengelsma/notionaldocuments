@@ -55,8 +55,7 @@
 
         <button class="btn btn-dark"
                 ng-click="openProfileModal()">
-        </button>{{selectedProposition.id}}
-
+        </button>{{data[0].paragraphs[0].propositions[0].type == 'blank'}} {{!data[0].paragraphs[0].propositions[0].hidden}}
         <button class="btn cog"
                 ng-click="openOptionsModal()">
           <i class="fa fa-cog"></i>
