@@ -160,7 +160,8 @@
       <div ui-tree="treeOptions"
            data-drag-enabled="false"
            id="tree-root"
-           class="angular-ui-tree textlist">
+           class="angular-ui-tree textlist"
+           ng-click="(data[0].paragraphs[0].propositions[0].type == 'blank' && !data[0].paragraphs[0].propositions[0].hidden) ? focusFactory(data[0].paragraphs[0].propositions[0]): inputs.nothing">
 
         <ol ui-tree-nodes
             ng-model='data'
