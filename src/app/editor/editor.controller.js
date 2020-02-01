@@ -255,6 +255,7 @@
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout( function(){
           document.getElementById('proposition' + id).click();
+          return;
         },0)
       }
 
