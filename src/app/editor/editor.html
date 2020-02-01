@@ -54,8 +54,8 @@
         <input type="button" id="copy-button" value="Copy"> -->
 
         <button class="btn btn-dark"
-                ng-click="openProfileModal()">
-        </button>{{data[0].paragraphs[0].propositions[0].type == 'blank'}} {{!data[0].paragraphs[0].propositions[0].hidden}}
+                ng-click="openProfileModal()">{{vm.profile.displayName}}
+        </button>
         <button class="btn cog"
                 ng-click="openOptionsModal()">
           <i class="fa fa-cog"></i>
