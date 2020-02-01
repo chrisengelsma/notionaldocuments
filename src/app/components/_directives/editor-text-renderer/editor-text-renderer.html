@@ -60,7 +60,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-click="(data[0].paragraphs[0].propositions[0].type == 'blank' && !data[0].paragraphs[0].propositions[0].hidden) ? focusFactory(data[0].paragraphs[0].propositions[0]): inputs.nothing">
+          ng-click="">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="proposition.preSelected = false;"
@@ -180,21 +180,13 @@
             ng-blur="this.contentEditable = true; ">
               </span>
             
-<!--           <span event-focus="click"
-                event-focus-id="{{proposition.id}}"
-                ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
-                ng-if="selectedProposition.id === proposition.id && selectedProposition.textSide === true && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
-                class="cursor blinking-cursor"></span> -->
+
           <span ng-if="proposition.preSelected === true && selectedProposition.id !== proposition.id && !paragraph.leftMouseOver == true"
                 class="cursor solid-cursor"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
-<!--           <span class="ghostspan"
-                event-focus="click"
-                event-focus-id="{{proposition.id}}"
-                ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
-                ng-if="$first && proposition.type === 'blank'">|</span> -->
+
         </li>
       </ol>
     </div>
