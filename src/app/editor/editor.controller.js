@@ -241,7 +241,7 @@
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         
-          document.getElementById('proposition' + id).click();
+          document.getElementById(id).click();
        
       }
 
