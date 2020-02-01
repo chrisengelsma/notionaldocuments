@@ -146,7 +146,8 @@
                             paragraph.topAdd = false,
                             paragraph.bottomAdd = false,
                             paragraph.leftAdd = false,
-                            selectRight(proposition)
+                            selectRight(proposition),
+                            $event.stopPropagation()
                             ]
                           : inputs.nothing"
                  
