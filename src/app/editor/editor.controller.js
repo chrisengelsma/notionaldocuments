@@ -250,6 +250,14 @@
         $scope.data[0].dialogue = [];
       }
 
+      $scope.selectBlank = function () {
+        var id = $scope.data[0].paragraphs[0].propositions[0].id;
+        $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
+        $timeout( function(){
+          document.getElementById('proposition' + id).click();
+        },0)
+      }
+
       $scope.clickOnLastProposition = function () {
 
       }
