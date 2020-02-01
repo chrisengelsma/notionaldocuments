@@ -255,7 +255,7 @@
         console.log('Selecting blank with function')
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
-        timeout( function(){
+        $timeout( function(){
           document.getElementById('proposition' + id).click();
         },0)         
       }
