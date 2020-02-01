@@ -893,6 +893,7 @@
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
               if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
                 $scope.data[0].dialogue[i].remarks[j].updated = true;
+                $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
               }
             }
           }
@@ -1058,14 +1059,6 @@
         $scope.scroll.threadId = IdFactory.next();
 
         updateDialogue(payload, scrollMessagesToBottom);
-
-        for (var i = 0; i < $scope.data[0].dialogue.length; i++){
-          for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
-            if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
-              $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
-            }
-          }
-        }
 
         // var apply = {};
         // var notification = {};
