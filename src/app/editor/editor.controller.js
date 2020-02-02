@@ -350,6 +350,12 @@
         $scope.selectedParagraph = null;
       };
 
+      $scope.focusout = function (element) {
+        element.contentEditable = false;
+        $scope.whatHasBeenClicked = '';
+        console.log('ran the function')
+      }
+
       $scope.selectRight = function(proposition){
         focusFactory(proposition.id);
         console.log('Select right')
