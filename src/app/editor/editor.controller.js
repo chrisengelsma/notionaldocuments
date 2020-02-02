@@ -46,12 +46,6 @@
 
     // All the modal buttons.
 
-          //Listener for clicking away from span being edited
-      $('.editable').on('focusout', function() {
-        document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
-        console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
-        // $scope.whatHasBeenClicked = '';
-      });
 
     $scope.openNewBookModal = function() {
       $scope.addBookModalInstance = $uibModal.open({
