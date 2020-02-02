@@ -236,6 +236,11 @@
       var apply = {};
       var temp = {};
 
+      $('.editable').on('focusout', function() {
+        document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
+        $scope.whatHasBeenClicked = '';
+      });
+
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author){
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
