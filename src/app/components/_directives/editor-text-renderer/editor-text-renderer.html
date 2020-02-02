@@ -124,7 +124,7 @@
                             'textcursor': whatHasBeenClicked == proposition.id
                           }"
                 ng-enter="[proposition.preSelected = false, updateProposition(proposition)]"
-                on-focusout="[focusout(this)"
+                onfocusout="focusout(this)"
                 ng-click="
                 
                     (proposition.author === userId && proposition.type !== 'negation' &&
