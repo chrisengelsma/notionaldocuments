@@ -236,7 +236,7 @@
       var apply = {};
       var temp = {};
 
-      $('.editable').on('focusout', function() {
+      $($scope.whatHasBeenClicked).on('focusout', function() {
         document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
         console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
         // $scope.whatHasBeenClicked = '';
