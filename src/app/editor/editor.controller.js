@@ -238,7 +238,8 @@
 
       $('.editable').on('focusout', function() {
         document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
-        $scope.whatHasBeenClicked = '';
+        console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
+        // $scope.whatHasBeenClicked = '';
       });
 
       // If an empty book, focus on the blank proposition
