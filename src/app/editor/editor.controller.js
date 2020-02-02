@@ -46,6 +46,13 @@
 
     // All the modal buttons.
 
+          //Listener for clicking away from span being edited
+      $('.editable').on('focusout', function() {
+        document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
+        console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
+        // $scope.whatHasBeenClicked = '';
+      });
+
     $scope.openNewBookModal = function() {
       $scope.addBookModalInstance = $uibModal.open({
         animation: true,
@@ -252,14 +259,6 @@
       if (!$scope.data[0].hasOwnProperty('dialogue')) {
         $scope.data[0].dialogue = [];
       }
-    }
-
-          //Listener for clicking away from span being edited
-      $('.editable').on('focusout', function() {
-        document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
-        console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
-        // $scope.whatHasBeenClicked = '';
-      });
 
       $scope.selectBlank = function () {
         console.log('Selecting blank with function')
