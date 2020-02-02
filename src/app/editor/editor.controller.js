@@ -236,6 +236,8 @@
       var apply = {};
       var temp = {};
 
+
+
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author){
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
@@ -252,7 +254,7 @@
       }
     }
 
-      //Listener for clicking away from span being edited
+          //Listener for clicking away from span being edited
       $('.editable').on('focusout', function() {
         document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
         console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
