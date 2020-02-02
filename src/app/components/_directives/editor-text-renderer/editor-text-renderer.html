@@ -1,7 +1,11 @@
-<div 
-    class="tree-node tree-node-content texttopic"
-     ng-class="{ topicselected: selectedNode.class === node.class, titlestyling: node.isTitle, openfield: data[0].paragraphs[0].propositions[0].author == ''}"
-     ng-click="">
+<div
+  class="tree-node tree-node-content texttopic"
+  ng-class="{
+    topicselected: selectedNode.class === node.class,
+    titlestyling: node.isTitle,
+    openfield: data[0].paragraphs[0].propositions[0].author === '',
+  }"
+  ng-click="">
   {{node.topic}}
 </div>
 <ol ui-tree-nodes
@@ -39,15 +43,15 @@
          class="paragraph addparagraph">
       <div class="proposition">
         <span class="proposition-text"></span>
-        <span 
-                  editable-span-ng-model
-                  contenteditable="true"
-                  id="{{topAdderId}}"
-                  title="{{paragraph.topAdderId}}"
-                  class="right-textarea"
-                  placeholder="textarea"
-                  ng-model="inputs.proposition"
-                  ng-keyup="$event.keyCode === 13 &&
+        <span
+          editable-span-ng-model
+          contenteditable="true"
+          id="{{topAdderId}}"
+          title="{{paragraph.topAdderId}}"
+          class="right-textarea"
+          placeholder="textarea"
+          ng-model="inputs.proposition"
+          ng-keyup="$event.keyCode === 13 &&
                             selectedProposition.dialogueSide != true ? [proposition.preSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false"
@@ -70,7 +74,7 @@
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
-            <!-- might need something to grab onto -->
+          <!-- might need something to grab onto -->
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false]"
                 ng-mouseleave="paragraph.leftMouseOver = false"
@@ -180,10 +184,9 @@
             style="color: black; padding-left: 1px;"
             ng-blur="this.contentEditable = true; ">
               </span>
-            
-
-          <span ng-if="proposition.preSelected === true && selectedProposition.id !== proposition.id && !paragraph.leftMouseOver == true"
-                class="cursor solid-cursor"
+          <span class="cursor"
+                ng-class="{'visible-cursor': proposition.preSelected && selectedProposition.id !== proposition.id && !paragraph.leftMouseOver,
+                           'invisible-cursor': !(proposition.preSelected && selectedProposition.id !== proposition.id && !paragraph.leftMouseOver)}"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
