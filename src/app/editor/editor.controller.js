@@ -350,7 +350,7 @@
         $scope.selectedParagraph = null;
       };
 
-      $scope.focusout = function (element) {
+      $scope.focusouteditable = function (element) {
         element.contentEditable = false;
         $scope.whatHasBeenClicked = '';
         console.log('ran the function')
