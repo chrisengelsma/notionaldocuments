@@ -236,12 +236,6 @@
       var apply = {};
       var temp = {};
 
-      $($scope.whatHasBeenClicked).on('focusout', function() {
-        document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
-        console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
-        // $scope.whatHasBeenClicked = '';
-      });
-
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author){
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
@@ -256,6 +250,14 @@
       if (!$scope.data[0].hasOwnProperty('dialogue')) {
         $scope.data[0].dialogue = [];
       }
+
+
+      //Listener for clicking away from span being edited
+      $($scope.whatHasBeenClicked).on('focusout', function() {
+        document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
+        console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
+        // $scope.whatHasBeenClicked = '';
+      });
 
       $scope.selectBlank = function () {
         console.log('Selecting blank with function')
