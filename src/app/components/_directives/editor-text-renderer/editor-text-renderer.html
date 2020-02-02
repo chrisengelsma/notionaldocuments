@@ -124,7 +124,7 @@
                             'textcursor': whatHasBeenClicked == proposition.id
                           }"
                 ng-enter="[proposition.preSelected = false, updateProposition(proposition)]"
-                onfocusout="focusout(this)"
+                
                 ng-click="
                 
                     (proposition.author === userId && proposition.type !== 'negation' &&
@@ -157,6 +157,7 @@
 
              
                 class="proposition-text"
+                onfocusout="focusout(this)"
                 >
             {{proposition.text}}
           </span>
