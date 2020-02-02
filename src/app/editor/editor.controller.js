@@ -250,10 +250,10 @@
       if (!$scope.data[0].hasOwnProperty('dialogue')) {
         $scope.data[0].dialogue = [];
       }
-
+    }
 
       //Listener for clicking away from span being edited
-      $($scope.whatHasBeenClicked).on('focusout', function() {
+      $('.editable').on('focusout', function() {
         document.getElementById($scope.whatHasBeenClicked).contentEditable = false;
         console.log('Contenteditable:', document.getElementById($scope.whatHasBeenClicked).contentEditable)
         // $scope.whatHasBeenClicked = '';
