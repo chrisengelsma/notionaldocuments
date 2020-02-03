@@ -233,6 +233,7 @@
       $scope.mark = {};
       $scope.doubleClick = 0;
       $scope.whatHasBeenClicked = '';
+      $scope.dontrunfocusout = false;
       var prep = {};
       var apply = {};
       var temp = {};
@@ -349,12 +350,6 @@
         $scope.selectedProposition = null;
         $scope.selectedParagraph = null;
       };
-
-      $scope.focusouteditable = function (element) {
-        element.contentEditable = false;
-        $scope.whatHasBeenClicked = '';
-        console.log('ran the function')
-      }
 
       $scope.selectRight = function(proposition){
         focusFactory(proposition.id);
@@ -766,19 +761,19 @@
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
             $scope.whatHasBeenClicked = proposition.id;
+            $scope.dontrunfocusout = true;
             
           } 
-        
-
-          // else {
-          //   $scope.hasBeenClicked = false;
-            
-          // }
-
-          // $timeout( function(){
-            
-          // },0)
       }
+
+    $scope.focusouteditable = function (element) {
+      if ($scope.dontrunfocusout){
+        return;
+      }
+      element.contentEditable = false;
+      $scope.whatHasBeenClicked = '';
+      console.log('ran the function')
+    }
 
       $scope.updateProposition = function(proposition) {
         if (proposition.author !== $scope.userId) {
