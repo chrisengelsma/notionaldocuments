@@ -758,6 +758,7 @@
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
           if ($scope.whatHasBeenClicked !== proposition.id ) {
+            console.log('Hasnt been clicked')
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
             $scope.whatHasBeenClicked = proposition.id;
@@ -768,6 +769,7 @@
 
     $scope.focusouteditable = function (element) {
       if ($scope.dontrunfocusout){
+        console.log('Didnt run focusout')
         return;
       }
       element.contentEditable = false;
