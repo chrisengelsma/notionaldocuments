@@ -10,7 +10,7 @@ html, body, body.ng-scope {
   outline: 0;
   height: 100vh;
   width: 100vw;
-  font-size: 110%;  /*100%*/
+  font-size: 110%; /*100%*/
   vertical-align: baseline;
 }
 
@@ -30,7 +30,7 @@ html, body, body.ng-scope {
   width: 5px;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
 }
 
@@ -60,23 +60,23 @@ a:hover{
   padding-right: 15px;
 }
 
-#dialoguepane{
+#dialoguepane {
   padding-right: 0;
   padding-left: 0;
   overflow-y: auto;
 }
 
-.dialogueblurrer{
+.dialogueblurrer {
   filter: blur(6px);
   pointer-events: none;
 }
 
-.dialogueblurrermouseover{
+.dialogueblurrermouseover {
   background-color: grey;
   cursor: pointer;
 }
 
-.notyourparagraph{
+.notyourparagraph {
   background-color: #d0d0d0;
 }
 
@@ -85,6 +85,7 @@ a:hover{
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -100,7 +101,7 @@ a:hover{
   border-top: 1px solid #e5e5e5;
 }
 
-#sendbutton{
+#sendbutton {
   /*  padding-top: 2px;
     padding-bottom: 2px;*/
 }
@@ -110,11 +111,11 @@ code {
   color: white;
 }
 
-.dialogue{
+.dialogue {
   min-height: 60rem;
 }
 
-.send{
+.send {
   font-size: 18px;
   padding: 6px;
   vertical-align: text-top;
@@ -130,16 +131,17 @@ font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetic
 
 }
 
-.subject{
+.subject {
   /*  background-color: rgba(255,255,255,0.5);*/
   padding-top: 9px;
   padding-bottom: 9px;
 }
-input, select, textarea{
+
+input, select, textarea {
   color: white;
 }
 
-input{
+input {
   width: 400px;
   border: none !important;
   background: transparent
@@ -169,31 +171,32 @@ input {
 
 }
 
-.paragraph{
+.paragraph {
   font-size: 20px; /*18px*/
   text-indent: 20px;
   clear: left;
-  display:block;
+  display: block;
   list-style-type: none;
   cursor: text;
 }
 
 
-.addparagraph{
+.addparagraph {
   text-indent: 24px;
   background-color: white;
   min-height: 20px;
   padding-left: 20px;
 }
+
 .col-md-9 {
   padding-left: 15px;
 }
 
-.negation{
+.negation {
   border-bottom: 1px solid #212121 !important;
 }
 
-.nocursor{
+.nocursor {
   cursor: none !important;
 }
 
@@ -202,7 +205,7 @@ input {
   padding-left: 0px !important;
 }
 
-.proposition{
+.proposition {
   list-style-type: none;
   display: inline;
   margin-bottom: 0;
@@ -212,24 +215,24 @@ input {
   min-height: 1px !important;
 }
 
-.ghostspan{
+.ghostspan {
   color: #d0d0d0;
   padding: 2px;
 }
 
-.openfield{
-  
+.openfield {
+
 }
 
-.textcursor{
+.textcursor {
   cursor: text;
 }
 
-.propositions{
+.propositions {
   cursor: text;
 }
 
-.proposition-text{
+.proposition-text {
   font-size: 20px; /*18px*/
   margin-left: 0;
   margin-right: 0;
@@ -238,20 +241,20 @@ input {
   min-height: 1px !important;
 }
 
-.right-textarea{
+.right-textarea {
   color: black !important;
   border: none !important;
   border-image-width: 0;
   font-size: 20px; /*18px*/
 }
 
-.right-text{
+.right-text {
   margin: 0;
-  font-size: 20px;   /*18px*/
+  font-size: 20px; /*18px*/
   cursor: text;
 }
 
-.remarkupdated{
+.remarkupdated {
   font-style: italic;
 }
 
@@ -309,30 +312,42 @@ input {
   }
 }
 
-.cursor.solid-cursor{
+.cursor.solid-cursor {
   color: #212121 !important;
 }
 
-.cursor::after {
-  content: "|";
+
+.cursor {
+  color: #212121 !important;
+
+  &::after {
+    content: "|";
+  }
 }
 
-.booklist{
+.cursor.visible-cursor {
+  opacity: 1;
+}
+
+.cursor.invisible-cursor {
+  opacity: 0;
+}
+
+.booklist {
   padding-top: 10px;
   list-style-type: none !important;
   padding-left: 0;
   font-size: 18px;
 }
 
-.chat-input-field{
+.chat-input-field {
 
   background-color: white;
   font-size: 18px;
 }
 
 
-
-.underline{
+.underline {
   /*  border-bottom: 1px solid white; */
 }
 
@@ -344,29 +359,33 @@ input {
   color: white;
 }
 
-.nodetitle{
+.nodetitle {
   cursor: default;
 
 }
 
-.titlestyling{
+.titlestyling {
   display: none;
   height: 0;
 }
 
-.sectionstyling{
+.sectionstyling {
 
 }
 
-.owned-cursor{
+.owned-cursor {
   cursor: pointer;
 }
 
-.topicselected{
+.topicselected {
   font-weight: bold;
 }
 
-.dialoguelist{
+.topichovered {
+  color: #0b58a2;
+}
+
+.dialoguelist {
   /*  min-height: 50rem;
     max-height: 50rem;*/
   overflow-y: scroll;
@@ -378,12 +397,12 @@ input {
 
 }
 
-.mainview{
+.mainview {
   min-height: 84vh;
   max-height: 84vh;
 }
 
-.textlist{
+.textlist {
   /*  min-height: 60rem;
     max-height: 60rem;*/
   list-style: none;
@@ -403,11 +422,11 @@ input {
   cursor: text;
 }
 
-.remarkselected{
+.remarkselected {
   font-weight: bold;
 }
 
-.thread{
+.thread {
   border-top-left-radius: 5px;
   border: 1px solid #aaaaaa;
   background-color: #fafafa;
@@ -415,15 +434,15 @@ input {
   margin: 10px;
 }
 
-.texttopic{
+.texttopic {
   font-size: 22px; /*20px*/
-  padding-top:5px;
-  padding-bottom:10px;
+  padding-top: 5px;
+  padding-bottom: 10px;
   font-style: italic;
 }
 
 
-.paragraphplaceholder{
+.paragraphplaceholder {
   color: #dbdbdb;
   cursor: text;
   height: 26px;
@@ -442,11 +461,11 @@ input {
 }*/
 
 
-.tree-node.tree-node-content.remark.remarkselected:last-child{
+.tree-node.tree-node-content.remark.remarkselected:last-child {
   margin-bottom: 0px;
 }
 
-.dialoguetopic{
+.dialoguetopic {
   font-size: 20px; /*16px*/
   margin: 0 auto;
   padding-right: 10px;
@@ -456,19 +475,18 @@ input {
   border-bottom: 1px solid #aaaaaa;
 }
 
-.remark{
+.remark {
   margin-bottom: 10px;
   display: block;
 
 }
 
-.dialogueinput{
+.dialogueinput {
   overflow-x: hidden;
 }
 
 
-
-.chatinput{
+.chatinput {
   display: block;
   background: transparent;
   padding: 0;
@@ -478,39 +496,37 @@ input {
 
 }
 
-.deleted{
+.deleted {
   text-decoration: line-through;
 }
 
-.topiclist{
+.topiclist {
   min-height: 50rem;
   max-height: 50rem;
 }
 
-#firstrow{
+#firstrow {
   border-bottom: 1px solid black;
   padding-bottom: 5px;
   padding-top: 5px;
 }
 
-.paragraphbackdrop{
+.paragraphbackdrop {
   background: #e2e2e2 !important;
   border: 1px solid white !important;
 }
 
-.chatinputappear{
+.chatinputappear {
   display: block;
 }
 
-.alignright{
-  padding-left: 40px;
-;
+.alignright {
+  padding-left: 40px;;
 }
 
-.alignleft{
-  padding-right:40px;
-  padding-left: 10px;
-;
+.alignleft {
+  padding-right: 40px;
+  padding-left: 10px;;
 }
 
 /*SVG CSS*/
@@ -521,7 +537,7 @@ input {
 
 .node circle {
   fill: #fff;
-  stroke: rgb(31,137,195);
+  stroke: rgb(31, 137, 195);
   stroke-width: 3px;
 }
 
@@ -536,27 +552,27 @@ input {
   stroke-width: 8px;
 }
 
-#iconspace{
+#iconspace {
   width: 80px;
   height: 57px;
   padding-bottom: 5px;
 }
 
-.library{
+.library {
   border-top: 1px solid white;
   /*padding: 5px;*/
   cursor: pointer;
 }
 
-.librarytitle{
+.librarytitle {
   text-align: center;
 }
 
-.topiclist{
+.topiclist {
   /*margin-top: 20px;*/
 }
 
-.nodeynode:nth-child(0){
+.nodeynode:nth-child(0) {
   font-weight: bold;
 }
 
@@ -566,7 +582,7 @@ input {
     padding: 5px 20px;
   }*/
 
-.bold{
+.bold {
   font-weight: bold;
   cursor: pointer;
 }
@@ -574,7 +590,6 @@ input {
 .login-wrapper > .jumbotron {
   background: none;
 }
-
 
 
 .tree-node.tree-node-content.dialoguetopic {
@@ -622,15 +637,11 @@ nav.nav {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   overflow-y: hidden;
   transition: 0.5s;
   cursor: pointer;
 }
-
-
-
 
 
 .overlay-content {
@@ -662,8 +673,12 @@ nav.nav {
 }
 
 @media screen and (max-height: 450px) {
-  .overlay {overflow-y: auto;}
-  .overlay a {font-size: 20px}
+  .overlay {
+    overflow-y: auto;
+  }
+  .overlay a {
+    font-size: 20px
+  }
   .overlay .closebtn {
     font-size: 40px;
     top: 15px;
@@ -673,7 +688,7 @@ nav.nav {
 
 /*Buttons*/
 
-.buttonscontainer{
+.buttonscontainer {
   position: relative;
 }
 
@@ -685,25 +700,22 @@ nav.nav {
   transform: translateY(-50%);
 }
 
-.signout:hover{
+.signout:hover {
   background-color: #c82333;
-  border-color: #bd2130;
   border: 1px solid transparent;
 }
 
-.help:hover{
+.help:hover {
   background-color: #28a745;
-  border-color: #28a745;
   border: 1px solid transparent;
 }
 
-.cog:hover{
+.cog:hover {
   background-color: white;
-  border-color: white;
   border: 1px solid transparent;
 }
 
-.topparagraphadder{
+.topparagraphadder {
   height: 5px;
   width: 50%;
   margin-bottom: 5px;
@@ -711,7 +723,7 @@ nav.nav {
   cursor: pointer;
 }
 
-.bottomparagraphadder{
+.bottomparagraphadder {
   height: 5px;
   width: 50%;
   margin-top: 5px;
@@ -719,21 +731,22 @@ nav.nav {
   cursor: pointer;
 }
 
-.blackline{
+.blackline {
   background-color: #a9a9a9;
 }
 
-.leftpropositionadder{
+.leftpropositionadder {
   height: auto;
   width: 4px;
-  cursor: none;
-  margin: 2px;
-  margin-right: 4px;
+  cursor: text;
+  margin: 2px 4px 2px 2px;
   padding: 2px;
-  padding-right: 2px;
+  //float: left;
+  //background-color: red;
 }
 
-.blur{
+
+.blur {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
   -o-filter: blur(4px);
