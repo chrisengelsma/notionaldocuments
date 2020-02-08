@@ -113,7 +113,9 @@
                       ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && $first"
                       >
             </span>
-            <span ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
+            <span ng-mouseover="paragraph.leftMouseOver = true" 
+                  ng-mouseleave="paragraph.leftMouseOver = false"
+                  ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first}"
                   ng-if="$first"
                   class="cursor">
