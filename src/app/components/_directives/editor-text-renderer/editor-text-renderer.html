@@ -13,8 +13,8 @@
     style="padding-left: 0">
   <li ng-repeat="paragraph in node.paragraphs track by $index"
       ng-click="selectParagraph(paragraph); paragraph.cursor = false;"
-      ng-mouseover="paragraph.mouseOver = true"
-      ng-mouseleave="paragraph.mouseOver = false;"
+      ng-mouseover="paragraph.mouseOver = true; proposition.preSelected = true;"
+      ng-mouseleave="paragraph.mouseOver = false; proposition.preSelected = false;"
       class="tree-node tree-node-content paragraph"
       ng-if="paragraph[userId] !== 'hidden'"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
@@ -52,7 +52,7 @@
           placeholder="textarea"
           ng-model="inputs.proposition"
           ng-keyup="$event.keyCode === 13 &&
-                            selectedProposition.dialogueSide != true ? [proposition.preSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
+                            selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 1px;"
@@ -89,7 +89,7 @@
                   clearEditable()
                   ]"
                 event-focus-id="{{leftAdderId}}"
-                ng-if="(proposition.author == userId) && $index === 0 && paragraph.leftAdd !== true">
+                ng-if="(proposition.author == userId) && $index === 0 && paragraph.leftAdd !== true && proposition.preSelected">
                <!--  get rid of selected proposition condition though it's to prevent left adds for others in the same paragraph -->
             <span ng-class="{'visible-cursor': paragraph.leftMouseOver,
                              'invisible-cursor': !paragraph.leftMouseOver}"
@@ -104,7 +104,7 @@
                       class="right-textarea right-text"
                       placeholder="textarea"
                       ng-model="inputs.proposition"
-                      ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [proposition.preSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
+                      ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
@@ -117,7 +117,7 @@
                 id="proposition{{proposition.id}}"
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
-                            'underline': proposition.preSelected === true,
+                            'underline': proposition.propositionPreSelected === true,
                             'highlight': highlight.id === proposition.id || (selectedParagraph.highlightAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'notowned': proposition.author !== userId && options.dimNotOwned,
                             'owned': proposition.author === userId && options.highlightOwned,
@@ -125,9 +125,9 @@
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId),
                             'textcursor': whatHasBeenClicked == proposition.id
                           }"
-                ng-enter="[proposition.preSelected = false, updateProposition(proposition)]"
-                ng-mouseover="proposition.preSelected = true;"
-                ng-mouseleave="proposition.preSelected = false;"
+                ng-enter="[proposition.propositionPreSelected = false, updateProposition(proposition)]"
+                ng-mouseover="proposition.propositionPreSelected = true;"
+                ng-mouseleave="proposition.propositionPreSelected = false;"
                 
                 ng-click="
                 
@@ -175,7 +175,7 @@
             ng-click=""
             ng-model="inputs.proposition"
             ng-keyup="
-                $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.preSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
+                $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
                 (($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true && selectedProposition.author === userId) || ($event.keyCode === 8 && inputs.proposition === '' && selectedProposition.type === 'blank')) ? deleteProposition() : inputs.nothing;
                 ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true && proposition.author === userId) ? markProposition(proposition) : inputs.nothing;
                 (inputs.proposition === '' && $event.keyCode === 8 && proposition.type !== 'negation' && proposition.author === userId) ? highlightProposition(node, paragraph, proposition) : inputs.nothing;
@@ -188,8 +188,8 @@
             ng-blur="this.contentEditable = true; ">
               </span>
           <span class="cursor"
-                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver,
-                           'invisible-cursor': !proposition.preSelected && !paragraph.leftMouseOver}"
+                ng-class="{'visible-cursor': proposition.propositionPreSelected && !paragraph.leftMouseOver,
+                           'invisible-cursor': !proposition.propositionPreSelected && !paragraph.leftMouseOver}"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
@@ -210,7 +210,7 @@
                   class="right-textarea right-text"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
-                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.preSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
+                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
                   spellcheck="false"
                   style="color: black; padding-left: 1px;"
                   ></span>
