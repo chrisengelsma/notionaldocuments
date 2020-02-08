@@ -182,7 +182,7 @@
                 ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true && proposition.author === userId) ? markProposition(proposition) : inputs.nothing;
                 (inputs.proposition === '' && $event.keyCode === 8 && proposition.type !== 'negation' && proposition.author === userId) ? highlightProposition(node, paragraph, proposition) : inputs.nothing;
                 ($event.keyCode === 8 && selectedParagraph.markAll == true) ? deleteAllPropositions() : inputs.nothing;
-                ($event.keyCode === 8 && selectedParagraph.highlightAll == true) ? markAllPropositions(proposition) : inputs.nothing;
+                ($event.keyCode === 8 && selectedParagraph.highlightAll == true) ? markAllPropositions(proposition) : inputs.notting;
                 (inputs.proposition === '' && $event.keyCode === 8 && ((paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId))) ? highlightAllPropositions(node, paragraph, proposition) : inputs.nothing;"
             spellcheck="false"
             contenteditable="true"
