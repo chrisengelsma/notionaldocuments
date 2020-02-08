@@ -93,7 +93,7 @@
                 event-focus-id="{{leftAdderId}}"
                 >
                <!--  get rid of selected proposition condition though it's to prevent left adds for others in the same paragraph -->
-            <span ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected,
+            <span ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected}"
                   class="cursor">
             </span>
