@@ -94,7 +94,7 @@
                 ng-if="$first"
                 >
                <!--  get rid of selected proposition condition though it's to prevent left adds for others in the same paragraph -->
-            <span 
+            <span ng-if="first"
                   class="cursor invisible-cursor">
             </span>
           </span>
@@ -110,11 +110,12 @@
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
-                      ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true"
+                      ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && $first"
                       >
             </span>
             <span ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first}"
+                  ng-if="$first"
                   class="cursor">
             </span>
           <span 
