@@ -96,8 +96,7 @@
                   class="cursor">
             </span>
           </span>
-          <span ng-if="paragraph.leftAdd == true"
-                class="proposition">
+      
             <span 
                       editable-span-ng-model
                       contenteditable="true"
@@ -109,10 +108,10 @@
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
-                      ng-if="selectedProposition.id === proposition.id"
+                      ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true"
                       >
             </span>
-          </span>
+          
           <span 
 
                 id="proposition{{proposition.id}}"
