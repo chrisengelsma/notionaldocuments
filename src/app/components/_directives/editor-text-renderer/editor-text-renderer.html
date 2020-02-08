@@ -14,7 +14,7 @@
   <li ng-repeat="paragraph in node.paragraphs track by $index"
       ng-click="selectParagraph(paragraph); paragraph.cursor = false;"
       ng-mouseover="paragraph.mouseOver = true;"
-      ng-mouseleave="paragraph.mouseOver = false;"
+      ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
       ng-if="paragraph[userId] !== 'hidden'"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
@@ -67,8 +67,8 @@
           ng-click="!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
-            ng-mouseover="proposition.preSelected"
-            ng-mouseleave="!proposition.preSelected"
+            ng-mouseover="proposition.preSelected = true;"
+            ng-mouseleave="[proposition.preSelected = false]"
             ng-click="[selectedProposition.textSide = true,
                       selectedProposition.dialogueSide = false,
                       selectLeft(proposition, paragraph)]"
