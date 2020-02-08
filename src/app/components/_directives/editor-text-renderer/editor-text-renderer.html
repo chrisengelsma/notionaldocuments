@@ -20,7 +20,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}">
-
+                  {{paragraph.leftMouseOver}}
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -165,7 +165,7 @@
                 class="proposition-text"
                 ng-blur="focusouteditable(this)"
                 >
-            {{proposition.text}} 
+            {{proposition.text}} {{proposition.preSelected}}
           </span>
           <span
             editable-span-ng-model
