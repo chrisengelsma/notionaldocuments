@@ -20,7 +20,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}">
-    Paragraph LMO: {{paragraph.leftMouseOver}} Leftadd: {{paragraph.leftAdd}}
+  <!--   Paragraph LMO: {{paragraph.leftMouseOver}} Leftadd: {{paragraph.leftAdd}} -->
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -74,7 +74,7 @@
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
-          {{proposition.preSelected}} {{$first}}
+          <!-- {{proposition.preSelected}} {{$first}} -->
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false]"
                 ng-mouseleave="paragraph.leftMouseOver = false"
