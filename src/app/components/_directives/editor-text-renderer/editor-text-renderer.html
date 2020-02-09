@@ -115,6 +115,19 @@
             </span>
             <span ng-mouseover="paragraph.leftMouseOver = true" 
                   ng-mouseleave="paragraph.leftMouseOver = false"
+                  event-focus="click"
+                  ng-click="[
+                    clearWithLeftAdder(),
+                    clearPropositionInput(),
+                    paragraph.topAdd = false,
+                    paragraph.bottomAdd = false,
+                    paragraph.leftAdd = true,
+                    paragraph.leftMouseOver = false,
+                    selectedParagraph.highlightAll = false,
+                    selectedParagraph.markAll = false,
+                    clearEditable()
+                  ]"
+                  event-focus-id="{{leftAdderId}}"
                   ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first}"
                   ng-if="$first"
