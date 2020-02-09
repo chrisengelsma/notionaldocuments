@@ -62,7 +62,7 @@
                             selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false"
-                  style="color: black; padding-left: 1px; margin-top: 5px;"
+                  style="color: black; padding-left: 1px;"
                   >
         </span>
       </div>
@@ -236,7 +236,8 @@
       </ol>
     </div>
     <div ng-if="paragraph.bottomAdd == true"
-         class="paragraph addparagraph">
+         class="paragraph addparagraph"
+         style="margin-top: 5px;">
       <div class="proposition">
 <!--         <span class="proposition-text">
         </span> -->
