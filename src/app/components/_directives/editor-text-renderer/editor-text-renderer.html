@@ -86,6 +86,7 @@
                   paragraph.bottomAdd = false,
                   paragraph.leftAdd = true,
                   paragraph.leftMouseOver = false,
+                  paragraph.disableRightCursor = true,
                   selectedParagraph.highlightAll = false,
                   selectedParagraph.markAll = false,
                   clearEditable()
@@ -95,6 +96,7 @@
                 >
                <!--  get rid of selected proposition condition though it's to prevent left adds for others in the same paragraph -->
             <span ng-if="first"
+                  ng-click="paragraph.disableRightCursor = true" 
                   class="cursor invisible-cursor">
             </span>
           </span>
@@ -104,6 +106,7 @@
                       contenteditable="true"
                       id="{{leftAdderId}}"
                       class="right-textarea right-text"
+                      ng-mouseover="paragraph.disableRightCursor = true;"
                       placeholder="textarea"
                       ng-model="inputs.proposition"
                       ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
@@ -123,6 +126,7 @@
                     paragraph.bottomAdd = false,
                     paragraph.leftAdd = true,
                     paragraph.leftMouseOver = false,
+                    paragraph.disableRightCursor = true,
                     selectedParagraph.highlightAll = false,
                     selectedParagraph.markAll = false,
                     clearEditable()
@@ -133,7 +137,8 @@
                   ng-if="$first && userId == proposition.author"
                   class="cursor">
             </span>
-            <span class="cursor invisible-cursor" 
+            <span class="cursor invisible-cursor"
+                  ng-click="paragraph.disableRightCursor = true" 
                   ng-if="$first && userId !== proposition.author">
             </span>
           <span 
