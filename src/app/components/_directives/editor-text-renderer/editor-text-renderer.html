@@ -43,8 +43,11 @@
          class="paragraph addparagraph">
       <div class="proposition">
       <!--   <span class="proposition-text"></span> -->
-<!--         <span class="cursor invisible-cursor">
-        </span> -->
+        <span 
+              ng-if="paragraph.topAdd"
+              class="cursor invisible-cursor"
+              >
+        </span>
         <span class="cursor invisible-cursor">
         </span>
         <span
@@ -235,7 +238,14 @@
     <div ng-if="paragraph.bottomAdd == true"
          class="paragraph addparagraph">
       <div class="proposition">
-        <span class="proposition-text">
+<!--         <span class="proposition-text">
+        </span> -->
+        <span 
+              ng-if="paragraph.bottomAdd"
+              class="cursor invisible-cursor"
+              >
+        </span>
+        <span class="cursor invisible-cursor">
         </span>
         <span 
                   editable-span-ng-model
