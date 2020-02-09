@@ -161,7 +161,7 @@
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
                          paragraph.leftAdd = false,
-                         paragraph.rightAdd = true,
+                         paragraph.disableRightCursor = true,
                          listenForDoubleClick(this, paragraph, proposition),
                        ]
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||
@@ -177,7 +177,7 @@
                             paragraph.topAdd = false,
                             paragraph.bottomAdd = false,
                             paragraph.leftAdd = false,
-                            paragraph.rightAdd = true,
+                            paragraph.disableRightCursor = true,
                             selectRight(proposition),
                             $event.stopPropagation()
                             ]
@@ -187,7 +187,7 @@
 
              
                 class="proposition-text"
-                ng-blur="[focusouteditable(this), paragraph.rightAdd = false]"
+                ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
                 >
             {{proposition.text}} 
           </span>
@@ -201,7 +201,7 @@
             ng-click=""
             ng-model="inputs.proposition"
             ng-keyup="
-                $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, paragraph.rightAdd = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
+                $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, paragraph.disableRightCursor = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
                 (($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true && selectedProposition.author === userId) || ($event.keyCode === 8 && inputs.proposition === '' && selectedProposition.type === 'blank')) ? deleteProposition() : inputs.nothing;
                 ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true && proposition.author === userId) ? markProposition(proposition) : inputs.nothing;
                 (inputs.proposition === '' && $event.keyCode === 8 && proposition.type !== 'negation' && proposition.author === userId) ? highlightProposition(node, paragraph, proposition) : inputs.nothing;
@@ -214,8 +214,8 @@
             ng-blur="this.contentEditable = true; ">
               </span>
           <span class="cursor"
-                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.leftAdd && !paragraph.rightAdd,
-                           'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver}"
+                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.leftAdd && !paragraph.disableRightCursor,
+                           'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor}"
                 ng-click="selectProposition(proposition); selectedProposition.textSide = true; selectedProposition.dialogueSide = false; paragraph.topAdd = false; paragraph.bottomAdd = false;"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
