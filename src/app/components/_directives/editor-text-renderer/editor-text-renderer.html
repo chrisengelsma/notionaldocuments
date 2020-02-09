@@ -110,7 +110,7 @@
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
-                      ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && $first"
+                      ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && $first && userId == proposition.author"
                       >
             </span>
             <span ng-mouseover="paragraph.leftMouseOver = true" 
@@ -130,8 +130,11 @@
                   event-focus-id="{{leftAdderId}}"
                   ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first}"
-                  ng-if="$first"
+                  ng-if="$first && userId == proposition.author"
                   class="cursor">
+            </span>
+            <span class="cursor invisible-cursor" 
+                  ng-if="$first && userId !== proposition.author">
             </span>
           <span 
 
