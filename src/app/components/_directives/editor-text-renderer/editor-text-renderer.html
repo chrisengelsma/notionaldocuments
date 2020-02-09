@@ -128,8 +128,8 @@
                     clearEditable()
                   ]"
                   event-focus-id="{{leftAdderId}}"
-                  ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd && !paragraph.disableRightCursor,
-                             'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first || paragraph.disableRightCursor"
+                  ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
+                             'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first}"
                   ng-if="$first && userId == proposition.author"
                   class="cursor">
             </span>
