@@ -738,7 +738,7 @@
       };
 
       $scope.clearEditable = function () {
-        if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked !== ''){
+        if ($scope.selectedProposition.textSide == true){
           document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
           $scope.whatHasBeenClicked = '';
           console.log('Clear editable')
