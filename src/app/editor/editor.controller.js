@@ -624,12 +624,12 @@
 
       };
 
-      $scope.clearWithBottomAdder = function() {
+      $scope.clearWithBottomAdder = function(paragraph) {
 
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
 
-        $scope.bottomAdderId = IdFactory.next();
+        paragraph.bottomAdd = true;
 
 
         focusFactory($scope.bottomAdderId);

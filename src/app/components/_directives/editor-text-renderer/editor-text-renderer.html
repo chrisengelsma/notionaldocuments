@@ -237,6 +237,7 @@
     </div>
     <div ng-if="paragraph.bottomAdd == true"
          class="paragraph addparagraph"
+         ng-blur="paragraph.bottomAdd = false;"
          style="padding-top: 5px;">
       <div class="proposition">
 <!--         <span class="proposition-text">
@@ -251,8 +252,8 @@
         <span 
                   editable-span-ng-model
                   contenteditable="true"
-                  id="{{bottomAdderId}}"
-                  title="{{bottomAdderId}}"
+                  id="{{paragraph.paragraphId}}"
+                  title="{{paragraph.paragraphId}}"
                   class="right-textarea right-text"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
@@ -268,9 +269,9 @@
          ng-mouseleave="paragraph.bottomMouseOver = false"
          event-focus="click"
          ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && !paragraph.bottomAdd"
-         ng-click="[clearWithBottomAdder(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false,
+         ng-click="[clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false,
          paragraph.bottomAdd = true, paragraph.topAdd = false, clearEditable()]"
-         event-focus-id="{{bottomAdderId}}"
+         event-focus-id="{{paragraph.paragraphId}}"
          ng-if="paragraph.bottomAdd !== true">
     </div>
   </li>
