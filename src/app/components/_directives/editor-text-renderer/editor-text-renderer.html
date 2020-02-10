@@ -272,7 +272,7 @@
          ng-mouseleave="paragraph.bottomMouseOver = false"
          ng-click="[clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
          
-         ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && !hasBottomFocus"
+         ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && hasBottomFocus !== paragraph.paragraphId"
          
          
          >
