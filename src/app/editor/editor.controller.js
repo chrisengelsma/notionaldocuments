@@ -234,6 +234,7 @@
       $scope.doubleClick = 0;
       $scope.whatHasBeenClicked = '';
       $scope.dontrunfocusout = false;
+      $scope.hasBottomFocus = '';
       var prep = {};
       var apply = {};
       var temp = {};
@@ -627,7 +628,8 @@
       $scope.clearWithBottomAdder = function(paragraph) {
 
         paragraph.bottomAdd = true;
-        
+        $scope.hasBottomFocus = paragraph.paragraphId;
+
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
 

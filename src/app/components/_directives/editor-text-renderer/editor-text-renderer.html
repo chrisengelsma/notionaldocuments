@@ -237,7 +237,7 @@
         </li>
       </ol>
     </div>
-    <div ng-if="paragraph.bottomAdd == true"
+    <div ng-if="paragraph.bottomAdd == true && hasBottomFocus == paragraph.paragraphId"
          class="paragraph addparagraph"
 
          style="padding-top: 5px;">
@@ -245,7 +245,7 @@
 <!--         <span class="proposition-text">
         </span> -->
         <span 
-              ng-if="paragraph.bottomAdd"
+              ng-if="paragraph.bottomAdd && hasBottomFocus == paragraph.paragraphId"
               class="cursor invisible-cursor"
               >
         </span>
@@ -272,7 +272,7 @@
          ng-mouseleave="paragraph.bottomMouseOver = false"
          ng-click="[clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
          
-         ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && !paragraph.bottomAdd"
+         ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && !paragraph.bottomAdd && !hasBottomFocus"
          
          
          >
