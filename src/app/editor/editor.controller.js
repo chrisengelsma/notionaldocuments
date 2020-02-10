@@ -632,7 +632,7 @@
         paragraph.bottomAdd = true;
 
 
-        focusFactory($scope.bottomAdderId);
+        focusFactory(paragraph.paragraphId);
 
       };
 
