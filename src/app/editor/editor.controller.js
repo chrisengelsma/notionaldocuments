@@ -626,10 +626,12 @@
 
       $scope.clearWithBottomAdder = function(paragraph) {
 
+        paragraph.bottomAdd = true;
+        
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
 
-        paragraph.bottomAdd = true;
+        
 
 
         focusFactory(paragraph.paragraphId);
