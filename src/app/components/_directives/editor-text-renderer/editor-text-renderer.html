@@ -19,6 +19,7 @@
       ng-if="paragraph[userId] !== 'hidden'"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
+                  bottomaddon: paragraph.bottomAdd = true,
                   notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}">
                  
     <div class="topparagraphadder"
