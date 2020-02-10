@@ -237,7 +237,7 @@
     </div>
     <div ng-if="paragraph.bottomAdd == true"
          class="paragraph addparagraph"
-         ng-blur="paragraph.bottomAdd = false;"
+
          style="padding-top: 5px;">
       <div class="proposition">
 <!--         <span class="proposition-text">
@@ -255,11 +255,12 @@
                   id="{{paragraph.paragraphId}}"
                   title="{{paragraph.paragraphId}}"
                   class="right-textarea right-text"
+                  ng-blur="paragraph.bottomAdd = false;"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
                   spellcheck="false"
-                  style="color: black; padding-left: 1px;"
+                  style="color: black; padding-left: 1px; padding-bottom: 5px;"
                   ></span>
       </div>
     </div>
