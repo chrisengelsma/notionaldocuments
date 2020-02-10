@@ -268,10 +268,10 @@
          ng-class="{'blackline': paragraph.bottomMouseOver === true}"
          ng-mouseover="paragraph.bottomMouseOver = true; paragraph.topMouseOver = false"
          ng-mouseleave="paragraph.bottomMouseOver = false"
+         ng-click="[clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
          event-focus="click"
          ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && !paragraph.bottomAdd"
-         ng-click="[clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false,
-         paragraph.bottomAdd = true, paragraph.topAdd = false, clearEditable()]"
+         
          event-focus-id="{{paragraph.paragraphId}}"
          ng-if="paragraph.bottomAdd !== true">
     </div>
