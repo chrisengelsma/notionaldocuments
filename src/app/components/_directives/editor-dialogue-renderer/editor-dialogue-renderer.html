@@ -25,7 +25,7 @@
           ng-class="{'underline': remark.mouseOver === true,
                      'remarkupdated': remark.updated === true,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
-                    }">{{remark.text}}</span>
+                    }">{{remark.text}}</span>{{remark.id === selectedProposition.id}} {{thread.threadId === selectedThread.threadId}}
 		</span>
 
 
