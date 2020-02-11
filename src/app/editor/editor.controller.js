@@ -235,6 +235,7 @@
       $scope.whatHasBeenClicked = '';
       $scope.dontrunfocusout = false;
       $scope.hasBottomFocus = '';
+      $scope.toBeClearedLater = {};
       var prep = {};
       var apply = {};
       var temp = {};
@@ -2476,11 +2477,19 @@
           console.log('No assertion path');
           return;
         }
-        // console.log('trying to hide ', '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
-        // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-        //   .parent().hide();
-        //   console.log('hides')
+        console.log('trying to hide ', '#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId);
+        $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
+          .parent().hide();
+          console.log('hides')
+          $scope.toBeClearedLater = {};
       };
+
+      $scope.clearLater = function(remarkId, threadId){
+        $scope.toBeClearedLater = {
+          remarkId: remarkId,
+          threadId: threadId
+        }
+      }
 
 
       $scope.selectNodeByClass = function(thread) {
