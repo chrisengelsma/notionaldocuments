@@ -25,14 +25,14 @@
           ng-class="{'underline': remark.mouseOver === true,
                      'remarkupdated': remark.updated === true,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
-                    }">{{remark.text}}</span>{{remark.id === selectedProposition.id}} {{thread.threadId === selectedThread.threadId}}
+                    }">{{remark.text}}</span>
 		</span>
 
 
     <textarea
       title="{{ remark.id }}"
       ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
-      ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false)"
+      ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false) ||"
       ng-blur="clearExpandingClass(remark)"
       ng-model="inputs.chatProposition"
       class="expanding chatinput dialogueinput alignleft"
