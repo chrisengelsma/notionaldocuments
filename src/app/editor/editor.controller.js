@@ -2476,9 +2476,10 @@
           console.log('No assertion path');
           return;
         }
-        console.log('trying to hide ', '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
-        $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-          .parent().hide();
+        // console.log('trying to hide ', '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
+        // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+        //   .parent().hide();
+        //   console.log('hides')
       };
 
 
