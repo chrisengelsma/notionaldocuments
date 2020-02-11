@@ -2479,7 +2479,6 @@
         console.log('trying to hide ', '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
         $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
           .parent().hide();
-        $scope.selectedProposition = {};
       };
 
 
