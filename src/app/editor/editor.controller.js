@@ -2450,9 +2450,7 @@
 
         }
 
-        console.log('selected Proposition:', $scope.selectedProposition);
-
-        console.log('trying to focus on chatinput');
+        console.log('selected Proposition text:', $scope.selectedProposition.text);
 
 
         setTimeout(function() {
@@ -2492,7 +2490,6 @@
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
-        console.log('selected node: ', $scope.selectedNode);
         $scope.selectedProposition.dialogueSide = true;
 
         temp = {};
