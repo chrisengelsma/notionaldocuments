@@ -16,7 +16,7 @@
                      'alignright': remark.type === 'negation' && remark.text !== '- Paragraph deleted -',
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic')
                      }"
-          ng-click="selectThread(thread); selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false; clearExpandingClass(remark); "
+          ng-click="clearExpandingClass(remark); selectThread(thread); selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
           ng-mouseover="remark.mouseOver = true;"
           ng-mouseleave="remark.mouseOver = false;"
           style="cursor: pointer; margin-bottom: 7px;">
@@ -40,8 +40,7 @@
       ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition, selectedParagraph), inputs.chatProposition = '', 
       clearExpandingClass(remark), 
       inputs.remarkselected = false, 
-      selectedProposition.dialogueSide = false] 
-      : inputs.nothing"
+      selectedProposition.dialogueSide = false] : inputs.nothing"
       ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"
       spellcheck="false"
       style="height: 22px; font-size: 20px; width: 100%; color: black; margin-top: 10px">
