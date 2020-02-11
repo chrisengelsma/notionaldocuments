@@ -2486,7 +2486,7 @@
 
       $scope.clearLater = function(remarkId, threadId){
         $scope.toBeClearedLater = {
-          remarkId: $scope.selectProposition.id,
+          remarkId: $scope.selectedProposition.id,
           threadId: $scope.selectedThread.id
         }
       }
