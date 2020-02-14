@@ -258,7 +258,7 @@
                   
                   placeholder="textarea"
                   ng-model="inputs.proposition"
-                  ng-blur="paragraph.bottomAdd = false"
+                  ng-blur="[paragraph.bottomAdd = false, hasBottomFocus = '']"
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
                   spellcheck="false"
                   style="color: black; padding-left: 1px; padding-bottom: 5px;"
