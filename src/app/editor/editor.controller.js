@@ -2403,6 +2403,7 @@
       $scope.clearGoddamnTextarea = function (){
         $('#' + $scope.selectedRemark.id + $scope.selectedThread.threadId)
             .parent().hide();
+            console.log("Tried to run for ",$scope.selectedRemark.id,$scope.selectedThread.threadId)
       }
 
       $scope.selectPropositionById = function(id) {
