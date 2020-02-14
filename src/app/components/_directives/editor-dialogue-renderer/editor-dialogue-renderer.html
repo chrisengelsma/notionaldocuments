@@ -33,7 +33,7 @@
       title="{{ remark.id }}"
       ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
       ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide == false)"
-      ng-blur="clearExpandingClass(remark)"
+      ng-blur=""
       ng-model="inputs.chatProposition"
       class="expanding chatinput dialogueinput alignleft"
       id="{{remark.id}}{{thread.threadId}}"
