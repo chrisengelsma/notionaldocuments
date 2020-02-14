@@ -79,7 +79,6 @@
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
             ng-click="[selectedProposition.textSide = true,
-                      selectedProposition.dialogueSide = false,
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
@@ -187,7 +186,6 @@
                             mark.id = '',
                             highlight.id = '',
                             selectedProposition.textSide = true,
-                            selectedProposition.dialogueSide = false,
                             paragraph.topAdd = false,
                             paragraph.bottomAdd = false,
                             paragraph.leftAdd = false,
@@ -230,7 +228,7 @@
           <span class="cursor"
                 ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.leftAdd && !paragraph.disableRightCursor,
                            'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor}"
-                ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, selectedProposition.dialogueSide = false, paragraph.topAdd = false, paragraph.bottomAdd = false]"
+                ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false]"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
 
