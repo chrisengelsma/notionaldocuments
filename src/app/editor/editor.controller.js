@@ -2406,6 +2406,11 @@
             console.log("Tried to run for ",$scope.selectedRemark.id,$scope.selectedThread.threadId)
       }
 
+      $scope.dummyFunction = function (){
+        console.log("Ran the dummy function")
+      }
+
+
       $scope.selectPropositionById = function(id) {
 
 
