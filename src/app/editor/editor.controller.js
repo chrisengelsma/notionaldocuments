@@ -2500,7 +2500,7 @@
           $scope.toBeClearedLater.remarkId = remarkId;
           $scope.toBeClearedLater.threadId = threadId;
         }
-      }
+      
       }
 
 
