@@ -166,7 +166,8 @@
             ng-model='data'
             style=""
             id="bookdata"
-            class="angular-ui-tree-nodes">
+            class="angular-ui-tree-nodes"
+            ng-click="selectedProposition.dialogueSide = false; ">
 
           <li ng-repeat="node in data | orderBy: 'class'"
               ui-tree-node
@@ -174,7 +175,7 @@
               ng-mouseover="node.mouseOver = true;"
               ng-mouseleave="node.mouseOver = false;"
               class="angular-ui-tree-node node"
-              ng-click="selectNode(node); selectedProposition.dialogueSide = false; $event.stopPropagation();">
+              ng-click="selectNode(node); $event.stopPropagation();">
 
             <nd-editor-text-renderer></nd-editor-text-renderer>
 
