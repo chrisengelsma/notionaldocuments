@@ -627,7 +627,7 @@
       };
 
       $scope.clearWithBottomAdder = function(paragraph) {
-
+        console.log("Clears with bottom adder")
         paragraph.bottomAdd = true;
         $scope.hasBottomFocus = paragraph.paragraphId;
 
