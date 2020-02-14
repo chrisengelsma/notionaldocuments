@@ -2478,6 +2478,12 @@
           return;
         }
 
+        if(!$scope.toBeClearedLater.remarkId){
+          $scope.toBeClearedLater.remarkId = remark.id;
+          $scope.toBeClearedLater.threadId = $scope.selectedThrad.threadId;
+        }
+        
+
         // if ($scope.toBeClearedLater.remarkId){
           console.log('trying to hide ', '#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId);
           $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
