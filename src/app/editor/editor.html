@@ -55,7 +55,7 @@
 
         <button class="btn btn-dark"
                 ng-click="openProfileModal()">Email Goes Here
-        </button>
+        </button>{{selectedProposition.dialogueSide}}
         <button class="btn cog"
                 ng-click="openOptionsModal()">
           <i class="fa fa-cog"></i>
@@ -160,7 +160,7 @@
            data-drag-enabled="false"
            id="tree-root"
            class="angular-ui-tree textlist"
-           ng-click="!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing">
+           ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing, selectedProposition.dialogueSide = false]">
 
         <ol ui-tree-nodes
             ng-model='data'
