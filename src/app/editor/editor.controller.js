@@ -2477,11 +2477,18 @@
           console.log('No assertion path');
           return;
         }
-        console.log('trying to hide ', '#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId);
-        $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
-          .parent().hide();
-          console.log('hides')
+
+        if ($scope.toBeClearedLater.remarkId){
+          console.log('trying to hide ', '#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId);
+          $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
+            .parent().hide();
+          console.log('hides due to click away')
           $scope.toBeClearedLater = {};
+        } else {
+           $('#' + remark.id + $scope.selectedThread.threadId)
+            .parent().hide();
+          console.log("Hides due to outgoing proposition")
+        }
       };
 
       $scope.clearLater = function(remarkId, threadId){
