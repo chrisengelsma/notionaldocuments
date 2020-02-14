@@ -22,7 +22,7 @@
                   notyourspaddingtop: !first && paragraph.propositions[0].author !== userId,
                   notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}">
                  
-                 
+                 {{paragraph.paragraphId}}
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -271,7 +271,7 @@
          ng-mouseleave="paragraph.bottomMouseOver = false"
          ng-click="[clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
          
-         ng-if="(!$first || paragraph.propositions[0].type !== 'blank') && hasBottomFocus !== paragraph.paragraphId"
+         ng-if="(paragraph.propositions[0].type !== 'blank') && hasBottomFocus !== paragraph.paragraphId"
          
          
          >
