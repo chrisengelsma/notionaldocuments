@@ -2397,6 +2397,7 @@
           return;
         }
         $scope.selectedThread = thread;
+        console.log('Selecting thread ', thread.threadId)
       };
 
       $scope.selectPropositionById = function(id) {
@@ -2465,8 +2466,7 @@
             $(query).parent().show();
             $(query).expanding();
             $(query).focus();
-            console.log('Query has expanding class: ', $(query)
-              .expanding('active'));
+         
           });
         }, 10);
         temp = {};
