@@ -2400,6 +2400,11 @@
         console.log('Selecting thread ', thread.threadId)
       };
 
+      $scope.clearGoddamnTextarea = function (){
+        $('#' + $scope.selectedRemark.id + $scope.selectedThread.threadId)
+            .parent().hide();
+      }
+
       $scope.selectPropositionById = function(id) {
 
 
