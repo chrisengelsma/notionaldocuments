@@ -2492,10 +2492,15 @@
       };
 
       $scope.clearLater = function(remarkId, threadId){
-        $scope.toBeClearedLater = {
-          remarkId: $scope.selectedProposition.id,
-          threadId: $scope.selectedThread.threadId
+        if (remarkId !== $scope.selectedProposition.id && threadId !== $scope.selectedThread.threadId){
+          $scope.toBeClearedLater = {
+            remarkId: $scope.selectedProposition.id,
+            threadId: $scope.selectedThread.threadId
+        } else {
+          $scope.toBeClearedLater.remarkId = remarkId;
+          $scope.toBeClearedLater.threadId = threadId;
         }
+      }
       }
 
 
