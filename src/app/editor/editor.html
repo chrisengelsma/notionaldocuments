@@ -152,7 +152,7 @@
           </div> -->
 
     <div class="col-md-8"
-         ng-click="[(selectedThread.threadId) ? clearGoddamnTextarea() : inputs.nothing, selectedProposition.dialogueSide = false, selectedThread = {}]"
+         ng-click=""
          id="thetext">
 
 
@@ -160,7 +160,7 @@
            data-drag-enabled="false"
            id="tree-root"
            class="angular-ui-tree textlist"
-           ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing]">
+           ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing, selectedThread.threadId ? clearGoddamnTextarea() : inputs.nothing, selectedProposition.dialogueSide = false, selectedThread = {}]">
 
         <ol ui-tree-nodes
             ng-model='data'
