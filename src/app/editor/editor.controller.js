@@ -2480,7 +2480,7 @@
 
         if(!$scope.toBeClearedLater.remarkId){
           $scope.toBeClearedLater.remarkId = remark.id;
-          $scope.toBeClearedLater.threadId = $scope.selectedThrad.threadId;
+          $scope.toBeClearedLater.threadId = $scope.selectedThread.threadId;
         }
         
 
