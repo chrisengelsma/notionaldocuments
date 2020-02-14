@@ -2488,6 +2488,7 @@
           console.log('trying to hide ', '#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId);
           $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
             .parent().hide();
+            $scope.toBeClearedLater = {};
         //   console.log('hides due to click away or initial click')
         //   $scope.toBeClearedLater = {};
         // } else {
