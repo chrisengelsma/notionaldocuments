@@ -32,7 +32,7 @@
     <textarea
       title="{{ remark.id }}"
       ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
-      ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false)"
+      ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || !selectedProposition.dialogueSide)"
       ng-blur="clearExpandingClass(remark)"
       ng-model="inputs.chatProposition"
       class="expanding chatinput dialogueinput alignleft"

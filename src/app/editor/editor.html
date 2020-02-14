@@ -174,7 +174,7 @@
               ng-mouseover="node.mouseOver = true;"
               ng-mouseleave="node.mouseOver = false;"
               class="angular-ui-tree-node node"
-              ng-click="selectNode(node); $event.stopPropagation();">
+              ng-click="selectNode(node); selectedProposition.dialogueSide = false; $event.stopPropagation();">
 
             <nd-editor-text-renderer></nd-editor-text-renderer>
 
