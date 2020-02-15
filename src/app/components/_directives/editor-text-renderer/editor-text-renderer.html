@@ -229,9 +229,13 @@
             style="color: black; padding-left: 1px;"
             ng-blur="this.contentEditable = true; ">
               </span>
+
+              <!-- Need focus variables for left and right -->
+              
           <span class="cursor"
-                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor,
-                           'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor}"
+                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && !proposition.propositionPreSelected,
+                           'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor || (proposition.propositionPreSelected)}"
+
                 ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>

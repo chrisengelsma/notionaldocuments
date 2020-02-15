@@ -236,6 +236,8 @@
       $scope.dontrunfocusout = false;
       $scope.hasTopFocus = '';
       $scope.hasBottomFocus = '';
+      $scope.hasLeftFocus = '';
+      $scope.hasRightFocus = '';
       $scope.toBeClearedLater = {};
       var prep = {};
       var apply = {};
@@ -1771,6 +1773,7 @@
         paragraph.topMouseOver = false;
         paragraph.bottomAdd = false;
         paragraph.bottomMouseOver = false;
+        $scope.hasTopFocus = '';
       };
 
 
