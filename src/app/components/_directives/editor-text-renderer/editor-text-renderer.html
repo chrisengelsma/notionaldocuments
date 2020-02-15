@@ -27,8 +27,9 @@
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="$first && paragraph.propositions[0].type !== 'blank' && !paragraph.topAdd"
-         ng-click="[clearWithTopAdder(paragraph),
+         ng-if="$first && paragraph.propositions[0].type !== 'blank' && hasTopFocus != ''"
+         ng-click="[clearTopAndBottomHasFocus(),
+                    clearWithTopAdder(paragraph),
                    selectedParagraph.highlightAll = false,
                    selectedParagraph.markAll = false,
                    clearPropositionInput(),

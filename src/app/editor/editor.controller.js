@@ -615,12 +615,13 @@
       };
 
 
-      $scope.clearWithTopAdder = function() {
+      $scope.clearWithTopAdder = function(paragraph) {
 
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
 
         $scope.topAdderId = IdFactory.next();
+        $scope.hasTopFocus = paragraph.paragraphId;
 
 
         focusFactory($scope.topAdderId);
