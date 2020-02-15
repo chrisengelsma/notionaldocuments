@@ -79,7 +79,7 @@
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
             ng-click="[selectedProposition.textSide = true,
-                      hasBottomFocus = '',
+
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
@@ -176,7 +176,7 @@
                          paragraph.bottomAdd = false,
                          paragraph.leftAdd = false,
                          paragraph.disableRightCursor = true,
-                         hasBottomFocus = '',
+                         clearTopAndBottomHasFocus(),
                          listenForDoubleClick(this, paragraph, proposition),
                        ]
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||

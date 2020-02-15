@@ -234,6 +234,7 @@
       $scope.doubleClick = 0;
       $scope.whatHasBeenClicked = '';
       $scope.dontrunfocusout = false;
+      $scope.hasTopFocus = '';
       $scope.hasBottomFocus = '';
       $scope.toBeClearedLater = {};
       var prep = {};
@@ -2406,8 +2407,9 @@
             console.log("Tried to run for ",$scope.selectedRemark.id,$scope.selectedThread.threadId)
       }
 
-      $scope.dummyFunction = function (){
-        console.log("Ran the dummy function")
+      $scope.clearTopAndBottomFocus = function (){
+        $scope.hasTopFocus = '';
+        $scope.hasBottomFocus = '';
       }
 
 
