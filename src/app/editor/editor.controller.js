@@ -2407,7 +2407,7 @@
             console.log("Tried to run for ",$scope.selectedRemark.id,$scope.selectedThread.threadId)
       }
 
-      $scope.clearTopAndBottomFocus = function (){
+      $scope.clearTopAndBottomHasFocus = function (){
         $scope.hasTopFocus = '';
         $scope.hasBottomFocus = '';
       }
