@@ -231,7 +231,7 @@
           <span class="cursor"
                 ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor,
                            'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor}"
-                ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false]"
+                ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
 
