@@ -2495,7 +2495,7 @@
         
 
         // if ($scope.toBeClearedLater.remarkId){
-          
+          console.log("Clearing: ",v$scope.toBeClearedLater.remarkId, $scope.toBeClearedLater.threadId )
           $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
             .parent().hide();
             $scope.toBeClearedLater = {};
