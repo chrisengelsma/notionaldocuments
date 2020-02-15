@@ -229,7 +229,7 @@
             ng-blur="this.contentEditable = true; ">
               </span>
           <span class="cursor"
-                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.leftAdd && !paragraph.disableRightCursor,
+                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor,
                            'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor}"
                 ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false]"
                 event-focus="click"
