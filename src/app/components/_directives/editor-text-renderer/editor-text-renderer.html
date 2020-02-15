@@ -43,12 +43,12 @@
          event-focus-id="{{topAdderId}}">
     </div>
 
-    <div ng-if="paragraph.topAdd == true"
+    <div ng-if="hasTopFocus == paragraph.paragraphId"
          class="paragraph addparagraph">
       <div class="proposition">
       <!--   <span class="proposition-text"></span> -->
         <span 
-              ng-if="paragraph.topAdd"
+              ng-if="hasTopFocus == paragraph.paragraphId"
               class="cursor invisible-cursor"
               >
         </span>
