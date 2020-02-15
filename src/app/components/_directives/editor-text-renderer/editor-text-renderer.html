@@ -213,7 +213,8 @@
             class="right-text right-textarea"
             ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
             ng-class="{'negation': (selectedProposition.author !== userId && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation') || (selectedProposition.type === 'negation' && selectedProposition.author === userId)}"
-            ng-click=""
+            ng-click="paragraph.disableRightCursor = true"
+            ng-mouseover="paragraph.disableRightCursor = false"
             ng-model="inputs.proposition"
             ng-keyup="
                 $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, paragraph.disableRightCursor = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;
