@@ -2503,8 +2503,10 @@
           console.log("Clearing: ", remarkId, threadId)
           $('#' + remarkId + threadId).parent().hide();
           $scope.inputs.chatProposition = '';
-          $scope.selectThread($scope.toSetLater.thread)
-          $scope.selectPropositionById($scope.toSetLater.remarkId)
+          if (!$scope.selectedProposition.dialogueSide){
+            $scope.selectThread($scope.toSetLater.thread)
+            $scope.selectPropositionById($scope.toSetLater.remarkId)
+          }
 
         }, 10);
       }
