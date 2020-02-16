@@ -1772,6 +1772,9 @@
         paragraph.bottomAdd = false;
         paragraph.bottomMouseOver = false;
         $scope.hasTopFocus = '';
+        $scope.hasBottomFocus = '';
+        $scope.hasLeftFocus = '';
+        $scope.hasRightFocus = '';
       };
 
 
