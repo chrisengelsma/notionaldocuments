@@ -2443,8 +2443,8 @@
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
               if ($scope.selectedProposition.id) {
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding('destroy');
+                // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                //   .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
