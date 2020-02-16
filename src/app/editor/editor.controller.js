@@ -822,7 +822,7 @@
       $scope.deleteProposition = function() {
         // Don't delete if it ain't yours
         console.log('Deleting proposition')
-        if ($scope.selectedProposition.author !== $scope.userId) {
+        if ($scope.selectedProposition.author !== $scope.userId && $scope.selectedProposition.type !== 'blank') {
           return;
         }
 
