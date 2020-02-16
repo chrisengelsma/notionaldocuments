@@ -2486,9 +2486,11 @@
       };
 
       $scope.hideExpandingTextarea = function (remarkId, threadId) {
-        console.log("Clearing: ", remarkId, threadId)
-        $('#' + remarkId + threadId).parent().hide();
-        inputs.chatProposition = '';
+        setTimeout(function() {
+          console.log("Clearing: ", remarkId, threadId)
+          $('#' + remarkId + threadId).parent().hide();
+          $scope.inputs.chatProposition = '';
+        }, 10);
       }
 
       $scope.clearExpandingClass = function(remark) {
