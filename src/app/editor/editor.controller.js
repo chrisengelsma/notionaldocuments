@@ -239,6 +239,7 @@
       $scope.hasLeftFocus = '';
       $scope.hasRightFocus = '';
       $scope.toBeClearedLater = {};
+      $scope.toSetLater = {};
       var prep = {};
       var apply = {};
       var temp = {};
@@ -2481,9 +2482,21 @@
             $(query).focus();
          
           });
-        }, 1000);
+        }, 20);
         temp = {};
       };
+
+      $scope.saveForLater = function (remarkId, thread){
+        $scope.toSetLater = {
+          remarkId: remarkId,
+          thread: thread
+        }
+      }
+
+      $scope.showTextArea = function () {
+        $scope.selectThread($scope.toSetLater.thread)
+        $scope.selectPropositionById($scope.toSetLater.remarkId)
+      }
 
       $scope.hideExpandingTextarea = function (remarkId, threadId) {
         setTimeout(function() {
