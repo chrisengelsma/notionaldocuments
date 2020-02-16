@@ -16,7 +16,7 @@
                      'alignright': remark.type === 'negation' && remark.text !== '- Paragraph deleted -',
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic')
                      }"
-          ng-click="[clearLater(remark.id, thread.threadId), selectThread(thread), selectPropositionById(remark.id), selectNodeByClass(thread), selectedProposition.textSide = false, clearExpandingClass(remark)]"
+          ng-click="[selectThread(thread), clearLater(remark.id, thread.threadId), selectPropositionById(remark.id), selectNodeByClass(thread), selectedProposition.textSide = false, clearExpandingClass(remark)]"
           ng-mouseover="remark.mouseOver = true;"
           ng-mouseleave="remark.mouseOver = false;"
           style="cursor: pointer; margin-bottom: 7px;">
