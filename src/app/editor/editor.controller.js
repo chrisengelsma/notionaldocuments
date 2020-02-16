@@ -2485,6 +2485,12 @@
         temp = {};
       };
 
+      $scope.hideExpandingTextarea = function (remarkId, threadId) {
+        console.log("Clearing: ", remarkId, threadId)
+        $('#' + remarkId + threadId).parent().hide();
+        inputs.chatProposition = '';
+      }
+
       $scope.clearExpandingClass = function(remark) {
         if (!remark.assertionPath || !$scope.selectProposition) {
           console.log('No assertion path');
