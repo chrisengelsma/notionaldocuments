@@ -2483,7 +2483,7 @@
       };
 
       $scope.clearExpandingClass = function(remark) {
-        if (!remark.assertionPath || !$scope.selectedThread) {
+        if (!remark.assertionPath) {
           console.log('No assertion path');
           return;
         }
