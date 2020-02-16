@@ -2495,7 +2495,7 @@
 
       $scope.showTextArea = function () {
         $scope.selectThread($scope.toSetLater.thread)
-        $scope.selectPropositionById($scope.toSetLater.remarkId)
+        $scope.selectPropositionById($scope.toSetLater.remarkId) 
       }
 
       $scope.hideExpandingTextarea = function (remarkId, threadId) {
