@@ -2504,6 +2504,7 @@
           $('#' + remarkId + threadId).parent().hide();
           $scope.inputs.chatProposition = '';
           if (!$scope.selectedProposition.dialogueSide){
+            console.log('Not dialogue side')
             $scope.selectThread($scope.toSetLater.thread)
             $scope.selectPropositionById($scope.toSetLater.remarkId)
           }
