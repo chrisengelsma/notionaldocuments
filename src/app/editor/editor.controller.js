@@ -797,6 +797,9 @@
         // Might be causing duplication?
         var elem = document.getElementById('proposition' + proposition.id);
         elem.contentEditable = false;
+        $timeout( function(){
+          document.getElementById(elem).click(); 
+        },0)
 
         if (index >= 0 && elem) {
 
