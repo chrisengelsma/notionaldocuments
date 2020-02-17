@@ -796,6 +796,7 @@
         });
         // Might be causing duplication?
         var elem = document.getElementById('proposition' + proposition.id);
+        elem.contentEditable = false;
 
         if (index >= 0 && elem) {
 
