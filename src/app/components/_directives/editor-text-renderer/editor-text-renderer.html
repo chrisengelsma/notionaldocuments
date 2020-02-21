@@ -74,7 +74,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-click="!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing">
+          ng-click="!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
             ng-mouseover="proposition.preSelected = true;"
@@ -233,8 +233,8 @@
               <!-- Need focus variables for left and right -->
               
           <span class="cursor"
-                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && !proposition.propositionPreSelected,
-                           'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor || (proposition.propositionPreSelected)}"
+                ng-class="{'visible-cursor': proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor ,
+                           'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor}"
 
                 ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
                 event-focus="click"

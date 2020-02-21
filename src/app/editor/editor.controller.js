@@ -2768,6 +2768,22 @@
           });
           $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].deleted = true;
         }
+
+
+        //loop has to go through the entire dialogue, mark the correct remarks
+        // as deleted, as well as any direct negations of them
+        // dialogue renderer will make these non-clickable
+        for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
+          if ($scope.data[0].dialogue[i].remarks[0].assertionId === payload.proposition.assertionId &&
+            $scope.data[0].dialogue[i].remarks.length > 1 &&
+            $scope.data[0].dialogue[i].remarks[$scope.data[0].dialogue[i].remarks.length - 1].remarkAddress ===
+            $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[$scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks.length - 2].remarkAddress) {
+            $scope.data[0].dialogue[i].hidden = true;
+          }
+
+        }
+
+
         callback();
       };
     }; // end mainLoop
