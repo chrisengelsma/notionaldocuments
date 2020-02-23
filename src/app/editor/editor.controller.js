@@ -261,9 +261,11 @@
         $scope.data[0].dialogue = [];
       }
 
-      $scope.selectBlank = function () {
+      $scope.selectBlank = function (node) {
         
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
+        $scope.selectedNode = node;
+        $scope.selectedParagraph = $scope.data[0].paragraphs[0];
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout( function(){
           document.getElementById('proposition' + id).click();
@@ -1845,7 +1847,7 @@
         $scope.hasLeftFocus = '';
         $scope.hasRightFocus = '';
 
-        
+
       };
 
 
