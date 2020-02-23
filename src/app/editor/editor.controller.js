@@ -2837,7 +2837,7 @@
         // dialogue renderer will make these non-clickable
         for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
           for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
-            if (($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id &&  
+            if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id &&  
               $scope.data[0].dialogue[i].remarks[$scope.data[0].dialogue[i].remarks.length - 1].remarkAddress ===
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[$scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks.length - 2].remarkAddress) {
               $scope.data[0].dialogue[i].hidden = true;
