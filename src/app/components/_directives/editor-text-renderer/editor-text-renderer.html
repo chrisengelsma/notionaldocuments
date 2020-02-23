@@ -175,6 +175,7 @@
                     (proposition.author === userId && proposition.type !== 'negation' &&
                      whatHasBeenClicked !== proposition.id)
                     ?  [ 
+                         selectNode(node),
                          selectParagraph(paragraph),
                          selectedParagraph = paragraph,
                          paragraph.topAdd = false,
@@ -188,6 +189,7 @@
                         (proposition.type === 'negation' && proposition.of.author === userId)
                        )
                           ? [
+                            selectNode(node),
                             selectParagraph(paragraph),
                             selectProposition(proposition),
                             selectedParagraph.highlightAll = false,
