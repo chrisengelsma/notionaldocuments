@@ -2805,18 +2805,18 @@
 
       var updateDialogue = function(payload, callback) {
         if (payload.blanksParagraphForDeleter && payload.hidesOthersProp && $scope.userId === payload.deleter) {
-          $scope.data[0].dialogue.push({
-            class: payload.class,
-            topic: payload.topic,
-            address: payload.address,
-            nodePath: (payload.nodePath ? payload.nodePath : undefined),
-            oldNodePath: (payload.oldNodePath ? payload.oldNodePath : undefined),
-            paragraphPosition: payload.paragraphPosition,
-            question: (payload.question ? payload.question : undefined),
-            threadId: $scope.scroll.threadId,
-            remarks: [payload.proposition]
-          });
-          $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].text = '- Paragraph deleted -';
+          // $scope.data[0].dialogue.push({
+          //   class: payload.class,
+          //   topic: payload.topic,
+          //   address: payload.address,
+          //   nodePath: (payload.nodePath ? payload.nodePath : undefined),
+          //   oldNodePath: (payload.oldNodePath ? payload.oldNodePath : undefined),
+          //   paragraphPosition: payload.paragraphPosition,
+          //   question: (payload.question ? payload.question : undefined),
+          //   threadId: $scope.scroll.threadId,
+          //   remarks: [payload.proposition]
+          // });
+          // $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].text = '- Paragraph deleted -';
         } else {
           $scope.data[0].dialogue.push({
             class: payload.class,
