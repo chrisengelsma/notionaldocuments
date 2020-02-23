@@ -684,9 +684,9 @@
 
 
       $scope.deleteAllPropositions = function() {
-        if ($scope.selectedParagraph.author !== $scope.userId) {
-          return;
-        }
+        // if ($scope.selectedParagraph.author !== $scope.userId) {
+        //   return;
+        // }
 
         $scope.selectedParagraph.markAll = false;
         $scope.selectedParagraph.highlightAll = false;
