@@ -56,6 +56,7 @@
         </span>
         <span
           editable-span-ng-model
+          ng-class="notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)"
           contenteditable="true"
           id="{{topAdderId}}"
           title="{{paragraph.topAdderId}}"
@@ -263,6 +264,7 @@
         <span class="cursor invisible-cursor">
         </span>
         <span 
+                  ng-class="notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)"
                   editable-span-ng-model
                   contenteditable="true"
                   id="{{paragraph.paragraphId}}"
