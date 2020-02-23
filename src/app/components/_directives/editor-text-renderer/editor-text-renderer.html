@@ -43,7 +43,8 @@
     </div>
 
     <div ng-if="hasTopFocus == paragraph.paragraphId"
-         class="paragraph addparagraph">
+         class="paragraph addparagraph"
+         ng-class="notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)">
       <div class="proposition">
       <!--   <span class="proposition-text"></span> -->
 <!--         <span 
@@ -248,7 +249,7 @@
     </div>
     <div ng-if="paragraph.bottomAdd == true && hasBottomFocus == paragraph.paragraphId"
          class="paragraph addparagraph"
-
+         ng-class="notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)"
          style="padding-top: 5px;">
       <div class="proposition">
 <!--         <span class="proposition-text">
