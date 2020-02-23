@@ -702,6 +702,18 @@
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
           }
         }
+
+
+        prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position + ']'
+        prep.paragraphDestination = eval(prep.paragraphPath)
+
+        var ids = [];
+
+        for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
+          ids.push(prep.paragraphDestination.propositions[i].id);
+        }
+
+
         prep.hidesOthersProp = true;
         prep.blanksParagraphForDeleter = true;
 
@@ -714,6 +726,7 @@
           proposition: $scope.selectedProposition,
           author: $scope.selectedProposition.author,
           id: $scope.selectedProposition.id,
+          ids: ids,
           blanksParagraphForDeleter: (prep.blanksParagraphForDeleter ? prep.blanksParagraphForDeleter : undefined),
           blanksPropositionForEveryone: (prep.blanksPropositionForEveryone ? prep.blanksPropositionForEveryone : undefined),
           complicatedDeletion: (prep.complicatedDeletion ? prep.complicatedDeletion : undefined),
@@ -728,6 +741,7 @@
 
         chatSocket.emit('deletion', $scope.userId, prep.payload);
         prep = {};
+        ids = [];
 
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
@@ -849,7 +863,7 @@
         }
 
         // If one proposition to remain is found not of user's authoring, can just hide the proposition
-        // as something that just won't be engaged with
+        // as something that won't be engaged with
         if ($scope.selectedProposition.author !== $scope.userId && $scope.selectedProposition.type !== 'blank') {
           prep.hidesOthersProp = true;
           prep.blanksParagraphForDeleter = true;
@@ -880,6 +894,8 @@
           proposition: $scope.selectedProposition,
           author: $scope.selectedProposition.author,
           id: $scope.selectedProposition.id,
+          paragraphId: $scope.selectedParagraph.paragraphId,
+          selectedParagraphId: $scope.selectedParagraph.paragraphId,
           blanksParagraphForDeleter: (prep.blanksParagraphForDeleter ? prep.blanksParagraphForDeleter : undefined),
           hidesBlankParagraph: (prep.hidesBlankParagraph ? prep.hidesBlankParagraph : undefined),
           blanksPropositionForEveryone: (prep.blanksPropositionForEveryone ? prep.blanksPropositionForEveryone : undefined),
@@ -940,13 +956,27 @@
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
             }
-            apply.paragraphDestination.propositions[0] = {                                                 //   PUT IN A NEW BLANK PARAGRAPH AFTER
+
+            apply.paragraphDestination.propositions[0] = {                                    
               id: payload.blankId,
               type: 'blank',
               text: '',
               position: 0,
               isPlaceholder: true
             };
+
+            for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
+              for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
+                for (var k = 0; k < payload.ids.length; k++){
+
+                  if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
+                    $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden'
+                  }
+                }
+              }
+            }
+
+
             $scope.selectedParagraph = apply.paragraphDestination;
             $scope.selectedProposition = apply.paragraphDestination.propositions[0];
             $scope.selectedProposition.textSide = true;
@@ -960,7 +990,9 @@
                 $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
               }
             }
-            apply.paragraphDestination.propositions[0] = {                                                 //   PUT IN A NEW BLANK PARAGRAPH AFTER
+
+            // Insert new blank paragraph for something to grab onto
+            apply.paragraphDestination.propositions[0] = {                                       
               id: payload.blankId,
               type: 'blank',
               text: '',
@@ -1001,6 +1033,22 @@
 
         if (payload.blanksPropositionForEveryone) {
           apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
+
+
+          //disables dialogue interactivity for affected remarks
+          for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
+            for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
+              if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id) {
+                $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
+              }
+              if ($scope.data[0].dialogue[i].remarks[j+1] && $scope.data[0].dialogue[i].remarks[j+1].type === 'negation'){
+                $scope.data[0].dialogue[i].remarks[j+1][$scope.userId] = 'hidden';
+              
+              }
+            }
+          }
+
+
           if (payload.deleter === $scope.userId) {
             for (var i = payload.proposition.position; i > -1; i--) {
               if (apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden') {
@@ -1053,6 +1101,19 @@
             focusFactory($scope.selectedProposition.id);
             $($scope.selectedProposition.id).trigger('click');
           }
+
+          for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
+            for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
+              if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id) {
+                $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
+              }
+              if ($scope.data[0].dialogue[i].remarks[j+1] && $scope.data[0].dialogue[i].remarks[j+1].type === 'negation'){
+                $scope.data[0].dialogue[i].remarks[j+1][$scope.userId] = 'hidden';
+              
+              }
+            }
+          }
+
         }
 
 
@@ -1729,6 +1790,7 @@
           oldNodePath: (prep.oldNodePath ? prep.oldNodePath : undefined),                          //    COMPOSITION OF THE PAYLOAD
           question: (prep.question ? prep.question : undefined),
           paragraphId: IdFactory.next(),
+          selectedParagraphId: $scope.selectedParagraph.paragraphId,
           proposition: {
             id: IdFactory.next(),
             question: (prep.question ? prep.question : undefined),
@@ -2774,13 +2836,13 @@
         // as deleted, as well as any direct negations of them
         // dialogue renderer will make these non-clickable
         for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
-          if ($scope.data[0].dialogue[i].remarks[0].assertionId === payload.proposition.assertionId &&
-            $scope.data[0].dialogue[i].remarks.length > 1 &&
-            $scope.data[0].dialogue[i].remarks[$scope.data[0].dialogue[i].remarks.length - 1].remarkAddress ===
-            $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[$scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks.length - 2].remarkAddress) {
-            $scope.data[0].dialogue[i].hidden = true;
+          for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
+            if (($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id &&  
+              $scope.data[0].dialogue[i].remarks[$scope.data[0].dialogue[i].remarks.length - 1].remarkAddress ===
+              $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[$scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks.length - 2].remarkAddress) {
+              $scope.data[0].dialogue[i].hidden = true;
+            }
           }
-
         }
 
 
