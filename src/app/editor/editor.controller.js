@@ -1829,7 +1829,7 @@
 
         $scope.inputs.proposition = '';
         $scope.inputs.chatProposition = '';                                             //      CLEARS THINGS AND EMITS THE PAYLOAD
-        // chatSocket.emit('proposition', $scope.userId, prep.payload);
+        chatSocket.emit('proposition', $scope.userId, prep.payload);
         console.log('Payload:', prep.payload);
         prep = {};
 
