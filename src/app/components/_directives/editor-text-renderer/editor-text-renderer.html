@@ -173,6 +173,7 @@
                     (proposition.author === userId && proposition.type !== 'negation' &&
                      whatHasBeenClicked !== proposition.id)
                     ?  [ 
+                         selectedParagraph = paragraph,
                          paragraph.topAdd = false,
                          paragraph.bottomAdd = false,
                          paragraph.leftAdd = false,
@@ -183,7 +184,9 @@
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId) ||
                         (proposition.type === 'negation' && proposition.of.author === userId)
                        )
-                          ? [selectProposition(proposition),
+                          ? [
+                            selectedParagraph = paragraph,
+                            selectProposition(proposition),
                             selectedParagraph.highlightAll = false,
                             selectedParagraph.markAll = false,
                             mark.id = '',
