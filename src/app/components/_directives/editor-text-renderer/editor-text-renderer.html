@@ -28,7 +28,9 @@
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
          ng-if="$first && paragraph.propositions[0].type !== 'blank' && hasTopFocus != paragraph.paragraphId"
-         ng-click="[clearTopAndBottomHasFocus(),
+         ng-click="[selectParagraph(paragraph),
+                    selectNode(node),
+                    clearTopAndBottomHasFocus(),
                     clearWithTopAdder(paragraph),
                    selectedParagraph.highlightAll = false,
                    selectedParagraph.markAll = false,
@@ -287,7 +289,8 @@
          ng-class="{'blackline': paragraph.bottomMouseOver === true}"
          ng-mouseover="paragraph.bottomMouseOver = true; paragraph.topMouseOver = false"
          ng-mouseleave="paragraph.bottomMouseOver = false"
-         ng-click="[clearTopAndBottomHasFocus(), clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
+         ng-click="[selectParagraph(paragraph),
+                    selectNode(node), clearTopAndBottomHasFocus(), clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
          
          ng-if="(paragraph.propositions[0].type !== 'blank') && hasBottomFocus !== paragraph.paragraphId"
          
