@@ -1,7 +1,12 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     ngEnter
+   * @ngInject
+   */
   function ngEnter() {
     return function(scope, element, attrs) {
       element.bind('keydown keypress', function(event) {

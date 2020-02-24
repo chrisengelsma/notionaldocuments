@@ -1,7 +1,12 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     equal
+   * @ngInject
+   */
   function equal() {
     return {
       require: 'ngModel',

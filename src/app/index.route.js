@@ -62,8 +62,7 @@
               }).catch(function(error) {
                 console.error(error);
               });
-            },
-
+            }
           }
         })
         .state('main.editor', {

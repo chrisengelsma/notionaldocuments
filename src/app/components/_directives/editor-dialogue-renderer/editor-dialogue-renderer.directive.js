@@ -1,12 +1,24 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     EditorDialogueRendererController
+   * @description
+   *    Implementation for the editor dialog renderer controller.
+   * @ngInject
+   */
   function EditorDialogueRendererController() {
-
   }
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     ndEditorDialogueRenderer
+   * @description
+   *    Renders editor dialogue.
+   * @ngInject */
   function ndEditorDialogueRenderer() {
     return {
       restrict: 'E',

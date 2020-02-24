@@ -1,11 +1,13 @@
 {
   "name": "notional-documents",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Server and build package for Notional Documents",
   "license": "Apache2",
   "private": true,
   "scripts": {
     "test": "gulp test",
+    "build": "gulp build",
+    "build:docs": "documentation build src/** -f html -o docs",
     "postinstall": "bower install"
   },
   "dependencies": {
@@ -34,6 +36,7 @@
     "gulp-rev-replace": "~0.4.2",
     "gulp-sass": "~3.1.0",
     "gulp-size": "~2.0.0",
+    "gulp-shell": "~0.8.0",
     "gulp-sourcemaps": "~1.6.0",
     "gulp-uglify": "^3.0.2",
     "gulp-useref": "^4.0.0",
@@ -69,5 +72,9 @@
   },
   "engines": {
     "node": "10.15.3"
+  },
+  "devDependencies": {
+    "angular-jsdoc": "^1.5.1",
+    "jsdoc": "^3.6.3"
   }
 }

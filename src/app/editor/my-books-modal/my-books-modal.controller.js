@@ -1,18 +1,34 @@
 (function () {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     MyBooksModalController
+   * @param    {service} $uibModalInstance           AngularJS Bootstrap modal instance
+   * @param    {ndApp.ProfileService} profileService Profile service provider
+   * @param    {ndApp.LibraryService} libraryService Library service provider
+   * @ngInject
+   */
   function MyBooksModalController($uibModalInstance, profileService, libraryService) {
     var vm = this;
 
     vm.books = libraryService.getBooks(profileService.getBookIds());
     vm.profile = profileService.getProfile();
 
-    vm.selectBook = function(uid) {
-      $uibModalInstance.close(uid);
+    /**
+     * Selects a book and closes this modal.
+     * @memberOf MyBooksModalController
+     * @param    {string} bookId a book id
+     */
+    vm.selectBook = function(bookId) {
+      $uibModalInstance.close(bookId);
     };
 
-    vm.dismiss = function() {
+    /**
+     * Closes this modal.
+     */
+    vm.cancel = function() {
       $uibModalInstance.dismiss();
     };
 

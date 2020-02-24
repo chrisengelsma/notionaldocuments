@@ -1,7 +1,11 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @ngInject
+   */
   function chatBoxDirective() {
     return {
       restrict: 'E',

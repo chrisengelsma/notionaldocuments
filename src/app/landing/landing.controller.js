@@ -1,8 +1,17 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
-  function LandingController($uibModal, $uibModalStack, $state, $log, $document, $rootScope) {
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     LandingController
+   * @param    {service} $uibModal angular bootstrap modal
+   * @param    {service} $uibModalStack angular bootstrap modal stack
+   * @param    {service} $state ui-router state provider
+   * @param    {service} $rootScope angular root scope
+   * @ngInject
+   */
+  function LandingController($uibModal, $uibModalStack, $state, $rootScope) {
 
     if ($rootScope.$$listenerCount.openRegisterModal === undefined) {
       $rootScope.$on('openRegisterModal', function() {

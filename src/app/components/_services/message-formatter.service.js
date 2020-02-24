@@ -1,7 +1,12 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    value
+   * @name     messageFormatter
+   * @ngInject
+   */
   function messageFormatter(date, nick, message) {
     return date.toLocaleTimeString() + ' - ' +
       nick + ' - ' +

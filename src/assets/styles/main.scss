@@ -41,7 +41,7 @@ a:hover {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: lightgray;
+  //background: lightgray;
   border-radius: 10px;
 }
 
@@ -70,21 +70,21 @@ a:hover {
   filter: blur(6px);
   pointer-events: none;
 }
-
-.dialogueblurrermouseover {
-  background-color: grey;
-  cursor: pointer;
-}
-
-.notyourparagraph {
-  background-color: #d0d0d0;
-}
+//
+//.dialogueblurrermouseover {
+//  background-color: grey;
+//  cursor: pointer;
+//}
+//
+//.notyourparagraph {
+//  background-color: #d0d0d0;
+//}
 
 
 /* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
+//.header {
+//  border-bottom: 1px solid #e5e5e5;
+//}
 
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -97,8 +97,8 @@ a:hover {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+  //color: #777;
+  //border-top: 1px solid #e5e5e5;
 }
 
 #sendbutton {
@@ -107,8 +107,8 @@ a:hover {
 }
 
 code {
-  background-color: #282828;
-  color: white;
+  //background-color: #282828;
+  //color: white;
 }
 
 .dialogue {
@@ -138,7 +138,7 @@ font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetic
 }
 
 input, select, textarea {
-  color: white;
+  //color: white;
 }
 
 input {
@@ -152,9 +152,10 @@ input {
 }
 
 .app-title {
+  //color: #212121;
   font-size: 2.25em;
-  color: #212121;
-  margin-bottom: 5px;
+  font-size: 3.0vw;
+  max-font-size: 2.25em;
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -183,7 +184,7 @@ input {
 
 .addparagraph {
   text-indent: 24px;
-  background-color: white;
+  //background-color: white;
   min-height: 20px;
   padding-left: 20px;
 }
@@ -193,7 +194,7 @@ input {
 }
 
 .negation {
-  border-bottom: 1px solid #212121 !important;
+  //border-bottom: 1px solid #212121 !important;
 }
 
 .nocursor {
@@ -216,7 +217,7 @@ input {
 }
 
 .ghostspan {
-  color: #d0d0d0;
+  //color: #d0d0d0;
   padding: 2px;
 }
 
@@ -242,7 +243,7 @@ input {
 }
 
 .right-textarea {
-  color: black !important;
+  //color: black !important;
   border: none !important;
   border-image-width: 0;
   font-size: 20px; /*18px*/
@@ -260,7 +261,7 @@ input {
 
 
 .cursor.blinking-cursor {
-  color: #212121 !important;
+  //color: #212121 !important;
   -webkit-animation: 1s blink step-end infinite; /*1s*/
   -moz-animation: 1s blink step-end infinite;
   -o-animation: 1s blink step-end infinite;
@@ -313,12 +314,12 @@ input {
 }
 
 .cursor.solid-cursor {
-  color: #212121 !important;
+  //color: #212121 !important;
 }
 
 
 .cursor {
-  color: #212121 !important;
+  //color: #212121 !important;
 
   &::after {
     content: "|";
@@ -342,7 +343,7 @@ input {
 
 .chat-input-field {
 
-  background-color: white;
+  //background-color: white;
   font-size: 18px;
 }
 
@@ -352,11 +353,11 @@ input {
 }
 
 .highlight {
-  background-color: #545454;
+  //background-color: #545454;
 }
 
 .mark {
-  color: white;
+  //color: white;
 }
 
 .nodetitle {
@@ -382,7 +383,7 @@ input {
 }
 
 .topichovered {
-  color: #0b58a2;
+  //color: #0b58a2;
 }
 
 .dialoguelist {
@@ -408,8 +409,8 @@ input {
   list-style: none;
   padding-left: 0;
   margin-top: 10px;
-  border-top: 1px solid white;
-  border-bottom: 1px solid #212121;
+  //border-top: 1px solid white;
+  //border-bottom: 1px solid #212121;
   /*  min-height: 50rem;
     max-height: 50rem;*/
   font-family: "Times New Roman", Times, serif;
@@ -418,7 +419,7 @@ input {
   overflow-x: hidden;
   min-height: 82.5vh;
   max-height: 82.5vh;
-  border-right: 1px solid #c9c9c9;
+  //border-right: 1px solid #c9c9c9;
   cursor: text;
 }
 
@@ -428,8 +429,8 @@ input {
 
 .thread {
   border-top-left-radius: 5px;
-  border: 1px solid #aaaaaa;
-  background-color: #fafafa;
+  //border: 1px solid #aaaaaa;
+  //background-color: #fafafa;
   padding: 0;
   margin: 10px;
 }
@@ -443,7 +444,7 @@ input {
 
 
 .paragraphplaceholder {
-  color: #dbdbdb;
+  //color: #dbdbdb;
   cursor: text;
   height: 26px;
 }
@@ -472,7 +473,7 @@ input {
   padding-left: 10px;
   text-align: center;
   cursor: pointer;
-  border-bottom: 1px solid #aaaaaa;
+  //border-bottom: 1px solid #aaaaaa;
 }
 
 .remark {
@@ -506,14 +507,14 @@ input {
 }
 
 #firstrow {
-  border-bottom: 1px solid black;
+  //border-bottom: 1px solid black;
   padding-bottom: 5px;
   padding-top: 5px;
 }
 
 .paragraphbackdrop {
-  background: #e2e2e2 !important;
-  border: 1px solid white !important;
+  //background: #e2e2e2 !important;
+  //border: 1px solid white !important;
 }
 
 .chatinputappear {
@@ -536,8 +537,8 @@ input {
 }
 
 .node circle {
-  fill: #fff;
-  stroke: rgb(31, 137, 195);
+  //fill: #fff;
+  //stroke: rgb(31, 137, 195);
   stroke-width: 3px;
 }
 
@@ -548,7 +549,7 @@ input {
 
 .link {
   fill: none;
-  stroke: #ccc;
+  //stroke: #ccc;
   stroke-width: 8px;
 }
 
@@ -559,7 +560,7 @@ input {
 }
 
 .library {
-  border-top: 1px solid white;
+  //border-top: 1px solid white;
   /*padding: 5px;*/
   cursor: pointer;
 }
@@ -637,7 +638,7 @@ nav.nav {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  //background-color: rgba(0, 0, 0, 0.9);
   overflow-y: hidden;
   transition: 0.5s;
   cursor: pointer;
@@ -647,7 +648,7 @@ nav.nav {
 .overlay-content {
 
   width: 100%;
-  color: white;
+  //color: white;
   margin-top: 30px;
   font-size: 24px;
 }
@@ -656,13 +657,13 @@ nav.nav {
   padding: 8px;
   text-decoration: none;
   font-size: 36px;
-  color: white;
+  //color: white;
   display: block;
   transition: 0.3s;
 }
 
 .overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+  //color: #f1f1f1;
 }
 
 .overlay .closebtn {
@@ -701,18 +702,22 @@ nav.nav {
 }
 
 .signout:hover {
-  background-color: #c82333;
+  //background-color: #c82333;
   border: 1px solid transparent;
 }
 
 .help:hover {
-  background-color: #28a745;
+  //background-color: #28a745;
   border: 1px solid transparent;
 }
 
 .cog:hover {
-  background-color: white;
+  //background-color: white;
   border: 1px solid transparent;
+}
+
+*:focus {
+  outline: 0 !important;
 }
 
 .topparagraphadder {
@@ -732,7 +737,7 @@ nav.nav {
 }
 
 .blackline {
-  background-color: #a9a9a9;
+  //background-color: #a9a9a9;
 }
 
 .leftpropositionadder {

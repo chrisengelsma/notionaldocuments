@@ -11,6 +11,10 @@
   "undef": true,
   "unused": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "moment": false,
+    "firebase": false,
+    "$": false,
+    "d3": false
   }
 }

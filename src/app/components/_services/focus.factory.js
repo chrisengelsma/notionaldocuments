@@ -1,8 +1,16 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    service
+   * @name     focusFactory
+   * @param    {service} $timeout AngularJS wrapper for <code>window.setTimeout</code>
+   * @param    {service} $window  AngularJS wrapper for <code>window</code>
+   * @ngInject
+   */
   function focusFactory($timeout, $window) {
+
     return function(id) {
       // timeout makes sure that is invoked after any other event has been triggered.
       // e.g. click events that need to run before the focus or

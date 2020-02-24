@@ -1,12 +1,26 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     EditorTextRendererController
+   * @description
+   *    Implementation for the editor text renderer controller.
+   * @ngInject
+   */
   function EditorTextRendererController() {
 
   }
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     ndEditorTextRenderer
+   * @description
+   *    Renders editor text component.
+   * @ngInject
+   */
   function ndEditorTextRenderer() {
     return {
       restrict: 'E',

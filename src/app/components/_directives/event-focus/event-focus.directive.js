@@ -1,7 +1,12 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     eventFocus
+   * @ngInject
+   */
   function eventFocus() {
     return function(scope, elem, attr) {
       elem.on(attr.eventFocus, function() {

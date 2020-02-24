@@ -1,35 +1,54 @@
 $backgroundColor: #ffffff;
 $textColor: #212121;
-//$primaryColor: #448aff;
-$primaryColor: #ff0000;
+$primaryColor: #448aff;
+//$primaryColor: #ff0000;
 
 html, body, body.ng-scope .light-theme {
 
-  background-color: $backgroundColor;
-  color: $textColor;
+  background-color: $backgroundColor !important;
+  color: $textColor !important;
+
+
+  input, select, textarea {
+    color: $backgroundColor !important;
+  }
 
   .cog:hover {
-    background-color: white;
+    background-color: white !important;
+  }
+
+  .footer {
+    color: #777 !important;
+    border-top: 1px solid #e5e5e5 !important;
+  }
+
+  code {
+    background-color: $textColor !important;
+    color: $backgroundColor !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: lightgray !important;
   }
 
   .help:hover {
-    background-color: #28a745;
+    background-color: #28a745 !important;
   }
 
   .signout:hover {
-    background-color: #c82333;
+    background-color: #c82333 !important;
   }
 
   .overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
+    color: #f1f1f1 !important;
   }
 
   .overlay {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.9) !important;
   }
 
   .link {
-    stroke: #ccc;
+    stroke: #ccc !important;
   }
 
   .paragraphbackdrop {
@@ -39,29 +58,33 @@ html, body, body.ng-scope .light-theme {
 
 
   #firstrow {
-    border-bottom: 1px solid $textColor;
+    border-bottom: 1px solid $textColor !important;
   }
 
   .overlay-content {
-    color: white;
+    color: white !important;
   }
 
   .form-control {
-    color: $textColor;
+    color: $textColor !important;
+  }
+
+  .library {
+    border-top: 1px solid white !important;
   }
 
   .paragraphplaceholder {
-    color: #dbdbdb;
+    color: #dbdbdb !important;
   }
 
   .textlist {
-    border-top: 1px solid $backgroundColor;
-    border-bottom: 1px solid $textColor;
-    border-right: 1px solid #c9c9c9;
+    border-top: 1px solid $backgroundColor !important;
+    border-bottom: 1px solid $textColor !important;
+    border-right: 1px solid #c9c9c9 !important;
   }
 
   .chat-input-field {
-    background-color: $backgroundColor;
+    background-color: $backgroundColor !important;
   }
 
 
@@ -74,7 +97,7 @@ html, body, body.ng-scope .light-theme {
   }
 
   .ghostspan {
-    color: #d0d0d0;
+    color: #d0d0d0 !important;
   }
 
   .negation {
@@ -82,41 +105,41 @@ html, body, body.ng-scope .light-theme {
   }
 
   .addparagraph {
-    background-color: $backgroundColor;
+    background-color: $backgroundColor !important;
   }
 
   .highlight {
-    background-color: #545454;
+    background-color: #545454 !important;
   }
 
   .mark {
-    color: $textColor;
+    color: $textColor !important;
   }
 
   .topichovered {
-    color: $primaryColor;
+    color: $primaryColor !important;
   }
 
   .thread {
-    border: 1px solid #aaaaaa;
-    background-color: #fafafa;
+    border: 1px solid #aaaaaa !important;
+    background-color: #fafafa !important;
   }
 
   .dialoguetopic {
-    border-bottom: 1px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa !important;
   }
 
   .thread:hover > .tree-node.tree-node-content.dialoguetopic {
     background-color: $primaryColor !important;
-    color: $backgroundColor;
+    color: $backgroundColor !important;
   }
 
   .thread:hover > p.ng-scope {
-    background-color: $backgroundColor;
+    background-color: $backgroundColor !important;
   }
 
   .thread:hover {
-    background-color: $backgroundColor;
+    background-color: $backgroundColor !important;
   }
 
   form input::-webkit-input-placeholder {
@@ -124,33 +147,24 @@ html, body, body.ng-scope .light-theme {
   }
 
   .thread:hover > p {
-    background-color: $backgroundColor;
+    background-color: $backgroundColor !important;
   }
 
   .thread:hover {
-    background-color: $backgroundColor;
+    background-color: $backgroundColor !important;
   }
 
   nav.nav {
-    background-color: #d9cec1;
-  }
-
-  h2.typewriter {
-    font-family: "Times New Roman", serif;
-    text-align: center;
+    background-color: #d9cec1 !important;
   }
 
   .cursor {
-    color: $textColor;
+    color: $textColor !important;
   }
 
   .notowned {
-    color: #AAA;
+    color: #AAA !important;
   }
 
-  .owned {
-    //background-color: #212121;
-    //color: white;
-  }
 
 }

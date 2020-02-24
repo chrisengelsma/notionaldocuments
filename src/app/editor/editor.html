@@ -1,134 +1,101 @@
 <nd-readonly-shield ng-if="!loggedIn()"></nd-readonly-shield>
 
-<div class="container "
+<div class="container"
      ng-init="initialize">
-  <div class="row"
-       id="firstrow">
-    <span class="app-title"
-          ng-click="clearWithAdder()"> {{ title ? title : ''}} </span>
 
-    <div id="myNav"
-         class="overlay"
-         ng-click="closeNav()">
-      <!-- <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a> -->
-      <div class="overlay-content">
-        <a href="javascript:void(0)"
-           ng-click="closeNav()">Click, type, and enter with a . to send out a sentence as a message, and also place the
-                                 sentence into the common document.</a>
+  <div id="myNav"
+       class="overlay"
+       ng-click="closeNav()">
+    <!-- <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a> -->
+    <div class="overlay-content">
+      <a href="javascript:void(0)"
+         ng-click="closeNav()">Click, type, and enter with a . to send out a sentence as a message, and also place
+        the
+        sentence into the common document.</a>
 
-        <a href="javascript:void(0)"
-           ng-click="closeNav()">Click, type, and enter with a ! to send out a remark upon an incoming sentence, or to
-                                 dispel another's remark on one of your sentences. Remarking on a sentence will
-                                 underline it before it is sent out, marking up the sentence and becoming part of a
-                                 message thread. Dispelling a remark adds to the thread, and replaces the remark in the
-                                 document.</a>
+      <a href="javascript:void(0)"
+         ng-click="closeNav()">Click, type, and enter with a ! to send out a remark upon an incoming sentence, or to
+        dispel another's remark on one of your sentences. Remarking on a sentence will
+        underline it before it is sent out, marking up the sentence and becoming part of a
+        message thread. Dispelling a remark adds to the thread, and replaces the remark in the
+        document.</a>
 
-        <a href="javascript:void(0)"
-           ng-click="closeNav()">Click, type, and enter with a ? to ask a question. It will introduce a new topic for
-                                 threads, as well as a new section of the document. It is possible that any question can
-                                 be given a counterpart noun phrase suitable for draft section headings for the
-                                 paragraphs that will contain its answer (e.g. "Where is Paris?" could be translated
-                                 into "Location of Paris").</a>
-      </div>
+      <a href="javascript:void(0)"
+         ng-click="closeNav()">Click, type, and enter with a ? to ask a question. It will introduce a new topic for
+        threads, as well as a new section of the document. It is possible that any question can
+        be given a counterpart noun phrase suitable for draft section headings for the
+        paragraphs that will contain its answer (e.g. "Where is Paris?" could be translated
+        into "Location of Paris").</a>
     </div>
+  </div>
 
 
-    <div ng-if="!loggedIn()">
-      <div style="text-align: right">
-        <button class="btn btn-primary"
-                ng-click="openLoginModal()">
-          Login
-        </button>
-        <button class="btn btn-default"
-                ng-click="openRegisterModal()">
-          Register
-        </button>
+  <div class="row" id="firstrow">
+    <div style="display: flex; flex-direction: row">
+      <span class="app-title" style="align-self: flex-end" ng-click="clearWithAdder()"> {{ title ? title : ''}} </span>
+
+      <span style="flex: 1"></span>
+
+      <div style="display: inline-block; align-self: flex-end" ng-if="!loggedIn()">
+        <div style="text-align: right">
+          <button class="btn btn-primary" ng-click="openLoginModal()"> Login</button>
+          <button class="btn btn-default" ng-click="openRegisterModal()"> Register</button>
+        </div>
       </div>
-    </div>
-    <div ng-if="loggedIn()">
-      <!-- Toolbar -->
-      <!-- Should be its own directive -->
-      <div style="text-align: right">
+      <div style="display: inline-block; align-self: flex-end" ng-if="loggedIn()">
+        <!-- Toolbar -->
+        <!-- Should be its own directive -->
+        <div style="display: inline-block; text-align: right">
 
-        <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
-        <input type="button" id="copy-button" value="Copy"> -->
+          <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
+          <input type="button" id="copy-button" value="Copy"> -->
 
-        <button class="btn btn-dark"
-                ng-click="openProfileModal()">{{vm.profile.displayName}}
-        </button>
-        <button class="btn cog"
-                ng-click="openOptionsModal()">
-          <i class="fa fa-cog"></i>
-        </button>
-        <button class="btn"
-                ng-click="openMyBooksModal()">
-          <i class="fa fa-bookmark"></i>
-        </button>
-        <button class="btn"
-                ng-click="openLibraryModal()">
-          <i class="fa fa-book"></i>
-        </button>
-        <button class="btn"
-                ng-click="openNewBookModal()">
-          <i class="fa fa-plus"></i>
-        </button>
-        <!--
-        <button class="btn"
-                ng-class="{ 'btn-light': !options.highlightOwned,
-                            'btn-dark': options.highlightOwned
-                          }"
-                ng-click="options.highlightOwned = !options.highlightOwned">
-          <i class="fa fa-search"></i>
-        </button>
-        -->
-        <button class="btn btn-secondary help"
-                ng-click="openNav()">
-          <i class="fa fa-asterisk"></i>
-        </button>
+          <button class="btn btn-dark" ng-click="openProfileModal()">{{ profile.displayName }}</button>
+          <button class="btn cog" ng-click="openOptionsModal()"><i class="fa fa-cog"></i></button>
+          <button class="btn" ng-click="openMyBooksModal()"><i class="fa fa-bookmark"></i></button>
+          <button class="btn" ng-click="openLibraryModal()"><i class="fa fa-book"></i></button>
+          <button class="btn" ng-click="openNewBookModal()"><i class="fa fa-plus"></i></button>
+          <button class="btn btn-secondary help" ng-click="openNav()"><i class="fa fa-asterisk"></i></button>
 
-        <a download="export.txt"
-           id="downloadlink">
-          <button class="btn btn-primary help">
-            <i class="fa fa-file-text-o"></i>
-          </button>
-        </a>
-
-        <button class="btn btn-dark signout"
-                ng-click="logout()">
-          <i class="fa fa-sign-out"></i>
-        </button>
-        <div class="text-center">
-          <a id="treeicon"
-             data-toggle="modal"
-             data-target="#treemodal"
-             href="#treemodal"
-             style="display: none;">
-
+          <a download="export.txt" id="downloadlink">
+            <button class="btn btn-primary help"><i class="fa fa-file-text-o"></i></button>
           </a>
 
-          <!-- Modal -->
-          <div id="treemodal"
-               class="modal fade"
-               role="dialog"
-               style="color:white">
-            <div class="modal-dialog-lg">
+          <button class="btn btn-dark signout" ng-click="logout()"><i class="fa fa-sign-out"></i></button>
 
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-body"
-                     style="background-color: rgb(9,13,14)"></div>
-                <!--               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              </div> -->
+          <div class="text-center">
+            <a id="treeicon"
+               data-toggle="modal"
+               data-target="#treemodal"
+               href="#treemodal"
+               style="display: none;">
+
+            </a>
+
+            <!-- Modal -->
+            <div id="treemodal"
+                 class="modal fade"
+                 role="dialog"
+                 style="color:white">
+              <div class="modal-dialog-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-body"
+                       style="background-color: rgb(9,13,14)"></div>
+                  <!--               <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div> -->
+                </div>
+
               </div>
-
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
-
   </div>
   <div class="row mainview"
        id="mainview">

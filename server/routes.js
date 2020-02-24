@@ -1,9 +1,9 @@
 module.exports = function(admin, express) {
   'use strict';
 
-  var router = express.Router(),
-        moment = require('moment'),
-        firebaseMiddleware = require('express-firebase-middleware');
+  var router             = express.Router(),
+      moment             = require('moment'),
+      firebaseMiddleware = require('express-firebase-middleware');
 
   var db = admin.database();
 
@@ -19,7 +19,7 @@ module.exports = function(admin, express) {
     var bookId = req.params.uid;
     db.ref('propositions/' + bookId).once('value').then(function(snap) {
       var result = (snap.val() === null) ? [] : snap.val();
-      return res.end(JSON.stringify(result));
+      return res.json(result);
     }).catch(function(error) {
       next(error);
     });
@@ -27,7 +27,7 @@ module.exports = function(admin, express) {
 
   router.get('/library/book/:uid', function(req, res, next) {
     db.ref('books/' + req.params.uid).once('value').then(function(snap) {
-      res.end(JSON.stringify(snap.val()));
+      return res.json(snap.val());
     }).catch(function(error) {
       next(error);
     });
@@ -38,7 +38,7 @@ module.exports = function(admin, express) {
       if (snap.val() === null) {
         return res.end();
       } else {
-        return res.end(JSON.stringify(snap.val()));
+        return res.json(snap.val());
       }
     }).catch(function(error) {
       return next(error);
@@ -52,7 +52,7 @@ module.exports = function(admin, express) {
   router.get('/user/:uid/profile', function(req, res, next) {
     var uid = req.params.uid;
     db.ref('users/' + uid).once('value').then(function(snap) {
-      res.end(JSON.stringify(snap.val()));
+      return res.json(snap.val());
     }).catch(function(error) {
       next(error);
     });
@@ -82,7 +82,7 @@ module.exports = function(admin, express) {
 
     db.ref().update(updates).then(function() {
       db.ref(u).once('value').then(function(snap) {
-        return res.end(JSON.stringify(snap.val()));
+        return res.json(snap.val());
       }).catch(function(error) {
         next(error);
       });
@@ -97,7 +97,7 @@ module.exports = function(admin, express) {
   router.post('/library/book', function(req, res, next) {
     var newKey = db.ref().child('books').push().key;
     db.ref('books/' + newKey).set(req.body.book).then(function() {
-      res.status(201).end(newKey);
+      return res.status(201).send(newKey);
     }).catch(function(error) {
       next(error);
     });
@@ -106,13 +106,12 @@ module.exports = function(admin, express) {
   router.post('/library/book/:uid/update', function(req, res, next) {
     var bookId = req.params.uid;
     var book = Object.assign({}, req.body.book);
-    var now = moment().unix();
 
-    book.lastModified = now;
+    book.lastModified = moment().unix();
 
     db.ref('books/' + bookId).set(book).then(function() {
       db.ref('books/' + bookId).once('value').then(function(snap) {
-        res.end(JSON.stringify(snap.val()));
+        return res.json(snap.val());
       }).catch(function(error) {
         next(error);
       });
@@ -140,7 +139,7 @@ module.exports = function(admin, express) {
 
     db.ref('propositions/' + bookId).set(propositions).then(function() {
       db.ref('propositions/' + bookId).once('value').then(function(snap) {
-        return res.end(JSON.stringify(snap.val()));
+        return res.json(snap.val());
       }).catch(function(error) {
         next(error);
       });

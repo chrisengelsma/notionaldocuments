@@ -56,13 +56,10 @@
   </button>
   <button type="submit"
           ng-disabled="form.$invalid || vm.processing"
-          ng-click="vm.login(form.$valid)"
+          ng-click="vm.login()"
           class="btn btn-primary">
     <span>
-      <span ng-if="vm.processing">
-        <i ng-if="vm.processing"
-           class="fa fa-spinner fa-spin"></i>&nbsp;
-        </span> Submit
+        <i ng-if="vm.processing" class="fa fa-spinner fa-spin"></i>&nbsp; Submit
     </span>
   </button>
 </div>

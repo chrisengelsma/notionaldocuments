@@ -1,20 +1,42 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     LandingNavbarController
+   * @ngInject
+   */
   function LandingNavbarController($rootScope) {
     var vm = this;
 
+    /**
+     * Opens the register modal.
+     *
+     * @memberOf LandingNavbarController
+     * @function openRegisterModal
+     */
     vm.openRegisterModal = function() {
       $rootScope.$emit('openRegisterModal', {});
     };
 
+    /**
+     * Opens the login modal.
+     *
+     * @memberOf LandingNavbarController
+     * @function openLoginModal
+     */
     vm.openLoginModal = function() {
       $rootScope.$emit('openLoginModal', {});
     };
   }
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     ndLandingNavbar
+   * @ngInject
+   */
   function ndLandingNavbar() {
     return {
       restrict: 'E',

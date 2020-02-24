@@ -1,7 +1,14 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     EditorOptionsModalController
+   * @param    {service} $uibModalInstance AngularJS Bootstrap modal instance
+   * @param    {object} options            modal options
+   * @ngInject
+   */
   function EditorOptionsModalController($uibModalInstance, options) {
     var vm = this;
 

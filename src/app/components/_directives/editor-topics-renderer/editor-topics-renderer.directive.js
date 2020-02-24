@@ -1,12 +1,25 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    controller
+   * @name     EditorTopicsRendererController
+   * @description
+   *    Implementation of the editor topics renderer controller.
+   * @ngInject
+   */
   function EditorTopicsRendererController() {
-
   }
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    directive
+   * @name     ndEditorTopicsRenderer
+   * @description
+   *    Renders editor topics.
+   * @ngInject
+   */
   function ndEditorTopicsRenderer() {
     return {
       restrict: 'E',

@@ -1,7 +1,13 @@
 (function() {
   'use strict';
 
-  /** @ngInject */
+  /**
+   * @memberOf ndApp
+   * @ngdoc    service
+   * @name     chatSocket
+   * @param    {service} socketFactory a socket.io factory provider
+   * @ngInject
+   */
   function chatSocket(socketFactory) {
     var socket = socketFactory();
     //add strings to the arguments array for each server emission
