@@ -76,7 +76,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()], $event.stopPropagation()]" style="padding-left: 1px">
+          ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing, $event.stopPropagation()]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
             ng-mouseover="proposition.preSelected = true;"

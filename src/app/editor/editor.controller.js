@@ -244,6 +244,8 @@
       var apply = {};
       var temp = {};
 
+    
+
 
 
       // If an empty book, focus on the blank proposition
