@@ -1,10 +1,10 @@
 <div class="thread"
      id="{{thread.threadId}}"
-     ng-click="[selectThread(thread), clearEditable()]">
+     ng-click="[clearEditable()]">
   <div class="tree-node tree-node-content dialoguetopic"
        ng-class="{ 'topicselected': selectedNode.topic === thread.topic }"
 
-       ng-click="selectThread(thread)"
+       ng-click=""
        style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}}
   </div>
 
@@ -16,7 +16,7 @@
                      'alignright': remark.type === 'negation' && remark.text !== '- Paragraph deleted -',
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic')
                      }"
-          ng-click="[!remark.deleted ? [hideExpandingTextarea(remark.id, thread.threadId), selectNodeByClass(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
+          ng-click="[selectedThread = thread, !remark.deleted ? [hideExpandingTextarea(remark.id, thread.threadId), selectNodeByClass(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
           ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread.threadId)]"
           ng-mouseleave="remark.mouseOver = false;"
           style="cursor: pointer; margin-bottom: 7px; font-size: 16px">
@@ -43,7 +43,7 @@
       selectedProposition.dialogueSide = false] : inputs.nothing"
       ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"
       spellcheck="false"
-      style="height: 22px; font-size: 16px; width: 100%; color: black; margin-top: 10px">
+      style="height: 18px; font-size: 16px; width: 100%; color: black; margin-top: 10px">
       </textarea>
 
 
