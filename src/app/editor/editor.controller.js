@@ -2470,10 +2470,10 @@
 
       $scope.selectThread = function(thread) {
         console.log("Selecting thread")
-        if (!thread.remarks[0].assertionId) {
-          console.log('Returning from selectThread');
-          return;
-        }
+        // if (!thread.remarks[0].assertionId) {
+        //   console.log('Returning from selectThread');
+        //   return;
+        // }
         $scope.selectedThread = thread;
   
       };
