@@ -2468,15 +2468,15 @@
 
       });
 
-      // $scope.selectThread = function(thread) {
-      //   console.log("Selecting thread")
-      //   if (!thread.remarks[0].assertionId) {
-      //     console.log('Returning from selectThread');
-      //     return;
-      //   }
-      //   $scope.selectedThread = thread;
+      $scope.selectThread = function(thread) {
+        console.log("Selecting thread")
+        if (!thread.remarks[0].assertionId) {
+          console.log('Returning from selectThread');
+          return;
+        }
+        $scope.selectedThread = thread;
   
-      // };
+      };
 
       $scope.clearGoddamnTextarea = function (){
         $('#' + $scope.selectedRemark.id + $scope.selectedThread.threadId)
@@ -2561,10 +2561,10 @@
         temp = {};
       };
 
-      $scope.saveForLater = function (remarkId, threadId){
+      $scope.saveForLater = function (remarkId, thread){
         $scope.toSetLater = {
           remarkId: remarkId,
-          threadId: threadId
+          thread: thread
         }
       }
 
