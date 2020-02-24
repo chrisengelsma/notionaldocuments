@@ -2573,10 +2573,10 @@
         $scope.selectPropositionById($scope.toSetLater.remarkId) 
       }
 
-      $scope.hideExpandingTextarea = function (remarkId, threadId) {
+      $scope.hideExpandingTextarea = function (remarkId, thread) {
         setTimeout(function() {
-          console.log("Clearing: ", remarkId, threadId)
-          $('#' + remarkId + threadId).parent().hide();
+          console.log("Clearing: ", remarkId, thread.threadId)
+          $('#' + remarkId + thread.threadId).parent().hide();
           $scope.inputs.chatProposition = '';
           if ($scope.selectedProposition.dialogueSide){
             console.log('Not dialogue side')
