@@ -2512,6 +2512,7 @@
         if (temp.hasOwnProperty('assertionPath') && temp.assertionPath !== undefined) {
           temp.sliceStartingAt = temp.assertionPath.indexOf('.propositions');
           temp.paragraphPath = temp.assertionPath.slice(0, temp.sliceStartingAt);
+          console.log('Paragraph path: ', temp.paragraphPath)
           temp.paragraphDestination = eval(temp.paragraphPath);
 
           $scope.selectedParagraph = temp.paragraphDestination;
