@@ -70,21 +70,6 @@ a:hover {
   filter: blur(6px);
   pointer-events: none;
 }
-//
-//.dialogueblurrermouseover {
-//  background-color: grey;
-//  cursor: pointer;
-//}
-//
-//.notyourparagraph {
-//  background-color: #d0d0d0;
-//}
-
-
-/* Custom page header */
-//.header {
-//  border-bottom: 1px solid #e5e5e5;
-//}
 
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -137,10 +122,6 @@ font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetic
   padding-bottom: 9px;
 }
 
-input, select, textarea {
-  //color: white;
-}
-
 input {
   width: 400px;
   border: none !important;
@@ -184,17 +165,12 @@ input {
 
 .addparagraph {
   text-indent: 24px;
-  //background-color: white;
   min-height: 20px;
   padding-left: 20px;
 }
 
 .col-md-9 {
   padding-left: 15px;
-}
-
-.negation {
-  //border-bottom: 1px solid #212121 !important;
 }
 
 .nocursor {
@@ -217,7 +193,6 @@ input {
 }
 
 .ghostspan {
-  //color: #d0d0d0;
   padding: 2px;
 }
 
@@ -243,7 +218,6 @@ input {
 }
 
 .right-textarea {
-  //color: black !important;
   border: none !important;
   border-image-width: 0;
   font-size: 20px; /*18px*/
@@ -313,11 +287,6 @@ input {
   }
 }
 
-.cursor.solid-cursor {
-  //color: #212121 !important;
-}
-
-
 .cursor {
   //color: #212121 !important;
 
@@ -382,10 +351,6 @@ input {
   font-weight: bold;
 }
 
-.topichovered {
-  //color: #0b58a2;
-}
-
 .dialoguelist {
   /*  min-height: 50rem;
     max-height: 50rem;*/
@@ -444,7 +409,6 @@ input {
 
 
 .paragraphplaceholder {
-  //color: #dbdbdb;
   cursor: text;
   height: 26px;
 }
@@ -507,14 +471,8 @@ input {
 }
 
 #firstrow {
-  //border-bottom: 1px solid black;
   padding-bottom: 5px;
   padding-top: 5px;
-}
-
-.paragraphbackdrop {
-  //background: #e2e2e2 !important;
-  //border: 1px solid white !important;
 }
 
 .chatinputappear {
@@ -537,8 +495,6 @@ input {
 }
 
 .node circle {
-  //fill: #fff;
-  //stroke: rgb(31, 137, 195);
   stroke-width: 3px;
 }
 
@@ -560,7 +516,6 @@ input {
 }
 
 .library {
-  //border-top: 1px solid white;
   /*padding: 5px;*/
   cursor: pointer;
 }
@@ -638,7 +593,6 @@ nav.nav {
   z-index: 1;
   top: 0;
   left: 0;
-  //background-color: rgba(0, 0, 0, 0.9);
   overflow-y: hidden;
   transition: 0.5s;
   cursor: pointer;
@@ -702,17 +656,14 @@ nav.nav {
 }
 
 .signout:hover {
-  //background-color: #c82333;
   border: 1px solid transparent;
 }
 
 .help:hover {
-  //background-color: #28a745;
   border: 1px solid transparent;
 }
 
 .cog:hover {
-  //background-color: white;
   border: 1px solid transparent;
 }
 
@@ -736,10 +687,6 @@ nav.nav {
   cursor: pointer;
 }
 
-.blackline {
-  //background-color: #a9a9a9;
-}
-
 .leftpropositionadder {
   height: auto;
   width: 4px;
@@ -750,7 +697,32 @@ nav.nav {
   //background-color: red;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
 
+.leftpropositionadder {
+  cursor: text;
+  margin-left: 3px;
+  //float: left;
+  //background-color: red;
+}
+
+.bottomaddon{
+
+}
+
+.notyourspaddingtop{
+  padding-top: 5px;
+}
+
+>>>>>>> 2d8232ea6133c814c098af74276df6d87fc522fa
 .blur {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);

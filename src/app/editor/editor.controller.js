@@ -69,6 +69,7 @@
 
     // All the modal buttons.
 
+
     $scope.openNewBookModal = function() {
       $scope.addBookModalInstance = $uibModal.open({
         animation: true,
@@ -269,9 +270,18 @@
       $scope.mark = {};
       $scope.doubleClick = 0;
       $scope.whatHasBeenClicked = '';
+      $scope.dontrunfocusout = false;
+      $scope.hasTopFocus = '';
+      $scope.hasBottomFocus = '';
+      $scope.hasLeftFocus = '';
+      $scope.hasRightFocus = '';
+      $scope.toBeClearedLater = {};
+      $scope.toSetLater = {};
       var prep = {};
       var apply = {};
       var temp = {};
+
+
 
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author) {
@@ -279,8 +289,8 @@
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout(function() {
           document.getElementById('proposition' + id).click();
-          console.log('initial click of blank');
-        }, 0);
+
+        },0)
       }
 
       // If the data doesn't have a dialogue, make the dialogue empty
@@ -288,8 +298,7 @@
         $scope.data[0].dialogue = [];
       }
 
-      $scope.selectBlank = function() {
-        console.log('Selecting blank with function');
+      $scope.selectBlank = function () {
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout(function() {
@@ -378,8 +387,7 @@
 
       $scope.selectRight = function(proposition) {
         focusFactory(proposition.id);
-        console.log('Select right');
-      };
+      }
 
       $scope.selectLeft = function(proposition, paragraph) {
 
@@ -637,27 +645,31 @@
       };
 
 
-      $scope.clearWithTopAdder = function() {
+      $scope.clearWithTopAdder = function(paragraph) {
 
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
 
         $scope.topAdderId = IdFactory.next();
+        $scope.hasTopFocus = paragraph.paragraphId;
 
 
         focusFactory($scope.topAdderId);
 
       };
 
-      $scope.clearWithBottomAdder = function() {
+      $scope.clearWithBottomAdder = function(paragraph) {
+        console.log("Clears with bottom adder")
+        paragraph.bottomAdd = true;
+        $scope.hasBottomFocus = paragraph.paragraphId;
 
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
 
-        $scope.bottomAdderId = IdFactory.next();
 
 
-        focusFactory($scope.bottomAdderId);
+
+        focusFactory(paragraph.paragraphId);
 
       };
 
@@ -766,38 +778,41 @@
         if ($scope.selectedProposition.textSide == true) {
           document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
           $scope.whatHasBeenClicked = '';
+
         }
       };
 
-      $scope.listenForDoubleClick = function(element, paragraph, proposition) {
+      $scope.listenForDoubleClick = function (element, paragraph, proposition) {
 
-        var string = 'proposition';
-        var id = proposition.id;
-        string = string + id;
+          var string = 'proposition';
+          var id = proposition.id;
+          string = string + id;
 
-        $scope.selectedParagraph = paragraph;
-        $scope.selectedProposition = proposition;
-        $scope.selectedProposition.textSide = true;
-        $scope.selectProposition.dialogueSide = false;
-        $scope.selectedParagraph.highlightAll = false;
-        $scope.selectedParagraph.markAll = false;
-        if ($scope.whatHasBeenClicked !== proposition.id) {
-          focusFactory(id);
-          document.getElementById(string).contentEditable = true;
-          $scope.whatHasBeenClicked = proposition.id;
+          $scope.selectedParagraph = paragraph;
+          $scope.selectedProposition = proposition;
+          $scope.selectedProposition.textSide = true;
+          $scope.selectProposition.dialogueSide = false;
+          $scope.selectedParagraph.highlightAll = false;
+          $scope.selectedParagraph.markAll = false;
+          if ($scope.whatHasBeenClicked !== proposition.id ) {
 
-        }
+            focusFactory(id);
+            document.getElementById(string).contentEditable = true;
+            $scope.whatHasBeenClicked = proposition.id;
+            $scope.dontrunfocusout = true;
 
+          }
+      }
 
-        // else {
-        //   $scope.hasBeenClicked = false;
+    $scope.focusouteditable = function (element) {
+      if ($scope.dontrunfocusout){
 
-        // }
+        return;
+      }
+      element.contentEditable = false;
+      $scope.whatHasBeenClicked = '';
 
-        // $timeout( function(){
-
-        // },0)
-      };
+    }
 
       $scope.updateProposition = function(proposition) {
         if (proposition.author !== $scope.userId) {
@@ -808,6 +823,10 @@
         });
         // Might be causing duplication?
         var elem = document.getElementById('proposition' + proposition.id);
+        elem.contentEditable = false;
+        $timeout( function(){
+          document.getElementById(elem).click();
+        },0)
 
         if (index >= 0 && elem) {
 
@@ -833,11 +852,12 @@
 
       $scope.deleteProposition = function() {
         // Don't delete if it ain't yours
-        if ($scope.selectedProposition.author !== $scope.userId) {
+        console.log('Deleting proposition')
+        if ($scope.selectedProposition.author !== $scope.userId && $scope.selectedProposition.type !== 'blank') {
           return;
         }
 
-        console.log('Just deleteProposition');
+
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
 
@@ -1024,7 +1044,7 @@
           apply.theCount = 0;
           for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++) {
             if (payload.deleter !== $scope.userId && apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden') {
-              console.log('Found unhidden paragraph: ', i);
+
               apply.theCount++;
             }
           }
@@ -1067,7 +1087,7 @@
             apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {
             apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
             apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
-            console.log('assertion path updated to ', apply.paragraphDestination.propositions[i].assertionPath);
+
           }
         }
 
@@ -1110,7 +1130,7 @@
 
       $scope.prepProposition = function(input, paragraph) {
 
-        console.log('Selected proposition text: ', $scope.selectedProposition.text);
+
 
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
@@ -1197,8 +1217,7 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-          console.log('Node path: ', prep.nodePath);
-          console.log('Address: ', prep.address);
+
           prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';    //   INITIAL ASSERTION PATH
 
 
@@ -1217,7 +1236,6 @@
           };
 
 
-          // Console logs
           console.log('Old node path: ', prep.oldNodePath);
           console.log('New node path: ', prep.nodePath);
           console.log('Topic: ', prep.topic);
@@ -1300,7 +1318,7 @@
           }
 
           prep.assertionPath = $scope.selectedProposition.assertionPath;                                   // CALCULATES PATH TO THE ASSERTION
-          console.log('assertion path before: ', prep.assertionPath);
+
 
 
 // calculates the of and assertion path wrong
@@ -1372,7 +1390,7 @@
             }
           }
 
-          console.log('assertion path after: ', prep.assertionPath);
+
 
           console.log('Path to assertion: ', prep.assertionPath);
           console.log('New remark address: ', prep.remarkAddress);              //    CONSOLE LOGS
@@ -1400,17 +1418,17 @@
             }
           }
           prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position.toString() + ']';
-          console.log('paragraph path: ', prep.paragraphPath);
+
           prep.paragraphDestination = eval(prep.paragraphPath);
           prep.capacityCount = 0;
           for (var i = 0; i < prep.paragraphDestination.propositions.length; i++) {
-            console.log('running the loop');
+
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation'
               && prep.paragraphDestination.propositions[i].deleted !== true) {
               prep.capacityCount++;
             }
           }
-          console.log('capacity count: ', prep.capacityCount);
+
           if (prep.capacityCount > 1) {
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
@@ -1785,6 +1803,10 @@
         paragraph.topMouseOver = false;
         paragraph.bottomAdd = false;
         paragraph.bottomMouseOver = false;
+        $scope.hasTopFocus = '';
+        $scope.hasBottomFocus = '';
+        $scope.hasLeftFocus = '';
+        $scope.hasRightFocus = '';
       };
 
 
@@ -1827,14 +1849,14 @@
                 apply.propositionDestination = eval(apply.propositionPath);
                 if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
                   $scope.selectedNode = apply.nodeDestination;
-                  console.log('Node destination: ', apply.nodeDestination);
+
                   $scope.selectedParagraph = apply.paragraphDestination;
-                  console.log('Paragraph destination: ', apply.paragraphDestination);
+
                   $scope.selectedProposition = apply.propositionDestination;
-                  console.log('Proposition destination: ', apply.propositionDestination);
+
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
-                  console.log('Triggering the click');
+
                   var query = 'proposition' + $scope.selectedProposition.id;
                   $(query).trigger('click');
                   query = '';
@@ -1845,13 +1867,13 @@
 
               if (payload.proposition.answeredQuestion) {
 
-                console.log('Old node destination: ', apply.oldNodeDestination);
+
                 for (var i = 0; i < apply.oldNodeDestination.paragraphs.length; i++) {
                   for (var j = 0; j < apply.oldNodeDestination.paragraphs[i].propositions.length; j++) {
                     if (payload.proposition.of.id === apply.oldNodeDestination.paragraphs[i].propositions[j].id) {
                       apply.oldNodeDestination.paragraphs[i].propositions[j][$scope.userId] = 'hidden';
                       apply.oldNodeDestination.paragraphs[i].propositions[j].rejoined = true;
-                      console.log('Found: ', i, ' ', j);
+
                       break;
                     }
                   }
@@ -1885,11 +1907,11 @@
                 apply.propositionDestination = eval(apply.propositionPath);
                 if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
                   $scope.selectedNode = apply.nodeDestination;
-                  console.log('Node destination: ', apply.nodeDestination);
+
                   $scope.selectedParagraph = apply.paragraphDestination;
-                  console.log('Paragraph destination: ', apply.paragraphDestination);
+
                   $scope.selectedProposition = apply.propositionDestination;
-                  console.log('Proposition destination: ', apply.propositionDestination);
+
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
                   var query = 'proposition' + $scope.selectedProposition.id;
@@ -1902,13 +1924,13 @@
             } else if (payload.proposition.getsOwnPlace) {
               apply.nodeDestination = eval(payload.nodePath);
               apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position] = payload.proposition;
-              console.log('Gets own place');
+
             } else if (payload.proposition.replacesBlankAndMoves) {
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath);
               apply.nodePath = payload.nodePath;
               apply.nodeDestination = eval(payload.nodePath);
-              console.log('Trying to hide ', apply.paragraphPath);
+
               if ($scope.userId === payload.proposition.author) {
                 apply.paragraphDestination[$scope.userId] = 'hidden';
               }
@@ -1985,7 +2007,6 @@
               }
 
               if (payload.proposition.author === $scope.userId) {
-                console.log('Are author of incoming prop');
                 $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                 $scope.selectedProposition.textSide = true;
                 if (payload.textSide === true) {
@@ -1994,7 +2015,7 @@
                 focusFactory($scope.selectedProposition.id);
               }
             } else if (payload.proposition.getsOwnProposition) {
-              console.log('Gets own proposition');
+
 
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
@@ -2031,8 +2052,7 @@
 
               var counter = angular.copy(apply.nodeDestination.paragraphs.length - 1);
               // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
-              for (var i = counter; i > payload.paragraphPosition - 1; i--) {
-                console.log('outside loop');
+              for (var i =  counter; i > payload.paragraphPosition - 1; i--) {
                 // up the paragraph position
                 apply.nodeDestination.paragraphs[i].position++;
                 // if user has selected the paragraph being moved up, update selectedParagraph
@@ -2043,18 +2063,16 @@
                 apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
                 // increase index of assertion paths affected
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
-                  console.log('1st inside loop');
                   if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
                     apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
                   }
                   for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
-                    console.log('2nd inside loop');
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
                       // if an assertion is found matching
 
                       apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
-                      debugger;
-                      console.log('Found. i: ', i, ' j: ', j, ' k: ', k);
+
+
 
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
                     }
@@ -2081,13 +2099,11 @@
 
 
                 $timeout(function() {
-                  console.log('Paragraph destination: ', apply.paragraphDestination);
-                  console.log('Proposition destination: ', apply.propositionDestination);
+
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                   $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                   $scope.selectedProposition.textSide = true;
-                  console.log('Selected paragraph: ', $scope.selectedParagraph);
-                  console.log('Selected proposition: ', $scope.selectedProposition);
+
                   focusFactory($scope.selectedProposition.id);
                   $($scope.selectedProposition.id).trigger('click');
                 }, 30);
@@ -2152,8 +2168,7 @@
 
 
                 $timeout(function() {
-                  console.log('Paragraph destination: ', apply.paragraphDestination);
-                  console.log('Proposition destination: ', apply.propositionDestination);
+
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                   $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                   $scope.selectedProposition.textSide = true;
@@ -2191,7 +2206,7 @@
               }
             } else {
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
-              console.log('Placed at the end of the paragraph');
+
               if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.selectedProposition.textSide = true;
@@ -2264,7 +2279,7 @@
                   apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
                   apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
                   apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
-                  console.log('assertion path updated to ', apply.paragraphDestination.propositions[i].assertionPath);
+
                 }
               }
 
@@ -2282,7 +2297,7 @@
               }
 
             } else { // theres a remarkPath
-              console.log('Theres a remarkpath');
+
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
@@ -2317,11 +2332,11 @@
 
 
               temp.remarkDestination = eval(temp.remarkPath);
-              console.log('Temp remark destination: ', temp.remarkDestination);
+
               if (temp.remarkDestination && temp.remarkDestination.remarks) {
                 temp.remarkDestination.remarks[temp.remarkDestination.remarks.length] = payload.proposition;
               } else {
-                console.log('Remark destination: ', temp.remarkDestination);
+
                 // temp.remarkDestination.remarks;                                                                                                      //   OTHER POSSIBILITIES
                 temp.remarkDestination.remarks = [];
                 temp.remarkDestination.remarks[temp.remarkDestination.remarks.length] = payload.proposition;                                                              // If what's coming in is a first rejoinder
@@ -2381,13 +2396,13 @@
             if (payload.proposition.author === $scope.userId && $scope.selectedProposition.dialogueSide === true) {
               $timeout(function() {
                 var query = '#' + payload.proposition.id + $scope.scroll.threadId;
-                console.log('focusing on ', query);
+
                 $(query).expanding();
                 $(query).focus();
               }, 0);
             }
 
-            console.log('Propositions: ', $scope.propositions);
+
             temp = {};
             $scope.scroll = {};
 
@@ -2407,21 +2422,33 @@
       });
 
       $scope.selectThread = function(thread) {
-        console.log('Thread\'s first remark assertionId: ', thread.remarks[0].assertionId);
+        console.log("Selecting thread")
         if (!thread.remarks[0].assertionId) {
           console.log('Returning from selectThread');
           return;
         }
         $scope.selectedThread = thread;
+
       };
+
+      $scope.clearGoddamnTextarea = function (){
+        $('#' + $scope.selectedRemark.id + $scope.selectedThread.threadId)
+            .parent().hide();
+
+      }
+
+      $scope.clearTopAndBottomHasFocus = function (){
+        $scope.hasTopFocus = '';
+        $scope.hasBottomFocus = '';
+      }
+
 
       $scope.selectPropositionById = function(id) {
 
-
+        console.log('Selecting by Id')
         // insert left changes assertion paths
 
-        console.log('Selecting Proposition by Id');
-        console.log('Id is: ', id);
+
 
         for (var i = 0; i < $scope.propositions.length; i++) {
           if ($scope.propositions[i].id === id) {
@@ -2444,8 +2471,8 @@
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
             if (temp.paragraphDestination.propositions[i].id === id) {
               if ($scope.selectedProposition.id) {
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding('destroy');
+                // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                //   .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
@@ -2467,9 +2494,6 @@
 
         }
 
-        console.log('selected Proposition:', $scope.selectedProposition);
-
-        console.log('trying to focus on chatinput');
 
 
         setTimeout(function() {
@@ -2478,28 +2502,81 @@
             destination.scrollIntoView({ behavior: 'smooth' });
           }
           var query = '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId;
-          console.log(query);
+
           $scope.$apply(function() {
             $(query).parent().show();
             $(query).expanding();
             $(query).focus();
-            console.log('Query has expanding class: ', $(query)
-              .expanding('active'));
+
           });
-        }, 10);
+        }, 20);
         temp = {};
       };
 
+      $scope.saveForLater = function (remarkId, thread){
+        $scope.toSetLater = {
+          remarkId: remarkId,
+          thread: thread
+        }
+      }
+
+      $scope.showTextArea = function () {
+        $scope.selectThread($scope.toSetLater.thread)
+        $scope.selectPropositionById($scope.toSetLater.remarkId)
+      }
+
+      $scope.hideExpandingTextarea = function (remarkId, threadId) {
+        setTimeout(function() {
+          console.log("Clearing: ", remarkId, threadId)
+          $('#' + remarkId + threadId).parent().hide();
+          $scope.inputs.chatProposition = '';
+          if ($scope.selectedProposition.dialogueSide){
+            console.log('Not dialogue side')
+            $scope.selectThread($scope.toSetLater.thread)
+            $scope.selectPropositionById($scope.toSetLater.remarkId)
+          }
+
+        }, 10);
+      }
+
       $scope.clearExpandingClass = function(remark) {
-        if (!remark.assertionPath) {
+        if (!remark.assertionPath || !$scope.selectProposition) {
           console.log('No assertion path');
           return;
         }
-        console.log('trying to hide ', '#' + $scope.selectedProposition.id + $scope.selectedThread.threadId);
-        $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-          .parent().hide();
-        $scope.selectedProposition = {};
+
+        if(!$scope.toBeClearedLater.remarkId){
+          $scope.toBeClearedLater.remarkId = remark.id;
+          $scope.toBeClearedLater.threadId = $scope.selectedThread.threadId;
+        }
+
+
+        // if ($scope.toBeClearedLater.remarkId){
+          console.log("Clearing: ",$scope.toBeClearedLater.remarkId, $scope.toBeClearedLater.threadId )
+          $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
+            .parent().hide();
+            $scope.toBeClearedLater = {};
+        //   console.log('hides due to click away or initial click')
+        //   $scope.toBeClearedLater = {};
+        // } else {
+        //    $('#' + remark.id + $scope.selectedThread.threadId)
+        //     .parent().hide();
+        //   console.log("Hides due to outgoing proposition")
+        // }
       };
+
+      $scope.clearLater = function(remarkId, threadId){
+        if (remarkId !== $scope.selectedProposition.id && threadId !== $scope.selectedThread.threadId){
+          $scope.toBeClearedLater = {
+            remarkId: $scope.selectedProposition.id,
+            threadId: $scope.selectedThread.threadId
+          }
+        } else {
+          $scope.toBeClearedLater.remarkId = remarkId;
+          $scope.toBeClearedLater.threadId = threadId;
+        }
+
+      }
 
 
       $scope.selectNodeByClass = function(thread) {
@@ -2509,7 +2586,6 @@
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
-        console.log('selected node: ', $scope.selectedNode);
         $scope.selectedProposition.dialogueSide = true;
 
         temp = {};
@@ -2714,6 +2790,22 @@
           });
           $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].deleted = true;
         }
+
+
+        //loop has to go through the entire dialogue, mark the correct remarks
+        // as deleted, as well as any direct negations of them
+        // dialogue renderer will make these non-clickable
+        for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
+          if ($scope.data[0].dialogue[i].remarks[0].assertionId === payload.proposition.assertionId &&
+            $scope.data[0].dialogue[i].remarks.length > 1 &&
+            $scope.data[0].dialogue[i].remarks[$scope.data[0].dialogue[i].remarks.length - 1].remarkAddress ===
+            $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[$scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks.length - 2].remarkAddress) {
+            $scope.data[0].dialogue[i].hidden = true;
+          }
+
+        }
+
+
         callback();
       };
     }; // end mainLoop

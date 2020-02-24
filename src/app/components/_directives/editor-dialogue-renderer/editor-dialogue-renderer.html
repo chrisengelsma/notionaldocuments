@@ -5,7 +5,7 @@
        ng-class="{ 'topicselected': selectedNode.topic === thread.topic }"
        ng-style="style"
        ng-click=""
-       style="margin-bottom: 7px"> {{thread.topic}}
+       style="margin-bottom: 7px"> {{thread.topic}}<!-- {{thread.threadId}} -->
   </div>
 
   <p ng-repeat="remark in thread.remarks track by $index">
@@ -16,8 +16,8 @@
                      'alignright': remark.type === 'negation' && remark.text !== '- Paragraph deleted -',
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic')
                      }"
-          ng-click="clearExpandingClass(remark); selectThread(thread); selectPropositionById(remark.id); selectNodeByClass(thread); selectedProposition.textSide = false;"
-          ng-mouseover="remark.mouseOver = true;"
+          ng-click="!remark.deleted ? [hideExpandingTextarea(remark.id, thread.threadId), selectThread(thread), selectPropositionById(remark.id), selectNodeByClass(thread), selectedProposition.textSide = false] : inputs.nothing"
+          ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread)]"
           ng-mouseleave="remark.mouseOver = false;"
           style="cursor: pointer; margin-bottom: 7px;">
 
@@ -25,19 +25,22 @@
           ng-class="{'underline': remark.mouseOver === true,
                      'remarkupdated': remark.updated === true,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
-                    }">{{remark.text}}</span>
+                    }">{{remark.text}}<!-- {{remark.id}} --></span>
 		</span>
 
 
     <textarea
       title="{{ remark.id }}"
       ng-show="(remark.id === selectedProposition.id && thread.threadId === selectedThread.threadId)"
-      ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide === false)"
-      ng-blur="clearExpandingClass(remark)"
+      ng-hide="(remark.id != selectedProposition.id || thread.threadId != selectedThread.threadId || selectedProposition.dialogueSide == false)"
+      ng-blur="hideExpandingTextarea(remark.id, thread.threadId)"
       ng-model="inputs.chatProposition"
       class="expanding chatinput dialogueinput alignleft"
       id="{{remark.id}}{{thread.threadId}}"
-      ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition, selectedParagraph), inputs.chatProposition = '', clearExpandingClass(remark), inputs.remarkselected = false, selectedProposition.dialogueSide = false] : inputs.nothing"
+      ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition, selectedParagraph), inputs.chatProposition = '', 
+      hideExpandingTextarea(remark.id, thread.threadId),
+      inputs.remarkselected = false, 
+      selectedProposition.dialogueSide = false] : inputs.nothing"
       ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"
       spellcheck="false"
       style="height: 22px; font-size: 20px; width: 100%; color: black; margin-top: 10px">

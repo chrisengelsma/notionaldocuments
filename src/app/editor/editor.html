@@ -119,7 +119,7 @@
           </div> -->
 
     <div class="col-md-8"
-         ng-click="selectedProposition.dialogueSide = false"
+         ng-click=""
          id="thetext">
 
 
@@ -127,13 +127,14 @@
            data-drag-enabled="false"
            id="tree-root"
            class="angular-ui-tree textlist"
-           ng-click="!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing">
+           ng-click="[dummyFunction(), !data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing, selectedThread.threadId ? clearGoddamnTextarea() : inputs.nothing, selectedProposition.dialogueSide = false, selectedThread = {}]">
 
         <ol ui-tree-nodes
             ng-model='data'
             style=""
             id="bookdata"
-            class="angular-ui-tree-nodes">
+            class="angular-ui-tree-nodes"
+            ng-click="">
 
           <li ng-repeat="node in data | orderBy: 'class'"
               ui-tree-node
