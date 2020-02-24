@@ -1,64 +1,156 @@
-html, body, body.ng-scope {
-  background-color: #FFFFFF;
-  color: #212121;
-}
+$backgroundColor: #ffffff;
+$textColor: #212121;
+//$primaryColor: #448aff;
+$primaryColor: #ff0000;
 
-*:focus {
-  outline: 0 !important;
-}
+html, body, body.ng-scope .light-theme {
 
-.form-control{
-  color: #212121;
-}
+  background-color: $backgroundColor;
+  color: $textColor;
 
-form input::-webkit-input-placeholder{
-  color: #212121 !important;
-}
+  .cog:hover {
+    background-color: white;
+  }
 
-.thread:hover > .tree-node.tree-node-content.dialoguetopic {
-  background-color: #448AFF !important;
-  color: #FFFFFF;
-}
+  .help:hover {
+    background-color: #28a745;
+  }
 
-.thread:hover > p  {
-  background-color: #FFFFFF;
-}
+  .signout:hover {
+    background-color: #c82333;
+  }
 
-.thread:hover {
-  background-color: #FFFFFF;
-}
+  .overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+  }
 
-nav.nav > a.nav-link:hover {
-  background-color: #735b56;
-  color: #f2eeeb
-}
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
 
-nav.nav > a.nav-link {
-  font-family: "Times New Roman", serif;
-  font-size: 20pt;
-  color: #212121;
-}
+  .link {
+    stroke: #ccc;
+  }
 
-nav.nav {
-  background-color: #d9cec1;
-}
+  .paragraphbackdrop {
+    background: #e2e2e2 !important;
+    border: 1px solid $backgroundColor !important;
+  }
 
-h2.typewriter {
-  font-family: "Times New Roman", serif;
-  text-align: center;
-}
 
-.cursor {
-  color: #212121;
-}
+  #firstrow {
+    border-bottom: 1px solid $textColor;
+  }
 
-.notowned {
-  color: #AAA;
-}
+  .overlay-content {
+    color: white;
+  }
 
-.owned {
+  .form-control {
+    color: $textColor;
+  }
+
+  .paragraphplaceholder {
+    color: #dbdbdb;
+  }
+
+  .textlist {
+    border-top: 1px solid $backgroundColor;
+    border-bottom: 1px solid $textColor;
+    border-right: 1px solid #c9c9c9;
+  }
+
+  .chat-input-field {
+    background-color: $backgroundColor;
+  }
+
+
+  .cursor {
+    color: $backgroundColor !important;
+  }
+
+  .right-textarea {
+    color: $textColor !important;
+  }
+
+  .ghostspan {
+    color: #d0d0d0;
+  }
+
+  .negation {
+    border-bottom: 1px solid $textColor !important;
+  }
+
+  .addparagraph {
+    background-color: $backgroundColor;
+  }
+
+  .highlight {
+    background-color: #545454;
+  }
+
+  .mark {
+    color: $textColor;
+  }
+
+  .topichovered {
+    color: $primaryColor;
+  }
+
+  .thread {
+    border: 1px solid #aaaaaa;
+    background-color: #fafafa;
+  }
+
+  .dialoguetopic {
+    border-bottom: 1px solid #aaaaaa;
+  }
+
+  .thread:hover > .tree-node.tree-node-content.dialoguetopic {
+    background-color: $primaryColor !important;
+    color: $backgroundColor;
+  }
+
+  .thread:hover > p.ng-scope {
+    background-color: $backgroundColor;
+  }
+
+  .thread:hover {
+    background-color: $backgroundColor;
+  }
+
+  form input::-webkit-input-placeholder {
+    color: $textColor !important;
+  }
+
+  .thread:hover > p {
+    background-color: $backgroundColor;
+  }
+
+  .thread:hover {
+    background-color: $backgroundColor;
+  }
+
+  nav.nav {
+    background-color: #d9cec1;
+  }
+
+  h2.typewriter {
+    font-family: "Times New Roman", serif;
+    text-align: center;
+  }
+
+  .cursor {
+    color: $textColor;
+  }
+
+  .notowned {
+    color: #AAA;
+  }
+
+  .owned {
     //background-color: #212121;
     //color: white;
+  }
+
 }
-
-
