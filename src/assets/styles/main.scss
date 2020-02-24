@@ -185,6 +185,8 @@ input {
   background-color: white;
   min-height: 20px;
   padding-left: 20px;
+  padding-bottom: 6.5px;
+
 }
 
 .col-md-9 {
@@ -323,7 +325,7 @@ input {
   &::after {
     content: "|";
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 

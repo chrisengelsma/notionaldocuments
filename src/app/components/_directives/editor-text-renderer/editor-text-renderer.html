@@ -44,7 +44,7 @@
 
     <div ng-if="hasTopFocus == paragraph.paragraphId"
          class="paragraph addparagraph"
-         ng-class="{notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}" style="padding-bottom: 6.5px">
+         ng-class="{notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}" style="">
       <div class="proposition">
       <!--   <span class="proposition-text"></span> -->
 <!--         <span 
@@ -279,7 +279,7 @@
                   ng-model="inputs.proposition"
                   ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing; "
                   spellcheck="false"
-                  style="color: black; padding-left: 3px; padding-bottom: 5px;"
+                  style="color: black; padding-left: 3px;"
                   ></span>
       </div>
     </div>
