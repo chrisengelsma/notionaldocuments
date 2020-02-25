@@ -2585,7 +2585,7 @@
       $scope.hideExpandingTextarea = function () {
         setTimeout(function() {
           console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
-          $('#' + scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
+          $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
           $scope.inputs.chatProposition = '';
           if ($scope.selectedProposition.dialogueSide){
             console.log('Not dialogue side')
