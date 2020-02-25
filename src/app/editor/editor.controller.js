@@ -2477,7 +2477,7 @@
         //   return;
         // }
         $scope.selectedThread = thread;
-        $scope.hasChatFocusThreadId = thread.id;
+        $scope.hasChatFocusThreadId = thread.threadId;
   
       };
 
