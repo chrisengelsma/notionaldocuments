@@ -2522,6 +2522,7 @@
                 // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                 //   .expanding('destroy');
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                console.log('Selected proposition id: ', $scope.selectedProposition.id)
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
@@ -2580,7 +2581,7 @@
           $scope.inputs.chatProposition = '';
           if ($scope.selectedProposition.dialogueSide){
             console.log('Not dialogue side')
-            console.log("To set later. Thread: ", $scope.toSetLater.thread)
+            console.log("To set later. Thread: ", $scope.toSetLater.threadId)
           }
 
         }, 10);
