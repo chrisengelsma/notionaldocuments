@@ -2469,7 +2469,7 @@
       });
 
       $scope.selectThread = function(thread) {
-        console.log("Selecting thread")
+        console.log("Selecting thread: ", thread)
         // if (!thread.remarks[0].assertionId) {
         //   console.log('Returning from selectThread');
         //   return;
@@ -2492,7 +2492,7 @@
 
       $scope.selectPropositionById = function(id) {
 
-        console.log('Selecting by Id')
+        console.log('Selecting by Id: ', id)
         // insert left changes assertion paths
 
    
