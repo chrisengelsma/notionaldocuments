@@ -238,6 +238,8 @@
       $scope.hasBottomFocus = '';
       $scope.hasLeftFocus = '';
       $scope.hasRightFocus = '';
+      $scope.hasChatFocusThreadId = ''
+      $scope.hasChatFocusId = ''
       $scope.toBeClearedLater = {};
       $scope.toSetLater = {};
       var prep = {};
@@ -2475,6 +2477,7 @@
         //   return;
         // }
         $scope.selectedThread = thread;
+        $scope.hasChatFocusThreadId = thread.id;
   
       };
 
@@ -2529,6 +2532,7 @@
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
+                $scope.hasChatFocusId = $scope.selectedProposition.id;
               } else {
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
                    console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
@@ -2536,6 +2540,7 @@
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
+                $scope.hasChatFocusId = $scope.selectedProposition.id;
               }
 
               $scope.selectedProposition.dialogueSide = true;
@@ -2577,10 +2582,10 @@
         $scope.selectPropositionById($scope.toSetLater.remarkId) 
       }
 
-      $scope.hideExpandingTextarea = function (remarkId, thread) {
+      $scope.hideExpandingTextarea = function () {
         setTimeout(function() {
-          console.log("Clearing: ", remarkId, thread.threadId)
-          $('#' + remarkId + thread.threadId).parent().hide();
+          console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
+          $('#' + scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
           $scope.inputs.chatProposition = '';
           if ($scope.selectedProposition.dialogueSide){
             console.log('Not dialogue side')
