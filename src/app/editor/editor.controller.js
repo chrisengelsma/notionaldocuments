@@ -2509,7 +2509,6 @@
         }
         $scope.mark = {};
         $scope.highlight = {};
-        console.log('Assertion path: ', temp.assertionPath)
         if (temp.hasOwnProperty('assertionPath') && temp.assertionPath !== undefined) {
           temp.sliceStartingAt = temp.assertionPath.indexOf('.propositions');
           temp.paragraphPath = temp.assertionPath.slice(0, temp.sliceStartingAt);
@@ -2518,7 +2517,7 @@
 
           $scope.selectedParagraph = temp.paragraphDestination;
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
-            console.log('Running loop')
+            console.log('Working with id in loop: ', temp.paragraphDestination.propositions[i].id)
             if (temp.paragraphDestination.propositions[i].id === id) {
               console.log('If')
               if ($scope.selectedProposition.id) {
