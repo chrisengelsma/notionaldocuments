@@ -2564,7 +2564,7 @@
       $scope.saveForLater = function (remarkId, thread){
         $scope.toSetLater = {
           remarkId: remarkId,
-          thread: thread
+          threadId: thread.threadId
         }
       }
 
