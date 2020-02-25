@@ -2581,8 +2581,6 @@
           if ($scope.selectedProposition.dialogueSide){
             console.log('Not dialogue side')
             console.log("To set later. Thread: ", $scope.toSetLater.thread)
-            $scope.selectThread($scope.toSetLater.thread)
-            $scope.selectPropositionById($scope.toSetLater.remarkId)
           }
 
         }, 10);
