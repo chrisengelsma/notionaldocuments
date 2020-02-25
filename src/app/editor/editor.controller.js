@@ -2518,7 +2518,9 @@
 
           $scope.selectedParagraph = temp.paragraphDestination;
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
+            console.log('Running loop')
             if (temp.paragraphDestination.propositions[i].id === id) {
+              console.log('If')
               if ($scope.selectedProposition.id) {
                 // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                 //   .expanding('destroy');
