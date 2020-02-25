@@ -2529,6 +2529,7 @@
                   .expanding();
               } else {
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                   console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
                   .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
