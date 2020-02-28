@@ -2624,7 +2624,10 @@
         // Click the id of the proposition landed upon
         id = destination.id;
         console.log("Id before click: ", id)
-        $('proposition' + id).click();
+
+        $timeout(function() {
+          $('proposition' + id).click();
+        }, 10); 
       }
 
       $scope.getLastVisiblePropositionInNode = function () {
