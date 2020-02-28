@@ -2623,6 +2623,7 @@
 
         // Click the id of the proposition landed upon
         id = destination.id;
+        console.log("Id before click: ", id)
         document.getElementById(id).click();
       }
 
