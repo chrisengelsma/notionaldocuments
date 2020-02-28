@@ -2611,6 +2611,8 @@
           }
         }
 
+        $scope.selectedParagraph = destination;
+
         // Find the rightmost visible proposition
         for (var i = destination.propositions.length-1; i > -1; i--){
           if (destination.propositions[i][$scope.userId] !== 'hidden'){
