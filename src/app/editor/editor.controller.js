@@ -2593,7 +2593,7 @@
         //Find the rightmost child, if any
         while (destination.children){
 
-          path = path + '.children[' + destination.children.length-1.toString() + ']';
+          path = path + '.children[' + (destination.children.length-1).toString() + ']';
           destination = eval(path);
         } 
 
