@@ -2583,7 +2583,7 @@
       }
 
       $scope.hideExpandingTextarea = function () {
-        setTimeout(function() {
+        // setTimeout(function() {
           console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
           $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
           $scope.inputs.chatProposition = '';
@@ -2592,7 +2592,7 @@
             console.log("To set later. Thread: ", $scope.toSetLater.threadId)
           }
 
-        }, 10);
+        // }, 10);
       }
 
       $scope.clearExpandingClass = function(remark) {
