@@ -2632,7 +2632,7 @@
         console.log("Id before click: ", id)
 
         $timeout(function() {
-          $('proposition' + id).click();
+          document.getElementById('proposition' +id).click();
         }, 10); 
       }
 
