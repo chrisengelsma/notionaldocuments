@@ -2582,6 +2582,56 @@
         $scope.selectPropositionById($scope.toSetLater.remarkId) 
       }
 
+
+
+      $scope.getLastVisiblePropositionInBook = function () {
+
+        var path = '$scope.data[0]';
+        var destination = eval(path);
+        var id = '';
+
+        //Find the rightmost child, if any
+        while (destination.children){
+
+          path = path + '.children[' + destination.children.length-1.toString() + ']';
+          destination = eval(path);
+        } 
+
+        // Find the rightmost visible paragraph
+        for (var i = destination.paragraphs.length-1; i > -1; i--){
+          if (destination.paragraphs[i][$scope.userId] !== 'hidden'){
+            path = path + '.paragraphs[' + i.toString() + ']';
+            destination = eval(path);
+          }
+        }
+
+        // Find the rightmost visible proposition
+        for (var i = destination.propositions.length-1; i > -1; i--){
+          if (destination.propositions[i][$scope.userId] !== 'hidden'){
+            path = path + '.propositions[' + i.toString() + ']';
+            destination = eval(path);
+          }
+        }
+
+        // Click the id of the proposition landed upon
+        id = destination.id;
+        document.getElementById(id).click();
+      }
+
+      $scope.getLastVisiblePropositionInNode = function () {
+
+        var id = '';
+        return id;
+      }
+
+      $scope.getLastVisiblePropositionInParagraph = function () {
+
+        var id = '';
+        return id;
+
+      }
+
+
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
           console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)

@@ -160,7 +160,7 @@
            data-drag-enabled="false"
            id="tree-root"
            class="angular-ui-tree textlist"
-           ng-click="[selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, !data[0].paragraphs[0].propositions[0].author ? [selectBlank(node), $event.stopPropagation()] : inputs.nothing, $event.stopPropagation(), selectedProposition.dialogueSide = false, selectedThread = {}]">
+           ng-click="[selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, getLastVisiblePropositionInBook(), $event.stopPropagation(), selectedProposition.dialogueSide = false, selectedThread = {}]">
 
         <ol ui-tree-nodes
             ng-model='data'
