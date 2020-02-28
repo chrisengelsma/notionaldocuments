@@ -2591,11 +2591,14 @@
         var id = '';
 
         //Find the rightmost child, if any
-        while (destination.children){
+
+        if (destination.children){
+          while (destination.children){
 
           path = path + '.children[' + (destination.children.length-1).toString() + ']';
           destination = eval(path);
-        } 
+          } 
+        }
 
         // Find the rightmost visible paragraph
         for (var i = destination.paragraphs.length-1; i > -1; i--){
