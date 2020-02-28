@@ -2601,6 +2601,8 @@
           } 
         }
 
+        $scope.selectedNode = destination;
+
         // Find the rightmost visible paragraph
         for (var i = destination.paragraphs.length-1; i > -1; i--){
           if (destination.paragraphs[i][$scope.userId] !== 'hidden'){
