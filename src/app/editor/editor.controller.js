@@ -2621,6 +2621,8 @@
           }
         }
 
+        $scope.selectedProposition = destination;
+
         // Click the id of the proposition landed upon
         id = destination.id;
         console.log("Id before click: ", id)
