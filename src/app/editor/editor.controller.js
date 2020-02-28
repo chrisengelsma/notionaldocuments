@@ -2597,6 +2597,7 @@
 
           path = path + '.children[' + (destination.children.length-1).toString() + ']';
           destination = eval(path);
+          console.log("Path so far, while: ", path)
           } 
         }
 
@@ -2605,6 +2606,8 @@
           if (destination.paragraphs[i][$scope.userId] !== 'hidden'){
             path = path + '.paragraphs[' + i.toString() + ']';
             destination = eval(path);
+            console.log("Path so far, paragraph: ", path)
+            break;
           }
         }
 
@@ -2613,6 +2616,8 @@
           if (destination.propositions[i][$scope.userId] !== 'hidden'){
             path = path + '.propositions[' + i.toString() + ']';
             destination = eval(path);
+            console.log("Path so far, propositions: ", path)
+            break;
           }
         }
 
