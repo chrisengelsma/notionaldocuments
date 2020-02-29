@@ -2632,7 +2632,7 @@
         console.log("Id before click: ", id)
 
         $timeout(function() {
-          document.getElementById(id).click();
+          focusFactory(id)
         }, 10); 
       }
 
@@ -2661,7 +2661,7 @@
         console.log('Id: ', id)
 
         $timeout(function() {
-          document.getElementById(id).click();
+          focusFactory(id)
         }, 10); 
       }
 
