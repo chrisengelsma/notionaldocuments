@@ -776,7 +776,7 @@
       }
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-        
+          console.log("Double click listen")
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;

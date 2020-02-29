@@ -190,7 +190,7 @@
                          hasRightFocus = proposition.id,
                          listenForDoubleClick(this, paragraph, proposition),
                        ]
-                    :  ( (proposition.type !== 'negation' && proposition.author !== userId && !this.contentEditable) ||
+                    :  ( (proposition.type !== 'negation' && proposition.author !== userId && whatHasBeenClicked !== proposition.id) ||
                         (proposition.type === 'negation' && proposition.of.author === userId)
                        )
                           ? [
