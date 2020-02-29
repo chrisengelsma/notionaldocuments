@@ -2652,6 +2652,8 @@
 
         var id = paragraph.propositions[paragraph.propositions.length-1].id;
 
+        console.log('Id: ', id)
+
         $timeout(function() {
           document.getElementById('proposition' +id).click();
         }, 10); 
