@@ -249,7 +249,10 @@
       var temp = {};
 
 
-
+      $scope.showThreadAdd = function (thread) {
+        $('addto' + thread.threadId).expanding();
+        focusFactory('addto' + thread.threadId)
+      }
 
 
       // If an empty book, focus on the blank proposition
