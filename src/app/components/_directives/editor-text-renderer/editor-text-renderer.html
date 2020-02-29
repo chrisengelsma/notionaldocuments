@@ -28,7 +28,7 @@
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
          ng-if="$first && paragraph.propositions[0].type !== 'blank' && hasTopFocus != paragraph.paragraphId"
-         ng-click="[ideExpandingTextarea(),
+         ng-click="[hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
                     clearTopAndBottomHasFocus(),
@@ -84,7 +84,7 @@
             ui-tree-node
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
-            ng-click="[ideExpandingTextarea(), selectedProposition.textSide = true,
+            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true,
 
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
