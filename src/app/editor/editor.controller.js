@@ -2586,6 +2586,8 @@
 
       $scope.getLastVisiblePropositionInBook = function () {
 
+        console.log('Get last in book')
+
         var path = '$scope.data[0]';
         var destination = eval(path);
         var id = '';
@@ -2644,6 +2646,7 @@
 
       $scope.getLastVisiblePropositionInParagraph = function (node, paragraph) {
 
+        console.log("last visible prop in paragraph")
         $scope.selectedNode = node;
 
         $scope.selectedParagraph = paragraph;
