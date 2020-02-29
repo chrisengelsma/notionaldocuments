@@ -3,12 +3,15 @@
      ng-click="[clearEditable()]">
   <div class="tree-node tree-node-content dialoguetopic"
        ng-class="{ 'topicselected': selectedNode.topic === thread.topic }"
+       ng-mouseover="threadAddMouseover = thread.threadId"
+       ng-mouseleave="threadAddMouseover = ''"
 
-       ng-click=""
+       ng-click="[threadAddMouseover = '', threadAdding = thread.threadId]"
        style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}}
+       <span ng-if="threadAddMouseover == thread.threadId">+</span>
   </div>
 
-  <p ng-repeat="remark in thread.remarks track by $index">
+  <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId">
 		<span class="tree-node tree-node-content remark"
           ng-class="{'remarkselected': selectedProposition.id === remark.id,
                      'deleted': remark.deleted === true,

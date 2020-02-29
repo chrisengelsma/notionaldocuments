@@ -242,6 +242,8 @@
       $scope.hasChatFocusId = ''
       $scope.toBeClearedLater = {};
       $scope.toSetLater = {};
+      $scope.threadAddMouseover = '';
+      $scope.threadAdding = '';
       var prep = {};
       var apply = {};
       var temp = {};
