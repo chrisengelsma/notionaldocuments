@@ -2591,6 +2591,7 @@
         var path = '$scope.data[0]';
         var destination = eval(path);
         var id = '';
+        var flagged;
 
         //Find the rightmost child, if any
 
@@ -2619,14 +2620,18 @@
 
         // Find the rightmost visible proposition
         for (var i = destination.propositions.length-1; i > -1; i--){
-          if (destination.propositions[i][$scope.userId] !== 'hidden' && destination.propositions[i].type !== 'blank'){
+          if (destination.propositions[i][$scope.userId] !== 'hidden'){
             path = path + '.propositions[' + i.toString() + ']';
             destination = eval(path);
-            console.log("Path so far, propositions: ", path)
+            flagged = true;
             break;
           }
         }
 
+        // if (!flagged){
+        //   $scope.selectedProposition = destination;
+        // }
+        console.log('Destination: ', destination)
         $scope.selectedProposition = destination;
 
         // Click the id of the proposition landed upon
