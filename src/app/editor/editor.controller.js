@@ -2632,7 +2632,7 @@
         console.log("Id before click: ", id)
 
         $timeout(function() {
-          document.getElementById('proposition' +id).click();
+          document.getElementById(id).click();
         }, 10); 
       }
 
@@ -2661,7 +2661,7 @@
         console.log('Id: ', id)
 
         $timeout(function() {
-          document.getElementById('proposition' +id).click();
+          document.getElementById(id).click();
         }, 10); 
       }
 
