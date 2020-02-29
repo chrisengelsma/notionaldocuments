@@ -791,6 +791,7 @@
             
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
+            console.log('String contenteditable: ', document.getElementById(string).contentEditable)
             $scope.whatHasBeenClicked = proposition.id;
             $scope.dontrunfocusout = true;
             
