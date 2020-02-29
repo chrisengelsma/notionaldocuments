@@ -255,7 +255,7 @@
 
         
           $scope.$apply(function() {
-            $('addto' + thread.threadId).parent().show();
+            // $('addto' + thread.threadId).parent().show();
             $('addto' + thread.threadId).expanding();
             $('addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
