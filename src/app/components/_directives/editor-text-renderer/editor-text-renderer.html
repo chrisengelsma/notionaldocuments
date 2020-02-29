@@ -12,7 +12,7 @@
     ng-model="node.paragraphs"
     style="padding-left: 0">
   <li ng-repeat="paragraph in node.paragraphs track by $index"
-      ng-click="[selectParagraph(paragraph), paragraph.cursor = false,selectedProposition.dialogueSide = false, getLastVisiblePropositionInParagraph(node, paragraph)]"
+      ng-click="[selectParagraph(paragraph), paragraph.cursor = false,selectedProposition.dialogueSide = false]"
       ng-mouseover="paragraph.mouseOver = true;"
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
@@ -78,7 +78,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(), $event.stopPropagation()] : inputs.nothing, $event.stopPropagation()]" style="padding-left: 1px">
+          ng-click="[getLastVisiblePropositionInParagraph(node, paragraph), $event.stopPropagation()]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
             ng-mouseover="proposition.preSelected = true;"
