@@ -259,6 +259,7 @@
             $('addto' + thread.threadId).expanding();
             $('addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
+            console.log($('addto' + thread.threadId).expanding('active'))
          
           });
         }, 20);
