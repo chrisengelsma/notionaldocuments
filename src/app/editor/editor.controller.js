@@ -2617,7 +2617,7 @@
 
         // Find the rightmost visible proposition
         for (var i = destination.propositions.length-1; i > -1; i--){
-          if (destination.propositions[i][$scope.userId] !== 'hidden'){
+          if (destination.propositions[i][$scope.userId] !== 'hidden' && destination.propositions[i].type !== 'blank'){
             path = path + '.propositions[' + i.toString() + ']';
             destination = eval(path);
             console.log("Path so far, propositions: ", path)
@@ -2648,9 +2648,15 @@
 
         $scope.selectedParagraph = paragraph;
 
-        $scope.selectedProposition = paragraph.propositions[paragraph.propositions.length-1];
+        for (var i = paragraph.propositions[paragraph.propositions.length-1]; i > -1; i--){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].type !== 'blank'){
+            $scope.selectedProposition = paragraph.propositions[i];
+            break;
+          }
+        }
 
-        var id = paragraph.propositions[paragraph.propositions.length-1].id;
+
+        var id = $scope.selectedProposition.id;
 
         console.log('Id: ', id)
 
