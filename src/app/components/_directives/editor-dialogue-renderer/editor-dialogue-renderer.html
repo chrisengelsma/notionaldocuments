@@ -37,26 +37,7 @@
   </p>
 
   <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId">
-		<span class="tree-node tree-node-content remark"
-          ng-class="{'remarkselected': selectedProposition.id === remark.id,
-                     'deleted': remark.deleted === true,
-                     'rejoinder': (selectedProposition.of.id === remark.id && selectedProposition.of.type === 'assertion' && selectedProposition.of.author === userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) =='!')),
-                     'alignright': remark.type === 'negation' && remark.text !== '- Paragraph deleted -',
-                     'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic')
-                     }"
-          ng-click="[!remark.deleted ? [hideExpandingTextarea(), selectNodeByClass(thread), selectThread(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
-          ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread)]"
-          ng-mouseleave="remark.mouseOver = false;"
-          style="cursor: pointer; margin-bottom: 7px; font-size: 16px; ">
-
-		<span style=""
-          ng-class="{'underline': remark.mouseOver === true,
-                     'remarkupdated': remark.updated === true,
-                     'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
-                    }">{{remark.text}}{{remark.id}}</span>
-		</span>
-
-
+    <div class='expanding-wrapper' style="position: relative">
     <textarea
       title="{{ remark.id }}"
       ng-show="(remark.id === hasChatFocusId && thread.threadId === hasChatFocusThreadId)"
@@ -72,7 +53,7 @@
       spellcheck="false"
       style="height: 18px; font-size: 16px; width: 100%; color: black; margin-top: 10px">
       </textarea>
-
+</div>
 
   </p>
 </div>
