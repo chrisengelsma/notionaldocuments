@@ -2642,11 +2642,19 @@
         return id;
       }
 
-      $scope.getLastVisiblePropositionInParagraph = function () {
+      $scope.getLastVisiblePropositionInParagraph = function (node, paragraph) {
 
-        var id = '';
-        return id;
+        $scope.selectedNode = node;
 
+        $scope.selectedParagraph = paragraph;
+
+        $scope.selectedProposition = paragraph.propositions[paragraph.propositions.length-1];
+
+        var id = paragraph.propositions[paragraph.propositions.length-1].id;
+
+        $timeout(function() {
+          document.getElementById('proposition' +id).click();
+        }, 10); 
       }
 
 
