@@ -10,7 +10,7 @@
        style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}}
        <span ng-if="threadAddMouseover == thread.threadId">+</span>
   </div>
-  <p ng-if="threadAdding === thread.threadId">
+ 
     
       <textarea
       
@@ -28,7 +28,7 @@
         style="height: 18px; font-size: 16px; width: 100%; color: black; margin-top: 10px">
       </textarea>
   
-  </p>
+
 
   <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId">
 		<span class="tree-node tree-node-content remark"
