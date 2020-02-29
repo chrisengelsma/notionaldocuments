@@ -6,7 +6,7 @@
        ng-mouseover="threadAddMouseover = thread.threadId"
        ng-mouseleave="threadAddMouseover = ''"
 
-       ng-click="[threadAddMouseover = '', threadAdding = thread.threadId, showThreadAdd(thread)]"
+       ng-click="[threadAddMouseover = '', threadAdding = thread.threadId, hideExpandingTextArea(), showThreadAdd(thread)]"
        style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}}
        <span ng-if="threadAddMouseover == thread.threadId">+</span>
   </div>

@@ -250,6 +250,7 @@
 
 
       $scope.showThreadAdd = function (thread) {
+        $('addto' + thread.threadId).parent().show();
         $('addto' + thread.threadId).expanding();
         focusFactory('addto' + thread.threadId)
       }
