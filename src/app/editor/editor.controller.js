@@ -1714,7 +1714,8 @@
           prep.type = 'assertion';
           prep.adjustedText = input;
         } else {
-
+          console.log('Else')
+          console.log("Topic: ", $scope.selectedNode.topic)
           prep.topic = $scope.selectedNode.topic;
           prep.class = $scope.selectedNode.class;
           prep.type = 'assertion';
