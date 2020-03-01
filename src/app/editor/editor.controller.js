@@ -271,6 +271,10 @@
 
       }
 
+      $scope.hideThreadAdd = function () {
+        $scope.threadAdding = '';
+      }
+
 
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author){

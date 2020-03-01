@@ -6,9 +6,10 @@
        ng-mouseover="threadAddMouseover = thread.threadId"
        ng-mouseleave="threadAddMouseover = ''"
 
-       ng-click="[threadAddMouseover = '', selectedProposition.dialogueSide = true, selectThread(thread), showThreadAdd(thread)]"
+       ng-click="[!threadAdding ?[threadAddMouseover = '', selectedProposition.dialogueSide = true, selectThread(thread), showThreadAdd(thread)] : inputs.nothing, threadAdding ? hideThreadAdd() : inputs.nothing]"
        style="margin-bottom: 7px"> {{thread.topic}}<!-- {{thread.threadId}} -->
        <span ng-if="threadAddMouseover == thread.threadId">+</span>
+       <span ng-if="threadAddMouseover == thread.threadId && threadAdding === thread.threadId">-</span>
   </div>
   <p ng-if="threadAdding === thread.threadId">
     
