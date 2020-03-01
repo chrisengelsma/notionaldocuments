@@ -1191,7 +1191,8 @@
 
       $scope.prepProposition = function(input, thread, paragraph) {
 
-       
+       console.log("New prop: ", $scope.newProp)
+
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
