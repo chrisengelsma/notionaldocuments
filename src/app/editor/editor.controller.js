@@ -1887,7 +1887,6 @@
         $scope.hasRightFocus = '';
         $scope.newProp = '';
 
-        $('addto' + $scope.selectedThread.threadId).parent().hide();
 
 
       };
