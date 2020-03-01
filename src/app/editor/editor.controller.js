@@ -1192,9 +1192,11 @@
       $scope.prepProposition = function(input, thread, paragraph) {
 
        
+        if ($scope.selectedParagraph){
+          $scope.selectedParagraph.highlightAll = false;
+          $scope.selectedParagraph.markAll = false;
+        }
 
-        $scope.selectedParagraph.highlightAll = false;
-        $scope.selectedParagraph.markAll = false;
         apply = {};
         // Define characters at the beginning and end of the input
         prep.firstChar = input.charAt(0);
