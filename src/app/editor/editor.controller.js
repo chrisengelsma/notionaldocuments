@@ -257,11 +257,11 @@
         
           $scope.$apply(function() {
             // $('addto' + thread.threadId).parent().show();
-            console.log('addto' + thread.threadId)
-            $('addto' + thread.threadId).expanding();
-            $('addto' + thread.threadId).expanding(); //duplicate
+            console.log('#addto' + thread.threadId)
+            $('#addto' + thread.threadId).expanding();
+            $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
-            console.log($('addto' + thread.threadId).expanding('active'))
+            console.log($('#addto' + thread.threadId).expanding('active'))
          
           });
         }, 20);
