@@ -251,12 +251,14 @@
 
 
       $scope.showThreadAdd = function (thread) {
-
+        $scope.threadAdding = thread.threadId;
+        console.log('ThreadAdding: ', $scope.threadAdding)
         setTimeout(function() {
 
         
           $scope.$apply(function() {
             // $('addto' + thread.threadId).parent().show();
+
             console.log('#addto' + thread.threadId)
             $('#addto' + thread.threadId).expanding();
             $('#addto' + thread.threadId).expanding(); //duplicate
