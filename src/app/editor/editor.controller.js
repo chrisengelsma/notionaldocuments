@@ -1188,6 +1188,11 @@
         }
       };
 
+      $scope.setNewProp = function () {
+        $scope.newProp = true;
+        $scope.selectedProposition = {};
+        $scope.selectedParagraph = {}
+      }
 
       $scope.prepProposition = function(input, thread, paragraph) {
 
