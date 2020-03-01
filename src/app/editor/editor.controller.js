@@ -244,6 +244,7 @@
       $scope.toSetLater = {};
       $scope.threadAddMouseover = '';
       $scope.threadAdding = '';
+      $scope.newProp;
       var prep = {};
       var apply = {};
       var temp = {};
@@ -1188,7 +1189,7 @@
       };
 
 
-      $scope.prepProposition = function(input, paragraph) {
+      $scope.prepProposition = function(input, thread, paragraph) {
 
        
 
@@ -1748,6 +1749,11 @@
             prep.insertsLeft = true;
             console.log('Paragraph position: ', prep.paragraphPosition, ' Position: ', prep.position )
             console.log('Selected proposition text: ', $scope.selectedProposition.text)
+          } else if ($scope.newProp){
+            prep.paragraphPosition = $scope.selectedNode.paragraphs.length;
+            prep.position = 0;
+            prep.newProp = true;
+            console.log('New prop');        
           } else if (prep.type !== 'rejoinder') {
             console.log('Adding to existing paragraph');
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
@@ -1824,6 +1830,7 @@
             getsOwnNode: (prep.getsOwnNode === true ? prep.getsOwnNode : undefined),
             getsOwnParagraph: (prep.getsOwnParagraph === true ? prep.getsOwnParagraph : undefined),
             getsOwnPlace: (prep.getsOwnPlace === true ? prep.getsOwnPlace : undefined),
+            newProp: (prep.newProp === true ? prep.newProp : undefined),
             getsOwnProposition: (prep.getsOwnProposition === true ? prep.getsOwnProposition : undefined),
             replacesBlank: (prep.replacesBlank === true ? prep.replacesBlank : undefined),
             replacesBlankAndMoves:
@@ -1869,6 +1876,7 @@
         $scope.hasBottomFocus = '';
         $scope.hasLeftFocus = '';
         $scope.hasRightFocus = '';
+        $scope.newProp = '';
 
 
       };
@@ -2272,6 +2280,38 @@
                 focusFactory($scope.selectedProposition.id);
                 $($scope.selectedProposition.id).trigger('click');
               }
+            } else if (payload.proposition.newProp) {
+              apply.nodeDestination = eval(payload.nodePath);
+              apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+              apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
+              // apply.propositionDestination = eval(apply.propositionPath);
+
+              if (typeof (eval(apply.paragraphPath)) === 'undefined') {
+                console.log('Shouldnt be triggering')
+                apply.nodeDestination.paragraphs[payload.paragraphPosition] =
+                  {
+                    paragraphId: payload.paragraphId,
+                    position: payload.paragraphPosition,
+                    propositions: [payload.proposition]
+                  };
+              } else {
+
+
+
+
+                apply.nodeDestination.paragraphs[payload.paragraphPosition] =
+                  {
+                    paragraphId: payload.paragraphId,
+                    position: payload.paragraphPosition,
+                    propositions: [payload.proposition]
+                  };
+              }
+
+              apply.paragraphDestination = eval(apply.paragraphPath);
+              apply.paragraphAboveDestination = eval(apply.paragraphAbovePath);
+
+
+
             } else {
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
            
