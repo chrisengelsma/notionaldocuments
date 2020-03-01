@@ -273,6 +273,7 @@
 
       $scope.hideThreadAdd = function () {
         $scope.threadAdding = '';
+        console.log('Hide Thread add')
       }
 
 
