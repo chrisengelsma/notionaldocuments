@@ -39,6 +39,7 @@ var isIosDevice = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream
 function wrap (element, wrapper) {
   element.parentNode.insertBefore(wrapper, element)
   wrapper.appendChild(element)
+  console.log('Wraps')
 }
 
 function style (element, styles) {
@@ -141,6 +142,7 @@ function paddingHorizontal (computedStyle) {
 }
 
 function TextareaClone () {
+  console.log('Clones text area')
   this.element = document.createElement('pre')
   this.element.className = 'expanding-clone'
   this.innerElement = document.createElement('span')
@@ -183,6 +185,7 @@ TextareaClone.prototype = {
 }
 
 function Expanding (textarea) {
+  console.log('Expanding')
   this.element = createElement()
   this.textarea = new Textarea(textarea)
   this.textareaClone = new TextareaClone()
