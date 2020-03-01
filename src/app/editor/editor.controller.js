@@ -2796,6 +2796,7 @@
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
+        console.log("Selected node: ", $scope.selectedNode)
         $scope.selectedProposition.dialogueSide = true;
 
         temp = {};
