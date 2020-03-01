@@ -1887,6 +1887,8 @@
         $scope.hasRightFocus = '';
         $scope.newProp = '';
 
+        $('addto' + $scope.selectedThread.threadId).parent().hide();
+
 
       };
 
@@ -2296,7 +2298,6 @@
               // apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
-                console.log('Shouldnt be triggering')
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     paragraphId: payload.paragraphId,
