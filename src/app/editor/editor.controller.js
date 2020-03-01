@@ -1887,6 +1887,7 @@
         $scope.hasLeftFocus = '';
         $scope.hasRightFocus = '';
         $scope.newProp = '';
+        $scope.threadAdding = '';
 
 
 

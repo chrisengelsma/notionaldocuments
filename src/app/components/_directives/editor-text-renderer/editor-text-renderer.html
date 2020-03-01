@@ -168,7 +168,8 @@
                             'owned': proposition.author === userId && options.highlightOwned,
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId),
-                            'textcursor': whatHasBeenClicked == proposition.id
+                            'textcursor': whatHasBeenClicked == proposition.id,
+                            'rejoining': selectedProposition.id === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId
                           }"
                 ng-enter="[proposition.propositionPreSelected = false, updateProposition(proposition)]"
                 ng-mouseover="proposition.propositionPreSelected = true;"
