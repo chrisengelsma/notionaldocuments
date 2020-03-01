@@ -7,7 +7,7 @@
        ng-mouseleave="threadAddMouseover = ''"
 
        ng-click="[threadAddMouseover = '', selectedProposition.dialogueSide = true, selectThread(thread), showThreadAdd(thread)]"
-       style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}}
+       style="margin-bottom: 7px"> {{thread.topic}}<!-- {{thread.threadId}} -->
        <span ng-if="threadAddMouseover == thread.threadId">+</span>
   </div>
   <p ng-if="threadAdding === thread.threadId">
@@ -46,7 +46,7 @@
           ng-class="{'underline': remark.mouseOver === true,
                      'remarkupdated': remark.updated === true,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
-                    }">{{remark.text}}{{remark.id}}</span>
+                    }">{{remark.text}}<!-- {{remark.id}} --></span>
 		</span>
 
 
