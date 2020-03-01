@@ -1877,6 +1877,9 @@
         console.log('Payload:', prep.payload);
         prep = {};
 
+
+        if (paragraph){
+        console.log('Paragraph: ', paragraph)
         paragraph.topAdd = false;
         paragraph.bottomAdd = false;
         paragraph.leftAdd = false;
@@ -1884,6 +1887,8 @@
         paragraph.topMouseOver = false;
         paragraph.bottomAdd = false;
         paragraph.bottomMouseOver = false;
+        }
+
         $scope.hasTopFocus = '';
         $scope.hasBottomFocus = '';
         $scope.hasLeftFocus = '';
@@ -2801,8 +2806,7 @@
 
       $scope.selectNodeByClass = function(thread) {
         if (!thread.remarks[0].assertionId) {
-          console.log('No actual remarks, returning');
-          return;
+          console.log('No actual remarks');
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
