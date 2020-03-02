@@ -2759,7 +2759,7 @@
 
         $scope.selectedParagraph = paragraph;
 
-        console.log('Paragraph propositions: ', paragraph.propositions )
+        console.log('Starts at: ', paragraph.propositions[paragraph.propositions.length-1] )
 
         for (var i = paragraph.propositions[paragraph.propositions.length-1]; i > -1; i--){
           console.log('Looking at: ', paragraph.propositions[i])
