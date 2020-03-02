@@ -2759,6 +2759,8 @@
 
         $scope.selectedParagraph = paragraph;
 
+        console.log('Paragraph propositions: ', paragraph.propositions )
+
         for (var i = paragraph.propositions[paragraph.propositions.length-1]; i > -1; i--){
           console.log('Looking at: ', paragraph.propositions[i])
           if (paragraph.propositions[i][$scope.userId] !== 'hidden'){
