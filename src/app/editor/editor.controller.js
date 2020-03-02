@@ -628,6 +628,7 @@
           });
           $scope.$apply(function() {
             focusFactory('Ngmyk1lP1KfffhSAw333');
+            $scope.hasRightFocus = 'Ngmyk1lP1KfffhSAw333';
           });
         } else {
           $scope.selectedProposition = {};
