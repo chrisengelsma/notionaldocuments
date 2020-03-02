@@ -2735,7 +2735,7 @@
     var selection=document.getSelection();
     var range=document.createRange();
     var contenteditable=document.getElementById(id)
-
+ 
     if(contenteditable.lastChild.nodeType==3){
       range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
     }else{
