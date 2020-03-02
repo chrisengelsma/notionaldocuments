@@ -2761,7 +2761,7 @@
 
         console.log('Starts at: ', paragraph.propositions[paragraph.propositions.length-1] )
 
-        for (var i = paragraph.propositions[paragraph.propositions.length-1]; i > -1; i--){
+        for (var i = paragraph.propositions.length-1; i > -1; i--){
           console.log('Looking at: ', paragraph.propositions[i])
           if (paragraph.propositions[i][$scope.userId] !== 'hidden'){
             $scope.selectedProposition = paragraph.propositions[i];
