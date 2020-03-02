@@ -2732,17 +2732,17 @@
         $timeout(function() {
           focusFactory(id)
           
-    var selection=document.getSelection();
-    var range=document.createRange();
-    var contenteditable=document.getElementById(id)
+          var selection = document.getSelection();
+          var range = document.createRange();
+          var contenteditable = document.getElementById(id)
  
-    if(contenteditable.lastChild.nodeType==3){
-      range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
-    }else{
-      range.setStart(contenteditable,contenteditable.childNodes.length);
-    }
-    selection.removeAllRanges();
-    selection.addRange(range);
+          if (contenteditable.lastChild.nodeType == 3) {
+            range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+          } else{
+            range.setStart(contenteditable,contenteditable.childNodes.length);
+          }
+          selection.removeAllRanges();
+          selection.addRange(range);
         }, 10); 
       }
 
@@ -2773,6 +2773,17 @@
 
         $timeout(function() {
           focusFactory(id)
+          var selection = document.getSelection();
+          var range = document.createRange();
+          var contenteditable = document.getElementById(id)
+ 
+          if (contenteditable.lastChild.nodeType == 3) {
+            range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+          } else {
+            range.setStart(contenteditable,contenteditable.childNodes.length);
+          }
+          selection.removeAllRanges();
+          selection.addRange(range);
         }, 10); 
       }
 
