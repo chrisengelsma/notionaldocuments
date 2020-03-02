@@ -245,6 +245,7 @@
       $scope.threadAddMouseover = '';
       $scope.threadAdding = '';
       $scope.newProp;
+      $scope.stopToggle = false;
       var prep = {};
       var apply = {};
       var temp = {};
@@ -268,13 +269,19 @@
           });
         }, 20);
 
+        $scope.stopToggle = true;
 
       }
 
       $scope.hideThreadAdd = function () {
         $scope.threadAdding = '';
+        $scope.stopToggle = true;
 
         console.log('Hide Thread add')
+      }
+
+      $scope.stopNgClick = function () {
+        $scope.stopToggle = false;
       }
 
 
