@@ -2732,20 +2732,17 @@
         $timeout(function() {
           focusFactory(id)
           
-          var range,selection;
-          if(document.createRange){
-            range = document.createRange();//Create a range (a range is a like the selection but invisible)
-            range.selectNodeContents(id);//Select the entire contents of the element with the range
-            range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-            selection = window.getSelection();//get the selection object (allows you to change selection)
-            selection.removeAllRanges();//remove any selections already made
-            selection.addRange(range);//make the range you have just created the visible selection
-          } else if(document.selection) { 
-            range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
-            range.moveToElementText(id);//Select the entire contents of the element with the range
-            range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-            range.select();//Select the range (make it the visible selection
-          }
+    var selection=document.getSelection();
+    var range=document.createRange();
+    var contenteditable=document.getElementById(id)
+
+    if(contenteditable.lastChild.nodeType==3){
+      range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+    }else{
+      range.setStart(contenteditable,contenteditable.childNodes.length);
+    }
+    selection.removeAllRanges();
+    selection.addRange(range);
         }, 10); 
       }
 
