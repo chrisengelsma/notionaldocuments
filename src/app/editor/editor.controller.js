@@ -2760,7 +2760,7 @@
         $scope.selectedParagraph = paragraph;
 
         for (var i = paragraph.propositions[paragraph.propositions.length-1]; i > -1; i--){
-          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].type !== 'blank'){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden'){
             $scope.selectedProposition = paragraph.propositions[i];
             break;
           }
