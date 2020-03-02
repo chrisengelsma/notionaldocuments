@@ -280,7 +280,7 @@
         console.log('Hide Thread add')
       }
 
-      $scope.stopNgClick = function () {
+      $scope.exitNgClick = function () {
         $scope.stopToggle = false;
       }
 
