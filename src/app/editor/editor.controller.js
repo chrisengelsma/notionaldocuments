@@ -2731,8 +2731,9 @@
 
         $timeout(function() {
           focusFactory(id)
-          document.getElementById(id).selectionStart = document.getElementById(id).selectionEnd = 10000;
-          
+          document.getElementById(id).selectionStart = 10000;
+          document.getElementById(id).selectionEnd = 10000;
+          console.log('Object selecting: ', document.getElementById(id) )
         }, 10); 
       }
 
