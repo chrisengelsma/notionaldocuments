@@ -274,6 +274,7 @@
       $scope.hideThreadAdd = function () {
         $scope.threadAdding = '';
         $scope.threadAddMouseover = '';
+        
         console.log('Hide Thread add')
       }
 
