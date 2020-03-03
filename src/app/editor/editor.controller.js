@@ -2791,14 +2791,14 @@
         // setTimeout(function() {
           console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
           if ($scope.hasChatFocusId){
-          $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
-          $scope.inputs.chatProposition = '';
-          if ($scope.selectedProposition.dialogueSide){
-            console.log('Not dialogue side')
-            console.log("To set later. Thread: ", $scope.toSetLater.threadId)
+            $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
+            $scope.inputs.chatProposition = '';
+            if ($scope.selectedProposition.dialogueSide){
+              console.log('Not dialogue side')
+              console.log("To set later. Thread: ", $scope.toSetLater.threadId)
+            }
+            $scope.threadAdding = '';
           }
-          $scope.threadAdding = '';
-        }
 
         // }, 10);
       }

@@ -6,8 +6,9 @@
        ng-mouseover="threadAddMouseover = thread.threadId"
        ng-mouseleave="threadAddMouseover = ''"
 
-       ng-click="[threadAdding && !stopToggle ? [hideExpandingTextarea(), hideThreadAdd()] : inputs.nothing, !threadAdding && !stopToggle ? [hideExpandingTextarea(), selectedProposition.dialogueSide = true, selectThread(thread), showThreadAdd(thread)] : inputs.nothing, exitNgClick()]"
+       ng-click="[threadAdding && !stopToggle ? [hideExpandingTextarea(), hideThreadAdd()] : inputs.nothing, !threadAdding && !stopToggle ? [hideExpandingTextarea(), selectedProposition.dialogueSide = true, selectThread(thread)] : inputs.nothing, exitNgClick()]"
        style="margin-bottom: 7px"> {{thread.topic}}{{thread.threadId}}
+       <!-- , showThreadAdd(thread) -->
        <span ng-if="threadAddMouseover == thread.threadId && threadAdding !== thread.threadId">+</span>
        <span ng-if="threadAddMouseover == thread.threadId && threadAdding === thread.threadId">-</span>
   </div>
