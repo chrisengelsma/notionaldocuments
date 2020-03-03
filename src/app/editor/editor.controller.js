@@ -265,7 +265,7 @@
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
             console.log($('#addto' + thread.threadId).expanding('active'))
-            $scope.hideExpandingTextarea();
+           
          
           });
         }, 20);
