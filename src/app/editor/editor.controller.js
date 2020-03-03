@@ -2802,6 +2802,7 @@
             console.log('Not dialogue side')
             console.log("To set later. Thread: ", $scope.toSetLater.threadId)
           }
+          $scope.threadAdding = '';
         }
 
         // }, 10);
