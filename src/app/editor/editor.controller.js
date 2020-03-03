@@ -258,6 +258,8 @@
         
           $scope.$apply(function() {
             // $('addto' + thread.threadId).parent().show();
+            $scope.hasChatFocusId = '';
+            $scope.hasChatFocusThreadId = '';
             $scope.threadAdding = thread.threadId;
             console.log('ThreadAdding: ', $scope.threadAdding)
             console.log('#addto' + thread.threadId)
