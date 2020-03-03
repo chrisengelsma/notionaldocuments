@@ -2755,7 +2755,7 @@
 
       $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
 
-        if (event.target.localName !== 'ol'){
+        if (event.target.localName !== 'ol' || event.target.localName !== 'li'){
           console.log('returning')
           return;
         }
