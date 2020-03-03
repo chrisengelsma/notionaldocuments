@@ -264,7 +264,6 @@
             $('#addto' + thread.threadId).expanding();
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
-            console.log($('#addto' + thread.threadId).expanding('active'))
 
          
           });
@@ -675,7 +674,6 @@
       };
 
       $scope.clearWithBottomAdder = function(paragraph) {
-        console.log("Clears with bottom adder")
         paragraph.bottomAdd = true;
         $scope.hasBottomFocus = paragraph.paragraphId;
 
@@ -1614,14 +1612,13 @@
 
             if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
-              console.log('selected proposition remark address is: ', $scope.selectedProposition.remarkAddress);
+
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
 
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
-                console.log('start is now: ', start, ' and i is now: ', i);
+              
               }
 
-              console.log('Calculated start value: ', start);
 
 
               prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
@@ -1629,10 +1626,9 @@
               start = '';
               if (prep.check && prep.check.remarks.length > 0) {                              //  if the remark has remarks
                 prep.remarkAddress.push(prep.check.remarks.length);             //  make a new index
-                console.log('pushed onto last index of the remark address array: ', prep.check.remarks.length);
-              } else {
+                
                 prep.remarkAddress.push(0);                                     //  otherwise the index is 0
-                console.log('pushed a 0 onto the last index of the remark address array');
+                
 
 
                 prep.remarkPath = prep.assertionPath;
@@ -1644,7 +1640,7 @@
               prep.remarkAddress = $scope.selectedProposition.remarkAddress;          // shouldn't trigger
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
-              console.log('just pushed a zero');
+           
             }
           }
 
@@ -1657,7 +1653,6 @@
           prep.getsOwnNode = true;
           prep.answeredQuestion = $scope.selectedProposition.question;
 
-          console.log('Selected Node: ', $scope.selectedNode);
           if (!$scope.selectedNode.children) {
             prep.classBasis = 0;
           } else {
@@ -1738,8 +1733,7 @@
           prep.type = 'assertion';
           prep.adjustedText = input;
         } else {
-          console.log('Else')
-          console.log("Topic: ", $scope.selectedNode.topic)
+     
           prep.topic = $scope.selectedNode.topic;
           prep.class = $scope.selectedNode.class;
           prep.type = 'assertion';
@@ -1814,7 +1808,6 @@
             }
           }
 
-          console.log('Prep nodepath: ' , prep.nodePath)
 
           // Had a toString of undefined about here, needs to be fixed
 
@@ -2765,10 +2758,8 @@
 
         $scope.selectedParagraph = paragraph;
 
-        console.log('Starts at: ', paragraph.propositions[paragraph.propositions.length-1] )
 
         for (var i = paragraph.propositions.length-1; i > -1; i--){
-          console.log('Looking at: ', paragraph.propositions[i])
           if (paragraph.propositions[i][$scope.userId] !== 'hidden'){
             $scope.selectedProposition = paragraph.propositions[i];
             break;
@@ -2778,7 +2769,6 @@
 
         var id = $scope.selectedProposition.id;
 
-        console.log('Id: ', id)
 
         $timeout(function() {
           focusFactory(id)
@@ -2859,7 +2849,6 @@
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
-        console.log("Selected node: ", $scope.selectedNode)
         $scope.selectedProposition.dialogueSide = true;
 
         temp = {};
