@@ -180,6 +180,7 @@
                     (proposition.author === userId && proposition.type !== 'negation' &&
                      whatHasBeenClicked !== proposition.id)
                     ?  [ 
+                         clearEditable(),
                          selectNode(node),
                          selectParagraph(paragraph),
                          selectedParagraph = paragraph,
