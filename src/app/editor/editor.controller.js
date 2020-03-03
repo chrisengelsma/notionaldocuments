@@ -252,14 +252,14 @@
 
 
       $scope.showThreadAdd = function (thread) {
-        $scope.threadAdding = thread.threadId;
-        console.log('ThreadAdding: ', $scope.threadAdding)
+
         setTimeout(function() {
 
         
           $scope.$apply(function() {
             // $('addto' + thread.threadId).parent().show();
-
+            $scope.threadAdding = thread.threadId;
+            console.log('ThreadAdding: ', $scope.threadAdding)
             console.log('#addto' + thread.threadId)
             $('#addto' + thread.threadId).expanding();
             $('#addto' + thread.threadId).expanding(); //duplicate
@@ -2797,7 +2797,7 @@
               console.log('Not dialogue side')
               console.log("To set later. Thread: ", $scope.toSetLater.threadId)
             }
-            $scope.threadAdding = '';
+            
           }
 
         // }, 10);
