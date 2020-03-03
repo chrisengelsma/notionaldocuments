@@ -265,7 +265,7 @@
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
             console.log($('#addto' + thread.threadId).expanding('active'))
-           
+
          
           });
         }, 20);
@@ -2795,12 +2795,14 @@
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
           console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
+          if ($scope.hasChatFocusId){
           $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
           $scope.inputs.chatProposition = '';
           if ($scope.selectedProposition.dialogueSide){
             console.log('Not dialogue side')
             console.log("To set later. Thread: ", $scope.toSetLater.threadId)
           }
+        }
 
         // }, 10);
       }
