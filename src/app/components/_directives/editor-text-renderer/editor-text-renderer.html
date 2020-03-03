@@ -79,7 +79,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-click="[hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph), $event.stopPropagation()]" style="padding-left: 1px">
+          ng-click="[hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event), $event.stopPropagation()]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
             ng-mouseover="proposition.preSelected = true;"

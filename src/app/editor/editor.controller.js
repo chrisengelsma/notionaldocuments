@@ -2753,7 +2753,11 @@
         return id;
       }
 
-      $scope.getLastVisiblePropositionInParagraph = function (node, paragraph) {
+      $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
+
+        if (event.target.srcElement !== 'ol'){
+          return;
+        }
 
         console.log("last visible prop in paragraph")
         $scope.selectedNode = node;
