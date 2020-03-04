@@ -53,7 +53,8 @@
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x)
         } else {
-          if (key == bottomMouseOver || key == preSelected || key == leftMouseOver || key == topMouseOver || key == disableRightCursor){
+          console.log('Key: ', key)
+          if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver' || key == 'disableRightCursor'){
             object[key] = false;
           }
           // x is the value for a key that's not an object or array
