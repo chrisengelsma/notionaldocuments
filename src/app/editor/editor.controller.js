@@ -46,6 +46,53 @@
 
     // All the modal buttons.
 
+    $scope.makePristine = function () {
+      function traverse(x, key) {
+        if (isArray(x)) {
+        traverseArray(x)
+        } else if ((typeof x === 'object') && (x !== null)) {
+          traverseObject(x)
+        } else {
+          if (key == bottomMouseOver || key == preSelected || key == leftMouseOver || key == topMouseOver || key == disableRightCursor){
+            object[key] = false;
+          }
+          // x is the value for a key that's not an object or array
+          // key is the key
+          // if the key is paragraph.bottomMouseOver proposition.preSelected 
+          // paragraph.leftMouseOver paragraph.topMouseOver paragraph.disableRightCursor,
+          // set it to false
+        }
+      }
+
+      function traverseArray(arr) {
+        arr.forEach(function (x) {
+          traverse(x)
+        })
+      }
+
+      function traverseObject(obj) {
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            traverse(obj[key], key)
+          }
+        }
+      }
+
+      function isArray(o) {
+        return Object.prototype.toString.call(o) === '[object Array]'
+      }
+
+      // usage:
+
+      traverse($scope.data[0])
+
+      // Starts with data object
+      // Considers it as an object
+      // Then goes to the values of the object one by one
+
+      // Have it do things when it's on paragraphs and propositions
+  }
+
 
     $scope.openNewBookModal = function() {
       $scope.addBookModalInstance = $uibModal.open({
@@ -249,6 +296,7 @@
       var prep = {};
       var apply = {};
       var temp = {};
+      $scope.makePristine();
 
 
       $scope.showThreadAdd = function (thread) {
