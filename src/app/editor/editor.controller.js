@@ -882,6 +882,8 @@
           document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
           $scope.whatHasBeenClicked = '';
          
+        } else {
+          $scope.whatHasBeenClicked = '';
         }
       }
 
