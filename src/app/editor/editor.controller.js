@@ -324,7 +324,6 @@
             console.log('ThreadAdding: ', $scope.threadAdding)
             console.log('#addto' + thread.threadId)
             $('#addto' + thread.threadId).expanding();
-            $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
           });
         }, 20);
@@ -343,7 +342,7 @@
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
           });
-        }, 1000);
+        }, 20);
 
         $scope.stopToggle = true;
 
