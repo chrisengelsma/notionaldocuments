@@ -53,9 +53,13 @@
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x)
         } else {
-          if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver' || key == 'disableRightCursor'){
+          if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver'){
             x = false;
             console.log('Key: ', key, 'Value? ', x)
+          }
+
+          if(key == 'preSelected'){
+            x.
           }
           // x is the value for a key that's not an object or array
           // key is the key
@@ -84,8 +88,16 @@
       }
 
       // usage:
+        setTimeout(function() {
 
-      traverse($scope.data[0])
+        
+          $scope.$apply(function() {
+
+            traverse($scope.data[0])
+         
+          });
+        }, 20);
+      
 
       // Starts with data object
       // Considers it as an object
