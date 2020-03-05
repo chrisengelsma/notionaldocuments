@@ -55,7 +55,7 @@
         } else {
           console.log('Key: ', key)
           if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver' || key == 'disableRightCursor'){
-            object[key] = false;
+            x = false;
           }
           // x is the value for a key that's not an object or array
           // key is the key
