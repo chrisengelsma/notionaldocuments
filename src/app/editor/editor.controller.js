@@ -67,7 +67,7 @@
         }
       }
 
-      function traverseArray(arr) {
+      function traverseArray(arr) { 
         arr.forEach(function (x) {
           traverse(x)
         })
