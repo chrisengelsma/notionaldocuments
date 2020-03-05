@@ -53,9 +53,9 @@
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x)
         } else {
-          console.log('Key: ', key)
           if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver' || key == 'disableRightCursor'){
             x = false;
+            console.log('Key: ', key, 'Value? ', x)
           }
           // x is the value for a key that's not an object or array
           // key is the key
@@ -297,6 +297,7 @@
       var prep = {};
       var apply = {};
       var temp = {};
+
       $scope.makePristine();
 
 
