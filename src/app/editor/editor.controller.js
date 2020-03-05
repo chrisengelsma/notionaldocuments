@@ -326,10 +326,24 @@
             $('#addto' + thread.threadId).expanding();
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
-
-         
           });
         }, 20);
+
+        setTimeout(function() {
+
+        
+          $scope.$apply(function() {
+            // $('addto' + thread.threadId).parent().show();
+            $scope.hasChatFocusId = '';
+            $scope.hasChatFocusThreadId = '';
+            $scope.threadAdding = thread.threadId;
+            console.log('ThreadAdding: ', $scope.threadAdding)
+            console.log('#addto' + thread.threadId)
+            $('#addto' + thread.threadId).expanding();
+            $('#addto' + thread.threadId).expanding(); //duplicate
+            focusFactory('addto' + thread.threadId)
+          });
+        }, 1000);
 
         $scope.stopToggle = true;
 
