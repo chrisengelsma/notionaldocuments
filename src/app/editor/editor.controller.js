@@ -58,9 +58,7 @@
             console.log('Key: ', key, 'Value? ', x)
           }
 
-          if(key == 'preSelected'){
-            x.
-          }
+
           // x is the value for a key that's not an object or array
           // key is the key
           // if the key is paragraph.bottomMouseOver proposition.preSelected 
