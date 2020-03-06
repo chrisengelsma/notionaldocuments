@@ -92,7 +92,7 @@
 
             // traverse($scope.data[0])
 
-            if $('.cursor').is('.visible-cursor'){
+            if ($('.cursor').is('.visible-cursor')){
               $('.cursor').removeClass('visible-cursor')
               $('.cursor').addClass('invisible-cursor')
             }
