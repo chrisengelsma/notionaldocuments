@@ -939,7 +939,7 @@
           $scope.propositions[index].text = elem.innerText;
           var prop = Object.assign({}, $scope.propositions[index]);
 
-          var position = prop.position;
+          var position = $scope.selectedProposition.position;
           var nodePath = prop.assertionPath.split(/\.(?=[^.]+$)/)[0];
           eval(nodePath).propositions[position].text = prop.text;
 
