@@ -85,10 +85,10 @@
       }
 
       // usage:
-        setTimeout(function() {
+        // setTimeout(function() {
 
         
-          $scope.$apply(function() {
+        //   $scope.$apply(function() {
 
             // traverse($scope.data[0])
 
@@ -107,8 +107,8 @@
             //   }
             // }
          
-          });
-        }, 20);
+        //   });
+        // }, 20);
       
 
       // Starts with data object
