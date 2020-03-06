@@ -94,6 +94,7 @@
             traverse($scope.data[0])
 
             var cursors = document.querySelectorAll('.cursor')
+            console.log(cursors)
             for (var i = 0; i < cursors.length; i++){
               if (cursors[i].hasClass('visible-cursor')){
                 cursors[i].removeClass('visible-cursor');
