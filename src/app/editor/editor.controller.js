@@ -92,15 +92,20 @@
 
             // traverse($scope.data[0])
 
-            var cursors = document.querySelectorAll('.cursor')
-            console.log(cursors)
-            for (var i = 0; i < cursors.length; i++){
-              console.log(cursors[i])
-              if (cursors[i].hasClass('visible-cursor')){
-                cursors[i].removeClass('visible-cursor');
-                cursors[i].addClass('invisible-cursor');
-              }
+            if $('.cursor').is('.visible-cursor'){
+              $('.cursor').removeClass('visible-cursor')
+              $('.cursor').addClass('invisible-cursor')
             }
+
+            // var cursors = document.querySelectorAll('.cursor')
+            // console.log(cursors)
+            // for (var i = 0; i < cursors.length; i++){
+            //   console.log(cursors[i])
+            //   if (cursors[i].hasClass('visible-cursor')){
+            //     cursors[i].removeClass('visible-cursor');
+            //     cursors[i].addClass('invisible-cursor');
+            //   }
+            // }
          
           });
         }, 20);
