@@ -234,7 +234,7 @@
             ng-mouseover="paragraph.disableRightCursor = false"
             ng-model="inputs.proposition"
             ng-keyup="
-                $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, paragraph.disableRightCursor = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;
+                $event.keyCode === 13 && selectedProposition.dialogueSide != true ? [$event.preventDefault(), proposition.propositionPreSelected = false, paragraph.disableRightCursor = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;
                 (($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true && selectedProposition.author === userId) || ($event.keyCode === 8 && inputs.proposition === '' && selectedProposition.type === 'blank')) ? deleteProposition() : inputs.nothing;
                 ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true && proposition.author === userId) ? markProposition(proposition) : inputs.nothing;
                 (inputs.proposition === '' && $event.keyCode === 8 && proposition.type !== 'negation' && proposition.author === userId) ? highlightProposition(node, paragraph, proposition) : inputs.nothing;
