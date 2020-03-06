@@ -92,6 +92,14 @@
           $scope.$apply(function() {
 
             traverse($scope.data[0])
+
+            var cursors = document.querySelectorAll('.cursor')
+            for (var i = 0; i < cursors.length; i++){
+              if (cursors[i].hasClass('visible-cursor')){
+                cursors[i].removeClass('visible-cursor');
+                cursors[i].addClass('invisible-cursor');
+              }
+            }
          
           });
         }, 20);
