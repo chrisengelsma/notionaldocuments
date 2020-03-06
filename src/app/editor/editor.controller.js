@@ -941,7 +941,9 @@
 
           var position = $scope.selectedProposition.position;
           var nodePath = prop.assertionPath.split(/\.(?=[^.]+$)/)[0];
+          console.log('Node path so far: ', nodePath)
           eval(nodePath).propositions[position].text = prop.text;
+          console.log('Being updated with new text: ', eval(nodePath).propositions[position])
 
           prep.payload = {
             proposition: prop
@@ -955,6 +957,30 @@
           profileService.setSelectedBook($scope.data[0]);
         }
       };
+
+      $scope.$on('socket:broadcastUpdate', function(event, payload) {
+        var index = $scope.propositions.findIndex(function(x) {
+          return x.id === payload.proposition.id;
+        });
+        var elem = document.getElementById('proposition' + payload.proposition.id);
+
+        if (elem && index >= 0) {
+          $scope.propositions[index] = payload.proposition;
+          elem.innerText = payload.proposition.text;
+          console.log($scope.propositions[index]);
+          for (var i = 0; i < $scope.data[0].dialogue.length; i++){
+            for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
+              if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
+                $scope.data[0].dialogue[i].remarks[j].updated = true;
+                // $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
+              }
+            }
+          }
+        }
+
+
+
+      });
 
       $scope.deleteProposition = function() {
         // Don't delete if it ain't yours
@@ -1036,29 +1062,6 @@
         profileService.setSelectedBook($scope.data[0]);
       };
 
-      $scope.$on('socket:broadcastUpdate', function(event, payload) {
-        var index = $scope.propositions.findIndex(function(x) {
-          return x.id === payload.proposition.id;
-        });
-        var elem = document.getElementById('proposition' + payload.proposition.id);
-
-        if (elem && index >= 0) {
-          $scope.propositions[index] = payload.proposition;
-          elem.innerText = payload.proposition.text;
-          console.log($scope.propositions[index]);
-          for (var i = 0; i < $scope.data[0].dialogue.length; i++){
-            for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
-              if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
-                $scope.data[0].dialogue[i].remarks[j].updated = true;
-                $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
-              }
-            }
-          }
-        }
-
-
-
-      });
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
 
