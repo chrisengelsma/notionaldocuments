@@ -55,7 +55,6 @@
         } else {
           if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver'){
             x = false;
-            console.log('Key: ', key, 'Value? ', x)
           }
 
 
@@ -91,11 +90,12 @@
         
           $scope.$apply(function() {
 
-            traverse($scope.data[0])
+            // traverse($scope.data[0])
 
             var cursors = document.querySelectorAll('.cursor')
             console.log(cursors)
             for (var i = 0; i < cursors.length; i++){
+              console.log(cursors[i])
               if (cursors[i].hasClass('visible-cursor')){
                 cursors[i].removeClass('visible-cursor');
                 cursors[i].addClass('invisible-cursor');
