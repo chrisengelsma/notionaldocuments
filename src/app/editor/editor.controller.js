@@ -42,7 +42,7 @@
           }
         });
       }
-    }, 1000);
+    }, 500);
 
     // All the modal buttons.
 
