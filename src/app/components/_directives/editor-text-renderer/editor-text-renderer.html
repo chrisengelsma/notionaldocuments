@@ -251,7 +251,7 @@
               <!-- Need focus variables for left and right -->
               
           <span class="cursor"
-                ng-class="{'visible-cursor': (proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && hasRightFocus !== proposition.id) || ,
+                ng-class="{'visible-cursor': (proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && hasRightFocus !== proposition.id),
                            'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor || hasRightFocus === proposition.id}"
 
                 ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
