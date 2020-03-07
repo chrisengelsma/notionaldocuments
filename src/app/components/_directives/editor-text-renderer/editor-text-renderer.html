@@ -5,7 +5,7 @@
     titlestyling: node.isTitle,
     openfield: data[0].paragraphs[0].propositions[0].author === '',
   }"
-  ng-click="">
+  ng-click="stopNgClick()">
   {{node.topic}}
 </div>
 <ol ui-tree-nodes
@@ -40,7 +40,8 @@
                    paragraph.topAdd = true,
                    paragraph.bottomAdd = false,
                    paragraph.leftAdd = false,
-                   clearEditable()]"
+                   clearEditable(),
+                   ]"
          event-focus="click"
          event-focus-id="{{topAdderId}}">
     </div>
