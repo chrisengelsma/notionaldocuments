@@ -2671,6 +2671,10 @@
         $scope.hasBottomFocus = '';
       }
 
+      $scope.clearThreadAdding = function () {
+        $scope.threadAdding = ''
+      }
+
 
       $scope.selectPropositionById = function(id) {
 
