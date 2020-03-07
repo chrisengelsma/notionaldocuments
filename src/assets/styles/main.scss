@@ -131,6 +131,11 @@ font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetic
 
 }
 
+
+.thread:hover>.tree-node.tree-node-content.dialoguetopic {
+    background-color: #212121!important;
+}
+
 .subject {
   /*  background-color: rgba(255,255,255,0.5);*/
   padding-top: 9px;
