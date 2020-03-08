@@ -990,9 +990,9 @@
         }
           var propositionPath = prep.nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
           var propositionDestination = eval(propositionPath)
-
-          propositionDestination.text = angular.copy(elem.innerText);
           return;
+          propositionDestination.text = angular.copy(elem.innerText);
+          
 
           var index = $scope.propositions.findIndex(function(x) {
             return x.id === proposition.id;
