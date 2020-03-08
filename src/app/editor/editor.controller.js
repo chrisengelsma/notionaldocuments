@@ -1020,7 +1020,7 @@
       };
 
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
-        return;
+
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
         });
@@ -1029,7 +1029,7 @@
         if (elem && index >= 0) {
           $scope.propositions[index] = payload.proposition;
           elem.innerText = payload.proposition.text;
-          console.log($scope.propositions[index]);
+          console.log('Proposition on propositions of found index: ', $scope.propositions[index]);
           for (var i = 0; i < $scope.data[0].dialogue.length; i++){
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
               if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
