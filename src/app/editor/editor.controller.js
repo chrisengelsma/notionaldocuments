@@ -1020,7 +1020,7 @@
       };
 
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
-
+        return;
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
         });
@@ -1040,7 +1040,7 @@
           }
         }
 
-        
+
 
       });
 
