@@ -964,8 +964,8 @@
       
     }
 
-      $scope.updateProposition = function(paragraph, proposition) {
-        console.log('Proposition: ', proposition)
+      $scope.updateProposition = function(node, paragraph, proposition) {
+        console.log('Node: ', node)
         if (proposition.author !== $scope.userId) {
           return;
         }
@@ -977,8 +977,18 @@
 
 
         if (elem) {
-          var nodePath = proposition.nodePath;
-          var propositionPath = nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
+          prep.address = node.address;
+          prep.nodePath = '$scope.data';
+
+        //make the nodes part of the address
+        for (var i = 0; i < prep.address.length; i++) {
+          if (i < prep.address.length - 1) {
+            prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+          } else {
+            prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+          }
+        }
+          var propositionPath = prep.nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
           var propositionDestination = eval(propositionPath)
 
           propositionDestination.text = elem.innerText;

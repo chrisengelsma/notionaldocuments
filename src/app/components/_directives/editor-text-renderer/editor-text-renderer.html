@@ -173,7 +173,7 @@
                             'rejoining': selectedProposition.id === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId,
                             'updatecursor': this.contentEditable
                           }"
-                ng-enter="[proposition.propositionPreSelected = false, updateProposition(paragraph, proposition)]"
+                ng-enter="[proposition.propositionPreSelected = false, updateProposition(node, paragraph, proposition)]"
                 ng-mouseover="proposition.propositionPreSelected = true;"
                 ng-mouseleave="proposition.propositionPreSelected = false;"
                 
