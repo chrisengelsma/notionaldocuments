@@ -979,7 +979,7 @@
         },0)
 
         if (index >= 0 && elem) {
-
+          return;
           $scope.propositions[index].text = elem.innerText;
           var prop = Object.assign({}, $scope.propositions[index]);
 
@@ -993,7 +993,7 @@
             proposition: prop
           };
 
-          return;
+          
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
 
