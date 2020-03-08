@@ -991,7 +991,7 @@
           var propositionPath = prep.nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
           var propositionDestination = eval(propositionPath)
 
-          propositionDestination.text = elem.innerText;
+          propositionDestination.text = angular.copy(elem.innerText);
           return;
 
           var index = $scope.propositions.findIndex(function(x) {
@@ -1004,7 +1004,7 @@
             proposition: propositionDestination
           };
 
-          
+
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
 
@@ -1020,7 +1020,7 @@
       };
 
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
-        
+
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
         });
