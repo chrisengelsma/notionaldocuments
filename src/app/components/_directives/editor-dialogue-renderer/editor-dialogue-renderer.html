@@ -35,7 +35,7 @@
           ng-class="{'remarkselected': selectedProposition.id === remark.id,
                      'deleted': remark.deleted === true,
                      'rejoinder': (selectedProposition.of.id === remark.id && selectedProposition.of.type === 'assertion' && selectedProposition.of.author === userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) =='!')),
-                     'alignright': remark.type === 'negation' && remark.text !== '- Paragraph deleted -',
+                     'alignright': remark.type === 'negation' && remark.dialogueText !== '- Paragraph deleted -',
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic')
                      }"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, !remark.deleted ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectNodeByClass(thread), selectThread(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
@@ -47,7 +47,7 @@
           ng-class="{'underline': remark.mouseOver === true,
                      'remarkupdated': remark.updated === true,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
-                    }">{{remark.text}}{{remark.updated}}</span>
+                    }">{{remark.dialogueText}}{{remark.updated}}</span>
 		</span>
 
 

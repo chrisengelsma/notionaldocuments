@@ -990,7 +990,9 @@
         }
           var propositionPath = prep.nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
           var propositionDestination = eval(propositionPath)
-          return;
+         
+
+          //bugs out below
           propositionDestination.text = angular.copy(elem.innerText);
           
 
@@ -2009,6 +2011,7 @@
             isPlaceholder: (prep.isPlaceholder ? prep.isPlaceholder : undefined),
             author: $scope.userId,
             text: prep.adjustedText,
+            dialogueText: angular.copy(prep.adjustedText),
             type: prep.type,
             of: (prep.of ? prep.of : undefined),
             position: prep.position,
@@ -2134,6 +2137,7 @@
                           author: payload.proposition.author,
                           type: payload.proposition.type,
                           text: payload.proposition.text,
+                          dialogueText: payload.proposition.dialogueText,
                           position: payload.proposition.position
                         }
                       ]
@@ -2531,7 +2535,7 @@
               });
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks = [];
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0] = payload.proposition;
-              $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].text = apply.nodeDestination.topic;
+              $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].dialogueText = apply.nodeDestination.topic;
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].isDialogueTopic = true;
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].threadId = $scope.scroll.threadId;
 
