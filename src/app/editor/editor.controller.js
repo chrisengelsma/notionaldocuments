@@ -1004,7 +1004,7 @@
             proposition: propositionDestination
           };
 
-
+          return;
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
 
@@ -1020,7 +1020,7 @@
       };
 
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
-        return;
+        
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
         });
