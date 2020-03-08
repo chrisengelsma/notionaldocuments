@@ -1001,7 +1001,7 @@
           $scope.propositions[index] = propositionDestination;
 
           prep.payload = {
-            proposition: prop
+            proposition: propositionDestination
           };
 
 
