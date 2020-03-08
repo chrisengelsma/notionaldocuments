@@ -964,38 +964,42 @@
       
     }
 
-      $scope.updateProposition = function(proposition) {
+      $scope.updateProposition = function(paragraph, proposition) {
         if (proposition.author !== $scope.userId) {
           return;
         }
-        var index = $scope.propositions.findIndex(function(x) {
-          return x.id === proposition.id;
-        });
-        // Might be causing duplication?
+
+
+
         var elem = document.getElementById('proposition' + proposition.id);
         elem.contentEditable = false;
-        $timeout( function(){
-          document.getElementById(elem).click(); 
-        },0)
 
-        if (index >= 0 && elem) {
-          return;
-          $scope.propositions[index].text = elem.innerText;
-          var prop = Object.assign({}, $scope.propositions[index]);
 
-          var position = $scope.selectedProposition.position;
-          var nodePath = prop.assertionPath.split(/\.(?=[^.]+$)/)[0];
-          console.log('Node path so far: ', nodePath)
-          eval(nodePath).propositions[position].text = prop.text;
-          console.log('Being updated with new text: ', eval(nodePath).propositions[position])
+        if (elem) {
+          var nodePath = proposition.nodePath;
+          var propositionPath = nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
+          var propositionDestination = eval(propositionPath)
+
+          propositionDestination.text = elem.innerText;
+
+
+          var index = $scope.propositions.findIndex(function(x) {
+            return x.id === proposition.id;
+          });
+
+          $scope.propositions[index] = propositionDestination;
 
           prep.payload = {
             proposition: prop
           };
 
-          
+
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
+
+          $timeout( function(){
+            document.getElementById(elem).click(); 
+          },0)
 
           apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
           apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));

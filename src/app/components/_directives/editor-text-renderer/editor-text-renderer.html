@@ -170,9 +170,10 @@
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId),
                             'textcursor': whatHasBeenClicked == proposition.id,
-                            'rejoining': selectedProposition.id === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId
+                            'rejoining': selectedProposition.id === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId,
+                            'updatecursor': this.contentEditable
                           }"
-                ng-enter="[proposition.propositionPreSelected = false, updateProposition(proposition)]"
+                ng-enter="[proposition.propositionPreSelected = false, updateProposition(paragraph, proposition)]"
                 ng-mouseover="proposition.propositionPreSelected = true;"
                 ng-mouseleave="proposition.propositionPreSelected = false;"
                 
