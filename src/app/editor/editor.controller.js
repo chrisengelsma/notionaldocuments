@@ -999,7 +999,7 @@
           });
 
           $scope.propositions[index] = propositionDestination;
-
+          return;
           prep.payload = {
             proposition: propositionDestination
           };
