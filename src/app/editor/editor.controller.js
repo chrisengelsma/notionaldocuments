@@ -999,7 +999,7 @@
           });
 
           $scope.propositions[index] = propositionDestination;
-          return;
+
           prep.payload = {
             proposition: propositionDestination
           };
@@ -1015,10 +1015,12 @@
           apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
           apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
           profileService.setSelectedBook($scope.data[0]);
+
         }
       };
 
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
+        return;
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
         });
