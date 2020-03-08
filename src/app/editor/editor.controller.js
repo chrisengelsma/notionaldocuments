@@ -99,6 +99,10 @@
               $('.cursor').addClass('invisible-cursor')
             }
 
+            if ($('.bottomparagraphadder').is('.blackline')){
+              $('.cursor').removeClass('blackline')
+            }
+
             // var cursors = document.querySelectorAll('.cursor')
             // console.log(cursors)
             // for (var i = 0; i < cursors.length; i++){
