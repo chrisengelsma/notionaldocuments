@@ -992,7 +992,7 @@
           var propositionDestination = eval(propositionPath)
 
           propositionDestination.text = elem.innerText;
-
+          return;
 
           var index = $scope.propositions.findIndex(function(x) {
             return x.id === proposition.id;
@@ -1004,7 +1004,7 @@
             proposition: propositionDestination
           };
 
-          return;
+          
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
 
