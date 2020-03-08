@@ -965,6 +965,7 @@
     }
 
       $scope.updateProposition = function(paragraph, proposition) {
+        console.log('Proposition: ', proposition)
         if (proposition.author !== $scope.userId) {
           return;
         }
