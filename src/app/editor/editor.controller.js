@@ -1009,7 +1009,7 @@
           prep = {};
 
           $timeout( function(){
-            document.getElementById(elem).click(); 
+            elem.click(); 
           },0)
 
           apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
