@@ -993,6 +993,7 @@
             proposition: prop
           };
 
+          return;
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
 
