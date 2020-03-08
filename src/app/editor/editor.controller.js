@@ -407,6 +407,10 @@
         $scope.stopToggle = false;
       }
 
+      $scope.blurEdit = function (element, proposition) {
+        element.innerText = proposition.text;
+      }
+
 
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author){
