@@ -1051,6 +1051,7 @@
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
               if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
                 $scope.data[0].dialogue[i].remarks[j].updated = true;
+                console.log('Updated: ', $scope.data[0].dialogue[i].remarks[j].updated)
                 // $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
               }
             }
