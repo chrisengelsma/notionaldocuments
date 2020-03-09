@@ -45,7 +45,7 @@
 
 		<span style="cursor: pointer;"
           ng-class="{'underline': remark.mouseOver === true,
-                     'remarkupdated': remark.text !== remark.dialogueText,
+                     'remarkupdated': remark.text !== remark.dialogueText || remark.updated,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
                     }">{{remark.dialogueText}}</span>
 		</span>
