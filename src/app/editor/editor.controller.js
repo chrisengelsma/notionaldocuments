@@ -407,8 +407,8 @@
         $scope.stopToggle = false;
       }
 
-      $scope.blurEdit = function (element, proposition) {
-        element.innerText = proposition.text;
+      $scope.blurEdit = function () {
+        
       }
 
 
@@ -931,6 +931,13 @@
 
       $scope.clearEditable = function () {
         if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked){
+          if ($scope.whatHasBeenClicked){
+            for (var i = 0; i < $scope.propositions.length; i++){
+              if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
+                document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
+              }
+            }
+          }
           document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
           $scope.whatHasBeenClicked = '';
          

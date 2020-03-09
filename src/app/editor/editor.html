@@ -1,7 +1,8 @@
 <nd-readonly-shield ng-if="!loggedIn()"></nd-readonly-shield>
 
 <div class="container "
-     ng-init="initialize">
+     ng-init="initialize"
+     ng-click="blurEdit()">
   <div class="row"
        id="firstrow">
     <span class="app-title"
