@@ -1393,6 +1393,7 @@
         // Those that are blank
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
           console.log('Returning')
+          document.getElementById($scope.selectedProposition.id).innerText = '';
           return;
         }
 
