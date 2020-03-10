@@ -1644,7 +1644,7 @@
         
 
           console.log('Path to assertion: ', prep.assertionPath);
-          console.log('New remark address: ', prep.remarkAddress);              //    CONSOLE LOGS
+          console.log('New remark address: ', prep.remarkAddress);             
           console.log('Node position: ', prep.nodePath);
           console.log('Question/Topic: ', prep.topic);
           console.log('Destination: ', prep.class);
@@ -1661,7 +1661,7 @@
 
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
-          for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
+          for (var i = 0; i < prep.address.length; i++) {                                         
             if (i < prep.address.length - 1) {
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
             } else {
@@ -1674,18 +1674,22 @@
           prep.capacityCount = 0;
           for (var i = 0; i < prep.paragraphDestination.propositions.length; i++) {
           
-            if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && prep.paragraphDestination.propositions[i].type !== 'negation'
-              && prep.paragraphDestination.propositions[i].deleted !== true) {
+            if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId && 
+              prep.paragraphDestination.propositions[i].type !== 'negation'
+              && prep.paragraphDestination.propositions[i].deleted !== true)
+              //what about hiddens?
+              {
               prep.capacityCount++;
             }
           }
          
           if (prep.capacityCount > 1) {
+            console.log("Capacity count greater than 1")
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
             prep.insertsBelow = true;
             prep.of = {
-              id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
+              id: $scope.selectedProposition.id,                                             
               type: $scope.selectedProposition.type,
               author: $scope.selectedProposition.author,
               text: $scope.selectedProposition.text,
@@ -1695,7 +1699,7 @@
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
 
-            for (var i = 0; i < prep.address.length; i++) {                                          //    FOLLOW THE SELECTEDPROPOSITION'S ADDRESS TO GET TO THE NODE
+            for (var i = 0; i < prep.address.length; i++) {                                         
               if (i < prep.address.length - 1) {
                 prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
               } else {
@@ -1735,6 +1739,7 @@
 
 
           } else {
+            console.log("Capacity count not greater than 1")
             prep.paragraphPosition = $scope.selectedParagraph.position;
             for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
               if ($scope.selectedParagraph.propositions[i].id === $scope.selectedProposition.id) {
