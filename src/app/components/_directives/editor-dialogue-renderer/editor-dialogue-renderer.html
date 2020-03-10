@@ -30,7 +30,7 @@
   
   </p>
 
-  <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId">
+  <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId" class="remarkparagraph" style="">
 		<span class="tree-node tree-node-content remark"
           ng-class="{'remarkselected': selectedProposition.id === remark.id,
                      'deleted': remark.deleted === true,
