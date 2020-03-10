@@ -80,6 +80,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
+          ng-class="'addbelownotowned': hasBottomFocus == paragraph.paragraphId"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
@@ -266,7 +267,7 @@
     <div ng-if="paragraph.bottomAdd == true && hasBottomFocus == paragraph.paragraphId"
          class="paragraph addparagraph"
          ng-class="{notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}"
-         style="padding-top: 6.5px;">
+         style="padding-top: 6px;">
       <div class="proposition">
 <!--         <span class="proposition-text">
         </span> -->
