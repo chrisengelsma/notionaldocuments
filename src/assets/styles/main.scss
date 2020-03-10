@@ -199,7 +199,7 @@ input {
 }
 
 .negation {
-  border-bottom: 1px solid #212121 !important;
+  border-bottom: 1px solid #212121;
 }
 
 .nocursor {
@@ -718,7 +718,7 @@ nav.nav {
 
 .rejoining{
   color: grey;
-  border-bottom: none;
+  border-bottom: 1px solid grey;
 }
 
 .vertical-center {
