@@ -1788,7 +1788,7 @@
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
               
               }
-              console.log('Start')
+              console.log('Start: ', start)
 
 
               prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
@@ -1806,10 +1806,14 @@
                 for (var i = 0; i < prep.remarkAddress.length; i++) {                            // calculate the path to the selectedProposition's remark location
                   prep.remarkPath = prep.remarkPath + '.remarks[' + prep.remarkAddress[i].toString() + ']';
                 }
+              } else {
+                prep.remarkAddress = $scope.selectedProposition.remarkAddress;          
+                prep.remarkAddress.push(0);
+                prep.remarkPath = prep.assertionPath + '.remarks[0]';                
               }
             } else {
               console.log('Remarks[0]')
-              prep.remarkAddress = $scope.selectedProposition.remarkAddress;          // shouldn't trigger
+              prep.remarkAddress = $scope.selectedProposition.remarkAddress;          
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
            
