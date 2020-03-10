@@ -80,7 +80,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-class="'addbelownotowned': hasBottomFocus == paragraph.paragraphId"
+          ng-class="{'addbelownotowned': hasBottomFocus == paragraph.paragraphId}"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
