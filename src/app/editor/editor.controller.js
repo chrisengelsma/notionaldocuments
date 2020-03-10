@@ -2668,6 +2668,7 @@
 
                 temp.propositionDestination = eval(temp.propositionPath);
                 //     PUSH PROPOSITIONS TO THE THREAD ACCORDING TO THE ADDRESS
+                console.log("Building thread, reading address and adding remark: ", temp.propositionDestination.text)
                 $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[i + 1] = temp.propositionDestination; // the last thread's last remark is where the loop is pointing
 
                 // the last thread's last remark is where proposition destination is pointing
