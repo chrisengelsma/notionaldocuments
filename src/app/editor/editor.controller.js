@@ -2393,6 +2393,7 @@
               }
 
             } else if (payload.proposition.insertsBelow) {
+              console.log("Inserts below. ParagraphId: ", payload.paragraphId)
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition - 1).toString() + ']';
