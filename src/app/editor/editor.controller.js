@@ -2746,7 +2746,7 @@
             }
 
             //Update paragraph ownership
-
+            console.log('Paragraph destination: ', apply.paragraphDestination)
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
                 apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
