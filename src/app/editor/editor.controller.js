@@ -2428,6 +2428,7 @@
             } else if (payload.proposition.insertsBelow) {
               console.log("Inserts below. ParagraphId: ", payload.paragraphId)
               apply.nodeDestination = eval(payload.nodePath);
+              console.log("node destination: ", apply.nodeDestination)
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition - 1).toString() + ']';
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
@@ -2441,6 +2442,7 @@
                     propositions: [payload.proposition]
                   };
               } else {
+                console.log('There is such a paragraph')
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
                   apply.nodeDestination.paragraphs[i].position++;
                   if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
