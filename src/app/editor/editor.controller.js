@@ -1173,8 +1173,8 @@
 
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
+              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
+                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -1282,8 +1282,8 @@
 
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
+              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
+                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -1343,8 +1343,8 @@
 
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
+              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
+                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -2748,8 +2748,8 @@
             //Update paragraph ownership
 
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
+              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
+                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
