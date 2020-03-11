@@ -84,7 +84,7 @@
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
-            ng-init="paragraph.owner = $first.author"
+            ng-init="$first ? paragraph.owner = paragraph.propositions[$index].author"
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
             ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true,
@@ -92,7 +92,7 @@
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
-          {{$first.author}} {{paragraph.owner}}
+          {{paragraph.propositions[$index]}} {{paragraph.owner}}
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true]"
                 ng-mouseleave="[paragraph.leftMouseOver = false, paragraph.disableRightCursor = false]"
