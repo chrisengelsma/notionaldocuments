@@ -267,7 +267,7 @@
     </div>
     <div ng-if="paragraph.bottomAdd == true && hasBottomFocus == paragraph.paragraphId"
          class="paragraph addparagraph"
-         ng-class="{notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}"
+         ng-class="{notyourparagraph: paragraph.owner !== userId && paragraph.owner !== ''}"
          style="padding-top: 6px;">
       <div class="proposition">
 <!--         <span class="proposition-text">
@@ -280,7 +280,7 @@
 <!--         <span class="cursor invisible-cursor">
         </span> -->
         <span 
-                  ng-class="{notyourparagraph: (paragraph.propositions[0].type !== 'blank' && paragraph.propositions[0].author !== userId)}"
+                  ng-class=""
                   editable-span-ng-model
                   contenteditable="true"
                   id="{{paragraph.paragraphId}}"
