@@ -20,7 +20,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   notyourspaddingtop: !first && paragraph.propositions[0].author !== userId,
-                  notyourparagraph: paragraph.propositions.$first.author !== userId && paragraph.propositions.$first.type !== 'blank'}">{{paragraph.propositions.$first}}
+                  notyourparagraph: paragraph.owner == userId">
                  
                
     <div class="topparagraphadder"
@@ -84,6 +84,7 @@
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
+            ng-init="paragraph.owner = $first.author"
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
             ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true,
