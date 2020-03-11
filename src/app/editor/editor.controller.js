@@ -1174,7 +1174,7 @@
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                paragraph.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -1191,7 +1191,7 @@
             }
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                paragraph.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -1283,7 +1283,7 @@
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                paragraph.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -1344,7 +1344,7 @@
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                paragraph.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
@@ -2749,7 +2749,7 @@
 
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                paragraph.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                 break;
               }
             }
