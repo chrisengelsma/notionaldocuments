@@ -1172,9 +1172,10 @@
             };
 
             // Updates paragraph ownership
+            console.log('Paragraph destination: ', apply.paragraphDestination)
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
                 break;
               }
             }
@@ -1281,9 +1282,10 @@
           }
 
             // Updates paragraph ownership
+            console.log('Paragraph destination: ', apply.paragraphDestination)
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
                 break;
               }
             }
@@ -1342,9 +1344,10 @@
           }
 
             // Updates paragraph ownership
+            console.log('Paragraph destination: ', apply.paragraphDestination)
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
                 break;
               }
             }
@@ -2749,13 +2752,16 @@
             console.log('Paragraph destination: ', apply.paragraphDestination)
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
+                apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
                 break;
               }
             }
 
             
             temp = {};
+
+            // also clearing apply
+            apply = {};
             $scope.scroll = {};
 
             $scope.propositions.push(payload.proposition);  // PUSHES THE PROPOSITION TO THE PROPOSITIONS ARRAY
