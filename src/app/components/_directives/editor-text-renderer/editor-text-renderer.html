@@ -92,7 +92,7 @@
                       selectLeft(proposition, paragraph)]"
             ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
             class="proposition">
-          <!-- {{proposition.preSelected}} {{$first}} -->
+          {{$first.author}} {{paragraph.owner}}
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true]"
                 ng-mouseleave="[paragraph.leftMouseOver = false, paragraph.disableRightCursor = false]"
