@@ -3286,15 +3286,16 @@
         }
 
 
-        //loop has to go through the entire dialogue, mark the correct remarks
-        // as deleted, as well as any direct negations of them
-        // dialogue renderer will make these non-clickable
+        // Need to write for deletions of paragraphs
+
+
         for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
           for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
-            if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id &&  
-              $scope.data[0].dialogue[i].remarks[$scope.data[0].dialogue[i].remarks.length - 1].remarkAddress ===
-              $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[$scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks.length - 2].remarkAddress) {
-              $scope.data[0].dialogue[i].hidden = true;
+            if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id ||
+                ($scope.data[0].dialogue[i].remarks[j].of.id == payload.proposition.id &&
+                 $scope.data[0].dialogue[i].remarks[j].type == 'negation'))
+               {
+                $scope.data[0].dialogue[i].remarks[j].hidden = true;
             }
           }
         }
