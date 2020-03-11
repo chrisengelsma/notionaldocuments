@@ -1171,6 +1171,14 @@
               isPlaceholder: true
             };
 
+            // Updates paragraph ownership
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
+                paragraph.owner = apply.paragraphDestination[i].author;
+                break;
+              }
+            }
+
             for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
                 for (var k = 0; k < payload.ids.length; k++){
@@ -1181,7 +1189,12 @@
                 }
               }
             }
-
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
+                paragraph.owner = apply.paragraphDestination[i].author;
+                break;
+              }
+            }
 
             $scope.selectedParagraph = apply.paragraphDestination;
             $scope.selectedProposition = apply.paragraphDestination.propositions[0];
@@ -1266,6 +1279,14 @@
               }
             }
           }
+
+            // Updates paragraph ownership
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
+                paragraph.owner = apply.paragraphDestination[i].author;
+                break;
+              }
+            }
         }
 
         if (payload.complicatedDeletion) {
@@ -1319,6 +1340,14 @@
               }
             }
           }
+
+            // Updates paragraph ownership
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
+                paragraph.owner = apply.paragraphDestination[i].author;
+                break;
+              }
+            }
 
         }
 
@@ -2714,6 +2743,15 @@
                 $(query).expanding();
                 $(query).focus();
               }, 0);
+            }
+
+            //Update paragraph ownership
+
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
+                paragraph.owner = apply.paragraphDestination[i].author;
+                break;
+              }
             }
 
             
