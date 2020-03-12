@@ -2756,6 +2756,7 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
                 apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
+                console.log("Owner: ", apply.paragraphDestination.owner)
                 break;
               }
             }
@@ -2982,11 +2983,9 @@
       $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
 
         if (event.target.localName !== 'ol'  ){
-          console.log('returning')
           return;
         }
 
-        console.log("last visible prop in paragraph")
         $scope.selectedNode = node;
 
         $scope.selectedParagraph = paragraph;
