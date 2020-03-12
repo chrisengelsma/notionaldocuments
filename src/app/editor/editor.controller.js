@@ -2764,8 +2764,7 @@
             
             temp = {};
 
-            // also clearing apply
-            apply = {};
+          
             $scope.scroll = {};
 
             $scope.propositions.push(payload.proposition);  // PUSHES THE PROPOSITION TO THE PROPOSITIONS ARRAY
