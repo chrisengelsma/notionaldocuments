@@ -1538,10 +1538,14 @@
         else if ((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
           $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' && $scope.selectedProposition.author === $scope.userId)) {
 
-          if (prep.lastChar === '?') {
-            prep.topic = input;
-            prep.question = prep.topic;
-          }
+          // if (prep.lastChar === '?') {
+          //   prep.topic = input;
+          //   prep.question = prep.topic;
+          // }
+          // The above code can be used to activate the mechanism whereby answered questions
+          // inaugurate new sections
+          // 
+          //           
 
           if ($scope.selectedProposition.type === 'negation') {
             prep.isOfNegation = true;
