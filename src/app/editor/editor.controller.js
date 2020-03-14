@@ -2123,6 +2123,8 @@
         $timeout(function() {
           $scope.$apply(function() {
 
+            apply = {};
+
             if (payload.proposition.getsOwnNode) {
               apply.oldNodeDestination = eval(payload.oldNodePath);
               if (!apply.oldNodeDestination.children) {
