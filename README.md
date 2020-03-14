@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/github/license/notionaldocuments/notionaldocuments.svg)](https://github.com/notionaldocuments/notionaldocuments/blob/master/LICENSE) [![Build Status](https://travis-ci.org/notionaldocuments/notionaldocuments.svg?branch=master)](https://travis-ci.org/notionaldocuments/notionaldocuments) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 
-![Overview gif](/assets/images/overview.gif)
+![Overview gif](/src/assets/images/overview.gif)
 
 #### What's this?
 
