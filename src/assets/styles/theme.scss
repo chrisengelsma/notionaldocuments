@@ -17,14 +17,17 @@ form input::-webkit-input-placeholder{
 
 .thread:hover > .tree-node.tree-node-content.dialoguetopic {
   color: #FFFFFF;
+  border: 1px solid #aaaaaa !important;
 }
 
 .thread:hover > p  {
   background-color: #FFFFFF;
+  border: 1px solid #aaaaaa !important;
 }
 
 .thread:hover {
   background-color: #FFFFFF;
+  border: 1px solid #aaaaaa !important;
 }
 
 nav.nav > a.nav-link:hover {
