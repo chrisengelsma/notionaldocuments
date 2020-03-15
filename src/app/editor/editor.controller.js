@@ -1176,6 +1176,8 @@
               console.log('Hmm ', apply.paragraphDestination.propositions[i])
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
                 apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
+                console.log('Owner: ', apply.paragraphDestination.owner)
+                console.log('Author: ', apply.paragraphDestination.propositions[i].author)
                 break;
               }
             }
