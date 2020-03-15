@@ -1166,6 +1166,7 @@
               id: payload.blankId,
               type: 'blank',
               text: '',
+              author: '',
               position: 0,
               isPlaceholder: true
             };
@@ -1218,7 +1219,9 @@
               id: payload.blankId,
               type: 'blank',
               text: '',
-              position: 0
+              author: '',
+              position: 0,
+
             };
             apply.paragraphDestination.propositions[0][$scope.userId] = 'hidden';
           }
@@ -1322,6 +1325,7 @@
             id: payload.blankId,
             type: 'blank',
             text: '',
+            author: '',
             position: payload.proposition.position
           };
 
@@ -2151,6 +2155,7 @@
                           id: payload.proposition.id,
                           type: 'blank',
                           text: '',
+                          author: '',
                           position: payload.proposition.position
                         }
                       ]
