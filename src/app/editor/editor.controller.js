@@ -962,7 +962,6 @@
             
             focusFactory(id);
             document.getElementById(string).contentEditable = true;
-            console.log('String contenteditable: ', document.getElementById(string).contentEditable)
             $scope.whatHasBeenClicked = proposition.id;
             $scope.dontrunfocusout = true;
             
@@ -2844,12 +2843,12 @@
         if (temp.hasOwnProperty('assertionPath') && temp.assertionPath !== undefined) {
           temp.sliceStartingAt = temp.assertionPath.indexOf('.propositions');
           temp.paragraphPath = temp.assertionPath.slice(0, temp.sliceStartingAt);
-          console.log('Paragraph path: ', temp.paragraphPath)
+          // console.log('Paragraph path: ', temp.paragraphPath)
           temp.paragraphDestination = eval(temp.paragraphPath);
 
           $scope.selectedParagraph = temp.paragraphDestination;
           for (var i = 0; i < temp.paragraphDestination.propositions.length; i++) {
-            console.log('Working with id in loop: ', temp.paragraphDestination.propositions[i].id)
+            // console.log('Working with id in loop: ', temp.paragraphDestination.propositions[i].id)
             if (temp.paragraphDestination.propositions[i].id === id) {
               console.log('If')
               if ($scope.selectedProposition.id) {
@@ -2960,12 +2959,10 @@
         // if (!flagged){
         //   $scope.selectedProposition = destination;
         // }
-        console.log('Destination: ', destination)
         $scope.selectedProposition = destination;
 
         // Click the id of the proposition landed upon
         id = destination.id;
-        console.log("Id before click: ", id)
 
         $timeout(function() {
           focusFactory(id)
