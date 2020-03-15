@@ -947,7 +947,7 @@
       }
 
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-          console.log("Double click listen")
+          // console.log("Double click listen")
           var string = 'proposition';
           var id = proposition.id;
           string = string + id;
@@ -1409,7 +1409,7 @@
 
       $scope.prepProposition = function(input, thread, paragraph) {
 
-       console.log("New prop: ", $scope.newProp)
+       
 
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
@@ -3026,7 +3026,7 @@
 
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
-          console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
+          // console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
           if ($scope.hasChatFocusId){
             $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
             $scope.inputs.chatProposition = '';
@@ -3053,7 +3053,7 @@
         
 
         // if ($scope.toBeClearedLater.remarkId){
-          console.log("Clearing: ",$scope.toBeClearedLater.remarkId, $scope.toBeClearedLater.threadId )
+          // console.log("Clearing: ",$scope.toBeClearedLater.remarkId, $scope.toBeClearedLater.threadId )
           $('#' + $scope.toBeClearedLater.remarkId + $scope.toBeClearedLater.threadId)
             .parent().hide();
             $scope.toBeClearedLater = {};
