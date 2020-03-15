@@ -3259,6 +3259,8 @@
         $timeout(function() {
           var pane = document.getElementById('dialoguelist');
           pane.scrollTop = pane.scrollHeight;
+          console.log("Pane: ", pane)
+          console.log("Pane ScrollTop: ", pane.scrollTop)
         }, 50); // Need to wait for binding to update before scrolling :(
       };
 
