@@ -1172,22 +1172,22 @@
             };
 
             // Updates paragraph ownership
-            console.log('Paragraph destination: ', apply.paragraphDestination)
-            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              console.log('Hmm ', apply.paragraphDestination.propositions[i])
-              console.log('Paragraph destination, about to go into first loop: ', apply.paragraphDestination)
-              if (apply.paragraphDestination.propositions[i][$scope.userId]){
-                console.log('Paragraph destination, about to go into second loop: ', apply.paragraphDestination)
-                if(!apply.paragraphDestination.propositions[i][$scope.userId] === 'hidden'){
-                  apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
-                  console.log('Owner: ', apply.paragraphDestination.owner)
-                  console.log('Author: ', apply.paragraphDestination.propositions[i].author)
-                  break;
-                }
-              } else {
-                console.log('Didnt make it')
-              }
-            }
+            // console.log('Paragraph destination: ', apply.paragraphDestination)
+            // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+            //   console.log('Hmm ', apply.paragraphDestination.propositions[i])
+            //   console.log('Paragraph destination, about to go into first loop: ', apply.paragraphDestination)
+            //   if (apply.paragraphDestination.propositions[i][$scope.userId]){
+            //     console.log('Paragraph destination, about to go into second loop: ', apply.paragraphDestination)
+            //     if(!apply.paragraphDestination.propositions[i][$scope.userId] === 'hidden'){
+            //       apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
+            //       console.log('Owner: ', apply.paragraphDestination.owner)
+            //       console.log('Author: ', apply.paragraphDestination.propositions[i].author)
+            //       break;
+            //     }
+            //   } else {
+            //     console.log('Didnt make it')
+            //   }
+            // }
 
             for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
