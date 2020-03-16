@@ -1205,9 +1205,7 @@
                   apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                   break;
                 }
-              } else {
-
-              }
+              } 
             }
 
             $scope.selectedParagraph = apply.paragraphDestination;
@@ -1972,9 +1970,9 @@
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
           if ($scope.selectedProposition.isPlaceholder) {
-            prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
+            prep.paragraphPosition = $scope.selectedParagraph.position+1;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;
-            prep.replacesBlankAndMoves = true;
+            prep.insertsBelow = true;
           } else {
             prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
@@ -2258,6 +2256,8 @@
               apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position] = payload.proposition;
             
             } else if (payload.proposition.replacesBlankAndMoves) {
+
+
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath);
               console.log('Paragraph destination: ', apply.paragraphDestination)
@@ -2507,8 +2507,13 @@
               apply.paragraphAboveDestination = eval(apply.paragraphAbovePath);
 
 
+
+
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
 
+
+                apply.paragraphAboveDestination.propositions[0][$scope.userId] = 'hidden';
+                apply.paragraphAboveDestination[$scope.userId] = 'hidden';
 
                 $timeout(function() {
 
