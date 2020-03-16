@@ -1973,6 +1973,7 @@
             prep.paragraphPosition = $scope.selectedParagraph.position+1;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;
             prep.insertsBelow = true;
+            prep.replacesBlankAndMoves = true;
           } else {
             prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
@@ -2255,63 +2256,66 @@
               apply.nodeDestination = eval(payload.nodePath);
               apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position] = payload.proposition;
             
-            } else if (payload.proposition.replacesBlankAndMoves) {
+            } 
+
+            // else if (payload.proposition.replacesBlankAndMoves) {
 
 
-              apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-              apply.paragraphDestination = eval(apply.paragraphPath);
-              console.log('Paragraph destination: ', apply.paragraphDestination)
-              apply.nodePath = payload.nodePath;
-              apply.nodeDestination = eval(payload.nodePath);
-              console.log('Node destination: ', apply.nodeDestination)
+            //   apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+            //   apply.paragraphDestination = eval(apply.paragraphPath);
+            //   console.log('Paragraph destination: ', apply.paragraphDestination)
+            //   apply.nodePath = payload.nodePath;
+            //   apply.nodeDestination = eval(payload.nodePath);
+            //   console.log('Node destination: ', apply.nodeDestination)
               
-              if ($scope.userId === payload.proposition.author) {
-                apply.paragraphDestination[$scope.userId] = 'hidden';
-              }
+            //   if ($scope.userId === payload.proposition.author) {
+            //     apply.paragraphDestination[$scope.userId] = 'hidden';
+            //   }
 
 
-              for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
-                apply.nodeDestination.paragraphs[i].position++;
-                if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
-                  $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
-                }
+            //   for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
+            //     apply.nodeDestination.paragraphs[i].position++;
+            //     if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
+            //       $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
+            //     }
 
-                apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
+            //     apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
 
-                for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
-                  if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
-                    apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
-                  }
-                  for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
-                    if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
-                      apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === payload.proposition.assertionId) {
-                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
-                    }
-                  }
-                }
+            //     for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
+            //       if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
+            //         apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
+            //       }
+            //       for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
+            //         if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
+            //           apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === payload.proposition.assertionId) {
+            //           apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
+            //         }
+            //       }
+            //     }
 
-                for (var l = 0; l < $scope.propositions.length; l++) {
-                  if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
-                    $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
-                  }
-                }
-              }
+            //     for (var l = 0; l < $scope.propositions.length; l++) {
+            //       if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
+            //         $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
+            //       }
+            //     }
+            //   }
 
-              apply.nodeDestination.paragraphs[payload.paragraphPosition] = {
-                paragraphId: payload.paragraphId,
-                position: payload.paragraphPosition,
-                propositions: [payload.proposition]
-              };
+            //   apply.nodeDestination.paragraphs[payload.paragraphPosition] = {
+            //     paragraphId: payload.paragraphId,
+            //     position: payload.paragraphPosition,
+            //     propositions: [payload.proposition]
+            //   };
 
-              if (payload.proposition.author === $scope.userId) {
-                $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
-                $scope.selectedProposition.textSide = true;
-                focusFactory($scope.selectedProposition.id);
-                $('proposition' + $scope.selectedProposition.id).trigger('click');
+            //   if (payload.proposition.author === $scope.userId) {
+            //     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+            //     $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+            //     $scope.selectedProposition.textSide = true;
+            //     focusFactory($scope.selectedProposition.id);
+            //     $('proposition' + $scope.selectedProposition.id).trigger('click');
 
-              }
-            } else if (payload.proposition.replacesBlank) {
+            //   }
+            // } 
+            else if (payload.proposition.replacesBlank) {
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath);
               apply.nodePath = payload.nodePath;
@@ -2509,7 +2513,7 @@
 
 
 
-              if (payload.proposition.author === $scope.userId && payload.textSide === true) {
+              if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
 
 
                 apply.paragraphAboveDestination.propositions[0][$scope.userId] = 'hidden';
@@ -2525,7 +2529,16 @@
                 }, 30);
 
 
-              }
+              } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
+                  $timeout(function() {
+
+                    $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+                    $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.selectedProposition.textSide = true;
+                    focusFactory($scope.selectedProposition.id);
+                    $($scope.selectedProposition.id).trigger('click');
+                  }, 30);            
+                }
             } else if (payload.proposition.insertsLeft) {
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
