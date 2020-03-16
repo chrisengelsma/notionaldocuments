@@ -1200,7 +1200,7 @@
               }
             }
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination[i][$scope.userId]){
+              if(apply.paragraphDestination.propositions[i][$scope.userId]){
                 if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
                   apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
                   break;
@@ -2277,6 +2277,7 @@
                 }
 
                 apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
+
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                   if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
                     apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
@@ -2289,12 +2290,13 @@
                   }
                 }
 
-                for (var i = 0; i < $scope.propositions.length; i++) {
-                  if ($scope.propositions[i].assertionId === payload.proposition.assertionId) {
-                    $scope.propositions[i].assertionPath = payload.proposition.assertionPath;
+                for (var l = 0; l < $scope.propositions.length; l++) {
+                  if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
+                    $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
                   }
                 }
               }
+
               apply.nodeDestination.paragraphs[payload.paragraphPosition] = {
                 paragraphId: payload.paragraphId,
                 position: payload.paragraphPosition,
