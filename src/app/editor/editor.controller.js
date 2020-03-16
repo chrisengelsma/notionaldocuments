@@ -1200,9 +1200,13 @@
               }
             }
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
-                break;
+              if(apply.paragraphDestination[i][$scope.userId]){
+                if(apply.paragraphDestination[i][$scope.userId] !== 'hidden'){
+                  apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
+                  break;
+                }
+              } else {
+
               }
             }
 
@@ -1210,7 +1214,7 @@
             $scope.selectedProposition = apply.paragraphDestination.propositions[0];
             $scope.selectedProposition.textSide = true;
             focusFactory($scope.selectedProposition.id);
-            $($scope.selectedProposition.id).trigger('click');
+            $('proposition' + $scope.selectedProposition.id).trigger('click');
           } else {
             for (var i = apply.paragraphDestination.propositions.length; i > -1; i--) {
               apply.paragraphDestination.propositions[i].position++;
@@ -1220,7 +1224,7 @@
               }
             }
 
-            // Insert new blank paragraph for something to grab onto
+            // Insert new blank proposition for something to grab onto
             apply.paragraphDestination.propositions[0] = {                                       
               id: payload.blankId,
               type: 'blank',
@@ -2256,8 +2260,10 @@
             } else if (payload.proposition.replacesBlankAndMoves) {
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath);
+              console.log('Paragraph destination: ', apply.paragraphDestination)
               apply.nodePath = payload.nodePath;
               apply.nodeDestination = eval(payload.nodePath);
+              console.log('Node destination: ', apply.nodeDestination)
               
               if ($scope.userId === payload.proposition.author) {
                 apply.paragraphDestination[$scope.userId] = 'hidden';
@@ -2300,7 +2306,7 @@
                 $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
-                $($scope.selectedProposition.id).trigger('click');
+                $('proposition' + $scope.selectedProposition.id).trigger('click');
 
               }
             } else if (payload.proposition.replacesBlank) {
