@@ -1106,10 +1106,12 @@
               $scope.selectedParagraph.propositions[i].id !== $scope.selectedProposition.id) {
               prep.blanksPropositionForEveryone = true;
               break;
+              // proposition just gets hidden for everyone
             }
           }
           if (!prep.blanksPropositionForEveryone) {
             prep.complicatedDeletion = true;
+            //paragraph is 'shared'. One sees the paragraph and one will make it just a blank
           }
         }
 
@@ -1438,7 +1440,7 @@
         // Those on nodes with no paragraphs
         // Those that are blank
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
-          console.log('Returning')
+          console.log('Returning due to punctuation')
           document.getElementById($scope.selectedProposition.id).innerText = '';
           return;
         }
@@ -1789,6 +1791,8 @@
 
 
           } else {
+
+            //
             console.log("Capacity count not greater than 1")
             prep.paragraphPosition = $scope.selectedParagraph.position;
             for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
