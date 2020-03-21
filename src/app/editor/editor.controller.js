@@ -1424,18 +1424,14 @@
 
       $scope.prepProposition = function(input, thread, paragraph) {
 
-       
-
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
         }
-
         apply = {};
         // Define characters at the beginning and end of the input
         prep.firstChar = input.charAt(0);
         prep.lastChar = input.charAt(input.length - 1);
-
         // Bounce bad inputs:
         // Those on nodes with no paragraphs
         // Those that are blank
@@ -1445,37 +1441,27 @@
           return;
         }
 
-
-        // Sort propositions into types and calculate things
-
-
         //   Topics
-
 
         // If it's ended with a colon,
         // it's a topic
         if (prep.lastChar === ':') {
-
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
-
           // Make it a topic that will have a blank sentence at position Paragraph 0 Proposition 0
           prep.type = 'topic';
           prep.adjustedText = '';
           prep.position = 0;
           prep.paragraphPosition = 0;
           prep.author = $scope.userId;
-
           // Give it its own node
           prep.getsOwnNode = true;
-
           // Check how many children the selected node has
           if (!$scope.selectedNode.children) {
             prep.classBasis = 0;
           } else {
             prep.classBasis = $scope.selectedNode.children.length;
           }
-
           // Calculate class code
           // Rewrite needed for more than 100 nodes on the same level
           prep.newClass = angular.copy($scope.selectedNode.class);
@@ -1486,7 +1472,6 @@
           } else {
             prep.newClass = prep.newClass.toString() + '.00' + prep.classBasis.toString();
           }
-
           // Get the address and the path to the selected node / "old node"
           prep.oldNodePath = '$scope.data';
           prep.address = angular.copy($scope.selectedNode.address);
@@ -1497,7 +1482,6 @@
               prep.oldNodePath = prep.oldNodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-
           // Get the address of the new node
           // Changes address variable from calculating the old node
           // Might be able to remove the type condition
@@ -1507,7 +1491,6 @@
           } else if (prep.type === 'topic') {
             prep.address.push($scope.selectedNode.children.length);
           }
-
           // Get the path to the new node
           for (var i = 0; i < prep.address.length; i++) {
             if (i < prep.address.length - 1) {
@@ -1516,16 +1499,12 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-      
-          prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';    //   INITIAL ASSERTION PATH
-
-
+          prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';    
           // If posting user is on a blank proposition, his selected proposition is now
           // the first proposition on the new node
           if (!$scope.selectedProposition.text) {
             $scope.selectedProposition = eval(prep.oldNodePath + '.paragraphs[0].propositions[0]');
           }
-
           // Collect info on the selected proposition
           prep.of = {
             id: $scope.selectedProposition.id,
@@ -1533,23 +1512,17 @@
             author: $scope.selectedProposition.author,
             text: $scope.selectedProposition.text,
           };
-
-
           console.log('Old node path: ', prep.oldNodePath);
           console.log('New node path: ', prep.nodePath);
           console.log('Topic: ', prep.topic);
         }
 
-
-
-
           // Negations
-
 
           // If the selected proposition is not your own
           // and it's an assertion or rejoinder (not a blank)
           // Or if it's a continuation of another negation
-        // it's a negation
+          // it's a negation
         else if ((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
           $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' 
           && $scope.selectedProposition.author === $scope.userId)) {
@@ -1606,13 +1579,9 @@
             prep.position = $scope.selectedParagraph.propositions.length;                                 //    IF THE NEGATION MUST BE PUT AT THE END OF THE PARAGRAPH
             prep.getsOwnProposition = true;
           }
-
-
           prep.class = $scope.selectedNode.class;
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
-
-
           for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
             if (i < prep.address.length - 1) {
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
@@ -1620,14 +1589,7 @@
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-
           prep.assertionPath = $scope.selectedProposition.assertionPath;                                   // CALCULATES PATH TO THE ASSERTION
-      
-
-
-// calculates the of and assertion path wrong
-
-
           if ($scope.selectedProposition.remarkAddress) {      // only if it's a negation of a rejoinder
             if ($scope.selectedProposition.type === 'negation') {
               var start = prep.assertionPath;
@@ -1647,19 +1609,15 @@
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) { // calculate the path to the selectedProposition's remark location
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
               }
-
-
               prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress); // the new remark address will be based on the selectedProposition's remark address array
               prep.check = eval(start);                     // check the selectedProposition's remark location
               start = '';
-
               if (prep.check.remarks) {                  // if the remark has remarks,
                 prep.neighbors = prep.check.remarks.length;
                 prep.remarkAddress.push(prep.neighbors);    // the remark address will be the old remark address with a another level with the value +1 from the last value at that level
               } else {
                 prep.remarkAddress.push(0);
               }            // or the remark address will just be the first on the new level
-
               prep.remarkPath = prep.assertionPath;
               for (var i = 0; i < prep.remarkAddress.length; i++) { // calculate the path to the selectedProposition's remark location
                 prep.remarkPath = prep.remarkPath + '.remarks[' + prep.remarkAddress[i].toString() + ']';
@@ -2061,7 +2019,7 @@
               prep.position = 0;
               prep.getsOwnParagraph = true;
             }
-            
+
           } else if (paragraph.bottomAdd) {
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
