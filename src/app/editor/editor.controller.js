@@ -2063,7 +2063,7 @@
                     break;
                   }
                 }
-                if (!prep.getsOwnParagraph){
+                if (!prep.paragraphPosition){
                   prep.paragraphPosition = 0;
                   prep.position = 0;
                   prep.insertsBelow = true;
