@@ -823,6 +823,7 @@
           value++;
         }
         value = value + paragraph.paragraphPosition*.001;
+        console.log("value: ", value)
 
         return value;
       }
