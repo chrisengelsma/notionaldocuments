@@ -2923,7 +2923,9 @@
             }
 
             //Update paragraph ownership
-            console.log('Paragraph destination: ', apply.paragraphDestination)
+            apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+            apply.paragraphDestination = eval(apply.paragraphPath)
+            console.log('Rebuilt paragraph destination: ', apply.paragraphDestination)
             // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
             //   if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
             //     apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
