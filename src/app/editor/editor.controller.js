@@ -2089,7 +2089,7 @@
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
                     prep.paragraphPosition = i+1;
                     prep.position = 0;
-                    prep.getsOwnParagraph = true;
+                    prep.insertsBelow = true;
                     console.log("Placing this as the last paragraph in the section of one's own document")
                     break;
                   }
@@ -2097,14 +2097,14 @@
                 if (!prep.getsOwnParagraph){
                   prep.paragraphPosition = 0;
                   prep.position = 0;
-                  prep.getsOwnParagraph = true;
+                  prep.insertsBelow = true;
                   console.log("Placing this as the first paragraph in the doc for the user")
                 }
               }
             } else {
               prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
               prep.position = 0;
-              prep.getsOwnParagraph = true;
+              prep.insertsBelow = true;
               console.log('Puts a paragraph below')
             }
           } else if (paragraph.leftAdd) {
