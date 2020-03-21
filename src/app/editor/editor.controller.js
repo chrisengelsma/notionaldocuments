@@ -1976,10 +1976,49 @@
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
           if ($scope.selectedProposition.isPlaceholder) {
-            prep.paragraphPosition = $scope.selectedParagraph.position+1;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
-            prep.position = $scope.selectedProposition.position;
-            prep.insertsBelow = true;
-            prep.replacesBlankAndMoves = true;
+          prep.nodePath = '$scope.data';
+          prep.address = $scope.selectedNode.address;
+          for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
+            if (i < prep.address.length - 1) {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+            } else {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+            }
+          }
+
+          prep.nodeDestination = eval(prep.nodePath)
+
+          prep.candidateParagraphPosition = $scope.selectedParagraph.position-1;
+          prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
+          + ']';
+          
+
+          if (eval(prep.candidateParagraphPath)){
+            prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
+            if (prep.candidateParagraphDestination.owner == $scope.userId){
+              prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
+              prep.position = 0;
+              prep.replacesBlankAndMoves = true;
+              console.log("Starting a new paragraph from a deleted blank in one's own document")
+              // close off the paragraph above to the user
+              
+            } else {
+              for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
+                if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                  prep.paragraphPosition = i+1;
+                  prep.position = 0;
+                  prep.getsOwnParagraph = true;
+                  console.log("Placing this as the last paragraph in the section of one's own document")
+                  break;
+                }
+              }
+            }
+          } else {
+            prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
+            prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
+            prep.replacesBlank = true;
+            console.log('Replaces blank in a blank section');
+          }
           } else {
             prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
