@@ -814,6 +814,19 @@
 
       };
 
+      $scope.paragraphSorter = function (paragraph) {
+        var value = 0;
+        if (paragraph.owner == $scope.userId){
+          value++;
+        } else if (paragraph.owner) {
+          value++;
+          value++;
+        }
+        value = value + paragraph.paragraphPosition*.001;
+
+        return value;
+      }
+
       $scope.selectProposition = function(proposition) {
         if ($scope.selectedProposition.id !== proposition.id) {
           $scope.clearPropositionInput();
