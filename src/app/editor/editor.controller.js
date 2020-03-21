@@ -2108,11 +2108,42 @@
               console.log('Puts a paragraph below')
             }
           } else if (paragraph.leftAdd) {
-            prep.paragraphPosition = $scope.selectedParagraph.position;
-            prep.position = $scope.selectedProposition.position;
-            prep.insertsLeft = true;
-            console.log('Paragraph position: ', prep.paragraphPosition, ' Position: ', prep.position )
-            console.log('Selected proposition text: ', $scope.selectedProposition.text)
+            prep.nodePath = '$scope.data';
+            prep.address = $scope.selectedNode.address;
+            for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
+              if (i < prep.address.length - 1) {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+              } else {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+              }
+            }
+            prep.nodeDestination = eval(prep.nodePath)
+            // prep.candidateParagraphPosition = $scope.selectedParagraph.position-1;
+            // prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
+            // + ']';
+            if ($scope.selectedProposition.author == $scope.userId){
+              prep.paragraphPosition = $scope.selectedParagraph.position;
+              prep.position = $scope.selectedProposition.position;
+              prep.getsOwnProposition = true;
+              console.log("Putting it to the left")
+              // close off the paragraph above to the user
+            } else {
+              for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
+                if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                  prep.paragraphPosition = i+1;
+                  prep.position = 0;
+                  prep.getsOwnParagraph = true;
+                  console.log("Placing this as the last paragraph in the section of one's own document")
+                  break;
+                }
+              } 
+              if (!prep.getsOwnParagraph){
+                prep.paragraphPosition = 0;
+                prep.position = 0;
+                prep.getsOwnParagraph = true;
+                console.log("Placing this as the first paragraph in the doc for the user")
+              }
+            }
           } else if ($scope.newProp){
             prep.paragraphPosition = $scope.selectedNode.paragraphs.length;
             prep.position = 0;
