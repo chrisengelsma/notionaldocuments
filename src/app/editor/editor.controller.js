@@ -2503,6 +2503,8 @@
             } else if (payload.proposition.insertsAbove) {
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+              console.log('Payload Paragraph Position: ', payload.paragraphPosition)
+              console.log('Paragraph path: ', payload.paragraphPath)
               apply.paragraphDestination = eval(apply.paragraphPath);
               console.log("Paragraph destination: ", apply.paragraphDestination);
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
