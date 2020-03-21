@@ -2921,13 +2921,14 @@
 
             //Update paragraph ownership
             console.log('Paragraph destination: ', apply.paragraphDestination)
-            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
-                console.log("Owner: ", apply.paragraphDestination.owner)
-                break;
-              }
-            }
+            // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+            //   if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
+            //     apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
+            //     console.log("Owner: ", apply.paragraphDestination.owner)
+            //     break;
+            //   }
+            // }
+            apply.paragraphDestination.owner = payload.proposition.author;
 
             
             temp = {};
