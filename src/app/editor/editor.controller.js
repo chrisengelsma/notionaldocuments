@@ -1551,7 +1551,8 @@
           // Or if it's a continuation of another negation
         // it's a negation
         else if ((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
-          $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' && $scope.selectedProposition.author === $scope.userId)) {
+          $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' 
+          && $scope.selectedProposition.author === $scope.userId)) {
 
           // if (prep.lastChar === '?') {
           //   prep.topic = input;
@@ -1876,6 +1877,7 @@
 
 
         } else if ($scope.selectedProposition.question) {
+          console.log('Shouldnt trigger as questions not being given special behavior yet')
           prep.type = 'assertion';
           prep.adjustedText = input;
           prep.position = 0;
