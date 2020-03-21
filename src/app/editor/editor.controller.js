@@ -1968,6 +1968,12 @@
                   console.log("Placing this as the last paragraph in the section of one's own document")
                   break;
                 }
+              } 
+              if (!prep.paragraphPosition){
+                prep.paragraphPosition = 0;
+                prep.position = 0;
+                prep.insertsBelow = true;
+                console.log("Placing this at the beginning of the document")
               }
             }   
           } else {
@@ -2006,17 +2012,23 @@
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
                     prep.paragraphPosition = i+1;
                     prep.position = 0;
-                    prep.getsOwnParagraph = true;
+                    prep.insertsBelow = true;
                     console.log("Placing this as the last paragraph in the section of one's own document")
                     break;
                   }
+                } 
+                if (!prep.paragraphPosition){
+                  prep.paragraphPosition = 0;
+                  prep.position = 0;
+                  prep.insertsBelow = true;
+                  console.log("Placing at the top of the document")
                 }
               }
             } else {
               console.log('At the top of the document')
               prep.paragraphPosition = $scope.selectedParagraph.position;
               prep.position = 0;
-              prep.getsOwnParagraph = true;
+              prep.insertsBelow = true;
             }
 
           } else if (paragraph.bottomAdd) {
