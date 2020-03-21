@@ -1960,20 +1960,24 @@
               // close off the paragraph above to the user
             } else {
               // it exists but its not yours
-              for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position-1]; i > -1; i--){
+              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
-                  prep.paragraphPosition = i+1;
-                  prep.position = 0;
-                  prep.insertsBelow = true;
-                  console.log("Placing this as the last paragraph in the section of one's own document")
-                  break;
+                  for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                    if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                      prep.paragraphPosition = j;
+                      prep.position = 0;
+                      prep.insertsBelow = true;
+                      console.log("Placing this as the last paragraph in the section of one's own document")
+                      break;
+                    }
+                  }
                 }
               } 
               if (!prep.paragraphPosition){
-                prep.paragraphPosition = 0;
+                prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
-                console.log("Placing this at the beginning of the document")
+                console.log("Placing this at the end of the document")
               }
             }   
           } else {
@@ -2008,20 +2012,24 @@
                 console.log("Putting it above")
                 // close off the paragraph above to the user
               } else {
-                for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
+                for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
-                    prep.paragraphPosition = i+1;
-                    prep.position = 0;
-                    prep.insertsAbove = true;
-                    console.log("Placing this as the last paragraph in the section of one's own document")
-                    break;
+                    for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                      if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                        prep.paragraphPosition = j;
+                        prep.position = 0;
+                        prep.insertsAbove = true;
+                        console.log("Placing this as the last paragraph in the section of one's own document")
+                        break;
+                      }
+                    }
                   }
                 } 
                 if (!prep.paragraphPosition){
-                  prep.paragraphPosition = 0;
+                  prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
-                  prep.insertsAbove = true;
-                  console.log("Placing at the top of the document")
+                  prep.insertsBelow = true;
+                  console.log("Placing this at the end of the document")
                 }
               }
             } else {
@@ -2054,20 +2062,24 @@
                 console.log("Putting it below")
               // close off the paragraph above to the user
               } else {
-                for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
+                for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
-                    prep.paragraphPosition = i;
-                    prep.position = 0;
-                    prep.insertsBelow = true;
-                    console.log("Placing this as the last paragraph in the section of one's own document")
-                    break;
+                    for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                      if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                        prep.paragraphPosition = j;
+                        prep.position = 0;
+                        prep.insertsBelow = true;
+                        console.log("Placing this as the last paragraph in the section of one's own document")
+                        break;
+                      }
+                    }
                   }
-                }
+                } 
                 if (!prep.paragraphPosition){
-                  prep.paragraphPosition = 0;
+                  prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
                   prep.insertsBelow = true;
-                  console.log("Placing this as the first paragraph in the doc for the user")
+                  console.log("Placing this at the end of the document")
                 }
               }
             } else {
@@ -2097,20 +2109,24 @@
               console.log("Putting it to the left")
               // close off the paragraph above to the user
             } else {
-              for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
+              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
-                  prep.paragraphPosition = i+1;
-                  prep.position = 0;
-                  prep.getsOwnParagraph = true;
-                  console.log("Placing this as the last paragraph in the section of one's own document")
-                  break;
+                  for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                    if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                      prep.paragraphPosition = j;
+                      prep.position = 0;
+                      prep.insertsBelow = true;
+                      console.log("Placing this as the last paragraph in the section of one's own document")
+                      break;
+                    }
+                  }
                 }
               } 
-              if (!prep.getsOwnParagraph){
-                prep.paragraphPosition = 0;
+              if (!prep.paragraphPosition){
+                prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
-                prep.getsOwnParagraph = true;
-                console.log("Placing this as the first paragraph in the doc for the user")
+                prep.insertsBelow = true;
+                console.log("Placing this at the end of the document")
               }
             }
           } else if ($scope.newProp){
