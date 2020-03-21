@@ -818,7 +818,7 @@
         var value = 0;
         if (paragraph.owner == $scope.userId){
           value++;
-        } else if (paragraph.owner) {
+        } else if (paragraph.owner && paragraph.owner !== $scope.userId) {
           value++;
           value++;
         }
