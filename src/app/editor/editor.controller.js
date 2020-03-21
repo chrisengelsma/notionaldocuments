@@ -2034,9 +2034,9 @@
               }
             } else {
               console.log('At the top of the document')
-              prep.paragraphPosition = $scope.selectedParagraph.position;
+              prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
               prep.position = 0;
-              prep.insertsAbove = true;
+              prep.insertsBelow = true;
             }
 
           } else if (paragraph.bottomAdd) {
