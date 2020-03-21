@@ -2056,7 +2056,7 @@
               } else {
                 for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
-                    prep.paragraphPosition = i+1;
+                    prep.paragraphPosition = i;
                     prep.position = 0;
                     prep.insertsBelow = true;
                     console.log("Placing this as the last paragraph in the section of one's own document")
