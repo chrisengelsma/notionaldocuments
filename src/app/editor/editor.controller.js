@@ -2012,7 +2012,7 @@
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
                     prep.paragraphPosition = i+1;
                     prep.position = 0;
-                    prep.insertsBelow = true;
+                    prep.insertsAbove = true;
                     console.log("Placing this as the last paragraph in the section of one's own document")
                     break;
                   }
@@ -2020,7 +2020,7 @@
                 if (!prep.paragraphPosition){
                   prep.paragraphPosition = 0;
                   prep.position = 0;
-                  prep.insertsBelow = true;
+                  prep.insertsAbove = true;
                   console.log("Placing at the top of the document")
                 }
               }
@@ -2028,7 +2028,7 @@
               console.log('At the top of the document')
               prep.paragraphPosition = $scope.selectedParagraph.position;
               prep.position = 0;
-              prep.insertsBelow = true;
+              prep.insertsAbove = true;
             }
 
           } else if (paragraph.bottomAdd) {
@@ -2523,18 +2523,18 @@
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                  
                   if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
-                    apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
+                    apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
+                    (i + 1).toString() + '].propositions[' + j.toString() + ']';
                   }
                   for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
                    
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
                       // if an assertion is found matching 
 
-                      apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
-                    
-                     
-
-                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
+                      apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === 
+                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
+                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = 
+                      payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
                     }
                   }
                 }
@@ -2561,7 +2561,8 @@
                 $timeout(function() {
 
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                  $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                  $scope.selectedProposition = 
+                  apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                   $scope.selectedProposition.textSide = true;
 
                   focusFactory($scope.selectedProposition.id);
@@ -2577,7 +2578,8 @@
               console.log("node destination: ", apply.nodeDestination)
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition - 1).toString() + ']';
-              apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
+              apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + 
+              '.propositions[' + payload.proposition.position.toString() + ']';
               // apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
@@ -2598,12 +2600,15 @@
                   apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
-                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + j.toString() + ']';
+                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
+                      (i + 1).toString() + '].propositions[' + j.toString() + ']';
                     }
                     for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
                       if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
-                        apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
-                        apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
+                        apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === 
+                        apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
+                        apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = 
+                      payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
                       }
                     }
                   }
@@ -2638,7 +2643,8 @@
                 $timeout(function() {
 
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                  $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                  $scope.selectedProposition = 
+                  apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
                   $($scope.selectedProposition.id).trigger('click');
@@ -2649,7 +2655,8 @@
                   $timeout(function() {
 
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                    $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.selectedProposition = 
+                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                     $scope.selectedProposition.textSide = true;
                     focusFactory($scope.selectedProposition.id);
                     $($scope.selectedProposition.id).trigger('click');
@@ -2659,7 +2666,8 @@
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath);
-              apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
+              apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + 
+              '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
 
               if (apply.propositionDestination) {
