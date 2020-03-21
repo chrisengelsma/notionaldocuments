@@ -2019,47 +2019,49 @@
             prep.replacesBlank = true;
             console.log('Replaces blank in blank document');
           }
-          
+
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
+
           if (paragraph.topAdd) {
-          prep.nodePath = '$scope.data';
-          prep.address = $scope.selectedNode.address;
-          for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
-            if (i < prep.address.length - 1) {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-            } else {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
-            }
-          }
-          prep.nodeDestination = eval(prep.nodePath)
-          prep.candidateParagraphPosition = $scope.selectedParagraph.position-1;
-          prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
-          + ']';
-          if (eval(prep.candidateParagraphPath)){
-            prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
-            if (prep.candidateParagraphDestination.owner == $scope.userId){
-              prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
-              prep.position = 0;
-              prep.insertsAbove = true;
-              console.log("Putting it above")
-              // close off the paragraph above to the user
-            } else {
-              for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
-                if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
-                  prep.paragraphPosition = i+1;
-                  prep.position = 0;
-                  prep.getsOwnParagraph = true;
-                  console.log("Placing this as the last paragraph in the section of one's own document")
-                  break;
-                }
+            prep.nodePath = '$scope.data';
+            prep.address = $scope.selectedNode.address;
+            for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
+              if (i < prep.address.length - 1) {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+              } else {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
               }
             }
-          } else {
-            console.log('At the top of the document')
-            prep.paragraphPosition = $scope.selectedParagraph.position;
-            prep.position = 0;
-            prep.getsOwnParagraph = true;
-          }
+            prep.nodeDestination = eval(prep.nodePath)
+            prep.candidateParagraphPosition = $scope.selectedParagraph.position-1;
+            prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
+            + ']';
+            if (eval(prep.candidateParagraphPath)){
+              prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
+              if (prep.candidateParagraphDestination.owner == $scope.userId){
+                prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
+                prep.position = 0;
+                prep.insertsAbove = true;
+                console.log("Putting it above")
+                // close off the paragraph above to the user
+              } else {
+                for (var i = prep.nodeDestination.paragraphs[prep.candidateParagraphDestination.position]; i > -1; i--){
+                  if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                    prep.paragraphPosition = i+1;
+                    prep.position = 0;
+                    prep.getsOwnParagraph = true;
+                    console.log("Placing this as the last paragraph in the section of one's own document")
+                    break;
+                  }
+                }
+              }
+            } else {
+              console.log('At the top of the document')
+              prep.paragraphPosition = $scope.selectedParagraph.position;
+              prep.position = 0;
+              prep.getsOwnParagraph = true;
+            }
+            
           } else if (paragraph.bottomAdd) {
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
