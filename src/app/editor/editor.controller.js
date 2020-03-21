@@ -815,7 +815,9 @@
       };
 
       $scope.paragraphSorter = function (paragraph) {
+        console.log('Paragraph: ', paragraph)
         var value = 0;
+        console.log("value: ", value)
         if (paragraph.owner == $scope.userId){
           value++;
         } else if (paragraph.owner && paragraph.owner !== $scope.userId) {
