@@ -1931,24 +1931,24 @@
           console.log('It\'s an everyday assertion');
         }
 
+
+
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
           if ($scope.selectedProposition.isPlaceholder) {
             //placeholders only appear after deletions
-          prep.nodePath = '$scope.data';
-          prep.address = $scope.selectedNode.address;
-          for (var i = 0; i < prep.address.length; i++) {                                         
-            if (i < prep.address.length - 1) {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-            } else {
-              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+            prep.nodePath = '$scope.data';
+            prep.address = $scope.selectedNode.address;
+            for (var i = 0; i < prep.address.length; i++) {                                         
+              if (i < prep.address.length - 1) {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+              } else {
+                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+              }
             }
-          }
-          prep.nodeDestination = eval(prep.nodePath)
-          prep.candidateParagraphPosition = $scope.selectedParagraph.position;
-          prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
-          + ']';   
-          
-            
+            prep.nodeDestination = eval(prep.nodePath)
+            prep.candidateParagraphPosition = $scope.selectedParagraph.position;
+            prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
+            + ']';    
             prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
             if (prep.candidateParagraphDestination.owner == $scope.userId){
               //if you own that paragraph
@@ -1969,9 +1969,8 @@
                   break;
                 }
               }
-            }
-           
-        } else {
+            }   
+          } else {
             prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
             prep.replacesBlank = true;
