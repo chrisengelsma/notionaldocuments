@@ -2125,6 +2125,7 @@
               } else {
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                    console.log("I hit")
                     for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                         console.log("I: ", i, " J: ", j)
