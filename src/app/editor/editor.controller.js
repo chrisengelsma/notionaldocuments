@@ -2155,13 +2155,20 @@
                     console.log("I hit")
                     for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
                       console.log("I: ", i, " J: ", j)
-                      if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                      if (prep.nodeDestination.paragraphs[j]){
+                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                         
-                        prep.paragraphPosition = j;
+                          prep.paragraphPosition = j;
+                          prep.position = 0;
+                          prep.insertsBelow = true;
+                          console.log("Placing this as the last paragraph in the section of one's own document")
+                          break;
+                        }
+                      } else {
+                        prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                         prep.position = 0;
                         prep.insertsBelow = true;
-                        console.log("Placing this as the last paragraph in the section of one's own document")
-                        break;
+                        console.log("Placing this at the end of the document as paragraphs stretch to the bottom of the section")       
                       }
                     }
                   }
