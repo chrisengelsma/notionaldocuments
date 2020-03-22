@@ -93,7 +93,7 @@
         //   $scope.$apply(function() {
 
             // traverse($scope.data[0])
-
+            console.log("Make pristine is acting to make things pristine")
             if ($('.cursor').is('.visible-cursor')){
               $('.cursor').removeClass('visible-cursor')
               $('.cursor').addClass('invisible-cursor')
@@ -358,18 +358,50 @@
 
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
 
+      function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+// Used like so
+var arr = [2, 11, 37, 42];
+shuffle(arr);
+console.log(arr);
+
+      $scope.userColorTable = [];
+
+      $scope.assignColorToUser = function (){
+
+      }
+
       $scope.makePristine();
 
 
-        $scope.makePristine = function () {
-          function traverse(x, key) {
+        $scope.assignColors = function () {
+          function traverse(x, key, obj) {
             if (isArray(x)) {
             traverseArray(x)
             } else if ((typeof x === 'object') && (x !== null)) {
               traverseObject(x)
             } else {
-              if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver'){
-                x = false;
+              if (key == 'owner'){
+                for (var i = 0; i < $scope.userColorTable.length; i++){
+
+                }
               }
             }
           }
@@ -385,7 +417,7 @@
           function traverseObject(obj) {
             for (var key in obj) {
               if (obj.hasOwnProperty(key)) {
-                traverse(obj[key], key)
+                traverse(obj[key], key, object)
               }
             }
           }
@@ -394,14 +426,8 @@
             return Object.prototype.toString.call(o) === '[object Array]'
           }
 
-                if ($('.cursor').is('.visible-cursor')){
-                  $('.cursor').removeClass('visible-cursor')
-                  $('.cursor').addClass('invisible-cursor')
-                }
 
-                if ($('.bottomparagraphadder').is('.blackline')){
-                  $('.cursor').removeClass('blackline')
-                }
+
       }
 
       $scope.showThreadAdd = function (thread) {
