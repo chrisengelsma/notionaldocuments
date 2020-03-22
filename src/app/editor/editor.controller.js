@@ -359,28 +359,27 @@
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
 
       function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+        var currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
 
-  return array;
-}
+      return array;
+    }
 
-// Used like so
-var arr = [2, 11, 37, 42];
-shuffle(arr);
-console.log(arr);
+
+    shuffle($scope.pastels);
+    console.log($scope.pastels);
 
       $scope.userColorTable = [];
 
@@ -417,7 +416,7 @@ console.log(arr);
           function traverseObject(obj) {
             for (var key in obj) {
               if (obj.hasOwnProperty(key)) {
-                traverse(obj[key], key, object)
+                traverse(obj[key], key, obj)
               }
             }
           }
