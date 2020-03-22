@@ -361,6 +361,49 @@
       $scope.makePristine();
 
 
+        $scope.makePristine = function () {
+          function traverse(x, key) {
+            if (isArray(x)) {
+            traverseArray(x)
+            } else if ((typeof x === 'object') && (x !== null)) {
+              traverseObject(x)
+            } else {
+              if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver'){
+                x = false;
+              }
+            }
+          }
+
+          function traverseArray(arr) { 
+            arr.forEach(function (x) {
+              traverse(x)
+            })
+          }
+
+
+
+          function traverseObject(obj) {
+            for (var key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                traverse(obj[key], key)
+              }
+            }
+          }
+
+          function isArray(o) {
+            return Object.prototype.toString.call(o) === '[object Array]'
+          }
+
+                if ($('.cursor').is('.visible-cursor')){
+                  $('.cursor').removeClass('visible-cursor')
+                  $('.cursor').addClass('invisible-cursor')
+                }
+
+                if ($('.bottomparagraphadder').is('.blackline')){
+                  $('.cursor').removeClass('blackline')
+                }
+      }
+
       $scope.showThreadAdd = function (thread) {
 
         setTimeout(function() {
