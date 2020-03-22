@@ -2022,7 +2022,7 @@
             } else {
               // it exists but its not yours
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
                     if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                       prep.paragraphPosition = j;
@@ -2074,7 +2074,7 @@
                 // close off the paragraph above to the user
               } else {
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                  if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                  if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                     for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                         prep.paragraphPosition = j;
@@ -2177,7 +2177,7 @@
               // close off the paragraph above to the user
             } else {
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
+                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
                     if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                       prep.paragraphPosition = j;
