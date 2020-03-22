@@ -2123,6 +2123,7 @@
                 console.log("Putting it below")
               // close off the paragraph above to the user
               } else {
+                console.log("Finding ones paragraphs")
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].author == $scope.userId){
                     console.log("I hit")
@@ -2142,7 +2143,7 @@
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
                   prep.insertsBelow = true;
-                  console.log("Placing this at the end of the document")
+                  console.log("Placing this at the end of the document as not have found")
                 }
               }
             } else {
