@@ -2151,7 +2151,6 @@
                 console.log("Finding ones paragraphs")
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   console.log("I: ", i)
-                  console.log("Destination at i author: ", prep.nodeDestination.paragraphs[i].author)
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                     console.log("I hit")
                     for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
