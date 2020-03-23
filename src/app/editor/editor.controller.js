@@ -360,22 +360,16 @@
 
       function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
         while (0 !== currentIndex) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+          }
 
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+          return array;
         }
-
-        return array;
-      }
 
 
       shuffle($scope.pastels);
@@ -399,23 +393,9 @@
       }
 
 
-      // for every incoming proposition, when assigning an owner to the paragraph
-      for (var i = 0; i < $scope.userColorTable.length; i++){
-        if($scope.userColorTable[i].author === payload.proposition.author){
-          var alreadyThere = true;
-        }
-      }
-      if (!alreadyThere){
-        $scope.userColorTable.push(
-          {
-            author: payload.proposition.author, 
-            color: $scope.generateNewColor()
-          }
-        )
-      }
 
       $scope.makePristine();
-
+      $scope.assignColorsToExistingParagraphs();
 
         $scope.assignColorsToExistingParagraphs = function () {
           function traverse(x, key, obj) {
@@ -428,6 +408,7 @@
                 for (var i = 0; i < $scope.userColorTable.length; i++){
                   if (x == $scope.userColorTable[i].author){
                     var alreadyThere = true;
+                    var index = i;
                   }
                 }
                 if (!alreadyThere){
@@ -438,6 +419,8 @@
                     }
                   )
                   obj.color = $scope.userColorTable[$scope.userColorTable.length-1];  
+                } else {
+                  obj.color = $scope.userColorTable[index].color;
                 }
               }
             }
@@ -3086,6 +3069,26 @@
             //   }
             // }
             apply.paragraphDestination.owner = payload.proposition.author;
+
+            // for every incoming proposition, when assigning an owner to the paragraph
+            for (var i = 0; i < $scope.userColorTable.length; i++){
+              if($scope.userColorTable[i].author === payload.proposition.author && 
+                payload.proposition.author !== $scope.userId){
+                var alreadyThere = true;
+                var place = i;
+              }
+            }
+            if (!alreadyThere){
+              $scope.userColorTable.push(
+                {
+                  author: payload.proposition.author, 
+                  color: $scope.generateNewColor()
+                }
+              )
+              apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
+            } else {
+              apply.paragraphDestination.color = $scope.userColorTable[place].color;
+            }
 
             
             temp = {};
