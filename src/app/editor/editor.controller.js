@@ -386,16 +386,7 @@
         return $scope.pastels[index];
       }
 
-      $scope.assignColorToUser = function (authorId){
 
-
-
-      }
-
-
-
-      $scope.makePristine();
-      $scope.assignColorsToExistingParagraphs();
 
         $scope.assignColorsToExistingParagraphs = function () {
           function traverse(x, key, obj) {
@@ -449,6 +440,11 @@
 
 
       }
+
+      $scope.makePristine();
+      $scope.assignColorsToExistingParagraphs();
+
+
 
       $scope.showThreadAdd = function (thread) {
 
