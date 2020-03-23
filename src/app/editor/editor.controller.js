@@ -372,25 +372,52 @@
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
+        }
+
+        return array;
       }
 
-      return array;
-    }
 
-
-    shuffle($scope.pastels);
-    console.log($scope.pastels);
+      shuffle($scope.pastels);
+      console.log($scope.pastels);
 
       $scope.userColorTable = [];
 
-      $scope.assignColorToUser = function (){
+      //initializes as number of colors
+      $scope.userColorCount = $scope.pastels.length;
 
+      $scope.generateNewColor = function () {
+        var index = $scope.userColorCount % 5;
+        $scope.userColorCount++;
+        return $scope.pastels[index];
+      }
+
+      $scope.assignColorToUser = function (authorId){
+
+
+
+      }
+
+
+      // for every incoming proposition, when assigning an owner to the paragraph
+      for (var i = 0; i < $scope.userColorTable.length; i++){
+        if($scope.userColorTable[i].author === payload.proposition.author){
+          var alreadyThere = true;
+        }
+      }
+      if (!alreadyThere){
+        $scope.userColorTable.push(
+          {
+            author: payload.proposition.author, 
+            color: $scope.generateNewColor()
+          }
+        )
       }
 
       $scope.makePristine();
 
 
-        $scope.assignColors = function () {
+        $scope.assignColorsToExistingParagraphs = function () {
           function traverse(x, key, obj) {
             if (isArray(x)) {
             traverseArray(x)
@@ -399,7 +426,18 @@
             } else {
               if (key == 'owner'){
                 for (var i = 0; i < $scope.userColorTable.length; i++){
-
+                  if (x == $scope.userColorTable[i].author){
+                    var alreadyThere = true;
+                  }
+                }
+                if (!alreadyThere){
+                  $scope.userColorTable.push(
+                    {
+                      author: payload.proposition.author, 
+                      color: $scope.generateNewColor()
+                    }
+                  )
+                  obj.color = $scope.userColorTable[$scope.userColorTable.length-1];  
                 }
               }
             }
