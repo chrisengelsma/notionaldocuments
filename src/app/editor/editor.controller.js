@@ -414,7 +414,7 @@
                 if (!alreadyThere){
                   $scope.userColorTable.push(
                     {
-                      author: payload.proposition.author, 
+                      author: x, 
                       color: $scope.generateNewColor()
                     }
                   )
