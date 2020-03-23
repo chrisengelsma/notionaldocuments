@@ -400,6 +400,7 @@
                   if (x == $scope.userColorTable[i].author){
                     var alreadyThere = true;
                     var index = i;
+                    break;
                   }
                 }
                 if (!alreadyThere){
@@ -3072,6 +3073,7 @@
                 payload.proposition.author !== $scope.userId){
                 var alreadyThere = true;
                 var place = i;
+                break;
               }
             }
             if (!alreadyThere){
