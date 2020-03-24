@@ -397,13 +397,13 @@
             } else {
               if (key == 'owner'){
                 for (var i = 0; i < $scope.userColorTable.length; i++){
-                  if (x == $scope.userColorTable[i].author){
+                  if (x == $scope.userColorTable[i].author && x !== $scope.userId){
                     var alreadyThere = true;
                     var index = i;
                     break;
                   }
                 }
-                if (!alreadyThere){
+                if (!alreadyThere && x !== $scope.userId && x !== ''){
                   $scope.userColorTable.push(
                     {
                       author: x, 
@@ -411,7 +411,7 @@
                     }
                   )
                   obj.color = $scope.userColorTable[$scope.userColorTable.length-1];  
-                } else {
+                } else if(x !== $scope.userId && x !== '') {
                   obj.color = $scope.userColorTable[index].color;
                 }
               }
@@ -3077,14 +3077,17 @@
               }
             }
             if (!alreadyThere){
-              $scope.userColorTable.push(
-                {
-                  author: payload.proposition.author, 
-                  color: $scope.generateNewColor()
-                }
-              )
-              apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
-            } else {
+              if (payload.proposition.author !== $scope.userId){
+                $scope.userColorTable.push(
+                  {
+                    author: payload.proposition.author, 
+                    color: $scope.generateNewColor()
+                  }
+                )
+                apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
+              }
+              
+            } else if (payload.proposition.author !== $scope.userId){
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
             }
 
