@@ -125,7 +125,7 @@
                       editable-span-ng-model
                       contenteditable="true"
                       id="{{leftAdderId}}"
-                      class="right-textarea right-text"
+                      class="right-textarea right-text left-text"
                       ng-mouseover="paragraph.disableRightCursor = true"
                       ng-mouseleave="paragraph.disableRightCursor = false"
                       placeholder="textarea"
@@ -156,7 +156,7 @@
                   ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && $first && !paragraph.leftAdd,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !$first}"
                   ng-if="$first"
-                  class="cursor">
+                  class="cursor left-cursor">
             </span>
 <!--             <span class="cursor invisible-cursor"
                   ng-click="paragraph.disableRightCursor = true" 

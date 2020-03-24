@@ -188,7 +188,7 @@ input {
 
 
 .addparagraph {
-  background-color: white;
+  background-color: white !important;
   min-height: 20px;
   
   padding-bottom: 6.5px;
@@ -452,6 +452,14 @@ input {
 
 .updatecursor{
   cursor: text;
+}
+
+.left-cursor{
+  background-color: white !important;
+}
+
+.left-text{
+  background-color: white !important;
 }
 
 .texttopic {
