@@ -2202,7 +2202,13 @@
               prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
               prep.position = 0;
               prep.insertsBelow = true;
+
+
+
               console.log('Puts a paragraph below')
+
+
+              
             }
           } else if (paragraph.leftAdd) {
             prep.nodePath = '$scope.data';
