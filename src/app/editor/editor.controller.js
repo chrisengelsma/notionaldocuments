@@ -2208,7 +2208,7 @@
               console.log('Puts a paragraph below')
 
 
-              
+
             }
           } else if (paragraph.leftAdd) {
             prep.nodePath = '$scope.data';
@@ -3304,7 +3304,7 @@
 
           // Was contenteditable.lastChild.nodeType == 3 condition below here
  
-          if (contenteditable.lastChild && contenteditable.contentEditable) {
+          if (contenteditable.contentEditable) {
             range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
           } else{
             range.setStart(contenteditable,contenteditable.childNodes.length);
