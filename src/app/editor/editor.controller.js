@@ -382,7 +382,7 @@
       $scope.userColorCount = $scope.otherPastels.length;
 
       $scope.generateNewColor = function () {
-        var index = $scope.userColorCount % 5;
+        var index = $scope.userColorCount % $scope.otherPastels.length;
         $scope.userColorCount++;
         return $scope.otherPastels[index];
       }
