@@ -356,7 +356,7 @@
       var apply = {};
       var temp = {};
 
-       Light Salmon Pink (#FF9AA2), Melon (#FFB7B2), Very Pale Orange (#FFDAC1), Dirty White (#E2F0CB), Magic Mint (#B5EAD7) and Periwinkle (Crayola) (#C7CEEA).
+  
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
       $scope.otherPastels = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA']
 
