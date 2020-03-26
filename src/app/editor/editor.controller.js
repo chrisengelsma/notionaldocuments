@@ -2067,7 +2067,7 @@
               // it exists but its not yours
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && prep.nodeDestination.paragraphs[i].owner !== ''){
-                  for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                  for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                     if (prep.nodeDestination.paragraphs[j]){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && 
                         prep.nodeDestination.paragraphs[i].owner !== ''){
@@ -2127,7 +2127,7 @@
               } else {
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
-                    for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                       if (prep.nodeDestination.paragraphs[j]){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                           prep.paragraphPosition = j;
@@ -2151,7 +2151,7 @@
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   if (prep.nodeDestination.paragraphs[j]){
-                    for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                         prep.paragraphPosition = j;
                         prep.position = 0;
@@ -2199,7 +2199,7 @@
                   console.log("I: ", i)
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                     console.log("I hit")
-                    for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                       console.log("I: ", i, " J: ", j)
                       if (prep.nodeDestination.paragraphs[j]){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
@@ -2232,7 +2232,7 @@
                 console.log("I: ", i)
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   console.log("I hit")
-                  for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                  for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                     console.log("I: ", i, " J: ", j)
                     if (prep.nodeDestination.paragraphs[j]){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
@@ -2286,7 +2286,7 @@
             } else {
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
-                  for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                  for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                     if (prep.nodeDestination.paragraphs[j]){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                         prep.paragraphPosition = j;
