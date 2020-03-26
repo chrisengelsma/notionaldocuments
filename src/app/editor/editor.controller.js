@@ -1309,7 +1309,7 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId]){
                 if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                  apply.paragraphDestination[i].owner = apply.paragraphDestination[i].author;
+                  apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
                   break;
                 }
               } 
