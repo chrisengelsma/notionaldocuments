@@ -1545,7 +1545,7 @@
           document.getElementById($scope.selectedProposition.id).innerText = '';
           return;
         }
-
+        console.log("Checking topics")
         //   Topics
 
         // If it's ended with a colon,
@@ -1941,7 +1941,7 @@
 
 
         } else if ($scope.selectedProposition.question) {
-          
+
           console.log('Shouldnt trigger as questions not being given special behavior yet')
           prep.type = 'assertion';
           prep.adjustedText = input;
