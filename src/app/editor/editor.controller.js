@@ -1551,6 +1551,7 @@
         // If it's ended with a colon,
         // it's a topic
         if (prep.lastChar === ':') {
+          console.log("is topic")
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
           // Make it a topic that will have a blank sentence at position Paragraph 0 Proposition 0
