@@ -1628,9 +1628,9 @@
           // and it's an assertion or rejoinder (not a blank)
           // Or if it's a continuation of another negation
           // it's a negation
-        else if ((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
+        else if (((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
           $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' 
-          && $scope.selectedProposition.author === $scope.userId)) {
+          && $scope.selectedProposition.author === $scope.userId)) && !paragraph.leftAdd) {
 
           // if (prep.lastChar === '?') {
           //   prep.topic = input;
