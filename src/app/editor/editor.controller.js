@@ -1631,7 +1631,7 @@
         else if (((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
           $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' 
           && $scope.selectedProposition.author === $scope.userId)) && !paragraph.leftAdd) {
-
+          console.log("Negation incoming")
           // if (prep.lastChar === '?') {
           //   prep.topic = input;
           //   prep.question = prep.topic;
@@ -1770,6 +1770,7 @@
           !$scope.selectedProposition.question) {
           prep.topic = $scope.selectedNode.topic;
           prep.type = 'rejoinder';
+          console.log("Rejoinder incoming")
           //    IF ITS AN EXCLAMATION AND THE SELECTED PROPOSITION IS A REMARK ON ONE'S OWN PROPOSITION
           //   IN THE FORM OF A NEGATION, IT'S A REJOINDER
           prep.adjustedText = input.substring(0, input.length - 1) + '.';
@@ -1940,6 +1941,7 @@
 
 
         } else if ($scope.selectedProposition.question) {
+          
           console.log('Shouldnt trigger as questions not being given special behavior yet')
           prep.type = 'assertion';
           prep.adjustedText = input;
