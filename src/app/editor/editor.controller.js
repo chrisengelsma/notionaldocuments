@@ -2127,8 +2127,8 @@
               } else {
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
-                    if (prep.nodeDestination.paragraphs[j]){
-                      for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                    for (var j = i+1; i < prep.nodeDestination.paragraphs.length; j++){
+                      if (prep.nodeDestination.paragraphs[j]){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                           prep.paragraphPosition = j;
                           prep.position = 0;
