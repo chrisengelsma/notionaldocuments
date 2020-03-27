@@ -1349,7 +1349,7 @@
           if (payload.paragraphPosition == 0){
             apply.paragraphDestination = eval(apply.paragraphPath);
             apply.paragraphDestination[payload.deleter] = 'hidden';
-          } else if (payload.paragraphPosition == 1 
+          } else if (payload.paragraphPosition == 1
             && eval(payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']').owner ===
             $scope.userId){
               apply.paragraphDestination = eval(payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']');
@@ -1393,6 +1393,7 @@
             apply.paragraphDestination[payload.deleter] = 'hidden';
             return;
           } 
+        }
       
 
         if (payload.blanksPropositionForEveryone) {
