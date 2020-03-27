@@ -2312,7 +2312,7 @@
             if ($scope.selectedProposition.author == $scope.userId){
               prep.paragraphPosition = $scope.selectedParagraph.position;
               prep.position = $scope.selectedProposition.position;
-              prep.getsOwnProposition = true;
+              prep.insertsLeft = true;
               console.log("Putting it to the left")
               // close off the paragraph above to the user
             } else {
