@@ -389,7 +389,7 @@
 
 
 
-        $scope.assignColorsToExistingParagraphs = function () {
+        $scope.assignColorsToExistingParagraphs = function (x) {
           function traverse(x, key, obj) {
             if (isArray(x)) {
             traverseArray(x)
@@ -447,7 +447,7 @@
       }
 
       $scope.makePristine();
-      $scope.assignColorsToExistingParagraphs();
+      $scope.assignColorsToExistingParagraphs($scope.data[0]);
 
 
 
