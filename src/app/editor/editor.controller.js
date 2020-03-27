@@ -2184,7 +2184,7 @@
                 }
               }
             } else {
-              for (var i = prep.nodeDestination.paragraphs.length-1; i >; i++){
+              for (var i = prep.nodeDestination.paragraphs.length-1; i > -1; i--){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   if (prep.nodeDestination.paragraphs[i-1]){
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
