@@ -1353,10 +1353,10 @@
             && eval(payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']').owner ===
             $scope.userId){
               apply.paragraphDestination = eval(payload.nodePath + '.paragraphs[' + (payload.paragraphPosition-1).toString() + ']');
-              for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
+              for (var j = apply.paragraphDestination.propositions.length-1; j > -1; j--){
                 if(apply.paragraphDestination.propositions[j][$scope.userId] !== 'hidden'){
                   $scope.selectedParagraph = apply.paragraphDestination;
-                  $scope.selectedProposition = apply.paragraphDestination.propositions[j]
+                  $scope.selectedProposition = apply.paragraphDestination.propositions[j];
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
                   var query = 'proposition' + $scope.selectedProposition.id;
@@ -1373,10 +1373,10 @@
               apply.paragraphDestination = eval(payload.nodePath + '.paragraphs[' + i.toString() + ']')
               if (apply.paragraphDestination.owner === $scope.userId && 
                 apply.paragraphDestination[$scope.userId] !== 'hidden'){
-                for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
+                for (var j = apply.paragraphDestination.propositions.length-1; j > -1; j--){
                   if(apply.paragraphDestination.propositions[j][$scope.userId] !== 'hidden'){
                     $scope.selectedParagraph = apply.paragraphDestination;
-                    $scope.selectedProposition = apply.paragraphDestination.propositions[j]
+                    $scope.selectedProposition = apply.paragraphDestination.propositions[j];
                     $scope.selectedProposition.textSide = true;
                     focusFactory($scope.selectedProposition.id);
                     var query = 'proposition' + $scope.selectedProposition.id;
