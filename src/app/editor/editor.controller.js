@@ -401,6 +401,7 @@
                   if (x == $scope.userColorTable[i].author && x !== $scope.userId){
                     var alreadyThere = true;
                     var index = i;
+                    console.log("Found in table")
                     break;
                   }
                 }
@@ -411,8 +412,10 @@
                       color: $scope.generateNewColor()
                     }
                   )
+                  console.log("Added to table")
                   obj.color = $scope.userColorTable[$scope.userColorTable.length-1];  
-                } else if(x !== $scope.userId && x !== '') {
+                } else if (x !== $scope.userId && x !== '') {
+                  console.log('Looked up from table')
                   obj.color = $scope.userColorTable[index].color;
                 }
               }
