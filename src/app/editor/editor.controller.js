@@ -413,7 +413,8 @@
                     }
                   )
                   console.log("Added to table")
-                  obj.color = $scope.userColorTable[$scope.userColorTable.length-1];  
+                  obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;  
+                  console.log("Obj color: ", obj.color)
                 } else if (x !== $scope.userId && x !== '') {
                   console.log('Looked up from table')
                   obj.color = $scope.userColorTable[index].color;
