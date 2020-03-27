@@ -2062,8 +2062,8 @@
               //if you own that paragraph
               prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
               prep.position = 0;
-              prep.replacesBlankAndMoves = true;
               prep.insertsBelow = true;
+              prep.replacesBlankAndMoves = true;
               console.log("Starting a new paragraph from a deleted blank in one's own document")
               // close off the paragraph above to the user
             } else {
@@ -2077,6 +2077,7 @@
                         prep.paragraphPosition = j;
                         prep.position = 0;
                         prep.insertsBelow = true;
+                        prep.replacesBlankAndMoves = true;
                         console.log("Placing this as the last paragraph in the section of one's own document")
                         break;
                       }
@@ -2084,6 +2085,7 @@
                       prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                       prep.position = 0;
                       prep.insertsBelow = true;
+                      prep.replacesBlankAndMoves = true;
                       console.log("Placing this at the end of the document, after going through")
                     }
                   }
@@ -2093,6 +2095,7 @@
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
+                prep.replacesBlankAndMoves = true;
                 console.log("Placing this at the end of the document")
               }
             }   
@@ -2102,6 +2105,7 @@
             prep.replacesBlank = true;
             console.log('Replaces blank in blank document');
           }
+        prep.ofParagraphPosition = $scope.selectedParagraph.position;
 
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
 
@@ -2374,6 +2378,7 @@
           topic: prep.topic,
           address: prep.address,
           paragraphPosition: prep.paragraphPosition,
+          ofParagraphPosition: prep.ofParagraphPosition,
           blankId: IdFactory.next(),
           textSide: $scope.selectedProposition.textSide,
           class: (prep.newClass ? prep.newClass : prep.class),
@@ -2835,9 +2840,11 @@
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
 
-
-                apply.paragraphAboveDestination.propositions[0][$scope.userId] = 'hidden';
-                apply.paragraphAboveDestination[$scope.userId] = 'hidden';
+                apply.ofParagraphPosition = payload.ofParagraphPosition;
+                apply.ofParagraphPath = apply.nodePath + '.paragraphs[' + apply.ofParagraphPosition + ']';
+                apply.ofParagraphDestination = eval(apply.ofParagraphPath);
+                apply.ofParagraphDestination.propositions[0][$scope.userId] = 'hidden';
+                apply.ofParagraphDestination[$scope.userId] = 'hidden';
 
                 $timeout(function() {
 
