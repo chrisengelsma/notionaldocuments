@@ -1357,6 +1357,7 @@
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
                   var query = 'proposition' + $scope.selectedProposition.id;
+                  console.log("*** Query: ", query)
                   $(query).trigger('click');
                   query = '';
                   apply.paragraphDestination = null;
