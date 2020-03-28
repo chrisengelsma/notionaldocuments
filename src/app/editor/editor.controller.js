@@ -93,7 +93,7 @@
         //   $scope.$apply(function() {
 
             // traverse($scope.data[0])
-            console.log("Make pristine is acting to make things pristine")
+            
             if ($('.cursor').is('.visible-cursor')){
               $('.cursor').removeClass('visible-cursor')
               $('.cursor').addClass('invisible-cursor')
@@ -3725,8 +3725,6 @@
         $timeout(function() {
           var pane = document.getElementById('dialoguelist');
           pane.scrollTop = pane.scrollHeight;
-          console.log("Pane: ", pane)
-          console.log("Pane ScrollTop: ", pane.scrollTop)
         }, 50); 
       };
 
@@ -3762,17 +3760,20 @@
 
         // Need to write for deletions of paragraphs
 
-
+        // This disables interactivity for deleted remarks
         for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
           for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
-            if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id ||
-                ($scope.data[0].dialogue[i].remarks[j].of.id == payload.proposition.id &&
-                 $scope.data[0].dialogue[i].remarks[j].type == 'negation'))
-               {
+            if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id){
+              $scope.data[0].dialogue[i].remarks[j].hidden = true;
+            } else if ($scope.data[0].dialogue[i].remarks[j].of){
+              if ($scope.data[0].dialogue[i].remarks[j].of.id == payload.proposition.id &&
+                 $scope.data[0].dialogue[i].remarks[j].type == 'negation'){
                 $scope.data[0].dialogue[i].remarks[j].hidden = true;
+              }
+            }
             }
           }
-        }
+        
 
 
         callback();
