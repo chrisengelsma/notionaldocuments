@@ -2135,7 +2135,11 @@
             prep.replacesBlank = true;
             console.log('Replaces blank in blank document');
           }
+        if (prep.paragraphPosition < $scope.selectedParagraph.position){
+          prep.ofParagraphPosition = $scope.selectedParagraph.position +1;
+        } else {
         prep.ofParagraphPosition = $scope.selectedParagraph.position;
+        }
 
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
 
@@ -2902,7 +2906,7 @@
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
 
                 apply.ofParagraphPosition = payload.ofParagraphPosition;
-                apply.ofParagraphPath = apply.nodePath + '.paragraphs[' + apply.ofParagraphPosition + ']';
+                apply.ofParagraphPath = apply.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
                 apply.ofParagraphDestination = eval(apply.ofParagraphPath);
                 apply.ofParagraphDestination.propositions[0][$scope.userId] = 'hidden';
                 apply.ofParagraphDestination[$scope.userId] = 'hidden';
