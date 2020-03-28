@@ -2764,72 +2764,78 @@
               apply.paragraphDestination = eval(apply.paragraphPath);
               console.log("Paragraph destination: ", apply.paragraphDestination);
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
-              apply.propositionDestination = eval(apply.propositionPath);
+              if (eval(apply.propositionPath)){
+                apply.propositionDestination = eval(apply.propositionPath);
 
-              var counter = angular.copy(apply.nodeDestination.paragraphs.length-1)
-              // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
-              for (var i =  counter; i > payload.paragraphPosition - 1; i--) {
-               
-                // up the paragraph position
-                apply.nodeDestination.paragraphs[i].position++;
-                // if user has selected the paragraph being moved up, update selectedParagraph
-                if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
-                  $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
-                }
-                // copy the paragraph up
-                apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
-                // increase index of assertion paths affected
-                for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
+                var counter = angular.copy(apply.nodeDestination.paragraphs.length-1)
+                // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
+                for (var i =  counter; i > payload.paragraphPosition - 1; i--) {
                  
-                  if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
-                    apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
-                    (i + 1).toString() + '].propositions[' + j.toString() + ']';
+                  // up the paragraph position
+                  apply.nodeDestination.paragraphs[i].position++;
+                  // if user has selected the paragraph being moved up, update selectedParagraph
+                  if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
+                    $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                   }
-                  for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
+                  // copy the paragraph up
+                  apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
+                  // increase index of assertion paths affected
+                  for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                    
-                    if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
-                      // if an assertion is found matching 
+                    if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
+                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
+                      (i + 1).toString() + '].propositions[' + j.toString() + ']';
+                    }
+                    for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
+                     
+                      if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
+                        // if an assertion is found matching 
 
-                      apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === 
-                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
-                      apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = 
-                      payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
+                        apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === 
+                        apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
+                        apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = 
+                        payload.nodePath + '.paragraphs[' + (i + 1).toString() + '].propositions[' + k.toString() + ']';
+                      }
+                    }
+                  }
+
+                  // it's searching for the incoming assertion id in order to get its current position, but it won't find it because the assertion id is
+
+
+                  for (var l = 0; l < $scope.propositions.length; l++) {
+                    if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
+                      $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
                     }
                   }
                 }
 
-                // it's searching for the incoming assertion id in order to get its current position, but it won't find it because the assertion id is
+
+              } else {
+                apply.nodeDestination.paragraphs[payload.paragraphPosition] =
+                  {
+                    paragraphId: payload.paragraphId,
+                    position: payload.paragraphPosition,
+                    propositions: [payload.proposition]
+                  };
+
+                if (payload.proposition.author === $scope.userId && payload.textSide === true) {
 
 
-                for (var l = 0; l < $scope.propositions.length; l++) {
-                  if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
-                    $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
-                  }
+                  $timeout(function() {
+
+                    $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+                    $scope.selectedProposition = 
+                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.selectedProposition.textSide = true;
+
+                    focusFactory($scope.selectedProposition.id);
+                    $($scope.selectedProposition.id).trigger('click');
+                  }, 30);
+
+
                 }
               }
-              apply.nodeDestination.paragraphs[payload.paragraphPosition] =
-                {
-                  paragraphId: payload.paragraphId,
-                  position: payload.paragraphPosition,
-                  propositions: [payload.proposition]
-                };
 
-              if (payload.proposition.author === $scope.userId && payload.textSide === true) {
-
-
-                $timeout(function() {
-
-                  $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                  $scope.selectedProposition = 
-                  apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
-                  $scope.selectedProposition.textSide = true;
-
-                  focusFactory($scope.selectedProposition.id);
-                  $($scope.selectedProposition.id).trigger('click');
-                }, 30);
-
-
-              }
 
             } else if (payload.proposition.insertsBelow) {
               console.log("Inserts below. ParagraphId: ", payload.paragraphId)
