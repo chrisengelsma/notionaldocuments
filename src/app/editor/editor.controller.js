@@ -3155,7 +3155,6 @@
 
                 temp.propositionDestination = eval(temp.propositionPath);
                 //     PUSH PROPOSITIONS TO THE THREAD ACCORDING TO THE ADDRESS
-                console.log("Building thread, reading address and adding remark: ", temp.propositionDestination.text)
                 $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[i + 1] = temp.propositionDestination; // the last thread's last remark is where the loop is pointing
 
                 // the last thread's last remark is where proposition destination is pointing
@@ -3194,7 +3193,6 @@
             //Update paragraph ownership
             apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
             apply.paragraphDestination = eval(apply.paragraphPath)
-            console.log('Rebuilt paragraph destination: ', apply.paragraphDestination)
             // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
             //   if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
             //     apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
@@ -3393,7 +3391,6 @@
 
           path = path + '.children[' + (destination.children.length-1).toString() + ']';
           destination = eval(path);
-          console.log("Path so far, while: ", path)
           } 
         }
 
@@ -3404,7 +3401,6 @@
           if (destination.paragraphs[i][$scope.userId] !== 'hidden'){
             path = path + '.paragraphs[' + i.toString() + ']';
             destination = eval(path);
-            console.log("Path so far, paragraph: ", path)
             break;
           }
         }
