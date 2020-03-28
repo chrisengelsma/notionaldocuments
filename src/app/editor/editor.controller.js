@@ -2769,7 +2769,7 @@
               apply.paragraphDestination = eval(apply.paragraphPath);
               console.log("Paragraph destination: ", apply.paragraphDestination);
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
-              if (eval(apply.propositionPath)){
+              if (apply.paragraphDestination){
                 apply.propositionDestination = eval(apply.propositionPath);
 
                 var counter = angular.copy(apply.nodeDestination.paragraphs.length-1)
