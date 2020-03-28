@@ -3729,7 +3729,7 @@
       };
 
       var updateDialogue = function(payload, callback) {
-        if (payload.blanksParagraphForDeleter && payload.hidesOthersProp && $scope.userId === payload.deleter) {
+        if (payload.blanksParagraphForDeleter && payload.hidesOthersProp) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
           //   topic: payload.topic,
