@@ -3208,8 +3208,9 @@
                 payload.proposition.author !== $scope.userId){
                 var alreadyThere = true;
                 var place = i;
-                break;
                 console.log('Already there')
+                break;
+                
               }
             }
             if (!alreadyThere){
