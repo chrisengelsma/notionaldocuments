@@ -3211,10 +3211,12 @@
                 var alreadyThere = true;
                 var place = i;
                 break;
+                console.log('Already there')
               }
             }
             if (!alreadyThere){
               if (payload.proposition.author !== $scope.userId){
+                console.log("Push")
                 $scope.userColorTable.push(
                   {
                     author: payload.proposition.author, 
@@ -3225,6 +3227,7 @@
               }
               
             } else if (payload.proposition.author !== $scope.userId){
+              console.log("else if")
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
             }
 
