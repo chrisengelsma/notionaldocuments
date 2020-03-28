@@ -3214,7 +3214,7 @@
               }
             }
             if (!alreadyThere){
-              if (payload.proposition.author !== $scope.userId){
+              if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation'){
                 console.log("Push")
                 $scope.userColorTable.push(
                   {
@@ -3225,7 +3225,7 @@
                 apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
               }
               
-            } else if (payload.proposition.author !== $scope.userId){
+            } else if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation'){
               console.log("else if")
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
             }
