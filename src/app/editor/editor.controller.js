@@ -3212,7 +3212,9 @@
             //     break;
             //   }
             // }
-            // apply.paragraphDestination.owner = payload.proposition.author;
+            if (!apply.paragraphDestination.owner){
+              apply.paragraphDestination.owner = payload.proposition.author;
+            }
 
             // for every incoming proposition, when assigning an owner to the paragraph
             for (var i = 0; i < $scope.userColorTable.length; i++){
