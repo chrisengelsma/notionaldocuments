@@ -55,6 +55,7 @@
         } else {
           if (key == 'color'){
             x = '#ffffff';
+            console.log("Key: ", key, " Color: ", x)
           }
 
 
