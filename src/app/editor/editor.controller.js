@@ -47,24 +47,21 @@
     // All the modal buttons.
 
     $scope.makePristine = function () {
-      function traverse(x, key) {
+      function traverse(x, key, obj) {
         if (isArray(x)) {
         traverseArray(x)
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x)
         } else {
           if (key == 'color'){
-            x = '#ffffff';
-            console.log("Key: ", key, " Color: ", x)
+            obj.color = '#ffffff';
+            console.log("Key: ", obj.color, " Color: ", x)
             console.log("The paragraphs color: ", $scope.data[0].paragraphs[1].color)
           }
 
 
           // x is the value for a key that's not an object or array
           // key is the key
-          // if the key is paragraph.bottomMouseOver proposition.preSelected 
-          // paragraph.leftMouseOver paragraph.topMouseOver paragraph.disableRightCursor,
-          // set it to false
         }
       }
 
@@ -79,7 +76,7 @@
       function traverseObject(obj) {
         for (var key in obj) {
           if (obj.hasOwnProperty(key)) {
-            traverse(obj[key], key)
+            traverse(obj[key], key, obj)
           }
         }
       }
