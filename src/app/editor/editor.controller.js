@@ -87,7 +87,7 @@
         return Object.prototype.toString.call(o) === '[object Array]'
       }
 
-      usage:
+      
         setTimeout(function() {
 
         
