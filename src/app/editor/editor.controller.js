@@ -399,7 +399,6 @@
                   if (x == $scope.userColorTable[i].author && x !== $scope.userId){
                     var alreadyThere = true;
                     var index = i;
-                    console.log("Found in table")
                     break;
                   }
                 }
@@ -410,11 +409,11 @@
                       color: $scope.generateNewColor()
                     }
                   )
-                  console.log("Added to table")
+                  
                   obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;  
-                  console.log("Obj color: ", obj.color)
+                 
                 } else if (x !== $scope.userId && x !== '') {
-                  console.log('Looked up from table')
+                 
                   obj.color = $scope.userColorTable[index].color;
                 }
               }
@@ -465,8 +464,7 @@
             $scope.hasChatFocusId = '';
             $scope.hasChatFocusThreadId = '';
             $scope.threadAdding = thread.threadId;
-            console.log('ThreadAdding: ', $scope.threadAdding)
-            console.log('#addto' + thread.threadId)
+          
             $('#addto' + thread.threadId).expanding();
             focusFactory('addto' + thread.threadId)
           });
@@ -480,8 +478,7 @@
             $scope.hasChatFocusId = '';
             $scope.hasChatFocusThreadId = '';
             $scope.threadAdding = thread.threadId;
-            console.log('ThreadAdding: ', $scope.threadAdding)
-            console.log('#addto' + thread.threadId)
+     
             $('#addto' + thread.threadId).expanding();
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
@@ -496,7 +493,7 @@
         $scope.threadAdding = '';
         $scope.stopToggle = true;
 
-        console.log('Hide Thread add')
+      
       }
 
       $scope.exitNgClick = function () {
@@ -911,9 +908,9 @@
       };
 
       $scope.paragraphSorter = function (paragraph) {
-        console.log('Paragraph paragraph position: ', paragraph.position)
+       
         var value = 0;
-        console.log("value: ", value)
+      
         if (paragraph.owner == $scope.userId){
           value++;
         } else if (paragraph.owner && paragraph.owner !== $scope.userId) {
@@ -921,7 +918,7 @@
           value++;
         }
         value = value + paragraph.position*.001;
-        console.log("value: ", value)
+       
 
         return value;
       }
@@ -1046,7 +1043,7 @@
           if ($scope.whatHasBeenClicked){
             for (var i = 0; i < $scope.propositions.length; i++){
               if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
-                console.log('What has been clicked: ', $scope.whatHasBeenClicked)
+             
                 document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
               }
             }
@@ -1092,7 +1089,7 @@
     }
 
       $scope.updateProposition = function(node, paragraph, proposition) {
-        console.log('Node: ', node)
+        
         if (proposition.author !== $scope.userId) {
           return;
         }
@@ -1158,12 +1155,12 @@
         if (elem && index >= 0) {
           $scope.propositions[index] = payload.proposition;
           elem.innerText = payload.proposition.text;
-          console.log('Proposition on propositions of found index: ', $scope.propositions[index]);
+   
           for (var i = 0; i < $scope.data[0].dialogue.length; i++){
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
               if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
                 $scope.data[0].dialogue[i].remarks[j].updated = true;
-                console.log('Updated: ', $scope.data[0].dialogue[i].remarks[j].updated)
+               
                 // $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
               }
             }
@@ -1443,7 +1440,7 @@
           }
 
             // Updates paragraph ownership
-            console.log('Paragraph destination: ', apply.paragraphDestination)
+           
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
                 apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
@@ -1506,7 +1503,7 @@
           }
 
             // Updates paragraph ownership
-            console.log('Paragraph destination: ', apply.paragraphDestination)
+            
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
                 apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
@@ -1586,13 +1583,13 @@
           document.getElementById($scope.selectedProposition.id).innerText = '';
           return;
         }
-        console.log("Checking topics")
+      
         //   Topics
 
         // If it's ended with a colon,
         // it's a topic
         if (prep.lastChar === ':') {
-          console.log("is topic")
+          
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
           // Make it a topic that will have a blank sentence at position Paragraph 0 Proposition 0
@@ -1659,9 +1656,7 @@
             author: $scope.selectedProposition.author,
             text: $scope.selectedProposition.text,
           };
-          console.log('Old node path: ', prep.oldNodePath);
-          console.log('New node path: ', prep.nodePath);
-          console.log('Topic: ', prep.topic);
+   
         }
 
           // Negations
@@ -1949,14 +1944,14 @@
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
               
               }
-              console.log('Start: ', start)
+              
 
 
               prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
               prep.check = eval(start);                                         //  check the selectedProposition's remark location
               start = '';
               if (prep.check && prep.check.remarks.length > 0) {                              //  if the remark has remarks
-                console.log("prep check and prep check remarks greater than 0")
+              
                 prep.remarkAddress.push(prep.check.remarks.length);             //  make a new index
                 
                 prep.remarkAddress.push(0);                                     //  otherwise the index is 0
@@ -1973,7 +1968,7 @@
                 prep.remarkPath = prep.assertionPath + '.remarks[0]';                
               }
             } else {
-              console.log('Remarks[0]')
+             
               prep.remarkAddress = $scope.selectedProposition.remarkAddress;          
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
