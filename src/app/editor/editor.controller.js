@@ -1213,10 +1213,12 @@
           for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
             if ($scope.selectedParagraph.propositions[i].type !== 'blank' &&
               $scope.selectedParagraph.propositions[i][$scope.userId] !== 'hidden' &&
-              $scope.selectedParagraph.propositions[i].id !== $scope.selectedProposition.id) {
+              $scope.selectedParagraph.propositions[i].id !== $scope.selectedProposition.id &&
+              $scope.selectedParagraph.propositions[i].type !== 'negation') {
               prep.blanksPropositionForEveryone = true;
               break;
               // proposition just gets hidden for everyone
+              // what to do about negations?
             }
           }
           if (!prep.blanksPropositionForEveryone) {

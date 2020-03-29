@@ -38,7 +38,7 @@
                      'alignright': remark.type === 'negation' && remark.dialogueText !== '- Paragraph deleted -',
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic') 
                      }"
-          ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, !remark.deleted && remark.text === remark.dialogueText && !remark.hidden ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectNodeByClass(thread), selectThread(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
+          ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, !remark.deleted && remark.text === remark.dialogueText && remark[userId] !== 'hidden' ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectNodeByClass(thread), selectThread(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
           ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread)]"
           ng-mouseleave="remark.mouseOver = false;"
           style="margin-bottom: 7px; font-size: 16px; ">
