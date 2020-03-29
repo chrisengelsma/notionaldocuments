@@ -54,7 +54,7 @@
           traverseObject(x)
         } else {
           if (key == 'color'){
-            x = '';
+            x = '#ffffff';
           }
 
 
