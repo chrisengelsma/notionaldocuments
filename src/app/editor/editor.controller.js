@@ -445,6 +445,11 @@
       $scope.makePristine();
       $scope.assignColorsToExistingParagraphs();
 
+        $timeout(function() {
+          var pane = document.getElementById('dialoguelist');
+          pane.scrollTop = pane.scrollHeight;
+        }, 30);
+
 
 
       $scope.showThreadAdd = function (thread) {
@@ -3251,7 +3256,7 @@
         $timeout(function() {
           var pane = document.getElementById('dialoguelist');
           pane.scrollTop = pane.scrollHeight;
-        }, 50);
+        }, 30);
 
         // $scope.makePristine();
 
@@ -3724,11 +3729,11 @@
         $timeout(function() {
           var pane = document.getElementById('dialoguelist');
           pane.scrollTop = pane.scrollHeight;
-        }, 50); 
+        }, 20); 
       };
 
       var updateDialogue = function(payload, callback) {
-        if (payload.blanksParagraphForDeleter && payload.hidesOthersProp) {
+        if ((payload.blanksParagraphForDeleter && payload.hidesOthersProp) || payload.hidesBlankParagraph) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
           //   topic: payload.topic,
