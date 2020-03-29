@@ -1316,7 +1316,7 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId]){
                 if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                  apply.paragraphDestination.color = '#ffffff';
+                  apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
                   break;
                 }
               } 
@@ -3212,7 +3212,7 @@
             //     break;
             //   }
             // }
-            apply.paragraphDestination.owner = payload.proposition.author;
+            // apply.paragraphDestination.owner = payload.proposition.author;
 
             // for every incoming proposition, when assigning an owner to the paragraph
             for (var i = 0; i < $scope.userColorTable.length; i++){
