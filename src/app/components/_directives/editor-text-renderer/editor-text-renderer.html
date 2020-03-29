@@ -28,7 +28,7 @@
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="$first && paragraph.propositions[0].type !== 'blank' && hasTopFocus != paragraph.paragraphId"
+         ng-if="hasTopFocus != paragraph.paragraphId"
          ng-click="[hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
@@ -81,7 +81,7 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-style="{'padding-bottom': ('6px solid ' + paragraph.color)}"
+
           ng-class="{'addbelownotowned': hasBottomFocus == paragraph.paragraphId && paragraph.owner !== userId && paragraph.owner !== ''}"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
