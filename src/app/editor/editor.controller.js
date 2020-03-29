@@ -2774,8 +2774,10 @@
                   // up the paragraph position
                   apply.nodeDestination.paragraphs[i].position++;
                   // if user has selected the paragraph being moved up, update selectedParagraph
-                  if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
-                    $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
+                  if ($scope.selectedParagraph){
+                    if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
+                      $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
+                    }
                   }
                   // copy the paragraph up
                   apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
@@ -2858,10 +2860,11 @@
                 console.log('There is such a paragraph')
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
                   apply.nodeDestination.paragraphs[i].position++;
-                  if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
-                    $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
+                  if ($scope.selectedParagraph){
+                    if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
+                      $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
+                    }
                   }
-
                   apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
@@ -2940,10 +2943,11 @@
               if (apply.propositionDestination) {
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                   apply.paragraphDestination.propositions[i].position++;
-                  if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
-                    $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
+                  if ($scope.selectedParagraph){
+                    if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
+                      $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
+                    }
                   }
-
                   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                 }
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
@@ -3249,7 +3253,7 @@
           pane.scrollTop = pane.scrollHeight;
         }, 50);
 
-        $scope.makePristine();
+        // $scope.makePristine();
 
       });
 
