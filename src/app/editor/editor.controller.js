@@ -1316,11 +1316,15 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId]){
                 if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden'){
-                  apply.paragraphDestination.owner = apply.paragraphDestination[i].author;
+                  apply.paragraphDestination.color = '#ffffff';
                   break;
                 }
               } 
             }
+
+            
+
+
 
             $scope.selectedParagraph = apply.paragraphDestination;
             $scope.selectedProposition = apply.paragraphDestination.propositions[0];
@@ -1331,8 +1335,10 @@
             for (var i = apply.paragraphDestination.propositions.length; i > -1; i--) {
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
-              if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
-                $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
+              if ($scope.selectedProposition){
+                if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
+                  $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
+                }
               }
             }
 
