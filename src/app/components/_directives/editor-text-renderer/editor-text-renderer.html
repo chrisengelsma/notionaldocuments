@@ -166,7 +166,6 @@
                 id="proposition{{proposition.id}}"
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
-                            'underline': proposition.propositionPreSelected === true,
                             'highlight': highlight.id === proposition.id || (selectedParagraph.highlightAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'notowned': proposition.author !== userId && options.dimNotOwned,
                             'owned': proposition.author === userId && options.highlightOwned,
