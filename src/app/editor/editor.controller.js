@@ -56,6 +56,7 @@
           if (key == 'color'){
             x = '#ffffff';
             console.log("Key: ", key, " Color: ", x)
+            console.log("The paragraphs color: ", $scope.data[0].paragraphs[1].color)
           }
 
 
