@@ -86,11 +86,11 @@
         return Object.prototype.toString.call(o) === '[object Array]'
       }
 
-      // usage:
-        // setTimeout(function() {
+      usage:
+        setTimeout(function() {
 
         
-        //   $scope.$apply(function() {
+          $scope.$apply(function() {
 
             traverse($scope.data[0])
             
@@ -113,8 +113,8 @@
             //   }
             // }
          
-        //   });
-        // }, 20);
+          });
+        }, 20);
       
 
       // Starts with data object
