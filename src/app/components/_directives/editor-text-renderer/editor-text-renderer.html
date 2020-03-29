@@ -21,14 +21,15 @@
       ng-style="{'background-color': paragraph.color}"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
+                  topspacer: !$first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId
                 }"><!-- {{paragraph.owner}} -->
-                 
+       
                
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="hasTopFocus != paragraph.paragraphId"
+         ng-if="$first && paragraph.propositions[0].type !== 'blank' && hasTopFocus != paragraph.paragraphId"
          ng-click="[hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
@@ -165,6 +166,7 @@
           <span 
 
                 id="proposition{{proposition.id}}"
+                style="padding-left: 5px; padding-right: 5px"
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
                             'highlight': highlight.id === proposition.id || (selectedParagraph.highlightAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
