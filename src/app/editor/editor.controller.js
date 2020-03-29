@@ -53,8 +53,8 @@
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x)
         } else {
-          if (key == 'bottomMouseOver' || key == 'preSelected' || key == 'leftMouseOver' || key == 'topMouseOver'){
-            x = false;
+          if (key == 'color'){
+            x = '';
           }
 
 
@@ -92,7 +92,7 @@
         
         //   $scope.$apply(function() {
 
-            // traverse($scope.data[0])
+            traverse($scope.data[0])
             
             if ($('.cursor').is('.visible-cursor')){
               $('.cursor').removeClass('visible-cursor')
