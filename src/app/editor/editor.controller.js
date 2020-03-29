@@ -87,8 +87,10 @@
 
       
    
-
+          if (!$scope.once){
+            $scope.once = true;
             traverse($scope.data[0])
+          }
             
             if ($('.cursor').is('.visible-cursor')){
               $('.cursor').removeClass('visible-cursor')
@@ -347,6 +349,7 @@
       $scope.threadAdding = '';
       $scope.newProp;
       $scope.stopToggle = false;
+      $scope.once = false;
       var prep = {};
       var apply = {};
       var temp = {};
