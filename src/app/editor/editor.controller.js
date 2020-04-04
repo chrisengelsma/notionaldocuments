@@ -44,8 +44,7 @@
       }
     }, 500);
 
-    // All the modal buttons.
-
+    // Function that clears vestigial stuff saved into the model
     $scope.makePristine = function () {
       function traverse(x, key, obj) {
         if (isArray(x)) {
@@ -58,8 +57,6 @@
             console.log("Key: ", obj.color, " Color: ", x)
             console.log("The paragraphs color: ", $scope.data[0].paragraphs[1].color)
           }
-
-
           // x is the value for a key that's not an object or array
           // key is the key
         }
@@ -70,8 +67,6 @@
           traverse(x)
         })
       }
-
-
 
       function traverseObject(obj) {
         for (var key in obj) {
@@ -85,42 +80,24 @@
         return Object.prototype.toString.call(o) === '[object Array]'
       }
 
-      
-   
-          if (!$scope.once){
-            $scope.once = true;
-            traverse($scope.data[0])
-          }
+      // Run this function only once
+      if (!$scope.once){
+        $scope.once = true;
+        traverse($scope.data[0])
+      }
             
-            if ($('.cursor').is('.visible-cursor')){
-              $('.cursor').removeClass('visible-cursor')
-              $('.cursor').addClass('invisible-cursor')
-            }
+      // Clear cursor values
+      if ($('.cursor').is('.visible-cursor')){
+        $('.cursor').removeClass('visible-cursor')
+        $('.cursor').addClass('invisible-cursor')
+      }
 
-            if ($('.bottomparagraphadder').is('.blackline')){
-              $('.cursor').removeClass('blackline')
-            }
+      if ($('.bottomparagraphadder').is('.blackline')){
+        $('.cursor').removeClass('blackline')
+      }
+    }
 
-            // var cursors = document.querySelectorAll('.cursor')
-            // console.log(cursors)
-            // for (var i = 0; i < cursors.length; i++){
-            //   console.log(cursors[i])
-            //   if (cursors[i].hasClass('visible-cursor')){
-            //     cursors[i].removeClass('visible-cursor');
-            //     cursors[i].addClass('invisible-cursor');
-            //   }
-            // }
-         
-
-      
-
-      // Starts with data object
-      // Considers it as an object
-      // Then goes to the values of the object one by one
-
-      // Have it do things when it's on paragraphs and propositions
-  }
-
+    // Inverts page colors
     $scope.invert = function() {
       var css = 'html {-webkit-filter: invert(100%);' +
         '-moz-filter: invert(100%);' + 
@@ -138,7 +115,6 @@
         var css ='html {-webkit-filter: invert(0%); -moz-filter: invert(0%); -o-filter: invert(0%); -ms-filter: invert(0%); }'
       }
  
-
       style.type = 'text/css';
       if (style.styleSheet){
         style.styleSheet.cssText = css;
@@ -150,6 +126,7 @@
  
     }
     
+    // Modal button function for new books
     $scope.openNewBookModal = function() {
       $scope.addBookModalInstance = $uibModal.open({
         animation: true,
@@ -277,9 +254,7 @@
 
     };
 
-
     // Loading data
-
     $scope.loadData = function(bookId) {
       apiService.readBook(bookId).then(function(result) {
         $scope.data = [result.data];
@@ -295,9 +270,9 @@
       }).catch(function(error) {
         // console.error(error);
       });
-
     };
 
+    // If a book id is present, load it
     if ($stateParams.bookId) {
       $scope.bookId = $stateParams.bookId;
       $scope.loadData($scope.bookId);
@@ -317,9 +292,7 @@
       return $rootScope.uid !== undefined;
     };
 
-    // Just put it in a big function
-    // Down the line, this needs to be re-architectured.
-
+    // Main function
     $scope.mainLoop = function() {
       $scope.treeOptions = {};
       $scope.mousedOverProposition = {};
@@ -354,10 +327,11 @@
       var apply = {};
       var temp = {};
 
-  
+      // Pastel colors for paragraphs
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
       $scope.otherPastels = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA']
 
+      // Shuffles paragraph color order
       function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
         while (0 !== currentIndex) {
@@ -376,134 +350,119 @@
 
       $scope.userColorTable = [];
 
-      //initializes as number of colors
+      //initializes as number of colors in the palette
       $scope.userColorCount = $scope.otherPastels.length;
 
+      // For picking a color from the palette
       $scope.generateNewColor = function () {
         var index = $scope.userColorCount % $scope.otherPastels.length;
         $scope.userColorCount++;
         return $scope.otherPastels[index];
       }
 
-
-
-        $scope.assignColorsToExistingParagraphs = function () {
-          function traverse(x, key, obj) {
-            if (isArray(x)) {
+      // Upon load, assigns colors to paragraphs
+      $scope.assignColorsToExistingParagraphs = function () {
+        function traverse(x, key, obj) {
+          if (isArray(x)) {
             traverseArray(x)
-            } else if ((typeof x === 'object') && (x !== null)) {
-              traverseObject(x)
-            } else {
-              if (key == 'owner'){
-                for (var i = 0; i < $scope.userColorTable.length; i++){
-                  if (x == $scope.userColorTable[i].author && x !== $scope.userId){
-                    var alreadyThere = true;
-                    var index = i;
-                    break;
+          } else if ((typeof x === 'object') && (x !== null)) {
+            traverseObject(x)
+          } else {
+            if (key == 'owner'){
+              for (var i = 0; i < $scope.userColorTable.length; i++){
+                if (x == $scope.userColorTable[i].author && x !== $scope.userId){
+                  var alreadyThere = true;
+                  var index = i;
+                  break;
+                }
+              }
+              if (!alreadyThere && x !== $scope.userId && x !== ''){
+                $scope.userColorTable.push(
+                  {
+                    author: x, 
+                    color: $scope.generateNewColor()
                   }
-                }
-                if (!alreadyThere && x !== $scope.userId && x !== ''){
-                  $scope.userColorTable.push(
-                    {
-                      author: x, 
-                      color: $scope.generateNewColor()
-                    }
-                  )
+                )
                   
-                  obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;  
+                obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;  
                  
-                } else if (x !== $scope.userId && x !== '') {
+              } else if (x !== $scope.userId && x !== '') {
                  
-                  obj.color = $scope.userColorTable[index].color;
-                }
+                obj.color = $scope.userColorTable[index].color;
               }
             }
           }
+        }
 
-          function traverseArray(arr) { 
-            arr.forEach(function (x) {
-              traverse(x)
-            })
-          }
+        function traverseArray(arr) { 
+          arr.forEach(function (x) {
+            traverse(x)
+          })
+        }
 
-
-
-          function traverseObject(obj) {
-            for (var key in obj) {
-              if (obj.hasOwnProperty(key)) {
-                traverse(obj[key], key, obj)
-              }
+        function traverseObject(obj) {
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              traverse(obj[key], key, obj)
             }
           }
+        }
 
-          function isArray(o) {
-            return Object.prototype.toString.call(o) === '[object Array]'
-          }
+        function isArray(o) {
+          return Object.prototype.toString.call(o) === '[object Array]'
+        }
 
-          traverse($scope.data[0])
-
+        // Executes
+        traverse($scope.data[0])
       }
 
+      // Runs functions that clean up vestigial stuff saved into the data
       $scope.makePristine();
       $scope.assignColorsToExistingParagraphs();
 
-        $timeout(function() {
-          var pane = document.getElementById('dialoguelist');
-          pane.scrollTop = pane.scrollHeight;
-        }, 30);
+      // Scrolls to the bottom of messages
+      $timeout(function() {
+        var pane = document.getElementById('dialoguelist');
+        pane.scrollTop = pane.scrollHeight;
+      }, 30);
 
-
-
+      // When propositions are being typed as new messages on a topic
       $scope.showThreadAdd = function (thread) {
 
         setTimeout(function() {
-
-        
           $scope.$apply(function() {
-            // $('addto' + thread.threadId).parent().show();
             $scope.hasChatFocusId = '';
             $scope.hasChatFocusThreadId = '';
             $scope.threadAdding = thread.threadId;
-          
             $('#addto' + thread.threadId).expanding();
             focusFactory('addto' + thread.threadId)
           });
         }, 20);
 
         setTimeout(function() {
-
-        
           $scope.$apply(function() {
-            // $('addto' + thread.threadId).parent().show();
             $scope.hasChatFocusId = '';
             $scope.hasChatFocusThreadId = '';
             $scope.threadAdding = thread.threadId;
-     
             $('#addto' + thread.threadId).expanding();
             $('#addto' + thread.threadId).expanding(); //duplicate
             focusFactory('addto' + thread.threadId)
           });
         }, 20);
-
         $scope.stopToggle = true;
 
       }
 
+      // Hides 
       $scope.hideThreadAdd = function () {
         $scope.threadAdding = '';
         $scope.stopToggle = true;
-
-      
       }
 
+      // For when clicks do multiple things
       $scope.exitNgClick = function () {
         $scope.stopToggle = false;
       }
-
-      $scope.blurEdit = function () {
-        
-      }
-
 
       // If an empty book, focus on the blank proposition
       if (!$scope.data[0].paragraphs[0].propositions[0].author){
@@ -511,7 +470,6 @@
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout( function(){
           document.getElementById('proposition' + id).click();
-          
         },0)
       }
 
@@ -520,8 +478,8 @@
         $scope.data[0].dialogue = [];
       }
 
+      // Fires sometimes
       $scope.selectBlank = function (node) {
-        
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
         $scope.selectedNode = node;
         $scope.selectedParagraph = $scope.data[0].paragraphs[0];
@@ -531,9 +489,6 @@
         },0)         
       }
 
-      $scope.clickOnLastProposition = function () {
-
-      }
       // Signs out
       $scope.logout = function() {
         apiService.signOut().then(function() {
@@ -569,7 +524,6 @@
           document.getElementById('tree-root').classList
             .add('dialogueblurrer');
         }
-
       };
 
       $scope.mouseOverTextBlurrer = function() {
