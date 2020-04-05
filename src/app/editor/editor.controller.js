@@ -823,51 +823,46 @@
           // Emits it, clears a variable
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
-
           // Clicks the element to allow for continued typing
           $timeout( function(){
             elem.click(); 
           },0)
-
-          // Hits backend services
+          // Hits backend services, updates the model
           apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
           apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
           profileService.setSelectedBook($scope.data[0]);
         }
       };
 
+      // Listener for updates
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
-
+        // Looks up proposition in the propositions array, updates it
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
         });
         var elem = document.getElementById('proposition' + payload.proposition.id);
-
+        // Updates text for the proposition in the text
         if (elem && index >= 0) {
           $scope.propositions[index] = payload.proposition;
           elem.innerText = payload.proposition.text;
-   
+          // Marks remarks as updated (for markup purposes)
           for (var i = 0; i < $scope.data[0].dialogue.length; i++){
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
               if (payload.proposition.id === $scope.data[0].dialogue[i].remarks[j].id){
                 $scope.data[0].dialogue[i].remarks[j].updated = true;
-               
-                // $scope.data[0].dialogue[i].remarks[j].text = $scope.data[0].dialogue[i].remarks[j].text + '*';
               }
             }
           }
         }
-
+        // Hits backend services, but so did the prep function.
+        // Could this lead to model conflicts/failure to update proposition text?
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0])
-
-
-
       });
 
       $scope.deleteProposition = function() {
-        // Don't delete if it ain't yours
+        // Don't delete if it isn't yours
         console.log('Deleting proposition')
         if ($scope.selectedProposition.author !== $scope.userId && $scope.selectedProposition.type !== 'blank') {
           return;
