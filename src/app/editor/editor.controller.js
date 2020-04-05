@@ -55,7 +55,6 @@
           if (key == 'color'){
             obj.color = '#ffffff';
             console.log("Key: ", obj.color, " Color: ", x)
-            console.log("The paragraphs color: ", $scope.data[0].paragraphs[1].color)
           }
           // x is the value for a key that's not an object or array
           // key is the key
@@ -341,10 +340,8 @@
           array[currentIndex] = array[randomIndex];
           array[randomIndex] = temporaryValue;
           }
-
           return array;
         }
-
 
       shuffle($scope.otherPastels);
 
