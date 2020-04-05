@@ -104,25 +104,22 @@
         '-ms-filter: invert(100%); }',
       head = document.getElementsByTagName('head')[0],
       style = document.createElement('style');
-
       if (!window.counter){ 
         window.counter = 1;
         } else  { 
           window.counter ++;
         }
       if (window.counter % 2 == 0) { 
-        var css ='html {-webkit-filter: invert(0%); -moz-filter: invert(0%); -o-filter: invert(0%); -ms-filter: invert(0%); }'
+        var css =
+        'html {-webkit-filter: invert(0%); -moz-filter: invert(0%); -o-filter: invert(0%); -ms-filter: invert(0%); }'
       }
- 
       style.type = 'text/css';
       if (style.styleSheet){
         style.styleSheet.cssText = css;
       } else {
         style.appendChild(document.createTextNode(css));
       }
-
       head.appendChild(style);
- 
     }
     
     // Modal button function for new books
@@ -673,14 +670,15 @@
         $scope.selectedParagraph.highlightAll = false;
       };
 
-      // Processes the deletion payload on the client side prior to emission
+      // Processes the deletion payload on the client side prior to emission (for paragraphs of others)
       $scope.deleteAllPropositions = function() {
+        // Clears some markups to the propositions
         $scope.selectedParagraph.markAll = false;
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
+        // Calculates a path to the node on which the deletion is occurring
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
-        //make the nodes part of the address
         for (var i = 0; i < prep.address.length; i++) {
           if (i < prep.address.length - 1) {
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
@@ -688,14 +686,18 @@
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
           }
         }
+        // Calculates a path to the selected paragraph, then gets a reference to what's there
         prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position + ']'
         prep.paragraphDestination = eval(prep.paragraphPath)
+        // Gets ids for all propositions in the paragraph selected
         var ids = [];
         for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
           ids.push(prep.paragraphDestination.propositions[i].id);
         }
+        // Does hide propositions of others and make the paragraph vacant for the deleter, except for the blank
         prep.hidesOthersProp = true;
         prep.blanksParagraphForDeleter = true;
+        // Defines the payload to be emitted
         prep.payload = {
           class: $scope.selectedNode.class,
           topic: $scope.selectedNode.topic,
@@ -716,14 +718,18 @@
           deleter: $scope.userId
         };
         console.log('Payload to be deleted: ', prep.payload);
+        // Transmits it
         chatSocket.emit('deletion', $scope.userId, prep.payload);
+        // Clears variables
         prep = {};
         ids = [];
+        // Hits backend services
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0]);
       };
 
+      // Defines what's been highlighted
       $scope.highlightProposition = function(node, paragraph, proposition) {
         if ($scope.highlight.id !== proposition.id) {
           $scope.highlight.id = proposition.id;
@@ -731,11 +737,13 @@
         }
       };
 
+      // Defines what's been marked for deletion with additional backspace
       $scope.markProposition = function(proposition) {
         $scope.mark.id = proposition.id;
         $scope.mark.marked = true;
       };
 
+      // Processes incomplete edits to one's own propositions
       $scope.clearEditable = function () {
         if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked){
           if ($scope.whatHasBeenClicked){
@@ -752,92 +760,79 @@
         }
       }
 
+      // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-          // console.log("Double click listen")
-          var string = 'proposition';
-          var id = proposition.id;
-          string = string + id;
-          
-          $scope.selectedParagraph = paragraph;
-          $scope.selectedProposition = proposition;
-          $scope.selectedProposition.textSide = true;
-          $scope.selectProposition.dialogueSide = false;
-          $scope.selectedParagraph.highlightAll = false;
-          $scope.selectedParagraph.markAll = false;
-          if ($scope.whatHasBeenClicked !== proposition.id ) {
-            
-            focusFactory(id);
-            document.getElementById(string).contentEditable = true;
-            $scope.whatHasBeenClicked = proposition.id;
-            $scope.dontrunfocusout = true;
-            
-          } 
+        var string = 'proposition';
+        var id = proposition.id;
+        string = string + id;
+        $scope.selectedParagraph = paragraph;
+        $scope.selectedProposition = proposition;
+        $scope.selectedProposition.textSide = true;
+        $scope.selectProposition.dialogueSide = false;
+        $scope.selectedParagraph.highlightAll = false;
+        $scope.selectedParagraph.markAll = false;
+        if ($scope.whatHasBeenClicked !== proposition.id ) {
+          focusFactory(id);
+          document.getElementById(string).contentEditable = true;
+          $scope.whatHasBeenClicked = proposition.id;
+          $scope.dontrunfocusout = true;
+        } 
       }
 
-    $scope.focusouteditable = function (element) {
-      if ($scope.dontrunfocusout){
-        
-        return;
+      // Backstops something about proposition editability
+      $scope.focusouteditable = function (element) {
+        if ($scope.dontrunfocusout){  
+          return;
+        }
+        element.contentEditable = false;
+        $scope.whatHasBeenClicked = '';
       }
-      element.contentEditable = false;
-      $scope.whatHasBeenClicked = '';
-      
-    }
 
+      // Processes an edit to one's own proposition
       $scope.updateProposition = function(node, paragraph, proposition) {
-        
+        // In case an edit out of bounds occurs
         if (proposition.author !== $scope.userId) {
           return;
         }
-
-
-
+        // Turns off editability and gets paths to the proposition and paragraph being edited
         var elem = document.getElementById('proposition' + proposition.id);
         elem.contentEditable = false;
-
-
         if (elem) {
           prep.address = node.address;
           prep.nodePath = '$scope.data';
-
-        //make the nodes part of the address
-        for (var i = 0; i < prep.address.length; i++) {
-          if (i < prep.address.length - 1) {
-            prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-          } else {
-            prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+          for (var i = 0; i < prep.address.length; i++) {
+            if (i < prep.address.length - 1) {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+            } else {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+            }
           }
-        }
           var propositionPath = prep.nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
           var propositionDestination = eval(propositionPath)
-         
-
-          //bugs out below
+          // Copies the current status of the span
           propositionDestination.text = angular.copy(elem.innerText);
-          
-
+          // Updates the propositions array
           var index = $scope.propositions.findIndex(function(x) {
             return x.id === proposition.id;
           });
-
           $scope.propositions[index] = propositionDestination;
-
+          // Defines the payload to be emitted
           prep.payload = {
             proposition: propositionDestination
           };
-
-
+          // Emits it, clears a variable
           chatSocket.emit('update', $scope.userId, prep.payload);
           prep = {};
 
+          // Clicks the element to allow for continued typing
           $timeout( function(){
             elem.click(); 
           },0)
 
+          // Hits backend services
           apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
           apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
           profileService.setSelectedBook($scope.data[0]);
-
         }
       };
 
