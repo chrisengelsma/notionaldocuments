@@ -495,7 +495,7 @@
         });
       };
 
-      //For the direct link
+      //For copying direct link addresses when built out
       // document.querySelector("#copy-button").onclick = function() {
       // Select the content
       // document.querySelector("#copy-input").select();
@@ -512,6 +512,7 @@
         document.getElementById('myNav').style.height = '0%';
       };
 
+      // For blurring the text
       $scope.blurText = function() {
         if (document.getElementById('tree-root').classList
           .contains('dialogueblurrer')) {
@@ -523,16 +524,19 @@
         }
       };
 
+      // For text blurrer
       $scope.mouseOverTextBlurrer = function() {
         document.getElementById('textblurrer').classList
           .add('dialogueblurrermouseover');
       };
 
+      // Leave text blurrer
       $scope.mouseLeaveTextBlurrer = function() {
         document.getElementById('textblurrer').classList
           .remove('dialogueblurrermouseover');
       };
 
+      // Blurs dialogue
       $scope.blurDialogue = function() {
         if (document.getElementById('dialoguepane').classList
           .contains('dialogueblurrer')) {
@@ -544,11 +548,13 @@
         }
       };
 
+      // For dialogue blurrer
       $scope.mouseOverDialogueBlurrer = function() {
         document.getElementById('dialogueblurrer').classList
           .add('dialogueblurrermouseover');
       };
 
+      // Leave dialogue blurrer
       $scope.mouseLeaveDialogueBlurrer = function() {
         document.getElementById('dialogueblurrer').classList
           .remove('dialogueblurrermouseover');
@@ -560,308 +566,67 @@
         $scope.mousedOverProposition.mouseOver = true;
       };
 
-      $scope.mouseLeave = function(/*proposition*/) {
+      // Clears upon mouseleave
+      $scope.mouseLeave = function() {
         $scope.mousedOverProposition = {};
       };
 
+      // Clears the selected proposition and paragraph
       $scope.clearSelectedProposition = function() {
         $scope.selectedProposition = null;
         $scope.selectedParagraph = null;
       };
 
+      // Selects right editable span
       $scope.selectRight = function(proposition){
         focusFactory(proposition.id);
-        
       }
 
+      // Selects left editable span
       $scope.selectLeft = function(proposition, paragraph){
-
         $scope.selectedProposition = proposition
       }
 
-      $scope.readBookLevel = function(address) {
-        // Seems necessary for some reason
-        // The first time this fires, the address is [0]
-        angular.copy(address, $scope.copyOfAddress);
-
-        // Calculates the path
-        $scope.compilationPath = $scope.buildNodePath(address);
-
-        // And the destination
-        $scope.compilationTarget = eval($scope.compilationPath);
-
-        // Book being compiled starts with the topic at the address and a blank line
-        $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.topic + '\r\n\r\n';
-
-        // Through all paragraphs,
-        for (var j = 0; j < $scope.compilationTarget.paragraphs.length; j++) {
-
-          // And all propositions
-          for (var k = 0; k < $scope.compilationTarget.paragraphs[j].propositions.length; k++) {
-
-            // If it's not hidden, or a negation
-            if ($scope.compilationTarget.paragraphs[j].propositions[k].type !== 'negation' &&
-              $scope.compilationTarget.paragraphs[j].propositions[k][$scope.userId] !== 'hidden') {
-
-              // Take propositions and add spaces between them
-              $scope.bookBeingCompiled = $scope.bookBeingCompiled + $scope.compilationTarget.paragraphs[j].propositions[k].text + ' ';
-            }
-          }
-
-          // After it's done, add a blank line
-          $scope.bookBeingCompiled = $scope.bookBeingCompiled + '\r\n\r\n';
-        }
-
-        // Take the address being worked with and go a level deeper to the first one, if there
-        address.push(0);
-
-        // Build a path there
-        $scope.compilationPath = $scope.buildNodePath(address);
-
-        // The candidate is constructed from data[0]
-        $scope.compilationCandidate = '$scope.data[0]';
-
-        // If the book level address exactly equals [0], compilation candidate remains unchanged
-        if (address === [0]) {
-          $scope.compilationCandidate = '$scope.data[0]';
-          // else if the book level address exactly equals [1], send back a terminating return address
-        } else if (address === [1]) {
-          $scope.returnAddress = [1];
-          return;
-
-          // otherwise calculate a path according to the address that gets the array of nodes below the address
-        } else {
-          for (var i = 1; i < address.length - 1; i++) {
-            $scope.compilationCandidate = $scope.compilationCandidate + '.children[' + address[i] + ']';
-          }
-          $scope.compilationCandidate = $scope.compilationCandidate + '.children';
-        }
-
-
-        // if there is such an array of nodes...
-        // if not, the else catches that contingency
-        if (eval($scope.compilationCandidate)) {
-          console.log('There\'s a level below');
-
-          // and something at the address
-          if (eval($scope.compilationPath)) {
-
-            // return the address so as to read that level
-            $scope.returnAddress = address;
-            console.log('Found under the rug');
-
-            return;
-
-          } else {
-            // otherwise get rid of the last entry of the array
-            address.pop();
-
-            // and look at the same level as the address just checked, one over
-            address[address.length - 1]++;
-            $scope.compilationPath = $scope.buildNodePath(address);
-
-            // if there's something there, send back that return address to be read
-            if (eval($scope.compilationPath)) {
-              console.log('Found in the next room');
-              $scope.returnAddress = address;
-              return;
-            } else {
-
-              while (!eval($scope.compilationPath && address.length > 1)) {
-                address.pop();
-                address[address.length - 1]++;
-                $scope.compilationPath = $scope.buildNodePath(address);
-                if (eval($scope.compilationPath)) {
-                  $scope.returnAddress = address;
-                  console.log('Found in a corner somewhere in the attic');
-                  return;
-                }
-                console.log('Didnt find');
-                $scope.returnAddress = [0];
-                return;
-
-              }
-            }
-
-            address = {};
-
-
-          }
-
-        } else {
-          console.log('There\'s no level below');
-          address.pop();
-          address[address.length - 1]++;
-          $scope.compilationPath = $scope.buildNodePath(address);
-          if (eval($scope.compilationPath)) {
-            console.log('Found in the next room');
-            $scope.returnAddress = address;
-            return;
-          } else {
-
-
-            while (!eval($scope.compilationPath && address.length > 1)) {
-              address.pop();
-              address[address.length - 1]++;
-              if (address[0] === 1) {
-                console.log('Hit the end');
-                $scope.returnAddress = [1];
-                return;
-
-              }
-              $scope.compilationPath = $scope.buildNodePath(address);
-              if (eval($scope.compilationPath)) {
-                $scope.returnAddress = address;
-                console.log('Found in a corner somewhere in the attic');
-                return;
-              }
-              console.log('Didnt find');
-              $scope.returnAddress = [0];
-              return;
-
-
-            }
-          }
-        }
-
-
-      };
-
-      $scope.buildNodePath = function(location) {
-        $scope.compilationPath = '$scope.data[0]';
-        if (location === [0]) {
-          return $scope.compilationPath;
-        } else if (location === [1]) {
-          return '$scope.data[1]';
-        } else {
-          for (var i = 1; i < location.length; i++) {
-            $scope.compilationPath = $scope.compilationPath + '.children[' + location[i] + ']';
-          }
-
-          return $scope.compilationPath;
-        }
-      };
-
-
-      $scope.makeTextFile = function() {
-
-        // Build the book into a text string
-
-        $scope.bookBeingCompiled = '';
-
-        // Get data from root topic
-        // Will set the return address variable
-        $scope.readBookLevel([0]);
-
-        // If it tries to go to one on index zero, there isn't one to be found! Else it works with the return address
-        while ($scope.returnAddress[0] !== 1) {
-          console.log('Return address: ', $scope.returnAddress);
-          $scope.readBookLevel($scope.returnAddress);
-        }
-
-        // Make a blob of teh book being compiled
-        var data = new Blob([$scope.bookBeingCompiled], { type: 'text/plain' });
-
-        // If there's already a text file variable assigned, revoke its url
-        if ($scope.textFile !== null) {
-          window.URL.revokeObjectURL($scope.textFile);
-        }
-
-        // Make a URL of the data and save it as textFile
-        $scope.textFile = window.URL.createObjectURL(data);
-
-
-        // Return textFile
-        return $scope.textFile;
-      };
-
-
-      var create = document.getElementById('downloadlink');
-      $scope.textFile = $scope.data[0];
-      //works
-
-      if (create) {
-        create.addEventListener('click', function() {
-          var link = document.getElementById('downloadlink');
-          link.href = $scope.makeTextFile();
-          console.log('Link HREF: ', link.href);
-        }, false);
-      }
-
-
-      setTimeout(function() {
-        if (!$scope.data[0].paragraphs[0].propositions[0].author) {
-          $scope.$apply(function() {
-            $scope.selectedNode = $scope.data[0];
-            $scope.selectedParagraph = $scope.data[0].paragraphs[0];
-            $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
-            $scope.selectedProposition.textSide = true;
-          });
-          $scope.$apply(function() {
-            focusFactory('Ngmyk1lP1KfffhSAw333');
-            $scope.hasRightFocus = 'Ngmyk1lP1KfffhSAw333';
-          });
-        } else {
-          $scope.selectedProposition = {};
-        }
-      }, 30);
-
+      // Selects node
       $scope.selectNode = function(node) {
-
         $scope.selectedNode = node;
 
       };
 
+      // Selects paragraph
       $scope.selectParagraph = function(paragraph) {
-
         $scope.selectedParagraph = paragraph;
-
         paragraph.cursor = false;
-
       };
 
+      // Makes a new left id and focuses on it
       $scope.clearWithLeftAdder = function() {
-
-
         $scope.leftAdderId = IdFactory.next();
-
-
         focusFactory($scope.leftAdderId);
-
       };
 
-
+      // Manages top adder selection
       $scope.clearWithTopAdder = function(paragraph) {
-
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
-
         $scope.topAdderId = IdFactory.next();
         $scope.hasTopFocus = paragraph.paragraphId;
-
-
         focusFactory($scope.topAdderId);
-
       };
 
+      // Manages bottom adder selection
       $scope.clearWithBottomAdder = function(paragraph) {
         paragraph.bottomAdd = true;
         $scope.hasBottomFocus = paragraph.paragraphId;
-
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
-
-        
-
-
         focusFactory(paragraph.paragraphId);
-
       };
 
+      // For ordering the paragraphs, with one's own paragraphs on top
+      // Will not work right if over a thousand paragraphs in the node
       $scope.paragraphSorter = function (paragraph) {
-       
         var value = 0;
-      
         if (paragraph.owner == $scope.userId){
           value++;
         } else if (paragraph.owner && paragraph.owner !== $scope.userId) {
@@ -869,59 +634,52 @@
           value++;
         }
         value = value + paragraph.position*.001;
-       
-
         return value;
       }
 
+      // Selects proposition (propositions are often selected without this function)
       $scope.selectProposition = function(proposition) {
         if ($scope.selectedProposition.id !== proposition.id) {
           $scope.clearPropositionInput();
           $scope.selectedProposition = proposition;
           focusFactory($scope.selectedProposition.id);
-
         } else {
           $scope.selectedProposition = proposition;
           focusFactory($scope.selectedProposition.id);
-
         }
         $scope.highlight.id = '';
         $scope.highlight.highlit = null;
         $scope.mark.id = '';
         $scope.mark.marked = null;
-
         $scope.mark = {};
         $scope.highlight = {};
       };
 
+      // Clears the proposition input, like when clicked away
       $scope.clearPropositionInput = function() {
         $scope.inputs.proposition = '';
         $scope.highlight.id = '';
         $scope.mark.id = '';
       };
 
+      // Highlights all of another's propositions in a paragraph, first backspace
       $scope.highlightAllPropositions = function(node, paragraph, proposition) {
-
         $scope.selectedParagraph.highlightAll = true;
       };
 
+      // Marks all of another's propositions in a paragraph, second backspace
       $scope.markAllPropositions = function() {
         $scope.selectedParagraph.markAll = true;
         $scope.selectedParagraph.highlightAll = false;
       };
 
-
+      // Processes the deletion payload on the client side prior to emission
       $scope.deleteAllPropositions = function() {
-        // if ($scope.selectedParagraph.author !== $scope.userId) {
-        //   return;
-        // }
-
         $scope.selectedParagraph.markAll = false;
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
-
         //make the nodes part of the address
         for (var i = 0; i < prep.address.length; i++) {
           if (i < prep.address.length - 1) {
@@ -930,21 +688,14 @@
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
           }
         }
-
-
         prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position + ']'
         prep.paragraphDestination = eval(prep.paragraphPath)
-
         var ids = [];
-
         for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
           ids.push(prep.paragraphDestination.propositions[i].id);
         }
-
-
         prep.hidesOthersProp = true;
         prep.blanksParagraphForDeleter = true;
-
         prep.payload = {
           class: $scope.selectedNode.class,
           topic: $scope.selectedNode.topic,
@@ -964,18 +715,14 @@
           hidesOwn: (prep.hidesOwn ? prep.hidesOthersProp : undefined),
           deleter: $scope.userId
         };
-
         console.log('Payload to be deleted: ', prep.payload);
-
         chatSocket.emit('deletion', $scope.userId, prep.payload);
         prep = {};
         ids = [];
-
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0]);
       };
-
 
       $scope.highlightProposition = function(node, paragraph, proposition) {
         if ($scope.highlight.id !== proposition.id) {
@@ -994,14 +741,12 @@
           if ($scope.whatHasBeenClicked){
             for (var i = 0; i < $scope.propositions.length; i++){
               if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
-             
                 document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
               }
             }
           }
           document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
           $scope.whatHasBeenClicked = '';
-         
         } else {
           $scope.whatHasBeenClicked = '';
         }
