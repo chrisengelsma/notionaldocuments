@@ -671,6 +671,7 @@
       };
 
       // Processes the deletion payload on the client side prior to emission (for paragraphs of others)
+      // This hides propositions more than deletes them
       $scope.deleteAllPropositions = function() {
         // Clears some markups to the propositions
         $scope.selectedParagraph.markAll = false;
@@ -867,12 +868,9 @@
         if ($scope.selectedProposition.author !== $scope.userId && $scope.selectedProposition.type !== 'blank') {
           return;
         }
-
-       
+        // Calculates a path to the node from the selected node
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
-
-        //make the nodes part of the address
         for (var i = 0; i < prep.address.length; i++) {
           if (i < prep.address.length - 1) {
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
@@ -880,18 +878,16 @@
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
           }
         }
-
+        // Running deletion on a blank is going to blank out that paragraph for the deleter
         if ($scope.selectedProposition.type === 'blank') {
           prep.hidesBlankParagraph = true;
-
         }
-
         // If one proposition to remain is found not of user's authoring, can just hide the proposition
         // as something that won't be engaged with
         if ($scope.selectedProposition.author !== $scope.userId && $scope.selectedProposition.type !== 'blank') {
           prep.hidesOthersProp = true;
           prep.blanksParagraphForDeleter = true;
-
+        // Otherwise if a blank is selected than the paragraph is going to be hidden
         } else if ($scope.selectedProposition.type === 'blank') {
           prep.blanksPropositionAndParagraphForDeleter = true;
         } else {
