@@ -636,14 +636,16 @@
 
       // Selects proposition (propositions are often selected without this function)
       $scope.selectProposition = function(proposition) {
-        if ($scope.selectedProposition.id !== proposition.id) {
-          $scope.clearPropositionInput();
-          $scope.selectedProposition = proposition;
-          focusFactory($scope.selectedProposition.id);
-        } else {
-          $scope.selectedProposition = proposition;
-          focusFactory($scope.selectedProposition.id);
-        }
+        if ($scope.selectedProposition){
+          if ($scope.selectedProposition.id !== proposition.id) {
+            $scope.clearPropositionInput();
+            $scope.selectedProposition = proposition;
+            focusFactory($scope.selectedProposition.id);
+          } else {
+            $scope.selectedProposition = proposition;
+            focusFactory($scope.selectedProposition.id);
+          }
+      }
         $scope.highlight.id = '';
         $scope.highlight.highlit = null;
         $scope.mark.id = '';
