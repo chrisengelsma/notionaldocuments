@@ -586,6 +586,7 @@
 
       // Selects node
       $scope.selectNode = function(node) {
+        console.log('Select node')
         $scope.selectedNode = node;
 
       };
