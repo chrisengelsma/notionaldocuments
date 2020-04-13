@@ -814,7 +814,7 @@
           var propositionDestination = eval(propositionPath)
           // Copies the current status of the span
           propositionDestination.text = angular.copy(elem.innerText);
-          if (propositionDestination.text.charAt(ipropositionDestination.text.length - 1) !== '.'){
+          if (propositionDestination.text.charAt(propositionDestination.text.length - 1) !== '.'){
             propositionDestination.text = propositionDestination.text + '.';
           }
           // Updates the propositions array
