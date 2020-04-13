@@ -1261,9 +1261,7 @@
         // Those on nodes with no paragraphs
         // Those that are blank
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
-          console.log('Returning due to punctuation')
-          document.getElementById($scope.selectedProposition.id).innerText = '';
-          return;
+          input = input + '.';
         }
       
         //   Topics
