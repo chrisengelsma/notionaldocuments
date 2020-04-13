@@ -812,6 +812,9 @@
           var propositionDestination = eval(propositionPath)
           // Copies the current status of the span
           propositionDestination.text = angular.copy(elem.innerText);
+          if (propositionDestination.text.charAt(input.length - 1) !== '.'){
+            propositionDestination.text = propositionDestination.text + '.';
+          }
           // Updates the propositions array
           var index = $scope.propositions.findIndex(function(x) {
             return x.id === proposition.id;

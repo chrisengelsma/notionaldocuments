@@ -176,7 +176,8 @@
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId), 
                             'textcursor': whatHasBeenClicked == proposition.id,
                             'rejoining': selectedProposition.id === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId,
-                            'updatecursor': this.contentEditable
+                            'updatecursor': this.contentEditable,
+                            'cursorpointer': (proposition.type == 'negation' && proposition.of.author !== userId)
                           }"
                 ng-enter="[proposition.propositionPreSelected = false, updateProposition(node, paragraph, proposition)]"
                 ng-mouseover="proposition.propositionPreSelected = true;"
@@ -229,7 +230,7 @@
                 ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
                 
                 >
-            {{proposition.text}}
+            {{proposition.text}}{{proposition.leftAdd}} {{selectedProposition.type !== 'blank'}} {{selectedProposition.type !== 'negation'}}
           </span><!-- {{proposition.id}} -->
           <span
             editable-span-ng-model
