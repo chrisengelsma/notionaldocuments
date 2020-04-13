@@ -749,18 +749,20 @@
 
       // Processes incomplete edits to one's own propositions
       $scope.clearEditable = function () {
-        if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked){
-          if ($scope.whatHasBeenClicked){
-            for (var i = 0; i < $scope.propositions.length; i++){
-              if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
-                document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
+        if ($scope.selectedProposition){
+          if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked){
+            if ($scope.whatHasBeenClicked){
+              for (var i = 0; i < $scope.propositions.length; i++){
+                if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
+                  document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
+                }
               }
             }
+            document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
+            $scope.whatHasBeenClicked = '';
+          } else {
+            $scope.whatHasBeenClicked = '';
           }
-          document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
-          $scope.whatHasBeenClicked = '';
-        } else {
-          $scope.whatHasBeenClicked = '';
         }
       }
 
