@@ -3203,6 +3203,7 @@
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
           // console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
+          console.log('Has chat focus: ', $scope.hasChatFocusId)
           if ($scope.hasChatFocusId){
             $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
             $scope.inputs.chatProposition = '';
