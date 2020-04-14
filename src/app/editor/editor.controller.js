@@ -3025,26 +3025,35 @@
             // console.log('Working with id in loop: ', temp.paragraphDestination.propositions[i].id)
             if (temp.paragraphDestination.propositions[i].id === id) {
               console.log('If')
-              if ($scope.selectedProposition.id) {
-                // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                //   .expanding('destroy');
-                $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                console.log('Selected proposition id: ', $scope.selectedProposition.id)
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
-                $scope.hasChatFocusId = $scope.selectedProposition.id;
+              if ($scope.selectedProposition){
+                if ($scope.selectedProposition.id) {
+                  // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                  //   .expanding('destroy');
+                  $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                  console.log('Selected proposition id: ', $scope.selectedProposition.id)
+                  $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                  $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                  $scope.hasChatFocusId = $scope.selectedProposition.id;
+                } else {
+                    $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                    console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
+                    $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                    $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                    $scope.hasChatFocusId = $scope.selectedProposition.id;
+                }
               } else {
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                   console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
+                console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
+                .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
+                .expanding();
                 $scope.hasChatFocusId = $scope.selectedProposition.id;
               }
-
               $scope.selectedProposition.dialogueSide = true;
               //get the remark to satisfy the ng-if so the form appears
               break;
