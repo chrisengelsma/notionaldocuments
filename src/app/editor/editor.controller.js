@@ -3263,8 +3263,9 @@
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
-        $scope.selectedProposition.dialogueSide = true;
-
+        if ($scope.selectedProposition){
+          $scope.selectedProposition.dialogueSide = true;
+        }
         temp = {};
       };
 
