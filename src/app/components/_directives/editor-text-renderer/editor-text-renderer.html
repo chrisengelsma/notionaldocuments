@@ -228,7 +228,7 @@
                 ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
                 
                 >
-            {{proposition.text}}{{proposition.preSelected}}{{!paragraph.leftMouseOver}}{{!paragraph.disableRightCursor}}{{hasRightFocus !== proposition.id}}
+            {{proposition.text}}{{hasRightFocus}}{{proposition.id}}{{hasRightFocus !== proposition.id}}
           </span><!-- {{proposition.id}} -->
           <span
             editable-span-ng-model
