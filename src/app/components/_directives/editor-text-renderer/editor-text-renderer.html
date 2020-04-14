@@ -202,7 +202,7 @@
                          listenForDoubleClick(this, paragraph, proposition),
                        ]
                     :  ( (proposition.type !== 'negation' && proposition.author !== userId && whatHasBeenClicked !== proposition.id) ||
-                        (proposition.type === 'negation' && proposition.of.author === userId)
+                        (proposition.type === 'negation' && proposition.of.author === userId || proposition.author === userId)
                        )
                           ? [
                             selectNode(node),
