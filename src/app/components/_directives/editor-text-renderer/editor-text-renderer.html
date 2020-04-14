@@ -178,7 +178,7 @@
                             'cursorpointer': (proposition.type !== 'negation' && proposition.of.author !== userId)
                           }"
                 ng-enter="[proposition.propositionPreSelected = false, updateProposition(node, paragraph, proposition)]"
-                ng-mouseover="proposition.propositionPreSelected = true;"
+                ng-mouseover="[proposition.propositionPreSelected = true, paragraph.disableRightCursor = false]"
                 ng-mouseleave="proposition.propositionPreSelected = false;"
                 ng-blur=""
                 
