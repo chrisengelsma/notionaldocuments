@@ -645,10 +645,12 @@
           } else {
             $scope.selectedProposition = proposition;
             focusFactory($scope.selectedProposition.id);
+            console.log("Inner else")
           }
         } else {
           $scope.selectedProposition = proposition;
           focusFactory($scope.selectedProposition.id);
+          console.log('Outer else')
         }
         $scope.highlight.id = '';
         $scope.highlight.highlit = null;
