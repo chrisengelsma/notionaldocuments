@@ -576,6 +576,7 @@
 
       // Selects right editable span
       $scope.selectRight = function(proposition){
+        console.log("Select right")
         focusFactory(proposition.id);
       }
 
