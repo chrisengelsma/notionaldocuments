@@ -309,7 +309,7 @@
       $scope.hasTopFocus = '';
       $scope.hasBottomFocus = '';
       $scope.hasLeftFocus = '';
-      $scope.hasRightFocus = '';
+      $scope.hasRightFocus = {};
       $scope.hasChatFocusThreadId = ''
       $scope.hasChatFocusId = ''
       $scope.toBeClearedLater = {};
@@ -2209,7 +2209,7 @@
         $scope.hasTopFocus = '';
         $scope.hasBottomFocus = '';
         $scope.hasLeftFocus = '';
-        $scope.hasRightFocus = '';
+        $scope.hasRightFocus = {};
         $scope.newProp = '';
         $scope.threadAdding = '';
 
