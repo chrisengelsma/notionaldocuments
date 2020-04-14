@@ -593,6 +593,7 @@
 
       // Selects paragraph
       $scope.selectParagraph = function(paragraph) {
+        console.log('Selecting paragraph')
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
