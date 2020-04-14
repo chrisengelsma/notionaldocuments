@@ -88,7 +88,7 @@
       // Clear cursor values
       if ($('.cursor').is('.visible-cursor')){
         $('.cursor').removeClass('visible-cursor')
-        // $('.cursor').addClass('invisible-cursor')
+        $('.cursor').addClass('invisible-cursor')
       }
 
       if ($('.bottomparagraphadder').is('.blackline')){
