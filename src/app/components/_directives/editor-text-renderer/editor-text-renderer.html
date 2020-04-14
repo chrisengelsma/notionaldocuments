@@ -166,12 +166,10 @@
           <span 
 
                 id="proposition{{proposition.id}}"
-                style="margin-left: 0px; margin-right: -3px"
+                style=""
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
                             'negation': proposition.type === 'negation',
                             'highlight': highlight.id === proposition.id || (selectedParagraph.highlightAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
-                            'notowned': proposition.author !== userId && options.dimNotOwned,
-                            'owned': proposition.author === userId && options.highlightOwned,
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId), 
                             'textcursor': whatHasBeenClicked == proposition.id,

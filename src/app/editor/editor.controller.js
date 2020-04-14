@@ -576,7 +576,6 @@
 
       // Selects right editable span
       $scope.selectRight = function(proposition){
-        console.log("Select right")
         focusFactory(proposition.id);
       }
 
@@ -647,7 +646,10 @@
             $scope.selectedProposition = proposition;
             focusFactory($scope.selectedProposition.id);
           }
-      }
+        } else {
+          $scope.selectedProposition = proposition;
+          focusFactory($scope.selectedProposition.id);
+        }
         $scope.highlight.id = '';
         $scope.highlight.highlit = null;
         $scope.mark.id = '';
@@ -764,6 +766,8 @@
           } else {
             $scope.whatHasBeenClicked = '';
           }
+        } else {
+          $scope.whatHasBeenClicked = '';
         }
       }
 
@@ -775,7 +779,7 @@
         $scope.selectedParagraph = paragraph;
         $scope.selectedProposition = proposition;
         $scope.selectedProposition.textSide = true;
-        $scope.selectProposition.dialogueSide = false;
+        $scope.selectedProposition.dialogueSide = false;
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
         if ($scope.whatHasBeenClicked !== proposition.id ) {
