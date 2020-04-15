@@ -203,6 +203,7 @@
                         (proposition.type === 'negation' && proposition.of.author === userId || proposition.author === userId)
                        )
                           ? [
+                            hideExpandingTextarea(),
                             selectNode(node),
                             selectParagraph(paragraph),
                             selectProposition(proposition),
