@@ -2521,7 +2521,29 @@
                     }
                   }
                 }
+                apply.nodeDestination.paragraphs[payload.paragraphPosition] =
+                  {
+                    paragraphId: payload.paragraphId,
+                    position: payload.paragraphPosition,
+                    propositions: [payload.proposition]
+                  };
 
+                if (payload.proposition.author === $scope.userId && payload.textSide === true) {
+
+
+                  $timeout(function() {
+
+                    $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+                    $scope.selectedProposition = 
+                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.selectedProposition.textSide = true;
+
+                    focusFactory($scope.selectedProposition.id);
+                    $($scope.selectedProposition.id).trigger('click');
+                  }, 30);
+
+
+                }
 
               } else {
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
