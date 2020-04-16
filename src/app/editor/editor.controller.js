@@ -825,7 +825,8 @@
           // Updates the propositions array
           // Defines the payload to be emitted
           prep.payload = {
-            proposition: propositionDestination
+            proposition: propositionDestination,
+            propositionPath: propositionPath
           };
           // Emits it, clears a variable
           chatSocket.emit('update', $scope.userId, prep.payload);
@@ -852,7 +853,7 @@
         // Updates text for the proposition in the text
         if (elem && index >= 0) {
           $scope.propositions[index] = payload.proposition;
-          elem.innerText = payload.proposition.text;
+          eval(payload.propositionPath).text = payload.propositionDestination.text;
           // Marks remarks as updated (for markup purposes)
           for (var i = 0; i < $scope.data[0].dialogue.length; i++){
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
@@ -3218,9 +3219,7 @@
           if ($scope.hasChatFocusId){
             $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
             $scope.inputs.chatProposition = '';
-            if ($scope.selectedProposition.dialogueSide){
-         
-            }
+
             
           }
 
