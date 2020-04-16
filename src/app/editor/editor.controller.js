@@ -1910,7 +1910,7 @@
                       }
                     }
                   } else {
-                    prep.paragraphPosition = j;
+                    prep.paragraphPosition = 0;
                     prep.position = 0;
                     prep.insertsAbove = true;
                     console.log("Putting at top of authors clump and document")

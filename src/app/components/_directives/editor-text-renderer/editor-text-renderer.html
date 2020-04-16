@@ -173,7 +173,7 @@
                             'mark': mark.id === proposition.id || (selectedParagraph.markAll == true && selectedParagraph.paragraphId === paragraph.paragraphId),
                             'owned-cursor': proposition.author === userId || (proposition.type === 'negation' && proposition.of.author === userId), 
                             'textcursor': whatHasBeenClicked == proposition.id,
-                            'rejoining': selectedProposition.id === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId,
+                            'rejoining': hasRightFocus === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId,
                             'updatecursor': this.contentEditable,
                             'cursorpointer': (proposition.type !== 'negation' && proposition.of.author !== userId)
                           }"
