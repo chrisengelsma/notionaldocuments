@@ -867,8 +867,6 @@
             elem.click(); 
           },0)
         }
-        // Hits backend services, but so did the prep function.
-        // Could this lead to model conflicts/failure to update proposition text?
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0])
