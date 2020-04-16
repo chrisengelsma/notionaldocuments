@@ -853,7 +853,7 @@
         // Updates text for the proposition in the text
         if (elem && index >= 0) {
           $scope.propositions[index] = payload.proposition;
-          eval(payload.propositionPath).text = payload.propositionDestination.text;
+          eval(payload.propositionPath).text = payload.proposition.text;
           // Marks remarks as updated (for markup purposes)
           for (var i = 0; i < $scope.data[0].dialogue.length; i++){
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
