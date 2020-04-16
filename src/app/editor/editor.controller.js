@@ -788,6 +788,7 @@
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
         if ($scope.whatHasBeenClicked !== proposition.id ) {
+          console.log("If")
           focusFactory(id);
           document.getElementById(string).contentEditable = true;
           $scope.whatHasBeenClicked = proposition.id;
