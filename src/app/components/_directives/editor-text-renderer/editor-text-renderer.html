@@ -184,8 +184,7 @@
                 
                 ng-click="
                 
-                    (proposition.author === userId && proposition.type !== 'negation' &&
-                     whatHasBeenClicked !== proposition.id)
+                    (proposition.author === userId && proposition.type !== 'negation')
                     ?  [ 
                          clearEditable(),
                          selectNode(node),
