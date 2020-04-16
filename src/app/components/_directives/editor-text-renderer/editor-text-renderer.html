@@ -184,9 +184,9 @@
                 
                 ng-click="
                 
-                    (proposition.author === userId && proposition.type !== 'negation')
+                    (proposition.author === userId && proposition.type !== 'negation' && selectedProposition.textSide)
                     ?  [ 
-                         clearEditable(),
+                         
                          selectNode(node),
                          selectParagraph(paragraph),
                          selectedParagraph = paragraph,
