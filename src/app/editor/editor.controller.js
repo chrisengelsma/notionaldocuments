@@ -1897,6 +1897,12 @@
               }
             } else {
               // theres no paragraph at a position above
+              if (prep.nodeDestination.paragraphs[$scope.selectedParagraph.position].owner !== $scope.userId){
+                prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
+                prep.position = 0;
+                prep.insertsBelow = true;
+                console.log("Placing this at the end of the document, else escape")
+              } else {
               for (var i = prep.nodeDestination.paragraphs.length-1; i > -1; i--){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   if (prep.nodeDestination.paragraphs[i-1]){
@@ -1917,6 +1923,7 @@
                     break;
                   }
                 }
+              }
               } 
               if (!prep.paragraphPosition){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
