@@ -820,7 +820,7 @@
           var propositionPath = prep.nodePath + '.paragraphs[' + paragraph.position.toString() + '].propositions[' + proposition.position.toString() + ']'; 
           var propositionDestination = eval(propositionPath)
           // Copies the current status of the span
-          propositionDestination.text = angular.copy(textContent);
+          propositionDestination.text = angular.copy(elem.textContent);
           $scope.whatHasBeenClicked = '';
           // Updates the propositions array
           // Defines the payload to be emitted
