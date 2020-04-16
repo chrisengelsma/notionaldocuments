@@ -1926,7 +1926,7 @@
                 }
               }
               } 
-              if (!prep.paragraphPosition){
+              if (!prep.paragraphPosition && !prep.insertsAbove){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
