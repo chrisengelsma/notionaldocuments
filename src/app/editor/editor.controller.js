@@ -2664,10 +2664,14 @@
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               }
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
+                $timeout(function() {
+
+                $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
                 $($scope.selectedProposition.id).trigger('click');
+                }, 30);    
               }
             } else if (payload.proposition.newProp) {
               apply.nodeDestination = eval(payload.nodePath);
