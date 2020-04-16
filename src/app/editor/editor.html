@@ -184,7 +184,7 @@
               ng-mouseover="node.mouseOver = true;"
               ng-mouseleave="node.mouseOver = false;"
               class="angular-ui-tree-node node"
-              ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(node), $event.stopPropagation()] : inputs.nothing, clearTopAndBottomHasFocus(), $event.stopPropagation()]">
+              ng-click="[!data[0].paragraphs[0].propositions[0].author ? [selectBlank(node), $event.stopPropagation()] : inputs.nothing, $event.stopPropagation()]">
 
             <nd-editor-text-renderer></nd-editor-text-renderer>
 
