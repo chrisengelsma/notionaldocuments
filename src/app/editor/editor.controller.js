@@ -2510,7 +2510,7 @@
                     }
                   }
 
-                  // it's searching for the incoming assertion id in order to get its current position, but it won't find it because the assertion id is
+               
 
 
                   for (var l = 0; l < $scope.propositions.length; l++) {
