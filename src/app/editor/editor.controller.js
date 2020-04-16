@@ -586,14 +586,12 @@
 
       // Selects node
       $scope.selectNode = function(node) {
-        console.log('Select node')
         $scope.selectedNode = node;
 
       };
 
       // Selects paragraph
       $scope.selectParagraph = function(paragraph) {
-        console.log('Selecting paragraph')
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
@@ -773,7 +771,6 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-        console.log('Listening for double click')
         var string = 'proposition';
         var id = proposition.id;
         string = string + id;
@@ -838,6 +835,7 @@
           };
           // Emits it, clears a variable
           chatSocket.emit('update', $scope.userId, prep.payload);
+          console.log("Payload: ", prep.payload.proposition)
           prep = {};
           // Clicks the element to allow for continued typing
           $timeout( function(){
@@ -3213,13 +3211,11 @@
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
           // console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
-          console.log('Has chat focus: ', $scope.hasChatFocusId)
           if ($scope.hasChatFocusId){
             $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
             $scope.inputs.chatProposition = '';
             if ($scope.selectedProposition.dialogueSide){
-              console.log('Not dialogue side')
-              console.log("To set later. Thread: ", $scope.toSetLater.threadId)
+         
             }
             
           }
