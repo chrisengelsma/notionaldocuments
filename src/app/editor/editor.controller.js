@@ -821,6 +821,7 @@
           var propositionDestination = eval(propositionPath)
           // Copies the current status of the span
           propositionDestination.text = angular.copy(elem.textContent);
+          propositionDestination.text = propositionDestination.text.replace(/\u00a0/g, " ");
           $scope.whatHasBeenClicked = '';
           // Updates the propositions array
           // Defines the payload to be emitted
