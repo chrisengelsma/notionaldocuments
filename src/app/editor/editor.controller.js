@@ -309,7 +309,7 @@
       $scope.hasTopFocus = '';
       $scope.hasBottomFocus = '';
       $scope.hasLeftFocus = '';
-      $scope.hasRightFocus = '';
+      $scope.hasRightFocus = {};
       $scope.hasChatFocusThreadId = ''
       $scope.hasChatFocusId = ''
       $scope.toBeClearedLater = {};
@@ -593,6 +593,7 @@
 
       // Selects paragraph
       $scope.selectParagraph = function(paragraph) {
+        console.log('Selecting paragraph')
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
@@ -642,11 +643,17 @@
             $scope.clearPropositionInput();
             $scope.selectedProposition = proposition;
             focusFactory($scope.selectedProposition.id);
+            console.log("if")
           } else {
             $scope.selectedProposition = proposition;
             focusFactory($scope.selectedProposition.id);
+            console.log("Inner else")
           }
-      }
+        } else {
+          $scope.selectedProposition = proposition;
+          focusFactory($scope.selectedProposition.id);
+          console.log('Outer else')
+        }
         $scope.highlight.id = '';
         $scope.highlight.highlit = null;
         $scope.mark.id = '';
@@ -749,16 +756,20 @@
 
       // Processes incomplete edits to one's own propositions
       $scope.clearEditable = function () {
-        if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked){
-          if ($scope.whatHasBeenClicked){
-            for (var i = 0; i < $scope.propositions.length; i++){
-              if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
-                document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
+        if ($scope.selectedProposition){
+          if ($scope.selectedProposition.textSide == true && $scope.whatHasBeenClicked){
+            if ($scope.whatHasBeenClicked){
+              for (var i = 0; i < $scope.propositions.length; i++){
+                if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
+                  document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
+                }
               }
             }
+            document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
+            $scope.whatHasBeenClicked = '';
+          } else {
+            $scope.whatHasBeenClicked = '';
           }
-          document.getElementById('proposition' + $scope.whatHasBeenClicked).contentEditable = false;
-          $scope.whatHasBeenClicked = '';
         } else {
           $scope.whatHasBeenClicked = '';
         }
@@ -766,13 +777,14 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
+        console.log('Listening for double click')
         var string = 'proposition';
         var id = proposition.id;
         string = string + id;
         $scope.selectedParagraph = paragraph;
         $scope.selectedProposition = proposition;
         $scope.selectedProposition.textSide = true;
-        $scope.selectProposition.dialogueSide = false;
+        $scope.selectedProposition.dialogueSide = false;
         $scope.selectedParagraph.highlightAll = false;
         $scope.selectedParagraph.markAll = false;
         if ($scope.whatHasBeenClicked !== proposition.id ) {
@@ -2197,7 +2209,7 @@
         $scope.hasTopFocus = '';
         $scope.hasBottomFocus = '';
         $scope.hasLeftFocus = '';
-        $scope.hasRightFocus = '';
+        $scope.hasRightFocus = {};
         $scope.newProp = '';
         $scope.threadAdding = '';
 
@@ -3013,26 +3025,35 @@
             // console.log('Working with id in loop: ', temp.paragraphDestination.propositions[i].id)
             if (temp.paragraphDestination.propositions[i].id === id) {
               console.log('If')
-              if ($scope.selectedProposition.id) {
-                // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                //   .expanding('destroy');
-                $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                console.log('Selected proposition id: ', $scope.selectedProposition.id)
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
-                $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
-                $scope.hasChatFocusId = $scope.selectedProposition.id;
+              if ($scope.selectedProposition){
+                if ($scope.selectedProposition.id) {
+                  // $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                  //   .expanding('destroy');
+                  $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                  console.log('Selected proposition id: ', $scope.selectedProposition.id)
+                  $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                  $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                  $scope.hasChatFocusId = $scope.selectedProposition.id;
+                } else {
+                    $scope.selectedProposition = temp.paragraphDestination.propositions[i];
+                    console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
+                    $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                    $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
+                    .expanding();
+                    $scope.hasChatFocusId = $scope.selectedProposition.id;
+                }
               } else {
                 $scope.selectedProposition = temp.paragraphDestination.propositions[i];
-                   console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
+                console.log('Selected proposition id, else: ', $scope.selectedProposition.id)
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
+                .expanding();
                 $('#' + $scope.selectedProposition.id + $scope.selectedThread.threadId)
-                  .expanding();
+                .expanding();
                 $scope.hasChatFocusId = $scope.selectedProposition.id;
               }
-
               $scope.selectedProposition.dialogueSide = true;
               //get the remark to satisfy the ng-if so the form appears
               break;
@@ -3191,6 +3212,7 @@
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
           // console.log("Clearing: ", $scope.hasChatFocusId, $scope.hasChatFocusThreadId)
+          console.log('Has chat focus: ', $scope.hasChatFocusId)
           if ($scope.hasChatFocusId){
             $('#' + $scope.hasChatFocusId + $scope.hasChatFocusThreadId).parent().hide();
             $scope.inputs.chatProposition = '';
@@ -3250,8 +3272,9 @@
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
-        $scope.selectedProposition.dialogueSide = true;
-
+        if ($scope.selectedProposition){
+          $scope.selectedProposition.dialogueSide = true;
+        }
         temp = {};
       };
 

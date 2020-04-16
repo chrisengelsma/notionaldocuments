@@ -246,16 +246,14 @@ input {
 
 .proposition-text {
   font-size: 20px; /*18px*/
-  margin-left: 0;
-  margin-right: 0;
-  cursor: default;
+  cursor: pointer;
   min-width: 3px !important;
   min-height: 1px !important;
+  margin-left: 0px; margin-right: -3px
 }
 
 .right-textarea {
   color: black;
-  border: none;
   border-image-width: 0;
   font-size: 20px; /*18px*/
 }
@@ -452,6 +450,7 @@ input {
   background-color: #fafafa;
   padding: 0;
   margin: 10px;
+  margin-bottom: 0px;
   cursor: default;
 }
 
