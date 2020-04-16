@@ -1864,6 +1864,7 @@
                 prep.position = 0;
                 prep.insertsAbove = true;
                 console.log("Putting it above")
+                break;
                 // close off the paragraph above to the user
               } else {
                 // if its there but youre not the author at the candidate destination,
@@ -1889,6 +1890,9 @@
                     }
                   }
                 } 
+
+                // Differentiate here based on whether the selected paragraph is one's own or not
+
                 if (!prep.paragraphPosition){
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
