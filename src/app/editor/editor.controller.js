@@ -2477,6 +2477,7 @@
                 apply.propositionDestination = eval(apply.propositionPath);
 
                 var counter = angular.copy(apply.nodeDestination.paragraphs.length-1)
+                console.log("Counter: ", counter)
                 // from the last paragraph position on the node down to the calculated paragraph position minus one, exclusive...
                 for (var i =  counter; i > payload.paragraphPosition - 1; i--) {
                  
@@ -2490,6 +2491,7 @@
                   }
                   // copy the paragraph up
                   apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
+                  console.log("I plus one: ", apply.nodeDestination.paragraphs[i + 1])
                   // increase index of assertion paths affected
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                    
