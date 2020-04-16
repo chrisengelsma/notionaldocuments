@@ -821,14 +821,8 @@
           var propositionDestination = eval(propositionPath)
           // Copies the current status of the span
           propositionDestination.text = angular.copy(elem.innerText);
-          if (propositionDestination.text.charAt(propositionDestination.text.length - 1) !== '.'){
-            propositionDestination.text = propositionDestination.text + '.';
-          }
+          $scope.whatHasBeenClicked = '';
           // Updates the propositions array
-          var index = $scope.propositions.findIndex(function(x) {
-            return x.id === proposition.id;
-          });
-          $scope.propositions[index] = propositionDestination;
           // Defines the payload to be emitted
           prep.payload = {
             proposition: propositionDestination
@@ -838,13 +832,13 @@
           console.log("Payload: ", prep.payload.proposition)
           prep = {};
           // Clicks the element to allow for continued typing
-          $timeout( function(){
-            elem.click(); 
-          },0)
+          // $timeout( function(){
+          //   elem.click(); 
+          // },0)
           // Hits backend services, updates the model
-          apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
-          apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
-          profileService.setSelectedBook($scope.data[0]);
+          // apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+          // apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+          // profileService.setSelectedBook($scope.data[0]);
         }
       };
 
@@ -867,6 +861,11 @@
               }
             }
           }
+        }
+        if (payload.proposition.author === $scope.userId){
+          $timeout( function(){
+            elem.click(); 
+          },0)
         }
         // Hits backend services, but so did the prep function.
         // Could this lead to model conflicts/failure to update proposition text?
