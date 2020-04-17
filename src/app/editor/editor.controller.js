@@ -428,7 +428,7 @@
               if (x !== $scope.userId && x !== '') { 
                 obj.color = $scope.userColorTable[index].color;
               }
-              
+
             }
           }
         }
@@ -3068,6 +3068,12 @@
         $('#' + $scope.selectedRemark.id + $scope.selectedThread.threadId)
             .parent().hide();
             
+      }
+
+      $scope.clickBottom = function(paragraphId){
+        $timeout( function(){
+          document.getElementById('bottom' + paragraphId).click();
+        },0)
       }
 
       $scope.clearTopAndBottomHasFocus = function (){
