@@ -2141,6 +2141,8 @@
           };
         }
 
+        prep.adjustedText = prep.adjustedText.replace(/\u00a0/g, " ");
+
 
         console.log('Author: ', $scope.userId);
         console.log('Type: ', prep.type);                                                     //    CONSOLE LOGS
@@ -2183,7 +2185,7 @@
             isConsequent: (prep.isConsequent ? prep.isConsequent : undefined),
             isPlaceholder: (prep.isPlaceholder ? prep.isPlaceholder : undefined),
             author: $scope.userId,
-            text: prep.adjustedText.replace(/\u00a0/g, " "),
+            text: prep.adjustedText,
             dialogueText: angular.copy(prep.adjustedText),
             type: prep.type,
             of: (prep.of ? prep.of : undefined),
