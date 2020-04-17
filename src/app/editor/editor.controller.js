@@ -2141,7 +2141,7 @@
           };
         }
 
-        prep.adjustedText = prep.adjustedText.replace("&nbsp;", " ");
+        prep.adjustedText = prep.adjustedText.replace(/&nbsp;/g, ' ');
 
 
         console.log('Author: ', $scope.userId);
