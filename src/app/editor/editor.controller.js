@@ -2141,7 +2141,7 @@
           };
         }
 
-        prep.adjustedText = prep.adjustedText.replace(/\u00a0/g, " ");
+        prep.adjustedText = prep.adjustedText.replace("&nbsp;", " ");
 
 
         console.log('Author: ', $scope.userId);
