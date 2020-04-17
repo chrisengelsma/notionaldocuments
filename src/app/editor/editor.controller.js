@@ -410,9 +410,55 @@
         traverse($scope.data[0])
       }
 
+      $scope.assignColorsToExistingRemarks = function () {
+        function traverse(x, key, obj) {
+          if (isArray(x)) {
+            traverseArray(x)
+          } else if ((typeof x === 'object') && (x !== null)) {
+            traverseObject(x)
+          } else {
+            if (key == 'author'){
+              for (var i = 0; i < $scope.userColorTable.length; i++){
+                if (x == $scope.userColorTable[i].author && x !== $scope.userId){
+                  var alreadyThere = true;
+                  var index = i;
+                  break;
+                }
+              }
+              if (x !== $scope.userId && x !== '') { 
+                obj.color = $scope.userColorTable[index].color;
+              }
+              
+            }
+          }
+        }
+
+        function traverseArray(arr) { 
+          arr.forEach(function (x) {
+            traverse(x)
+          })
+        }
+
+        function traverseObject(obj) {
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              traverse(obj[key], key, obj)
+            }
+          }
+        }
+
+        function isArray(o) {
+          return Object.prototype.toString.call(o) === '[object Array]'
+        }
+
+        // Executes
+        traverse($scope.data[0].dialogue)
+      }
+
       // Runs functions that clean up vestigial stuff saved into the data
       $scope.makePristine();
       $scope.assignColorsToExistingParagraphs();
+      $scope.assignColorsToExistingRemarks();
 
       // Scrolls to the bottom of messages
       $timeout(function() {
@@ -2979,7 +3025,7 @@
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
             }
 
-            
+            $scope.assignColorsToExistingRemarks();
             temp = {};
 
           
