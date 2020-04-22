@@ -338,7 +338,7 @@
           array[randomIndex] = temporaryValue;
           }
           return array;
-        }
+      }
 
       shuffle($scope.otherPastels);
 
@@ -466,6 +466,21 @@
         pane.scrollTop = pane.scrollHeight;
       }, 30);
 
+      // If an empty book, focus on the blank proposition
+      if ($scope.data[0].paragraphs[0].propositions[0].type === 'blank' && $scope.data[0].paragraphs[0].propositions[0][$scope.userId] !== 'hidden'){
+        var id = $scope.data[0].paragraphs[0].propositions[0].id;
+        $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
+        $timeout( function(){
+          document.getElementById('proposition' + id).click();
+        },0)
+      }
+
+      // If the data doesn't have a dialogue, make the dialogue empty
+      if (!$scope.data[0].hasOwnProperty('dialogue')) {
+        $scope.data[0].dialogue = [];
+      }
+    }
+
       // When propositions are being typed as new messages on a topic
       $scope.showThreadAdd = function (thread) {
 
@@ -504,19 +519,7 @@
         $scope.stopToggle = false;
       }
 
-      // If an empty book, focus on the blank proposition
-      if ($scope.data[0].paragraphs[0].propositions[0].type === 'blank' && $scope.data[0].paragraphs[0].propositions[0][$scope.userId] !== 'hidden'){
-        var id = $scope.data[0].paragraphs[0].propositions[0].id;
-        $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
-        $timeout( function(){
-          document.getElementById('proposition' + id).click();
-        },0)
-      }
-
-      // If the data doesn't have a dialogue, make the dialogue empty
-      if (!$scope.data[0].hasOwnProperty('dialogue')) {
-        $scope.data[0].dialogue = [];
-      }
+      
 
       // Fires sometimes
       $scope.selectBlank = function (node) {
@@ -680,31 +683,7 @@
         return value;
       }
 
-      $scope.scanParagraphsInNode = function (node) {
-        // In case of deletion of anothers paragraph
-        for (var i = 0; i < node.paragraphs.length; i++){
-          if (node.paragraphs[i].owner !== $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden'){
-            var hideTheParagraph = true;
-          }
-        }
-        if (hideTheParagraph){
-          //blank paragraph instructions
-        } else {
-          // share paragraph instructions
-        }
 
-        // In case of deletion of ones own blank paragraph cursor
-        for (var i = 0; i < node.paragraphs.length; i++){
-          if (node.paragraphs[i].owner === $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden'){
-            var hideTheParagraph = true;
-          }
-        }
-        if (hideTheParagraph){
-          //blank paragraph instructions
-        } else {
-          // share paragraph instructions
-        }
-      }
 
       // Selects proposition (propositions are often selected without this function)
       $scope.selectProposition = function(proposition) {
@@ -3296,7 +3275,7 @@
           var range = document.createRange();
           var contenteditable = document.getElementById(id)
  
-          if (contenteditable.lastChild.nodeType == 3 && contenteditable.lastChild && contenteditable.contentEditable) {
+          if (contenteditable.lastChild && contenteditable.contentEditable) {
             range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
           } else {
             range.setStart(contenteditable,contenteditable.childNodes.length);
