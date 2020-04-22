@@ -2698,7 +2698,7 @@
 
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
-
+                console.log("In here eh")
                 apply.ofParagraphPosition = payload.ofParagraphPosition;
                 apply.ofParagraphPath = apply.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
                 apply.ofParagraphDestination = eval(apply.ofParagraphPath);
