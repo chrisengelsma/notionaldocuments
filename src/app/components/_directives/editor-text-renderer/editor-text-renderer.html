@@ -22,14 +22,14 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{$first}}{{!paragraph.topAdd}}{{paragraph.propositions[0].type !== 'blank'}}{{paragraph.propositions[0][userId] !== 'hidden'}}
+                }"><!-- {{$first}}{{!paragraph.topAdd}}{{paragraph.propositions[0].type !== 'blank'}}{{paragraph.propositions[0][userId] !== 'hidden'}} -->
        
                
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="$first && !paragraph.topAdd && (paragraph.propositions[0].type !== 'blank' || paragraph.propositions[0][userId] !== 'hidden')"
+         ng-if="!$first && !paragraph.topAdd && paragraph.owner"
          ng-click="[hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
