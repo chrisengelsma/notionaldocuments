@@ -2645,6 +2645,7 @@
               // apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
+                console.log('Typeof if')
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     paragraphId: payload.paragraphId,
@@ -2701,7 +2702,7 @@
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
                 console.log("In here eh")
                 apply.ofParagraphPosition = payload.ofParagraphPosition;
-                apply.ofParagraphPath = apply.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
+                apply.ofParagraphPath = payload.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
                 apply.ofParagraphDestination = eval(apply.ofParagraphPath);
                 apply.ofParagraphDestination.propositions[0][$scope.userId] = 'hidden';
                 apply.ofParagraphDestination[$scope.userId] = 'hidden';
