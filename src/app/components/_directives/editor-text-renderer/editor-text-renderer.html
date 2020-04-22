@@ -22,7 +22,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{paragraph.bottomAdd == true}}{{hasBottomFocus == paragraph.paragraphId}}
+                }">{{paragraph.bottomAdd == true}}{{hasBottomFocus.id == paragraph.paragraphId}}
        
                
     <div class="topparagraphadder"
@@ -83,7 +83,7 @@
           ng-model="paragraph.propositions"
           class="propositions"
 
-          ng-class="{'addbelownotowned': hasBottomFocus == paragraph.paragraphId && paragraph.owner !== userId && paragraph.owner !== ''}"
+          ng-class="{'addbelownotowned': hasBottomFocus.id == paragraph.paragraphId && paragraph.owner !== userId && paragraph.owner !== ''}"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
@@ -305,7 +305,7 @@
          ng-click="[selectParagraph(paragraph),
                     selectNode(node), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)]"
          
-         ng-if="(paragraph.propositions[0].type !== 'blank' || paragraph.propositions[0][userId] !== 'hidden') && hasBottomFocus !== paragraph.paragraphId"
+         ng-if="(paragraph.propositions[0].type !== 'blank' || paragraph.propositions[0][userId] !== 'hidden') && hasBottomFocus.id !== paragraph.paragraphId"
          id="{{paragraph.paragraphId}}"
          
          >

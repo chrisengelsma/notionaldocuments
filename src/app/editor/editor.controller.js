@@ -307,7 +307,7 @@
       $scope.whatHasBeenClicked = '';
       $scope.dontrunfocusout = false;
       $scope.hasTopFocus = '';
-      $scope.hasBottomFocus = '';
+      $scope.hasBottomFocus = {};
       $scope.hasLeftFocus = '';
       $scope.hasRightFocus = {};
       $scope.hasChatFocusThreadId = ''
@@ -667,7 +667,7 @@
       $scope.clearWithBottomAdder = function(paragraph) {
         paragraph.bottomAdd = true;
         console.log("Paragraph bottomadd: ", paragraph.bottomAdd)
-        $scope.hasBottomFocus = paragraph.paragraphId;
+        $scope.hasBottomFocus.id = paragraph.paragraphId;
         console.log("Has bottom focus: ", $scope.hasBottomFocus)
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
@@ -2251,7 +2251,7 @@
         }
 
         $scope.hasTopFocus = '';
-        $scope.hasBottomFocus = '';
+        $scope.hasBottomFocus = {};
         $scope.hasLeftFocus = '';
         $scope.hasRightFocus = {};
         $scope.newProp = '';
@@ -3069,7 +3069,7 @@
 
       $scope.clearTopAndBottomHasFocus = function (){
         $scope.hasTopFocus = '';
-        $scope.hasBottomFocus = '';
+        $scope.hasBottomFocus = {};
       }
 
       $scope.clearThreadAdding = function () {
