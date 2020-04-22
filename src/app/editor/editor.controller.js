@@ -671,7 +671,7 @@
         console.log("Has bottom focus: ", $scope.hasBottomFocus)
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
-        focusFactory('bottom' + paragraph.paragraphId);
+        focusFactory(paragraph.paragraphId);
       };
 
       // For ordering the paragraphs, with one's own paragraphs on top
@@ -3063,7 +3063,7 @@
 
       $scope.clickBottom = function(paragraphId){
         $timeout( function(){
-          document.getElementById('bottom' + paragraphId).click();
+          document.getElementById(paragraphId).click();
         },0)
       }
 

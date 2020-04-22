@@ -306,7 +306,7 @@
                     selectNode(node), clearTopAndBottomHasFocus(), clearWithBottomAdder(paragraph), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable()]"
          
          ng-if="(paragraph.propositions[0].type !== 'blank' || paragraph.propositions[0][userId] !== 'hidden') && hasBottomFocus !== paragraph.paragraphId"
-         id="bottom{{paragraph.paragraphId}}"
+         id="{{paragraph.paragraphId}}"
          
          >
     </div>
