@@ -1827,7 +1827,7 @@
 
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
-          if ($scope.selectedProposition.isPlaceholder) {
+          
             //placeholders only appear after deletions
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
@@ -1885,13 +1885,7 @@
                 console.log("Placing this at the end of the document")
               }
             }   
-          } else {
-            prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
-            prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
-            prep.insertsBelow = true;
-            prep.replacesBlankAndMoves = true;
-            console.log('Replaces blank in blank document');
-          }
+
         if (prep.paragraphPosition < $scope.selectedParagraph.position){
           prep.ofParagraphPosition = $scope.selectedParagraph.position +1;
         } else {
