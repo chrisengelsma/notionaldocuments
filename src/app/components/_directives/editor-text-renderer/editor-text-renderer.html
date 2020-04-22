@@ -305,7 +305,7 @@
          ng-click="[selectParagraph(paragraph),
                     selectNode(node), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)]"
          
-         ng-if="(paragraph.propositions[0].type !== 'blank' || paragraph.propositions[0][userId] !== 'hidden') && hasBottomFocus.id !== paragraph.paragraphId"
+         ng-if="paragraph.owner && hasBottomFocus.id !== paragraph.paragraphId"
          id="{{paragraph.paragraphId}}"
          
          >
