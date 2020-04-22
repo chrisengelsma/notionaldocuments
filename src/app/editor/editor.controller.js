@@ -1895,7 +1895,7 @@
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
 
           if (paragraph.topAdd) {
-            prep.nodePath = '$scope.data';
+            prep.nodePath = '$scope.data'; 
             prep.address = $scope.selectedNode.address;
             for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
               if (i < prep.address.length - 1) {
