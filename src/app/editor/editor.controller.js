@@ -2683,6 +2683,7 @@
                     }
                   }
                 }
+                console.log("maybe here eh")
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     paragraphId: payload.paragraphId,
