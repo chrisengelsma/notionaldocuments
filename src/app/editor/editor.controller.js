@@ -471,7 +471,7 @@
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout( function(){
-          // document.getElementById('proposition' + id).click();
+          document.getElementById('proposition' + id).click();
           console.log("Runs repeatedly for some reason")
         },0)
       }
