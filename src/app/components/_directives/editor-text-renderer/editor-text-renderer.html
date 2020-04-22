@@ -13,7 +13,7 @@
     style="padding-left: 0">
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs"
-      ng-click="[clearThreadAdding(), selectParagraph(paragraph), paragraph.cursor = false, selectedProposition.dialogueSide = false]"
+      ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false]"
       ng-mouseover="paragraph.mouseOver = true;"
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"

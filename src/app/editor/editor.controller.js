@@ -985,7 +985,7 @@
         if ($scope.selectedProposition.type === 'blank' && !prep.assigned) {
           for (var i = 0; i < node.paragraphs.length; i++){
             if ((node.paragraphs[i][$scope.userId] !== 'hidden' &&
-            node.paragraphs[i].paragraphId !== $scope.selectParagraph.paragraphId) ){
+            node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId) ){
               prep.hideBlank = true;
               prep.assigned = true;
               break;
