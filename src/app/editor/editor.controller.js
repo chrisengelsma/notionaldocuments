@@ -1891,6 +1891,7 @@
         } else {
           prep.ofParagraphPosition = $scope.selectedParagraph.position;
         }
+        console.log("Assigned ofParagraphPosition: ", prep.ofParagraphPosition)
 
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
 
