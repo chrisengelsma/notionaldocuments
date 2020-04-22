@@ -1886,7 +1886,7 @@
               }
             }   
           } else {
-            prep.paragraphPosition = $scope.selectedParagraph.position+1;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
+            prep.paragraphPosition = $scope.selectedParagraph.position;                                                   //   OTHERWISE IF YOU'RE WORKING FROM A BLANK
             prep.position = $scope.selectedProposition.position;                                                          //   YOU'RE WORKING FROM A BLANK
             prep.insertsBelow = true;
             prep.replacesBlankAndMoves = true;
