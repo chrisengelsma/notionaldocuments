@@ -303,7 +303,7 @@
          ng-mouseover="paragraph.bottomMouseOver = true; paragraph.topMouseOver = false"
          ng-mouseleave="paragraph.bottomMouseOver = false"
          ng-click="[selectParagraph(paragraph),
-                    selectNode(node), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)"
+                    selectNode(node), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)]"
          
          ng-if="(paragraph.propositions[0].type !== 'blank' || paragraph.propositions[0][userId] !== 'hidden') && hasBottomFocus !== paragraph.paragraphId"
          id="{{paragraph.paragraphId}}"
