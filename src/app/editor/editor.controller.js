@@ -668,7 +668,7 @@
         $scope.hasBottomFocus = paragraph.paragraphId;
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
-        focusFactory(paragraph.paragraphId);
+        focusFactory('bottom' + paragraph.paragraphId);
       };
 
       // For ordering the paragraphs, with one's own paragraphs on top
