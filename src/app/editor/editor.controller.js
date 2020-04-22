@@ -2202,7 +2202,7 @@
           topic: prep.topic,
           address: prep.address,
           paragraphPosition: prep.paragraphPosition,
-          ofParagraphPosition: (prep.ofParagraphPosition ? prep.ofParagraphPosition : undefined),
+          ofParagraphPosition: (prep.ofParagraphPosition !== undefined ? prep.ofParagraphPosition : undefined),
           blankId: IdFactory.next(),
           textSide: $scope.selectedProposition.textSide,
           class: (prep.newClass ? prep.newClass : prep.class),
