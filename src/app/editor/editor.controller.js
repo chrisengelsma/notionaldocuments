@@ -1885,9 +1885,9 @@
                 console.log("Placing this at the end of the document")
               }
             }   
-
+        console.log("Selected Paragraph Position: ", $scope.selectedParagraph.position)
         if (prep.paragraphPosition < $scope.selectedParagraph.position){
-          prep.ofParagraphPosition = $scope.selectedParagraph.position +1;
+          prep.ofParagraphPosition = ($scope.selectedParagraph.position +1);
         } else {
           prep.ofParagraphPosition = $scope.selectedParagraph.position;
         }
