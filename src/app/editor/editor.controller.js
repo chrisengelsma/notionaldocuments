@@ -1338,7 +1338,6 @@
         // If it's ended with a colon,
         // it's a topic
         if (prep.lastChar === ':') {
-          
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
           // Make it a topic that will have a blank sentence at position Paragraph 0 Proposition 0
@@ -1827,72 +1826,69 @@
 
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
-          
-            //placeholders only appear after deletions
-            prep.nodePath = '$scope.data';
-            prep.address = $scope.selectedNode.address;
-            for (var i = 0; i < prep.address.length; i++) {                                         
-              if (i < prep.address.length - 1) {
-                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-              } else {
-                prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
-              }
-            }
-            prep.nodeDestination = eval(prep.nodePath)
-            prep.candidateParagraphPosition = $scope.selectedParagraph.position;
-            prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
-            + ']';    
-            prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
-            if (prep.candidateParagraphDestination.owner == $scope.userId){
-              //if you own that paragraph, just put it there
-              prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
-              prep.position = 0;
-              prep.insertsBelow = true;
-              prep.replacesBlankAndMoves = true;
-              console.log("Starting a new paragraph from a deleted blank in one's own document")
-              // close off the paragraph above to the user
+          //placeholders only appear after deletions
+          prep.nodePath = '$scope.data';
+          prep.address = $scope.selectedNode.address;
+          for (var i = 0; i < prep.address.length; i++) {                                         
+            if (i < prep.address.length - 1) {
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
             } else {
-              // it exists but its not yours
-              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && prep.nodeDestination.paragraphs[i].owner !== ''){
-                  for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-                    if (prep.nodeDestination.paragraphs[j]){
-                      if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && 
-                        prep.nodeDestination.paragraphs[i].owner !== ''){
-                        prep.paragraphPosition = j;
-                        prep.position = 0;
-                        prep.insertsBelow = true;
-                        prep.replacesBlankAndMoves = true;
-                        console.log("Placing this as the last paragraph in the section of one's own document")
-                        break;
-                      }
-                    } else {
-                      prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
+              prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+            }
+          }
+          prep.nodeDestination = eval(prep.nodePath)
+          prep.candidateParagraphPosition = $scope.selectedParagraph.position;
+          prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString() + ']';    
+          prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
+          if (prep.candidateParagraphDestination.owner == $scope.userId){
+            //if you own that paragraph, just put it there
+            prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
+            prep.position = 0;
+            prep.insertsBelow = true;
+            prep.replacesBlankAndMoves = true;
+            console.log("Starting a new paragraph from a deleted blank in one's own document")
+            // close off the paragraph above to the user
+          } else {
+            // it exists but its not yours
+            for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+              if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && prep.nodeDestination.paragraphs[i].owner !== ''){
+                for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
+                  if (prep.nodeDestination.paragraphs[j]){
+                    if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && 
+                    prep.nodeDestination.paragraphs[i].owner !== ''){
+                      prep.paragraphPosition = j;
                       prep.position = 0;
                       prep.insertsBelow = true;
                       prep.replacesBlankAndMoves = true;
-                      console.log("Placing this at the end of the document, after going through")
+                      console.log("Placing this as the last paragraph in the section of one's own document")
                       break;
                     }
+                  } else {
+                    prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
+                    prep.position = 0;
+                    prep.insertsBelow = true;
+                    prep.replacesBlankAndMoves = true;
+                    console.log("Placing this at the end of the document, after going through")
+                    break;
                   }
                 }
-              } 
-              if (!prep.paragraphPosition){
-                prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
-                prep.position = 0;
-                prep.insertsBelow = true;
-                prep.replacesBlankAndMoves = true;
-                console.log("Placing this at the end of the document")
               }
-            }   
-        console.log("Selected Paragraph Position: ", $scope.selectedParagraph.position)
-        if (prep.paragraphPosition < $scope.selectedParagraph.position){
-          prep.ofParagraphPosition = ($scope.selectedParagraph.position +1);
-        } else {
-          prep.ofParagraphPosition = $scope.selectedParagraph.position;
-        }
-        console.log("Assigned ofParagraphPosition: ", prep.ofParagraphPosition)
-
+            } 
+            if (!prep.paragraphPosition){
+              prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
+              prep.position = 0;
+              prep.insertsBelow = true;
+              prep.replacesBlankAndMoves = true;
+              console.log("Placing this at the end of the document")
+            }
+          }   
+          console.log("Selected Paragraph Position: ", $scope.selectedParagraph.position)
+          if (prep.paragraphPosition < $scope.selectedParagraph.position){
+            prep.ofParagraphPosition = ($scope.selectedParagraph.position +1);
+          } else {
+            prep.ofParagraphPosition = $scope.selectedParagraph.position;
+          }
+          console.log("Assigned ofParagraphPosition: ", prep.ofParagraphPosition)
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
 
           if (paragraph.topAdd) {
@@ -2164,7 +2160,7 @@
           }
         }
 
-
+        console.log("Assigned ofParagraphPosition: ", prep.ofParagraphPosition)
         if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion && prep.type !== 'rejoinder') {
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
