@@ -665,7 +665,9 @@
       // Manages bottom adder selection
       $scope.clearWithBottomAdder = function(paragraph) {
         paragraph.bottomAdd = true;
+        console.log("Paragraph bottomadd: ", paragraph.bottomAdd)
         $scope.hasBottomFocus = paragraph.paragraphId;
+        console.log("Has bottom focus: ", $scope.hasBottomFocus)
         $scope.selectedProposition = {};
         $scope.selectedProposition.textSide = true;
         focusFactory('bottom' + paragraph.paragraphId);
