@@ -2191,7 +2191,7 @@
         }
 
         prep.adjustedText = prep.adjustedText.replace(/&nbsp;/g, ' ');
-
+        console.log("Assigned ofParagraphPosition: ", prep.ofParagraphPosition)
 
         console.log('Author: ', $scope.userId);
         console.log('Type: ', prep.type);                                                     //    CONSOLE LOGS
