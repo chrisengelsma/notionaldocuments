@@ -660,7 +660,7 @@
             if($scope.selectedNode){
               if($scope.selectedNode.paragraphs[i][$scope.userId] !== 'hidden' && 
               $scope.selectedNode.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId){
-                var prep;
+                var prep = {};
                 prep.payload = {
                   class: $scope.selectedNode.class,
                   topic: $scope.selectedNode.topic,
