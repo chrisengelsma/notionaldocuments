@@ -30,12 +30,12 @@
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
          ng-if="$first && !paragraph.topAdd && paragraph.owner"
-         ng-click="[hideExpandingTextarea(),
+         ng-click="[clearBlankOnBlur(proposition),
+                    hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
                     clearTopAndBottomHasFocus(),
                     clearWithTopAdder(paragraph),
-                    clearBlankOnBlur(),
                    selectedParagraph.highlightAll = false,
                    selectedParagraph.markAll = false,
                    clearPropositionInput(),
@@ -188,7 +188,7 @@
                 
                     (proposition.author === userId && proposition.type !== 'negation' && selectedProposition.textSide)
                     ?  [ 
-                         
+                         clearBlankOnBlur(proposition),
                          selectNode(node),
                          selectParagraph(paragraph),
                          selectedParagraph = paragraph,
@@ -265,7 +265,7 @@
                 ng-class="{'visible-cursor': (proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && hasRightFocus.id !== proposition.id),
                            'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor || hasRightFocus.id === proposition.id}"
 
-                ng-click="[selectProposition(proposition), paragraph.disableRightCursor = true, clearBlankOnBlur(proposition), selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
+                ng-click="[clearBlankOnBlur(proposition), selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
                 event-focus="click"
                 event-focus-id="{{proposition.id}}"></span>
 
@@ -306,8 +306,8 @@
          ng-class="{'blackline': paragraph.bottomMouseOver === true}"
          ng-mouseover="paragraph.bottomMouseOver = true; paragraph.topMouseOver = false"
          ng-mouseleave="paragraph.bottomMouseOver = false"
-         ng-click="[selectParagraph(paragraph),
-                    selectNode(node), clearTopAndBottomHasFocus(), clearBlankOnBlur(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)]"
+         ng-click="[clearBlankOnBlur(proposition), selectParagraph(paragraph),
+                    selectNode(node), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)]"
          
          ng-if="paragraph.owner && hasBottomFocus.id !== paragraph.paragraphId"
          id="{{paragraph.paragraphId}}"
