@@ -655,18 +655,29 @@
         if (proposition.type === 'blank'){
           return;
         }
+
+
         if ($scope.hasRightFocus.id && $scope.selectedProposition.type === 'blank'){
           for (var i = 0; i < $scope.selectedNode.paragraphs.length; i++){
             if($scope.selectedNode){
               if($scope.selectedNode.paragraphs[i][$scope.userId] !== 'hidden' && 
               $scope.selectedNode.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId){
                 var prep = {};
+                prep.address = $scope.selectedNode.address;
+                prep.nodePath = '$scope.data';
+                for (var i = 0; i < prep.address.length; i++) {
+                  if (i < prep.address.length - 1) {
+                    prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+                  } else {
+                    prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+                  }
+                }
                 prep.payload = {
                   class: $scope.selectedNode.class,
                   topic: $scope.selectedNode.topic,
                   paragraphPosition: $scope.selectedParagraph.position,
                   address: $scope.selectedNode.address,
-                  nodePath: $scope.selectedNode.nodePath,
+                  nodePath: prep.nodePath,
                   proposition: $scope.selectedProposition,
                   author: $scope.selectedProposition.author,
                   id: $scope.selectedProposition.id,
