@@ -674,8 +674,6 @@
                   hideBlank: true,
                   paragraphBlankId: IdFactory.next(),
                   blankId: IdFactory.next(),
-                  hideOthersProp: (prep.hideOthersProp ? prep.hideOthersProp : undefined),
-                  hideOwn: (prep.hideOwn ? prep.hideOthersProp : undefined),
                   deleter: $scope.userId
                 }
                 console.log('Payload to be deleted: ', prep.payload);
