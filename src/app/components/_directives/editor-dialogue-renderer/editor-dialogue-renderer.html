@@ -1,6 +1,6 @@
 <div class="thread"
      id="{{thread.threadId}}"
-     ng-click="[clearEditable(), makePristine()]">
+     ng-click="[clearEditable(), makePristine(), clearBlankOnBlur()]">
   <div class="tree-node tree-node-content dialoguetopic"
        ng-class=""
        ng-mouseover="threadAddMouseover = thread.threadId"

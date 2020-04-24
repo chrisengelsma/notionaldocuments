@@ -651,7 +651,10 @@
         paragraph.cursor = false;
       };
 
-      $scope.clearBlankOnBlur = function(){
+      $scope.clearBlankOnBlur = function(proposition){
+        if (proposition.type === 'blank'){
+          return;
+        }
         if ($scope.hasRightFocus.id && $scope.selectedProposition.type === 'blank'){
           for (var i = 0; i < $scope.selectedNode.paragraphs.length; i++){
             if($scope.selectedNode){
@@ -679,6 +682,7 @@
 
                 chatSocket.emit('deletion', $scope.userId, prep.payload);
                 prep = {};
+                $scope.hasRightFocus.id = '';
 
                 apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                 apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
