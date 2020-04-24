@@ -467,8 +467,11 @@
       }, 30);
 
       // If an empty book, focus on the blank proposition
-      if ($scope.data[0].paragraphs[0].propositions[0].type === 'blank' && $scope.data[0].paragraphs[0].propositions[0][$scope.userId] !== 'hidden'){
+      if ($scope.data[0].paragraphs[0].propositions[0].type === 'blank' && 
+        $scope.data[0].paragraphs[0].propositions[0][$scope.userId] !== 'hidden'){
         var id = $scope.data[0].paragraphs[0].propositions[0].id;
+        $scope.selectedNode = $scope.data[0];
+        $scope.selectedParagraph = $scope.data[0].paragraphs[0];
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout( function(){
           document.getElementById('proposition' + id).click();
@@ -647,6 +650,50 @@
         console.log("Selecting paragraph: ", $scope.selectedParagraph.paragraphId)
         paragraph.cursor = false;
       };
+
+      $scope.clearBlankOnBlur = function(){
+        if ($scope.hasRightFocus.id && $scope.selectedProposition.type === 'blank'){
+          for (var i = 0; i < $scope.selectedNode.paragraphs.length; i++){
+            if($scope.selectedNode){
+              if($scope.selectedNode.paragraphs[i][$scope.userId] !== 'hidden' && 
+              $scope.selectedNode.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId){
+                var prep;
+                prep.payload = {
+                  class: $scope.selectedNode.class,
+                  topic: $scope.selectedNode.topic,
+                  paragraphPosition: $scope.selectedParagraph.position,
+                  address: $scope.selectedNode.address,
+                  nodePath: $scope.selectedNode.nodePath,
+                  proposition: $scope.selectedProposition,
+                  author: $scope.selectedProposition.author,
+                  id: $scope.selectedProposition.id,
+                  paragraphId: $scope.selectedParagraph.paragraphId,
+                  hideBlank: true,
+                  paragraphBlankId: IdFactory.next(),
+                  blankId: IdFactory.next(),
+                  hideOthersProp: (prep.hideOthersProp ? prep.hideOthersProp : undefined),
+                  hideOwn: (prep.hideOwn ? prep.hideOthersProp : undefined),
+                  deleter: $scope.userId
+                }
+                console.log('Payload to be deleted: ', prep.payload);
+
+                chatSocket.emit('deletion', $scope.userId, prep.payload);
+                prep = {};
+
+                apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+                apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+                profileService.setSelectedBook($scope.data[0]);
+              }
+            
+            } else {
+              console.log('Returning, no selected node');
+              return;
+            }
+          }
+        } else {
+          return;
+        }
+      }
 
       // Makes a new left id and focuses on it
       $scope.clearWithLeftAdder = function() {

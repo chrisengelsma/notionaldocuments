@@ -29,7 +29,7 @@
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="!$first && !paragraph.topAdd && paragraph.owner"
+         ng-if="$first && !paragraph.topAdd && paragraph.owner"
          ng-click="[hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
