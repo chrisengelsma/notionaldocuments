@@ -1224,53 +1224,46 @@
 
         // Deletions on blank cursors
         // Delete the paragraph and find where to put the cursor
-        if (payload.hideBlank && payload.deleter === $scope.userId) {
+        if (payload.hideBlank){
           apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-          for (var i = payload.paragraphPosition; i > -1 ; i--){
-            if (apply.nodeDestination.paragraphs[i].owner){
-              if(apply.nodeDestination.paragraphs[i].owner === $scope.userId &&
-              apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' ){
-                for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
-                  if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                  !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
-                  apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId){
-                    $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
-                    $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
-                    $scope.selectedProposition.textSide = true;
-                    focusFactory($scope.selectedProposition.id);
-                    var query = 'proposition' + $scope.selectedProposition.id;
-                    console.log("*** Query: ", query)
-                    $(query).trigger('click');
-                    query = '';
-                    
-                    apply.paragraphDestination[payload.deleter] = 'hidden';
-                    break;
+          apply.paragraphDestination = eval(apply.paragraphPath);
+          apply.propositionPath = payload.paragraphPath + '.propositions[' + payload.position.toString() + ']';
+          apply.propositionDestination = eval(apply.propositionPath)
+          if (payload.deleter === $scope.userId){
+            if (!apply.paragraphDestination.owner || apply.paragraphDestination.owner !== $scope.userId){
+              apply.propositionDestination[payload.deleter] = 'hidden';
+              apply.paragraphDestination[payload.deleter] = 'hidden';
+              apply.assigned = true;
+            } else if (apply.paragraphDestination.owner === $scope.userId){
+              for (var i = payload.paragraphPosition; i > -1 ; i--){
+                if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
+                  for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
+                      if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                      !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
+                      apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId){
+                        $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
+                        $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
+                        $scope.selectedProposition.textSide = true;
+                        focusFactory($scope.selectedProposition.id);
+                        var query = 'proposition' + $scope.selectedProposition.id;
+                        console.log("*** Query: ", query)
+                        $(query).trigger('click');
+                        query = '';                     
+                        apply.paragraphDestination[payload.deleter] = 'hidden';
+                        apply.assigned = true;
+                        break;
+                      }
                   }
                 }
               }
-            // if no owner, encounters a blank
-            } else if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden') {
-              for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
-                if(apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                apply.nodeDestination.paragraphs[i].propositions[j].type === 'blank'){
-                  $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
-                  $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
-                  $scope.selectedProposition.textSide = true;
-                  focusFactory($scope.selectedProposition.id);
-                  var query = 'proposition' + $scope.selectedProposition.id;
-                  console.log("*** Query: ", query)
-                  $(query).trigger('click');
-                  query = '';
-                  
-                  apply.paragraphDestination[payload.deleter] = 'hidden';
-                  break;
-                }
+              if (!apply.assigned){
+                apply.assigned = true;
               }
             }
+          } else if (payload.deleter !== $scope.userId){
+            apply.assigned = true;
           }
-
         }
-      
 
         if (payload.blankPropositionForEveryone) {
           apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
@@ -1335,9 +1328,11 @@
           }
         }
 
-        $scope.scroll.threadId = IdFactory.next();
-
-        updateDialogue(payload, scrollMessagesToBottom);
+        if(!payload.hideBlank){
+          $scope.scroll.threadId = IdFactory.next();
+          updateDialogue(payload, scrollMessagesToBottom);
+        }
+        
 
         // var apply = {};
         // var notification = {};
