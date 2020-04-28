@@ -333,14 +333,14 @@
 
       // Blur listener
       if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
-        hidden = "hidden";
-        visibilityChange = "visibilitychange";
+        $scope.hidden = "hidden";
+        $scope.visibilityChange = "visibilitychange";
       } else if (typeof document.msHidden !== "undefined") {
-        hidden = "msHidden";
-        visibilityChange = "msvisibilitychange";
+        $scope.hidden = "msHidden";
+        $scope.visibilityChange = "msvisibilitychange";
       } else if (typeof document.webkitHidden !== "undefined") {
-        hidden = "webkitHidden";
-        visibilityChange = "webkitvisibilitychange";
+        $scope.hidden = "webkitHidden";
+        $scope.visibilityChange = "webkitvisibilitychange";
       }
 
       var dialogueList = document.getElementById("dialoguelist");
@@ -358,7 +358,7 @@
         console.log("Aint work");
       } else {
         // Handle page visibility change   
-        document.addEventListener(visibilityChange, handleVisibilityChange, false);
+        document.addEventListener($scope.visibilityChange, handleVisibilityChange, false);
           
         // When the video pauses, set the title.
         // This shows the paused
@@ -701,6 +701,7 @@
       $scope.clearBlankOnBlur = function(){
         console.log('Clear blank on blur')
         console.log('Has right focus id: ', $scope.hasRightFocus.id)
+        //no proposition
         if (proposition.type === 'blank'){
           return;
         }
