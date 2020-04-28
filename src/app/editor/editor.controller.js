@@ -319,14 +319,59 @@
       $scope.newProp;
       $scope.stopToggle = false;
       $scope.once = false;
+      $scope.hidden = '';
+      $scope.visibilityChange = '';
+
       var prep = {};
       var apply = {};
       var temp = {};
 
-      // Pastel colors for paragraphs
+
+      //   Pastel colors for paragraphs
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
       $scope.otherPastels = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA']
 
+      // Blur listener
+      if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+        hidden = "hidden";
+        visibilityChange = "visibilitychange";
+      } else if (typeof document.msHidden !== "undefined") {
+        hidden = "msHidden";
+        visibilityChange = "msvisibilitychange";
+      } else if (typeof document.webkitHidden !== "undefined") {
+        hidden = "webkitHidden";
+        visibilityChange = "webkitvisibilitychange";
+      }
+
+      var dialogueList = document.getElementById("dialoguelist");
+
+      function handleVisibilityChange() {
+        if (document[hidden]) {
+            dialogueList.pause();
+          } else {
+            dialogueList.play();
+          }
+      }
+
+      // Warn if the browser doesn't support addEventListener or the Page Visibility API
+      if (typeof document.addEventListener === "undefined" || $scope.hidden === undefined) {
+        console.log("Aint work");
+      } else {
+        // Handle page visibility change   
+        document.addEventListener(visibilityChange, handleVisibilityChange, false);
+          
+        // When the video pauses, set the title.
+        // This shows the paused
+        dialogueList.addEventListener("pause", function(){
+          $scope.clearBlankOnBlur();
+        }, false);
+          
+        // When the video plays, set the title.
+        dialogueList.addEventListener("play", function(){
+          console.log('nothing')
+        }, false);
+
+      }
       // Shuffles paragraph color order
       function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -459,6 +504,8 @@
       $scope.makePristine();
       $scope.assignColorsToExistingParagraphs();
       $scope.assignColorsToExistingRemarks();
+
+
 
       // Scrolls to the bottom of messages
       $timeout(function() {
@@ -651,7 +698,9 @@
         paragraph.cursor = false;
       };
 
-      $scope.clearBlankOnBlur = function(proposition){
+      $scope.clearBlankOnBlur = function(){
+        console.log('Clear blank on blur')
+        console.log('Has right focus id: ', $scope.hasRightFocus.id)
         if (proposition.type === 'blank'){
           return;
         }
