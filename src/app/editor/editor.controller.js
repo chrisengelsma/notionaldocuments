@@ -346,7 +346,7 @@
       var dialogueList = document.getElementById("dialoguelist");
 
       function handleVisibilityChange() {
-        if (document[hidden]) {
+        if (document[$scope.hidden]) {
             dialogueList.pause();
           } else {
             dialogueList.play();
@@ -702,9 +702,9 @@
         console.log('Clear blank on blur')
         console.log('Has right focus id: ', $scope.hasRightFocus.id)
         //no proposition
-        if (proposition.type === 'blank'){
-          return;
-        }
+        // if (proposition.type === 'blank'){
+        //   return;
+        // }
 
 
         if ($scope.hasRightFocus.id && $scope.selectedProposition.type === 'blank'){
