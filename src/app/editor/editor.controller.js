@@ -734,8 +734,8 @@
               var prep;
               prep.nodeDestination = eval(obj.nodePath);
               prep.assigned = false;
-              for (var i = 0; i < nodeDestination.paragraphs.length; i++){
-                if (nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
+              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
                   prep.assigned = false;
                   return;
                 }
