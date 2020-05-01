@@ -526,8 +526,8 @@
         $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
         $timeout( function(){
           document.getElementById('proposition' + id).click();
-          console.log("Runs repeatedly for some reason")
-        },0)
+          console.log("Runs at startup?")
+        },300)
       }
 
       // If the data doesn't have a dialogue, make the dialogue empty
