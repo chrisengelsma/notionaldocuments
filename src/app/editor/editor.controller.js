@@ -372,6 +372,9 @@
         }, false);
 
       }
+
+
+
       // Shuffles paragraph color order
       function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -701,37 +704,66 @@
       $scope.clearBlankOnBlur = function(){
         console.log('Clear blank on blur')
         console.log('Has right focus id: ', $scope.hasRightFocus.id)
-        //no proposition
-        // if (proposition.type === 'blank'){
-        //   return;
-        // }
 
+        function traverseArray(arr) { 
+          arr.forEach(function (x) {
+            traverse(x)
+          })
+        }
 
-        if ($scope.hasRightFocus.id && $scope.selectedProposition.type === 'blank'){
-          for (var i = 0; i < $scope.selectedNode.paragraphs.length; i++){
-            if($scope.selectedNode){
-              if($scope.selectedNode.paragraphs[i][$scope.userId] !== 'hidden' && 
-              $scope.selectedNode.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId){
-                var prep = {};
-                prep.address = $scope.selectedNode.address;
-                prep.nodePath = '$scope.data';
-                for (var i = 0; i < prep.address.length; i++) {
-                  if (i < prep.address.length - 1) {
-                    prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-                  } else {
-                    prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+        function traverseObject(obj) {
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              traverse(obj[key], key, obj)
+            }
+          }
+        }
+
+        function isArray(o) {
+          return Object.prototype.toString.call(o) === '[object Array]'
+        }
+
+        function traverse(x, key, obj) {
+          if (isArray(x)) {
+          traverseArray(x)
+          } else if ((typeof x === 'object') && (x !== null)) {
+            traverseObject(x)
+          } else {
+            if (obj.type === 'blank' && obj.id !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj.id){
+              
+              var prep;
+              prep.nodeDestination = eval(obj.nodePath);
+              prep.assigned = false;
+              for (var i = 0; i < nodeDestination.paragraphs.length; i++){
+                if (nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
+                  prep.assigned = false;
+                  return;
+                }
+              }
+              if (!prep.assigned){
+                for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                  prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
+                  for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
+                    if (prep.paragraphDestination.propositions[j].id === obj.id){
+                      prep.paragraphPosition = i;
+                      prep.position = j;
+                      prep.assigned = true;
+                    }
                   }
                 }
+                prep.address = obj.address;
+                prep.nodePath = obj.nodePath;
                 prep.payload = {
-                  class: $scope.selectedNode.class,
-                  topic: $scope.selectedNode.topic,
-                  paragraphPosition: $scope.selectedParagraph.position,
-                  address: $scope.selectedNode.address,
+                  class: prep.nodeDestination.class,
+                  topic: prep.nodeDestination.topic,
+                  paragraphPosition: prep.paragraphPosition,
+                  position: prep.position,
+                  address: prep.nodeDestination.address,
                   nodePath: prep.nodePath,
-                  proposition: $scope.selectedProposition,
+                  proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.payload.position],
                   author: $scope.selectedProposition.author,
-                  id: $scope.selectedProposition.id,
-                  paragraphId: $scope.selectedParagraph.paragraphId,
+                  id: obj.id,
+                  paragraphId: prep.paragraphDestination.paragraphId,
                   hideBlank: true,
                   paragraphBlankId: IdFactory.next(),
                   blankId: IdFactory.next(),
@@ -747,15 +779,17 @@
                 apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                 profileService.setSelectedBook($scope.data[0]);
               }
-            
-            } else {
-              console.log('Returning, no selected node');
-              return;
             }
           }
-        } else {
-          return;
+            // x is the value for a key that's not an object or array
+            // key is the key
+            // obj is the object being processed
         }
+
+        traverse($scope.data[0])
+
+        // needs a break
+
       }
 
       // Makes a new left id and focuses on it
@@ -1202,7 +1236,9 @@
               text: '',
               author: '',
               position: 0,
-              isPlaceholder: true
+              isPlaceholder: true,
+              address: payload.address,
+              nodePath: payload.nodePath
             };
 
 
@@ -2306,6 +2342,8 @@
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           proposition: {
             id: IdFactory.next(),
+            address: prep.address,
+            nodePath: (prep.nodePath ? prep.nodePath : undefined),
             question: (prep.question ? prep.question : undefined),
             answeredQuestion: (prep.answeredQuestion ? prep.answeredQuestion : undefined),
             getsOwnNode: (prep.getsOwnNode === true ? prep.getsOwnNode : undefined),
@@ -2389,6 +2427,7 @@
                   class: payload.class,
                   address: payload.address,
                   topic: payload.topic,
+                  nodePath: payload.nodePath,
                   paragraphs: [
                     {
                       paragraphId: payload.paragraphId,
@@ -2399,7 +2438,9 @@
                           type: 'blank',
                           text: '',
                           author: '',
-                          position: payload.proposition.position
+                          position: payload.proposition.position,
+                          nodePath: payload.nodePath,
+                          address: prep.address
                         }
                       ]
                     }
