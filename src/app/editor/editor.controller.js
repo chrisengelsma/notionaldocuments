@@ -319,8 +319,8 @@
       $scope.newProp;
       $scope.stopToggle = false;
       $scope.once = false;
-      $scope.hidden = '';
-      $scope.visibilityChange = '';
+      var hidden = '';
+      var visibilityChange = '';
 
       var prep = {};
       var apply = {};
@@ -333,20 +333,20 @@
 
       // Blur listener
       if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
-        $scope.hidden = "hidden";
-        $scope.visibilityChange = "visibilitychange";
+        hidden = "hidden";
+        visibilityChange = "visibilitychange";
       } else if (typeof document.msHidden !== "undefined") {
-        $scope.hidden = "msHidden";
-        $scope.visibilityChange = "msvisibilitychange";
+        hidden = "msHidden";
+        visibilityChange = "msvisibilitychange";
       } else if (typeof document.webkitHidden !== "undefined") {
-        $scope.hidden = "webkitHidden";
-        $scope.visibilityChange = "webkitvisibilitychange";
+        hidden = "webkitHidden";
+        visibilityChange = "webkitvisibilitychange";
       }
 
       var dialogueList = document.getElementById("dialoguelist");
 
       function handleVisibilityChange() {
-        if (document[$scope.hidden]) {
+        if (document[hidden]) {
             dialogueList.pause();
           } else {
             dialogueList.play();
@@ -354,11 +354,11 @@
       }
 
       // Warn if the browser doesn't support addEventListener or the Page Visibility API
-      if (typeof document.addEventListener === "undefined" || $scope.hidden === undefined) {
+      if (typeof document.addEventListener === "undefined" || hidden === undefined) {
         console.log("Aint work");
       } else {
         // Handle page visibility change   
-        document.addEventListener($scope.visibilityChange, handleVisibilityChange, false);
+        document.addEventListener(visibilityChange, handleVisibilityChange, false);
           
         // When the video pauses, set the title.
         // This shows the paused
