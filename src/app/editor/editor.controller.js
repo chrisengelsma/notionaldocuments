@@ -363,6 +363,7 @@
         // When the video pauses, set the title.
         // This shows the paused
         dialogueList.addEventListener("pause", function(){
+          console.log("Pause")
           $scope.clearBlankOnBlur();
         }, false);
           
