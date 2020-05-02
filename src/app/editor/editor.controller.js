@@ -347,6 +347,7 @@
 
       function handleVisibilityChange() {
         if (document[hidden]) {
+            console.log("invisible")
             $scope.clearBlankOnBlur();
           } else {
             console.log("Visible")
@@ -761,6 +762,7 @@
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
                   prep.assigned = false;
+                  console.log("nothing to delete")
                   return;
                 }
               }
