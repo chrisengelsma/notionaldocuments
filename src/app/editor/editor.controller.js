@@ -649,6 +649,7 @@
         },300)
         
       } else {
+        console.log("Went through else, ")
         $scope.clearBlankOnBlur();
         blankClickAssigned = {};
       }
