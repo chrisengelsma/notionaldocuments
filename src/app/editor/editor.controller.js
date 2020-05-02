@@ -544,6 +544,8 @@
               if (x === 'blank' && $scope.hasRightFocus.id !== obj['id'] && obj['nodePath']){
                             
                             var prep;
+                            console.log("object: ", obj)
+                            console.log("nodepath: ", obj['nodePath'])
                             prep.nodeDestination = eval(obj['nodePath']);
                             prep.assigned = false;
                             for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
