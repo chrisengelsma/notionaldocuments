@@ -552,7 +552,7 @@
                               if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
                                 prep.assigned = true;
                                 console.log("blank and visible paragraph found")
-                                
+                                break;
                               }
                             }
                             if (prep.assigned){
@@ -564,7 +564,7 @@
                                     prep.position = j;
                                     console.log("Paragraph position: ", prep.paragraphPosition)
                                     console.log("position: ", prep.position)
-                                    prep.assigned = true;
+                                    break;
                                   }
                                 }
                               }
@@ -577,7 +577,7 @@
                                 position: prep.position,
                                 address: prep.address,
                                 nodePath: prep.nodePath,
-                                proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.position],
+                                proposition: prep.nodeDestination.paragraphs[prep.paragraphPosition].propositions[prep.position],
                                 author: obj['author'],
                                 id: obj['id'],
                                 paragraphId: prep.paragraphDestination.paragraphId,
