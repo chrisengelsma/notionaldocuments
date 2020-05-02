@@ -543,7 +543,7 @@
               console.log("obj id: ", obj['id']);
               if (x === 'blank' && $scope.hasRightFocus.id !== obj['id'] && obj['nodePath']){
                             
-                            var prep;
+                            var prep = {};
                             console.log("object: ", obj)
                             console.log("nodepath: ", obj['nodePath'])
                             prep.nodeDestination = eval(obj['nodePath']);
@@ -825,100 +825,101 @@
       };
 
       $scope.clearBlankOnBlur = function(){
-        console.log('Clear blank on blur')
-        console.log('Has right focus id: ', $scope.hasRightFocus.id)
+              console.log('Clear blank on blur')
 
-        function traverseArray(arr) { 
-          arr.forEach(function (x) {
-            traverse(x)
-          })
-        }
+              function traverseArray(arr) { 
+                arr.forEach(function (x) {
+                  traverse(x)
+                })
+              }
 
-        function traverseObject(obj) {
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              traverse(obj[key], key, obj)
-            }
-          }
-        }
+              function traverseObject(obj) {
+                for (var key in obj) {
+                  if (obj.hasOwnProperty(key)) {
+                    traverse(obj[key], key, obj)
+                  }
+                }
+              }
 
-        function isArray(o) {
-          return Object.prototype.toString.call(o) === '[object Array]'
-        }
+              function isArray(o) {
+                return Object.prototype.toString.call(o) === '[object Array]'
+              }
 
-        function traverse(x, key, obj) {
-          if (isArray(x)) {
-          traverseArray(x)
-          } else if ((typeof x === 'object') && (x !== null)) {
-            traverseObject(x)
-          } else {
-            if (key === 'type' && $scope.selectedProposition){
-              console.log("type, checking")
-              console.log("obj id: ", obj['id']);
-              if (x === 'blank' && obj['id'] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj['id']){
-                            
-                            var prep;
-                            prep.nodeDestination = eval(obj.nodePath);
-                            prep.assigned = false;
-                            for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                              if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                                prep.assigned = false;
-                                console.log("nothing to delete")
-                                return;
-                              }
-                            }
-                            if (!prep.assigned){
-                              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                                prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
-                                for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
-                                  if (prep.paragraphDestination.propositions[j].id === obj.id){
-                                    prep.paragraphPosition = i;
-                                    prep.position = j;
-                                    prep.assigned = true;
+              function traverse(x, key, obj) {
+                if (isArray(x)) {
+                traverseArray(x)
+                } else if ((typeof x === 'object') && (x !== null)) {
+                  traverseObject(x)
+                } else {
+                  if (key === 'type'){
+                    console.log("type, checking")
+                    console.log("obj id: ", obj['id']);
+                    if (x === 'blank' && $scope.hasRightFocus.id !== obj['id'] && obj['nodePath']){
+                                  
+                                  var prep = {};
+                                  console.log("object: ", obj)
+                                  console.log("nodepath: ", obj['nodePath'])
+                                  prep.nodeDestination = eval(obj['nodePath']);
+                                  prep.assigned = false;
+                                  for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                                    if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
+                                      prep.assigned = false;
+                                      console.log("nothing to delete")
+                                      return;
+                                    }
+                                  }
+                                  if (!prep.assigned){
+                                    for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                                      prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
+                                      for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
+                                        if (prep.paragraphDestination.propositions[j].id === obj['id']){
+                                          prep.paragraphPosition = i;
+                                          prep.position = j;
+                                          prep.assigned = true;
+                                        }
+                                      }
+                                    }
+                                    prep.address = obj['address'];
+                                    prep.nodePath = obj['nodePath'];
+                                    prep.payload = {
+                                      class: prep.nodeDestination.class,
+                                      topic: prep.nodeDestination.topic,
+                                      paragraphPosition: prep.paragraphPosition,
+                                      position: prep.position,
+                                      address: prep.address,
+                                      nodePath: prep.nodePath,
+                                      proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.payload.position],
+                                      author: obj['author'],
+                                      id: obj['id'],
+                                      paragraphId: prep.paragraphDestination.paragraphId,
+                                      hideBlank: true,
+                                      paragraphBlankId: IdFactory.next(),
+                                      blankId: IdFactory.next(),
+                                      deleter: $scope.userId
+                                    }
+                                    console.log('Payload to be deleted: ', prep.payload);
+
+                                    chatSocket.emit('deletion', $scope.userId, prep.payload);
+                                    prep = {};
+                                    $scope.hasRightFocus.id = '';
+
+                                    apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+                                    apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+                                    profileService.setSelectedBook($scope.data[0]);
                                   }
                                 }
-                              }
-                              prep.address = obj.address;
-                              prep.nodePath = obj.nodePath;
-                              prep.payload = {
-                                class: prep.nodeDestination.class,
-                                topic: prep.nodeDestination.topic,
-                                paragraphPosition: prep.paragraphPosition,
-                                position: prep.position,
-                                address: prep.nodeDestination.address,
-                                nodePath: prep.nodePath,
-                                proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.payload.position],
-                                author: obj.author,
-                                id: obj.id,
-                                paragraphId: prep.paragraphDestination.paragraphId,
-                                hideBlank: true,
-                                paragraphBlankId: IdFactory.next(),
-                                blankId: IdFactory.next(),
-                                deleter: $scope.userId
-                              }
-                              console.log('Payload to be deleted: ', prep.payload);
+                  }
+                }
+                  // x is the value for a key that's not an object or array
+                  // key is the key
+                  // obj is the object being processed
+              }
 
-                              chatSocket.emit('deletion', $scope.userId, prep.payload);
-                              prep = {};
-                              $scope.hasRightFocus.id = '';
+              traverse($scope.data[0])
 
-                              apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
-                              apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
-                              profileService.setSelectedBook($scope.data[0]);
-                            }
-                          }
+              // needs a break
+
             }
-          }
-            // x is the value for a key that's not an object or array
-            // key is the key
-            // obj is the object being processed
-        }
-
-        traverse($scope.data[0])
-
-        // needs a break
-
-      }
 
       // Makes a new left id and focuses on it
       $scope.clearWithLeftAdder = function() {
