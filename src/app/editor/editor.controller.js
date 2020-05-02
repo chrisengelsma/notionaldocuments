@@ -756,7 +756,7 @@
           } else {
             if (key === 'type'){
               console.log("type, checking")
-
+              console.log("obj id: ", obj['id']);
               if (x === 'blank' && obj['id'] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj['id']){
                             
                             var prep;
