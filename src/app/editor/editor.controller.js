@@ -518,16 +518,32 @@
       }, 30);
 
       // If an empty book, focus on the blank proposition
-      if ($scope.data[0].paragraphs[0].propositions[0].type === 'blank' && 
-        $scope.data[0].paragraphs[0].propositions[0][$scope.userId] !== 'hidden'){
-        var id = $scope.data[0].paragraphs[0].propositions[0].id;
+      var blankClickAssigned = {};
+      for (var i = 0; i < $scope.data[0].paragraphs.length; i++){
+        for (var j = 0; j < $scope.data[0].paragraphs[i].propositions.length; j++){
+          if ($scope.data[0].paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+              $scope.data[0].paragraphs[i].propositions[j].type !== 'blank'){
+              blankClickAssigned.assigned = true;
+              break;
+
+          } else if ($scope.data[0].paragraphs[i].propositions[j].type === 'blank' &&
+                     $scope.data[0].paragraphs[i].propositions[j][$scope.userId] !== 'hidden'){
+                       blankClickAssigned.id = $scope.data[0].paragraphs[i].propositions[j].id;
+                       blankClickAssigned.paragraphPosition = $scope.data[0].paragraphs[i].position;
+                       blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j]position;
+
+          }
+        }
+      }
+      if (!blankClickAssigned.assigned){
         $scope.selectedNode = $scope.data[0];
-        $scope.selectedParagraph = $scope.data[0].paragraphs[0];
-        $scope.selectedProposition = $scope.data[0].paragraphs[0].propositions[0];
+        $scope.selectedParagraph = $scope.data[0].paragraphs[blankClickAssigned.paragraphPosition];
+        $scope.selectedProposition = $scope.data[0].paragraphs[blankClickAssigned.paragraphPosition].propositions[blankClickAssigned.position];
         $timeout( function(){
-          document.getElementById('proposition' + id).click();
+          document.getElementById('proposition' + blankClickAssigned.id).click();
           console.log("Runs at startup?")
         },300)
+        blankClickAssigned = {};
       }
 
       // If the data doesn't have a dialogue, make the dialogue empty
