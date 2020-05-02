@@ -754,57 +754,59 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            if (key === 'type' && obj.id !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj.id){
-              
-              var prep;
-              prep.nodeDestination = eval(obj.nodePath);
-              prep.assigned = false;
-              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                  prep.assigned = false;
-                  console.log("nothing to delete")
-                  return;
-                }
-              }
-              if (!prep.assigned){
-                for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                  prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
-                  for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
-                    if (prep.paragraphDestination.propositions[j].id === obj.id){
-                      prep.paragraphPosition = i;
-                      prep.position = j;
-                      prep.assigned = true;
-                    }
-                  }
-                }
-                prep.address = obj.address;
-                prep.nodePath = obj.nodePath;
-                prep.payload = {
-                  class: prep.nodeDestination.class,
-                  topic: prep.nodeDestination.topic,
-                  paragraphPosition: prep.paragraphPosition,
-                  position: prep.position,
-                  address: prep.nodeDestination.address,
-                  nodePath: prep.nodePath,
-                  proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.payload.position],
-                  author: $scope.selectedProposition.author,
-                  id: obj.id,
-                  paragraphId: prep.paragraphDestination.paragraphId,
-                  hideBlank: true,
-                  paragraphBlankId: IdFactory.next(),
-                  blankId: IdFactory.next(),
-                  deleter: $scope.userId
-                }
-                console.log('Payload to be deleted: ', prep.payload);
+            if (key === 'type'){
+              if (obj.type === 'blank' && obj.id !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj.id){
+                            
+                            var prep;
+                            prep.nodeDestination = eval(obj.nodePath);
+                            prep.assigned = false;
+                            for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                              if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
+                                prep.assigned = false;
+                                console.log("nothing to delete")
+                                return;
+                              }
+                            }
+                            if (!prep.assigned){
+                              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                                prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
+                                for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
+                                  if (prep.paragraphDestination.propositions[j].id === obj.id){
+                                    prep.paragraphPosition = i;
+                                    prep.position = j;
+                                    prep.assigned = true;
+                                  }
+                                }
+                              }
+                              prep.address = obj.address;
+                              prep.nodePath = obj.nodePath;
+                              prep.payload = {
+                                class: prep.nodeDestination.class,
+                                topic: prep.nodeDestination.topic,
+                                paragraphPosition: prep.paragraphPosition,
+                                position: prep.position,
+                                address: prep.nodeDestination.address,
+                                nodePath: prep.nodePath,
+                                proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.payload.position],
+                                author: $scope.selectedProposition.author,
+                                id: obj.id,
+                                paragraphId: prep.paragraphDestination.paragraphId,
+                                hideBlank: true,
+                                paragraphBlankId: IdFactory.next(),
+                                blankId: IdFactory.next(),
+                                deleter: $scope.userId
+                              }
+                              console.log('Payload to be deleted: ', prep.payload);
 
-                chatSocket.emit('deletion', $scope.userId, prep.payload);
-                prep = {};
-                $scope.hasRightFocus.id = '';
+                              chatSocket.emit('deletion', $scope.userId, prep.payload);
+                              prep = {};
+                              $scope.hasRightFocus.id = '';
 
-                apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
-                apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
-                profileService.setSelectedBook($scope.data[0]);
-              }
+                              apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+                              apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+                              profileService.setSelectedBook($scope.data[0]);
+                            }
+                          }
             }
           }
             // x is the value for a key that's not an object or array
