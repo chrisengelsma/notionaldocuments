@@ -524,6 +524,7 @@
           if ($scope.data[0].paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
               $scope.data[0].paragraphs[i].propositions[j].type !== 'blank'){
               blankClickAssigned.assigned = true;
+              console.log("assigned")
               break;
 
           } else if ($scope.data[0].paragraphs[i].propositions[j].type === 'blank' &&
@@ -531,6 +532,7 @@
                        blankClickAssigned.id = $scope.data[0].paragraphs[i].propositions[j].id;
                        blankClickAssigned.paragraphPosition = $scope.data[0].paragraphs[i].position;
                        blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j].position;
+                       console.log("Found blank")
 
           }
         }
@@ -542,10 +544,14 @@
         $timeout( function(){
           document.getElementById('proposition' + blankClickAssigned.id).click();
           console.log("Runs at startup?")
+          blankClickAssigned = {};
         },300)
+        
+      } else {
         blankClickAssigned = {};
       }
 
+      
       // If the data doesn't have a dialogue, make the dialogue empty
       if (!$scope.data[0].hasOwnProperty('dialogue')) {
         $scope.data[0].dialogue = [];
