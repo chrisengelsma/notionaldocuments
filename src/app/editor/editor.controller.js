@@ -827,7 +827,13 @@
         paragraph.cursor = false;
       };
 
-      $scope.clearBlankOnBlur = function(){
+      $scope.clearBlankOnBlur = function(proposition){
+        if (proposition){
+          if(proposition.type === 'blank'){
+            console.log("Click on blank, returning")
+            return;
+          }     
+        }
         console.log('Clear blank on blur')
 
         function traverseArray(arr) { 

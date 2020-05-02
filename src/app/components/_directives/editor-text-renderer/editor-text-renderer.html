@@ -197,7 +197,6 @@
                          paragraph.leftAdd = false,
                          paragraph.disableRightCursor = true,
                          clearTopAndBottomHasFocus(),
-                         clearBlankOnBlur(),
                          hasRightFocus.id = proposition.id,
                          listenForDoubleClick(this, paragraph, proposition),
                        ]
@@ -205,7 +204,7 @@
                         (proposition.type === 'negation' && proposition.of.author === userId || proposition.author === userId)
                        )
                           ? [
-                            clearBlankOnBlur(),
+                            clearBlankOnBlur(proposition),
                             hideExpandingTextarea(),
                             selectNode(node),
                             selectParagraph(paragraph),
