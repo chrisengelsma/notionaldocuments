@@ -14,6 +14,7 @@
         isTitle: true,
         dateCreated: Date(),
         lastModified: null,
+        nodePath: '$scope.data[0]',
         paragraphs: [
           {
             paragraphId: IdFactory.next(),
@@ -27,7 +28,9 @@
                 position: 0,
                 of: {},
                 remarks: [],
-                dialogueSide: false
+                dialogueSide: false,
+                nodePath: '$scope.data[0]',
+                address: [0]
               }
             ]
           }
