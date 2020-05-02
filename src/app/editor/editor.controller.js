@@ -530,7 +530,7 @@
                      $scope.data[0].paragraphs[i].propositions[j][$scope.userId] !== 'hidden'){
                        blankClickAssigned.id = $scope.data[0].paragraphs[i].propositions[j].id;
                        blankClickAssigned.paragraphPosition = $scope.data[0].paragraphs[i].position;
-                       blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j]position;
+                       blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j].position;
 
           }
         }
