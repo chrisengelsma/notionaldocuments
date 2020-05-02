@@ -755,7 +755,8 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              if (obj.type === 'blank' && obj.id !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj.id){
+              console.log("type, checking")
+              if (x === 'blank' && obj[id] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj[id]){
                             
                             var prep;
                             prep.nodeDestination = eval(obj.nodePath);
