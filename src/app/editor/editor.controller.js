@@ -1447,16 +1447,20 @@
         // Deletions on blank cursors
         // Delete the paragraph and find where to put the cursor
         if (payload.hideBlank){
+          console.log("Hide blank")
           apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
           apply.paragraphDestination = eval(apply.paragraphPath);
           apply.propositionPath = payload.paragraphPath + '.propositions[' + payload.position.toString() + ']';
           apply.propositionDestination = eval(apply.propositionPath)
           if (payload.deleter === $scope.userId){
+            console.log("Outer if, hide blank")
             if (!apply.paragraphDestination.owner || apply.paragraphDestination.owner !== $scope.userId){
+              console.log("inner if, hide blank")
               apply.propositionDestination[payload.deleter] = 'hidden';
               apply.paragraphDestination[payload.deleter] = 'hidden';
               apply.assigned = true;
             } else if (apply.paragraphDestination.owner === $scope.userId){
+              console.log("else, hide blank")
               for (var i = payload.paragraphPosition; i > -1 ; i--){
                 if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
                   for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
