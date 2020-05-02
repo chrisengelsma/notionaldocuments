@@ -753,7 +753,7 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            if (obj.type === 'blank' && obj.id !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj.id){
+            if (key === 'type' && obj.id !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj.id){
               
               var prep;
               prep.nodeDestination = eval(obj.nodePath);
