@@ -513,7 +513,6 @@
       //needs to be there a second time or something
       $scope.clearBlankOnBlur = function(){
         console.log('Clear blank on blur')
-        console.log('Has right focus id: ', $scope.hasRightFocus.id)
 
         function traverseArray(arr) { 
           arr.forEach(function (x) {
@@ -539,10 +538,10 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            if (key === 'type' && $scope.selectedProposition){
+            if (key === 'type'){
               console.log("type, checking")
               console.log("obj id: ", obj['id']);
-              if (x === 'blank' && obj['id'] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj['id']){
+              if (x === 'blank' && $scope.hasRightFocus.id !== obj['id']){
                             
                             var prep;
                             prep.nodeDestination = eval(obj.nodePath);
