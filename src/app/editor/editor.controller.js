@@ -535,7 +535,6 @@
                        blankClickAssigned.paragraphPosition = $scope.data[0].paragraphs[i].position;
                        blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j].position;
                        console.log("Found blank")
-                       break;
 
           }
         }
@@ -552,6 +551,7 @@
         },300)
         
       } else {
+        $scope.clearBlankOnBlur();
         blankClickAssigned = {};
       }
 
