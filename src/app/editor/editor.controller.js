@@ -646,7 +646,7 @@
           document.getElementById('proposition'+ blankClickAssigned.id).click();
           console.log("Runs at startup?")
           blankClickAssigned = {};
-        },300)
+        },10)
         
       } else {
         console.log("Went through else, ")
