@@ -541,7 +541,7 @@
             if (key === 'type'){
               console.log("type, checking")
               console.log("obj id: ", obj['id']);
-              if (x === 'blank' && $scope.hasRightFocus.id !== obj['id']){
+              if (x === 'blank' && $scope.hasRightFocus.id !== obj['id'] && obj['nodePath']){
                             
                             var prep;
                             prep.nodeDestination = eval(obj['nodePath']);
@@ -1426,6 +1426,8 @@
               text: '',
               author: '',
               position: 0,
+              nodePath: payload.nodePath,
+              address: payload.address
 
             };
             apply.paragraphDestination.propositions[0][$scope.userId] = 'hidden';
