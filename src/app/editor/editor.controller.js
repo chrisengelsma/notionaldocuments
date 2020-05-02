@@ -550,12 +550,12 @@
                             prep.assigned = false;
                             for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                               if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                                prep.assigned = false;
-                                console.log("nothing to delete")
-                                return;
+                                prep.assigned = true;
+                                console.log("blank and visible paragraph found")
+                                
                               }
                             }
-                            if (!prep.assigned){
+                            if (prep.assigned){
                               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                                 prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
                                 for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
@@ -863,12 +863,12 @@
                                   prep.assigned = false;
                                   for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                                     if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                                      prep.assigned = false;
-                                      console.log("nothing to delete")
-                                      return;
+                                      prep.assigned = true;
+                                      console.log("blank and visible paragraph found")
+                                      
                                     }
                                   }
-                                  if (!prep.assigned){
+                                  if (prep.assigned){
                                     for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                                       prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
                                       for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
