@@ -756,7 +756,8 @@
           } else {
             if (key === 'type'){
               console.log("type, checking")
-              if (x === 'blank' && obj[id] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj[id]){
+
+              if (x === 'blank' && obj['id'] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj['id']){
                             
                             var prep;
                             prep.nodeDestination = eval(obj.nodePath);
