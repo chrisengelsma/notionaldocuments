@@ -542,6 +542,7 @@
         $scope.selectedParagraph = $scope.data[0].paragraphs[blankClickAssigned.paragraphPosition];
         $scope.selectedProposition = $scope.data[0].paragraphs[blankClickAssigned.paragraphPosition].propositions[blankClickAssigned.position];
         $timeout( function(){
+          console.log("click assigned id: ", blankClickAssigned.id)
           document.getElementById('proposition' + blankClickAssigned.id).click();
           console.log("Runs at startup?")
           blankClickAssigned = {};
