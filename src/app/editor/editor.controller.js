@@ -520,6 +520,7 @@
 
       // If an empty book, focus on the blank proposition
       var blankClickAssigned = {};
+      console.log('What has been clicked: ', $scope.whatHasBeenClicked)
       for (var i = 0; i < $scope.data[0].paragraphs.length; i++){
         for (var j = 0; j < $scope.data[0].paragraphs[i].propositions.length; j++){
           if ($scope.data[0].paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
@@ -534,6 +535,7 @@
                        blankClickAssigned.paragraphPosition = $scope.data[0].paragraphs[i].position;
                        blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j].position;
                        console.log("Found blank")
+                       break;
 
           }
         }
