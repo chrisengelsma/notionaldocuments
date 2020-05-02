@@ -1363,6 +1363,7 @@
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
             }
 
+            console.log("Paragraph destination: ", apply.paragraphDestination)
             apply.paragraphDestination.propositions[0] = {                                    
               id: payload.blankId,
               type: 'blank',
