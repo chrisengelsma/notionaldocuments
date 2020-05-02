@@ -347,9 +347,9 @@
 
       function handleVisibilityChange() {
         if (document[hidden]) {
-            dialogueList.pause();
+            $scope.clearBlankOnBlur();
           } else {
-            dialogueList.play();
+            console.log("Visible")
           }
       }
 
@@ -362,15 +362,15 @@
           
         // When the video pauses, set the title.
         // This shows the paused
-        dialogueList.addEventListener("pause", function(){
-          console.log("Pause")
-          $scope.clearBlankOnBlur();
-        }, false);
+        // dialogueList.addEventListener("pause", function(){
+        //   console.log("Pause")
+        //   $scope.clearBlankOnBlur();
+        // }, false);
           
-        // When the video plays, set the title.
-        dialogueList.addEventListener("play", function(){
-          console.log('nothing')
-        }, false);
+        // // When the video plays, set the title.
+        // dialogueList.addEventListener("play", function(){
+        //   console.log('nothing')
+        // }, false);
 
       }
 
