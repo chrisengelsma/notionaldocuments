@@ -1330,7 +1330,7 @@
 
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
-
+        console.log("Received deletion: ", payload)
         // Node and paragraph destination calcs
         apply.nodeDestination = eval(payload.nodePath);
         apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
