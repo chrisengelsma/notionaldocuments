@@ -756,7 +756,7 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            if (key === 'type'){
+            if (key === 'type' && $scope.selectedProposition){
               console.log("type, checking")
               console.log("obj id: ", obj['id']);
               if (x === 'blank' && obj['id'] !== $scope.selectedProposition.id && $scope.hasRightFocus.id !== obj['id']){
@@ -792,7 +792,7 @@
                                 address: prep.nodeDestination.address,
                                 nodePath: prep.nodePath,
                                 proposition: prep.nodeDestination.paragraphs[prep.payload.paragraphPosition].propositions[prep.payload.position],
-                                author: $scope.selectedProposition.author,
+                                author: obj.author,
                                 id: obj.id,
                                 paragraphId: prep.paragraphDestination.paragraphId,
                                 hideBlank: true,
