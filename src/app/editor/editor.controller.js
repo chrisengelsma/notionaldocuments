@@ -940,27 +940,34 @@
 
       // Manages top adder selection
       $scope.clearWithTopAdder = function(paragraph) {
-        $scope.selectedProposition = {};
-        $scope.selectedProposition.textSide = true;
-        $scope.topAdderId = IdFactory.next();
-        $scope.hasTopFocus = paragraph.paragraphId;
-        focusFactory($scope.topAdderId);
+        
+        $timeout( function(){
+            $scope.$apply(function() {
+              $scope.selectedProposition = {};
+              $scope.selectedProposition.textSide = true;
+              $scope.topAdderId = IdFactory.next();
+              $scope.hasTopFocus = paragraph.paragraphId;
+              focusFactory($scope.topAdderId);
+            })
+        },0)
       };
 
       // Manages bottom adder selection
       $scope.clearWithBottomAdder = function(paragraph) {
         $timeout( function(){
           $scope.$apply(function() {
-        paragraph.bottomAdd = true;
-        console.log("Paragraph bottomadd: ", paragraph.bottomAdd)
-        $scope.hasBottomFocus.id = paragraph.paragraphId;
-        console.log("Has bottom focus: ", $scope.hasBottomFocus)
-        $scope.selectedProposition = {};
-        $scope.selectedProposition.textSide = true;
-        focusFactory(paragraph.paragraphId);
-      })
-      },0)
+            paragraph.bottomAdd = true;
+            console.log("Paragraph bottomadd: ", paragraph.bottomAdd)
+            $scope.hasBottomFocus.id = paragraph.paragraphId;
+            console.log("Has bottom focus: ", $scope.hasBottomFocus)
+            $scope.selectedProposition = {};
+            $scope.selectedProposition.textSide = true;
+            focusFactory(paragraph.paragraphId);
+          })
+        },0)
       };
+
+      
 
       // For ordering the paragraphs, with one's own paragraphs on top
       // Will not work right if over a thousand paragraphs in the node
