@@ -17,6 +17,7 @@
         nodePath: '$scope.data[0]',
         paragraphs: [
           {
+            first: true,
             paragraphId: IdFactory.next(),
             position: 0,
             propositions: [
