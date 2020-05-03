@@ -584,7 +584,8 @@
                                 hideBlank: true,
                                 paragraphBlankId: IdFactory.next(),
                                 blankId: IdFactory.next(),
-                                deleter: $scope.userId
+                                deleter: $scope.userId,
+                                bookId: bookId
                               }
                               console.log('Payload to be deleted: ', prep.payload);
 
@@ -906,7 +907,8 @@
                                 hideBlank: true,
                                 paragraphBlankId: IdFactory.next(),
                                 blankId: IdFactory.next(),
-                                deleter: $scope.userId
+                                deleter: $scope.userId,
+                                bookId: bookId
                               }
                               console.log('Payload to be deleted: ', prep.payload);
 
@@ -1131,7 +1133,8 @@
           // Defines the payload to be emitted
           prep.payload = {
             proposition: propositionDestination,
-            propositionPath: propositionPath
+            propositionPath: propositionPath,
+            bookId: bookId
           };
           // Emits it, clears a variable
           chatSocket.emit('update', $scope.userId, prep.payload);
@@ -1150,6 +1153,9 @@
 
       // Listener for updates
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
+        if (payload.bookId !== $scope.bookId){
+          return;
+        }
         // Looks up proposition in the propositions array, updates it
         var index = $scope.propositions.findIndex(function(x) {
           return x.id === payload.proposition.id;
@@ -1224,7 +1230,8 @@
           hidesOthersProp: (prep.hidesOthersProp ? prep.hidesOthersProp : undefined),
           hidesOwn: (prep.hidesOwn ? prep.hidesOthersProp : undefined),
           hideParagraphForDeleter: (prep.hideParagraphForDeleter ? prep.hideParagraphForDeleter : undefined),
-          deleter: $scope.userId
+          deleter: $scope.userId,
+          bookId: bookId
         };
         console.log('Payload to be deleted: ', prep.payload);
         // Transmits it
@@ -1341,7 +1348,8 @@
           blankId: IdFactory.next(),
           hideOthersProp: (prep.hideOthersProp ? prep.hideOthersProp : undefined),
           hideOwn: (prep.hideOwn ? prep.hideOthersProp : undefined),
-          deleter: $scope.userId
+          deleter: $scope.userId,
+          bookId: bookId
         };
 
         console.log('Payload to be deleted: ', prep.payload);
@@ -1356,6 +1364,9 @@
 
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
+        if (payload.bookId !== $scope.bookId){
+          return;
+        }
         console.log("Received deletion: ", payload)
         // Node and paragraph destination calcs
         apply.nodeDestination = eval(payload.nodePath);
@@ -2506,6 +2517,7 @@
           question: (prep.question ? prep.question : undefined),
           paragraphId: IdFactory.next(),
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
+          bookId: bookId,
           proposition: {
             id: IdFactory.next(),
             address: prep.address,
@@ -2576,6 +2588,9 @@
 
 
       $scope.$on('socket:broadcastProposition', function(event, payload) {
+        if (payload.bookId !== $scope.bookId){
+          return;
+        }
         $timeout(function() {
           $scope.$apply(function() {
 
