@@ -976,7 +976,19 @@
         return value;
       }
 
-
+      $scope.findFirst = function (node, paragraphId){
+        //paragraphId is paragraph in the iterator
+        // want to find out if the 
+        for (var i = 0; i < node.paragraphs.length; i++){
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' &&
+              node.paragraphs[i].paragraphId !== paragraphId){
+                return false;
+          } else if (node.paragraphs[i][$scope.userId] !== 'hidden' &&
+              node.paragraphs[i].paragraphId === paragraphId){
+                return true;
+          }
+        }
+      }
 
       // Selects proposition (propositions are often selected without this function)
       $scope.selectProposition = function(proposition) {
