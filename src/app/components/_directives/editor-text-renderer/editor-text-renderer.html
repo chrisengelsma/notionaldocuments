@@ -22,7 +22,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{$first}}{{!paragraph.topAdd}}{{paragraph.owner}}
+                }">{{$index}}{{!paragraph.topAdd}}{{paragraph.owner}}
        
                
     <div class="topparagraphadder"
