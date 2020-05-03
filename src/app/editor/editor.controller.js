@@ -1154,6 +1154,7 @@
       // Listener for updates
       $scope.$on('socket:broadcastUpdate', function(event, payload) {
         if (payload.bookId !== $scope.bookId){
+          console.log("bounced")
           return;
         }
         // Looks up proposition in the propositions array, updates it
@@ -1365,6 +1366,7 @@
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
         if (payload.bookId !== $scope.bookId){
+          console.log("bounced")
           return;
         }
         console.log("Received deletion: ", payload)
@@ -2589,6 +2591,7 @@
 
       $scope.$on('socket:broadcastProposition', function(event, payload) {
         if (payload.bookId !== $scope.bookId){
+          console.log("bounced")
           return;
         }
         $timeout(function() {
