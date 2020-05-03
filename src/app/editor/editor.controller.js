@@ -585,7 +585,7 @@
                                 paragraphBlankId: IdFactory.next(),
                                 blankId: IdFactory.next(),
                                 deleter: $scope.userId,
-                                bookId: bookId
+                                bookId: $scope.bookId
                               }
                               console.log('Payload to be deleted: ', prep.payload);
 
@@ -908,7 +908,7 @@
                                 paragraphBlankId: IdFactory.next(),
                                 blankId: IdFactory.next(),
                                 deleter: $scope.userId,
-                                bookId: bookId
+                                bookId: $scope.bookId
                               }
                               console.log('Payload to be deleted: ', prep.payload);
 
@@ -1134,7 +1134,7 @@
           prep.payload = {
             proposition: propositionDestination,
             propositionPath: propositionPath,
-            bookId: bookId
+            bookId: $scope.bookId
           };
           // Emits it, clears a variable
           chatSocket.emit('update', $scope.userId, prep.payload);
@@ -1231,7 +1231,7 @@
           hidesOwn: (prep.hidesOwn ? prep.hidesOthersProp : undefined),
           hideParagraphForDeleter: (prep.hideParagraphForDeleter ? prep.hideParagraphForDeleter : undefined),
           deleter: $scope.userId,
-          bookId: bookId
+          bookId: $scope.bookId
         };
         console.log('Payload to be deleted: ', prep.payload);
         // Transmits it
@@ -1349,7 +1349,7 @@
           hideOthersProp: (prep.hideOthersProp ? prep.hideOthersProp : undefined),
           hideOwn: (prep.hideOwn ? prep.hideOthersProp : undefined),
           deleter: $scope.userId,
-          bookId: bookId
+          bookId: $scope.bookId
         };
 
         console.log('Payload to be deleted: ', prep.payload);
@@ -2517,7 +2517,7 @@
           question: (prep.question ? prep.question : undefined),
           paragraphId: IdFactory.next(),
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
-          bookId: bookId,
+          bookId: $scope.bookId,
           proposition: {
             id: IdFactory.next(),
             address: prep.address,
