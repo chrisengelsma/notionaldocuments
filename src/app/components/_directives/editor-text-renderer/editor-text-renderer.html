@@ -18,11 +18,12 @@
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
       ng-if="paragraph[userId] !== 'hidden'"
+      ng-init="$first ? paragraph.first = true : paragraph.first = false"
       ng-style="{'background-color': paragraph.color}"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{$index}}{{!paragraph.topAdd}}{{paragraph.owner}}
+                }">{{$first}}{{paragraph.first}}
        
                
     <div class="topparagraphadder"
