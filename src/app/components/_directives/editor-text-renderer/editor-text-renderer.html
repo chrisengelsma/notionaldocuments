@@ -23,14 +23,14 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{$first}}{{paragraph.first}}
+                }">{{paragraph.first}}
        
                
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="$first && !paragraph.topAdd && paragraph.owner"
+         ng-if="paragraph.first && !paragraph.topAdd && paragraph.owner"
          ng-click="[clearBlankOnBlur(),
                     hideExpandingTextarea(),
                     selectParagraph(paragraph),
