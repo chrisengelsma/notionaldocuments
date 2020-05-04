@@ -1597,6 +1597,19 @@
           $scope.scroll.threadId = IdFactory.next();
           updateDialogue(payload, scrollMessagesToBottom);
         }
+
+        apply.mutedParagraphPath = payload.nodePath + ".paragraphs[" + payload.paragraphPosition + "]";
+        if (eval(apply.mutedParagraphPath)){
+          if (eval(apply.mutedParagraphPath)[$scope.userId] === 'hidden'){
+            apply.muteIncomingThread = true;
+          }
+        } else {
+          console.log("No muted paragraph destination")
+        }
+
+        if (apply.muteIncomingThread){
+          $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
+        }
         
 
         // var apply = {};
@@ -2599,6 +2612,8 @@
 
             apply = {};
 
+
+
             if (payload.proposition.getsOwnNode) {
               apply.oldNodeDestination = eval(payload.oldNodePath);
               if (!apply.oldNodeDestination.children) {
@@ -3141,6 +3156,16 @@
 
             $scope.scroll.threadId = IdFactory.next();
 
+            // Check to see if paragraph is muted, set muted flag
+
+            apply.mutedParagraphPath = payload.nodePath + ".paragraphs[" + payload.paragraphPosition + "]";
+            if (eval(apply.mutedParagraphPath)){
+              if (eval(apply.mutedParagraphPath)[$scope.userId] === 'hidden'){
+                apply.muteIncomingThread = true;
+              }
+            } else {
+              console.log("No muted paragraph destination")
+            }
 
             //       DIALOGUE PRINTER
 
@@ -3166,6 +3191,9 @@
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].threadId = $scope.scroll.threadId;
 
             } else if (payload.proposition.type === 'assertion') {
+
+
+
               temp.assertionPath = payload.proposition.assertionPath;
               temp.assertionDestination = eval(payload.proposition.assertionPath);
               $scope.data[0].dialogue.push({
@@ -3179,6 +3207,10 @@
                 threadId: $scope.scroll.threadId,
                 remarks: [payload.proposition]
               });
+
+              if (apply.muteIncomingThread){
+                $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
+              }
 
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
@@ -3261,6 +3293,10 @@
                 threadId: $scope.scroll.threadId,
                 remarks: []
               });  // new thread topic is node topic
+
+              if (apply.muteIncomingThread){
+                $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
+              }
 
               temp.propositionPath = apply.propositionPath;
 
@@ -3862,7 +3898,7 @@
       };
 
       var updateDialogue = function(payload, callback) {
-        if ((payload.blankParagraphForDeleter && payload.hidesOthersProp) || payload.hidesBlankParagraph) {
+        if ((payload.blankParagraphForDeleter && payload.hidesOthersProp) || payload.hideBlankParagraph) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
           //   topic: payload.topic,
