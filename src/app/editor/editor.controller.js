@@ -3413,7 +3413,7 @@
 
         // $scope.makePristine();
         setTimeout(function() {
-          x = document.activeElement;
+          var x = document.activeElement;
           console.log("Focused: ", x)
         });
 
