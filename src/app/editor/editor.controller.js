@@ -542,7 +542,7 @@
             if (key === 'type'){
               console.log("type, checking")
               console.log("obj id: ", obj['id']);
-              if (x === 'blank' && $scope.hasRightFocus.id !== obj['id'] && obj['nodePath']){
+              if (x === 'blank' && document.activeElement.id !== obj['id'] && obj['nodePath']){
                             
                             var prep = {};
                             console.log("object: ", obj)
@@ -865,7 +865,7 @@
             if (key === 'type'){
               console.log("type, checking")
               console.log("obj id: ", obj['id']);
-              if (x === 'blank' && $scope.hasRightFocus.id !== obj['id'] && obj['nodePath']){
+              if (x === 'blank' && document.activeElement.id !== obj['id'] && obj['nodePath']){
                             
                             var prep = {};
                             console.log("object: ", obj)
@@ -3413,8 +3413,11 @@
 
         // $scope.makePristine();
         setTimeout(function() {
-          var x = document.activeElement;
-          console.log("Focused: ", x)
+          var apply.x = document.activeElement.id;
+          if (apply.x !== $scope.hasRightFocus.id && apply.x !== $scope.hasLeftFocus  &&
+              apply.x !== $scope.hasTopFocus && apply.x !== $scope.hasBottomFocus.id){
+            $scope.clearBlankOnBlur();
+          }
         });
 
       });
