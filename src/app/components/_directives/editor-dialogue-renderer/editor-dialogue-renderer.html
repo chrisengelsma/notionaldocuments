@@ -7,7 +7,7 @@
        ng-mouseleave="threadAddMouseover = ''"
 
        ng-click="[threadAdding && !stopToggle ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), hideThreadAdd()] : inputs.nothing, !threadAdding && !stopToggle ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectedProposition.dialogueSide = true, selectThread(thread), showThreadAdd(thread)] : inputs.nothing, exitNgClick()]"
-       style="margin-bottom: 7px; border-top-left-radius: 5px; line-height: 1.4"> {{thread.topic}}<!-- {{thread.threadId}} -->
+       style="margin-bottom: 0px; border-top-left-radius: 5px; line-height: 1.4"> {{thread.topic}}<!-- {{thread.threadId}} -->
        <span ng-if="threadAddMouseover == thread.threadId && threadAdding !== thread.threadId">+</span>
        <span ng-if="threadAddMouseover == thread.threadId && threadAdding === thread.threadId">-</span>
   </div>
@@ -32,6 +32,8 @@
 
   <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId" class="" 
      ng-style="{'background-color': remark.color}">
+    <div class="remarktopspacer"
+         ng-style="'background-color': remark.color"></div>
 		<span class="tree-node tree-node-content remark remarkparagraph"
           ng-class="{'remarkselected': selectedProposition.id === remark.id,
                      'deleted': remark.deleted === true,
