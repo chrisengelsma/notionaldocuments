@@ -3412,6 +3412,10 @@
         }, 30);
 
         // $scope.makePristine();
+        setTimeout(function() {
+          x = document.activeElement;
+          console.log("Focused: ", x)
+        });
 
       });
 
