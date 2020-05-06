@@ -329,7 +329,8 @@
 
       //   Pastel colors for paragraphs
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
-      $scope.otherPastels = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA']
+      $scope.otherPastels = ['#ffbec4', '#edf5dd', '#d0f1e5', '#dbe0f1']
+      // had '#FFDAC1' and '#ffd1cd' also; extra redscale shades
 
       // Blur listener
       if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
