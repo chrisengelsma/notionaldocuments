@@ -3413,7 +3413,7 @@
 
         // $scope.makePristine();
         setTimeout(function() {
-          var apply.x = document.activeElement.id;
+          apply.x = document.activeElement.id;
           if (apply.x !== $scope.hasRightFocus.id && apply.x !== $scope.hasLeftFocus  &&
               apply.x !== $scope.hasTopFocus && apply.x !== $scope.hasBottomFocus.id){
             $scope.clearBlankOnBlur();
