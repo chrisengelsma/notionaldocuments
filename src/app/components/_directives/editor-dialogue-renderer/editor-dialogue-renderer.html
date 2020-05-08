@@ -7,11 +7,11 @@
        ng-mouseleave="threadAddMouseover = ''"
 
        ng-click="[threadAdding && !stopToggle ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), hideThreadAdd()] : inputs.nothing, !threadAdding && !stopToggle ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectedProposition.dialogueSide = true, selectThread(thread), showThreadAdd(thread)] : inputs.nothing, exitNgClick()]"
-       style="margin-bottom: 0px; border-top-left-radius: 5px; line-height: 1.4"> {{thread.topic}}<!-- {{thread.threadId}} -->
+       style="margin-bottom: 0px; border-top-left-radius: 5px; line-height: 1.4; cursor: pointer"> {{thread.topic}}<!-- {{thread.threadId}} -->
        <span ng-if="threadAddMouseover == thread.threadId && threadAdding !== thread.threadId">+</span>
        <span ng-if="threadAddMouseover == thread.threadId && threadAdding === thread.threadId">-</span>
   </div>
-  <p ng-if="threadAdding === thread.threadId" style="border-top-left-radius: 5px;">
+  <p ng-if="threadAdding === thread.threadId" style="border-top-left-radius: 5px; padding-top: 7px">
     
       <textarea
       
@@ -44,8 +44,9 @@
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, !remark.deleted && remark.text === remark.dialogueText && remark[userId] !== 'hidden' ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectNodeByClass(thread), selectThread(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing]"
           ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread)]"
           ng-mouseleave="remark.mouseOver = false;"
-          style=" font-size: 16px; border-right: 1px solid #aaa; border-left: 1px solid #aaa;"
+          style=" font-size: 16px; "
           ng-style="{'border-bottom-color': remark.color}">
+          <!-- border-right: 1px solid #aaa; border-left: 1px solid #aaa; -->
 
 		<span style="cursor: pointer;"
           ng-class="{'underline': remark.mouseOver === true,

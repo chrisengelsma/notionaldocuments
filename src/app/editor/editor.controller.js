@@ -2328,7 +2328,7 @@
             if (!$scope.newProp){
               prep.candidateParagraphPosition = $scope.selectedParagraph.position+1;
             } else {
-              prep.candidateParagraphPosition = 'none';
+              prep.candidateParagraphPosition = 490951;
             }
             prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
             + ']';
