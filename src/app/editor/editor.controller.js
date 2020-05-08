@@ -2314,7 +2314,7 @@
               }
             }
 
-          } else if (paragraph.bottomAdd) {
+          } else if (paragraph.bottomAdd || $scope.newProp) {
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
             for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
@@ -2325,11 +2325,16 @@
               }
             }
             prep.nodeDestination = eval(prep.nodePath)
-            prep.candidateParagraphPosition = $scope.selectedParagraph.position+1;
+            if (!$scope.newProp){
+              prep.candidateParagraphPosition = $scope.selectedParagraph.position+1;
+            } else {
+              prep.candidateParagraphPosition = 'none';
+            }
             prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
             + ']';
             if (eval(prep.candidateParagraphPath)){
               // if there is a paragraph one position above
+              // wont find anything due to changing the path, above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
               if (prep.candidateParagraphDestination.owner == $scope.userId){
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
@@ -2458,10 +2463,10 @@
               }
             }
           } else if ($scope.newProp){
-            prep.paragraphPosition = $scope.selectedNode.paragraphs.length;
-            prep.position = 0;
-            prep.newProp = true;
-            console.log('New prop');        
+            // prep.paragraphPosition = $scope.selectedNode.paragraphs.length;
+            // prep.position = 0;
+            // prep.newProp = true;
+            // console.log('New prop');        
           } else if (prep.type !== 'rejoinder') {
             console.log('Adding to existing paragraph');
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
@@ -3095,38 +3100,40 @@
                 $($scope.selectedProposition.id).trigger('click');
                 }, 30);    
               }
-            } else if (payload.proposition.newProp) {
-              apply.nodeDestination = eval(payload.nodePath);
-              apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-              apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
-              // apply.propositionDestination = eval(apply.propositionPath);
-
-              if (typeof (eval(apply.paragraphPath)) === 'undefined') {
-                apply.nodeDestination.paragraphs[payload.paragraphPosition] =
-                  {
-                    paragraphId: payload.paragraphId,
-                    position: payload.paragraphPosition,
-                    propositions: [payload.proposition]
-                  };
-              } else {
-
-
-
-
-                apply.nodeDestination.paragraphs[payload.paragraphPosition] =
-                  {
-                    paragraphId: payload.paragraphId,
-                    position: payload.paragraphPosition,
-                    propositions: [payload.proposition]
-                  };
-              }
-
-              apply.paragraphDestination = eval(apply.paragraphPath);
-              apply.paragraphAboveDestination = eval(apply.paragraphAbovePath);
+            } 
+            // else if (payload.proposition.newProp) {
+            //   apply.nodeDestination = eval(payload.nodePath);
+            //   apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+            //   apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
+            
+            //   if (typeof (eval(apply.paragraphPath)) === 'undefined') {
+            //     apply.nodeDestination.paragraphs[payload.paragraphPosition] =
+            //       {
+            //         paragraphId: payload.paragraphId,
+            //         position: payload.paragraphPosition,
+            //         propositions: [payload.proposition]
+            //       };
+            //   } else {
 
 
 
-            } else {
+
+            //     apply.nodeDestination.paragraphs[payload.paragraphPosition] =
+            //       {
+            //         paragraphId: payload.paragraphId,
+            //         position: payload.paragraphPosition,
+            //         propositions: [payload.proposition]
+            //       };
+            //   }
+
+            //   apply.paragraphDestination = eval(apply.paragraphPath);
+            //   apply.paragraphAboveDestination = eval(apply.paragraphAbovePath);
+
+
+
+            // } 
+
+            else {
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
            
               if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
