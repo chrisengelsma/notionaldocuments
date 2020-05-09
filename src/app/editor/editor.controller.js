@@ -550,13 +550,19 @@
                             prep.nodeDestination = eval(obj['nodePath']);
                             prep.assigned = false;
                             for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+
                               if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                                prep.assigned = true;
-                                console.log("blank and visible paragraph found")
-                                break;
+                                for (var j = 0; j < prep.nodeDestination.paragraphs[i].propositions.length; j++){
+                                  if (prep.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                                      prep.nodeDestination.paragraphs[i].propositions[j].type === 'blank'){
+                                      prep.assigned = true;
+                                      break;
+                                  }
+                                }
                               }
                             }
-                            if (prep.assigned){
+        
+                            if (!prep.assigned){
                               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                                 prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
                                 for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
