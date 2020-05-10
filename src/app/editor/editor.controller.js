@@ -1068,7 +1068,7 @@
 
       // Processes incomplete edits to one's own propositions
       $scope.clearEditable = function () {
-       
+        console.log("Clear editable")
          
             if ($scope.whatHasBeenClicked){
               for (var i = 0; i < $scope.propositions.length; i++){
@@ -1085,6 +1085,7 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
+        console.log("listen for double lcick")
         var string = 'proposition';
         var id = proposition.id;
         string = string + id;
@@ -1105,6 +1106,7 @@
 
       // Backstops something about proposition editability
       $scope.focusouteditable = function (element) {
+        console.log("focus out editable")
         if ($scope.dontrunfocusout){  
           return;
         }
@@ -1646,7 +1648,7 @@
       }
 
       $scope.prepProposition = function(input, thread, paragraph) {
-
+        console.log("prepping prop")
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
