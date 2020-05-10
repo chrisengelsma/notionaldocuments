@@ -6,7 +6,7 @@
     openfield: data[0].paragraphs[0].propositions[0].author === '',
   }"
   ng-click="stopNgClick()">
-  {{node.topic}}3t90t3q4t808
+  {{node.topic}}
 </div>
 <ol ui-tree-nodes
     ng-model="node.paragraphs"
@@ -67,17 +67,16 @@
           ng-class=""
           contenteditable="true"
           id="{{topAdderId}}"
-          title="this"
+          title="{{paragraph.topAdderId}}"
           class="right-textarea"
           placeholder="textarea"
           ng-model="inputs.proposition"
-          
+          ng-keyup="$event.keyCode === 13 &&
+                            selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
+                            (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
-                  > 
-<!--       ng-keyup="$event.keyCode === 13 &&
-                        selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
-                        (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"       -->      
+                  >
         </span>
       </div>
     </div>
