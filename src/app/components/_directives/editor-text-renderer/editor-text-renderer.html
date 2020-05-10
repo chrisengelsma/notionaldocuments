@@ -69,11 +69,12 @@
           id="{{topAdderId}}"
           title="{{paragraph.topAdderId}}"
           class="right-textarea"
+          ng-click="$event.stopPropagation()"
           placeholder="textarea"
           ng-model="inputs.proposition"
           ng-keyup="$event.keyCode === 13 &&
-                            selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
-                            (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
+                            selectedProposition.dialogueSide != true ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
+                            (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), paragraph.topAdd = false] : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
                   >
@@ -293,10 +294,10 @@
                   id="{{paragraph.paragraphId}}"
                   title="{{paragraph.paragraphId}}"
                   class="right-textarea right-text"
-                  
+                  ng-click="$event.stopPropagation()"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
-                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
+                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), paragraph.topAdd = false] : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
                   ></span>

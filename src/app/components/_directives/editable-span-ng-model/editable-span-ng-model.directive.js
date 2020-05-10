@@ -27,6 +27,7 @@
           // When we clear the content editable the browser leaves a <br> behind
           // If strip-br attribute is provided then we strip this out
           if (attrs.stripBr && html === '<br>') {
+            console.log("If triggered in editable span ng model")
             html = '';
           }
           ngModel.$setViewValue(html);
