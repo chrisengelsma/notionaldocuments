@@ -1256,8 +1256,9 @@
         profileService.setSelectedBook($scope.data[0]);
       };
 
-      $scope.deleteProposition = function(node, allflag) {
+      $scope.deleteProposition = function(node, paragraph, allflag) {
         // Calculates a path to the node from the selected node
+        console.log("Allflag: ", allflag)
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
         for (var i = 0; i < prep.address.length; i++) {
@@ -1301,8 +1302,8 @@
           $scope.selectedParagraph.highlightAll = false;
 
           var ids = [];
-          for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
-            ids.push(prep.paragraphDestination.propositions[i].id);
+          for (var i = 0; i < paragraph.propositions.length; i++){
+            ids.push(paragraph.propositions[i].id);
           }
         }
 
