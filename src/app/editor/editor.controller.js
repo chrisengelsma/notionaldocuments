@@ -1034,6 +1034,7 @@
 
       // Clears the proposition input, like when clicked away
       $scope.clearPropositionInput = function() {
+        console.log('clear prop input')
         $scope.inputs.proposition = '';
         $scope.highlight.id = '';
         $scope.mark.id = '';
