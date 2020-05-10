@@ -71,12 +71,13 @@
           class="right-textarea"
           placeholder="textarea"
           ng-model="inputs.proposition"
-          ng-keyup="$event.keyCode === 13 &&
-                            selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
-                            (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"
+          
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
                   >
+<!--       ng-keyup="$event.keyCode === 13 &&
+                        selectedProposition.dialogueSide != true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
+                        (inputs.proposition === '' && $event.keyCode === 8) ? paragraph.topAdd = false : inputs.nothing;"       -->      
         </span>
       </div>
     </div>
