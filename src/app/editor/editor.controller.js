@@ -1271,6 +1271,7 @@
 
         // Won't be from a blank or one's own paragraph
         if (allflag == true){
+          // 
           for (var i = 0; i < node.paragraphs.length; i++){
             if (node.paragraphs[i].owner !== $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden' &&
               node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId &&
@@ -1278,6 +1279,7 @@
               prep.hideParagraphForDeleter = true;
               prep.hideOthersProp = true;
               prep.assigned = true;
+              console.log("3A")
               break;
             }
           }
@@ -1289,21 +1291,23 @@
               prep.hideParagraphForDeleter = true;
               prep.hideOthersProp = true;
               prep.assigned = true;
+              console.log("3A")
               break;
             }
           }
 
           if (!prep.assigned){
             prep.blankParagraphForDeleter = true;
+            console.log("3B")
             prep.assigned = true;
           }
           // Clears some markups to the propositions
           $scope.selectedParagraph.markAll = false;
           $scope.selectedParagraph.highlightAll = false;
 
-          var ids = [];
+          prep.ids = [];
           for (var i = 0; i < paragraph.propositions.length; i++){
-            ids.push(paragraph.propositions[i].id);
+            prep.ids.push(paragraph.propositions[i].id);
           }
         }
 
@@ -1314,6 +1318,7 @@
             node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId) ){
               prep.hideBlank = true;
               prep.assigned = true;
+              console.log("1A or 1C")
               break;
             }
           }
@@ -1321,14 +1326,33 @@
             return;
           }
         } else if (!prep.assigned) {
-          prep.hideOwn = true;
+
+          if($scope.selectedProposition.type === 'negation' &&
+             $scope.selectedProposition.of.author === $scope.userId){
+            prep.blankPropositionForEveryone;
+            prep.assigned = true;
+
+            console.log("4")
+          }
+          
           for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
             if (
               $scope.selectedParagraph.propositions[i][$scope.userId] !== 'hidden' &&
               $scope.selectedParagraph.propositions[i].id !== $scope.selectedProposition.id &&
               $scope.selectedParagraph.propositions[i].type !== 'negation') {
               prep.blankPropositionForEveryone = true;
+              prep.hideOwn = true;
+              prep.ids = [];
+              for (var i = 0; i < paragraph.propositions.length; i++){
+                if (( 
+                  paragraph.propositions[i].id === $scope.selectedProposition.id) ||
+                    (paragraph.propositions]i].type === 'negation' && 
+                      paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
+                      prep.ids.push(paragraph.propositions[i].id);
+                }               
+              }
               prep.assigned = true;
+              console.log("2A1 or 2A2")
               break;
               // proposition just gets hidden for everyone
               // what to do about negations?
@@ -1337,9 +1361,14 @@
           if (!prep.assigned) {
             prep.blankParagraphForDeleter = true;
             prep.assigned = true;
-            //paragraph will be shared
+            console.log("2b1 or 2b2")
+            //paragraph will be blanked for deleter, hidden for others
           }
         }
+
+        // make ids an array and work with it only
+        // have a multiples flag variable
+        // determine ahead of time if it will blank the paragraph, and for whom
 
         prep.payload = {
           class: $scope.selectedNode.class,
@@ -1349,9 +1378,9 @@
           nodePath: prep.nodePath,
           proposition: $scope.selectedProposition,
           author: $scope.selectedProposition.author,
-          id: $scope.selectedProposition.id,
+          id: prep.id ? $scope.selectedProposition.id : undefined,
           paragraphId: $scope.selectedParagraph.paragraphId,
-          ids: ids ? ids : undefined,
+          ids: prep.ids ? prep.ids : undefined,
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           blankParagraphForDeleter: (prep.blankParagraphForDeleter ? prep.blankParagraphForDeleter : undefined),
           hideBlank: (prep.hideBlank ? prep.hideBlank : undefined),
