@@ -1346,7 +1346,7 @@
               for (var i = 0; i < paragraph.propositions.length; i++){
                 if (( 
                   paragraph.propositions[i].id === $scope.selectedProposition.id) ||
-                    (paragraph.propositions]i].type === 'negation' && 
+                    (paragraph.propositions[i].type === 'negation' && 
                       paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
                       prep.ids.push(paragraph.propositions[i].id);
                 }               
