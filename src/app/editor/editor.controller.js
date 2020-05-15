@@ -3217,9 +3217,10 @@
               if (eval(apply.mutedParagraphPath)[$scope.userId] === 'hidden'){
                 apply.muteIncomingThread = true;
               }
-            } else {
+            } 
+            // else {
               
-            }
+            // }
 
             //       DIALOGUE PRINTER
 
@@ -3778,7 +3779,7 @@
 
       $scope.selectNodeByClass = function(thread) {
         if (!thread.remarks[0].assertionId) {
-         
+         console.log("bounced")
         }
         temp.nodeDestination = eval(thread.nodePath);
         $scope.selectedNode = temp.nodeDestination;
