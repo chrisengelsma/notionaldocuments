@@ -1366,7 +1366,7 @@
           }
         }
 
-        // make ids an array and work with it only
+        // make ids an array and work with it only 
         // have a multiples flag variable
         // determine ahead of time if it will blank the paragraph, and for whom
 
