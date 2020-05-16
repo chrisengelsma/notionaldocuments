@@ -1567,6 +1567,7 @@
             apply.assigned = true;
           }
         }
+      }
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
@@ -1584,7 +1585,6 @@
           } else if (payload.hideNegationForOthers){
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden'; 
           }
-          
           //dialogue interactivity
           if (payload.ids){
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
