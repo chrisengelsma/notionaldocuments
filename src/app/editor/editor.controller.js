@@ -1637,7 +1637,10 @@
 
           if (payload.deleter === $scope.userId) {
             for (var i = payload.proposition.position; i > -1; i--) {
-              if (apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden') {
+              if (apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+                  !apply.paragraphDestination.propositions[i].rejoined &&
+                  !apply.paragraphDestination.propositions[i].hiddenForAll
+                ) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[i];
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
