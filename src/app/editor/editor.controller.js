@@ -1579,22 +1579,22 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
-            if (payload.ids){
+            if (payload.id){
+              apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
+            } else {
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
                 for (var j = 0; j < payload.ids.length; j++){
                   if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
-                    apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
+                    apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   }
                 }
               }
-            } else {
-              apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
             }
           } else if (payload.hideNegationForOthers){
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden'; 
           }
           //dialogue interactivity
-          if (payload.ids){
+          if (!payload.id){
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
                 for (var k = 0; k < payload.ids.length; k++){
