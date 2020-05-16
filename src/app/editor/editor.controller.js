@@ -1356,6 +1356,7 @@
                         prep.ids.push(paragraph.propositions[i].id);
                   }               
                 }
+              
                 prep.assigned = true;
                 console.log("2A1 or 2A2")
                 break;
