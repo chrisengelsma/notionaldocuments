@@ -1312,6 +1312,9 @@
           for (var i = 0; i < paragraph.propositions.length; i++){
             prep.ids.push(paragraph.propositions[i].id);
           }
+          if (prep.ids.length === 1){
+            prep.id = prep.ids[0];
+          }
         }
 
         // Running deletion on a blank 
@@ -1322,6 +1325,7 @@
               prep.hideBlank = true;
               prep.hiddenForAll = false;
               prep.assigned = true;
+              prep.id = $scope.selectProposition.id;
               console.log("1A or 1C")
               break;
             }
@@ -1336,6 +1340,7 @@
             prep.hideNegationForOthers = true;
             prep.hiddenForAll = false;
             prep.assigned = true;
+            prep.id = $scope.selectProposition.id;
 
             console.log("4")
           } else if (!prep.assigned){
@@ -1356,7 +1361,9 @@
                         prep.ids.push(paragraph.propositions[i].id);
                   }               
                 }
-              
+                if (prep.ids.length === 1){
+                  prep.id = prep.ids[0];
+                }
                 prep.assigned = true;
                 console.log("2A1 or 2A2")
                 break;
@@ -1386,7 +1393,7 @@
           nodePath: prep.nodePath,
           proposition: $scope.selectedProposition,
           author: $scope.selectedProposition.author,
-          id: prep.id ? $scope.selectedProposition.id : undefined,
+          id: prep.id ? prep.id : undefined,
           paragraphId: $scope.selectedParagraph.paragraphId,
           hiddenForAll: prep.hiddenForAll ? prep.hiddenForAll : undefined,
           ids: prep.ids ? prep.ids : undefined,
