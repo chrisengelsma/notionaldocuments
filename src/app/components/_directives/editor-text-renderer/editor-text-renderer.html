@@ -96,7 +96,7 @@
             ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node),
 
                       selectLeft(proposition, paragraph)]"
-            ng-if="!proposition.rejoined && proposition[userId] !== 'hidden'"
+            ng-if="(!proposition.rejoined && proposition[userId] !== 'hidden' && !proposition.hiddenForAll) || (proposition.privateFor === userId && proposition[userId] !== 'hidden')"
             class="proposition">
           
           <span class="leftpropositionadder"

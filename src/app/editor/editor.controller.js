@@ -1425,6 +1425,7 @@
         apply.paragraphDestination = eval(apply.paragraphPath);
 
         if (payload.hideParagraphForDeleter && payload.deleter === $scope.userId){
+          console.log("3A OR 3B")
           apply.paragraphDestination[$scope.userId] = 'hidden';
 
           // Sets remarks to hidden in the dialogue
@@ -1438,7 +1439,6 @@
               }
             }
           }
-
         }
 
         // Inserts a blank at the paragraph and hides all other propositions for the deleter
@@ -1450,8 +1450,6 @@
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
             }
-
-            
             apply.paragraphDestination.propositions[0] = {                                    
               id: payload.blankId,
               type: 'blank',
@@ -1462,8 +1460,6 @@
               address: payload.address,
               nodePath: payload.nodePath
             };
-
-
             // Sets remarks to hidden in the dialogue
             if (payload.ids){
               for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
@@ -1487,8 +1483,6 @@
                 }
               }
             }
-            
-
             // Assigns paragraph color
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId]){
@@ -1498,7 +1492,6 @@
                 }
               } 
             }
-
             $scope.selectedParagraph = apply.paragraphDestination;
             $scope.selectedProposition = apply.paragraphDestination.propositions[0];
             $scope.selectedProposition.textSide = true;
@@ -1527,8 +1520,8 @@
 
             };
             apply.paragraphDestination.propositions[0][$scope.userId] = 'hidden';
+            apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
           }
-
           // other stuff for blank paragraph for deleter
         }
 
@@ -1542,16 +1535,14 @@
           apply.propositionPath = apply.paragraphPath + '.propositions[' + payload.position.toString() + ']';
           apply.propositionDestination = eval(apply.propositionPath)
           if (payload.deleter === $scope.userId){
-            if (!apply.paragraphDestination.owner || apply.paragraphDestination.owner !== $scope.userId){
-              
+            if (!apply.paragraphDestination.owner || apply.paragraphDestination.owner !== $scope.userId){  
               apply.propositionDestination[payload.deleter] = 'hidden';
               apply.paragraphDestination[payload.deleter] = 'hidden';
               apply.assigned = true;
             } else if (apply.paragraphDestination.owner === $scope.userId){
-              
-              for (var i = payload.paragraphPosition; i > -1 ; i--){
-                if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                  for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
+                for (var i = payload.paragraphPosition; i > -1 ; i--){
+                  if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
+                    for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
                       if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
                       !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
                       apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId){
@@ -1560,20 +1551,18 @@
                         $scope.selectedProposition.textSide = true;
                         focusFactory($scope.selectedProposition.id);
                         var query = 'proposition' + $scope.selectedProposition.id;
-                       
                         $(query).trigger('click');
                         query = '';                     
                         apply.paragraphDestination[payload.deleter] = 'hidden';
                         apply.assigned = true;
                         break;
                       }
+                    }
                   }
                 }
-              }
-              if (!apply.assigned){
-                apply.assigned = true;
-              }
-            }
+                if (!apply.assigned){
+                  apply.assigned = true;
+                }       
           } else if (payload.deleter !== $scope.userId){
             apply.assigned = true;
           }
@@ -1581,25 +1570,61 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
-            apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
-          } else {
-            apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
+            if (payload.ids){
+              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+                for (var j = 0; j < payload.ids.length; j++){
+                  if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
+                    apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
+                  }
+                }
+              }
+            } else {
+              apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
+            }
+          } else if (payload.hideNegationForOthers){
+            apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden'; 
           }
           
-
-
-          //disables dialogue interactivity for affected remarks
-          for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
-            for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
-              if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id) {
-                $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
+          //dialogue interactivity
+          if (payload.ids){
+            for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
+              for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
+                for (var k = 0; k < payload.ids.length; k++){
+                  if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
+                    $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
+                    $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
+                  }
+                }
               }
-              if ($scope.data[0].dialogue[i].remarks[j+1] && $scope.data[0].dialogue[i].remarks[j+1].type === 'negation'){
-                $scope.data[0].dialogue[i].remarks[j+1][$scope.userId] = 'hidden';
-              
+            }
+            // dialogue interactivity
+            for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
+              for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
+                for (var k = 0; k < payload.ids.length; k++){
+                  if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
+                    $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
+                    $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
+                  }
+                }                 
+              }
+            }
+          } else {
+            for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
+              for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length-1; j++){
+                if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id) {
+                  $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
+                  $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
+                }
+                if ($scope.data[0].dialogue[i].remarks[j+1]){
+                  if ($scope.data[0].dialogue[i].remarks[j+1].type === 'negation'){
+                    $scope.data[0].dialogue[i].remarks[j+1][$scope.userId] = 'hidden';
+                    $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
+                  }
+                } 
               }
             }
           }
+          
 
 
           if (payload.deleter === $scope.userId) {
