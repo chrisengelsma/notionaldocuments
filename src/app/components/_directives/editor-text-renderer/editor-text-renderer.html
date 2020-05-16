@@ -96,8 +96,8 @@
             ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node),
 
                       selectLeft(proposition, paragraph)]"
-            ng-if="((!proposition.rejoined && proposition[userId] !== 'hidden' && !proposition.hiddenForAll) || (proposition.privateFor === userId && proposition[userId] !== 'hidden') && !proposition.hiddenForAll)"
-            class="proposition">
+            ng-if="(!proposition.hiddenForAll && !proposition.rejoined && proposition[userId] !== 'hidden') || (proposition.privateFor && proposition.privateFor === userId)"
+            class="proposition">{{!proposition.hiddenForAll}} {{!proposition.rejoined}} {{proposition[userId] !== 'hidden'}} {{proposition.privateFor}}{{proposition.privateFor === userId}}
           
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true]"
