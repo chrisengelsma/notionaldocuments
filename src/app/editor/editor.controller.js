@@ -540,8 +540,7 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              console.log("type, checking")
-              console.log("obj id: ", obj['id']);
+           
               if (x === 'blank' && document.activeElement.id !== obj['id'] && obj['nodePath']){
                             
                             var prep = {};
@@ -869,8 +868,7 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              console.log("type, checking")
-              console.log("obj id: ", obj['id']);
+              
               if (x === 'blank' && document.activeElement.id !== obj['id'] && obj['nodePath']){
                             
                             var prep = {};
@@ -889,7 +887,7 @@
                               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                                 prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
                                 for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
-                                  if (prep.paragraphDestination.propositions[j].id === obj['id']){
+                                  if (prep.paragraphDestination.propositions[j].id === $s){
                                     prep.paragraphPosition = i;
                                     prep.position = j;
                                     console.log("Paragraph position: ", prep.paragraphPosition)
@@ -1285,20 +1283,21 @@
             }
           }
 
-          for (var i = 0; i < node.paragraphs.length; i++){ 
-            if (node.paragraphs[i].owner === $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden' && 
-              node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId && 
-              $scope.selectedProposition.type !== 'blank' && !prep.assigned){
-              prep.hideParagraphForDeleter = true;
-              prep.hideOthersProp = true;
-              prep.hiddenForAll = false;
-              prep.assigned = true;
-              console.log("3A")
-              break;
-            }
-          }
+          // for (var i = 0; i < node.paragraphs.length; i++){ 
+          //   if (node.paragraphs[i].owner === $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden' && 
+          //     node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId && 
+          //     $scope.selectedProposition.type !== 'blank' && !prep.assigned){
+          //     prep.hideParagraphForDeleter = true;
+          //     prep.hideOthersProp = true;
+          //     prep.hiddenForAll = false;
+          //     prep.assigned = true;
+          //     console.log("3A")
+          //     break;
+          //   }
+          // }
 
           if (!prep.assigned){
+            // if there wasn't another visible paragraph in the node
             prep.blankParagraphForDeleter = true;
             prep.hiddenForAll = false;
             console.log("3B")
@@ -1322,6 +1321,7 @@
           for (var i = 0; i < node.paragraphs.length; i++){
             if ((node.paragraphs[i][$scope.userId] !== 'hidden' &&
             node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId) ){
+              // filters out blanks you wouldnt want to blank
               prep.hideBlank = true;
               prep.hiddenForAll = false;
               prep.assigned = true;
