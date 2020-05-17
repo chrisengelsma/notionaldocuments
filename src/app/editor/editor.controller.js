@@ -839,7 +839,7 @@
             return;
           }     
         }
-        console.log('Clear blank on blur')
+        console.log('Maintaining clear blank on blur')
 
         function traverseArray(arr) { 
           arr.forEach(function (x) {
@@ -866,75 +866,78 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              
+           
               if (x === 'blank' && document.activeElement.id !== obj['id'] && obj['nodePath']){
-                            
-                            var prep = {};
-                            console.log("object: ", obj)
-                            console.log("nodepath: ", obj['nodePath'])
-                            prep.nodeDestination = eval(obj['nodePath']);
-                            prep.assigned = false;
-                            for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                              if (prep.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                                prep.assigned = true;
-                                console.log("blank and visible paragraph found")
-                                break;
-                              }
-                            }
-                            if (prep.assigned){
-                              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                                prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
-                                for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
-                                  if (prep.paragraphDestination.propositions[j].id === $scope.something){   // FIX
-                                    prep.paragraphPosition = i;
-                                    prep.position = j;
-                                    console.log("Paragraph position: ", prep.paragraphPosition)
-                                    console.log("position: ", prep.position)
-                                    break;
-                                  }
+                // Clearing blanks:
+                // When there are other visible paragraphs in the node
+                // When the blank has right focus
+                // Its found a blank with an id and nodePath
+                var prep = {};
+                         
+                prep.nodeDestination = eval(obj['nodePath']);
+                prep.assigned = false;
+                  for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                    prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
+                    for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
+                      if (prep.paragraphDestination.propositions[j].id === obj['id'] &&
+                      prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
+                        for (var k = 0; k < prep.nodeDestination.paragraphs.length; k++){
+                          // Go through the paragraphs in the nodepath
+                          if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
+                          !prep.nodeDestination.paragraphs[k].hiddenForAll &&
+                          prep.nodeDestination.paragraphs[k].paragraphId !== prep.paragraphDestination.paragraphId
+                          ){
+                            prep.assigned = true;
+                            for (var l = 0; l < prep.paragraphDestination.propositions.length; l++){
+                              if (obj['id'] === prep.paragraphDestination.propositions[l]){
+                                prep.paragraphPosition = prep.paragraphDestination.position;
+                                prep.position = l;
+                                console.log("Paragraph position: ", prep.paragraphPosition)
+                                console.log("position: ", prep.position)
+                                prep.address = obj['address'];
+                                prep.nodePath = obj['nodePath'];
+                                prep.payload = {
+                                  class: prep.nodeDestination.class,
+                                  topic: prep.nodeDestination.topic,
+                                  paragraphPosition: prep.paragraphPosition,
+                                  position: prep.position,
+                                  address: prep.address,
+                                  nodePath: prep.nodePath,
+                                  proposition: prep.nodeDestination.paragraphs[prep.paragraphPosition].propositions[prep.position],
+                                  author: obj['author'],
+                                  id: obj['id'],
+                                  paragraphId: prep.paragraphDestination.paragraphId,
+                                  hideBlank: true,
+                                  paragraphBlankId: IdFactory.next(),
+                                  blankId: IdFactory.next(),
+                                  deleter: $scope.userId,
+                                  bookId: $scope.bookId
                                 }
-                              }
-                              prep.address = obj['address'];
-                              prep.nodePath = obj['nodePath'];
-                              prep.payload = {
-                                class: prep.nodeDestination.class,
-                                topic: prep.nodeDestination.topic,
-                                paragraphPosition: prep.paragraphPosition,
-                                position: prep.position,
-                                address: prep.address,
-                                nodePath: prep.nodePath,
-                                proposition: prep.nodeDestination.paragraphs[prep.paragraphPosition].propositions[prep.position],
-                                author: obj['author'],
-                                id: obj['id'],
-                                paragraphId: prep.paragraphDestination.paragraphId,
-                                hideBlank: true,
-                                paragraphBlankId: IdFactory.next(),
-                                blankId: IdFactory.next(),
-                                deleter: $scope.userId,
-                                bookId: $scope.bookId
-                              }
-                              console.log('Payload to be deleted: ', prep.payload);
+                                console.log('Payload to be deleted: ', prep.payload);
 
-                              chatSocket.emit('deletion', $scope.userId, prep.payload);
-                              prep = {};
-                              $scope.hasRightFocus.id = '';
+                                chatSocket.emit('deletion', $scope.userId, prep.payload);
+                                prep = {};
+                                $scope.hasRightFocus.id = '';
 
-                              apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
-                              apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
-                              profileService.setSelectedBook($scope.data[0]);
+                                apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+                                apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+                                profileService.setSelectedBook($scope.data[0]);
+                              }
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
             // x is the value for a key that's not an object or array
             // key is the key
             // obj is the object being processed
         }
-
         traverse($scope.data[0])
-
-        // needs a break
-
       }
 
       // Makes a new left id and focuses on it
