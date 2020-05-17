@@ -887,7 +887,7 @@
                               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                                 prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
                                 for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
-                                  if (prep.paragraphDestination.propositions[j].id === $s){
+                                  if (prep.paragraphDestination.propositions[j].id === $scope.something){   // FIX
                                     prep.paragraphPosition = i;
                                     prep.position = j;
                                     console.log("Paragraph position: ", prep.paragraphPosition)
@@ -1349,6 +1349,7 @@
                 $scope.selectedParagraph.propositions[i][$scope.userId] !== 'hidden' &&
                 $scope.selectedParagraph.propositions[i].id !== $scope.selectedProposition.id &&
                 $scope.selectedParagraph.propositions[i].type !== 'negation') {
+                // seing if the propositions can just be deleted
                 prep.blankPropositionForEveryone = true;
                 prep.hiddenForAll = true;
                 prep.hideOwn = true;
