@@ -1196,67 +1196,62 @@
       // Processes the deletion payload on the client side prior to emission (for paragraphs of others)
       // This hides propositions more than deletes them
       $scope.deleteAllPropositions = function() {
-
-       
-
-        // Calculates a path to the node on which the deletion is occurring
-        prep.address = $scope.selectedNode.address;
-        prep.nodePath = '$scope.data';
-        for (var i = 0; i < prep.address.length; i++) {
-          if (i < prep.address.length - 1) {
-            prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
-          } else {
-            prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
-          }
-        }
-        // Calculates a path to the selected paragraph, then gets a reference to what's there
-        prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position + ']'
-        prep.paragraphDestination = eval(prep.paragraphPath)
-        // Gets ids for all propositions in the paragraph selected
-        var ids = [];
-        for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
-          ids.push(prep.paragraphDestination.propositions[i].id);
-        }
-        // Does hide propositions of others and make the paragraph vacant for the deleter, except for the blank
-        if (!prep.hideParagraphForDeleter){
-          prep.hidesOthersProp = true;
-          prep.hideAndPlaceBlankAbove = true;
-        }
-        // Defines the payload to be emitted
-        prep.payload = {
-          class: $scope.selectedNode.class,
-          topic: $scope.selectedNode.topic,
-          paragraphPosition: $scope.selectedParagraph.position,
-          address: $scope.selectedNode.address,
-          nodePath: prep.nodePath,
-          proposition: $scope.selectedProposition,
-          author: $scope.selectedProposition.author,
-          id: $scope.selectedProposition.id,
-          ids: ids,
-          hideAndPlaceBlankAbove: (prep.hideAndPlaceBlankAbove ? prep.hideAndPlaceBlankAbove : undefined),
-          paragraphBlankId: IdFactory.next(),
-          blankId: IdFactory.next(),
-          hidesOthersProp: (prep.hidesOthersProp ? prep.hidesOthersProp : undefined),
-          hidesOwn: (prep.hidesOwn ? prep.hidesOthersProp : undefined),
-          hideParagraphForDeleter: (prep.hideParagraphForDeleter ? prep.hideParagraphForDeleter : undefined),
-          deleter: $scope.userId,
-          bookId: $scope.bookId
-        };
-        console.log('Payload to be deleted: ', prep.payload);
-        // Transmits it
-        chatSocket.emit('deletion', $scope.userId, prep.payload);
-        // Clears variables
-        prep = {};
-        ids = [];
-        // Hits backend services
-        apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
-        apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
-        profileService.setSelectedBook($scope.data[0]);
+        // // Calculates a path to the node on which the deletion is occurring
+        // prep.address = $scope.selectedNode.address;
+        // prep.nodePath = '$scope.data';
+        // for (var i = 0; i < prep.address.length; i++) {
+        //   if (i < prep.address.length - 1) {
+        //     prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
+        //   } else {
+        //     prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
+        //   }
+        // }
+        // // Calculates a path to the selected paragraph, then gets a reference to what's there
+        // prep.paragraphPath = prep.nodePath + '.paragraphs[' + $scope.selectedParagraph.position + ']'
+        // prep.paragraphDestination = eval(prep.paragraphPath)
+        // // Gets ids for all propositions in the paragraph selected
+        // var ids = [];
+        // for (var i = 0; i < prep.paragraphDestination.propositions.length; i++){
+        //   ids.push(prep.paragraphDestination.propositions[i].id);
+        // }
+        // // Does hide propositions of others and make the paragraph vacant for the deleter, except for the blank
+        // if (!prep.hideParagraphForDeleter){
+        //   prep.hidesOthersProp = true;
+        //   prep.hideAndPlaceBlankAbove = true;
+        // }
+        // // Defines the payload to be emitted
+        // prep.payload = {
+        //   class: $scope.selectedNode.class,
+        //   topic: $scope.selectedNode.topic,
+        //   paragraphPosition: $scope.selectedParagraph.position,
+        //   address: $scope.selectedNode.address,
+        //   nodePath: prep.nodePath,
+        //   proposition: $scope.selectedProposition,
+        //   author: $scope.selectedProposition.author,
+        //   id: $scope.selectedProposition.id,
+        //   ids: ids,
+        //   hideAndPlaceBlankAbove: (prep.hideAndPlaceBlankAbove ? prep.hideAndPlaceBlankAbove : undefined),
+        //   paragraphBlankId: IdFactory.next(),
+        //   blankId: IdFactory.next(),
+        //   hidesOthersProp: (prep.hidesOthersProp ? prep.hidesOthersProp : undefined),
+        //   hidesOwn: (prep.hidesOwn ? prep.hidesOthersProp : undefined),
+        //   hideParagraphForDeleter: (prep.hideParagraphForDeleter ? prep.hideParagraphForDeleter : undefined),
+        //   deleter: $scope.userId,
+        //   bookId: $scope.bookId
+        // };
+        // console.log('Payload to be deleted: ', prep.payload);
+        // // Transmits it
+        // chatSocket.emit('deletion', $scope.userId, prep.payload);
+        // // Clears variables
+        // prep = {};
+        // ids = [];
+        // // Hits backend services
+        // apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+        // apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+        // profileService.setSelectedBook($scope.data[0]);
       };
 
       $scope.deleteProposition = function(node, paragraph, allflag) {
-        // Calculates a path to the node from the selected node
-        
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
         for (var i = 0; i < prep.address.length; i++) {
@@ -1266,10 +1261,8 @@
             prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
           }
         }
-
-        // Won't be from a blank or one's own paragraph
         if (allflag == true){
-          // 
+          // For deletions on others' paragraphs, to hide them
           for (var i = 0; i < node.paragraphs.length; i++){
             if (node.paragraphs[i].owner !== $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden' &&
               node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId &&
@@ -1282,7 +1275,6 @@
               break;
             }
           }
-
           // for (var i = 0; i < node.paragraphs.length; i++){ 
           //   if (node.paragraphs[i].owner === $scope.userId && node.paragraphs[i][$scope.userId] !== 'hidden' && 
           //     node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId && 
@@ -1295,7 +1287,6 @@
           //     break;
           //   }
           // }
-
           if (!prep.assigned){
             // if there wasn't another visible paragraph in the node
             prep.blankParagraphForDeleter = true;
@@ -1306,7 +1297,6 @@
           // Clears some markups to the propositions
           $scope.selectedParagraph.markAll = false;
           $scope.selectedParagraph.highlightAll = false;
-
           prep.ids = [];
           for (var i = 0; i < paragraph.propositions.length; i++){
             prep.ids.push(paragraph.propositions[i].id);
@@ -1315,7 +1305,6 @@
             prep.id = prep.ids[0];
           }
         }
-
         // Running deletion on a blank 
         if ($scope.selectedProposition.type === 'blank' && !prep.assigned) {
           for (var i = 0; i < node.paragraphs.length; i++){
@@ -1334,14 +1323,12 @@
             return;
           }
         } else if (!prep.assigned) {
-
           if($scope.selectedProposition.type === 'negation' &&
              $scope.selectedProposition.of.author === $scope.userId){
             prep.hideNegationForOthers = true;
             prep.hiddenForAll = false;
             prep.assigned = true;
             prep.id = $scope.selectProposition.id;
-
             console.log("4")
           } else if (!prep.assigned){
             for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
@@ -1368,7 +1355,6 @@
                 prep.assigned = true;
                 console.log("2A1 or 2A2")
                 break;
-              
               }
             }
             if (!prep.assigned) {
@@ -1378,14 +1364,10 @@
               //paragraph will be blanked for deleter, hidden for others
             }
           }
-          
-          
         }
-
         // make ids an array and work with it only 
         // have a multiples flag variable
         // determine ahead of time if it will blank the paragraph, and for whom
-
         prep.payload = {
           class: $scope.selectedNode.class,
           topic: $scope.selectedNode.topic,
@@ -1410,17 +1392,13 @@
           deleter: $scope.userId,
           bookId: $scope.bookId
         };
-
         console.log('Payload to be deleted: ', prep.payload);
-
         chatSocket.emit('deletion', $scope.userId, prep.payload);
         prep = {};
-
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0]);
       };
-
 
       $scope.$on('socket:broadcastDeletion', function(event, payload) {
         if (payload.bookId !== $scope.bookId){
