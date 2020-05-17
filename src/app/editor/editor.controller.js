@@ -1410,16 +1410,13 @@
         apply.nodeDestination = eval(payload.nodePath);
         apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
         apply.paragraphDestination = eval(apply.paragraphPath);
-
         if (payload.hideParagraphForDeleter && payload.deleter === $scope.userId){
           console.log("3A OR 3B")
           apply.paragraphDestination[$scope.userId] = 'hidden';
-
           // Sets remarks to hidden in the dialogue
           for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
             for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
               for (var k = 0; k < payload.ids.length; k++){
-
                 if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
                   $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden'
                 }
@@ -1427,7 +1424,6 @@
             }
           }
         }
-
         // Inserts a blank at the paragraph and hides all other propositions for the deleter
         if (payload.blankParagraphForDeleter) {
           // Hides the target paragraphs propositions
@@ -1445,14 +1441,14 @@
               position: 0,
               isPlaceholder: true,
               address: payload.address,
-              nodePath: payload.nodePath
+              nodePath: payload.nodePath,
+              privateFor: payload.deleter
             };
             // Sets remarks to hidden in the dialogue
             if (payload.ids){
               for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
                 for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
                   for (var k = 0; k < payload.ids.length; k++){
-
                     if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
                       $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden'
                     }
@@ -1462,8 +1458,6 @@
             } else {
               for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
                 for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
-                  
-
                   if ($scope.data[0].dialogue[i].remarks[j].id === payload.id) {
                     $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden'
                   }
@@ -1503,7 +1497,7 @@
               author: '',
               position: 0,
               nodePath: payload.nodePath,
-              address: payload.address
+              address: payload.address,
 
             };
             apply.paragraphDestination.propositions[0][$scope.userId] = 'hidden';
@@ -1511,8 +1505,6 @@
           }
           // other stuff for blank paragraph for deleter
         }
-
-
         // Deletions on blank cursors
         // Delete the paragraph and find where to put the cursor
         if (payload.hideBlank){
@@ -1523,38 +1515,44 @@
           apply.propositionDestination = eval(apply.propositionPath)
           if (payload.deleter === $scope.userId){
             if (!apply.paragraphDestination.owner || apply.paragraphDestination.owner !== $scope.userId){  
-              apply.propositionDestination[payload.deleter] = 'hidden';
-              apply.paragraphDestination[payload.deleter] = 'hidden';
+              apply.propositionDestination.hiddenForAll = true;
+              apply.paragraphDestination.hiddenForAll = true;
               apply.assigned = true;
             } else if (apply.paragraphDestination.owner === $scope.userId){
-                for (var i = payload.paragraphPosition; i > -1 ; i--){
-                  if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden'){
-                    for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
-                      if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                      !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
-                      apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId){
-                        $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
-                        $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
-                        $scope.selectedProposition.textSide = true;
-                        focusFactory($scope.selectedProposition.id);
-                        var query = 'proposition' + $scope.selectedProposition.id;
-                        $(query).trigger('click');
-                        query = '';                     
-                        apply.paragraphDestination[payload.deleter] = 'hidden';
-                        apply.assigned = true;
-                        break;
-                      }
+              for (var i = payload.paragraphPosition; i > -1 ; i--){
+                if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+                  apply.nodeDestination.paragraphs[i].hiddenForAll != true){
+                  // go and see what is to be clicked on
+                  for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
+                    if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                    !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
+                    apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId &&
+                    apply.nodeDestination.paragraphs[i].propositions[j].type !== 'negation'){
+                      $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
+                      $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
+                      $scope.selectedProposition.textSide = true;
+                      focusFactory($scope.selectedProposition.id);
+                      var query = 'proposition' + $scope.selectedProposition.id;
+                      $(query).trigger('click');
+                      query = '';                     
+                      apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll = true;
+                      apply.paragraphDestination.hiddenForAll = true;
+                      apply.assigned = true;
+                      break;
                     }
                   }
                 }
-                if (!apply.assigned){
-                  apply.assigned = true;
-                }       
-          } else if (payload.deleter !== $scope.userId){
-            apply.assigned = true;
+              }
+              if (!apply.assigned){
+                apply.assigned = true;
+              }       
+            } else if (payload.deleter !== $scope.userId){
+              apply.propositionDestination.hiddenForAll = true;
+              apply.paragraphDestination.hiddenForAll = true;
+              apply.assigned = true;
+            }
           }
         }
-      }
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
