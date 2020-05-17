@@ -3712,7 +3712,7 @@
 
 
         for (var i = paragraph.propositions.length-1; i > -1; i--){
-          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && destination.paragraphs[i].hiddenForAll !== true){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
             $scope.selectedProposition = paragraph.propositions[i];
             break;
           }
