@@ -1659,6 +1659,7 @@
                     apply.paragraphDestination.propositions[j].first = false;
                   }
                 }
+                break;
               }
             }
 
@@ -1672,6 +1673,7 @@
                     apply.nodeDestination.paragraphs[j].first = false;
                   }
                 }
+                break;
               }
             }
         }
@@ -3507,6 +3509,7 @@
                     apply.paragraphDestination.propositions[j].first = false;
                   }
                 }
+                break;
               }
             }
 
@@ -3520,6 +3523,7 @@
                     apply.nodeDestination.paragraphs[j].first = false;
                   }
                 }
+                break;
               }
             }
 
