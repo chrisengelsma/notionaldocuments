@@ -986,6 +986,7 @@
       $scope.findFirst = function (node, paragraphId){
         //paragraphId is paragraph in the iterator
         // want to find out if the 
+        console.log("Find first paragraph")
         for (var i = 0; i < node.paragraphs.length; i++){
           if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true &&
               node.paragraphs[i].paragraphId !== paragraphId){
@@ -1000,6 +1001,7 @@
       $scope.findFirstProposition = function (paragraph, id){
         //paragraphId is paragraph in the iterator
         // want to find out if the 
+        console.log("Find first proposition")
         for (var i = 0; i < paragraph.propositions.length; i++){
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
               paragraph.propositions[i].id !== id){
