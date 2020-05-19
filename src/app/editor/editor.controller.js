@@ -2299,7 +2299,7 @@
                 }
               }
             } 
-            if (!prep.paragraphPosition){
+            if (!prep.insertsAbove && !prep.insertsBelow){
               prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
               prep.position = 0;
               prep.insertsBelow = true;
@@ -2372,7 +2372,7 @@
                   prep.position = 0;
                   prep.insertsAbove = true;
                   console.log("Putting it above")
-                } else if (!prep.paragraphPosition){
+                } else if (!prep.insertsAbove && !prep.insertsBelow){
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
                   prep.insertsBelow = true;
@@ -2409,7 +2409,7 @@
                 }
               }
               } 
-              if (!prep.paragraphPosition && !prep.insertsAbove){
+              if (!prep.insertsAbove){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
@@ -2470,8 +2470,9 @@
                       }
                     }
                   }
+
                 } 
-                if (!prep.paragraphPosition){
+                if (!prep.insertsBelow){
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
                   prep.insertsBelow = true;
@@ -2505,7 +2506,7 @@
                   }
                 }
               } 
-              if (!prep.paragraphPosition){
+              if (!prep.insertsBelow){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
@@ -2558,7 +2559,7 @@
                   }
                 }
               } 
-              if (!prep.paragraphPosition){
+              if (!prep.insertsBelow){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
@@ -2585,7 +2586,7 @@
                 break;
               }
             }
-            if (!prep.position) {
+            if (!prep.getsOwnProposition) {
               prep.paragraphPosition = $scope.selectedParagraph.position;                //    IF NO POSITION HAS BEEN CALCULATED, GETS OWN PROPOSITION WITH POSITION ON THE END
               prep.position = $scope.selectedParagraph.propositions.length;
               prep.getsOwnProposition = true;
