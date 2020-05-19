@@ -988,12 +988,12 @@
         // want to find out if the 
         console.log("Find first paragraph")
         for (var i = 0; i < node.paragraphs.length; i++){
-          if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true &&
-              node.paragraphs[i].paragraphId !== paragraphId){
-                return false;
-          } else if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true &&
-              node.paragraphs[i].paragraphId === paragraphId){
-                return true;
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
+            if (node.paragraphs[i].paragraphId === paragraphId){
+              return true
+            } else {
+              return false
+            }
           }
         }
       }
@@ -1003,12 +1003,12 @@
         // want to find out if the 
         console.log("Find first proposition")
         for (var i = 0; i < paragraph.propositions.length; i++){
-          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
-              paragraph.propositions[i].id !== id){
-                return false;
-          } else if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
-              paragraph.propositions[i].id === id){
-                return true;
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
+            if (paragraph.propositions[i].id === id){
+              return true
+            } else {
+              return false
+            }
           }
         }
       }
