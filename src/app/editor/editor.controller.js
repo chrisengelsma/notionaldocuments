@@ -1641,9 +1641,37 @@
             // Updates paragraph ownership
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+              !apply.paragraphDestination.propositions[i].hiddenForAll &&
               apply.paragraphDestination.propositions[i].type !== 'blank'){
                 apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
                 break;
+              }
+            }
+
+            // assigns firsts to propositions
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+              !apply.paragraphDestination.propositions[i].hiddenForAll){
+                apply.paragraphDestination.propositions[i].first = true;
+
+                for (var j = i; j < apply.paragraphDestination.propositions.length; j++){
+                  if (j > i){
+                    apply.paragraphDestination.propositions[j].first = false;
+                  }
+                }
+              }
+            }
+
+
+            for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+              if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+              !apply.nodeDestination.paragraphs[i].hiddenForAll){
+                apply.nodeDestination.paragraphs[i].first = true;
+                for (var j = i; j < apply.nodeDestination.paragraphs.length; j++){
+                  if (j > i){
+                    apply.nodeDestination.paragraphs[j].first = false;
+                  }
+                }
               }
             }
         }
@@ -3467,6 +3495,32 @@
             } else if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation'){
               
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
+            }
+
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+              !apply.paragraphDestination.propositions[i].hiddenForAll){
+                apply.paragraphDestination.propositions[i].first = true;
+
+                for (var j = i; j < apply.paragraphDestination.propositions.length; j++){
+                  if (j > i){
+                    apply.paragraphDestination.propositions[j].first = false;
+                  }
+                }
+              }
+            }
+
+
+            for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+              if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+              !apply.nodeDestination.paragraphs[i].hiddenForAll){
+                apply.nodeDestination.paragraphs[i].first = true;
+                for (var j = i; j < apply.nodeDestination.paragraphs.length; j++){
+                  if (j > i){
+                    apply.nodeDestination.paragraphs[j].first = false;
+                  }
+                }
+              }
             }
 
             $scope.assignColorsToExistingRemarks();
