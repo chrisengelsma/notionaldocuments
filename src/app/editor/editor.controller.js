@@ -2334,6 +2334,7 @@
               //there's a place to put it above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
               console.log("Candidate destination: ", prep.candidateParagraphDestination)
+              debugger;
               if (prep.candidateParagraphDestination.owner == $scope.userId){
                 //youre the owner
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
