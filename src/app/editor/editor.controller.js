@@ -997,6 +997,20 @@
         }
       }
 
+      $scope.findFirstProposition = function (paragraph, id){
+        //paragraphId is paragraph in the iterator
+        // want to find out if the 
+        for (var i = 0; i < paragraph.propositions.length; i++){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
+              paragraph.propositions[i].id !== id){
+                return false;
+          } else if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
+              paragraph.propositions[i].id === id){
+                return true;
+          }
+        }
+      }
+
       // Selects proposition (propositions are often selected without this function)
       $scope.selectProposition = function(proposition) {
         if ($scope.selectedProposition){
