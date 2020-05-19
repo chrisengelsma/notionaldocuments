@@ -1301,7 +1301,7 @@
         // Running deletion on a blank 
         if ($scope.selectedProposition.type === 'blank' && !prep.assigned) {
           for (var i = 0; i < node.paragraphs.length; i++){
-            if ((node.paragraphs[i][$scope.userId] !== 'hidden' &&
+            if ((node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true &&
             node.paragraphs[i].paragraphId !== $scope.selectedParagraph.paragraphId) ){
               // filters out blanks you wouldnt want to blank
               prep.hideBlank = true;
@@ -1324,35 +1324,41 @@
             prep.id = $scope.selectProposition.id;
             console.log("4")
           } else if (!prep.assigned){
-            for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
-              if (
-                $scope.selectedParagraph.propositions[i][$scope.userId] !== 'hidden' &&
-                $scope.selectedParagraph.propositions[i].id !== $scope.selectedProposition.id &&
-                $scope.selectedParagraph.propositions[i].type !== 'negation') {
-                // seing if the propositions can just be deleted
+            prep.ids = [];
+            for (var i = 0; i < paragraph.propositions.length; i++){
+              if (( 
+              paragraph.propositions[i].id === $scope.selectedProposition.id) ||
+              (paragraph.propositions[i].type === 'negation' && 
+              paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
+                prep.ids.push(paragraph.propositions[i].id);
+              }               
+            }
+            // now have a list 'ids' of ids to remove
+            // will this end up blanking the paragraph?
+            
+            for (var i = 0 ; i < paragraph.propositions.length; i++){
+              prep.check = paragraph.propositions[i].id;
+              
+              if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
+              !paragraph.propositions[i].hiddenForAll &&
+              !prep.ids.includes(prep.check)){
+                console.log('Theres something that will remain. Blank the proposition for everyone')
+                prep.assigned = true;
                 prep.blankPropositionForEveryone = true;
                 prep.hiddenForAll = true;
                 prep.hideOwn = true;
-                prep.ids = [];
-                for (var i = 0; i < paragraph.propositions.length; i++){
-                  if (( 
-                    paragraph.propositions[i].id === $scope.selectedProposition.id) ||
-                      (paragraph.propositions[i].type === 'negation' && 
-                        paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
-                        prep.ids.push(paragraph.propositions[i].id);
-                  }               
-                }
                 if (prep.ids.length === 1){
                   prep.id = prep.ids[0];
                 }
-                prep.assigned = true;
-                console.log("2A1 or 2A2")
-                break;
+                console.log('2A1 or 2A2')
               }
+              
             }
+            
             if (!prep.assigned) {
               prep.blankParagraphForDeleter = true;
               prep.assigned = true;
+              prep.hideOwn = true;
               console.log("2b1 or 2b2")
               //paragraph will be blanked for deleter, hidden for others
             }
