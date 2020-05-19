@@ -23,7 +23,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">
+                }">{{paragraph.first}}
        
                
     <div class="topparagraphadder"
@@ -97,7 +97,7 @@
 
                       selectLeft(proposition, paragraph)]"
             ng-if="(!proposition.hiddenForAll && !proposition.rejoined && proposition[userId] !== 'hidden') || (proposition.privateFor && proposition.privateFor === userId)"
-            class="proposition">
+            class="proposition">{{proposition.first}}
           
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true]"
