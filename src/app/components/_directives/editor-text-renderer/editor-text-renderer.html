@@ -93,7 +93,7 @@
             ng-init="$first ? paragraph.owner = paragraph.propositions[$index].author : inputs.nothing"
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
-            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node),
+            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node), selectParagraph(paragraph),
 
                       selectLeft(proposition, paragraph)]"
             ng-if="(!proposition.hiddenForAll && !proposition.rejoined && proposition[userId] !== 'hidden') || (proposition.privateFor && proposition.privateFor === userId)"
