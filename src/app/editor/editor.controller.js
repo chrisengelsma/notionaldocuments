@@ -2364,6 +2364,7 @@
                       }
                     }
                   }
+                  break;
                 } 
 
                 // Differentiate here based on whether the selected paragraph is one's own or not
@@ -2469,8 +2470,9 @@
                         break;     
                       }
                     }
+                    
                   }
-
+                  break;
                 } 
                 if (!prep.insertsBelow){
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
@@ -2505,6 +2507,7 @@
                     }
                   }
                 }
+                break;
               } 
               if (!prep.insertsBelow){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
@@ -2558,6 +2561,7 @@
                     }
                   }
                 }
+                break;
               } 
               if (!prep.insertsBelow){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
