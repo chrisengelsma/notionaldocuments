@@ -2390,7 +2390,7 @@
               } else {
                 for (var i = prep.nodeDestination.paragraphs.length-1; i > -1; i--){
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId !prep.insertsAbove){
-                    if (prep.nodeDestination.paragraphs[i-1] !prep.insertsAbove){
+                    if (prep.nodeDestination.paragraphs[i-1] && !prep.insertsAbove){
                       for (var j = i-1; j > -1; j--){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
                           prep.paragraphPosition = j;
