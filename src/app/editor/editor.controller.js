@@ -2348,7 +2348,7 @@
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                       if (prep.nodeDestination.paragraphs[j] && !prep.insertsAbove){
-                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId !prep.insertsAbove){
+                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
                           prep.paragraphPosition = j;
                           prep.position = 0;
                           prep.insertsAbove = true;
