@@ -2337,11 +2337,10 @@
 
               if (prep.candidateParagraphDestination.owner == $scope.userId){
                 //youre the owner
-                console.log("Went through")
-                prep.paragraphPosition = prep.candidateParagraphDestination.position;
+                console.log("Didnt go through")
+                prep.paragraphPosition = prep.candidateParagraphDestination.position+1;
                 prep.position = 0;
                 prep.insertsAbove = true;
-                return;
                 console.log("Putting it above")
 
                 // close off the paragraph above to the user
@@ -2351,7 +2350,7 @@
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-                      if (prep.nodeDestination.paragraphs[j] && !prep.insertsAbove){
+                      if (prep.nodeDestination.paragraphs[j]){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
                           prep.paragraphPosition = j;
                           prep.position = 0;
@@ -2360,7 +2359,7 @@
                           break;
                         }
                       } else {
-                        prep.paragraphPosition = i;
+                        prep.paragraphPosition = j;
                         prep.position = 0;
                         prep.insertsAbove = true;
                         console.log("Placing this as the last paragraph in the section of one's own document")
@@ -2372,17 +2371,17 @@
                 } 
 
                 // Differentiate here based on whether the selected paragraph is one's own or not
-                if($scope.selectedParagraph.owner === $scope.userId){
-                  prep.paragraphPosition = $scope.selectedParagraph.position-1;
-                  prep.position = 0;
-                  prep.insertsAbove = true;
-                  console.log("Putting it above")
-                } else if (!prep.insertsAbove && !prep.insertsBelow){
-                  prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
-                  prep.position = 0;
-                  prep.insertsBelow = true;
-                  console.log("Placing this at the end of the document, if")
-                }
+                // if($scope.selectedParagraph.owner === $scope.userId){
+                //   prep.paragraphPosition = $scope.selectedParagraph.position-1;
+                //   prep.position = 0;
+                //   prep.insertsAbove = true;
+                //   console.log("Putting it above")
+                // } else if (!prep.insertsAbove && !prep.insertsBelow){
+                //   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
+                //   prep.position = 0;
+                //   prep.insertsBelow = true;
+                //   console.log("Placing this at the end of the document, if")
+                // }
               }
             } else {
               // theres no paragraph at a position above
