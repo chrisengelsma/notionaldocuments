@@ -2334,12 +2334,14 @@
               //there's a place to put it above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
               console.log("Candidate destination: ", prep.candidateParagraphDestination)
-              return;
+
               if (prep.candidateParagraphDestination.owner == $scope.userId){
                 //youre the owner
+                console.log("Went through")
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
                 prep.insertsAbove = true;
+                return;
                 console.log("Putting it above")
 
                 // close off the paragraph above to the user
