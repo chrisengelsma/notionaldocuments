@@ -13,7 +13,7 @@
     style="padding-left: 0">
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs"
-      ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false]"
+      ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false, selectParagraph(paragraph)]"
       ng-mouseover="paragraph.mouseOver = true;"
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
@@ -93,7 +93,7 @@
             ng-init="$first ? paragraph.owner = paragraph.propositions[$index].author : inputs.nothing"
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
-            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node), selectParagraph(paragraph),
+            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node), 
 
                       selectLeft(proposition, paragraph)]"
             ng-if="(!proposition.hiddenForAll && !proposition.rejoined && proposition[userId] !== 'hidden') || (proposition.privateFor && proposition.privateFor === userId)"
