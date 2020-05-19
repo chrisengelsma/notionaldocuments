@@ -2491,7 +2491,8 @@
                     console.log("I: ", i, " J: ", j)
                     if (prep.nodeDestination.paragraphs[j] && !prep.insertsBelow){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsBelow){
-                      
+                        console.log("Owner: ", prep.nodeDestination.paragraphs[j].owner)
+                        console.log("Inserts below: ", !prep.insertsBelow)
                         prep.paragraphPosition = j;
                         prep.position = 0;
                         prep.insertsBelow = true;
