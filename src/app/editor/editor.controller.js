@@ -2345,10 +2345,10 @@
                 // if its there but youre not the author at the candidate destination,
                 // find your document
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                  if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
+                  if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-                      if (prep.nodeDestination.paragraphs[j]){
-                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                      if (prep.nodeDestination.paragraphs[j] !prep.insertsAbove){
+                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId !prep.insertsAbove){
                           prep.paragraphPosition = j;
                           prep.position = 0;
                           prep.insertsAbove = true;
@@ -2364,7 +2364,7 @@
                       }
                     }
                   }
-                  break;
+                  
                 } 
 
                 // Differentiate here based on whether the selected paragraph is one's own or not
@@ -2388,27 +2388,27 @@
                 prep.insertsBelow = true;
                 console.log("Placing this at the end of the document, else escape")
               } else {
-              for (var i = prep.nodeDestination.paragraphs.length-1; i > -1; i--){
-                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
-                  if (prep.nodeDestination.paragraphs[i-1]){
-                    for (var j = i-1; j > -1; j--){
-                      if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
-                        prep.paragraphPosition = j;
-                        prep.position = 0;
-                        prep.insertsAbove = true;
-                        console.log("Placing this as the first paragraph in the section of one's own document")
-                        break;
+                for (var i = prep.nodeDestination.paragraphs.length-1; i > -1; i--){
+                  if (prep.nodeDestination.paragraphs[i].owner == $scope.userId !prep.insertsAbove){
+                    if (prep.nodeDestination.paragraphs[i-1] !prep.insertsAbove){
+                      for (var j = i-1; j > -1; j--){
+                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
+                          prep.paragraphPosition = j;
+                          prep.position = 0;
+                          prep.insertsAbove = true;
+                          console.log("Placing this as the first paragraph in the section of one's own document")
+                          break;
+                        }
                       }
+                    } else {
+                      prep.paragraphPosition = 0;
+                      prep.position = 0;
+                      prep.insertsAbove = true;
+                      console.log("Putting at top of authors clump and document")
+                      break;
                     }
-                  } else {
-                    prep.paragraphPosition = 0;
-                    prep.position = 0;
-                    prep.insertsAbove = true;
-                    console.log("Putting at top of authors clump and document")
-                    break;
                   }
                 }
-              }
               } 
               if (!prep.insertsAbove){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
@@ -2432,7 +2432,7 @@
             if (!$scope.newProp){
               prep.candidateParagraphPosition = $scope.selectedParagraph.position+1;
             } else {
-              prep.candidateParagraphPosition = 490951;
+              prep.candidateParagraphPosition = 410951;
             }
             prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
             + ']';
@@ -2453,8 +2453,8 @@
                     console.log("I hit")
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                       console.log("I: ", i, " J: ", j)
-                      if (prep.nodeDestination.paragraphs[j]){
-                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
+                      if (prep.nodeDestination.paragraphs[j] && !prep.insertsBelow){
+                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsBelow){
                         
                           prep.paragraphPosition = j;
                           prep.position = 0;
@@ -2472,7 +2472,7 @@
                     }
                     
                   }
-                  break;
+                  
                 } 
                 if (!prep.insertsBelow){
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
@@ -2485,11 +2485,11 @@
               console.log("Finding ones paragraphs")
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 console.log("I: ", i)
-                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
+                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsBelow){
                   console.log("I hit")
                   for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                     console.log("I: ", i, " J: ", j)
-                    if (prep.nodeDestination.paragraphs[j]){
+                    if (prep.nodeDestination.paragraphs[j] && !prep.insertsBelow){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsBelow){
                       
                         prep.paragraphPosition = j;
@@ -2507,7 +2507,7 @@
                     }
                   }
                 }
-                break;
+               
               } 
               if (!prep.insertsBelow){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
@@ -2542,9 +2542,9 @@
               // close off the paragraph above to the user
             } else {
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
+                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsBelow){
                   for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-                    if (prep.nodeDestination.paragraphs[j]){
+                    if (prep.nodeDestination.paragraphs[j] && !prep.insertsBelow){
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsBelow){
                         prep.paragraphPosition = j;
                         prep.position = 0;
@@ -2561,7 +2561,7 @@
                     }
                   }
                 }
-                break;
+                
               } 
               if (!prep.insertsBelow){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
