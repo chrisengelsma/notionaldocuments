@@ -2490,6 +2490,7 @@
                   for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                     console.log("I: ", i, " J: ", j)
                     if (prep.nodeDestination.paragraphs[j] && !prep.insertsBelow){
+                      console.log("J Paragraph: ", prep.nodeDestination.paragraphs[j])
                       if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsBelow){
                         console.log("Owner: ", prep.nodeDestination.paragraphs[j].owner)
                         console.log("Inserts below: ", !prep.insertsBelow)
