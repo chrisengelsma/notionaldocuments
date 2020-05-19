@@ -8,7 +8,8 @@
     var empty = function(title) {
       return {
         class: 'HA', // What is this?? 
-        // -- ND was originally going to use the Library of Congress' classification system. HA is Statistics - JC
+        // -- ND was originally going to use the Library of Congress' classification system. 
+        //HA is Statistics - JC
         address: [0],
         topic: title,
         isTitle: true,
@@ -31,7 +32,8 @@
                 remarks: [],
                 dialogueSide: false,
                 nodePath: '$scope.data[0]',
-                address: [0]
+                address: [0],
+                first: true
               }
             ]
           }
