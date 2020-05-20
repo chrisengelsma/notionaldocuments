@@ -1526,7 +1526,7 @@
           console.log("Hide blank")
           apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
           apply.paragraphDestination = eval(apply.paragraphPath);
-          apply.propositionPath = apply.paragraphPath + '.propositions[' + payload.position.toString() + ']';
+          apply.propositionPath = apply.paragraphPath + '.propositions[' + payload.proposition.position.toString() + ']';
           apply.propositionDestination = eval(apply.propositionPath)
           if (payload.deleter === $scope.userId){
             if (!apply.paragraphDestination.owner || apply.paragraphDestination.owner !== $scope.userId){  
