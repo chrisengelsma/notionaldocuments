@@ -2350,71 +2350,47 @@
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
                     console.log("I: ", i)
-                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-                      console.log("I: " + i + " J: ", j)
-                      if (prep.nodeDestination.paragraphs[j]){
-                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
-                          prep.paragraphPosition = j;
-                          prep.position = 0;
-                          prep.insertsAbove = true;
-                          console.log("Placing this as the last paragraph in the section of one's own document")
-                          break;
-                        }
-                      } else {
-                        prep.paragraphPosition = j;
+                    if (prep.nodeDestination.paragraphs[i+1]){
+                      if (prep.nodeDestination.paragraphs[i+1].owner !== $scope.userId){
+                        prep.paragraphPosition = i+1;
                         prep.position = 0;
                         prep.insertsAbove = true;
                         console.log("Placing this as the last paragraph in the section of one's own document")
                         break;
-                      }
+                      } 
+                    } else {
+                      prep.paragraphPosition = i+1;
+                      prep.position = 0;
+                      prep.insertsAbove = true;
+                      console.log("Placing this as the last paragraph in the section of one's own document")
+                      break;
                     }
-                  }
-                  
+                  }            
                 } 
-
-                // Differentiate here based on whether the selected paragraph is one's own or not
-                // if($scope.selectedParagraph.owner === $scope.userId){
-                //   prep.paragraphPosition = $scope.selectedParagraph.position-1;
-                //   prep.position = 0;
-                //   prep.insertsAbove = true;
-                //   console.log("Putting it above")
-                // } else if (!prep.insertsAbove && !prep.insertsBelow){
-                //   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
-                //   prep.position = 0;
-                //   prep.insertsBelow = true;
-                //   console.log("Placing this at the end of the document, if")
-                // }
               }
             } else {
               // theres no paragraph at a position above
-              if (prep.nodeDestination.paragraphs[$scope.selectedParagraph.position].owner !== $scope.userId){
-                prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
-                prep.position = 0;
-                prep.insertsBelow = true;
-                console.log("Placing this at the end of the document, else escape")
-              } else {
-                for (var i = prep.nodeDestination.paragraphs.length-1; i > -1; i--){
-                  if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
-                    if (prep.nodeDestination.paragraphs[i-1] && !prep.insertsAbove){
-                      for (var j = i-1; j > -1; j--){
-                        if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
-                          prep.paragraphPosition = j;
-                          prep.position = 0;
-                          prep.insertsAbove = true;
-                          console.log("Placing this as the first paragraph in the section of one's own document")
-                          break;
-                        }
-                      }
-                    } else {
-                      prep.paragraphPosition = 0;
+              for (var i = 0; i < prep.nodeDestination.paragraphs.length i++){
+                if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
+                  console.log("I: ", i)
+                  if (prep.nodeDestination.paragraphs[i+1]){
+                    if (prep.nodeDestination.paragraphs[i+1].owner !== $scope.userId){
+                      prep.paragraphPosition = i+1;
                       prep.position = 0;
                       prep.insertsAbove = true;
-                      console.log("Putting at top of authors clump and document")
+                      console.log("Placing this as the last paragraph in the section of one's own document")
                       break;
-                    }
+                    } 
+                  } else {
+                    prep.paragraphPosition = i+1;
+                    prep.position = 0;
+                    prep.insertsAbove = true;
+                    console.log("Placing this as the last paragraph in the section of one's own document")
+                    break;
                   }
                 }
-              } 
+              }
+              
               if (!prep.insertsAbove){
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
