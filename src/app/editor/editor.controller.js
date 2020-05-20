@@ -3109,6 +3109,7 @@
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
                     console.log("For, i: ", i, " j: ", j)
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
+                      console.log("Inner if")
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
                       (i + 1).toString() + '].propositions[' + j.toString() + ']';
                     }
