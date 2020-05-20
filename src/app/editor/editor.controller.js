@@ -2338,7 +2338,7 @@
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
                 prep.insertsAbove = true;
-                console.log("Putting it above")
+                console.log("Putting it above, 1st")
 
                 // close off the paragraph above to the user
               } else {
@@ -2352,14 +2352,14 @@
                           prep.paragraphPosition = j;
                           prep.position = 0;
                           prep.insertsAbove = true;
-                          console.log("Placing this as the last paragraph in the section of one's own document")
+                          console.log("Placing this as the last paragraph in the section of one's own document 1st")
                           break;
                         }
                       } else {
                         prep.paragraphPosition = i;
                         prep.position = 0;
                         prep.insertsAbove = true;
-                        console.log("Placing this as the last paragraph in the section of one's own document")
+                        console.log("Placing this as the last paragraph in the section of one's own document 2nd")
                         break;
                       }
                     }
@@ -2371,7 +2371,7 @@
                   prep.paragraphPosition = $scope.selectedParagraph.position-1;
                   prep.position = 0;
                   prep.insertsAbove = true;
-                  console.log("Putting it above")
+                  console.log("Putting it above, lower")
                 } else if (!prep.insertsAbove && !prep.insertsBelow){
                   prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                   prep.position = 0;
@@ -2395,7 +2395,7 @@
                         prep.paragraphPosition = j;
                         prep.position = 0;
                         prep.insertsAbove = true;
-                        console.log("Placing this as the first paragraph in the section of one's own document")
+                        console.log("Placing this as the first paragraph in the section of one's own document, else escape")
                         break;
                       }
                     }
