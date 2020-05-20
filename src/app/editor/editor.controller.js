@@ -3127,8 +3127,8 @@
 
 
                   for (var l = 0; l < $scope.propositions.length; l++) {
-                    if ($scope.propositions[i].assertionId === payload.proposition.assertionId) {
-                      $scope.propositions[i].assertionPath = payload.proposition.assertionPath;
+                    if ($scope.propositions[l].assertionId === payload.proposition.assertionId) {
+                      $scope.propositions[l].assertionPath = payload.proposition.assertionPath;
                     }
                   }
                 }
