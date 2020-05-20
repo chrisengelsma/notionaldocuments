@@ -2378,14 +2378,14 @@
                       prep.paragraphPosition = i+1;
                       prep.position = 0;
                       prep.insertsAbove = true;
-                      console.log("Placing this as the last paragraph in the section of one's own document")
+                      console.log("Placing this as the last paragraph in the section of one's own document, 3rd")
                       break;
                     } 
                   } else {
                     prep.paragraphPosition = i+1;
                     prep.position = 0;
                     prep.insertsAbove = true;
-                    console.log("Placing this as the last paragraph in the section of one's own document")
+                    console.log("Placing this as the last paragraph in the section of one's own document, 4th")
                     break;
                   }
                 }
