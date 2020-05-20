@@ -2443,7 +2443,7 @@
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
                 prep.insertsBelow = true;
-                console.log("Putting it below")
+                console.log("Putting it below, top")
               } else {
                 console.log("Finding ones paragraphs")
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
@@ -2458,7 +2458,7 @@
                           prep.paragraphPosition = j;
                           prep.position = 0;
                           prep.insertsBelow = true;
-                          console.log("Placing this as the last paragraph in the section of one's own document")
+                          console.log("Placing this as the last paragraph in the section of one's own document, 1st")
                           break;
                         }
                       } else {
@@ -2493,14 +2493,14 @@
                         prep.paragraphPosition = j;
                         prep.position = 0;
                         prep.insertsBelow = true;
-                        console.log("Placing this as the last paragraph in the section of one's own document")
+                        console.log("Placing this as the last paragraph in the section of one's own document, 2nd")
                         break;
                       }
                     } else {
                       prep.paragraphPosition = i;
                       prep.position = 0;
                       prep.insertsBelow = true;
-                      console.log("Placing this at the end of the document as paragraphs stretch to the bottom of the section") 
+                      console.log("Placing this at the end of the document as paragraphs stretch to the bottom of the section, 2nd") 
                       break;      
                     }
                   }
@@ -2510,7 +2510,7 @@
                 prep.paragraphPosition = prep.nodeDestination.paragraphs.length;
                 prep.position = 0;
                 prep.insertsBelow = true;
-                console.log("Placing this at the end of the document as not have found")
+                console.log("Placing this at the end of the document as not have found, 2nd")
               }
            
 
