@@ -1537,11 +1537,12 @@
             } else if (apply.paragraphDestination.owner === $scope.userId){
               console.log("else if")
               for (var i = payload.paragraphPosition; i > -1 ; i--){
+                console.log("This i: ", i)
                 if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
                   apply.nodeDestination.paragraphs[i].hiddenForAll != true){
                   // go and see what is to be clicked on
                   console.log("into this if")
-                  for (var j = apply.nodeDestination.paragraphs[i].propositions.length; j > -1; j--){
+                  for (var j = apply.nodeDestination.paragraphs[i].propositions.length-1; j > -1; j--){
                     if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
                     !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
                     apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId &&
