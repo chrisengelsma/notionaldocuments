@@ -2370,7 +2370,7 @@
               }
             } else {
               // theres no paragraph at a position above
-              for (var i = 0; i < prep.nodeDestination.paragraphs.length i++){
+              for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
                   console.log("I: ", i)
                   if (prep.nodeDestination.paragraphs[i+1]){
