@@ -3107,13 +3107,14 @@
                   }
                   apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
-                    console.log("For")
+                    console.log("For, i: ", i, " j: ", j)
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
                       (i + 1).toString() + '].propositions[' + j.toString() + ']';
                     }
                     console.log("After if")
                     for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
+                      console.log("K: ", k)
                       if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
                         apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === 
                         apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
