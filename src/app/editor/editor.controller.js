@@ -3079,6 +3079,7 @@
 
 
             } else if (payload.proposition.insertsBelow) {
+              console.log("Inserts below")
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition - 1).toString() + ']';
@@ -3087,6 +3088,7 @@
               // apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
+                console.log("Undefined")
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     paragraphId: payload.paragraphId,
@@ -3094,6 +3096,7 @@
                     propositions: [payload.proposition]
                   };
               } else {
+                console.log("Else inserts below")
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
                   apply.nodeDestination.paragraphs[i].position++;
                   if ($scope.selectedParagraph){
