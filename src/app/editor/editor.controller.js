@@ -2368,7 +2368,7 @@
 
                 // Differentiate here based on whether the selected paragraph is one's own or not
                 if($scope.selectedParagraph.owner === $scope.userId){
-                  prep.paragraphPosition = $scope.selectedParagraph.position-1;
+                  prep.paragraphPosition = $scope.selectedParagraph.position;
                   prep.position = 0;
                   prep.insertsAbove = true;
                   console.log("Putting it above, lower")
