@@ -2349,7 +2349,9 @@
                 // find your document
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsAbove){
+                    console.log("I: ", i)
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
+                      console.log("I: " + i + " J: ", j)
                       if (prep.nodeDestination.paragraphs[j]){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId && !prep.insertsAbove){
                           prep.paragraphPosition = j;
