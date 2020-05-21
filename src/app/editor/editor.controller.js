@@ -1013,6 +1013,14 @@
         }
       }
 
+      $scope.carriageReturn = function(node, paragraph){
+        if (paragraph.owner !== $scope.userId){
+          return;
+        }
+        var query = paragraph.paragraphId;
+        $(query).trigger('click');
+      }
+
       // Selects proposition (propositions are often selected without this function)
       $scope.selectProposition = function(proposition) {
         if ($scope.selectedProposition){
