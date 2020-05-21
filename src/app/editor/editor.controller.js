@@ -1030,7 +1030,7 @@
         var query = paragraph.paragraphId;
         console.log("Query: ", query)
         $timeout( function(){
-          query.click(); 
+          
           $('#' + query).trigger('click');
         },0)
         
