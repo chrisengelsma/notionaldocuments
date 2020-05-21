@@ -1028,6 +1028,7 @@
           return;
         }
         var query = paragraph.paragraphId;
+        console.log("Query: ", query)
         $(query).trigger('click');
       }
 
