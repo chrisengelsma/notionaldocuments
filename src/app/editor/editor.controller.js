@@ -1021,6 +1021,26 @@
         console.log("Ran")
       }
 
+      $scope.reverseCarriageReturn = function(node, paragraph){
+        console.log("Reverse carriage return")
+
+        console.log("else")
+        for (var i = paragraph.propositions.length-1; i > -1; i--){
+          console.log("i: ", i)
+          // see if the carriage return is coming from the last visible proposition in the paragraph
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && 
+          paragraph.propositions[i].hiddenForAll !== true &&
+          paragraph.owner === $scope.userId){
+            console.log("get element by id: ")
+            var query = paragraph.propositions[i].id;
+            console.log("Query: ", query)
+            $timeout( function(){              
+              $('#' + query).trigger('click');
+            },0)
+          }     
+        }    
+      }
+
       $scope.carriageReturn = function(node, paragraph){
         console.log("Carriage return")
         if (paragraph.owner !== $scope.userId){
