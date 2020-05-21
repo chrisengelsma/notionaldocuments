@@ -1535,8 +1535,13 @@
               apply.paragraphDestination.hiddenForAll = true;
               apply.assigned = true;
             } else if (apply.paragraphDestination.owner === $scope.userId){
+              apply.propositionDestination.hiddenForAll = true;
+              apply.paragraphDestination.hiddenForAll = true;
+              apply.assigned = true;
+              //hides them
               console.log("else if")
               for (var i = payload.paragraphPosition; i > -1 ; i--){
+                // go through the paragraph
                 console.log("This i: ", i)
                 if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
                   apply.nodeDestination.paragraphs[i].hiddenForAll != true){
@@ -1547,6 +1552,7 @@
                     !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
                     apply.nodeDestination.paragraphs[i].propositions[j].author === $scope.userId &&
                     apply.nodeDestination.paragraphs[i].propositions[j].type !== 'negation'){
+                      console.log("clicking")
                       $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
                       $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
                       $scope.selectedProposition.textSide = true;
