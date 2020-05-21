@@ -191,6 +191,8 @@
                     (proposition.author === userId && proposition.type !== 'negation' && selectedProposition.textSide)
                     ?  [ 
                          clearBlankOnBlur(),
+                         mark.id = '',
+                         highlight.id = '',
                          selectNode(node),
                          selectParagraph(paragraph),
                          selectedParagraph = paragraph,
@@ -226,10 +228,6 @@
                             $event.stopPropagation()
                             ]
                           : inputs.nothing"
-                 
-              
-
-             
                 class="proposition-text"
                 ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
                 
