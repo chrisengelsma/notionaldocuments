@@ -1017,6 +1017,10 @@
         }
       }
 
+      $scope.didItRun = function () {
+        console.log("Ran")
+      }
+
       $scope.carriageReturn = function(node, paragraph){
         console.log("Carriage return")
         if (paragraph.owner !== $scope.userId){
