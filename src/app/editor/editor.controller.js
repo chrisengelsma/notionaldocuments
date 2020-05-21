@@ -1028,12 +1028,15 @@
           document.getElementById($scope.selectedProposition.id).innerText = '';
           return;
         } else{
+          console.log("else")
           for (var i = paragraph.propositions.length-1; i > -1; i--){
+            console.log("i: ", i)
             // see if the carriage return is coming from the last visible proposition in the paragraph
             if (paragraph.propositions[i][$scope.userId] !== 'hidden' && 
             paragraph.propositions[i].hiddenForAll !== true &&
             paragraph.owner === $scope.userId &&
             $scope.selectProposition.type !== 'blank'){
+              console.log("outer if")
               if ($scope.selectProposition.id === paragraph.propositions[i]){
                 console.log("get element by id: ")
                 document.getElementById($scope.selectedProposition.id).innerText = '';
