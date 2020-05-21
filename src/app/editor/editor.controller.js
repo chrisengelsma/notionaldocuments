@@ -1026,15 +1026,27 @@
         if (paragraph.owner !== $scope.userId){
           console.log("Returns")
           return;
-        }
-        $scope.selectedProposition = {};
-        var query = paragraph.paragraphId;
-        console.log("Query: ", query)
-        $timeout( function(){
-          
-          $('#' + query).trigger('click');
-        },0)
-        
+        } else{
+          for (var i = paragraph.propositions.length; i > -1; i--){
+            // see if the carriage return is coming from the last visible proposition in the paragraph
+            if (paragraph.propositions[i][$scope.userId] !== 'hidden' && 
+            paragraph.propositions[i].hiddenForAll !== true &&
+            paragraph.owner === $scope.userId &&
+            $scope.selectProposition.type !== 'blank'){
+              if ($scope.selectProposition.id === paragraph.propositions[i]){
+                $scope.selectedProposition = {};
+                var query = paragraph.paragraphId;
+                console.log("Query: ", query)
+                $timeout( function(){              
+                  $('#' + query).trigger('click');
+                },0)
+                return;
+              } else {
+                return;
+              }
+            }     
+          }
+        }   
       }
 
       // Selects proposition (propositions are often selected without this function)
