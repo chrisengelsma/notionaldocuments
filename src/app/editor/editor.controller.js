@@ -1027,6 +1027,7 @@
           console.log("Returns")
           return;
         }
+        $scope.selectedProposition = {};
         var query = paragraph.paragraphId;
         console.log("Query: ", query)
         $timeout( function(){
