@@ -1029,7 +1029,7 @@
         }
         var query = paragraph.paragraphId;
         console.log("Query: ", query)
-        $(query).trigger('click');
+        $('#' + query).trigger('click');
       }
 
       // Selects proposition (propositions are often selected without this function)
