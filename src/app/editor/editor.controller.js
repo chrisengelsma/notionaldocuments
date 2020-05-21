@@ -1014,7 +1014,9 @@
       }
 
       $scope.carriageReturn = function(node, paragraph){
+        console.log("Carriage return")
         if (paragraph.owner !== $scope.userId){
+          console.log("Returns")
           return;
         }
         var query = paragraph.paragraphId;
