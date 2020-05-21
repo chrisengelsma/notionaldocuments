@@ -1025,6 +1025,7 @@
         console.log("Carriage return")
         if (paragraph.owner !== $scope.userId){
           console.log("Returns")
+          document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
           return;
         } else{
           for (var i = paragraph.propositions.length; i > -1; i--){
@@ -1034,6 +1035,7 @@
             paragraph.owner === $scope.userId &&
             $scope.selectProposition.type !== 'blank'){
               if ($scope.selectProposition.id === paragraph.propositions[i]){
+                document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
                 $scope.selectedProposition = {};
                 var query = paragraph.paragraphId;
                 console.log("Query: ", query)
@@ -1042,6 +1044,7 @@
                 },0)
                 return;
               } else {
+                document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
                 return;
               }
             }     
