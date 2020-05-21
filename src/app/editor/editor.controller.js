@@ -1039,7 +1039,7 @@
               console.log("outer if")
               console.log("Paragraph propositions id: ", paragraph.propositions[i].id)
               console.log("Selected prop id: ", $scope.selectedProposition.id)
-              if ($scope.selectProposition.id === paragraph.propositions[i].id){
+              if ($scope.selectedProposition.id === paragraph.propositions[i].id){
                 console.log("get element by id: ")
                 document.getElementById($scope.selectedProposition.id).innerText = '';
                 $scope.selectedProposition = {};
