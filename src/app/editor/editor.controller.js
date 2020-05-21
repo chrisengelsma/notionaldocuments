@@ -1025,7 +1025,7 @@
         console.log("Carriage return")
         if (paragraph.owner !== $scope.userId){
           console.log("Returns")
-          document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
+          document.getElementById('proposition' + $scope.selectedProposition.id).innerText = '';
           return;
         } else{
           for (var i = paragraph.propositions.length-1; i > -1; i--){
@@ -1045,7 +1045,7 @@
                 },0)
                 return;
               } else {
-                document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
+                document.getElementById('proposition' + $scope.selectedProposition.id).innerText = '';
                 return;
               }
             }     
