@@ -990,8 +990,10 @@
         for (var i = 0; i < node.paragraphs.length; i++){
           if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
             if (node.paragraphs[i].paragraphId === paragraphId){
+              console.log("True find first paragraph")
               return true
             } else {
+              console.log("false find first paragraph")
               return false
             }
           }
@@ -1005,8 +1007,10 @@
         for (var i = 0; i < paragraph.propositions.length; i++){
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
             if (paragraph.propositions[i].id === id){
+              console.log("True find first proposition")
               return true
             } else {
+              console.log("False find first propositions")
               return false
             }
           }
