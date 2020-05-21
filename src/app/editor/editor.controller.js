@@ -1535,7 +1535,9 @@
               apply.paragraphDestination.hiddenForAll = true;
               apply.assigned = true;
             } else if (apply.paragraphDestination.owner === $scope.userId){
-              
+              apply.propositionDestination.hiddenForAll = true;
+              apply.paragraphDestination.hiddenForAll = true;
+              apply.assigned = true;
               //hides them
               console.log("else if")
               for (var i = payload.paragraphPosition; i > -1 ; i--){
@@ -1546,9 +1548,6 @@
                   i < payload.paragraphPosition ){
                   // go and see what is to be clicked on
                   console.log("into this if")
-                  apply.propositionDestination.hiddenForAll = true;
-                  apply.paragraphDestination.hiddenForAll = true;
-                  apply.assigned = true;
                   for (var j = apply.nodeDestination.paragraphs[i].propositions.length-1; j > -1; j--){
                     if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
                     !apply.nodeDestination.paragraphs[i].propositions[j].rejoined &&
@@ -1562,9 +1561,6 @@
                       var query = 'proposition' + $scope.selectedProposition.id;
                       $(query).trigger('click');
                       query = '';                     
-                      apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll = true;
-                      apply.paragraphDestination.hiddenForAll = true;
-                      apply.assigned = true;
                       break;
                     }
                   }
