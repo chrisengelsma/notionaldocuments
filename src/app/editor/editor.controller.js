@@ -1035,7 +1035,7 @@
             var query = paragraph.propositions[i].id;
             console.log("Query: ", query)
             $timeout( function(){              
-              $('#' + query).trigger('click');
+              $('#proposition' + query).trigger('click');
             },0)
           }     
         }    
