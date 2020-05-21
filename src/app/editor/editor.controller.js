@@ -1028,7 +1028,7 @@
           document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
           return;
         } else{
-          for (var i = paragraph.propositions.length; i > -1; i--){
+          for (var i = paragraph.propositions.length-1; i > -1; i--){
             // see if the carriage return is coming from the last visible proposition in the paragraph
             if (paragraph.propositions[i][$scope.userId] !== 'hidden' && 
             paragraph.propositions[i].hiddenForAll !== true &&
