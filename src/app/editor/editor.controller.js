@@ -1544,7 +1544,8 @@
                 // go through the paragraph
                 console.log("This i: ", i)
                 if(apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-                  apply.nodeDestination.paragraphs[i].hiddenForAll != true){
+                  apply.nodeDestination.paragraphs[i].hiddenForAll != true &&
+                  i < payload.paragraphPosition ){
                   // go and see what is to be clicked on
                   console.log("into this if")
                   for (var j = apply.nodeDestination.paragraphs[i].propositions.length-1; j > -1; j--){
