@@ -1035,7 +1035,8 @@
             paragraph.owner === $scope.userId &&
             $scope.selectProposition.type !== 'blank'){
               if ($scope.selectProposition.id === paragraph.propositions[i]){
-                document.getElementById('proposition' + $scope.selectProposition.id).innerText = '';
+                console.log("get element by id: ", )
+                document.getElementById('proposition' + $scope.selectedProposition.id).innerText = '';
                 $scope.selectedProposition = {};
                 var query = paragraph.paragraphId;
                 console.log("Query: ", query)
