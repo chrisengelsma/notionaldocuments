@@ -1104,6 +1104,8 @@
             if ($scope.whatHasBeenClicked){
               for (var i = 0; i < $scope.propositions.length; i++){
                 if ($scope.whatHasBeenClicked === $scope.propositions[i].id){
+                  console.log("What has been clicked editable: ", $scope.whatHasBeenClicked)
+                  // is either clearing what has been clicked or somehow made the proposition inaccessible
                   document.getElementById('proposition' + $scope.whatHasBeenClicked).innerText = $scope.propositions[i].text;
                 }
               
