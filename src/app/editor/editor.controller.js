@@ -3855,34 +3855,46 @@
         return id;
       }
 
-      $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
+      $scope.blurLightUpLastVisiblePropositionInParagraph = function(node, paragraph, event){
+        for (var i = paragraph.propositions.length-1; i > -1; i--){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
+            paragraph.propositions[i].preSelected == true){
+            paragraph.propositions[i].preSelected = false;
+            break;
+          }
+        }
+      }
 
+      $scope.lightUpLastVisiblePropositionInParagraph = function (node, paragraph, event) {
         if (event.target.localName !== 'ol'  ){
           return;
         }
+        for (var i = paragraph.propositions.length-1; i > -1; i--){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
+            paragraph.propositions[i].preSelected = true;
+            break;
+          }
+        }
+      }
 
+      $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
+        if (event.target.localName !== 'ol'  ){
+          return;
+        }
         $scope.selectedNode = node;
-
         $scope.selectedParagraph = paragraph;
-
-
         for (var i = paragraph.propositions.length-1; i > -1; i--){
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
             $scope.selectedProposition = paragraph.propositions[i];
             break;
           }
         }
-
-
         var id = $scope.selectedProposition.id;
-
-
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
           var range = document.createRange();
           var contenteditable = document.getElementById(id)
- 
           if (contenteditable.lastChild && contenteditable.contentEditable) {
             range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
           } else {
@@ -3892,7 +3904,6 @@
           selection.addRange(range);
         }, 10); 
       }
-
 
       $scope.hideExpandingTextarea = function () {
         // setTimeout(function() {
@@ -4158,8 +4169,6 @@
           });
           $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].deleted = true;
         }
-
-
         // Need to write for deletions of paragraphs
 
         // This disables interactivity for deleted remarks
@@ -4175,9 +4184,6 @@
             }
             }
           }
-        
-
-
         callback();
       };
     }; // end mainLoop

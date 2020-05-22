@@ -85,7 +85,8 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-
+          ng-mouseover="lightUpLastVisiblePropositionInParagraph(node, paragraph, event)"
+          ng-mouseleave="blurLightUpLastVisiblePropositionInParagraph(node, paragraph, event)"
           ng-class="{'addbelownotowned': hasBottomFocus.id == paragraph.paragraphId && paragraph.owner !== userId && paragraph.owner !== ''}"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
@@ -262,7 +263,7 @@
               <!-- Need focus variables for left and right -->
               
           <span class="cursor"
-                ng-class="{'visible-cursor': (proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && hasRightFocus.id !== proposition.id),
+                ng-class="{'visible-cursor': ((proposition.preSelected && !paragraph.leftMouseOver && !paragraph.disableRightCursor && hasRightFocus.id !== proposition.id)),
                            'invisible-cursor': !proposition.preSelected || paragraph.leftMouseOver || paragraph.disableRightCursor || hasRightFocus.id === proposition.id}"
 
                 ng-click="[clearBlankOnBlur(), selectProposition(proposition), paragraph.disableRightCursor = true, selectedProposition.textSide = true, paragraph.topAdd = false, paragraph.bottomAdd = false, paragraph.leftAdd = false]"
