@@ -3883,9 +3883,10 @@
           return;
         }
         $scope.selectedNode = node;
-        $scope.selectedParagraph = paragraph;
+        
         for (var i = node.paragraphs.length-1; i > -1; i--){
           if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
+            $scope.selectedParagraph = node.paragraphs[i];
             for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
               if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && !node.paragraphs[i].propositions[j].hiddenForAll){
                 $scope.selectedProposition = node.paragraphs[i].propositions[j];
