@@ -3935,7 +3935,7 @@
         }
         console.log('to for')
         for (var i = paragraph.propositions.length-1; i > -1; i--){
-          console.log('I: ' i)
+          console.log('I: ', i)
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
             console.log("inside if")
             paragraph.propositions[i].preSelected = true;
