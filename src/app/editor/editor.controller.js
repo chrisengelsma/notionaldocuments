@@ -3823,7 +3823,9 @@
         //Find the rightmost child, if any
 
         if (destination.children){
+          console.log("if children")
           while (destination.children){
+          console.log("while children")
 
           path = path + '.children[' + (destination.children.length-1).toString() + ']';
           destination = eval(path);
