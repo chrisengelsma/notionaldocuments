@@ -3850,6 +3850,7 @@
       }
 
       $scope.blurLightUpLastVisiblePropositionInNode = function(node, event){
+        console.log("Blur runs")
         for (var i = node.paragraphs.length-1; i > -1; i--){
           if (node.paragraphs[i][$scope.userId] !== 'hidden' && !node.paragraphs[i].hiddenForAll){
             for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
@@ -3863,6 +3864,8 @@
       }
 
       $scope.lightUpLastVisiblePropositionInNode = function (node, event) {
+        console.log("Lightup runs")
+
         if (event.target.localName !== 'ol'  ){
           return;
         }
@@ -3879,6 +3882,8 @@
       }
 
       $scope.getLastVisiblePropositionInNode = function(node, event){
+        console.log("Get runs")
+
         if (event.target.localName !== 'ol'  ){
           return;
         }
