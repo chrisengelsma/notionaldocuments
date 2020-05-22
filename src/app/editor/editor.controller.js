@@ -3912,7 +3912,7 @@
             selection.removeAllRanges();
             selection.addRange(range);
           }, 10); 
-        }
+        
       }
 
       $scope.blurLightUpLastVisiblePropositionInNode = function(node, event){
