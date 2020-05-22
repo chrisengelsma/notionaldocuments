@@ -11,9 +11,9 @@
 <ol ui-tree-nodes
     ng-model="node.paragraphs"
     style="padding-left: 0"
-    ng-mouseover="lightUpLastVisiblePropositionInNode(node, paragraph, $event)"
-    ng-mouseleave="blurLightUpLastVisiblePropositionInNode(node, paragraph, $event)"
-    ng-click="getLastVisiblePropositionInNode(node,paragraph,$event)">
+    ng-mouseover="lightUpLastVisiblePropositionInNode(node, $event)"
+    ng-mouseleave="blurLightUpLastVisiblePropositionInNode(node, $event)"
+    ng-click="getLastVisiblePropositionInNode(node, $event)">
 
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs"
