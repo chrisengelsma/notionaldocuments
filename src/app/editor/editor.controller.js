@@ -3857,6 +3857,7 @@
               if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && node.paragraphs[i].propositions[j].hiddenForAll !== true &&
                 node.paragraphs[i].propositions[j].preSelected == true){
                 node.paragraphs[i].propositions[j].preSelected = false;
+                return;
               }
             }
           }
@@ -3874,7 +3875,7 @@
             for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
               if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && node.paragraphs[i].propositions[j].hiddenForAll !== true){
                 node.paragraphs[i].propositions[j].preSelected = true;
-                break;
+                return;
               }
             }
           }
@@ -3917,6 +3918,7 @@
       }
 
       $scope.blurLightUpLastVisiblePropositionInParagraph = function(node, paragraph, event){
+        console.log('b')
         for (var i = paragraph.propositions.length-1; i > -1; i--){
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
             paragraph.propositions[i].preSelected == true){
@@ -3927,6 +3929,7 @@
       }
 
       $scope.lightUpLastVisiblePropositionInParagraph = function (node, paragraph, event) {
+        console.log('l')
         if (event.target.localName !== 'ol'  ){
           return;
         }
@@ -3939,6 +3942,7 @@
       }
 
       $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
+        console.log('g')
         if (event.target.localName !== 'ol'  ){
           return;
         }
