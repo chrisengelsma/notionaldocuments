@@ -176,7 +176,9 @@
             style=""
             id="bookdata"
             class="angular-ui-tree-nodes"
-            ng-click="">
+            ng-mouseover="lightUpLastVisiblePropositionInBook(data[0], $event)"
+            ng-mouseleave="blurLightUpLastVisiblePropositionInBook(data[0], $event)"
+            ng-click="getLastVisiblePropositionInBook(data[0], $event)">
 
           <li ng-repeat="node in data | orderBy: 'class'"
               ui-tree-node

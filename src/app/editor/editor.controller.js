@@ -3778,11 +3778,8 @@
         $scope.selectPropositionById($scope.toSetLater.remarkId) 
       }
 
-
-
-      $scope.getLastVisiblePropositionInBook = function () {
-
-        console.log('Get last in book')
+      $scope.blurLightUpLastVisiblePropositionInBook = function(book, event){
+        console.log("B Book")
 
         var path = '$scope.data[0]';
         var destination = eval(path);
@@ -3799,58 +3796,127 @@
           } 
         }
 
-        $scope.selectedNode = destination;
+        var node = angular.copy(destination)
 
-        // Find the rightmost visible paragraph
+        for (var i = node.paragraphs.length-1; i > -1; i--){
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' && !node.paragraphs[i].hiddenForAll){
+            for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
+              node.paragraphs[i].propositions[j].hiddenForAll !== true &&
+              node.paragraphs[i].propositions[j].preSelected == true){
+                node.paragraphs[i].propositions[j].preSelected = false;
+                return;
+              }
+            }
+          }
+        }
+      }
+
+      $scope.lightUpLastVisiblePropositionInBook = function (book, event) {
+        console.log("L Book")
+
+        var path = '$scope.data[0]';
+        var destination = eval(path);
+        var id = '';
+        var flagged;
+
+        //Find the rightmost child, if any
+
+        if (destination.children){
+          while (destination.children){
+
+          path = path + '.children[' + (destination.children.length-1).toString() + ']';
+          destination = eval(path);
+          } 
+        }
+
         for (var i = destination.paragraphs.length-1; i > -1; i--){
-          if (destination.paragraphs[i][$scope.userId] !== 'hidden' && destination.paragraphs[i].hiddenForAll !== true){
-            path = path + '.paragraphs[' + i.toString() + ']';
-            destination = eval(path);
-            break;
+          if (destination.paragraphs[i][$scope.userId] !== 'hidden' && !destination.paragraphs[i].hiddenForAll){
+            for (var j = destination.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (destination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
+              destination.paragraphs[i].propositions[j].hiddenForAll !== true){
+                destination.paragraphs[i].propositions[j].preSelected = true;
+                return;
+              }
+            }
           }
         }
 
-        $scope.selectedParagraph = destination;
+      }
 
-        // Find the rightmost visible proposition
-        for (var i = destination.propositions.length-1; i > -1; i--){
-          if (destination.propositions[i][$scope.userId] !== 'hidden' && destination.paragraphs[i].hiddenForAll !== true){
-            path = path + '.propositions[' + i.toString() + ']';
+      $scope.getLastVisiblePropositionInBook = function(book, event){
+        // console.log("Get runs")
+
+          console.log('G B')
+
+          var path = '$scope.data[0]';
+          var destination = eval(path);
+          var id = '';
+          var flagged;
+
+          //Find the rightmost child, if any
+
+          if (destination.children){
+            while (destination.children){
+
+            path = path + '.children[' + (destination.children.length-1).toString() + ']';
             destination = eval(path);
-            flagged = true;
-            break;
+            } 
           }
+
+          $scope.selectedNode = angular.copy(destination);
+
+          // Find the rightmost visible paragraph
+          for (var i = destination.paragraphs.length-1; i > -1; i--){
+            if (destination.paragraphs[i][$scope.userId] !== 'hidden' && destination.paragraphs[i].hiddenForAll !== true){
+              path = path + '.paragraphs[' + i.toString() + ']';
+              destination = eval(path);
+              break;
+            }
+          }
+
+          $scope.selectedParagraph = angular.copy(destination);
+
+          // Find the rightmost visible proposition
+          for (var i = destination.propositions.length-1; i > -1; i--){
+            if (destination.propositions[i][$scope.userId] !== 'hidden' && destination.paragraphs[i].hiddenForAll !== true){
+              path = path + '.propositions[' + i.toString() + ']';
+              destination = eval(path);
+              flagged = true;
+              break;
+            }
+          }
+
+          // if (!flagged){
+          //   $scope.selectedProposition = destination;
+          // }
+          $scope.selectedProposition = angular.copy(destination);
+
+          // Click the id of the proposition landed upon
+          id = destination.id;
+
+          $timeout(function() {
+            focusFactory(id)
+            
+            var selection = document.getSelection();
+            var range = document.createRange();
+            var contenteditable = document.getElementById(id)
+
+            // Was contenteditable.lastChild.nodeType == 3 condition below here
+        
+            if (contenteditable.contentEditable) {
+              range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+            } else{
+              range.setStart(contenteditable,contenteditable.childNodes.length);
+            }
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }, 10); 
         }
-
-        // if (!flagged){
-        //   $scope.selectedProposition = destination;
-        // }
-        $scope.selectedProposition = destination;
-
-        // Click the id of the proposition landed upon
-        id = destination.id;
-
-        $timeout(function() {
-          focusFactory(id)
-          
-          var selection = document.getSelection();
-          var range = document.createRange();
-          var contenteditable = document.getElementById(id)
-
-          // Was contenteditable.lastChild.nodeType == 3 condition below here
- 
-          if (contenteditable.contentEditable) {
-            range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
-          } else{
-            range.setStart(contenteditable,contenteditable.childNodes.length);
-          }
-          selection.removeAllRanges();
-          selection.addRange(range);
-        }, 10); 
       }
 
       $scope.blurLightUpLastVisiblePropositionInNode = function(node, event){
-        console.log("Blur runs")
+        console.log("B N")
         for (var i = node.paragraphs.length-1; i > -1; i--){
           if (node.paragraphs[i][$scope.userId] !== 'hidden' && !node.paragraphs[i].hiddenForAll){
             for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
@@ -3865,7 +3931,7 @@
       }
 
       $scope.lightUpLastVisiblePropositionInNode = function (node, event) {
-        console.log("Lightup runs")
+        console.log("L N")
 
         if (event.target.localName !== 'ol'  ){
           return;
@@ -3883,7 +3949,7 @@
       }
 
       $scope.getLastVisiblePropositionInNode = function(node, event){
-        console.log("Get runs")
+        console.log("G N")
 
         if (event.target.localName !== 'ol'  ){
           return;
@@ -3918,7 +3984,7 @@
       }
 
       $scope.blurLightUpLastVisiblePropositionInParagraph = function(node, paragraph, event){
-        console.log('b')
+        console.log('B P')
         for (var i = paragraph.propositions.length-1; i > -1; i--){
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
             paragraph.propositions[i].preSelected == true){
@@ -3929,7 +3995,7 @@
       }
 
       $scope.lightUpLastVisiblePropositionInParagraph = function (node, paragraph, event) {
-        console.log('l')
+        console.log('L P')
         if (event.target.localName !== 'ol'  ){
           return;
         }
@@ -3945,7 +4011,7 @@
       }
 
       $scope.getLastVisiblePropositionInParagraph = function (node, paragraph, event) {
-        console.log('g')
+        console.log('G P')
         if (event.target.localName !== 'ol'  ){
           return;
         }
