@@ -3879,7 +3879,7 @@
 
           // Find the rightmost visible proposition
           for (var i = destination.propositions.length-1; i > -1; i--){
-            if (destination.propositions[i][$scope.userId] !== 'hidden' && destination.paragraphs[i].hiddenForAll !== true){
+            if (destination.propositions[i][$scope.userId] !== 'hidden' && destination.propositions[i].hiddenForAll !== true){
               path = path + '.propositions[' + i.toString() + ']';
               destination = eval(path);
               flagged = true;
