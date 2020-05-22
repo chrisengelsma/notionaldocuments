@@ -3849,10 +3849,65 @@
         }, 10); 
       }
 
-      $scope.getLastVisiblePropositionInNode = function () {
+      $scope.blurLightUpLastVisiblePropositionInNode = function(node, event){
+        for (var i = node.paragraphs.length-1; i > -1; i--){
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' && !node.paragraphs[i].hiddenForAll){
+            for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && node.paragraphs[i].propositions[j].hiddenForAll !== true &&
+                node.paragraphs[i].propositions[j].preSelected == true){
+                node.paragraphs[i].propositions[j].preSelected = false;
+              }
+            }
+          }
+        }
+      }
 
-        var id = '';
-        return id;
+      $scope.lightUpLastVisiblePropositionInNode = function (node, event) {
+        if (event.target.localName !== 'ol'  ){
+          return;
+        }
+        for (var i = node.paragraphs.length-1; i > -1; i--){
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' && !node.paragraphs[i].hiddenForAll){
+            for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && node.paragraphs[i].propositions[j].hiddenForAll !== true){
+                node.paragraphs[i].propositions[j].preSelected = true;
+                break;
+              }
+            }
+          }
+        }
+      }
+
+      $scope.getLastVisiblePropositionInNode = function(node, event){
+        if (event.target.localName !== 'ol'  ){
+          return;
+        }
+        $scope.selectedNode = node;
+        $scope.selectedParagraph = paragraph;
+        for (var i = node.paragraphs.length-1; i > -1; i--){
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
+            for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && !node.paragraphs[i].propositions[j].hiddenForAll){
+                $scope.selectedProposition = node.paragraphs[i].propositions[j];
+                break;
+              }
+            } 
+          }
+        }
+        var id = $scope.selectedProposition.id;
+        $timeout(function() {
+          focusFactory(id)
+          var selection = document.getSelection();
+          var range = document.createRange();
+          var contenteditable = document.getElementById(id)
+          if (contenteditable.lastChild && contenteditable.contentEditable) {
+            range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+          } else {
+            range.setStart(contenteditable,contenteditable.childNodes.length);
+          }
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }, 10);
       }
 
       $scope.blurLightUpLastVisiblePropositionInParagraph = function(node, paragraph, event){
