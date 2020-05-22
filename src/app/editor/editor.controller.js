@@ -3816,28 +3816,28 @@
         console.log("L Book")
 
         var path = '$scope.data[0]';
-        var destination = eval(path);
+        var bookDestination = eval(path);
         var id = '';
         var flagged;
 
         //Find the rightmost child, if any
 
-        if (destination.children){
+        if (bookDestination.children){
           console.log("if children")
-          while (destination.children){
-          console.log("while children")
+          while (bookDestination.children){
+            console.log("while children")
 
-          path = path + '.children[' + (destination.children.length-1).toString() + ']';
-          destination = eval(path);
+            path = path + '.children[' + (bookDestination.children.length-1).toString() + ']';
+            bookDestination = eval(path);
           } 
         }
 
-        for (var i = destination.paragraphs.length-1; i > -1; i--){
-          if (destination.paragraphs[i][$scope.userId] !== 'hidden' && !destination.paragraphs[i].hiddenForAll){
-            for (var j = destination.paragraphs[i].propositions.length-1; j > -1; j--){
-              if (destination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
-              destination.paragraphs[i].propositions[j].hiddenForAll !== true){
-                destination.paragraphs[i].propositions[j].preSelected = true;
+        for (var i = bookDestination.paragraphs.length-1; i > -1; i--){
+          if (bookDestination.paragraphs[i][$scope.userId] !== 'hidden' && !bookDestination.paragraphs[i].hiddenForAll){
+            for (var j = bookDestination.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (bookDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
+              bookDestination.paragraphs[i].propositions[j].hiddenForAll !== true){
+                bookDestination.paragraphs[i].propositions[j].preSelected = true;
                 return;
               }
             }
