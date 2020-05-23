@@ -3791,6 +3791,9 @@
         if (apply.destination.children){
           if (apply.destination.children.length > 0){
             while (apply.destination.children){
+            if (apply.bookDestination.children.length == 0){
+              return;
+            }  
             apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
             apply.destination = eval(apply.path);
             } 
