@@ -3816,35 +3816,38 @@
       $scope.lightUpLastVisiblePropositionInBook = function (book, event) {
         console.log("L Book")
 
-        var path = '$scope.data[0]';
-        var bookDestination = eval(path);
-        var id = '';
-        var flagged;
+        var apply = {}
+        apply.path = '$scope.data[0]';
+        apply.bookDestination = eval(apply.path);
+        apply.id = '';
+        apply.flagged;
 
         //Find the rightmost child, if any
 
-        if (bookDestination.children){
+        if (apply.bookDestination.children){
           console.log("if children")
-          while (bookDestination.children){
+          while (apply.bookDestination.children){
             console.log("while children")
-
-            path = path + '.children[' + (bookDestination.children.length-1).toString() + ']';
-            bookDestination = eval(path);
+            if (apply.bookDestination.children.length == 0){
+              return;
+            }
+            apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
+            apply.bookDestination = eval(apply.path);
           } 
         }
 
-        for (var i = bookDestination.paragraphs.length-1; i > -1; i--){
-          if (bookDestination.paragraphs[i][$scope.userId] !== 'hidden' && !bookDestination.paragraphs[i].hiddenForAll){
-            for (var j = bookDestination.paragraphs[i].propositions.length-1; j > -1; j--){
-              if (bookDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
-              bookDestination.paragraphs[i].propositions[j].hiddenForAll !== true){
-                bookDestination.paragraphs[i].propositions[j].preSelected = true;
+        for (var i = apply.bookDestination.paragraphs.length-1; i > -1; i--){
+          if (apply.bookDestination.paragraphs[i][$scope.userId] !== 'hidden' && !apply.bookDestination.paragraphs[i].hiddenForAll){
+            for (var j = apply.bookDestination.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (apply.bookDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
+              apply.bookDestination.paragraphs[i].propositions[j].hiddenForAll !== true){
+                apply.bookDestination.paragraphs[i].propositions[j].preSelected = true;
                 return;
               }
             }
           }
         }
-
+        apply = {};
       }
 
       $scope.getLastVisiblePropositionInBook = function(book, event){
