@@ -3947,7 +3947,7 @@
                 range.setStart(contenteditable,contenteditable.childNodes.length);
               }
             } else {
-              range.setStart(contenteditable);
+              range.setStart(contenteditable, contenteditable);
             }
             selection.removeAllRanges();
             selection.addRange(range);
@@ -4020,7 +4020,7 @@
               range.setStart(contenteditable,contenteditable.childNodes.length);
             }
           } else {
-            range.setStart(contenteditable);
+            range.setStart(contenteditable, contenteditable);
           }
           selection.removeAllRanges();
           selection.addRange(range);
@@ -4080,7 +4080,7 @@
               range.setStart(contenteditable,contenteditable.childNodes.length);
             }
           } else {
-            range.setStart(contenteditable);
+            range.setStart(contenteditable, contenteditable);
           }
           selection.removeAllRanges();
           selection.addRange(range);
