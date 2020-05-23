@@ -4013,10 +4013,14 @@
           var selection = document.getSelection();
           var range = document.createRange();
           var contenteditable = document.getElementById(id)
-          if (contenteditable.lastChild && contenteditable.contentEditable) {
-            range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+          if (contenteditable.lastChild){
+            if (contenteditable.contentEditable) {
+              range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+            } else {
+              range.setStart(contenteditable,contenteditable.childNodes.length);
+            }
           } else {
-            range.setStart(contenteditable,contenteditable.childNodes.length);
+            range.setStart(contenteditable);
           }
           selection.removeAllRanges();
           selection.addRange(range);
@@ -4069,10 +4073,14 @@
           var selection = document.getSelection();
           var range = document.createRange();
           var contenteditable = document.getElementById(id)
-          if (contenteditable.lastChild && contenteditable.contentEditable) {
-            range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+          if (contenteditable.lastChild){
+            if (contenteditable.contentEditable) {
+              range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+            } else {
+              range.setStart(contenteditable,contenteditable.childNodes.length);
+            }
           } else {
-            range.setStart(contenteditable,contenteditable.childNodes.length);
+            range.setStart(contenteditable);
           }
           selection.removeAllRanges();
           selection.addRange(range);
