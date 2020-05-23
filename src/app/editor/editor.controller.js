@@ -3791,13 +3791,15 @@
         if (apply.destination.children){
           if (apply.destination.children.length > 0){
             while (apply.destination.children){
-            if (apply.bookDestination.children.length == 0){
-              return;
-            }  
-            apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
-            apply.destination = eval(apply.path);
-            } 
-          }    
+              if (apply.destination.children.length == 0){
+                console.log("Break")
+                break;
+              } else {
+                apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
+                apply.destination = eval(apply.path);
+              }  
+            }    
+          }
         }
 
         apply.node = angular.copy(apply.destination)
@@ -3829,19 +3831,34 @@
         //Find the rightmost child, if any
 
         if (apply.bookDestination.children){
-          console.log("First if")
           if (apply.bookDestination.children.length > 0){
             while (apply.bookDestination.children){
-              console.log("while children")
               if (apply.bookDestination.children.length == 0){
-                return;
-              }
-              apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
-              apply.bookDestination = eval(apply.path);
-            } 
+                console.log("Break")
+                break;
+              } else {
+                apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
+                apply.bookDestination = eval(apply.path);
+              }  
+            }    
           }
-          console.log("if children")  
         }
+
+
+        // if (apply.bookDestination.children){
+        //   console.log("First if")
+        //   if (apply.bookDestination.children.length > 0){
+        //     while (apply.bookDestination.children){
+        //       console.log("while children")
+        //       if (apply.bookDestination.children.length == 0){
+        //         return;
+        //       }
+        //       apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
+        //       apply.bookDestination = eval(apply.path);
+        //     } 
+        //   }
+        //   console.log("if children")  
+        // }
 
         for (var i = apply.bookDestination.paragraphs.length-1; i > -1; i--){
           if (apply.bookDestination.paragraphs[i][$scope.userId] !== 'hidden' && !apply.bookDestination.paragraphs[i].hiddenForAll){
