@@ -319,6 +319,7 @@
       $scope.newProp;
       $scope.stopToggle = false;
       $scope.once = false;
+      $scope.lastItemCursorLayer = 0;
       var hidden = '';
       var visibilityChange = '';
 
@@ -3887,11 +3888,17 @@
           //Find the rightmost child, if any
 
           if (destination.children){
-            while (destination.children){
-
-            path = path + '.children[' + (destination.children.length-1).toString() + ']';
-            destination = eval(path);
-            } 
+            if (destination.children.length > 0){
+              while (destination.children){
+                if (destination.children.length == 0){
+                  console.log("Break")
+                  break;
+                } else {
+                  path = apply.path + '.children[' + (destination.children.length-1).toString() + ']';
+                  destination = eval(path);
+                }  
+              }    
+            }
           }
 
           $scope.selectedNode = angular.copy(destination);
