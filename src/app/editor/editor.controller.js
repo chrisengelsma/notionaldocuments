@@ -3940,11 +3940,14 @@
             var contenteditable = document.getElementById(id)
 
             // Was contenteditable.lastChild.nodeType == 3 condition below here
-        
-            if (contenteditable.contentEditable) {
-              range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
-            } else{
-              range.setStart(contenteditable,contenteditable.childNodes.length);
+            if (contenteditable.lastChild){
+              if (contenteditable.contentEditable) {
+                range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+              } else {
+                range.setStart(contenteditable,contenteditable.childNodes.length);
+              }
+            } else {
+              range.setStart(contenteditable);
             }
             selection.removeAllRanges();
             selection.addRange(range);
