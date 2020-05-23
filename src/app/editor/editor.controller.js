@@ -3894,7 +3894,7 @@
                   console.log("Break")
                   break;
                 } else {
-                  path = apply.path + '.children[' + (destination.children.length-1).toString() + ']';
+                  path = path + '.children[' + (destination.children.length-1).toString() + ']';
                   destination = eval(path);
                 }  
               }    
