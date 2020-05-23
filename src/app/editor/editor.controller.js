@@ -3780,36 +3780,37 @@
 
       $scope.blurLightUpLastVisiblePropositionInBook = function(book, event){
         console.log("B Book")
-
-        var path = '$scope.data[0]';
-        var destination = eval(path);
-        var id = '';
-        var flagged;
+        var apply = {};
+        apply.path = '$scope.data[0]';
+        apply.destination = eval(apply.path);
+        apply.id = '';
+        apply.flagged;
 
         //Find the rightmost child, if any
 
-        if (destination.children){
-          while (destination.children){
+        if (apply.destination.children){
+          while (apply.destination.children){
 
-          path = path + '.children[' + (destination.children.length-1).toString() + ']';
-          destination = eval(path);
+          apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
+          apply.destination = eval(apply.path);
           } 
         }
 
-        var node = angular.copy(destination)
+        apply.node = angular.copy(apply.destination)
 
-        for (var i = node.paragraphs.length-1; i > -1; i--){
-          if (node.paragraphs[i][$scope.userId] !== 'hidden' && !node.paragraphs[i].hiddenForAll){
-            for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
-              if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
-              node.paragraphs[i].propositions[j].hiddenForAll !== true &&
-              node.paragraphs[i].propositions[j].preSelected == true){
-                node.paragraphs[i].propositions[j].preSelected = false;
+        for (var i = apply.node.paragraphs.length-1; i > -1; i--){
+          if (apply.node.paragraphs[i][$scope.userId] !== 'hidden' && !apply.node.paragraphs[i].hiddenForAll){
+            for (var j = apply.node.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (apply.node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && 
+              apply.node.paragraphs[i].propositions[j].hiddenForAll !== true &&
+              apply.node.paragraphs[i].propositions[j].preSelected == true){
+                apply.node.paragraphs[i].propositions[j].preSelected = false;
                 return;
               }
             }
           }
         }
+        apply = {};
       }
 
       $scope.lightUpLastVisiblePropositionInBook = function (book, event) {
