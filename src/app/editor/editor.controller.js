@@ -3825,15 +3825,18 @@
         //Find the rightmost child, if any
 
         if (apply.bookDestination.children){
-          console.log("if children")
-          while (apply.bookDestination.children){
-            console.log("while children")
-            if (apply.bookDestination.children.length == 0){
-              return;
-            }
-            apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
-            apply.bookDestination = eval(apply.path);
-          } 
+          console.log("First if")
+          if (apply.bookDestination.children.length > 0){
+            while (apply.bookDestination.children){
+              console.log("while children")
+              if (apply.bookDestination.children.length == 0){
+                return;
+              }
+              apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
+              apply.bookDestination = eval(apply.path);
+            } 
+          }
+          console.log("if children")  
         }
 
         for (var i = apply.bookDestination.paragraphs.length-1; i > -1; i--){
