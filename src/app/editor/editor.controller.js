@@ -3789,11 +3789,12 @@
         //Find the rightmost child, if any
 
         if (apply.destination.children){
-          while (apply.destination.children){
-
-          apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
-          apply.destination = eval(apply.path);
-          } 
+          if (apply.destination.children.length > 0){
+            while (apply.destination.children){
+            apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
+            apply.destination = eval(apply.path);
+            } 
+          }    
         }
 
         apply.node = angular.copy(apply.destination)
