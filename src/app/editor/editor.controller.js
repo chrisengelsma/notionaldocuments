@@ -3931,13 +3931,13 @@
 
           // Click the id of the proposition landed upon
           id = $scope.selectedProposition.id;
-
+          var contenteditable = document.getElementById(id)
           $timeout(function() {
             focusFactory(id)
             
             var selection = document.getSelection();
             var range = document.createRange();
-            var contenteditable = document.getElementById(id)
+            
 
             // Was contenteditable.lastChild.nodeType == 3 condition below here
             if (contenteditable.lastChild){
@@ -4008,11 +4008,12 @@
           }
         }
         var id = $scope.selectedProposition.id;
+        var contenteditable = document.getElementById(id)
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
           var range = document.createRange();
-          var contenteditable = document.getElementById(id)
+          
           if (contenteditable.lastChild){
             if (contenteditable.contentEditable) {
               range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
@@ -4068,11 +4069,12 @@
           }
         }
         var id = $scope.selectedProposition.id;
+        var contenteditable = document.getElementById(id)
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
           var range = document.createRange();
-          var contenteditable = document.getElementById(id)
+          
           if (contenteditable.lastChild){
             if (contenteditable.contentEditable) {
               range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
