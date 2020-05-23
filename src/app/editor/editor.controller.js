@@ -3896,7 +3896,7 @@
           $scope.selectedProposition = angular.copy(destination);
 
           // Click the id of the proposition landed upon
-          id = destination.id;
+          id = $scope.selectedProposition.id;
 
           $timeout(function() {
             focusFactory(id)
