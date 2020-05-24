@@ -953,6 +953,8 @@
         },0)
       };
 
+
+
       // Manages bottom adder selection
       $scope.clearWithBottomAdder = function(paragraph) {
         $timeout( function(){
@@ -3931,27 +3933,34 @@
 
           // Click the id of the proposition landed upon
           id = $scope.selectedProposition.id;
-          var contenteditable = document.getElementById(id)
-          $timeout(function() {
-            focusFactory(id)
+
+          $timeout( function(){
+            document.getElementById('proposition'+ id).click();
+            console.log("clicking")
+          },10)
+
+
+          // var contenteditable = document.getElementById(id)
+          // $timeout(function() {
+          //   focusFactory(id)
             
-            var selection = document.getSelection();
-            var range = document.createRange();
+          //   var selection = document.getSelection();
+          //   var range = document.createRange();
             
 
-            // Was contenteditable.lastChild.nodeType == 3 condition below here
-            if (contenteditable.lastChild){
-              if (contenteditable.contentEditable) {
-                range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
-              } else {
-                range.setStart(contenteditable,contenteditable.childNodes.length);
-              }
-            } else {
-              range.setStart(contenteditable, contenteditable);
-            }
-            selection.removeAllRanges();
-            selection.addRange(range);
-          }, 10); 
+          //   // Was contenteditable.lastChild.nodeType == 3 condition below here
+          //   if (contenteditable.lastChild){
+          //     if (contenteditable.contentEditable) {
+          //       range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+          //     } else {
+          //       range.setStart(contenteditable,contenteditable.childNodes.length);
+          //     }
+          //   } else {
+          //     range.setStart(contenteditable, contenteditable);
+          //   }
+          //   selection.removeAllRanges();
+          //   selection.addRange(range);
+          // }, 10); 
         
       }
 
@@ -4008,24 +4017,29 @@
           }
         }
         var id = $scope.selectedProposition.id;
-        var contenteditable = document.getElementById(id)
-        $timeout(function() {
-          focusFactory(id)
-          var selection = document.getSelection();
-          var range = document.createRange();
+
+        $timeout( function(){
+          document.getElementById('proposition'+ id).click();
+          console.log("clicking")
+        },10)
+        // var contenteditable = document.getElementById(id)
+        // $timeout(function() {
+        //   focusFactory(id)
+        //   var selection = document.getSelection();
+        //   var range = document.createRange();
           
-          if (contenteditable.lastChild){
-            if (contenteditable.contentEditable) {
-              range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
-            } else {
-              range.setStart(contenteditable,contenteditable.childNodes.length);
-            }
-          } else {
-            range.setStart(contenteditable, contenteditable);
-          }
-          selection.removeAllRanges();
-          selection.addRange(range);
-        }, 10);
+        //   if (contenteditable.lastChild){
+        //     if (contenteditable.contentEditable) {
+        //       range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+        //     } else {
+        //       range.setStart(contenteditable,contenteditable.childNodes.length);
+        //     }
+        //   } else {
+        //     range.setStart(contenteditable, contenteditable);
+        //   }
+        //   selection.removeAllRanges();
+        //   selection.addRange(range);
+        // }, 10);
       }
 
       $scope.blurLightUpLastVisiblePropositionInParagraph = function(node, paragraph, event){
@@ -4069,24 +4083,29 @@
           }
         }
         var id = $scope.selectedProposition.id;
-        var contenteditable = document.getElementById(id)
-        $timeout(function() {
-          focusFactory(id)
-          var selection = document.getSelection();
-          var range = document.createRange();
+
+        $timeout( function(){
+          document.getElementById('proposition'+ id).click();
+          console.log("clicking")
+        },10)
+        // var contenteditable = document.getElementById(id)
+        // $timeout(function() {
+        //   focusFactory(id)
+        //   var selection = document.getSelection();
+        //   var range = document.createRange();
           
-          if (contenteditable.lastChild){
-            if (contenteditable.contentEditable) {
-              range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
-            } else {
-              range.setStart(contenteditable,contenteditable.childNodes.length);
-            }
-          } else {
-            range.setStart(contenteditable, contenteditable);
-          }
-          selection.removeAllRanges();
-          selection.addRange(range);
-        }, 10); 
+        //   if (contenteditable.lastChild){
+        //     if (contenteditable.contentEditable) {
+        //       range.setStart(contenteditable.lastChild,contenteditable.lastChild.length);
+        //     } else {
+        //       range.setStart(contenteditable,contenteditable.childNodes.length);
+        //     }
+        //   } else {
+        //     range.setStart(contenteditable, contenteditable);
+        //   }
+        //   selection.removeAllRanges();
+        //   selection.addRange(range);
+        // }, 10); 
       }
 
       $scope.hideExpandingTextarea = function () {
