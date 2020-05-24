@@ -3931,10 +3931,7 @@
 
           // Click the id of the proposition landed upon
           id = $scope.selectedProposition.id;
-          $timeout(function(){
-            var contenteditable = document.getElementById(id)
-          })
-          
+          var contenteditable = document.getElementById(id)
           $timeout(function() {
             focusFactory(id)
             
@@ -4011,9 +4008,7 @@
           }
         }
         var id = $scope.selectedProposition.id;
-        $timeout(function(){
-          var contenteditable = document.getElementById(id)
-        })
+        var contenteditable = document.getElementById(id)
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
@@ -4074,9 +4069,7 @@
           }
         }
         var id = $scope.selectedProposition.id;
-        $timeout(function(){
-          var contenteditable = document.getElementById(id)
-        })
+        var contenteditable = document.getElementById(id)
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
