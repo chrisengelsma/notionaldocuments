@@ -11,9 +11,9 @@
 <ol ui-tree-nodes
     ng-model="node.paragraphs"
     style="padding-left: 0"
-    ng-mouseover="lightUpLastVisiblePropositionInNode(node, $event)"
-    ng-mouseleave="blurLightUpLastVisiblePropositionInNode(node, $event)"
-    ng-click="getLastVisiblePropositionInNode(node, $event)">
+    ng-mouseover="[lightUpLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]"
+    ng-mouseleave="[blurLightUpLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]"
+    ng-click="[getLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]">
 
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs"
@@ -89,10 +89,10 @@
       <ol ui-tree-nodes
           ng-model="paragraph.propositions"
           class="propositions"
-          ng-mouseover="lightUpLastVisiblePropositionInParagraph(node, paragraph, $event)"
-          ng-mouseleave="blurLightUpLastVisiblePropositionInParagraph(node, paragraph, $event)"
+          ng-mouseover="[lightUpLastVisiblePropositionInParagraph(node, paragraph, $event), $event.stopPropagation()]"
+          ng-mouseleave="[blurLightUpLastVisiblePropositionInParagraph(node, paragraph, $event), $event.stopPropagation()]"
           ng-class="{'addbelownotowned': hasBottomFocus.id == paragraph.paragraphId && paragraph.owner !== userId && paragraph.owner !== ''}"
-          ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event)]" style="padding-left: 1px">
+          ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event), $event.stopPropagation()]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
             ui-tree-node
             ng-init="findFirstProposition(paragraph, proposition.id) ? proposition.first = true : proposition.first = false; proposition.first ? paragraph.owner = paragraph.propositions[$index].author : inputs.nothing; "
