@@ -953,7 +953,6 @@
         },0)
       };
 
-
       // Manages bottom adder selection
       $scope.clearWithBottomAdder = function(paragraph) {
         $timeout( function(){
@@ -3902,8 +3901,6 @@
             }
           }
 
-          $timeout( function(){
-              $scope.$apply(function() {
           $scope.selectedNode = angular.copy(destination);
 
           // Find the rightmost visible paragraph
@@ -3934,9 +3931,10 @@
 
           // Click the id of the proposition landed upon
           id = $scope.selectedProposition.id;
-          var contenteditable = document.getElementById(id)
-              })
-          },0)
+          $timeout(function(){
+            var contenteditable = document.getElementById(id)
+          })
+          
           $timeout(function() {
             focusFactory(id)
             
@@ -3999,27 +3997,23 @@
         if (event.target.localName !== 'ol'  ){
           return;
         }
-
-        $timeout( function(){
-            $scope.$apply(function() {
-              $scope.selectedNode = node;
-              
-              for (var i = node.paragraphs.length-1; i > -1; i--){
-                if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
-                  $scope.selectedParagraph = node.paragraphs[i];
-                  for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
-                    if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && !node.paragraphs[i].propositions[j].hiddenForAll){
-                      $scope.selectedProposition = node.paragraphs[i].propositions[j];
-                      break;
-                    }
-                  } 
-                }
-              }
-              var id = $scope.selectedProposition.id;
-              var contenteditable = document.getElementById(id)
-            })
-        },0)
+        $scope.selectedNode = node;
         
+        for (var i = node.paragraphs.length-1; i > -1; i--){
+          if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
+            $scope.selectedParagraph = node.paragraphs[i];
+            for (var j = node.paragraphs[i].propositions.length-1; j > -1; j--){
+              if (node.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' && !node.paragraphs[i].propositions[j].hiddenForAll){
+                $scope.selectedProposition = node.paragraphs[i].propositions[j];
+                break;
+              }
+            } 
+          }
+        }
+        var id = $scope.selectedProposition.id;
+        $timeout(function(){
+          var contenteditable = document.getElementById(id)
+        })
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
@@ -4071,22 +4065,18 @@
         if (event.target.localName !== 'ol'  ){
           return;
         }
-
-        $timeout( function(){
-            $scope.$apply(function() {
-              $scope.selectedNode = node;
-              $scope.selectedParagraph = paragraph;
-              for (var i = paragraph.propositions.length-1; i > -1; i--){
-                if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
-                  $scope.selectedProposition = paragraph.propositions[i];
-                  break;
-                }
-              }
-              var id = $scope.selectedProposition.id;
-              var contenteditable = document.getElementById(id)
-            })
-        },0)
-        
+        $scope.selectedNode = node;
+        $scope.selectedParagraph = paragraph;
+        for (var i = paragraph.propositions.length-1; i > -1; i--){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
+            $scope.selectedProposition = paragraph.propositions[i];
+            break;
+          }
+        }
+        var id = $scope.selectedProposition.id;
+        $timeout(function(){
+          var contenteditable = document.getElementById(id)
+        })
         $timeout(function() {
           focusFactory(id)
           var selection = document.getSelection();
