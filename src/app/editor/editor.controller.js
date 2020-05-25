@@ -880,6 +880,8 @@
 
                   for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
                     console.log("2nd for")
+                    console.log(prep.paragraphDestination.propositions[j].id === obj['id'])
+                    console.log(rep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id)
                     if (prep.paragraphDestination.propositions[j].id === obj['id'] &&
                     prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
                       console.log("If")
