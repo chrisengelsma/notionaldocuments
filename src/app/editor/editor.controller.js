@@ -875,19 +875,27 @@
                 prep.nodeDestination = eval(obj['nodePath']);
                 prep.assigned = false;
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                  console.log("For ")
                   prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
+
                   for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
+                    console.log("2nd for")
                     if (prep.paragraphDestination.propositions[j].id === obj['id'] &&
                     prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
+                      console.log("If")
                       for (var k = 0; k < prep.nodeDestination.paragraphs.length; k++){
+                        console.log("K: ", k)
                         // Go through the paragraphs in the nodepath
                         if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
                         !prep.nodeDestination.paragraphs[k].hiddenForAll &&
                         prep.nodeDestination.paragraphs[k].paragraphId !== prep.paragraphDestination.paragraphId
                         ){
+                          console.log("another if")
                           prep.assigned = true;
                           for (var l = 0; l < prep.paragraphDestination.propositions.length; l++){
+                            console.log("3rd for")
                             if (obj['id'] === prep.paragraphDestination.propositions[l]){
+                              console.log("last if")
                               prep.paragraphPosition = prep.paragraphDestination.position;
                               prep.position = l;
                               console.log("Paragraph position: ", prep.paragraphPosition)
