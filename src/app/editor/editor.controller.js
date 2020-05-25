@@ -3558,7 +3558,7 @@
             //     break;
             //   }
             // }
-            if (!apply.paragraphDestination.owner){
+            if (!apply.paragraphDestination.owner && payload.proposition.type !== 'topic'){
               apply.paragraphDestination.owner = payload.proposition.author;
             }
 
