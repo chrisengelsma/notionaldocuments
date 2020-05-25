@@ -480,7 +480,7 @@
                 }
               }
               if (x !== $scope.userId && x !== '') { 
-                console.log("Obj: ", obj, " x: ", x, " key: ", key)
+                console.log("Obj: ", obj, " x: ", x, " key: ", key, " index: ", index)
                 obj.color = $scope.userColorTable[index].color;
               }
 
