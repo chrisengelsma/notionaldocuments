@@ -424,7 +424,7 @@
                 }
               }
               if (!alreadyThere && x !== $scope.userId && x !== ''){
-                console.log("Push")
+                console.log("Push. x: ", x, " key: ", key)
                 $scope.userColorTable.push(
                   {
                     author: x, 
