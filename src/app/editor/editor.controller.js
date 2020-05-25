@@ -885,8 +885,10 @@
                     if (prep.paragraphDestination.propositions[j].id === obj['id'] &&
                     prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
                       console.log("If")
+
                       for (var k = 0; k < prep.nodeDestination.paragraphs.length; k++){
                         console.log("K: ", k)
+                        console.log("Node destination: ", prep.nodeDestination.paragraphs[k])
                         // Go through the paragraphs in the nodepath
                         if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
                         !prep.nodeDestination.paragraphs[k].hiddenForAll &&
