@@ -479,7 +479,7 @@
                   break;
                 }
               }
-              if (x !== $scope.userId && x !== '') { 
+              if (x !== $scope.userId && x !== '' && obj.type !== 'topic') { 
                 console.log("Obj: ", obj, " x: ", x, " key: ", key, " index: ", index)
                 obj.color = $scope.userColorTable[index].color;
               }
