@@ -549,49 +549,49 @@
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-                prep = {};        
-                prep.nodeDestination = eval(obj.nodePath);
-                prep.assigned = false;
-                for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
-                  prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
-                  for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
-                    if (prep.paragraphDestination.propositions[j].id === obj['id'] &&
-                    prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
-                      for (var k = 0; k < prep.nodeDestination.paragraphs.length; k++){
+                apply = {};        
+                apply.nodeDestination = eval(obj.nodePath);
+                apply.assigned = false;
+                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                  apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
+                  for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
+                    if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
+                    apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
+                      for (var k = 0; k < apply.nodeDestination.paragraphs.length; k++){
                         // Go through the paragraphs in the nodepath
-                        if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
-                        !prep.nodeDestination.paragraphs[k].hiddenForAll &&
-                        prep.nodeDestination.paragraphs[k].paragraphId !== prep.paragraphDestination.paragraphId
+                        if (apply.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
+                        !apply.nodeDestination.paragraphs[k].hiddenForAll &&
+                        apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
-                          prep.assigned = true;
-                          for (var l = 0; l < prep.paragraphDestination.propositions.length; l++){
-                            if (obj['id'] === prep.paragraphDestination.propositions[l].id){
-                              prep.paragraphPosition = prep.paragraphDestination.position;
-                              prep.position = l;
-                              console.log("Paragraph position: ", prep.paragraphPosition)
-                              console.log("position: ", prep.position)
-                              prep.address = obj['address'];
-                              prep.nodePath = obj['nodePath'];
-                              prep.payload = {
-                                class: prep.nodeDestination.class,
-                                topic: prep.nodeDestination.topic,
-                                paragraphPosition: prep.paragraphPosition,
-                                position: prep.position,
-                                address: prep.address,
-                                nodePath: prep.nodePath,
-                                proposition: prep.nodeDestination.paragraphs[prep.paragraphPosition].propositions[prep.position],
+                          apply.assigned = true;
+                          for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
+                            if (obj['id'] === apply.paragraphDestination.propositions[l].id){
+                              apply.paragraphPosition = apply.paragraphDestination.position;
+                              apply.position = l;
+                              console.log("Paragraph position: ", apply.paragraphPosition)
+                              console.log("position: ", apply.position)
+                              apply.address = obj['address'];
+                              apply.nodePath = obj['nodePath'];
+                              apply.payload = {
+                                class: apply.nodeDestination.class,
+                                topic: apply.nodeDestination.topic,
+                                paragraphPosition: apply.paragraphPosition,
+                                position: apply.position,
+                                address: apply.address,
+                                nodePath: apply.nodePath,
+                                proposition: apply.nodeDestination.paragraphs[apply.paragraphPosition].propositions[apply.position],
                                 author: obj['author'],
                                 id: obj['id'],
-                                paragraphId: prep.paragraphDestination.paragraphId,
+                                paragraphId: apply.paragraphDestination.paragraphId,
                                 hideBlank: true,
                                 paragraphBlankId: IdFactory.next(),
                                 blankId: IdFactory.next(),
                                 deleter: $scope.userId,
                                 bookId: $scope.bookId
                               }
-                              console.log('Payload to be deleted: ', prep.payload);
-                              chatSocket.emit('deletion', $scope.userId, prep.payload);
-                              prep = {};
+                              console.log('Payload to be deleted: ', apply.payload);
+                              chatSocket.emit('deletion', $scope.userId, apply.payload);
+                              apply = {};
                               $scope.hasRightFocus.id = '';
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
@@ -871,63 +871,63 @@
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-                prep = {};        
+                apply = {};        
                 console.log("Object nodepath: ", obj.nodePath)
-                prep.nodeDestination = eval(obj.nodePath);
-                prep.assigned = false;
-                for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
+                apply.nodeDestination = eval(obj.nodePath);
+                apply.assigned = false;
+                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   console.log("For ")
-                  prep.paragraphDestination = prep.nodeDestination.paragraphs[i];
+                  apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
 
-                  for (var j = 0; j < prep.paragraphDestination.propositions.length; j++){
+                  for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
                     console.log("2nd for")
-                    console.log(prep.paragraphDestination.propositions[j].id === obj['id'])
-                    console.log(prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id)
-                    if (prep.paragraphDestination.propositions[j].id === obj['id'] &&
-                    prep.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
+                    console.log(apply.paragraphDestination.propositions[j].id === obj['id'])
+                    console.log(apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id)
+                    if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
+                    apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
                       console.log("If")
 
-                      for (var k = 0; k < prep.nodeDestination.paragraphs.length; k++){
+                      for (var k = 0; k < apply.nodeDestination.paragraphs.length; k++){
                         // console.log("K: ", k)
-                        // console.log("Node destination: ", prep.nodeDestination.paragraphs[k])
-                        // console.log("Paragraph destination pid: ", prep.paragraphDestination.paragraphId)
+                        // console.log("Node destination: ", apply.nodeDestination.paragraphs[k])
+                        // console.log("Paragraph destination pid: ", apply.paragraphDestination.paragraphId)
                         // Go through the paragraphs in the nodepath
-                        if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
-                        !prep.nodeDestination.paragraphs[k].hiddenForAll &&
-                        prep.nodeDestination.paragraphs[k].paragraphId !== prep.paragraphDestination.paragraphId
+                        if (apply.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
+                        !apply.nodeDestination.paragraphs[k].hiddenForAll &&
+                        apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
                           console.log("another if")
-                          prep.assigned = true;
-                          for (var l = 0; l < prep.paragraphDestination.propositions.length; l++){
+                          apply.assigned = true;
+                          for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
                             console.log("3rd for")
-                            if (obj['id'] === prep.paragraphDestination.propositions[l].id){
+                            if (obj['id'] === apply.paragraphDestination.propositions[l].id){
                               console.log("last if")
-                              prep.paragraphPosition = prep.paragraphDestination.position;
-                              prep.position = l;
-                              console.log("Paragraph position: ", prep.paragraphPosition)
-                              console.log("position: ", prep.position)
-                              prep.address = obj['address'];
-                              prep.nodePath = obj['nodePath'];
-                              prep.payload = {
-                                class: prep.nodeDestination.class,
-                                topic: prep.nodeDestination.topic,
-                                paragraphPosition: prep.paragraphPosition,
-                                position: prep.position,
-                                address: prep.address,
-                                nodePath: prep.nodePath,
-                                proposition: prep.nodeDestination.paragraphs[prep.paragraphPosition].propositions[prep.position],
+                              apply.paragraphPosition = apply.paragraphDestination.position;
+                              apply.position = l;
+                              console.log("Paragraph position: ", apply.paragraphPosition)
+                              console.log("position: ", apply.position)
+                              apply.address = obj['address'];
+                              apply.nodePath = obj['nodePath'];
+                              apply.payload = {
+                                class: apply.nodeDestination.class,
+                                topic: apply.nodeDestination.topic,
+                                paragraphPosition: apply.paragraphPosition,
+                                position: apply.position,
+                                address: apply.address,
+                                nodePath: apply.nodePath,
+                                proposition: apply.nodeDestination.paragraphs[apply.paragraphPosition].propositions[apply.position],
                                 author: obj['author'],
                                 id: obj['id'],
-                                paragraphId: prep.paragraphDestination.paragraphId,
+                                paragraphId: apply.paragraphDestination.paragraphId,
                                 hideBlank: true,
                                 paragraphBlankId: IdFactory.next(),
                                 blankId: IdFactory.next(),
                                 deleter: $scope.userId,
                                 bookId: $scope.bookId
                               }
-                              console.log('Payload to be deleted: ', prep.payload);
-                              chatSocket.emit('deletion', $scope.userId, prep.payload);
-                              prep = {};
+                              console.log('Payload to be deleted: ', apply.payload);
+                              chatSocket.emit('deletion', $scope.userId, apply.payload);
+                              apply = {};
                               $scope.hasRightFocus.id = '';
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
