@@ -3559,6 +3559,7 @@
             //   }
             // }
             if (!apply.paragraphDestination.owner && payload.proposition.type !== 'topic'){
+              console.log("Went in and not topic")
               apply.paragraphDestination.owner = payload.proposition.author;
             }
 
@@ -3573,7 +3574,7 @@
                 
               }
             }
-            if (!alreadyThere){
+            if (!alreadyThere && payload.proposition.type !== 'topic'){
               if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation'){
                
                 $scope.userColorTable.push(
