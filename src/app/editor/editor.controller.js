@@ -887,9 +887,9 @@
                       console.log("If")
 
                       for (var k = 0; k < prep.nodeDestination.paragraphs.length; k++){
-                        console.log("K: ", k)
-                        console.log("Node destination: ", prep.nodeDestination.paragraphs[k])
-                        console.log("Paragraph destination pid: ", prep.paragraphDestination.paragraphId)
+                        // console.log("K: ", k)
+                        // console.log("Node destination: ", prep.nodeDestination.paragraphs[k])
+                        // console.log("Paragraph destination pid: ", prep.paragraphDestination.paragraphId)
                         // Go through the paragraphs in the nodepath
                         if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
                         !prep.nodeDestination.paragraphs[k].hiddenForAll &&
