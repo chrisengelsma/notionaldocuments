@@ -54,7 +54,7 @@
         } else {
           if (key == 'color'){
             obj.color = '#ffffff';
-            console.log("Key: ", obj.color, " Color: ", x)
+            // console.log("Key: ", obj.color, " Color: ", x)
           }
           // x is the value for a key that's not an object or array
           // key is the key
@@ -417,12 +417,14 @@
             if (key == 'owner'){
               for (var i = 0; i < $scope.userColorTable.length; i++){
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
+                  console.log("Already there")
                   var alreadyThere = true;
                   var index = i;
                   break;
                 }
               }
               if (!alreadyThere && x !== $scope.userId && x !== ''){
+                console.log("Push")
                 $scope.userColorTable.push(
                   {
                     author: x, 
@@ -433,7 +435,7 @@
                 obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;  
                  
               } else if (x !== $scope.userId && x !== '') {
-                 
+                console.log("Assign else if")
                 obj.color = $scope.userColorTable[index].color;
               }
             }
@@ -3168,7 +3170,7 @@
               // apply.propositionDestination = eval(apply.propositionPath);
 
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
-                console.log("Undefined")
+                // console.log("Undefined")
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     paragraphId: payload.paragraphId,
@@ -3176,26 +3178,26 @@
                     propositions: [payload.proposition]
                   };
               } else {
-                console.log("Else inserts below")
+                // console.log("Else inserts below")
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
                   apply.nodeDestination.paragraphs[i].position++;
                   if ($scope.selectedParagraph){
-                    console.log("Selected paragraph")
+                    // console.log("Selected paragraph")
                     if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
                       $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                     }
                   }
                   apply.nodeDestination.paragraphs[i + 1] = apply.nodeDestination.paragraphs[i];
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i + 1].propositions.length; j++) {
-                    console.log("For, i: ", i, " j: ", j)
+                    // console.log("For, i: ", i, " j: ", j)
                     if (apply.nodeDestination.paragraphs[i + 1].propositions[j].type === 'assertion') {
-                      console.log("Inner if")
+                      // console.log("Inner if")
                       apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionPath = payload.nodePath + '.paragraphs[' + 
                       (i + 1).toString() + '].propositions[' + j.toString() + ']';
                     }
-                    console.log("After if")
+                    // console.log("After if")
                     for (var k = 0; k < apply.nodeDestination.paragraphs[i + 1].propositions.length; k++) {
-                      console.log("K: ", k)
+                      // console.log("K: ", k)
                       if (apply.nodeDestination.paragraphs[i + 1].propositions[k].type === 'assertion' &&
                         apply.nodeDestination.paragraphs[i + 1].propositions[k].assertionId === 
                         apply.nodeDestination.paragraphs[i + 1].propositions[j].assertionId) {
@@ -3797,7 +3799,7 @@
           if (apply.destination.children.length > 0){
             while (apply.destination.children){
               if (apply.destination.children.length == 0){
-                console.log("Break")
+                // console.log("Break")
                 break;
               } else {
                 apply.path = apply.path + '.children[' + (apply.destination.children.length-1).toString() + ']';
@@ -3839,7 +3841,7 @@
           if (apply.bookDestination.children.length > 0){
             while (apply.bookDestination.children){
               if (apply.bookDestination.children.length == 0){
-                console.log("Break")
+                // console.log("Break")
                 break;
               } else {
                 apply.path = apply.path + '.children[' + (apply.bookDestination.children.length-1).toString() + ']';
@@ -3895,7 +3897,7 @@
             if (destination.children.length > 0){
               while (destination.children){
                 if (destination.children.length == 0){
-                  console.log("Break")
+                  // console.log("Break")
                   break;
                 } else {
                   path = path + '.children[' + (destination.children.length-1).toString() + ']';
@@ -3938,7 +3940,7 @@
 
           $timeout( function(){
             document.getElementById('proposition'+ id).click();
-            console.log("clicking")
+            // console.log("clicking")
           },10)
 
 
@@ -4022,7 +4024,7 @@
 
         $timeout( function(){
           document.getElementById('proposition'+ id).click();
-          console.log("clicking")
+          // console.log("clicking")
         },10)
         // var contenteditable = document.getElementById(id)
         // $timeout(function() {
@@ -4060,11 +4062,11 @@
         if (event.target.localName !== 'ol'  ){
           return;
         }
-        console.log('to for')
+        // console.log('to for')
         for (var i = paragraph.propositions.length-1; i > -1; i--){
-          console.log('I: ', i)
+          // console.log('I: ', i)
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
-            console.log("inside if")
+            // console.log("inside if")
             paragraph.propositions[i].preSelected = true;
             break;
           }
@@ -4088,7 +4090,7 @@
 
         $timeout( function(){
           document.getElementById('proposition'+ id).click();
-          console.log("clicking")
+          // console.log("clicking")
         },10)
         // var contenteditable = document.getElementById(id)
         // $timeout(function() {
