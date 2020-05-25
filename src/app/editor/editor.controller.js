@@ -866,13 +866,14 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              if (x === 'blank' && document.activeElement.id !== obj['id'] && obj['nodePath']){
+              if (x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath){
                 // Clearing blanks:
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
                 var prep = {};        
-                prep.nodeDestination = eval(obj['nodePath']);
+                console.log("Object nodepath: ", obj.nodePath)
+                prep.nodeDestination = eval(obj.nodePath);
                 prep.assigned = false;
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                   console.log("For ")
