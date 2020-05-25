@@ -565,7 +565,7 @@
                         ){
                           prep.assigned = true;
                           for (var l = 0; l < prep.paragraphDestination.propositions.length; l++){
-                            if (obj['id'] === prep.paragraphDestination.propositions[l]){
+                            if (obj['id'] === prep.paragraphDestination.propositions[l].id){
                               prep.paragraphPosition = prep.paragraphDestination.position;
                               prep.position = l;
                               console.log("Paragraph position: ", prep.paragraphPosition)
