@@ -1527,7 +1527,8 @@
               isPlaceholder: true,
               address: payload.address,
               nodePath: payload.nodePath,
-              privateFor: payload.deleter
+              privateFor: payload.deleter,
+              first: true
             };
             // Sets remarks to hidden in the dialogue
             if (payload.ids){
