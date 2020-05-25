@@ -893,13 +893,13 @@
                         // Go through the paragraphs in the nodepath
                         if (prep.nodeDestination.paragraphs[k][$scope.userId] !== 'hidden' && 
                         !prep.nodeDestination.paragraphs[k].hiddenForAll &&
-                        prep.nodeDestination.paragraphs[k].paragraphId !== prep.paragraphDestination.paragraphId
+                        prep.nodeDestination.paragraphs[k].paragraphId === prep.paragraphDestination.paragraphId
                         ){
                           console.log("another if")
                           prep.assigned = true;
                           for (var l = 0; l < prep.paragraphDestination.propositions.length; l++){
                             console.log("3rd for")
-                            if (obj['id'] === prep.paragraphDestination.propositions[l]){
+                            if (obj['id'] === prep.paragraphDestination.propositions[l].id){
                               console.log("last if")
                               prep.paragraphPosition = prep.paragraphDestination.position;
                               prep.position = l;
