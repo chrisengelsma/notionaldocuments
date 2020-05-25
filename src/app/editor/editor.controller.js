@@ -866,11 +866,13 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
+
               if (x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath){
                 // Clearing blanks:
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
+                console.log("Object: ", obj)
                 apply = {
                   nodeDestination: eval(obj.nodePath),
                   assigned: false
