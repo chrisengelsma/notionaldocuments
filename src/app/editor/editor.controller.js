@@ -871,10 +871,15 @@
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-                apply = {};        
+                apply = {
+                  nodeDestination: eval(obj.nodePath),
+                  assigned: false
+
+                };        
+                console.log("Apply: ", apply)
                 console.log("Object nodepath: ", obj.nodePath)
-                apply.nodeDestination = eval(obj.nodePath);
-                apply.assigned = false;
+                // apply.nodeDestination = eval(obj.nodePath);
+                // apply.assigned = false;
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   console.log("For ")
                   apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
