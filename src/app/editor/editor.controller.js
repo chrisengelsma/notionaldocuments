@@ -2824,6 +2824,7 @@
                     {
                       paragraphId: payload.paragraphId,
                       position: payload.paragraphPosition,
+                      owner: '',
                       propositions: [
                         {
                           id: payload.proposition.id,
