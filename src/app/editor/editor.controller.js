@@ -552,6 +552,9 @@
                 apply = {};        
                 apply.nodeDestination = eval(obj.nodePath);
                 apply.assigned = false;
+                console.log("Apply: ", apply)
+                console.log("Object nodepath: ", obj.nodePath)
+                return;
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
@@ -872,7 +875,7 @@
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-                console.log("Object: ", obj)
+                console.log("Object: ", angular.copy(obj));
                 apply = {
                   nodeDestination: eval(obj.nodePath),
                   assigned: false
@@ -880,6 +883,7 @@
                 };        
                 console.log("Apply: ", apply)
                 console.log("Object nodepath: ", obj.nodePath)
+                return;
                 // apply.nodeDestination = eval(obj.nodePath);
                 // apply.assigned = false;
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
