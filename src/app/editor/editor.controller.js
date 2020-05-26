@@ -439,7 +439,42 @@
                 obj.color = $scope.userColorTable[index].color;
               }
             }
+            apply = {};
+            if (key === 'first' && obj.id){
+
+              // need to unfurl the assignment of firsts and rewrite so all props get a first
+              // computationally expensive
+              // also fixes to this one need to be applied at the other site
+              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+                obj.nodePath
+                if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+                !apply.paragraphDestination.propositions[i].hiddenForAll){
+                  apply.paragraphDestination.propositions[i].first = true;
+
+                  for (var j = i; j < apply.paragraphDestination.propositions.length; j++){
+                    if (j > i){
+                      apply.paragraphDestination.propositions[j].first = false;
+                    }
+                  }
+                  break;
+                }
+              }
+            } else if (key === 'first' && obj.paragraphId){
+              for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+                !apply.nodeDestination.paragraphs[i].hiddenForAll){
+                  apply.nodeDestination.paragraphs[i].first = true;
+                  for (var j = i; j < apply.nodeDestination.paragraphs.length; j++){
+                    if (j > i){
+                      apply.nodeDestination.paragraphs[j].first = false;
+                    }
+                  }
+                  break;
+                }
+              }
+            }
           }
+          apply = {};
         }
 
         function traverseArray(arr) { 
