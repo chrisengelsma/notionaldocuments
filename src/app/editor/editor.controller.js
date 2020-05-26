@@ -568,7 +568,7 @@
                         !apply.nodeDestination.paragraphs[k].hiddenForAll &&
                         apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
-                          return;
+                        
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
                             if (obj['id'] === apply.paragraphDestination.propositions[l].id){
@@ -602,6 +602,7 @@
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
+                              return;
                             }
                           }
                         }
@@ -912,7 +913,7 @@
                         apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
                           console.log("another if")
-                          return;
+                          
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
                             console.log("3rd for")
@@ -948,6 +949,7 @@
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
+                              return;
                             }
                           }
                         }
