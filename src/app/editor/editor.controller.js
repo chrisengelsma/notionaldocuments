@@ -558,7 +558,7 @@
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
                   console.log("Paragraph destination: ", apply.paragraphDestination)
-                  return;
+                  
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
                     if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
                     apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
