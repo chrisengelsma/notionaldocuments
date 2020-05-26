@@ -554,9 +554,11 @@
                 apply.assigned = false;
                 console.log("Apply: ", apply)
                 console.log("Object nodepath: ", obj.nodePath)
-                return;
+
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
+                  console.log("Paragraph destination: ", apply.paragraphDestination)
+                  return;
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
                     if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
                     apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
@@ -883,13 +885,14 @@
                 };        
                 console.log("Apply: ", apply)
                 console.log("Object nodepath: ", obj.nodePath)
-                return;
+                
                 // apply.nodeDestination = eval(obj.nodePath);
                 // apply.assigned = false;
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   console.log("For ")
                   apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
-
+                  console.log("Paragraph destination: ", apply.paragraphDestination)
+                  return;
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
                     console.log("2nd for")
                     console.log(apply.paragraphDestination.propositions[j].id === obj['id'])
