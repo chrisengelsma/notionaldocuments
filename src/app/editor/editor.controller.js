@@ -571,7 +571,9 @@
                         
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
-                            if (obj['id'] === apply.paragraphDestination.propositions[l].id){
+                            if (obj['id'] === apply.paragraphDestination.propositions[l].id && 
+                            !apply.paragraphDestination.propositions[l].hiddenForAll &&
+                            apply.paragraphDestination.propositions[l][$scope.userId] !== 'hidden'){
                               apply.paragraphPosition = apply.paragraphDestination.position;
                               apply.position = l;
                               console.log("Paragraph position: ", apply.paragraphPosition)
@@ -917,7 +919,9 @@
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
                             console.log("3rd for")
-                            if (obj['id'] === apply.paragraphDestination.propositions[l].id){
+                            if (obj['id'] === apply.paragraphDestination.propositions[l].id && 
+                            !apply.paragraphDestination.propositions[l].hiddenForAll &&
+                            apply.paragraphDestination.propositions[l][$scope.userId] !== 'hidden'){
                               console.log("last if")
                               apply.paragraphPosition = apply.paragraphDestination.position;
                               apply.position = l;
