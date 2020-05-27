@@ -635,7 +635,7 @@
                               console.log('Payload to be deleted: ', apply.payload);
                               chatSocket.emit('deletion', $scope.userId, apply.payload);
                               apply = {};
-                              $scope.hasRightFocus.id = '';
+                              // $scope.hasRightFocus.id = '';
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
@@ -984,7 +984,7 @@
                               console.log('Payload to be deleted: ', apply.payload);
                               chatSocket.emit('deletion', $scope.userId, apply.payload);
                               apply = {};
-                              $scope.hasRightFocus.id = '';
+                              // $scope.hasRightFocus.id = '';
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
@@ -1912,6 +1912,15 @@
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0]);
       });
+
+      $scope.hideNode = function(node){
+        node[$scope.userId] = 'hidden';
+
+        apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
+        apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
+        profileService.setSelectedBook($scope.data[0]);
+
+      }
 
       $scope.getRemarkLocation = function(address, assertionId) {
         // var temp = {};
@@ -2894,7 +2903,7 @@
         $scope.hasTopFocus = '';
         $scope.hasBottomFocus = {};
         $scope.hasLeftFocus = '';
-        $scope.hasRightFocus = {};
+        // $scope.hasRightFocus = {};
         $scope.newProp = '';
         $scope.threadAdding = '';
 
