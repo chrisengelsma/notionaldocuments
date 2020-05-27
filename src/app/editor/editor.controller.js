@@ -470,6 +470,7 @@
                   apply.nodeDestination.first = false;
                 } 
               }
+            }
           apply = {};
         }
 
