@@ -1802,33 +1802,68 @@
             }
 
             // assigns firsts to propositions
-            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
-              !apply.paragraphDestination.propositions[i].hiddenForAll){
-                apply.paragraphDestination.propositions[i].first = true;
 
-                for (var j = i; j < apply.paragraphDestination.propositions.length; j++){
-                  if (j > i){
-                    apply.paragraphDestination.propositions[j].first = false;
-                  }
-                }
-                break;
-              }
-            }
 
 
             for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+            // for all paragraph
+              for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
+              // and all propositions
+                if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
+                  apply.nodeDestination.paragraphs[i].propositions[j].first = true;
+                  for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
+                    if (k > j){
+                      apply.nodeDestination.paragraphs[i].propositions[k].first = false;
+                    }
+                  }
+                  j = apply.nodeDestination.paragraphs[i].propositions.length;
+                } else {
+                  apply.nodeDestination.paragraphs[i].propositions[j].first = false;
+                }
+              }
               if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
               !apply.nodeDestination.paragraphs[i].hiddenForAll){
                 apply.nodeDestination.paragraphs[i].first = true;
-                for (var j = i; j < apply.nodeDestination.paragraphs.length; j++){
-                  if (j > i){
-                    apply.nodeDestination.paragraphs[j].first = false;
+                for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
+                  if (k > i){
+                    apply.nodeDestination.paragraphs[k].first = false;
                   }
                 }
-                break;
-              }
+                i = apply.nodeDestination.paragraphs.length;
+              } else {
+                apply.nodeDestination.first = false;
+              } 
             }
+
+
+            // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+            //   if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+            //   !apply.paragraphDestination.propositions[i].hiddenForAll){
+            //     apply.paragraphDestination.propositions[i].first = true;
+
+            //     for (var j = i; j < apply.paragraphDestination.propositions.length; j++){
+            //       if (j > i){
+            //         apply.paragraphDestination.propositions[j].first = false;
+            //       }
+            //     }
+            //     break;
+            //   }
+            // }
+
+
+            // for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+            //   if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+            //   !apply.nodeDestination.paragraphs[i].hiddenForAll){
+            //     apply.nodeDestination.paragraphs[i].first = true;
+            //     for (var j = i; j < apply.nodeDestination.paragraphs.length; j++){
+            //       if (j > i){
+            //         apply.nodeDestination.paragraphs[j].first = false;
+            //       }
+            //     }
+            //     break;
+            //   }
+            // }
         }
         for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
           if (apply.paragraphDestination.propositions[i].type === 'assertion' &&
@@ -3664,32 +3699,36 @@
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
             }
 
-            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
-              !apply.paragraphDestination.propositions[i].hiddenForAll){
-                apply.paragraphDestination.propositions[i].first = true;
-
-                for (var j = i; j < apply.paragraphDestination.propositions.length; j++){
-                  if (j > i){
-                    apply.paragraphDestination.propositions[j].first = false;
-                  }
-                }
-                break;
-              }
-            }
-
-
+            
             for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+            // for all paragraph
+              for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
+              // and all propositions
+                if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
+                  apply.nodeDestination.paragraphs[i].propositions[j].first = true;
+                  for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
+                    if (k > j){
+                      apply.nodeDestination.paragraphs[i].propositions[k].first = false;
+                    }
+                  }
+                  j = apply.nodeDestination.paragraphs[i].propositions.length;
+                } else {
+                  apply.nodeDestination.paragraphs[i].propositions[j].first = false;
+                }
+              }
               if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
               !apply.nodeDestination.paragraphs[i].hiddenForAll){
                 apply.nodeDestination.paragraphs[i].first = true;
-                for (var j = i; j < apply.nodeDestination.paragraphs.length; j++){
-                  if (j > i){
-                    apply.nodeDestination.paragraphs[j].first = false;
+                for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
+                  if (k > i){
+                    apply.nodeDestination.paragraphs[k].first = false;
                   }
                 }
-                break;
-              }
+                i = apply.nodeDestination.paragraphs.length;
+              } else {
+                apply.nodeDestination.first = false;
+              } 
             }
 
             $scope.assignColorsToExistingRemarks();
