@@ -2974,10 +2974,10 @@
                   $scope.selectedParagraph = apply.paragraphDestination;
                
                   $scope.selectedProposition = apply.propositionDestination;
-              
+                  $scope.hasRightFocus.id = $scope.selectedProposition.id
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
-               
+                  
                   var query = 'proposition' + $scope.selectedProposition.id;
                   $(query).trigger('click');
                   query = '';
@@ -3143,6 +3143,7 @@
               if (payload.proposition.author === $scope.userId) {
             
                 $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
                 if (payload.textSide === true) {
                   $scope.selectedProposition.textSide = true;
@@ -3173,6 +3174,7 @@
               }
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
+                $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
                 $($scope.selectedProposition.id).trigger('click');
@@ -3245,6 +3247,7 @@
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.hasRightFocus.id = $scope.selectedProposition.id
                     $scope.selectedProposition.textSide = true;
 
                     focusFactory($scope.selectedProposition.id);
@@ -3270,6 +3273,7 @@
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.hasRightFocus.id = $scope.selectedProposition.id
                     $scope.selectedProposition.textSide = true;
 
                     focusFactory($scope.selectedProposition.id);
@@ -3365,6 +3369,7 @@
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                   $scope.selectedProposition = 
                   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                  $scope.hasRightFocus.id = $scope.selectedProposition.id
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
                   $($scope.selectedProposition.id).trigger('click');
@@ -3377,6 +3382,7 @@
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                    $scope.hasRightFocus.id = $scope.selectedProposition.id
                     $scope.selectedProposition.textSide = true;
                     focusFactory($scope.selectedProposition.id);
                     $($scope.selectedProposition.id).trigger('click');
@@ -3409,6 +3415,7 @@
 
                 $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
+                $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
                 $($scope.selectedProposition.id).trigger('click');
@@ -3452,6 +3459,7 @@
            
               if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
+                $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
                 $($scope.selectedProposition.id).trigger('click');
