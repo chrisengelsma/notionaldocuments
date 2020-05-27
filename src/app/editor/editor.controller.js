@@ -1640,6 +1640,7 @@
             }
             $scope.selectedParagraph = apply.paragraphDestination;
             $scope.selectedProposition = apply.paragraphDestination.propositions[0];
+            $scope.hasRightFocus.id = $scope.selectedProposition.id
             $scope.selectedProposition.textSide = true;
             focusFactory($scope.selectedProposition.id);
             $('proposition' + $scope.selectedProposition.id).trigger('click');
@@ -1706,6 +1707,7 @@
                       console.log("clicking")
                       $scope.selectedParagraph = apply.nodeDestination.paragraphs[i];
                       $scope.selectedProposition = apply.nodeDestination.paragraphs[i].propositions[j]
+                      $scope.hasRightFocus.id = $scope.selectedProposition.id
                       $scope.selectedProposition.textSide = true;
                       focusFactory($scope.selectedProposition.id);
                       var query = 'proposition' + $scope.selectedProposition.id;
@@ -1789,6 +1791,7 @@
               !apply.paragraphDestination.propositions[i].rejoined &&
               !apply.paragraphDestination.propositions[i].hiddenForAll) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[i];
+                $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
                 $($scope.selectedProposition.id).trigger('click');
