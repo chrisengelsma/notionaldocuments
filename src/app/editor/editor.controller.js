@@ -430,48 +430,51 @@
                     author: x, 
                     color: $scope.generateNewColor()
                   }
-                )    
-                obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;    
+                )
+                  
+                obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;  
+                 
               } else if (x !== $scope.userId && x !== '') {
                 console.log("Assign else if")
                 obj.color = $scope.userColorTable[index].color;
               }
             }
-            apply = {};
-            if (key === 'class'){
-              apply.nodeDestination = eval(obj.nodePath)
-              for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-              // for all paragraph
-                for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
-                // and all propositions
-                  if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                  !apply.nodeDestination[i].propositions[j].paragraphs[i].hiddenForAll){
-                    apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-                    for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                      if (k > j){
-                        apply.nodeDestination.paragraphs[i].propositions[k].first = false;
+              apply = {};
+              if (key === 'class'){
+                apply.nodeDestination = eval(obj.nodePath)
+                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                // for all paragraph
+                  for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
+                  // and all propositions
+                    if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                    !apply.nodeDestination[i].propositions[j].paragraphs[i].hiddenForAll){
+                      apply.nodeDestination.paragraphs[i].propositions[j].first = true;
+                      for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
+                        if (k > j){
+                          apply.nodeDestination.paragraphs[i].propositions[k].first = false;
+                        }
+                      }
+                      j = apply.nodeDestination.paragraphs[i].propositions.length;
+                    } else {
+                      apply.nodeDestination.paragraphs[i].propositions[j].first = false;
+                    }
+                  }
+                  if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+                  !apply.nodeDestination.paragraphs[i].hiddenForAll){
+                    apply.nodeDestination.paragraphs[i].first = true;
+                    for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
+                      if (k > i){
+                        apply.nodeDestination.paragraphs[k].first = false;
                       }
                     }
-                    j = apply.nodeDestination.paragraphs[i].propositions.length;
+                    i = apply.nodeDestination.paragraphs.length;
                   } else {
-                    apply.nodeDestination.paragraphs[i].propositions[j].first = false;
-                  }
+                    apply.nodeDestination.first = false;
+                  } 
                 }
-                if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-                !apply.nodeDestination.paragraphs[i].hiddenForAll){
-                  apply.nodeDestination.paragraphs[i].first = true;
-                  for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-                    if (k > i){
-                      apply.nodeDestination.paragraphs[k].first = false;
-                    }
-                  }
-                  i = apply.nodeDestination.paragraphs.length;
-                } else {
-                  apply.nodeDestination.first = false;
-                } 
               }
-            }
-          apply = {};
+            apply = {};
+          }
         }
 
         function traverseArray(arr) { 
