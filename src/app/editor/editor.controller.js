@@ -447,7 +447,7 @@
                   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
                   // and all propositions
                     if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                    !apply.nodeDestination[i].propositions[j].paragraphs[i].hiddenForAll){
+                    !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
                       apply.nodeDestination.paragraphs[i].propositions[j].first = true;
                       for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
                         if (k > j){
