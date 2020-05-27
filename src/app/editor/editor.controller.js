@@ -857,6 +857,10 @@
         focusFactory(proposition.id);
       }
 
+      $scope.assignRightFocus = function (proposition){
+        $scope.hasRightFocus.id = proposition.id;
+      }
+
       // Selects left editable span
       $scope.selectLeft = function(proposition, paragraph){
         $scope.selectedProposition = proposition
