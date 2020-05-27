@@ -858,6 +858,7 @@
       }
 
       $scope.assignRightFocus = function (proposition){
+        console.log("Fires")
         $scope.hasRightFocus.id = proposition.id;
       }
 
