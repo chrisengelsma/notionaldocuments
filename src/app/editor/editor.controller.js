@@ -1835,60 +1835,63 @@
               }
             }
           }
-            // Updates paragraph ownership
-            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-              if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
-              !apply.paragraphDestination.propositions[i].hiddenForAll &&
-              apply.paragraphDestination.propositions[i].type !== 'blank'){
-                apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
-                break;
-              }
-            }
 
-            // assigns firsts to propositions
-
-
-            console.log("Deletion firsts")
-            for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-            // for all paragraph
-            console.log("I: ", i)
-              for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
-              // and all propositions
-              console.log("J: ", j)
-                if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
-                  console.log("If")
-                  apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-                  for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                    console.log("K: ", k)
-                    if (k > j){
-                      apply.nodeDestination.paragraphs[i].propositions[k].first = false;
-                    }
-                  }
-                  console.log("Fast forwards j")
-                  j = apply.nodeDestination.paragraphs[i].propositions.length;
-                } else {
-                  console.log("False")
-                  apply.nodeDestination.paragraphs[i].propositions[j].first = false;
-                }
-              }
-              if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-              !apply.nodeDestination.paragraphs[i].hiddenForAll){
-                console.log("First at i: ", i)
-                apply.nodeDestination.paragraphs[i].first = true;
-                for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-                  console.log("Loop")
-                  if (k > i){
-                    apply.nodeDestination.paragraphs[k].first = false;
-                  }
-                }
-                console.log("Fast forward i")
-                i = apply.nodeDestination.paragraphs.length;
-              } else {
-                apply.nodeDestination.first = false;
-              } 
-            }
         }
+
+        // Updates paragraph ownership
+        for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+          if(apply.paragraphDestination.propositions[i][$scope.userId] !== 'hidden' &&
+          !apply.paragraphDestination.propositions[i].hiddenForAll &&
+          apply.paragraphDestination.propositions[i].type !== 'blank'){
+            apply.paragraphDestination.owner = apply.paragraphDestination.propositions[i].author;
+            break;
+          }
+        }
+
+        // assigns firsts to propositions
+
+
+        console.log("Deletion firsts")
+        for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+        // for all paragraph
+        console.log("I: ", i)
+          for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
+          // and all propositions
+          console.log("J: ", j)
+            if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+            !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
+              console.log("If")
+              apply.nodeDestination.paragraphs[i].propositions[j].first = true;
+              for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
+                console.log("K: ", k)
+                if (k > j){
+                  apply.nodeDestination.paragraphs[i].propositions[k].first = false;
+                }
+              }
+              console.log("Fast forwards j")
+              j = apply.nodeDestination.paragraphs[i].propositions.length;
+            } else {
+              console.log("False")
+              apply.nodeDestination.paragraphs[i].propositions[j].first = false;
+            }
+          }
+          if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+          !apply.nodeDestination.paragraphs[i].hiddenForAll){
+            console.log("First at i: ", i)
+            apply.nodeDestination.paragraphs[i].first = true;
+            for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
+              console.log("Loop")
+              if (k > i){
+                apply.nodeDestination.paragraphs[k].first = false;
+              }
+            }
+            console.log("Fast forward i")
+            i = apply.nodeDestination.paragraphs.length;
+          } else {
+            apply.nodeDestination.first = false;
+          } 
+        }
+        
         for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
           if (apply.paragraphDestination.propositions[i].type === 'assertion' &&
             apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {
