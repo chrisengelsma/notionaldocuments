@@ -1552,12 +1552,13 @@
           hideNegationForOthers: prep.hideNegationForOthers ? prep.hideNegationForOthers : undefined,
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           blankParagraphForDeleter: (prep.blankParagraphForDeleter ? prep.blankParagraphForDeleter : undefined),
+          hideParagraphForDeleter: (prep.hideParagraphForDeleter ? prep.hideParagraphForDeleter : undefined),
           hideBlank: (prep.hideBlank ? prep.hideBlank : undefined),
           blankPropositionForEveryone: (prep.blankPropositionForEveryone ? prep.blankPropositionForEveryone : undefined),
           paragraphBlankId: IdFactory.next(),
           blankId: IdFactory.next(),
           hideOthersProp: (prep.hideOthersProp ? prep.hideOthersProp : undefined),
-          hideOwn: (prep.hideOwn ? prep.hideOthersProp : undefined),
+          hideOwn: (prep.hideOwn ? prep.hideOwn : undefined),
           deleter: $scope.userId,
           bookId: $scope.bookId
         };
