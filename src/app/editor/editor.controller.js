@@ -1449,6 +1449,7 @@
             // if there wasn't another visible paragraph in the node
             prep.blankParagraphForDeleter = true;
             prep.hiddenForAll = false;
+            prep.hideOwn = false;
             console.log("3B")
             prep.assigned = true;
           }
@@ -1526,6 +1527,10 @@
               prep.hideOwn = true;
               console.log("2b1 or 2b2")
               //paragraph will be blanked for deleter, hidden for others
+              // this needs a fork
+              // blanking in another's paragraph might work ok
+              // blanking in one's own paragraph needs to put in a blank for oneself and delete paragraph
+              // for others
             }
           }
         }
@@ -1593,7 +1598,7 @@
           // Hides the target paragraphs propositions
           if (payload.deleter === $scope.userId) {
             for (var i = apply.paragraphDestination.propositions.length - 1; i > -1; i--) {
-              apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
+              apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
             }
@@ -1609,6 +1614,10 @@
               privateFor: payload.deleter,
               first: true
             };
+
+
+            apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
+            apply.paragraphDestination.privateFor = payload.deleter;
             // Sets remarks to hidden in the dialogue
             if (payload.ids){
               for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
@@ -1647,6 +1656,7 @@
           } else {
             for (var i = apply.paragraphDestination.propositions.length; i > -1; i--) {
               apply.paragraphDestination.propositions[i].position++;
+              apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
               if ($scope.selectedProposition){
                 if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
@@ -1656,18 +1666,43 @@
             }
 
             // Insert new blank proposition for something to grab onto
-            apply.paragraphDestination.propositions[0] = {                                       
+            apply.paragraphDestination.propositions[0] = {                                    
               id: payload.blankId,
               type: 'blank',
               text: '',
               author: '',
               position: 0,
-              nodePath: payload.nodePath,
+              isPlaceholder: true,
               address: payload.address,
-
+              nodePath: payload.nodePath,
+              privateFor: payload.deleter,
+              first: true
             };
             apply.paragraphDestination.propositions[0][$scope.userId] = 'hidden';
             apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
+            apply.paragraphDestination[$scope.userId] = 'hidden';
+            apply.paragraphDestination.privateFor = payload.deleter;
+
+            // Sets remarks to hidden in the dialogue
+            if (payload.ids){
+              for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
+                for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
+                  for (var k = 0; k < payload.ids.length; k++){
+                    if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
+                      $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden'
+                    }
+                  }
+                }
+              }
+            } else {
+              for (var i = 0; i < $scope.data[0].dialogue.length - 1; i++) {
+                for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length; j++){
+                  if ($scope.data[0].dialogue[i].remarks[j].id === payload.id) {
+                    $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden'
+                  }
+                }
+              }
+            }
           }
           // other stuff for blank paragraph for deleter
         }
