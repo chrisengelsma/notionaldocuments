@@ -3420,8 +3420,9 @@
 
               if (apply.propositionDestination) {
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
+                  console.log("I: ", i)
                   apply.paragraphDestination.propositions[i].position++;
-                  if ($scope.selectedParagraph){
+                  if ($scope.selectedProposition){
                     if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
                       $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                     }
@@ -3429,6 +3430,7 @@
                   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                 }
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
+                console.log("Inserting: ", apply.paragraphDestination.propositions[payload.proposition.position])
               } else {
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               }
