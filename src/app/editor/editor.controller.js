@@ -1935,6 +1935,8 @@
         // var notification = {};
         $scope.scroll = {};
 
+        $scope.clearBlankOnBlur();
+
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
         profileService.setSelectedBook($scope.data[0]);
@@ -3782,6 +3784,8 @@
 
           
             $scope.scroll = {};
+
+            $scope.clearBlankOnBlur();
 
             $scope.propositions.push(payload.proposition);  // PUSHES THE PROPOSITION TO THE PROPOSITIONS ARRAY
 
