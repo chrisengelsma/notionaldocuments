@@ -351,13 +351,13 @@
             
             $scope.clearBlankOnBlur();
           } else {
-           
+           return;
           }
       }
 
       // Warn if the browser doesn't support addEventListener or the Page Visibility API
       if (typeof document.addEventListener === "undefined" || hidden === undefined) {
-      
+        console.log('')
       } else {
         // Handle page visibility change   
         document.addEventListener(visibilityChange, handleVisibilityChange, false);
@@ -1763,7 +1763,7 @@
                   apply.nodeDestination.paragraphs[i].propositions[k].first = false;
                 }
               }
-              c
+              
               j = apply.nodeDestination.paragraphs[i].propositions.length;
             } else {
               
@@ -1818,7 +1818,7 @@
             apply.muteIncomingThread = true;
           }
         } else {
-          
+          console.log("")
         }
 
         if (apply.muteIncomingThread){
@@ -2565,7 +2565,7 @@
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsBelow){
                     
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-                      c
+                      
                       if (prep.nodeDestination.paragraphs[j]){
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
                         
