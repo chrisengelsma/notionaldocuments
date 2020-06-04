@@ -905,7 +905,7 @@
 
                 };        
        
-                
+                console.log("Active element: ", document.activeElement)
                 // apply.nodeDestination = eval(obj.nodePath);
                 // apply.assigned = false;
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
