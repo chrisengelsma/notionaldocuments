@@ -3227,7 +3227,8 @@
 
               } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
                   $timeout(function() {
-
+                    console.log("Node destination: ", apply.nodeDestination)
+                    console.log("Apply: ", apply)
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
