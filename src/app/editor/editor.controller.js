@@ -3227,7 +3227,7 @@
 
               } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
                   $timeout(function() {
-                    console.log("Node destination: ", apply.nodeDestination)
+                    apply.nodeDestination = eval(payload.nodePath);
                     console.log("Apply: ", apply)
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
@@ -3235,7 +3235,7 @@
                     $scope.hasRightFocus.id = $scope.selectedProposition.id
                     $scope.selectedProposition.textSide = true;
                     focusFactory($scope.selectedProposition.id);
-                    $($scope.selectedProposition.id).trigger('click');
+                    $('proposition' + $scope.selectedProposition.id).trigger('click');
                   }, 30);            
                 }
             } else if (payload.proposition.insertsLeft) {
