@@ -3565,7 +3565,7 @@
                     apply.nodeDestination.paragraphs[k].first = false;
                   }
                 }
-                i = apply.nodeDestination.paragraphs.length;
+                k = apply.nodeDestination.paragraphs.length;
               } else {
                 apply.nodeDestination.first = false;
               } 
