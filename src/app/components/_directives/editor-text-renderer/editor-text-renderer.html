@@ -16,7 +16,7 @@
     ng-click="[getLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]">
 
     <!-- | orderBy:paragraphSorter -->
-  <li ng-repeat="paragraph in node.paragraphs"
+  <li ng-repeat="paragraph in node.paragraphs | orderBy:paragraphSorter"
       ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false, selectParagraph(paragraph)]"
       ng-mouseover="paragraph.mouseOver = true;"
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
@@ -102,7 +102,7 @@
 
                       selectLeft(proposition, paragraph)]"
             ng-if="(!proposition.hiddenForAll && !proposition.rejoined && proposition[userId] !== 'hidden') || (proposition.privateFor && proposition.privateFor === userId)"
-            class="proposition">{{proposition.first}}
+            class="proposition">
           
           <span class="leftpropositionadder"
                 ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true]"
