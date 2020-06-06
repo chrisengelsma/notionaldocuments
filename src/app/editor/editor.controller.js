@@ -3239,8 +3239,11 @@
                   }, 30);            
                 }
             } else if (payload.proposition.insertsLeft) {
+              
+              console.log("Node destination: ", eval(payload.nodePath));
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+              console.log("Paragraph path: ", apply.paragraphPath)
               apply.paragraphDestination = eval(apply.paragraphPath);
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + 
               '.propositions[' + payload.proposition.position.toString() + ']';
