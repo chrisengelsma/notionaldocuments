@@ -3245,10 +3245,8 @@
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + 
               '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
-
               if (apply.propositionDestination) {
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
-                  
                   apply.paragraphDestination.propositions[i].position++;
                   if ($scope.selectedProposition){
                     if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
@@ -3257,11 +3255,11 @@
                   }
                   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                 }
-                apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
-                
+                apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition; 
               } else {
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               }
+
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
                 $timeout(function() {
 
@@ -3541,6 +3539,7 @@
             
             for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
             // for all paragraph
+            console.log("Doesnt even run huh")
               for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
               // and all propositions
                 if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
