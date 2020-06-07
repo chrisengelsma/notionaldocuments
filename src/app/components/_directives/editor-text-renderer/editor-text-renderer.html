@@ -105,12 +105,11 @@
             class="proposition">
           
           <span class="leftpropositionadder"
-                ng-mouseover="[paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true]"
+                ng-mouseover="paragraph.owner === userId ? [paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true] : inputs.notting"
                 ng-mouseleave="[paragraph.leftMouseOver = false, paragraph.disableRightCursor = false]"
                 event-focus="click"
-                ng-click="[
+                ng-click="paragraph.owner === userId ? [
                   clearWithLeftAdder(),
-
                   clearPropositionInput(),
                   clearBlankOnBlur(),
                   paragraph.topAdd = false,
@@ -120,7 +119,7 @@
                   selectedParagraph.highlightAll = false,
                   selectedParagraph.markAll = false,
                   clearEditable()
-                  ]"
+                  ] : inputs.notting"
                 event-focus-id="{{leftAdderId}}"
                 ng-if="proposition.first"
                 >
@@ -147,10 +146,10 @@
                       ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && proposition.first"
                       >
             </span>
-            <span ng-mouseover="paragraph.leftMouseOver = true" 
+            <span ng-mouseover="paragraph.owner === userId ? paragraph.leftMouseOver = true : inputs.notting" 
                   ng-mouseleave="paragraph.leftMouseOver = false"
                   event-focus="click"
-                  ng-click="[
+                  ng-click="paragraph.owner === userId ? [
                     clearWithLeftAdder(),
                     clearPropositionInput(),
                     paragraph.topAdd = false,
@@ -161,7 +160,7 @@
                     selectedParagraph.highlightAll = false,
                     selectedParagraph.markAll = false,
                     clearEditable()
-                  ]"
+                  ] : inputs.nothing"
                   event-focus-id="{{leftAdderId}}"
                   ng-class="{'visible-cursor': paragraph.leftMouseOver && proposition.preSelected && proposition.first && !paragraph.leftAdd,
                              'invisible-cursor': !paragraph.leftMouseOver || !proposition.preSelected|| !proposition.first}"
