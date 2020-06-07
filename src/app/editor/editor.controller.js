@@ -3267,7 +3267,8 @@
                 $timeout(function() {
                 console.log("Paragraph destination: ", apply.paragraphDestination)
                 console.log("Proposition position: ", payload.proposition.position)
-                $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+                $scope.selectedParagraph = eval(payload.nodePath + '.paragraphs[' + 
+                payload.paragraphPosition.toString() + ']');
                 $scope.selectedProposition = eval(payload.nodePath + '.paragraphs[' + 
                 payload.paragraphPosition.toString() + '].propositions[' + payload.proposition.position.toString() +
                 ']');
