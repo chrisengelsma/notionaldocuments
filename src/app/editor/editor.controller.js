@@ -2548,11 +2548,13 @@
               // if there is a paragraph one position above
               // wont find anything due to changing the path, above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
-              if (prep.candidateParagraphDestination.owner == $scope.userId){
+              if (prep.candidateParagraphDestination.owner == $scope.userId &&
+              $scope.selectedParagraph.owner !== $scope.userId){
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
                 prep.insertsBelow = true;
                 console.log("Putting it below, top")
+                // puts it wrong above
               } else {
                
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
@@ -2605,6 +2607,9 @@
                         console.log("Placing this as the last paragraph in the section of one's own document, 2nd")
                         break;
                       }
+
+                      // breaks here - user thinks they are adding to the bottom of another author's section
+                      // but it puts it at the top of the user's section
                     } else {
                       prep.paragraphPosition = i;
                       prep.position = 0;
