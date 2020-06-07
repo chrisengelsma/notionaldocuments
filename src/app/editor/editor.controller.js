@@ -905,7 +905,7 @@
 
                 };        
        
-                console.log("Active element: ", document.activeElement)
+                // console.log("Active element: ", document.activeElement)
                 // apply.nodeDestination = eval(obj.nodePath);
                 // apply.assigned = false;
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
@@ -3548,7 +3548,7 @@
                 if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
                 !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
                   apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-                  console.log("Assigned first paragraph at ", i, ", ", j)
+                  console.log("Assigned first prop at ", i, ", ", j)
                   for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
                     if (k > j){
                       apply.nodeDestination.paragraphs[i].propositions[k].first = false;
@@ -3560,15 +3560,16 @@
                 }
               }
               if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-              !apply.nodeDestination.paragraphs[i].hiddenForAll){
+              !apply.nodeDestination.paragraphs[i].hiddenForAll &&
+              !apply.paragraphAssigned){
                 apply.nodeDestination.paragraphs[i].first = true;
-                console.log("Assigned first prop at ", i)
+                console.log("Assigned first paragraph at ", i)
                 for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
                   if (k > i){
                     apply.nodeDestination.paragraphs[k].first = false;
                   }
                 }
-                k = apply.nodeDestination.paragraphs.length;
+                apply.paragraphAssigned = true;
               } else {
                 apply.nodeDestination.first = false;
               } 
