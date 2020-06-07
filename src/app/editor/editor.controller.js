@@ -3268,7 +3268,9 @@
                 console.log("Paragraph destination: ", apply.paragraphDestination)
                 console.log("Proposition position: ", payload.proposition.position)
                 $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
+                $scope.selectedProposition = eval(payload.nodePath + '.paragraphs[' + 
+                payload.paragraphPosition.toString() + '].propositions[' + payload.proposition.position.toString() +
+                ']');
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
