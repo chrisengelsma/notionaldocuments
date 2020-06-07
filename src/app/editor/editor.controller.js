@@ -1749,39 +1749,34 @@
         
         for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
         // for all paragraph
-       
+
           for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
           // and all propositions
-         
             if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
             !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
-             
               apply.nodeDestination.paragraphs[i].propositions[j].first = true;
+              console.log("Assigned first prop at ", i, ", ", j)
               for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                
                 if (k > j){
                   apply.nodeDestination.paragraphs[i].propositions[k].first = false;
                 }
               }
-              
               j = apply.nodeDestination.paragraphs[i].propositions.length;
             } else {
-              
               apply.nodeDestination.paragraphs[i].propositions[j].first = false;
             }
           }
           if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-          !apply.nodeDestination.paragraphs[i].hiddenForAll){
-            
+          !apply.nodeDestination.paragraphs[i].hiddenForAll &&
+          !apply.paragraphAssigned){
             apply.nodeDestination.paragraphs[i].first = true;
+            console.log("Assigned first paragraph at ", i)
             for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-              
               if (k > i){
                 apply.nodeDestination.paragraphs[k].first = false;
               }
             }
-            
-            i = apply.nodeDestination.paragraphs.length;
+            apply.paragraphAssigned = true;
           } else {
             apply.nodeDestination.first = false;
           } 
@@ -3270,7 +3265,8 @@
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
                 $timeout(function() {
-
+                console.log("Paragraph destination: ", apply.paragraphDestination)
+                console.log("Proposition position: ", payload.proposition.position)
                 $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
