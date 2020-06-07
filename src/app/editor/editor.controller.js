@@ -2970,7 +2970,8 @@
               for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                 apply.paragraphDestination.propositions[i].position++;
 
-                if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
+                if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
+                    payload.proposition.author !== $scope.userId) {
                   $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                 }
                 apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
@@ -3016,7 +3017,8 @@
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                   apply.paragraphDestination.propositions[i].position++;
 
-                  if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
+                  if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
+                    payload.proposition.author !== $scope.userId) {
                     $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                   }
                   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
@@ -3050,7 +3052,8 @@
                   apply.nodeDestination.paragraphs[i].position++;
                   // if user has selected the paragraph being moved up, update selectedParagraph
                   if ($scope.selectedParagraph){
-                    if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
+                    if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id &&
+                    payload.proposition.author !== $scope.userId) {
                       $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                     }
                   }
@@ -3157,7 +3160,8 @@
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
                   apply.nodeDestination.paragraphs[i].position++;
                   if ($scope.selectedParagraph){
-                    if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id) {
+                    if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id &&
+                    payload.proposition.author !== $scope.userId) {
                       $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                     }
                   }
@@ -3252,7 +3256,8 @@
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                   apply.paragraphDestination.propositions[i].position++;
                   if ($scope.selectedProposition){
-                    if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
+                    if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
+                    payload.proposition.author !== $scope.userId) {
                       $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                     }
                   }
