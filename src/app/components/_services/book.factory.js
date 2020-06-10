@@ -16,6 +16,7 @@
         dateCreated: Date(),
         lastModified: null,
         nodePath: '$scope.data[0]',
+        nodeId: IdFactory.next(),
         paragraphs: [
           {
             first: true,

@@ -1034,20 +1034,42 @@
       }
 
       $scope.findFirst = function (node, paragraphId){
-        //paragraphId is paragraph in the iterator
-        // want to find out if the 
-       
-        for (var i = 0; i < node.paragraphs.length; i++){
-          if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
-            if (node.paragraphs[i].paragraphId === paragraphId){
-            
-              return true
-            } else {
-             
-              return false
-            }
-          }
+
+        // for (var i = 0; i < node.paragraphs.length; i++){
+        //   if (node.paragraphs[i][$scope.userId] !== 'hidden' &&
+        //   !node.paragraphs[i].hiddenForAll){
+        //     if (paragraphId === node.paragraphs[i].paragraphId){
+        //       return true;
+        //     } else {
+        //       return false;
+        //     }
+        //   }
+        // }
+        var theNode = document.querySelector('#' + node.nodeId);
+        var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+        for (var i = 0; i < theNodeParagraphs.length; i++){
+          console.log("Ng repeat index ", i, ": ", theNodeParagraphs[i])
         }
+        
+          if (theNodeParagraphs[0].id === paragraphId){
+            
+            return true;
+          } else {
+            return false;
+          }
+        
+
+        // for (var i = 0; i < node.paragraphs.length; i++){
+        //   if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
+        //     if (node.paragraphs[i].paragraphId === paragraphId){
+            
+        //       return true
+        //     } else {
+             
+        //       return false
+        //     }
+        //   }
+        // }
       }
 
       $scope.findFirstProposition = function (paragraph, id){
@@ -1744,7 +1766,25 @@
         }
 
         // assigns firsts to propositions
+        for (var i = 0; i < paragraph.propositions.length; i++){
+          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
+            if (paragraph.propositions[i].id === id){
+            
+              return true
+            } else {
+             
+              return false
+            }
+          }
+        }
 
+        var theNode = document.querySelector('#' + node.nodeId);
+        var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+        for (var i = 0; i < theNodeParagraphs.length; i++){
+          console.log("Ng repeat index ", i, ": ", theNodeParagraphs[i])
+        }
+
+        var paragraphId = theNodeParagraphs[0].id.splice(0,9); 
 
         
         for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
@@ -1766,10 +1806,10 @@
               apply.nodeDestination.paragraphs[i].propositions[j].first = false;
             }
           }
-          if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-          !apply.nodeDestination.paragraphs[i].hiddenForAll &&
-          !apply.paragraphAssigned){
+          if (apply.nodeDestination.paragraphs[i] === paragraphId){
             apply.nodeDestination.paragraphs[i].first = true;
+            apply.paragraphAssigned = true;
+
             console.log("Assigned first paragraph at ", i)
             for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
               if (k > i){
@@ -1777,9 +1817,23 @@
               }
             }
             apply.paragraphAssigned = true;
-          } else {
-            apply.nodeDestination.first = false;
           } 
+
+
+          // if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+          // !apply.nodeDestination.paragraphs[i].hiddenForAll &&
+          // !apply.paragraphAssigned){
+          //   apply.nodeDestination.paragraphs[i].first = true;
+          //   console.log("Assigned first paragraph at ", i)
+          //   for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
+          //     if (k > i){
+          //       apply.nodeDestination.paragraphs[k].first = false;
+          //     }
+          //   }
+          //   apply.paragraphAssigned = true;
+          // } else {
+          //   apply.nodeDestination.first = false;
+          // } 
         }
         
         for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
@@ -2751,6 +2805,7 @@
           textSide: $scope.selectedProposition.textSide,
           class: (prep.newClass ? prep.newClass : prep.class),
           nodePath: (prep.nodePath ? prep.nodePath : undefined),
+          nodeId: IdFactory.next(),
           oldNodePath: (prep.oldNodePath ? prep.oldNodePath : undefined),                          //    COMPOSITION OF THE PAYLOAD
           question: (prep.question ? prep.question : undefined),
           paragraphId: IdFactory.next(),
@@ -2851,6 +2906,7 @@
                   address: payload.address,
                   topic: payload.topic,
                   nodePath: payload.nodePath,
+                  nodeId: payload.nodeId,
                   paragraphs: [
                     {
                       paragraphId: payload.paragraphId,

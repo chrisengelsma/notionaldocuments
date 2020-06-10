@@ -18,6 +18,7 @@
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs | orderBy:paragraphSorter"
       ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false, selectParagraph(paragraph)]"
+      id="paragraph{{paragraph.paragraphId}}"
       ng-mouseover="paragraph.mouseOver = true;"
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
@@ -328,7 +329,8 @@
     class="angular-ui-tree-nodes">
   <li ng-repeat="node in node.children"
       ui-tree-node
-      ng-click="selectNode(node); $event.stopPropagation();">
+      ng-click="selectNode(node); $event.stopPropagation();"
+      id="{{node.nodeId}}">
     <nd-editor-text-renderer></nd-editor-text-renderer>
   </li>
 </ol>
