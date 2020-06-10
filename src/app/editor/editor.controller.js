@@ -1810,7 +1810,7 @@
             apply.nodeDestination.paragraphs[i].first = true;
             apply.paragraphAssigned = true;
 
-            console.log("Assigned first paragraph at ", i)
+            console.log("Assigned first paragraph at: ", i)
             for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
               if (k > i){
                 apply.nodeDestination.paragraphs[k].first = false;
