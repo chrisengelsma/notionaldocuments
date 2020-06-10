@@ -1797,7 +1797,7 @@
               apply.nodeDestination.paragraphs[i].propositions[j].first = true;
               console.log("Assigned first prop at ", i, ", ", j)
               for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                if (k > j){
+                if (k > j){ 
                   apply.nodeDestination.paragraphs[i].propositions[k].first = false;
                 }
               }
