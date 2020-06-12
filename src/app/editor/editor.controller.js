@@ -448,7 +448,9 @@
                   console.log("there is an isfirst")
                   console.log("object: ", obj)
                   for (var n = 0; n < obj.paragraphs.length; n++){
-                    console.log("into loop")
+                    console.log(obj.paragraphs[n].paragraphId === isFirst,
+                      !obj.paragraphs[n][$scope.userId] === 'hidden',
+                      !obj.paragraphs[n].hiddenForAll)
                     if (obj.paragraphs[n].paragraphId === isFirst &&
                       !obj.paragraphs[n][$scope.userId] === 'hidden' &&
                       !obj.paragraphs[n].hiddenForAll){
@@ -456,7 +458,7 @@
                       obj.paragraphs[n].first = true;
                     } else {
                       console.log("else. ", obj.paragraphs[n])
-                      obj.paragraph[n].first = false;
+                      obj.paragraphs[n].first = false;
                     }
                     console.log("Paragraph ", n, ": ", obj.paragraph[n].first)
                   }
