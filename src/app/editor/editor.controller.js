@@ -1035,41 +1035,44 @@
 
       $scope.findFirst = function (node, paragraphId){
 
-        // for (var i = 0; i < node.paragraphs.length; i++){
-        //   if (node.paragraphs[i][$scope.userId] !== 'hidden' &&
-        //   !node.paragraphs[i].hiddenForAll){
-        //     if (paragraphId === node.paragraphs[i].paragraphId){
-        //       return true;
-        //     } else {
-        //       return false;
-        //     }
-        //   }
-        // }
+        var initFunction = true;
         var theNode = document.querySelector('#' + node.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-        for (var i = 0; i < theNodeParagraphs.length; i++){
-          console.log("Ng repeat index ", i, ": ", theNodeParagraphs[i])
+        for (var m = 0; m < theNodeParagraphs.length; m++){
+          console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
+          if (theNodeParagraphs[m].style.display !== 'none'){
+            var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+            console.log("Isfirst: ", isFirst)
+            break;
+          }
+        }
+        if (isFirst && initFunction == false){
+          console.log("there is an isfirst")
+          for (var n = 0; n < node.paragraphs.length; n++){
+            if (node.paragraphs[n].id === isFirst &&
+              !node.paragraphs[n][$scope.userId] === 'hidden' &&
+              !node.paragraphs[n].hiddenForAll){
+                node.paragraphs[n].first = true;
+            } else {
+              node.paragraph[n].first = false;
+            }
+            console.log("Paragraph ", n, ": ", node.paragraph[n].first)
+          }
+        } else if (!initFunction) {
+          console.log(n, " is without visible paragraphs")
+          for (var n = 0; n < node.paragraphs.length; n++){
+            node.paragraphs[i].first = false;
+          }
         }
         
-          if (theNodeParagraphs[0].id === paragraphId){
-            
+        
+        if (isFirst === paragraphId && initFunction == true){
             return true;
-          } else {
-            return false;
-          }
+        } else if (initFunction == true){
+          return false;
+        }
         
 
-        // for (var i = 0; i < node.paragraphs.length; i++){
-        //   if (node.paragraphs[i][$scope.userId] !== 'hidden' && node.paragraphs[i].hiddenForAll !== true){
-        //     if (node.paragraphs[i].paragraphId === paragraphId){
-            
-        //       return true
-        //     } else {
-             
-        //       return false
-        //     }
-        //   }
-        // }
       }
 
       $scope.findFirstProposition = function (paragraph, id){
@@ -1766,29 +1769,40 @@
         }
 
         // assigns firsts to propositions
-        for (var i = 0; i < paragraph.propositions.length; i++){
-          if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true){
-            if (paragraph.propositions[i].id === id){
-            
-              return true
-            } else {
-             
-              return false
-            }
+
+        var initFunction = false;
+        var theNode = document.querySelector('#' + apply.nodeDestination.nodeId);
+        var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+        for (var m = 0; m < theNodeParagraphs.length; m++){
+          console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
+          if (theNodeParagraphs[m].style.display !== 'none'){
+            var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+            console.log("Isfirst: ", isFirst)
+            break;
           }
         }
-
-        var theNode = document.querySelector('#' + node.nodeId);
-        var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-        for (var i = 0; i < theNodeParagraphs.length; i++){
-          console.log("Ng repeat index ", i, ": ", theNodeParagraphs[i])
+        if (isFirst && initFunction == false){
+          console.log("there is an isfirst")
+          for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+            if (apply.nodeDestination.paragraphs[n].id === isFirst &&
+              !apply.nodeDestination.paragraphs[n][$scope.userId] === 'hidden' &&
+              !apply.nodeDestination.paragraphs[n].hiddenForAll){
+              apply.nodeDestination.paragraphs[n].first = true;
+            } else {
+              apply.nodeDestination.paragraph[n].first = false;
+            }
+            console.log("Paragraph ", n, ": ", apply.nodeDestination.paragraph[n].first)
+          }
+        } else if (!initFunction) {
+          console.log(n, " is without visible props")
+          for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+            apply.nodeDestination.paragraphs[i].first = false;
+          }
         }
-
-        var paragraphId = theNodeParagraphs[0].id.splice(0,9); 
-
-        
+          
+        // propositions
         for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-        // for all paragraph
+        // for all paragraphs
 
           for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
           // and all propositions
@@ -1806,34 +1820,6 @@
               apply.nodeDestination.paragraphs[i].propositions[j].first = false;
             }
           }
-          if (apply.nodeDestination.paragraphs[i] === paragraphId){
-            apply.nodeDestination.paragraphs[i].first = true;
-            apply.paragraphAssigned = true;
-
-            console.log("Assigned first paragraph at: ", i)
-            for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-              if (k > i){
-                apply.nodeDestination.paragraphs[k].first = false;
-              }
-            }
-            apply.paragraphAssigned = true;
-          } 
-
-
-          // if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-          // !apply.nodeDestination.paragraphs[i].hiddenForAll &&
-          // !apply.paragraphAssigned){
-          //   apply.nodeDestination.paragraphs[i].first = true;
-          //   console.log("Assigned first paragraph at ", i)
-          //   for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-          //     if (k > i){
-          //       apply.nodeDestination.paragraphs[k].first = false;
-          //     }
-          //   }
-          //   apply.paragraphAssigned = true;
-          // } else {
-          //   apply.nodeDestination.first = false;
-          // } 
         }
         
         for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
@@ -3605,8 +3591,41 @@
             }
 
             
+            // assigns firsts to propositions
+
+            var initFunction = false;
+            var theNode = document.querySelector('#' + apply.nodeDestination.nodeId);
+            var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+            for (var m = 0; m < theNodeParagraphs.length; m++){
+              console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
+              if (theNodeParagraphs[m].style.display !== 'none'){
+                var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+                console.log("Isfirst: ", isFirst)
+                break;
+              }
+            }
+            if (isFirst && initFunction == false){
+              console.log("there is an isfirst")
+              for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+                if (apply.nodeDestination.paragraphs[n].id === isFirst &&
+                  !apply.nodeDestination.paragraphs[n][$scope.userId] === 'hidden' &&
+                  !apply.nodeDestination.paragraphs[n].hiddenForAll){
+                  apply.nodeDestination.paragraphs[n].first = true;
+                } else {
+                  apply.nodeDestination.paragraph[n].first = false;
+                }
+                console.log("Paragraph ", n, ": ", apply.nodeDestination.paragraph[n].first)
+              }
+            } else if (!initFunction) {
+              console.log(n, " is without visible props")
+              for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+                apply.nodeDestination.paragraphs[i].first = false;
+              }
+            }
+              
+            // propositions
             for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-            // for all paragraph
+            // for all paragraphs
 
               for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
               // and all propositions
@@ -3615,7 +3634,7 @@
                   apply.nodeDestination.paragraphs[i].propositions[j].first = true;
                   console.log("Assigned first prop at ", i, ", ", j)
                   for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                    if (k > j){
+                    if (k > j){ 
                       apply.nodeDestination.paragraphs[i].propositions[k].first = false;
                     }
                   }
@@ -3624,20 +3643,6 @@
                   apply.nodeDestination.paragraphs[i].propositions[j].first = false;
                 }
               }
-              if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-              !apply.nodeDestination.paragraphs[i].hiddenForAll &&
-              !apply.paragraphAssigned){
-                apply.nodeDestination.paragraphs[i].first = true;
-                console.log("Assigned first paragraph at ", i)
-                for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-                  if (k > i){
-                    apply.nodeDestination.paragraphs[k].first = false;
-                  }
-                }
-                apply.paragraphAssigned = true;
-              } else {
-                apply.nodeDestination.first = false;
-              } 
             }
 
             $scope.assignColorsToExistingRemarks();
