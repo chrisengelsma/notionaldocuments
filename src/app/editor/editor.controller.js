@@ -1116,7 +1116,7 @@
               !node.paragraphs[n].hiddenForAll){
                 node.paragraphs[n].first = true;
             } else {
-              node.paragraph[n].first = false;
+              node.paragraphs[n].first = false;
             }
             console.log("Paragraph ", n, ": ", node.paragraph[n].first)
           }
@@ -1852,7 +1852,7 @@
               !apply.nodeDestination.paragraphs[n].hiddenForAll){
               apply.nodeDestination.paragraphs[n].first = true;
             } else {
-              apply.nodeDestination.paragraph[n].first = false;
+              apply.nodeDestination.paragraphs[n].first = false;
             }
             console.log("Paragraph ", n, ": ", apply.nodeDestination.paragraph[n].first)
           }
@@ -3678,7 +3678,7 @@
                   !apply.nodeDestination.paragraphs[n].hiddenForAll){
                   apply.nodeDestination.paragraphs[n].first = true;
                 } else {
-                  apply.nodeDestination.paragraph[n].first = false;
+                  apply.nodeDestination.paragraphs[n].first = false;
                 }
                 console.log("Paragraph ", n, ": ", apply.nodeDestination.paragraph[n].first)
               }
