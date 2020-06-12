@@ -435,8 +435,8 @@
                 for (var m = 0; m < theNodeParagraphs.length; m++){
                   console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
                   if (theNodeParagraphs[m].style.display !== 'none'){
-                    console.log("Id output: ", theNodeParagraphs[m].id)
-                    var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+                    console.log("Id output: ", theNodeParagraphs[m].id.toString())
+                    var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
                     console.log("Isfirst: ", isFirst)
                     break;
                   }
@@ -1093,8 +1093,8 @@
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           if (theNodeParagraphs[m].style.display !== 'none'){
-            console.log("Id output: ", theNodeParagraphs[m].id)
-            var isFirst = theNodeParagraphs[m].id.to.splice(0,9); 
+            console.log("Id output: ", theNodeParagraphs[m].id.toString())
+            var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
             console.log("Isfirst: ", isFirst)
             break;
           }
@@ -1829,8 +1829,8 @@
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           if (theNodeParagraphs[m].style.display !== 'none'){
-            console.log("Id output: ", theNodeParagraphs[m].id)
-            var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+            console.log("Id output: ", theNodeParagraphs[m].id.toString())
+            var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
             console.log("Isfirst: ", isFirst)
             break;
           }
@@ -3653,8 +3653,8 @@
             for (var m = 0; m < theNodeParagraphs.length; m++){
               console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
               if (theNodeParagraphs[m].style.display !== 'none'){
-                console.log("Id output: ", theNodeParagraphs[m].id)
-                var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+                console.log("Id output: ", theNodeParagraphs[m].id.toString())
+                var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
                 console.log("Isfirst: ", isFirst)
                 break;
               }
