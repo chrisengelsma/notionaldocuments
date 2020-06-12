@@ -430,6 +430,7 @@
               apply = {};
               if (key === 'class'){
                 var initFunction = false;
+                console.log('Node id input: #' + obj.node)
                 var theNode = document.getElementById('#' + obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 for (var m = 0; m < theNodeParagraphs.length; m++){
