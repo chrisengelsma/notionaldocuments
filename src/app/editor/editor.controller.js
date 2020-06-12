@@ -449,10 +449,10 @@
                   console.log("object: ", obj)
                   for (var n = 0; n < obj.paragraphs.length; n++){
                     console.log(obj.paragraphs[n].paragraphId === isFirst,
-                      !obj.paragraphs[n][$scope.userId] === 'hidden',
+                      obj.paragraphs[n][$scope.userId] !== 'hidden',
                       !obj.paragraphs[n].hiddenForAll)
                     if (obj.paragraphs[n].paragraphId === isFirst &&
-                      !obj.paragraphs[n][$scope.userId] === 'hidden' &&
+                      obj.paragraphs[n][$scope.userId] !== 'hidden' &&
                       !obj.paragraphs[n].hiddenForAll){
                       console.log("if. ", obj.paragraphs[n])
                       obj.paragraphs[n].first = true;
@@ -1112,7 +1112,7 @@
           console.log("there is an isfirst")
           for (var n = 0; n < node.paragraphs.length; n++){
             if (node.paragraphs[n].paragraphId === isFirst &&
-              !node.paragraphs[n][$scope.userId] === 'hidden' &&
+              node.paragraphs[n][$scope.userId] !== 'hidden' &&
               !node.paragraphs[n].hiddenForAll){
                 node.paragraphs[n].first = true;
             } else {
@@ -1848,7 +1848,7 @@
           console.log("there is an isfirst")
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
             if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
-              !apply.nodeDestination.paragraphs[n][$scope.userId] === 'hidden' &&
+              apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
               !apply.nodeDestination.paragraphs[n].hiddenForAll){
               apply.nodeDestination.paragraphs[n].first = true;
             } else {
@@ -3674,7 +3674,7 @@
               console.log("there is an isfirst")
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
                 if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
-                  !apply.nodeDestination.paragraphs[n][$scope.userId] === 'hidden' &&
+                  apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
                   !apply.nodeDestination.paragraphs[n].hiddenForAll){
                   apply.nodeDestination.paragraphs[n].first = true;
                 } else {
