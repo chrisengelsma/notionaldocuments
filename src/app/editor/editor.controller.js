@@ -430,7 +430,7 @@
               apply = {};
               if (key === 'class'){
                 var initFunction = false;
-                var theNode = document.querySelector('#' + obj.nodeId);
+                var theNode = document.getElementById('#' + obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 for (var m = 0; m < theNodeParagraphs.length; m++){
                   console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
@@ -1088,7 +1088,7 @@
       $scope.findFirst = function (node, paragraphId){
         console.log("Runs findfirst paragraph")
         var initFunction = true;
-        var theNode = document.querySelector('#' + node.nodeId);
+        var theNode = document.getElementById('#' + node.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
@@ -1824,7 +1824,7 @@
         // assigns firsts to propositions
 
         var initFunction = false;
-        var theNode = document.querySelector('#' + apply.nodeDestination.nodeId);
+        var theNode = document.getElementById('#' + apply.nodeDestination.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
@@ -3648,7 +3648,7 @@
             // assigns firsts to propositions
 
             var initFunction = false;
-            var theNode = document.querySelector('#' + apply.nodeDestination.nodeId);
+            var theNode = document.getElementById('#' + apply.nodeDestination.nodeId);
             var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
             for (var m = 0; m < theNodeParagraphs.length; m++){
               console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
