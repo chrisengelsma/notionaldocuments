@@ -446,7 +446,9 @@
                 }
                 if (isFirst && initFunction == false){
                   console.log("there is an isfirst")
+                  console.log("object: ", obj)
                   for (var n = 0; n < obj.paragraphs.length; n++){
+                    console.log("into loop")
                     if (obj.paragraphs[n].paragraphId === isFirst &&
                       !obj.paragraphs[n][$scope.userId] === 'hidden' &&
                       !obj.paragraphs[n].hiddenForAll){
