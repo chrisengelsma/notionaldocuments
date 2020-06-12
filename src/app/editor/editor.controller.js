@@ -437,7 +437,7 @@
                   console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
                   if (theNodeParagraphs[m].style.display !== 'none'){
                     console.log("Id output: ", theNodeParagraphs[m].id.toString())
-                    var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
+                    var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
                     console.log("Isfirst: ", isFirst)
                     break;
                   }
@@ -1095,7 +1095,7 @@
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           if (theNodeParagraphs[m].style.display !== 'none'){
             console.log("Id output: ", theNodeParagraphs[m].id.toString())
-            var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
+            var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
             console.log("Isfirst: ", isFirst)
             break;
           }
@@ -1831,7 +1831,7 @@
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           if (theNodeParagraphs[m].style.display !== 'none'){
             console.log("Id output: ", theNodeParagraphs[m].id.toString())
-            var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
+            var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
             console.log("Isfirst: ", isFirst)
             break;
           }
@@ -3655,7 +3655,7 @@
               console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
               if (theNodeParagraphs[m].style.display !== 'none'){
                 console.log("Id output: ", theNodeParagraphs[m].id.toString())
-                var isFirst = theNodeParagraphs[m].id.toString().splice(0,9); 
+                var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
                 console.log("Isfirst: ", isFirst)
                 break;
               }
