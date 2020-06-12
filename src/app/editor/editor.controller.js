@@ -460,7 +460,6 @@
                       console.log("else. ", obj.paragraphs[n])
                       obj.paragraphs[n].first = false;
                     }
-                    console.log("Paragraph ", n, ": ", obj.paragraph[n].first)
                   }
                 } else if (!initFunction) {
                   console.log(n, " is without visible props")
@@ -1118,7 +1117,6 @@
             } else {
               node.paragraphs[n].first = false;
             }
-            console.log("Paragraph ", n, ": ", node.paragraph[n].first)
           }
         } else if (!initFunction) {
           console.log(n, " is without visible paragraphs")
@@ -1854,7 +1852,6 @@
             } else {
               apply.nodeDestination.paragraphs[n].first = false;
             }
-            console.log("Paragraph ", n, ": ", apply.nodeDestination.paragraph[n].first)
           }
         } else if (!initFunction) {
           console.log(n, " is without visible props")
@@ -3680,7 +3677,6 @@
                 } else {
                   apply.nodeDestination.paragraphs[n].first = false;
                 }
-                console.log("Paragraph ", n, ": ", apply.nodeDestination.paragraph[n].first)
               }
             } else if (!initFunction) {
               console.log(n, " is without visible props")
