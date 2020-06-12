@@ -429,6 +429,57 @@
             }
               apply = {};
               if (key === 'class'){
+                var initFunction = false;
+                var theNode = document.querySelector('#' + obj.nodeId);
+                var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+                for (var m = 0; m < theNodeParagraphs.length; m++){
+                  console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
+                  if (theNodeParagraphs[m].style.display !== 'none'){
+                    var isFirst = theNodeParagraphs[m].paragraphId.splice(0,9); 
+                    console.log("Isfirst: ", isFirst)
+                    break;
+                  }
+                }
+                if (isFirst && initFunction == false){
+                  console.log("there is an isfirst")
+                  for (var n = 0; n < obj.paragraphs.length; n++){
+                    if (obj.paragraphs[n].paragraphId === isFirst &&
+                      !obj.paragraphs[n][$scope.userId] === 'hidden' &&
+                      !obj.paragraphs[n].hiddenForAll){
+                      obj.paragraphs[n].first = true;
+                    } else {
+                      obj.paragraph[n].first = false;
+                    }
+                    console.log("Paragraph ", n, ": ", obj.paragraph[n].first)
+                  }
+                } else if (!initFunction) {
+                  console.log(n, " is without visible props")
+                  for (var n = 0; n < obj.paragraphs.length; n++){
+                    obj.paragraphs[i].first = false;
+                  }
+                }
+                  
+                // propositions
+                for (var i = 0; i < obj.paragraphs.length; i++){
+                // for all paragraphs
+
+                  for (var j = 0; j < obj.paragraphs[i].propositions.length; j++){
+                  // and all propositions
+                    if (obj.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                    !obj.paragraphs[i].propositions[j].hiddenForAll){
+                      obj.paragraphs[i].propositions[j].first = true;
+                      console.log("Assigned first prop at ", i, ", ", j)
+                      for (var k = j; k < obj.paragraphs[i].propositions.length; k++){
+                        if (k > j){ 
+                          obj.paragraphs[i].propositions[k].first = false;
+                        }
+                      }
+                      j = obj.paragraphs[i].propositions.length;
+                    } else {
+                      obj.paragraphs[i].propositions[j].first = false;
+                    }
+                  }
+                }
                 // apply.nodeDestination = eval(obj.nodePath)
                 // for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                 // // for all paragraph
@@ -1034,7 +1085,7 @@
       }
 
       $scope.findFirst = function (node, paragraphId){
-
+        console.log("Runs findfirst paragraph")
         var initFunction = true;
         var theNode = document.querySelector('#' + node.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
