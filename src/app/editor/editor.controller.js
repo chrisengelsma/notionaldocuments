@@ -452,10 +452,10 @@
                     if (obj.paragraphs[n].paragraphId === isFirst &&
                       !obj.paragraphs[n][$scope.userId] === 'hidden' &&
                       !obj.paragraphs[n].hiddenForAll){
-                      console.log("if")
+                      console.log("if. ", obj.paragraphs[n])
                       obj.paragraphs[n].first = true;
                     } else {
-                      console.log("else")
+                      console.log("else. ", obj.paragraphs[n])
                       obj.paragraph[n].first = false;
                     }
                     console.log("Paragraph ", n, ": ", obj.paragraph[n].first)
