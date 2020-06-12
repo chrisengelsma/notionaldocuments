@@ -3650,7 +3650,9 @@
 
             var initFunction = false;
             var theNode = document.getElementById(apply.nodeDestination.nodeId);
+            console.log("The node: ", theNode)
             var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+            console.log("the node paragraphs: ", theNodeParagraphs)
             for (var m = 0; m < theNodeParagraphs.length; m++){
               console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
               if (theNodeParagraphs[m].style.display !== 'none'){
