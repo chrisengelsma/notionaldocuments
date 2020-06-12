@@ -432,7 +432,9 @@
                 var initFunction = false;
                 console.log('Node id input: #' + obj.nodeId)
                 var theNode = document.getElementById(obj.nodeId);
+                console.log("the node: ", theNode)
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+                console.log("the node paragraphs: ", theNodeParagraphs)
                 for (var m = 0; m < theNodeParagraphs.length; m++){
                   console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
                   if (theNodeParagraphs[m].style.display !== 'none'){
