@@ -429,37 +429,37 @@
             }
               apply = {};
               if (key === 'class'){
-                apply.nodeDestination = eval(obj.nodePath)
-                for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-                // for all paragraph
-                  for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
-                  // and all propositions
-                    if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                    !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
-                      apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-                      for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                        if (k > j){
-                          apply.nodeDestination.paragraphs[i].propositions[k].first = false;
-                        }
-                      }
-                      j = apply.nodeDestination.paragraphs[i].propositions.length;
-                    } else {
-                      apply.nodeDestination.paragraphs[i].propositions[j].first = false;
-                    }
-                  }
-                  if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-                  !apply.nodeDestination.paragraphs[i].hiddenForAll){
-                    apply.nodeDestination.paragraphs[i].first = true;
-                    for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-                      if (k > i){
-                        apply.nodeDestination.paragraphs[k].first = false;
-                      }
-                    }
-                    i = apply.nodeDestination.paragraphs.length;
-                  } else {
-                    apply.nodeDestination.first = false;
-                  } 
-                }
+                // apply.nodeDestination = eval(obj.nodePath)
+                // for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
+                // // for all paragraph
+                //   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
+                //   // and all propositions
+                //     if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
+                //     !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
+                //       apply.nodeDestination.paragraphs[i].propositions[j].first = true;
+                //       for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
+                //         if (k > j){
+                //           apply.nodeDestination.paragraphs[i].propositions[k].first = false;
+                //         }
+                //       }
+                //       j = apply.nodeDestination.paragraphs[i].propositions.length;
+                //     } else {
+                //       apply.nodeDestination.paragraphs[i].propositions[j].first = false;
+                //     }
+                //   }
+                //   if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
+                //   !apply.nodeDestination.paragraphs[i].hiddenForAll){
+                //     apply.nodeDestination.paragraphs[i].first = true;
+                //     for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
+                //       if (k > i){
+                //         apply.nodeDestination.paragraphs[k].first = false;
+                //       }
+                //     }
+                //     i = apply.nodeDestination.paragraphs.length;
+                //   } else {
+                //     apply.nodeDestination.first = false;
+                //   } 
+                // }
               }
             apply = {};
           }
@@ -1041,7 +1041,7 @@
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           if (theNodeParagraphs[m].style.display !== 'none'){
-            var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+            var isFirst = theNodeParagraphs[m].paragraphId.splice(0,9); 
             console.log("Isfirst: ", isFirst)
             break;
           }
@@ -1049,7 +1049,7 @@
         if (isFirst && initFunction == false){
           console.log("there is an isfirst")
           for (var n = 0; n < node.paragraphs.length; n++){
-            if (node.paragraphs[n].id === isFirst &&
+            if (node.paragraphs[n].paragraphId === isFirst &&
               !node.paragraphs[n][$scope.userId] === 'hidden' &&
               !node.paragraphs[n].hiddenForAll){
                 node.paragraphs[n].first = true;
@@ -1776,7 +1776,7 @@
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           if (theNodeParagraphs[m].style.display !== 'none'){
-            var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+            var isFirst = theNodeParagraphs[m].paragraphId.splice(0,9); 
             console.log("Isfirst: ", isFirst)
             break;
           }
@@ -1784,7 +1784,7 @@
         if (isFirst && initFunction == false){
           console.log("there is an isfirst")
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-            if (apply.nodeDestination.paragraphs[n].id === isFirst &&
+            if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
               !apply.nodeDestination.paragraphs[n][$scope.userId] === 'hidden' &&
               !apply.nodeDestination.paragraphs[n].hiddenForAll){
               apply.nodeDestination.paragraphs[n].first = true;
@@ -3599,7 +3599,7 @@
             for (var m = 0; m < theNodeParagraphs.length; m++){
               console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
               if (theNodeParagraphs[m].style.display !== 'none'){
-                var isFirst = theNodeParagraphs[m].id.splice(0,9); 
+                var isFirst = theNodeParagraphs[m].paragraphId.splice(0,9); 
                 console.log("Isfirst: ", isFirst)
                 break;
               }
@@ -3607,7 +3607,7 @@
             if (isFirst && initFunction == false){
               console.log("there is an isfirst")
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-                if (apply.nodeDestination.paragraphs[n].id === isFirst &&
+                if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
                   !apply.nodeDestination.paragraphs[n][$scope.userId] === 'hidden' &&
                   !apply.nodeDestination.paragraphs[n].hiddenForAll){
                   apply.nodeDestination.paragraphs[n].first = true;
