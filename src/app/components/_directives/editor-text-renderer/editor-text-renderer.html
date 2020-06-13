@@ -29,6 +29,7 @@
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
                 }">{{paragraph.first}} <!-- {{hasLeftFocus}} {{hasRightFocus.id}} --> 
+                <!-- ng-init="findFirst(node, paragraph.paragraphId) ? paragraph.first = true : paragraph.first = false" -->
        
                
     <div class="topparagraphadder"
