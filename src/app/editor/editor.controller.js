@@ -3652,12 +3652,12 @@
             console.log("the node paragraphs: ", theNodeParagraphs)
             for (var m = 0; m < theNodeParagraphs.length; m++){
               console.log("Display: m", m, " ", theNodeParagraphs[m].style)
-              if (theNodeParagraphs[m].style.display !== 'none'){
+             
                 console.log("Id output: ", theNodeParagraphs[m].id.toString())
                 var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
                 
                 break;
-              }
+              
             }
             if (isFirst && initFunction == false){
               console.log("there is an isfirst")
