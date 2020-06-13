@@ -434,26 +434,16 @@
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 console.log("the node paragraphs: ", theNodeParagraphs)
                 for (var m = 0; m < theNodeParagraphs.length; m++){
-                  console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
                  
-                    console.log("Id output: ", theNodeParagraphs[m].id.toString())
                     var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-                    console.log("Isfirst: ", isFirst)
                     break;
                   
                 }
                 if (isFirst && initFunction == false){
-                  console.log("there is an isfirst")
-                  console.log("object: ", obj)
                   for (var n = 0; n < obj.paragraphs.length; n++){
-                    console.log(obj.paragraphs[n].paragraphId === isFirst,
-                      obj.paragraphs[n][$scope.userId] !== 'hidden',
-                      !obj.paragraphs[n].hiddenForAll)
                     if (obj.paragraphs[n].paragraphId === isFirst){
-                      console.log("if. ", obj.paragraphs[n])
                       obj.paragraphs[n].first = true;
                     } else {
-                      console.log("else. ", obj.paragraphs[n])
                       obj.paragraphs[n].first = false;
                     }
                   }
@@ -473,7 +463,6 @@
                     if (obj.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
                     !obj.paragraphs[i].propositions[j].hiddenForAll){
                       obj.paragraphs[i].propositions[j].first = true;
-                      console.log("Assigned first prop at ", i, ", ", j)
                       for (var k = j; k < obj.paragraphs[i].propositions.length; k++){
                         if (k > j){ 
                           obj.paragraphs[i].propositions[k].first = false;
@@ -1097,9 +1086,7 @@
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           
-            console.log("Id output: ", theNodeParagraphs[m].id.toString())
             var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-            console.log("Isfirst: ", isFirst)
             break;
           
         }
@@ -1113,7 +1100,7 @@
             }
           }
         } else if (!initFunction) {
-          console.log(n, " is without visible paragraphs")
+       
           for (var n = 0; n < node.paragraphs.length; n++){
             node.paragraphs[i].first = false;
           }
@@ -1828,16 +1815,16 @@
         var theNode = document.getElementById(apply.nodeDestination.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
         for (var m = 0; m < theNodeParagraphs.length; m++){
-          console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           
-            console.log("Id output: ", theNodeParagraphs[m].id.toString())
+          
+           
             var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-            console.log("Isfirst: ", isFirst)
+           
             break;
           
         }
         if (isFirst && initFunction == false){
-          console.log("there is an isfirst")
+          
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
             if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst){
               apply.nodeDestination.paragraphs[n].first = true;
@@ -1846,7 +1833,7 @@
             }
           }
         } else if (!initFunction) {
-          console.log(n, " is without visible props")
+          
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
             apply.nodeDestination.paragraphs[i].first = false;
           }
@@ -1861,7 +1848,7 @@
             if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
             !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
               apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-              console.log("Assigned first prop at ", i, ", ", j)
+             
               for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
                 if (k > j){ 
                   apply.nodeDestination.paragraphs[i].propositions[k].first = false;
@@ -3326,7 +3313,7 @@
               } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
                   $timeout(function() {
                     apply.nodeDestination = eval(payload.nodePath);
-                    console.log("Apply: ", apply)
+                    
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
@@ -3338,10 +3325,10 @@
                 }
             } else if (payload.proposition.insertsLeft) {
               
-              console.log("Node destination: ", eval(payload.nodePath));
+              
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-              console.log("Paragraph path: ", apply.paragraphPath)
+            
               apply.paragraphDestination = eval(apply.paragraphPath);
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + 
               '.propositions[' + payload.proposition.position.toString() + ']';
@@ -3364,8 +3351,7 @@
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
                 $timeout(function() {
-                console.log("Paragraph destination: ", apply.paragraphDestination)
-                console.log("Proposition position: ", payload.proposition.position)
+               
                 $scope.selectedParagraph = eval(payload.nodePath + '.paragraphs[' + 
                 payload.paragraphPosition.toString() + ']');
                 $scope.selectedProposition = eval(payload.nodePath + '.paragraphs[' + 
@@ -3647,40 +3633,32 @@
 
             var initFunction = false;
             var theNode = document.getElementById(apply.nodeDestination.nodeId);
-            console.log("The node: ", theNode)
+           
             var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
             console.log("the node paragraphs: ", theNodeParagraphs)
             for (var m = 0; m < theNodeParagraphs.length; m++){
-              console.log("Display: m", m, " ", theNodeParagraphs[m].style)
              
-                console.log("Id output: ", theNodeParagraphs[m].id.toString())
+             
+                
                 var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
                 
                 break;
               
             }
             if (isFirst && initFunction == false){
-              console.log("there is an isfirst")
+             
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-                console.log("Isfirst: ", isFirst)
-                console.log("paragraph id: ", apply.nodeDestination.paragraphs[n].paragraphId)
-                console.log(apply.nodeDestination.paragraphs[n].paragraphId === isFirst,
-                      apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden',
-                      !apply.nodeDestination.paragraphs[n].hiddenForAll)
                 if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
                   apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
                   !apply.nodeDestination.paragraphs[n].hiddenForAll){
                   
                   apply.nodeDestination.paragraphs[n].first = true;
-                console.log(n,": (If)", apply.nodeDestination.paragraphs[n].first)
                 } else {
                   
                   apply.nodeDestination.paragraphs[n].first = false;
-                  console.log(n,": (else)", apply.nodeDestination.paragraphs[n].first)
                 }
               }
             } else if (!initFunction) {
-              console.log(n, " is without visible props")
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
                 apply.nodeDestination.paragraphs[i].first = false;
               }
@@ -3695,7 +3673,6 @@
                 if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
                 !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
                   apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-                  console.log("Assigned first prop at ", i, ", ", j)
                   for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
                     if (k > j){ 
                       apply.nodeDestination.paragraphs[i].propositions[k].first = false;
