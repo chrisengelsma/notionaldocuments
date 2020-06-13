@@ -3663,13 +3663,15 @@
               if (theNodeParagraphs[m].style.display !== 'none'){
                 console.log("Id output: ", theNodeParagraphs[m].id.toString())
                 var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-                console.log("Isfirst: ", isFirst)
+                
                 break;
               }
             }
             if (isFirst && initFunction == false){
               console.log("there is an isfirst")
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+                console.log("Isfirst: ", isFirst)
+                console.log("paragraph id: ", apply.nodeDestination.paragraphs[n].paragraphId)
                 console.log(apply.nodeDestination.paragraphs[n].paragraphId === isFirst,
                       apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden',
                       !apply.nodeDestination.paragraphs[n].hiddenForAll)
