@@ -3670,11 +3670,13 @@
                 if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
                   apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
                   !apply.nodeDestination.paragraphs[n].hiddenForAll){
-                  console.log(n,": (If)", apply.nodeDestination.paragraphs[n].first)
+                  
                   apply.nodeDestination.paragraphs[n].first = true;
+                console.log(n,": (If)", apply.nodeDestination.paragraphs[n].first)
                 } else {
-                  console.log(n,": (else)", apply.nodeDestination.paragraphs[n].first)
+                  
                   apply.nodeDestination.paragraphs[n].first = false;
+                  console.log(n,": (else)", apply.nodeDestination.paragraphs[n].first)
                 }
               }
             } else if (!initFunction) {
