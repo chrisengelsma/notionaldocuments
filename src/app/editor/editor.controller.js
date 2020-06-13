@@ -430,19 +430,17 @@
               apply = {};
               if (key === 'class'){
                 var initFunction = false;
-                console.log('Node id input: #' + obj.nodeId)
                 var theNode = document.getElementById(obj.nodeId);
-                console.log("the node: ", theNode)
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 console.log("the node paragraphs: ", theNodeParagraphs)
                 for (var m = 0; m < theNodeParagraphs.length; m++){
                   console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
-                  if (theNodeParagraphs[m].style.display !== 'none'){
+                 
                     console.log("Id output: ", theNodeParagraphs[m].id.toString())
                     var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
                     console.log("Isfirst: ", isFirst)
                     break;
-                  }
+                  
                 }
                 if (isFirst && initFunction == false){
                   console.log("there is an isfirst")
@@ -451,9 +449,7 @@
                     console.log(obj.paragraphs[n].paragraphId === isFirst,
                       obj.paragraphs[n][$scope.userId] !== 'hidden',
                       !obj.paragraphs[n].hiddenForAll)
-                    if (obj.paragraphs[n].paragraphId === isFirst &&
-                      obj.paragraphs[n][$scope.userId] !== 'hidden' &&
-                      !obj.paragraphs[n].hiddenForAll){
+                    if (obj.paragraphs[n].paragraphId === isFirst){
                       console.log("if. ", obj.paragraphs[n])
                       obj.paragraphs[n].first = true;
                     } else {
@@ -1100,19 +1096,17 @@
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
-          if (theNodeParagraphs[m].style.display !== 'none'){
+          
             console.log("Id output: ", theNodeParagraphs[m].id.toString())
             var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
             console.log("Isfirst: ", isFirst)
             break;
-          }
+          
         }
         if (isFirst && initFunction == false){
           console.log("there is an isfirst")
           for (var n = 0; n < node.paragraphs.length; n++){
-            if (node.paragraphs[n].paragraphId === isFirst &&
-              node.paragraphs[n][$scope.userId] !== 'hidden' &&
-              !node.paragraphs[n].hiddenForAll){
+            if (node.paragraphs[n].paragraphId === isFirst){
                 node.paragraphs[n].first = true;
             } else {
               node.paragraphs[n].first = false;
@@ -1835,19 +1829,17 @@
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
         for (var m = 0; m < theNodeParagraphs.length; m++){
           console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
-          if (theNodeParagraphs[m].style.display !== 'none'){
+          
             console.log("Id output: ", theNodeParagraphs[m].id.toString())
             var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
             console.log("Isfirst: ", isFirst)
             break;
-          }
+          
         }
         if (isFirst && initFunction == false){
           console.log("there is an isfirst")
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-            if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
-              apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
-              !apply.nodeDestination.paragraphs[n].hiddenForAll){
+            if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst){
               apply.nodeDestination.paragraphs[n].first = true;
             } else {
               apply.nodeDestination.paragraphs[n].first = false;
