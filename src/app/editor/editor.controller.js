@@ -3659,7 +3659,7 @@
             var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
             console.log("the node paragraphs: ", theNodeParagraphs)
             for (var m = 0; m < theNodeParagraphs.length; m++){
-              console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
+              console.log("Display: m", m, " ", theNodeParagraphs[m].style.display)
               if (theNodeParagraphs[m].style.display !== 'none'){
                 console.log("Id output: ", theNodeParagraphs[m].id.toString())
                 var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
