@@ -3670,9 +3670,9 @@
             if (isFirst && initFunction == false){
               console.log("there is an isfirst")
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-                console.log(obj.paragraphs[n].paragraphId === isFirst,
-                      obj.paragraphs[n][$scope.userId] !== 'hidden',
-                      !obj.paragraphs[n].hiddenForAll)
+                console.log(apply.nodeDestination.paragraphs[n].paragraphId === isFirst,
+                      apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden',
+                      !apply.nodeDestination.paragraphs[n].hiddenForAll)
                 if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
                   apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
                   !apply.nodeDestination.paragraphs[n].hiddenForAll){
