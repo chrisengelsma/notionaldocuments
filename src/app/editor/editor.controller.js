@@ -1826,7 +1826,7 @@
             break;
           
         }
-        console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
+        console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs) 
         if (isFirst && initFunction == false){
           console.log("There's a first")
           
