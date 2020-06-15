@@ -1092,6 +1092,7 @@
         }
         if (isFirst && initFunction == false){
           console.log("there is an isfirst")
+          console.log("Node paragraphs: ", node.paragraphs)
           for (var n = 0; n < node.paragraphs.length; n++){
             if (node.paragraphs[n].paragraphId === isFirst){
                 node.paragraphs[n].first = true;
@@ -1814,6 +1815,7 @@
         var initFunction = false;
         var theNode = document.getElementById(apply.nodeDestination.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+        console.log("The node paragraphs; ", theNodeParagraphs)
         for (var m = 0; m < theNodeParagraphs.length; m++){
           
           
@@ -1823,7 +1825,10 @@
             break;
           
         }
+        console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
         if (isFirst && initFunction == false){
+          console.log("There's a first")
+          
           
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
             if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst){
