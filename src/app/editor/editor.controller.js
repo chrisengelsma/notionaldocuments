@@ -3641,7 +3641,7 @@
             var theNode = document.getElementById(apply.nodeDestination.nodeId);
            
             var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-            console.log("the node paragraphs: ", theNodeParagraphs)
+            console.log("the node paragraphs html: ", theNodeParagraphs.outerHTML)
             for (var m = 0; m < theNodeParagraphs.length; m++){
              
              
