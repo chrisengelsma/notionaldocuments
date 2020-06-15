@@ -3643,7 +3643,7 @@
             var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
            
             for (var m = 0; m < theNodeParagraphs.length; m++){
-             console.log("the node paragraphs html: ", theNodeParagraphs[m].outerHTML, " (",m,")")
+             console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
              
                 
                 var isFirst = theNodeParagraphs[m].id.toString().slice(9); 

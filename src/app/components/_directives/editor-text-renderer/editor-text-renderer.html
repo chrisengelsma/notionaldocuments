@@ -28,8 +28,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{paragraph.first}} <!-- {{hasLeftFocus}} {{hasRightFocus.id}} --> 
-                <!-- ng-init="findFirst(node, paragraph.paragraphId) ? paragraph.first = true : paragraph.first = false" -->
+                }">{{paragraph.first}}
        
                
     <div class="topparagraphadder"
@@ -60,14 +59,7 @@
          class="paragraph addparagraph"
          ng-class="" style="">
       <div class="proposition">
-      <!--   <span class="proposition-text"></span> -->
-<!--         <span 
-              ng-if="hasTopFocus == paragraph.paragraphId"
-              class="cursor invisible-cursor"
-              >
-        </span> -->
-<!--         <span class="cursor invisible-cursor">
-        </span> -->
+
         <span
           editable-span-ng-model
           ng-class=""
@@ -125,10 +117,7 @@
                 event-focus-id="{{leftAdderId}}"
                 ng-if="proposition.first"
                 >
-               <!--  get rid of selected proposition condition though it's to prevent left adds for others in the same paragraph -->
-<!--             <span ng-mouseover="paragraph.disableRightCursor = true"
-                  ng-mouseleave="paragraph.disableRightCursor = false"
-                  class="cursor invisible-cursor">
+
             </span> -->
           </span>
       
@@ -235,11 +224,8 @@
                 ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
                 
                 >
-            {{proposition.text}}<!-- {{hasRightFocus.id}}{{proposition.id}}{{hasRightFocus.id !== proposition.id}} -->
-          </span><!-- {{proposition.id}} -->
-<!--           <span class="cursor invisible-cursor"
-                ng-if="selectedProposition.id === proposition.id && inputs.proposition === ''">
-          </span> -->
+            {{proposition.text}}
+          </span>
           <span
             editable-span-ng-model
             id="{{proposition.id}}"
