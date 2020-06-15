@@ -439,6 +439,7 @@
                     break;
                   
                 }
+                console.log("obj.paragraphs: ", obj.paragraphs)
                 if (isFirst && initFunction == false){
                   for (var n = 0; n < obj.paragraphs.length; n++){
                     if (obj.paragraphs[n].paragraphId === isFirst){
@@ -1088,11 +1089,11 @@
           
             var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
             break;
-          
+            console.log("Node paragraphs: ", node.paragraphs)
         }
         if (isFirst && initFunction == false){
           console.log("there is an isfirst")
-          console.log("Node paragraphs: ", node.paragraphs)
+          
           for (var n = 0; n < node.paragraphs.length; n++){
             if (node.paragraphs[n].paragraphId === isFirst){
                 node.paragraphs[n].first = true;
