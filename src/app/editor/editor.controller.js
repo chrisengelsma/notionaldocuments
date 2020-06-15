@@ -3651,6 +3651,7 @@
                 break;
               
             }
+            console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
             if (isFirst && initFunction == false){
              
               for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
