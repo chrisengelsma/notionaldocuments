@@ -9,11 +9,12 @@
   ng-mouseover="node.mouseOver = true;"
   ng-mouseleave="node.mouseOver = false;"
   ng-click="[toggleNode(node), stopNgClick()]">
+  
+  {{node.topic}}
   <span ng-if="node.mouseOver && node.minimized"
         style="padding-right: 10px">+</span>
   <span ng-if="node.mouseOver && !node.minimized"
         style="padding-right: 10px">-</span>
-  {{node.topic}} {{node.mouseOver}}
 </div>
 <ol ui-tree-nodes
     ng-if="!node.minimized"
@@ -36,7 +37,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">{{paragraph.first}}
+                }">
        
                
     <div class="topparagraphadder"
