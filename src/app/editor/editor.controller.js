@@ -1080,40 +1080,40 @@
       }
 
       $scope.findFirst = function (node, paragraphId){
-        console.log("Runs findfirst paragraph")
-        var initFunction = true;
-        var theNode = document.getElementById(node.nodeId);
-        var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-        for (var m = 0; m < theNodeParagraphs.length; m++){
-          console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
+        // console.log("Runs findfirst paragraph")
+        // var initFunction = true;
+        // var theNode = document.getElementById(node.nodeId);
+        // var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+        // for (var m = 0; m < theNodeParagraphs.length; m++){
+        //   console.log("Ng repeat index ", m, ": ", theNodeParagraphs[m])
           
-            var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-            break;
-            console.log("Node paragraphs: ", node.paragraphs)
-        }
-        if (isFirst && initFunction == false){
-          console.log("there is an isfirst")
+        //     var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
+        //     break;
+        //     console.log("Node paragraphs: ", node.paragraphs)
+        // }
+        // if (isFirst && initFunction == false){
+        //   console.log("there is an isfirst")
           
-          for (var n = 0; n < node.paragraphs.length; n++){
-            if (node.paragraphs[n].paragraphId === isFirst){
-                node.paragraphs[n].first = true;
-            } else {
-              node.paragraphs[n].first = false;
-            }
-          }
-        } else if (!initFunction) {
+        //   for (var n = 0; n < node.paragraphs.length; n++){
+        //     if (node.paragraphs[n].paragraphId === isFirst){
+        //         node.paragraphs[n].first = true;
+        //     } else {
+        //       node.paragraphs[n].first = false;
+        //     }
+        //   }
+        // } else if (!initFunction) {
        
-          for (var n = 0; n < node.paragraphs.length; n++){
-            node.paragraphs[i].first = false;
-          }
-        }
+        //   for (var n = 0; n < node.paragraphs.length; n++){
+        //     node.paragraphs[i].first = false;
+        //   }
+        // }
         
         
-        if (isFirst === paragraphId && initFunction == true){
-            return true;
-        } else if (initFunction == true){
-          return false;
-        }
+        // if (isFirst === paragraphId && initFunction == true){
+        //     return true;
+        // } else if (initFunction == true){
+        //   return false;
+        // }
         
 
       }
@@ -3637,39 +3637,8 @@
             
             // assigns firsts to propositions
 
-            var initFunction = false;
-            var theNode = document.getElementById(apply.nodeDestination.nodeId);
-           
-            var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-           
-            for (var m = 0; m < theNodeParagraphs.length; m++){
-             console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
-             
-                
-                var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-                
-                break;
-              
-            }
-            console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
-            if (isFirst && initFunction == false){
-             
-              for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-                if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
-                  apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
-                  !apply.nodeDestination.paragraphs[n].hiddenForAll){
-                  
-                  apply.nodeDestination.paragraphs[n].first = true;
-                } else {
-                  
-                  apply.nodeDestination.paragraphs[n].first = false;
-                }
-              }
-            } else if (!initFunction) {
-              for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-                apply.nodeDestination.paragraphs[i].first = false;
-              }
-            }
+            
+            
               
             // propositions
             for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
@@ -3712,11 +3681,7 @@
         // $scope.initialize();
 
        
-        // Scroll
-        $timeout(function() {
-          var pane = document.getElementById('dialoguelist');
-          pane.scrollTop = pane.scrollHeight;
-        }, 30);
+        
 
         // $scope.makePristine();
         setTimeout(function() {
@@ -3726,6 +3691,38 @@
             $scope.clearBlankOnBlur();
           }
         });
+
+        // Scroll
+        $timeout(function() {
+          var pane = document.getElementById('dialoguelist');
+          pane.scrollTop = pane.scrollHeight;
+
+          var theNode = document.getElementById(apply.nodeDestination.nodeId);
+          var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
+          for (var m = 0; m < theNodeParagraphs.length; m++){
+            console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
+            var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
+            break;
+          }
+          console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
+          if (isFirst){
+            for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+              if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
+                apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
+                !apply.nodeDestination.paragraphs[n].hiddenForAll){
+                apply.nodeDestination.paragraphs[n].first = true;
+              } else {
+                apply.nodeDestination.paragraphs[n].first = false;
+              }
+            }
+          } else {
+            for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
+              apply.nodeDestination.paragraphs[i].first = false;
+            }
+          }
+
+
+        }, 30);
 
       });
 

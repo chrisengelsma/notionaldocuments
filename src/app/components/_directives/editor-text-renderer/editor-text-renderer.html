@@ -23,7 +23,7 @@
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
       ng-if="paragraph[userId] !== 'hidden' && paragraph.hiddenForAll !== true || (paragraph.privateFor && paragraph.privateFor === userId && !paragraph.hiddenForAll)"
-      ng-init="findFirst(node, paragraph.paragraphId) ? paragraph.first = true : paragraph.first = false"
+      
       ng-style="{'background-color': paragraph.color}"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
