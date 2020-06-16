@@ -17,6 +17,7 @@
         lastModified: null,
         nodePath: '$scope.data[0]',
         nodeId: IdFactory.next(),
+        minimized: false,
         paragraphs: [
           {
             first: true,
