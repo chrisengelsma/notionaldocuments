@@ -1811,33 +1811,25 @@
 
         // assigns firsts to propositions
 
-        var initFunction = false;
         var theNode = document.getElementById(apply.nodeDestination.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-        console.log("The node paragraphs; ", theNodeParagraphs)
         for (var m = 0; m < theNodeParagraphs.length; m++){
-          
-          
-           
-            var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-           
-            break;
-          
+          console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
+          var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
+          break;
         }
-        console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs) 
-        if (isFirst && initFunction == false){
-          console.log("There's a first")
-          
-          
+        console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
+        if (isFirst){
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
-            if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst){
+            if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
+              apply.nodeDestination.paragraphs[n][$scope.userId] !== 'hidden' &&
+              !apply.nodeDestination.paragraphs[n].hiddenForAll){
               apply.nodeDestination.paragraphs[n].first = true;
             } else {
               apply.nodeDestination.paragraphs[n].first = false;
             }
           }
-        } else if (!initFunction) {
-          
+        } else {
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
             apply.nodeDestination.paragraphs[i].first = false;
           }
