@@ -3307,9 +3307,10 @@
 
                 $timeout(function() {
                   
-                  $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+                  $scope.selectedParagraph = $scope.selectedNode.paragraphs[payload.paragraphPosition];
+                  console.log("before the click selected paragraph: ", $scope.selectedParagraph)
                   $scope.selectedProposition = 
-                  apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+                  $scope.selectedParagraph.propositions[payload.proposition.position];
                   $scope.hasRightFocus.id = $scope.selectedProposition.id
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
