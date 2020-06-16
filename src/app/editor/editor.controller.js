@@ -3295,6 +3295,8 @@
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
                 console.log("own replaces blank and moves")
                 $scope.selectedNode = apply.nodeDestination;
+                console.log('selected node: ', $scope.selectedNode)
+                console.log('node destination: ', apply.nodeDestination)
                 apply.ofParagraphPosition = payload.ofParagraphPosition;
                 apply.ofParagraphPath = payload.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
                 apply.ofParagraphDestination = eval(apply.ofParagraphPath);
