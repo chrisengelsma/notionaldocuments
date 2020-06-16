@@ -3314,6 +3314,7 @@
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
                   console.log("before the click node: ", $scope.selectedNode)
+                  console.log("before the click selected proposition: ", $scope.selectedProposition)
                   $($scope.selectedProposition.id).trigger('click');
                 }, 30);
 
