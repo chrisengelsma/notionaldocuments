@@ -3293,7 +3293,7 @@
 
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
-                
+                console.log("own replaces blank and moves")
                 apply.ofParagraphPosition = payload.ofParagraphPosition;
                 apply.ofParagraphPath = payload.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
                 apply.ofParagraphDestination = eval(apply.ofParagraphPath);
@@ -3315,6 +3315,7 @@
 
 
               } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
+                  console.log("own else if")
                   $timeout(function() {
                     apply.nodeDestination = eval(payload.nodePath);
                     $scope.selectedNode = apply.nodeDestination;
