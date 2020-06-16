@@ -3317,7 +3317,7 @@
               } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
                   $timeout(function() {
                     apply.nodeDestination = eval(payload.nodePath);
-                    
+                    $scope.selectedNode = apply.nodeDestination;
                     $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                     $scope.selectedProposition = 
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
