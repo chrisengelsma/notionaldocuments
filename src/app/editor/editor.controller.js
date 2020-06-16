@@ -429,27 +429,25 @@
             }
               apply = {};
               if (key === 'class'){
-                var initFunction = false;
                 var theNode = document.getElementById(obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
-                console.log("the node paragraphs: ", theNodeParagraphs)
                 for (var m = 0; m < theNodeParagraphs.length; m++){
-                 
-                    var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
-                    break;
-                  
+                  console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
+                  var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
+                  break;
                 }
                 console.log("obj.paragraphs: ", obj.paragraphs)
-                if (isFirst && initFunction == false){
+                if (isFirst){
                   for (var n = 0; n < obj.paragraphs.length; n++){
-                    if (obj.paragraphs[n].paragraphId === isFirst){
+                    if (obj.paragraphs[n].paragraphId === isFirst &&
+                      obj.paragraphs[n][$scope.userId] !== 'hidden' &&
+                      !obj.paragraphs[n].hiddenForAll){
                       obj.paragraphs[n].first = true;
                     } else {
                       obj.paragraphs[n].first = false;
                     }
                   }
-                } else if (!initFunction) {
-                  console.log(n, " is without visible props")
+                } else {
                   for (var n = 0; n < obj.paragraphs.length; n++){
                     obj.paragraphs[i].first = false;
                   }
