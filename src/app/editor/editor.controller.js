@@ -3233,10 +3233,12 @@
               if (typeof (eval(apply.paragraphPath)) === 'undefined') {
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                 {
+                  first: true,
                   paragraphId: payload.paragraphId,
                   position: payload.paragraphPosition,
                   propositions: [payload.proposition]
                 };
+                apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].first = true;
               } else {
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
                   apply.nodeDestination.paragraphs[i].position++;
@@ -3276,10 +3278,12 @@
                 
                 apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
+                    first: true,
                     paragraphId: payload.paragraphId,
                     position: payload.paragraphPosition,
                     propositions: [payload.proposition]
                   };
+                apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].first = true;
               }
 
               apply.paragraphDestination = eval(apply.paragraphPath);
@@ -3299,7 +3303,7 @@
                 apply.ofParagraphDestination.hiddenForAll = true;
 
                 $timeout(function() {
-
+                  $scope.selectedNode = apply.nodeDestination;
                   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                   $scope.selectedProposition = 
                   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
