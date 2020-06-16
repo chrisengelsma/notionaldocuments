@@ -5,7 +5,10 @@
     titlestyling: node.isTitle,
     openfield: data[0].paragraphs[0].propositions[0].author === '',
   }"
-  ng-click="stopNgClick()">
+  
+  ng-mouseover="node.mouseOver = true;"
+  ng-mouseleave="node.mouseOver = false;"
+  ng-click="[toggleNode(node), stopNgClick()]">
   <span ng-if="node.mouseOver && node.minimized"
         style="padding-right: 10px">+</span>
   <span ng-if="node.mouseOver && !node.minimized"
