@@ -10,7 +10,7 @@
         style="padding-right: 10px">+</span>
   <span ng-if="node.mouseOver && !node.minimized"
         style="padding-right: 10px">-</span>
-  {{node.topic}}
+  {{node.topic}} {{node.mouseOver}}
 </div>
 <ol ui-tree-nodes
     ng-if="!node.minimized"
