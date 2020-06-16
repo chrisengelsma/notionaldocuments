@@ -394,6 +394,10 @@
         return $scope.otherPastels[index];
       }
 
+      $scope.toggleNode = function(node){
+        node.minimized = !node.minimized;
+      }
+
       // Upon load, assigns colors to paragraphs
       $scope.assignColorsToExistingParagraphs = function () {
         function traverse(x, key, obj) {

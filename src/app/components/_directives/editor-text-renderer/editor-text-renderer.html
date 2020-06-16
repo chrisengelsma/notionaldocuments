@@ -6,9 +6,14 @@
     openfield: data[0].paragraphs[0].propositions[0].author === '',
   }"
   ng-click="stopNgClick()">
+  <span ng-if="node.mouseOver && node.minimized"
+        style="padding-right: 10px">+</span>
+  <span ng-if="node.mouseOver && !node.minimized"
+        style="padding-right: 10px">-</span>
   {{node.topic}}
 </div>
 <ol ui-tree-nodes
+    ng-if="!node.minimized"
     ng-model="node.paragraphs"
     style="padding-left: 0"
     ng-mouseover="[lightUpLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]"
