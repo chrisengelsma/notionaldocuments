@@ -5,11 +5,9 @@
     titlestyling: node.isTitle,
     openfield: data[0].paragraphs[0].propositions[0].author === '',
   }"
-  
   ng-mouseover="node.mouseOver = true;"
   ng-mouseleave="node.mouseOver = false;"
   ng-click="[toggleNode(node), stopNgClick()]">
-  
   {{node.topic}}
   <span ng-if="node.mouseOver && node.minimized"
         style="padding-right: 10px">+</span>
@@ -23,7 +21,6 @@
     ng-mouseover="[lightUpLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]"
     ng-mouseleave="[blurLightUpLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]"
     ng-click="[getLastVisiblePropositionInNode(node, $event), $event.stopPropagation()]">
-
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs | orderBy:paragraphSorter"
       ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false, selectedParagraph = paragraph]"
@@ -32,14 +29,11 @@
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
       class="tree-node tree-node-content paragraph"
       ng-if="paragraph[userId] !== 'hidden' && paragraph.hiddenForAll !== true || (paragraph.privateFor && paragraph.privateFor === userId && !paragraph.hiddenForAll)"
-      
       ng-style="{'background-color': paragraph.color}"
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">
-       
-               
+                }">        
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -63,12 +57,10 @@
          event-focus="click"
          event-focus-id="{{topAdderId}}">
     </div>
-
     <div ng-if="hasTopFocus == paragraph.paragraphId"
          class="paragraph addparagraph"
          ng-class="" style="">
       <div class="proposition">
-
         <span
           editable-span-ng-model
           ng-class=""
@@ -101,12 +93,9 @@
             ng-init="findFirstProposition(paragraph, proposition.id) ? proposition.first = true : proposition.first = false; proposition.first ? paragraph.owner = paragraph.propositions[$index].author : inputs.nothing; "
             ng-mouseover="proposition.preSelected = true;"
             ng-mouseleave="[proposition.preSelected = false]"
-            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node), 
-
-                      selectLeft(proposition, paragraph)]"
+            ng-click="[hideExpandingTextarea(), selectedProposition.textSide = true, selectNode(node), selectLeft(proposition, paragraph)]"
             ng-if="(!proposition.hiddenForAll && !proposition.rejoined && proposition[userId] !== 'hidden') || (proposition.privateFor && proposition.privateFor === userId)"
             class="proposition">
-          
           <span class="leftpropositionadder"
                 ng-mouseover="paragraph.owner === userId ? [paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true] : inputs.notting"
                 ng-mouseleave="[paragraph.leftMouseOver = false, paragraph.disableRightCursor = false]"
@@ -127,10 +116,8 @@
                 event-focus-id="{{leftAdderId}}"
                 ng-if="proposition.first"
                 >
-
             </span>
           </span>
-      
             <span 
                       editable-span-ng-model
                       contenteditable="true"
