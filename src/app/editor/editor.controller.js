@@ -903,7 +903,7 @@
 
       // Selects paragraph
       $scope.selectParagraph = function(paragraph) {
-        
+        console.log("Selected paragraph fires")
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
