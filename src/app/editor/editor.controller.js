@@ -3345,7 +3345,7 @@
               '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
               if (apply.propositionDestination) {
-                for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position; i--) {
+                for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position-1; i--) {
                   apply.paragraphDestination.propositions[i].position++;
                   if ($scope.selectedProposition){
                     if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
