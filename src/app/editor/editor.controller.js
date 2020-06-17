@@ -3353,6 +3353,7 @@
                       $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                     }
                   }
+                  console.log("copying up: ", apply.paragraphDestination.propositions[i].text)
                   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                 }
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition; 
