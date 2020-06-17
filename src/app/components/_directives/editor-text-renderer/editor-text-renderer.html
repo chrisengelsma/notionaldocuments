@@ -26,7 +26,7 @@
 
     <!-- | orderBy:paragraphSorter -->
   <li ng-repeat="paragraph in node.paragraphs | orderBy:paragraphSorter"
-      ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false, selectParagraph(paragraph)]"
+      ng-click="[clearThreadAdding(), paragraph.cursor = false, selectedProposition.dialogueSide = false, selectedParagraph = paragraph]"
       id="paragraph{{paragraph.paragraphId}}"
       ng-mouseover="paragraph.mouseOver = true;"
       ng-mouseleave="[paragraph.mouseOver = false, paragraph.leftMouseOver = false]"
