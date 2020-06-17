@@ -239,7 +239,7 @@
             editable-span-ng-model
             id="{{proposition.id}}"
             title="{{proposition.id}}"
-            class="right-text right-textarea"
+            class="right-text right-textarea maininput"
             ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
             ng-class="{'negation': (!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation' && selectedProposition.author !== userId)}"
             ng-click="[assignRightFocus(proposition), paragraph.disableRightCursor = true, hasRightFocus.id = proposition.id ]"
