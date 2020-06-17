@@ -1,5 +1,4 @@
 <nd-readonly-shield ng-if="!loggedIn()"></nd-readonly-shield>
-
 <div class="container "
      ng-init="initialize"
      ng-click="blurEdit()"
@@ -9,33 +8,18 @@
        id="firstrow">
     <span class="app-title"
           ng-click="clearWithAdder()"> {{ title ? title : ''}} </span>
-
     <div id="myNav"
          class="overlay"
          ng-click="closeNav()">
-      <!-- <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a> -->
       <div class="overlay-content">
         <a href="javascript:void(0)"
-           ng-click="closeNav()">Click, type, and enter with a . to send out a sentence as a message, and also place the
-                                 sentence into the common document.</a>
-
+           ng-click="closeNav()">Some text</a>
         <a href="javascript:void(0)"
-           ng-click="closeNav()">Click, type, and enter with a ! to send out a remark upon an incoming sentence, or to
-                                 dispel another's remark on one of your sentences. Remarking on a sentence will
-                                 underline it before it is sent out, marking up the sentence and becoming part of a
-                                 message thread. Dispelling a remark adds to the thread, and replaces the remark in the
-                                 document.</a>
-
+           ng-click="closeNav()">More text</a>
         <a href="javascript:void(0)"
-           ng-click="closeNav()">Click, type, and enter with a ? to ask a question. It will introduce a new topic for
-                                 threads, as well as a new section of the document. It is possible that any question can
-                                 be given a counterpart noun phrase suitable for draft section headings for the
-                                 paragraphs that will contain its answer (e.g. "Where is Paris?" could be translated
-                                 into "Location of Paris").</a>
+           ng-click="closeNav()">Last paragraph of text.</a>
       </div>
     </div>
-
-
     <div ng-if="!loggedIn()">
       <div style="text-align: right">
         <button class="btn btn-primary"
@@ -49,17 +33,17 @@
       </div>
     </div>
     <div ng-if="loggedIn()">
-      <!-- Toolbar -->
-      <!-- Should be its own directive -->
       <div style="text-align: right">
-
         <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
         <input type="button" id="copy-button" value="Copy"> -->
-
         <button class="btn btn-dark"
                 ng-click="openProfileModal()">Email Goes Here
         </button>
-<!--         User Id: {{userId}} ST: {{selectedThread.threadId}} SP: {{selectedProposition.id}} Tosetlaterremarkid {{toSetLater.remarkId}} Tosetlaterthreadid: {{toSetLater.threadId}} Has Chat Focus: {{hasChatFocusId}} Has Chat Focus ThreadId: {{hasChatFocusThreadId}} ThreadAdding: {{threadAdding}} WhatHasBeenClicked {{whatHasBeenClicked}} Stop Toggle: {{stopToggle}} Prop Preselected: {{proposition.preSelected}} Paragraph Not Left Mouseover: {{!paragraph.leftMouseOver}} Not Paragraph Disable Right Cursor: {{!paragraph.disableRightCursor}} Not Right Focus Equaling Prop Id: {{hasRightFocus !== proposition.id}} -->
+
+
+
+
+
         <button class="btn cog"
                 ng-click="openOptionsModal()">
           <i class="fa fa-cog"></i>
@@ -94,14 +78,12 @@
                 ng-click="openNav()">
           <i class="fa fa-asterisk"></i>
         </button>
-
         <a download="export.txt" style=""
            id="downloadlink">
           <button class="btn btn-primary help downloadbutton">
             <i class="fa fa-file-text-o"></i>
           </button>
         </a>
-
         <button class="btn btn-dark signout"
                 ng-click="logout()">
           <i class="fa fa-sign-out"></i>
@@ -112,32 +94,21 @@
              data-target="#treemodal"
              href="#treemodal"
              style="display: none;">
-
           </a>
-
-          <!-- Modal -->
           <div id="treemodal"
                class="modal fade"
                role="dialog"
                style="color:white">
             <div class="modal-dialog-lg">
-
-              <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-body"
                      style="background-color: rgb(9,13,14)"></div>
-                <!--               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              </div> -->
               </div>
-
             </div>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
   <div class="row mainview"
        id="mainview">
@@ -159,18 +130,14 @@
             </div>
             <br>
           </div> -->
-
     <div class="col-md-8"
          ng-click=""
          id="thetext">
-
-
       <div ui-tree="treeOptions"
            data-drag-enabled="false"
            id="tree-root"
            class="angular-ui-tree textlist"
            ng-click="[hideExpandingTextarea(), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, selectedProposition.dialogueSide = false, selectedThread = {}, hasRightFocus.id = '', $event.stopPropagation()]">
-
         <ol ui-tree-nodes
             ng-model='data'
             style=""
@@ -179,18 +146,13 @@
             ng-mouseover="lightUpLastVisiblePropositionInBook(data[0], $event)"
             ng-mouseleave="blurLightUpLastVisiblePropositionInBook(data[0], $event)"
             ng-click="getLastVisiblePropositionInBook(data[0], $event)">
-
           <li ng-repeat="node in data | orderBy: 'class'"
               ui-tree-node
-              ng-class="{ mousedovernode: node.mouseOver === true }"
-              
+              ng-class="{ mousedovernode: node.mouseOver === true }" 
               class="angular-ui-tree-node node"
               id="{{node.nodeId}}"
-
               >
-
             <nd-editor-text-renderer></nd-editor-text-renderer>
-
           </li>
         </ol>
       </div>
@@ -203,8 +165,6 @@
     <div class="col-md-4"
          ng-click=""
          id="dialoguepane">
-
-
       <div ui-tree
            id="dialoguelist"
            data-drop-enabled="false"
@@ -223,7 +183,6 @@
           </li>
         </ol>
       </div>
-
     </div>
   </div><!-- Row -->
   <div class="row"
@@ -235,23 +194,6 @@
          ng-mouseover="mouseOverDialogueBlurrer()"
          ng-mouseleave='mouseLeaveDialogueBlurrer()'
          ng-click="selectedProposition.dialogueSide = true; blurDialogue();">
-
-      <!--         <div>
-                <form role='form' class="form-group" ng-submit="prepProposition(inputs.chatProposition)" novalidate name='form'>
-
-                  <div class="">
-                    <span class="input-group-btn" >
-                      <button id="sendbutton" class='btn btn-default' ng-enable='form.$valid' style="display: none">
-                        <strong>Send</strong>
-                      </button>
-                    </span>
-                  <input type='text' class="form-control" required ng-max='500' id="chatinput" ng-model='inputs.chatProposition' ng-keyup="$event.keyCode === 13 ? prepProposition(inputs.chatProposition) : inputs.blah" style="height: 39px; font-size: 16px">
-                  </div>
-
-                </form>
-              </div>
-       -->
     </div>
   </div><!-- Row -->
-
 </div><!-- Controller -->
