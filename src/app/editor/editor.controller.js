@@ -3705,7 +3705,8 @@
         $timeout(function() {
           var pane = document.getElementById('dialoguelist');
           pane.scrollTop = pane.scrollHeight;
-
+          apply.nodeDestination = eval(payload.nodePath)
+          console.log("Payload nodepath: ", payload.nodePath)
           var theNode = document.getElementById(apply.nodeDestination.nodeId);
           var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
           for (var m = 0; m < theNodeParagraphs.length; m++){
