@@ -11,7 +11,7 @@
           template: '<ui-view />',
           resolve: {
             auth: function($rootScope) {
-              console.log('auth');
+              
               firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                   $rootScope.uid = user.uid;
@@ -24,23 +24,23 @@
               });
             },
             apiService: function(auth, ApiService) {
-              console.log('resolving api service');
+              
               return new ApiService();
             },
             libraryService: function(LibraryService, library) {
-              console.log('resolving library service');
+             
               var libraryService = new LibraryService();
               libraryService.setLibrary(library);
               return libraryService;
             },
             profileService: function(ProfileService, profile) {
-              console.log('resolving profile service');
+              
               var profileService = new ProfileService();
               profileService.setProfile(profile);
               return profileService;
             },
             profile: function($state, apiService) {
-              console.log('resolving profile');
+              
               return apiService.readProfile().then(function(result) {
                 if (result.status === 200) {
                   return result.data;

@@ -433,15 +433,15 @@
             }
               apply = {};
               if (key === 'class' && !obj.threadId){
-                console.log("Object: ", obj)
+               
                 var theNode = document.getElementById(obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 for (var m = 0; m < theNodeParagraphs.length; m++){
-                  console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
+                 
                   var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
                   break;
                 }
-                console.log("obj.paragraphs: ", obj.paragraphs)
+               
                 if (isFirst){
                   for (var n = 0; n < obj.paragraphs.length; n++){
                     if (obj.paragraphs[n].paragraphId === isFirst &&
@@ -548,12 +548,12 @@
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
                   var alreadyThere = true;
                   var index = i;
-                  console.log("Already there: ", alreadyThere)
+                  
                   break;
                 }
               }
               if (x !== $scope.userId && x !== '' && obj.type !== 'topic' && alreadyThere) { 
-                console.log("Color to be used: ", $scope.userColorTable[index].color)
+           
                 obj.color = $scope.userColorTable[index].color;
               } 
 
@@ -906,7 +906,7 @@
 
       // Selects paragraph
       $scope.selectParagraph = function(paragraph) {
-        console.log("Selected paragraph fires")
+      
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
@@ -1821,11 +1821,11 @@
         var theNode = document.getElementById(apply.nodeDestination.nodeId);
         var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
         for (var m = 0; m < theNodeParagraphs.length; m++){
-          console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
+      
           var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
           break;
         }
-        console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
+       
         if (isFirst){
           for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
             if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
@@ -3226,7 +3226,7 @@
 
 
             } else if (payload.proposition.insertsBelow) {
-              console.log("Inserts below")
+            
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphAbovePath = payload.nodePath + '.paragraphs[' + (payload.paragraphPosition - 1).toString() + ']';
@@ -3296,10 +3296,9 @@
 
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
-                console.log("own replaces blank and moves")
+                
                 $scope.selectedNode = apply.nodeDestination;
-                console.log('selected node: ', $scope.selectedNode)
-                console.log('node destination: ', apply.nodeDestination)
+            
                 apply.ofParagraphPosition = payload.ofParagraphPosition;
                 apply.ofParagraphPath = payload.nodePath + '.paragraphs[' + apply.ofParagraphPosition.toString() + ']';
                 apply.ofParagraphDestination = eval(apply.ofParagraphPath);
@@ -3311,20 +3310,19 @@
                 $timeout(function() {
                   
                   $scope.selectedParagraph = $scope.selectedNode.paragraphs[payload.paragraphPosition];
-                  console.log("before the click selected paragraph: ", $scope.selectedParagraph)
+                 
                   $scope.selectedProposition = 
                   $scope.selectedParagraph.propositions[payload.proposition.position];
                   $scope.hasRightFocus.id = $scope.selectedProposition.id
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
-                  console.log("before the click node: ", $scope.selectedNode)
-                  console.log("before the click selected proposition: ", $scope.selectedProposition)
+       
                   $($scope.selectedProposition.id).trigger('click');
                 }, 30);
 
 
               } else if (payload.proposition.author === $scope.userId && payload.textSide === true ){
-                  console.log("own else if")
+                
                   $timeout(function() {
                     apply.nodeDestination = eval(payload.nodePath);
                     $scope.selectedNode = apply.nodeDestination;
@@ -3356,7 +3354,7 @@
                       $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                     }
                   }
-                  console.log("copying up: ", apply.paragraphDestination.propositions[i].text)
+                
                   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                 }
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition; 
@@ -3706,15 +3704,12 @@
           var pane = document.getElementById('dialoguelist');
           pane.scrollTop = pane.scrollHeight;
           apply.nodeDestination = eval(payload.nodePath)
-          console.log("Payload nodepath: ", payload.nodePath)
           var theNode = document.getElementById(apply.nodeDestination.nodeId);
           var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
           for (var m = 0; m < theNodeParagraphs.length; m++){
-            console.log("the node paragraphs html: ", theNodeParagraphs[m].innerText, " (",m,")")
             var isFirst = theNodeParagraphs[m].id.toString().slice(9); 
             break;
           }
-          console.log("apply.nodeDestination.paragraphs: ", apply.nodeDestination.paragraphs)
           if (isFirst){
             for (var n = 0; n < apply.nodeDestination.paragraphs.length; n++){
               if (apply.nodeDestination.paragraphs[n].paragraphId === isFirst &&
