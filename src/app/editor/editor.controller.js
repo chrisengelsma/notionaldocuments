@@ -433,6 +433,7 @@
             }
               apply = {};
               if (key === 'class'){
+                console.log("Object: ", obj)
                 var theNode = document.getElementById(obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 for (var m = 0; m < theNodeParagraphs.length; m++){
