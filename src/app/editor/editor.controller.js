@@ -3623,7 +3623,7 @@
                 
               }
             }
-            if (!alreadyThere && payload.proposition.type !== 'topic'){
+            if (!alreadyThere && payload.proposition.type !== 'topic' && payload.proposition.type !== "negation"){
               if (payload.proposition.author !== $scope.userId){
                
                 $scope.userColorTable.push(
@@ -3635,7 +3635,7 @@
                 apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
               }
               
-            } else if (payload.proposition.author !== $scope.userId &&
+            } else if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation' &&
               payload.proposition.type !== 'topic'){
               
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
