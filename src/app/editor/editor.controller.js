@@ -548,10 +548,12 @@
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
                   var alreadyThere = true;
                   var index = i;
+                  console.log("Already there: ", alreadyThere)
                   break;
                 }
               }
               if (x !== $scope.userId && x !== '' && obj.type !== 'topic') { 
+                console.log("Color to be used: ", $scope.userColorTable[index].color)
                 obj.color = $scope.userColorTable[index].color;
               }
 
@@ -4347,7 +4349,7 @@
       };
 
       var updateDialogue = function(payload, callback) {
-        if ((payload.blankParagraphForDeleter && payload.hidesOthersProp) || payload.hideBlankParagraph) {
+        if ((payload.blankParagraphForDeleter) || payload.hideBlankParagraph) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
           //   topic: payload.topic,
