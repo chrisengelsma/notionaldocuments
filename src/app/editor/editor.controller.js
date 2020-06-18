@@ -552,9 +552,11 @@
                   break;
                 }
               }
-              if (x !== $scope.userId && x !== '' && obj.type !== 'topic') { 
+              if (x !== $scope.userId && x !== '' && obj.type !== 'topic' && alreadyThere) { 
                 console.log("Color to be used: ", $scope.userColorTable[index].color)
                 obj.color = $scope.userColorTable[index].color;
+              } else {
+
               }
 
             }
@@ -3626,7 +3628,7 @@
               }
             }
             if (!alreadyThere && payload.proposition.type !== 'topic'){
-              if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation'){
+              if (payload.proposition.author !== $scope.userId){
                
                 $scope.userColorTable.push(
                   {
@@ -3637,7 +3639,7 @@
                 apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
               }
               
-            } else if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation' &&
+            } else if (payload.proposition.author !== $scope.userId &&
               payload.proposition.type !== 'topic'){
               
               apply.paragraphDestination.color = $scope.userColorTable[place].color;
