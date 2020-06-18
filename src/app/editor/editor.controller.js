@@ -3623,7 +3623,7 @@
                 
               }
             }
-            if (!alreadyThere && payload.proposition.type !== 'topic' && payload.proposition.type !== "negation"){
+            if (!alreadyThere && payload.proposition.type !== 'topic'){
               if (payload.proposition.author !== $scope.userId){
                
                 $scope.userColorTable.push(
@@ -3632,13 +3632,17 @@
                     color: $scope.generateNewColor()
                   }
                 )
-                apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
+                if (payload.proposition.type !== 'negation'){
+                  apply.paragraphDestination.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
+                }
+                
               }
               
-            } else if (payload.proposition.author !== $scope.userId && payload.proposition.type !== 'negation' &&
+            } else if (payload.proposition.author !== $scope.userId  &&
               payload.proposition.type !== 'topic'){
-              
-              apply.paragraphDestination.color = $scope.userColorTable[place].color;
+              if (payload.proposition.type !== 'negation'){
+                apply.paragraphDestination.color = $scope.userColorTable[place].color;
+              }
             }
 
             
