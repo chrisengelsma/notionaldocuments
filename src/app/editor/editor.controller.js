@@ -432,7 +432,7 @@
               }
             }
               apply = {};
-              if (key === 'class'){
+              if (key === 'class' && !obj.threadId){
                 console.log("Object: ", obj)
                 var theNode = document.getElementById(obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
