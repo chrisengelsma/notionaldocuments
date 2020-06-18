@@ -555,9 +555,7 @@
               if (x !== $scope.userId && x !== '' && obj.type !== 'topic' && alreadyThere) { 
                 console.log("Color to be used: ", $scope.userColorTable[index].color)
                 obj.color = $scope.userColorTable[index].color;
-              } else {
-
-              }
+              } 
 
             }
           }
