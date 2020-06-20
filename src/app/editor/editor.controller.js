@@ -1939,18 +1939,21 @@
         $scope.selectedParagraph = {}
       }
 
-      $scope.prepProposition = function(input, thread, paragraph) {
+      $scope.prepProposition = function(input, thread, proposition, paragraph event) {
         
+        event.preventDefault();
+
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
         }
         apply = {};
         // Define characters at the beginning and end of the input
-
+        proposition.propositionPreSelected = false;
+        paragraph.disableRightCursor = false;
         //blur active element
-        
-        
+        document.activeElement.blur();
+
         prep.firstChar = input.charAt(0);
         prep.lastChar = input.charAt(input.length - 1);
         // Bounce bad inputs:
