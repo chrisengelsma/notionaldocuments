@@ -2878,8 +2878,7 @@
           prep.payload.proposition.assertionId = prep.payload.proposition.id;
         }
 
-        $scope.inputs.proposition = '';
-        $scope.inputs.chatProposition = '';                                             //      CLEARS THINGS AND EMITS THE PAYLOAD
+                                                     //      CLEARS THINGS AND EMITS THE PAYLOAD
         chatSocket.emit('proposition', $scope.userId, prep.payload);
         console.log('Payload:', prep.payload);
         prep = {};
@@ -2915,10 +2914,13 @@
         }
         $timeout(function() {
           $scope.$apply(function() {
-            console.log("Received proposition")
+            console.log("Received proposition: ", payload)
 
             apply = {};
-
+            if (payload.proposition.author === $scope.userId){
+              $scope.inputs.proposition = '';
+              $scope.inputs.chatProposition = '';
+            }
 
 
             if (payload.proposition.getsOwnNode) {
