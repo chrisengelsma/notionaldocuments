@@ -236,7 +236,7 @@
             ng-model="inputs.proposition"
             ng-keyup="
                 $event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition === '' ? [$event.preventDefault(), carriageReturn(node, paragraph)] : inputs.nothing;
-                $event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), proposition.propositionPreSelected = false, paragraph.disableRightCursor = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;
+                $event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), document.activeElement.blur(), proposition.propositionPreSelected = false, paragraph.disableRightCursor = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;
                 (($event.keyCode === 8 && mark.id === proposition.id && mark.marked === true && selectedProposition.author === userId) || ($event.keyCode === 8 && inputs.proposition === '' && selectedProposition.type === 'blank')) ? deleteProposition(node, paragraph, false) : inputs.nothing;
                 ($event.keyCode === 8 && highlight.id === proposition.id && highlight.highlit === true) ? markProposition(proposition) : inputs.nothing;
                 (inputs.proposition === '' && $event.keyCode === 8 && paragraph.owner === userId && proposition.type !== 'blank') ? highlightProposition(node, paragraph, proposition) : inputs.nothing;

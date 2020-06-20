@@ -1949,7 +1949,7 @@
         // Define characters at the beginning and end of the input
 
         //blur active element
-        document.activeElement.blur();
+        
         
         prep.firstChar = input.charAt(0);
         prep.lastChar = input.charAt(input.length - 1);
