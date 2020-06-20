@@ -72,7 +72,7 @@
           placeholder="textarea"
           ng-model="inputs.proposition"
           ng-keyup="$event.keyCode === 13 &&
-                            selectedProposition.dialogueSide != true ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread,paragraph)] : inputs.nothing;
+                            selectedProposition.dialogueSide != true ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), paragraph.topAdd = false] : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
@@ -127,7 +127,7 @@
                       ng-mouseleave="paragraph.disableRightCursor = false"
                       placeholder="textarea"
                       ng-model="inputs.proposition"
-                      ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;
+                      ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       style="color: black; padding-left: 1px;"
@@ -286,7 +286,7 @@
                   ng-click="$event.stopPropagation()"
                   placeholder="textarea"
                   ng-model="inputs.proposition"
-                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, paragraph)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), reverseCarriageReturn(node, paragraph), paragraph.topAdd = false] : inputs.nothing;"
+                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), reverseCarriageReturn(node, paragraph), paragraph.topAdd = false] : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
                   ></span>

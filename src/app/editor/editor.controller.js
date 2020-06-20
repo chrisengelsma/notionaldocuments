@@ -348,7 +348,7 @@
 
       function handleVisibilityChange() {
         if (document[hidden]) {
-            
+            $scope.hasRightFocus = {};
             $scope.clearBlankOnBlur();
           } else {
            return;
