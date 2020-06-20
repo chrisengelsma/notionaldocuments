@@ -1939,7 +1939,7 @@
         $scope.selectedParagraph = {}
       }
 
-      $scope.prepProposition = function(input, thread, proposition, paragraph event) {
+      $scope.prepProposition = function(input, thread, proposition, paragraph, event) {
         
         event.preventDefault();
 
