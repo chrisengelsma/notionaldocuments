@@ -63,7 +63,7 @@
       ng-model="inputs.chatProposition"
       class="expanding chatinput dialogueinput alignleft"
       id="{{remark.id}}{{thread.threadId}}"
-      ng-keyup="$event.keyCode === 13 ? [prepProposition(inputs.chatProposition, thread, null, selectedParagraph, null), inputs.chatProposition = '', 
+      ng-keyup="$event.keyCode === 13 && inputs.chatProposition !== '' ? [prepProposition(inputs.chatProposition, thread, null, selectedParagraph, null), inputs.chatProposition = '', 
       hideExpandingTextarea(),
       inputs.remarkselected = false, 
       selectedProposition.dialogueSide = false] : inputs.nothing"

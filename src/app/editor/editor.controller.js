@@ -1940,7 +1940,7 @@
       }
 
       $scope.prepProposition = function(input, thread, proposition, paragraph, event) {
-        
+        console.log('preps prop')
         event.preventDefault();
 
         if ($scope.selectedParagraph){
@@ -1962,7 +1962,7 @@
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
           input = input + '.';
         }
-      
+        consle.log('Resolves')
         //   Topics
 
         // If it's ended with a colon,
