@@ -1941,7 +1941,10 @@
 
       $scope.prepProposition = function(input, thread, proposition, paragraph, event) {
         console.log('preps prop')
-        event.preventDefault();
+        if (event){
+         event.preventDefault(); 
+        }
+        
 
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
