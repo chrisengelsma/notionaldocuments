@@ -332,11 +332,7 @@
       $scope.otherPastels = ['#ffbec4', '#edf5dd', '#d0f1e5', '#dbe0f1']
       // had '#FFDAC1' and '#ffd1cd' also; extra redscale shades
 
-      // enter default listener
-      var textareas = document.querySelectorAll(".right-textarea");
-      textareas.addEventListener("keyup", function(event) {
-        event.preventDefault();
-      }, false);
+      
       // Blur listener
       if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
         hidden = "hidden";
@@ -745,7 +741,12 @@
         $scope.data[0].dialogue = [];
       }
     
-
+      // enter default listener
+      var textareas = document.querySelectorAll(".right-textarea");
+      textareas.addEventListener("keyup", function(event) {
+        event.preventDefault();
+      }, false);
+      
       // When propositions are being typed as new messages on a topic
       $scope.showThreadAdd = function (thread) {
 
