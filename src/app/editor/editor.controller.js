@@ -329,7 +329,11 @@
 
       //   Pastel colors for paragraphs
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
-      $scope.otherPastels = ['#ffbec4', '#edf5dd', '#d0f1e5', '#dbe0f1']
+      $scope.lighterOtherPastels = ['#ffbec4', '#edf5dd', '#d0f1e5', '#dbe0f1']
+      
+      // these are the current pastels
+      $scope.otherPastels = ['#ffdee1', '#f6faee', '#e7f8f2', '#edeff8']
+
       // had '#FFDAC1' and '#ffd1cd' also; extra redscale shades
 
       // enter default listener
