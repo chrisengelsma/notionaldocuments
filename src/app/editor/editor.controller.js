@@ -1952,7 +1952,10 @@
         }
         apply = {};
         // Define characters at the beginning and end of the input
-        proposition.propositionPreSelected = false;
+        if (proposition){
+          proposition.propositionPreSelected = false;
+        }
+
         paragraph.disableRightCursor = false;
         //blur active element
         document.activeElement.blur();
