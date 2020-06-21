@@ -575,7 +575,7 @@ input {
 
 .alignright {
   margin-left: 100px;
-  border: 1px solid black;
+  
   margin-right: 10px;
   padding-left: 10px;
   padding-top: 10px;
@@ -583,13 +583,17 @@ input {
 }
 
 .alignleft {
-  border: 1px solid black;
+  
   padding-right: 10px;
   margin-left: 10px;
   margin-right: 10px;
   padding-left: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.notyourremark{
+  border: 1px solid grey;
 }
 
 /*SVG CSS*/
