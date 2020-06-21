@@ -574,12 +574,13 @@ input {
 }
 
 .alignright {
-  padding-left: 40px;;
+  margin-left: 40px;
+  margin-right: 10px;
 }
 
 .alignleft {
-  padding-right: 40px;
-  padding-left: 10px;;
+  margin-right: 40px;
+  margin-left: 10px;;
 }
 
 /*SVG CSS*/

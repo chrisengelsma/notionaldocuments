@@ -31,7 +31,7 @@
   </p>
 
   <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId" class="" 
-     ng-style="{'background-color': remark.color}">
+     ng-style="{}">
     <!-- <div class="remarktopspacer"
          ng-style="{'background-color': remark.color}"></div> -->
 		<span class="tree-node tree-node-content remark remarkparagraph"
@@ -45,7 +45,7 @@
           ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread)]"
           ng-mouseleave="remark.mouseOver = false;"
           style=" font-size: 16px; margin-top: 7px"
-          ng-style="{'border-bottom-color': remark.color}">
+          ng-style="{'border-bottom-color': remark.color, 'background-color': remark.color}">
           <!-- border-right: 1px solid #aaa; border-left: 1px solid #aaa; -->
 
 		<span style="cursor: pointer;"
