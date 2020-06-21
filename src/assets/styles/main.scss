@@ -523,7 +523,14 @@ input {
   margin-bottom: 10px;
   display: block;
   cursor: default;
+}
 
+.remark:first-child{
+  margin:10px;
+}
+
+.remark:last-child{
+  margin:10px;
 }
 
 .dialogueinput {

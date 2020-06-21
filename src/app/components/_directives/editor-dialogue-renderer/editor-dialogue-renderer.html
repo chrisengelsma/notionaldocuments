@@ -38,7 +38,7 @@
           ng-class="{'remarkselected': selectedProposition.id === remark.id,
                      'deleted': remark.deleted === true,
                      'rejoinder': (selectedProposition.of.id === remark.id && selectedProposition.of.type === 'assertion' && selectedProposition.of.author === userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) =='!')),
-                     'alignright': remark.type === 'negation' && remark.dialogueText !== '- Paragraph deleted -',
+                     'alignright': (remark.type === 'negation' && remark.dialogueText !== '- Paragraph deleted -'),
                      'alignleft': (remark.type.some(['assertion','rejoinder','question','topic']) || remark.type === 'assertion' || remark.type === 'rejoinder' || remark.type === 'question' || remark.type === 'topic'),
                      'notyourremark': remark.author !== userId 
                      }"
@@ -68,7 +68,7 @@
       hideExpandingTextarea(),
       inputs.remarkselected = false, 
       selectedProposition.dialogueSide = false] : inputs.nothing"
-      ng-class="{'negation': inputs.proposition.charAt(input.length - 1) === '!'}"
+      ng-class="{'alignright': remark.type === 'assertion' && remark.author !== userId}"
       spellcheck="false"
       style="height: 18px; font-size: 16px; width: 100%; color: black; margin-top: 10px">
       </textarea>
