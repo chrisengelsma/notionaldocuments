@@ -1962,7 +1962,7 @@
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
           input = input + '.';
         }
-        consle.log('Resolves')
+        console.log('Resolves')
         //   Topics
 
         // If it's ended with a colon,
