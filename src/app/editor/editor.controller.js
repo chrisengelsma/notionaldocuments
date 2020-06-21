@@ -332,6 +332,11 @@
       $scope.otherPastels = ['#ffbec4', '#edf5dd', '#d0f1e5', '#dbe0f1']
       // had '#FFDAC1' and '#ffd1cd' also; extra redscale shades
 
+      // enter default listener
+      var textareas = document.querySelectorAll(".right-textarea");
+      textareas.addEventListener("keyup", function(event) {
+        event.preventDefault();
+      }, false);
       // Blur listener
       if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
         hidden = "hidden";
@@ -1902,7 +1907,11 @@
           $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
         }
         
-
+        // enter default listener
+        var textareas = document.querySelectorAll(".right-textarea");
+        textareas.addEventListener("keyup", function(event) {
+          event.preventDefault();
+        }, false);
         // var apply = {};
         // var notification = {};
         $scope.scroll = {};
@@ -3690,7 +3699,11 @@
             $scope.assignColorsToExistingRemarks();
             temp = {};
 
-          
+            // enter default listener
+            var textareas = document.querySelectorAll(".right-textarea");
+            textareas.addEventListener("keyup", function(event) {
+              event.preventDefault();
+            }, false);
             $scope.scroll = {};
 
             $scope.clearBlankOnBlur();
