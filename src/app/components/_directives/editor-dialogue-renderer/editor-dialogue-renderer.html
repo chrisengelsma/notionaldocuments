@@ -62,7 +62,7 @@
       ng-show="(remark.id === hasChatFocusId && thread.threadId === hasChatFocusThreadId)"
       ng-hide="(remark.id != hasChatFocusId || thread.threadId != hasChatFocusThreadId || selectedProposition.dialogueSide == false)"
       ng-model="inputs.chatProposition"
-      class="expanding chatinput dialogueinput alignleft"
+      class="expanding chatinput dialogueinput"
       id="{{remark.id}}{{thread.threadId}}"
       ng-keyup="$event.keyCode === 13 && inputs.chatProposition !== '' ? [prepProposition(inputs.chatProposition, thread, null, selectedParagraph, null), inputs.chatProposition = '', 
       hideExpandingTextarea(),
