@@ -8,8 +8,8 @@
        id="firstrow"
        ng-class="{titled: title}"
        style="line-height: normal;">
-    <span class="app-title"
-          ng-click="clearWithAdder()"> {{ title ? title : ''}} </span>
+<!--     <span class="app-title"
+          ng-click="clearWithAdder()"> {{ title ? title : ''}} </span> -->
     <div id="myNav"
          class="overlay"
          ng-click="closeNav()">
@@ -41,7 +41,7 @@
               style="text-align: left"> {{ title ? title : ''}} </span>
         <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
         <input type="button" id="copy-button" value="Copy"> -->
-        <span style="text-align: right">
+        <span class="pull-right">
         <button class="btn btn-dark  menubutton"
                 ng-click="openProfileModal()">Email Goes Here
         </button>
