@@ -45,7 +45,7 @@
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, !remark.deleted && remark.text === remark.dialogueText && remark[userId] !== 'hidden' && remark.hiddenForAll !== true ? [clearTopAndBottomHasFocus(), hideExpandingTextarea(), selectNodeByClass(thread), selectThread(thread), selectPropositionById(remark.id), selectedProposition.textSide = false] : inputs.nothing, clearBlankOnBlur()]"
           ng-mouseover="[remark.mouseOver = true, saveForLater(remark.id, thread)]"
           ng-mouseleave="remark.mouseOver = false;"
-          style=" font-size: 16px; border-radius: 10px; cursor: pointer"
+          style=" font-size: 16px; border-radius: 10px; border-radius-bottom-left: 0px; cursor: pointer"
           ng-style="{'background-color': remark.color}">
           <!-- border-right: 1px solid #aaa; border-left: 1px solid #aaa; -->
 
