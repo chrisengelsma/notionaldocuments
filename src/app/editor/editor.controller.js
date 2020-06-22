@@ -356,7 +356,7 @@
       var dialogueList = document.getElementById("dialoguelist");
 
       function handleVisibilityChange() {
-        if (document.hidden) {
+        if (document[hidden]) {
             console.log('hidden, clearing blank on blur')
             $scope.hasRightFocus = {};
             $scope.clearBlankOnBlur(null, true);
@@ -1921,7 +1921,7 @@
         // var apply = {};
         // var notification = {};
         $scope.scroll = {};
-        if (document.hidden){
+        if (document[hidden]){
           $scope.clearBlankOnBlur(null, true);
         } else {
           $scope.clearBlankOnBlur();
@@ -3712,7 +3712,7 @@
           
             $scope.scroll = {};
 
-            if (document.hidden){
+            if (document[hidden]){
               $scope.clearBlankOnBlur(null, true);
             } else {
               $scope.clearBlankOnBlur();
