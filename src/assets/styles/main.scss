@@ -458,6 +458,10 @@ input {
   border-bottom: 1px solid black;
 }
 
+.thread:first-child{
+  margin-top: 0px;
+}
+
 .thread {
   border-top-left-radius: 6px;
   border: 1px solid #aaaaaa !important;
