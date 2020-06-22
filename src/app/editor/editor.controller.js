@@ -921,6 +921,7 @@
       };
 
       $scope.clearBlankOnBlur = function(proposition){
+        console.log("clear")
         if (proposition){
           if(proposition.type === 'blank'){
             return;
@@ -952,13 +953,13 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-
+              console.log('if type')
               if (x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath){
                 // Clearing blanks:
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-                
+                console.log('if conditions')
                 apply = {
                   nodeDestination: eval(obj.nodePath),
                   assigned: false
@@ -974,10 +975,10 @@
                   
 
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
-                  
+                    console.log('for')
                     if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
                     apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
-                   
+                      console.log('for if')
 
                       for (var k = 0; k < apply.nodeDestination.paragraphs.length; k++){
                 
@@ -985,7 +986,7 @@
                         !apply.nodeDestination.paragraphs[k].hiddenForAll &&
                         apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
-                         
+                         console.log('for for if')
                           
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
