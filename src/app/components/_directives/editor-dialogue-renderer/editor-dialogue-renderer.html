@@ -30,7 +30,8 @@
   
   </p>
 
-  <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId" class="" 
+  <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId" 
+  ng-class="{firstthread: $index === 0}" class="" 
      ng-style="{}" style="">
     <!-- <div class="remarktopspacer"
          ng-style="{'background-color': remark.color}"></div> -->
