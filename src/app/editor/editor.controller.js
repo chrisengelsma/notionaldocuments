@@ -953,7 +953,7 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              console.log('if type')
+              console.log(x === 'blank', document.activeElement.id, obj['id'], obj.nodePath)
               if (x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath){
                 // Clearing blanks:
                 // When there are other visible paragraphs in the node
