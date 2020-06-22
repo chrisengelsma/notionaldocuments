@@ -357,8 +357,9 @@
 
       function handleVisibilityChange() {
         if (document[hidden]) {
+            console.log('hidden, clearing blank on blur')
             $scope.hasRightFocus = {};
-            $scope.clearBlankOnBlur();
+            $scope.clearBlankOnBlur(null, true);
           } else {
            return;
           }
@@ -920,13 +921,15 @@
         paragraph.cursor = false;
       };
 
-      $scope.clearBlankOnBlur = function(proposition){
+      $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
         console.log("clear")
         if (proposition){
           if(proposition.type === 'blank'){
             return;
           }     
         }
+
+
 
         function traverseArray(arr) { 
           arr.forEach(function (x) {
@@ -954,7 +957,9 @@
           } else {
             if (key === 'type'){
               console.log(x === 'blank', document.activeElement.id, obj['id'], obj.nodePath)
-              if (x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath){
+
+              if ((x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath) || 
+                (x === 'blank' && obj.nodePath && visibilityFlag == true)){
                 // Clearing blanks:
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
