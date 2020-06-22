@@ -601,7 +601,7 @@ input {
 
 .alignright {
   margin-left: 60px !important;
-  width: 75%;
+  max-width: 75%;
   margin-right: 10px !important;
   padding-left: 10px;
   padding-top: 10px;
@@ -609,7 +609,7 @@ input {
 }
 
 .alignleft {
-  width: 75%;
+  max-width: 75%;
   padding-right: 10px;
   margin-left: 10px;
   margin-right: 10px;
