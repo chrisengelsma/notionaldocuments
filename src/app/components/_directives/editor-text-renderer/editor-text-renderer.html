@@ -35,11 +35,11 @@
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
                 }">     <!-- {{paragraph.owner}} {{paragraph.first}} -->
     <div class="topparagraphadder"
-         ng-class="{'blackline': paragraph.topMouseOver === true}"
+         ng-class="{'blackline': paragraph.topMouseOver === true && paragraph.first}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
-         ng-if="paragraph.first && !paragraph.topAdd && paragraph.owner"
-         ng-click="[clearBlankOnBlur(),
+         ng-if="!paragraph.topAdd"
+         ng-click="paragraph.first ? [clearBlankOnBlur(),
                     hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
@@ -52,8 +52,9 @@
                    paragraph.topAdd = true,
                    paragraph.bottomAdd = false,
                    paragraph.leftAdd = false,
-                   clearEditable(),
-                   ]"
+                   clearEditable()
+                   ] : inputs.nothing
+                   "
          event-focus="click"
          event-focus-id="{{topAdderId}}">
     </div>
