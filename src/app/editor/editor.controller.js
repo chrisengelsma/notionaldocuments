@@ -356,7 +356,7 @@
       var dialogueList = document.getElementById("dialoguelist");
 
       function handleVisibilityChange() {
-        if (document[hidden]) {
+        if (document.hidden) {
             console.log('hidden, clearing blank on blur')
             $scope.hasRightFocus = {};
             $scope.clearBlankOnBlur(null, true);
@@ -1921,8 +1921,12 @@
         // var apply = {};
         // var notification = {};
         $scope.scroll = {};
-
-        $scope.clearBlankOnBlur();
+        if (document.hidden){
+          $scope.clearBlankOnBlur(null, true);
+        } else {
+          $scope.clearBlankOnBlur();
+        }
+        
 
         apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
         apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
@@ -3708,7 +3712,11 @@
           
             $scope.scroll = {};
 
-            $scope.clearBlankOnBlur();
+            if (document.hidden){
+              $scope.clearBlankOnBlur(null, true);
+            } else {
+              $scope.clearBlankOnBlur();
+            }
 
             $scope.propositions.push(payload.proposition);  // PUSHES THE PROPOSITION TO THE PROPOSITIONS ARRAY
 
