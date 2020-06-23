@@ -2,7 +2,7 @@
      id="{{thread.threadId}}"
      ng-click="[clearEditable(), makePristine(), clearBlankOnBlur()]">
   <div class="tree-node tree-node-content dialoguetopic"
-       ng-class="{'smallersubject': (thread.topic.length) > 10}"
+       ng-class="{'smallersubject': (thread.topic.length) > 18}"
        ng-mouseover="threadAddMouseover = thread.threadId"
        ng-mouseleave="threadAddMouseover = ''"
 
