@@ -553,7 +553,8 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            if (key == 'author'){
+            console.log("Object: ", obj)
+            if (key == 'author' && !obj.position){
               for (var i = 0; i < $scope.userColorTable.length; i++){
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
                   var alreadyThere = true;
