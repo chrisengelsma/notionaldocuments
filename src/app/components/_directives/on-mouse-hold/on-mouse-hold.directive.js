@@ -8,13 +8,13 @@
       restrict: 'A',
       scope: { method: '&onMouseHold' },
       link: function (scope, element, attrs) {
-        var expressionHandler = scope.method();
+        
         var actionInterval = (attrs.mouseHoldRepeat) ? attrs.mouseHoldRepeat : 300;
         
         function startAction () {
-          expressionHandler();
+          $scope.dragProposition();
           stop = $interval(function () {
-            expressionHandler();
+            $scope.dragProposition();
           }, actionInterval);
         };
 
