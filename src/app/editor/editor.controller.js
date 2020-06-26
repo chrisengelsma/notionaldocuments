@@ -1301,7 +1301,7 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-       
+        console.log("listens for double click")
         var string = 'proposition';
         var id = proposition.id;
         string = string + id;
