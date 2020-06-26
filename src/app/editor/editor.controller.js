@@ -556,7 +556,7 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            console.log("Object: ", obj)
+            
             if (key == 'author'){
               for (var i = 0; i < $scope.userColorTable.length; i++){
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
