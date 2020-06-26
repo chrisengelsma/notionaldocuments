@@ -10,7 +10,8 @@
       link: function (scope, element, attrs) {
         var expressionHandler = scope.method();
         var actionInterval = (attrs.mouseHoldRepeat) ? attrs.mouseHoldRepeat : 300;
-        var startAction = function () {
+        
+        function startAction () {
           expressionHandler();
           stop = $interval(function () {
             expressionHandler();
