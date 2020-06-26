@@ -2,12 +2,12 @@
   'use strict';
 
   /** @ngInject */
-  function onMouseHold($parse, $interval, $scope) {
+  function onMouseHold($parse, $interval) {
     var stop;
     return {
       restrict: 'A',
       scope: { method: '&onMouseHold' },
-      link: function ($scope,scope, element, attrs) {
+      link: function (scope, element, attrs) {
         
         var actionInterval = (attrs.mouseHoldRepeat) ? attrs.mouseHoldRepeat : 300;
         
