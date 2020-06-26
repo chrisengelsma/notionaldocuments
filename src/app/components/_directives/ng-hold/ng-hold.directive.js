@@ -16,7 +16,7 @@
                 if( isHolding ) {
                   fn( scope, {$event: $event} );
                 }
-              }, 500);
+              }, 350);
             });
 
             el.on('mouseup', function() {
