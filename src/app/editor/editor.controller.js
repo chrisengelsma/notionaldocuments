@@ -23,7 +23,8 @@
     Notification,
     $document,
     $timeout,
-    IdFactory) {
+    IdFactory,
+    $parse) {
 
     // Check to load profile if we're logged in and profile isn't loaded for some reason
     $interval(function() {
@@ -319,6 +320,7 @@
       $scope.stopToggle = false;
       $scope.once = false;
       $scope.lastItemCursorLayer = 0;
+      $scope.demoCounter = 0;
       var hidden = '';
       var visibilityChange = '';
 
@@ -921,6 +923,10 @@
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
+
+      $scope.dragProposition = function(){
+        $scope.counter++;
+      }
 
       $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
         console.log("clear")
