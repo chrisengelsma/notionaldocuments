@@ -321,6 +321,7 @@
       $scope.once = false;
       $scope.lastItemCursorLayer = 0;
       $scope.demoCounter = 0;
+      $scope.cancelListenForDoubleClick;
       var hidden = '';
       var visibilityChange = '';
 
@@ -924,10 +925,7 @@
         paragraph.cursor = false;
       };
 
-      $scope.dragProposition = function(){
-        console.log("Dragging")
-        $scope.demoCounter++;
-      }
+      
 
       $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
         console.log("clear")
@@ -1299,8 +1297,19 @@
 
       }
 
+      $scope.dragProposition = function(){
+        console.log("Dragging")
+        $scope.demoCounter++;
+        $scope.cancelListenForDoubleClick = true;
+      }
+
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
+        if ($scope.cancelListenForDoubleClick === true){
+          console.log("Cancelling and resetting")
+          $scope.cancelListenForDoubleClick = false;
+          return;
+        }
         console.log("listens for double click")
         var string = 'proposition';
         var id = proposition.id;
