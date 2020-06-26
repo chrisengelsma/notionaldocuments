@@ -7,7 +7,7 @@
     return {
       restrict: 'A',
       scope: { method: '&onMouseHold' },
-      link: function (scope, element, attrs) {
+      link: function ($scope,scope, element, attrs) {
         
         var actionInterval = (attrs.mouseHoldRepeat) ? attrs.mouseHoldRepeat : 300;
         
@@ -16,7 +16,7 @@
           stop = $interval(function () {
             $scope.dragProposition();
           }, actionInterval);
-        };
+        }
 
         var stopAction = function () {
           if (stop) {
