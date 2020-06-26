@@ -926,7 +926,7 @@
 
       $scope.dragProposition = function(){
         console.log("Dragging")
-        $scope.counter++;
+        $scope.demoCounter++;
       }
 
       $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
