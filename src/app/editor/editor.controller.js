@@ -925,6 +925,7 @@
       };
 
       $scope.dragProposition = function(){
+        console.log("Dragging")
         $scope.counter++;
       }
 
