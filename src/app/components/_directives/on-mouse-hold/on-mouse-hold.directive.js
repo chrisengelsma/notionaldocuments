@@ -2,7 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function onMouseHold($parse, $interval) {
+  function onMouseHold($parse, $interval, $scope) {
     var stop;
     return {
       restrict: 'A',
