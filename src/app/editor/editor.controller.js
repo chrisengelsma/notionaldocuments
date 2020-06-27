@@ -23,7 +23,8 @@
     Notification,
     $document,
     $timeout,
-    IdFactory) {
+    IdFactory,
+    $parse) {
 
     // Check to load profile if we're logged in and profile isn't loaded for some reason
     $interval(function() {
@@ -337,6 +338,8 @@
       $scope.stopToggle = false;
       $scope.once = false;
       $scope.lastItemCursorLayer = 0;
+      $scope.demoCounter = 0;
+      $scope.cancelListenForDoubleClick;
       var hidden = '';
       var visibilityChange = '';
 
@@ -571,7 +574,7 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            console.log("Object: ", obj)
+            
             if (key == 'author'){
               for (var i = 0; i < $scope.userColorTable.length; i++){
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
@@ -939,6 +942,8 @@
         $scope.selectedParagraph = paragraph;
         paragraph.cursor = false;
       };
+
+      
 
       $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
         console.log("clear")
@@ -1310,8 +1315,21 @@
 
       }
 
+      $scope.dragProposition = function(){
+        console.log("Dragging")
+        $scope.demoCounter++;
+        $scope.cancelListenForDoubleClick = true;
+      }
+
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
+
+        if ($scope.cancelListenForDoubleClick === true){
+          console.log("Cancelling and resetting")
+          $scope.cancelListenForDoubleClick = false;
+          return;
+        }
+        console.log("listens for double click")
 
         var string = 'proposition';
         var id = proposition.id;
