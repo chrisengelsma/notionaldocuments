@@ -1320,6 +1320,7 @@
         $scope.demoCounter++;
         $scope.cancelListenForDoubleClick = true;
         $scope.draggedProposition = proposition;
+        console.log("Dragged proposition: ", draggedProposition)
       }
 
       // For when there is a single click on a proposition
