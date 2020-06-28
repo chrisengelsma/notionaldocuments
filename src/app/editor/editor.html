@@ -208,8 +208,8 @@
   <div class="row"
        style="">
     <div class="col-md-9">
-      <span class="draggedproposition"style="padding-left: 10px; padding-right: 10px;">
-        {{draggedProposition.text}}
+      <span ng-if="draggedProposition.id" class="draggedproposition"style="padding-left: 10px; padding-right: 10px;">
+        > {{draggedProposition.text}}
       </span>
     </div>
     <div class="col-md-3"
