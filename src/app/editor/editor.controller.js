@@ -1317,11 +1317,15 @@
       }
 
       $scope.dragProposition = function(proposition){
-        console.log("Dragging")
-        $scope.demoCounter++;
-        $scope.cancelListenForDoubleClick = true;
-        $scope.draggedProposition = proposition;
-        console.log("Dragged proposition: ", $scope.draggedProposition)
+        setTimeout(function() {
+          $scope.$apply(function() {
+            console.log("Dragging")
+            $scope.demoCounter++;
+            $scope.cancelListenForDoubleClick = true;
+            $scope.draggedProposition = proposition;
+            console.log("Dragged proposition: ", $scope.draggedProposition)
+          });
+        }, 20);
       }
 
       // For when there is a single click on a proposition
