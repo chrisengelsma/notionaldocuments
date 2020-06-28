@@ -1320,10 +1320,22 @@
         setTimeout(function() {
           $scope.$apply(function() {
             console.log("Dragging")
-            $scope.demoCounter++;
             $scope.cancelListenForDoubleClick = true;
             $scope.draggedProposition = proposition;
             console.log("Dragged proposition: ", $scope.draggedProposition)
+          });
+        }, 20);
+      }
+
+      $scope.clearDrag = function () {
+        setTimeout(function() {
+          $scope.$apply(function() {
+            console.log("Clearing drag")
+            if ($scope.draggedProposition){
+              $scope.cancelListenForDoubleClick = false;
+              $scope.draggedProposition = {};
+              console.log("Dragged proposition: ", $scope.draggedProposition)
+            }
           });
         }, 20);
       }
