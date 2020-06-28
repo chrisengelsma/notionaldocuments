@@ -1315,10 +1315,11 @@
 
       }
 
-      $scope.dragProposition = function(){
+      $scope.dragProposition = function(proposition){
         console.log("Dragging")
         $scope.demoCounter++;
         $scope.cancelListenForDoubleClick = true;
+        $scope.draggedProposition = proposition;
       }
 
       // For when there is a single click on a proposition

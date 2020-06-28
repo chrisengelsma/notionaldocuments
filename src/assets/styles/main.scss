@@ -604,6 +604,11 @@ input {
   display: block;
 }
 
+.dragdimmed{
+  color: grey;
+  text-shadow: 1px 1px grey;
+}
+
 .alignright {
   margin-left: 60px !important;
   display: inline-flex;
