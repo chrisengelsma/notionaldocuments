@@ -340,6 +340,7 @@
       $scope.lastItemCursorLayer = 0;
       $scope.demoCounter = 0;
       $scope.cancelListenForDoubleClick;
+      $scope.draggedProposition;
       var hidden = '';
       var visibilityChange = '';
 
@@ -1320,7 +1321,7 @@
         $scope.demoCounter++;
         $scope.cancelListenForDoubleClick = true;
         $scope.draggedProposition = proposition;
-        console.log("Dragged proposition: ", draggedProposition)
+        console.log("Dragged proposition: ", $scope.draggedProposition)
       }
 
       // For when there is a single click on a proposition
