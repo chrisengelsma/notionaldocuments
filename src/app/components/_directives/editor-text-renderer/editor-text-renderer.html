@@ -89,6 +89,7 @@
           ng-class="{'addbelownotowned': hasBottomFocus.id == paragraph.paragraphId && paragraph.owner !== userId && paragraph.owner !== ''}"
           ng-click="[threadAdding ? hideThreadAdd() : inputs.nothing, hideExpandingTextarea(), getLastVisiblePropositionInParagraph(node, paragraph, $event), $event.stopPropagation()]" style="padding-left: 1px">
         <li ng-repeat="proposition in paragraph.propositions track by $index"
+            id="wholeprop{{proposition.id}}"
             ui-tree-node
             ng-init="findFirstProposition(paragraph, proposition.id) ? proposition.first = true : proposition.first = false; proposition.first ? paragraph.owner = paragraph.propositions[$index].author : inputs.nothing; "
             ng-mouseover="proposition.preSelected = true;"
@@ -159,7 +160,7 @@
             </span>
 
           <span 
-                ng-hold="dragProposition(proposition)"
+                ng-hold="dragProposition(paragraph, proposition)"
                 id="proposition{{proposition.id}}"
                 style=""
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',

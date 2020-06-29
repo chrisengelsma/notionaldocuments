@@ -1316,13 +1316,34 @@
 
       }
 
-      $scope.dragProposition = function(proposition){
+      $scope.dragProposition = function(paragraph, proposition){
         setTimeout(function() {
           $scope.$apply(function() {
             console.log("Dragging")
             $scope.cancelListenForDoubleClick = true;
-            $scope.draggedProposition = proposition;
+            $scope.draggedProposition = angular.copy(proposition);
+            $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
             console.log("Dragged proposition: ", $scope.draggedProposition)
+          });
+        }, 20);
+      }
+
+      $scope.dropProposition = function(paragraph, proposition, flag){
+        setTimeout(function() {
+          $scope.$apply(function() {
+            apply = {};
+            console.log("Dropping")
+            apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
+            apply.hideFast.style.display = 'none'
+            // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
+            //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
+            //                         $scope.draggedProposition.position.toString() + ']';
+            // apply.destinationToBeHidden = eval(apply.pathToBeHidden);
+
+
+            // $scope.cancelListenForDoubleClick = true;
+            // $scope.draggedProposition = angular.copy(proposition)
+            // console.log("Dragged proposition: ", $scope.draggedProposition)
           });
         }, 20);
       }
