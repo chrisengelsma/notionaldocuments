@@ -1649,7 +1649,7 @@
           return;
         }
 
-        if (dropflag){
+        if ($scope.draggedProposition){
           for (var i = 0; i < payload.ids.length; i++){
             apply.hideFast = document.getElementById('wholeprop' + payload.ids[i].id);
             apply.hideFast.style.display = 'none'
@@ -2358,7 +2358,7 @@
             }
           }
 
-          if (prep.capacityCount > 1 && !scope.draggedProposition) {
+          if (prep.capacityCount > 1 && !$scope.draggedProposition) {
 
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
