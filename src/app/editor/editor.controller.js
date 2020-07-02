@@ -1316,50 +1316,7 @@
 
       }
 
-      $scope.dragProposition = function(paragraph, proposition){
-        setTimeout(function() {
-          $scope.$apply(function() {
-            console.log("Dragging")
-            $scope.cancelListenForDoubleClick = true;
-            $scope.draggedProposition = angular.copy(proposition);
-            $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
-            console.log("Dragged proposition: ", $scope.draggedProposition)
-          });
-        }, 20);
-      }
 
-      $scope.dropProposition = function(paragraph, proposition, flag){
-        setTimeout(function() {
-          $scope.$apply(function() {
-            apply = {};
-            console.log("Dropping")
-            apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
-            apply.hideFast.style.display = 'none'
-            // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
-            //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
-            //                         $scope.draggedProposition.position.toString() + ']';
-            // apply.destinationToBeHidden = eval(apply.pathToBeHidden);
-
-
-            // $scope.cancelListenForDoubleClick = true;
-            // $scope.draggedProposition = angular.copy(proposition)
-            // console.log("Dragged proposition: ", $scope.draggedProposition)
-          });
-        }, 20);
-      }
-
-      $scope.clearDrag = function () {
-        setTimeout(function() {
-          $scope.$apply(function() {
-            console.log("Clearing drag")
-            if ($scope.draggedProposition){
-              $scope.cancelListenForDoubleClick = false;
-              $scope.draggedProposition = {};
-              console.log("Dragged proposition: ", $scope.draggedProposition)
-            }
-          });
-        }, 20);
-      }
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
@@ -1480,7 +1437,61 @@
         profileService.setSelectedBook($scope.data[0])
       });
 
-      $scope.deleteProposition = function(node, paragraph, allflag) {
+      $scope.dragProposition = function(node, paragraph, proposition){
+        setTimeout(function() {
+          $scope.$apply(function() {
+            console.log("Dragging")
+            $scope.cancelListenForDoubleClick = true;
+
+            $scope.draggedProposition = angular.copy(proposition);
+            $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
+            console.log("Dragged proposition: ", $scope.draggedProposition)
+          });
+        }, 20);
+      }
+
+      $scope.clearDrag = function () {
+        setTimeout(function() {
+          $scope.$apply(function() {
+            console.log("Clearing drag")
+            if ($scope.draggedProposition){
+              $scope.cancelListenForDoubleClick = false;
+              $scope.draggedProposition = {};
+              console.log("Dragged proposition: ", $scope.draggedProposition)
+            }
+          });
+        }, 20);
+      }
+
+      $scope.dropProposition = function(paragraph, proposition, flag){
+        setTimeout(function() {
+          $scope.$apply(function() {
+            apply = {};
+            console.log("Dropping")
+            // apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
+            // apply.hideFast.style.display = 'none'
+            $scope.draggedProposition.dropflag = flag;
+            $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
+
+            setTimeout(function() {
+              $scope.deleteProposition($scope.selectedNode, $scope.selectedParagraph, false, true)
+            }, 20);
+            
+            // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
+            //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
+            //                         $scope.draggedProposition.position.toString() + ']';
+            // apply.destinationToBeHidden = eval(apply.pathToBeHidden);
+
+
+            // $scope.cancelListenForDoubleClick = true;
+            // $scope.draggedProposition = angular.copy(proposition)
+            // console.log("Dragged proposition: ", $scope.draggedProposition)
+          });
+        }, 20);
+      }
+
+      $scope.deleteProposition = function(node, paragraph, allflag, dropflag) {
+
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
         for (var i = 0; i < prep.address.length; i++) {
@@ -1542,7 +1553,7 @@
             return;
           }
         } else if (!prep.assigned) {
-          if($scope.selectedProposition.type === 'negation' &&
+          if ($scope.selectedProposition.type === 'negation' &&
              $scope.selectedProposition.of.author === $scope.userId){
             prep.hideNegationForOthers = true;
             prep.hiddenForAll = false;
@@ -1559,6 +1570,7 @@
                 prep.ids.push(paragraph.propositions[i].id);
               }
             }
+
             // now have a list 'ids' of ids to remove
             // will this end up blanking the paragraph?
 
@@ -1620,7 +1632,8 @@
           hideOthersProp: (prep.hideOthersProp ? prep.hideOthersProp : undefined),
           hideOwn: (prep.hideOwn ? prep.hideOwn : undefined),
           deleter: $scope.userId,
-          bookId: $scope.bookId
+          bookId: $scope.bookId,
+          dropflag: dropflag
         };
         console.log('Payload to be deleted: ', prep.payload);
         chatSocket.emit('deletion', $scope.userId, prep.payload);
@@ -1634,6 +1647,13 @@
         if (payload.bookId !== $scope.bookId){
 
           return;
+        }
+
+        if (dropflag){
+          for (var i = 0; i < payload.ids.length; i++){
+            apply.hideFast = document.getElementById('wholeprop' + payload.ids[i].id);
+            apply.hideFast.style.display = 'none'
+          }
         }
         console.log("Received deletion: ", payload)
         // Node and paragraph destination calcs
@@ -2041,6 +2061,30 @@
          event.preventDefault();
         }
 
+        if ($scope.draggedProposition){
+          if($scope.draggedProposition.dropflag === 'top'){
+            paragraph.topAdd = true;
+          } else if ($scope.draggedProposition.dropflag === 'bottom'){
+            paragraph.bottomAdd = true;
+          } else if ($scope.draggedProposition.dropflag === 'left'){
+            paragraph.leftAdd = true;
+          }
+          $scope.selectedParagraph = paragraph;
+          $scope.selectedProposition = proposition;
+          prep.ids = [];
+          for (var i = 0; i < paragraph.propositions.length; i++){
+            if ((
+            paragraph.propositions[i].id === proposition.id) ||
+            (paragraph.propositions[i].type === 'negation' &&
+            paragraph.propositions[i].of.id === proposition.id)){
+              prep.hideFast = document.getElementById('wholeprop' + paragraph.propositions[i].id);
+              prep.hideFast.style.display = 'none';
+              prep.ids.push(paragraph.propositions[i].id);
+            }
+          }  
+
+
+        }
 
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
@@ -2277,10 +2321,10 @@
 
 
 
-        } else if ($scope.selectedProposition.of &&                                                //   REJOINDER
+        } else if (($scope.selectedProposition.of &&                                                //   REJOINDER
           $scope.selectedProposition.of.author === $scope.userId &&
           $scope.selectedProposition.type === 'negation' &&
-          !$scope.selectedProposition.question) {
+          !$scope.selectedProposition.question) || !($scope.draggedProposition.type === 'assertion')) {
           prep.topic = $scope.selectedNode.topic;
           prep.type = 'rejoinder';
 
@@ -2306,14 +2350,15 @@
 
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId &&
               prep.paragraphDestination.propositions[i].type !== 'negation'
-              && prep.paragraphDestination.propositions[i].deleted !== true)
+              && prep.paragraphDestination.propositions[i].deleted !== true &&
+              !$scope.draggedProposition)
               //what about hiddens?
               {
               prep.capacityCount++;
             }
           }
 
-          if (prep.capacityCount > 1) {
+          if (prep.capacityCount > 1 && !scope.draggedProposition) {
 
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
@@ -2391,12 +2436,21 @@
             }
 
             prep.getsOwnProposition = true;
-            prep.of = {
-              id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
-              type: $scope.selectedProposition.type,
-              author: $scope.selectedProposition.author,
-              text: $scope.selectedProposition.text,
-            };
+            if (!$scope.draggedProposition){
+              prep.of = {
+                id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
+                type: $scope.selectedProposition.type,
+                author: $scope.selectedProposition.author,
+                text: $scope.selectedProposition.text,
+              }
+            } else {
+              prep.of = {
+                id: $scope.draggedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
+                type: $scope.draggedProposition.type,
+                author: $scope.draggedProposition.author,
+                text: $scope.draggedProposition.text,
+              }
+            }
             prep.class = $scope.selectedNode.class;
 
             prep.nodePath = '$scope.data';
@@ -2409,10 +2463,14 @@
                 prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
               }
             }
+            if (!$scope.draggedProposition){
+              prep.assertionPath = $scope.selectedProposition.assertionPath; 
+            } else {
+              prep.assertionPath = $scope.draggedProposition.assertionPath;
+            }
+                               //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
 
-            prep.assertionPath = $scope.selectedProposition.assertionPath;                    //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-
-            if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
+            if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
 
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
@@ -2420,9 +2478,6 @@
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
 
               }
-
-
-
               prep.remarkAddress = angular.copy($scope.selectedProposition.remarkAddress);    //  the new remark address will be based on the selectedProposition's remark address array
               prep.check = eval(start);                                         //  check the selectedProposition's remark location
               start = '';
@@ -2443,18 +2498,21 @@
                 prep.remarkAddress.push(0);
                 prep.remarkPath = prep.assertionPath + '.remarks[0]';
               }
-            } else {
+            } else if (!$scope.draggedProposition){
 
               prep.remarkAddress = $scope.selectedProposition.remarkAddress;
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
 
+            } else {
+              prep.remarkAddress = $scope.draggedProposition.remarkAddress;
+              prep.remarkPath = $scope.draggedProposition.remarkPath;
             }
           }
 
 
         } else if ($scope.selectedProposition.question) {
-
+          //won't run
 
           prep.type = 'assertion';
           prep.adjustedText = input;
@@ -2539,6 +2597,7 @@
 
           prep.type = 'assertion';
           prep.adjustedText = input;
+
         } else {
 
           prep.topic = $scope.selectedNode.topic;
@@ -2871,11 +2930,6 @@
                 console.log("Placing this at the end of the document")
               }
             }
-          } else if ($scope.newProp){
-            // prep.paragraphPosition = $scope.selectedNode.paragraphs.length;
-            // prep.position = 0;
-            // prep.newProp = true;
-            // console.log('New prop');
           } else if (prep.type !== 'rejoinder') {
 
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
@@ -2913,20 +2967,28 @@
           }
 
 
-          // Had a toString of undefined about here, needs to be fixed
 
           prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';
 
-          if (prep.assertionDestination) {
+          if (prep.assertionDestination && !$scope.draggedProposition) {
             $scope.selectedProposition = eval(prep.assertionPath);   //   SET SELECTEDPROPOSITION EQUAL TO THE PLACE IT IS BEING PUT
           }
-
-          prep.of = {
-            id: $scope.selectedProposition.id,     //    THE OF WILL BE WHAT'S AT THE PLACE WHERE IT'S PUT
-            type: $scope.selectedProposition.type,
-            author: $scope.selectedProposition.author,
-            text: $scope.selectedProposition.text,
-          };
+          if (!$scope.draggedProposition){
+            prep.of = {
+              id: $scope.selectedProposition.id,     //    THE OF WILL BE WHAT'S AT THE PLACE WHERE IT'S PUT
+              type: $scope.selectedProposition.type,
+              author: $scope.selectedProposition.author,
+              text: $scope.selectedProposition.text,
+            };
+          } else {
+            prep.of = {
+              id: $scope.draggedProposition.id,     //    THE OF WILL BE WHAT'S AT THE PLACE WHERE IT'S PUT
+              type: $scope.draggedProposition.type,
+              author: $scope.draggedProposition.author,
+              text: $scope.draggedProposition.text,
+            };
+          }
+          
         }
 
         prep.adjustedText = prep.adjustedText.replace(/&nbsp;/g, ' ');
@@ -2948,6 +3010,8 @@
           paragraphId: IdFactory.next(),
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           bookId: $scope.bookId,
+          ids: prep.ids ? prep.ids : undefined,
+          dropflag : $scope.draggedProposition ? true : undefined,
           proposition: {
             id: IdFactory.next(),
             address: prep.address,
@@ -2979,6 +3043,7 @@
             of: (prep.of ? prep.of : undefined),
             position: prep.position,
             remarks: []
+
           }
         };
         if (prep.payload.proposition.type === 'assertion' && !prep.payload.proposition.question) {
@@ -3023,6 +3088,10 @@
         }
         $timeout(function() {
           $scope.$apply(function() {
+
+            if (payload.dropflag){
+              
+            }
             console.log("Received proposition: ", payload)
 
             apply = {};
