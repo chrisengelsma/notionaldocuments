@@ -2329,7 +2329,7 @@
         } else if (($scope.selectedProposition.of &&                                                //   REJOINDER
           $scope.selectedProposition.of.author === $scope.userId &&
           $scope.selectedProposition.type === 'negation' &&
-          !$scope.selectedProposition.question) || !($scope.draggedProposition.type === 'assertion')) {
+          !$scope.selectedProposition.question) && !$scope.draggedProposition.draggingRejoinder) {
           prep.topic = $scope.selectedNode.topic;
           prep.type = 'rejoinder';
 
@@ -2607,7 +2607,16 @@
 
           prep.topic = $scope.selectedNode.topic;
           prep.class = $scope.selectedNode.class;
-          prep.type = 'assertion';
+          if ($scope.draggedProposition){
+            if ($scope.draggedProposition.draggingRejoinder){
+              prep.type = 'rejoinder'
+            } else {
+              prep.type = 'assertion'
+            }
+          } else {
+            prep.type = 'assertion';
+          }
+          
           prep.adjustedText = input;
 
         }
@@ -2795,7 +2804,7 @@
             if (!$scope.newProp){
               prep.candidateParagraphPosition = $scope.selectedParagraph.position+1;
             } else {
-              prep.candidateParagraphPosition = 490951;
+              prep.candidateParagraphPosition = 410951;
             }
             prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
             + ']';
