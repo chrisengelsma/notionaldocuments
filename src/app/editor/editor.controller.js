@@ -1442,10 +1442,16 @@
           $scope.$apply(function() {
             console.log("Dragging")
             $scope.cancelListenForDoubleClick = true;
-
+            $scope.draggedParagraph = angular.copy(paragraph);
             $scope.draggedProposition = angular.copy(proposition);
-            $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
+            if ($scope.draggedProposition.type === 'rejoinder'){
+              $scope.draggedProposition.draggingRejoinder = true;
+            } else if ($scope.draggedProposition.type === 'assertion'){
+              $sope.draggedProposition.draggingAssertion = true;
+            }
+            // $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
             console.log("Dragged proposition: ", $scope.draggedProposition)
+            console.log("Dragged paragraph: ", $scope.draggedParagraph)
           });
         }, 20);
       }
@@ -1456,6 +1462,7 @@
             console.log("Clearing drag")
             if ($scope.draggedProposition){
               $scope.cancelListenForDoubleClick = false;
+              $scope.draggedParagraph = {};
               $scope.draggedProposition = {};
               console.log("Dragged proposition: ", $scope.draggedProposition)
             }
@@ -2060,42 +2067,39 @@
         if (event){
          event.preventDefault();
         }
-
         if ($scope.draggedProposition){
           if($scope.draggedProposition.dropflag === 'top'){
             paragraph.topAdd = true;
+            console.log("Top added: ", paragraph.topAdd)
           } else if ($scope.draggedProposition.dropflag === 'bottom'){
             paragraph.bottomAdd = true;
+            console.log("Bottom added: ", paragraph.bottomAdd)
           } else if ($scope.draggedProposition.dropflag === 'left'){
             paragraph.leftAdd = true;
+            console.log("Left added: ", paragraph.leftAdd)
           }
           $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
           prep.ids = [];
-          for (var i = 0; i < paragraph.propositions.length; i++){
+          for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
             if ((
-            paragraph.propositions[i].id === proposition.id) ||
-            (paragraph.propositions[i].type === 'negation' &&
-            paragraph.propositions[i].of.id === proposition.id)){
-              prep.hideFast = document.getElementById('wholeprop' + paragraph.propositions[i].id);
+            $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
+            ($scope.draggedParagraph.propositions[i].type === 'negation' &&
+            $scope.draggedParagraph.propositions[i].of.id === $scope.draggedProposition.id)){
+              prep.hideFast = document.getElementById('wholeprop' + $scope.draggedParagraph.propositions[i].id);
               prep.hideFast.style.display = 'none';
-              prep.ids.push(paragraph.propositions[i].id);
+              prep.ids.push($scope.draggedParagraph.propositions[i].id);
             }
           }  
-
-
         }
-
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
           $scope.selectedParagraph.markAll = false;
         }
         apply = {};
-        // Define characters at the beginning and end of the input
         if (proposition){
           proposition.propositionPreSelected = false;
         }
-
         paragraph.disableRightCursor = false;
         //blur active element
         document.activeElement.blur();
@@ -2189,9 +2193,10 @@
           // and it's an assertion or rejoinder (not a blank)
           // Or if it's a continuation of another negation
           // it's a negation
-        else if (((($scope.selectedProposition.type === 'assertion' || $scope.selectedProposition.type === 'rejoinder') &&
-          $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation'
-          && $scope.selectedProposition.author === $scope.userId)) && !paragraph.leftAdd) {
+        else if (((($scope.selectedProposition.type === 'assertion' || 
+          $scope.selectedProposition.type === 'rejoinder') &&
+          $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' && 
+          $scope.selectedProposition.author === $scope.userId)) && !paragraph.leftAdd) {
 
           // if (prep.lastChar === '?') {
           //   prep.topic = input;
@@ -3020,7 +3025,6 @@
             answeredQuestion: (prep.answeredQuestion ? prep.answeredQuestion : undefined),
             getsOwnNode: (prep.getsOwnNode === true ? prep.getsOwnNode : undefined),
             getsOwnParagraph: (prep.getsOwnParagraph === true ? prep.getsOwnParagraph : undefined),
-            getsOwnPlace: (prep.getsOwnPlace === true ? prep.getsOwnPlace : undefined),
             newProp: (prep.newProp === true ? prep.newProp : undefined),
             getsOwnProposition: (prep.getsOwnProposition === true ? prep.getsOwnProposition : undefined),
             replacesBlank: (prep.replacesBlank === true ? prep.replacesBlank : undefined),
@@ -3199,7 +3203,8 @@
                 apply.paragraphDestination = eval(apply.paragraphPath);
                 apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
                 apply.propositionDestination = eval(apply.propositionPath);
-                if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
+                if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true 
+                  && !payload.dropflag) {
                   $scope.selectedNode = apply.nodeDestination;
 
                   $scope.selectedParagraph = apply.paragraphDestination;
@@ -3215,15 +3220,7 @@
               }
 
 
-            } else if (payload.proposition.getsOwnPlace) {
-              apply.nodeDestination = eval(payload.nodePath);
-              apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position] = payload.proposition;
-
-            }
-
-
-
-            else if (payload.proposition.replacesBlank) {
+            } else if (payload.proposition.replacesBlank) {
 
               // shouldnt trigger
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
@@ -3251,14 +3248,15 @@
               apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1].hiddenForAll = true;
 
 
-              if (apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].id === $scope.selectedProposition.id) {
+              if (apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].id === 
+                $scope.selectedProposition.id && !payload.dropflag) {
                 $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
                 $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1];
                 $scope.selectedProposition.textSide = true;
                 focusFactory($scope.selectedProposition.id);
               }
 
-              if (payload.proposition.author === $scope.userId) {
+              if (payload.proposition.author === $scope.userId && !payload.dropflag) {
 
                 $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
@@ -3291,7 +3289,7 @@
               } else {
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               }
-              if (payload.proposition.author === $scope.userId && payload.textSide === true) {
+              if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
@@ -3302,7 +3300,6 @@
             } else if (payload.proposition.insertsAbove) {
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-
               apply.paragraphDestination = eval(apply.paragraphPath);
               apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
               if (apply.paragraphDestination){
@@ -3317,7 +3314,7 @@
                   // if user has selected the paragraph being moved up, update selectedParagraph
                   if ($scope.selectedParagraph){
                     if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id &&
-                    payload.proposition.author !== $scope.userId) {
+                    payload.proposition.author !== $scope.userId && !payload.dropflag) {
                       $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                     }
                   }
