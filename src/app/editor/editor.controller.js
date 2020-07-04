@@ -1447,7 +1447,7 @@
             if ($scope.draggedProposition.type === 'rejoinder'){
               $scope.draggedProposition.draggingRejoinder = true;
             } else if ($scope.draggedProposition.type === 'assertion'){
-              $sope.draggedProposition.draggingAssertion = true;
+              $scope.draggedProposition.draggingAssertion = true;
             }
             // $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
             console.log("Dragged proposition: ", $scope.draggedProposition)
@@ -3103,7 +3103,7 @@
           $scope.$apply(function() {
 
             if (payload.dropflag){
-              
+              console.log('')
             }
             console.log("Received proposition: ", payload)
 
