@@ -1445,9 +1445,9 @@
             $scope.draggedParagraph = angular.copy(paragraph);
             $scope.draggedProposition = angular.copy(proposition);
             if ($scope.draggedProposition.type === 'rejoinder'){
-              $scope.draggedProposition.draggingRejoinder = true;
+              $scope.draggingRejoinder = true;
             } else if ($scope.draggedProposition.type === 'assertion'){
-              $scope.draggedProposition.draggingAssertion = true;
+              $scope.draggingAssertion = true;
             }
             // $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
             console.log("Dragged proposition: ", $scope.draggedProposition)
@@ -1464,6 +1464,8 @@
               $scope.cancelListenForDoubleClick = false;
               $scope.draggedParagraph = {};
               $scope.draggedProposition = {};
+              $scope.draggingAssertion = false;
+              $scope.draggingRejoinder = false;
               console.log("Dragged proposition: ", $scope.draggedProposition)
             }
           });
@@ -2329,7 +2331,7 @@
         } else if (($scope.selectedProposition.of &&                                                //   REJOINDER
           $scope.selectedProposition.of.author === $scope.userId &&
           $scope.selectedProposition.type === 'negation' &&
-          !$scope.selectedProposition.question) && !$scope.draggedProposition.draggingRejoinder) {
+          !$scope.selectedProposition.question) && !$scope.draggingRejoinder) {
           prep.topic = $scope.selectedNode.topic;
           prep.type = 'rejoinder';
 
@@ -2608,7 +2610,7 @@
           prep.topic = $scope.selectedNode.topic;
           prep.class = $scope.selectedNode.class;
           if ($scope.draggedProposition){
-            if ($scope.draggedProposition.draggingRejoinder){
+            if ($scope.draggingRejoinder){
               prep.type = 'rejoinder'
             } else {
               prep.type = 'assertion'
