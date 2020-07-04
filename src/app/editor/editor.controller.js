@@ -2617,13 +2617,9 @@
             }
           } else {
             prep.type = 'assertion';
-          }
-          
+          } 
           prep.adjustedText = input;
-
         }
-
-
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
           //placeholders only appear after deletions
@@ -2946,8 +2942,7 @@
                 console.log("Placing this at the end of the document")
               }
             }
-          } else if (prep.type !== 'rejoinder') {
-
+          } else if (prep.type !== 'rejoinder' && !$scope.draggingRejoinder) {
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
@@ -2969,11 +2964,9 @@
           }
         }
 
-
         if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion && prep.type !== 'rejoinder') {
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
-
           for (var i = 0; i < prep.address.length; i++) {                                          //    CALCULATES PATH TO THE NODE
             if (i < prep.address.length - 1) {
               prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + '].children';
@@ -2982,10 +2975,7 @@
             }
           }
 
-
-
           prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';
-
           if (prep.assertionDestination && !$scope.draggedProposition) {
             $scope.selectedProposition = eval(prep.assertionPath);   //   SET SELECTEDPROPOSITION EQUAL TO THE PLACE IT IS BEING PUT
           }
@@ -3003,14 +2993,10 @@
               author: $scope.draggedProposition.author,
               text: $scope.draggedProposition.text,
             };
-          }
-          
+          }     
         }
 
         prep.adjustedText = prep.adjustedText.replace(/&nbsp;/g, ' ');
-
-
-
         prep.payload = {
           topic: prep.topic,
           address: prep.address,
@@ -3038,7 +3024,7 @@
             getsOwnParagraph: (prep.getsOwnParagraph === true ? prep.getsOwnParagraph : undefined),
             newProp: (prep.newProp === true ? prep.newProp : undefined),
             getsOwnProposition: (prep.getsOwnProposition === true ? prep.getsOwnProposition : undefined),
-            replacesBlank: (prep.replacesBlank === true ? prep.replacesBlank : undefined),
+            // replacesBlank: (prep.replacesBlank === true ? prep.replacesBlank : undefined),
             replacesBlankAndMoves:
               (prep.replacesBlankAndMoves === true ? prep.replacesBlankAndMoves : undefined),
             insertsAbove: (prep.insertsAbove === true ? prep.insertsAbove : undefined),
@@ -3231,52 +3217,54 @@
               }
 
 
-            } else if (payload.proposition.replacesBlank) {
+            } 
+
+            else if (payload.proposition.replacesBlank) {
 
               // shouldnt trigger
-              apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
-              apply.paragraphDestination = eval(apply.paragraphPath);
-              apply.nodePath = payload.nodePath;
-              apply.nodeDestination = eval(payload.nodePath);
+              // apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
+              // apply.paragraphDestination = eval(apply.paragraphPath);
+              // apply.nodePath = payload.nodePath;
+              // apply.nodeDestination = eval(payload.nodePath);
 
-              for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
-                apply.paragraphDestination.propositions[i].position++;
+              // for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
+              //   apply.paragraphDestination.propositions[i].position++;
 
-                if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
-                    payload.proposition.author !== $scope.userId) {
-                  $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
-                }
-                apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
-              }
-
-
-              if (apply.paragraphDestination[$scope.userId] === 'hidden' || apply.paragraphDestination.hiddenForAll === true) {
-                apply.paragraphDestination[$scope.userId] = '';
-              }
-
-              apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position] = payload.proposition;
-              apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1][$scope.userId] = 'hidden';
-              apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1].hiddenForAll = true;
+              //   if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
+              //       payload.proposition.author !== $scope.userId) {
+              //     $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
+              //   }
+              //   apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
+              // }
 
 
-              if (apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].id === 
-                $scope.selectedProposition.id && !payload.dropflag) {
-                $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
-                $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1];
-                $scope.selectedProposition.textSide = true;
-                focusFactory($scope.selectedProposition.id);
-              }
+              // if (apply.paragraphDestination[$scope.userId] === 'hidden' || apply.paragraphDestination.hiddenForAll === true) {
+              //   apply.paragraphDestination[$scope.userId] = '';
+              // }
 
-              if (payload.proposition.author === $scope.userId && !payload.dropflag) {
+              // apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position] = payload.proposition;
+              // apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1][$scope.userId] = 'hidden';
+              // apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1].hiddenForAll = true;
 
-                $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
-                $scope.hasRightFocus.id = $scope.selectedProposition.id
-                $scope.selectedProposition.textSide = true;
-                if (payload.textSide === true) {
-                  $scope.selectedProposition.textSide = true;
-                }
-                focusFactory($scope.selectedProposition.id);
-              }
+
+              // if (apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].id === 
+              //   $scope.selectedProposition.id && !payload.dropflag) {
+              //   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
+              //   $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1];
+              //   $scope.selectedProposition.textSide = true;
+              //   focusFactory($scope.selectedProposition.id);
+              // }
+
+              // if (payload.proposition.author === $scope.userId && !payload.dropflag) {
+
+              //   $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
+              //   $scope.hasRightFocus.id = $scope.selectedProposition.id
+              //   $scope.selectedProposition.textSide = true;
+              //   if (payload.textSide === true) {
+              //     $scope.selectedProposition.textSide = true;
+              //   }
+              //   focusFactory($scope.selectedProposition.id);
+              // }
             } else if (payload.proposition.getsOwnProposition) {
 
 
