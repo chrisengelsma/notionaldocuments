@@ -2948,7 +2948,7 @@
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
                 $scope.selectedParagraph.propositions[i + 1].hiddenForAll !== true  &&
                 $scope.selectedParagraph.propositions[i + 1].hidden !== true  &&
-                $scope.selectedParagraph.propositions[i + 1][$scope.userId] !== 'hidden' &&
+                $scope.selectedParagraph.propositions[i + 1][$scope.userId] !== 'hidden'
                 ) {
                   if (prep.draggedProps){
                     for (var x = 0; x < prep.draggedProps.length; x++){
