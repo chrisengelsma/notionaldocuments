@@ -1625,7 +1625,7 @@
           paragraphPosition: $scope.selectedParagraph.position,
           address: $scope.selectedNode.address,
           nodePath: prep.nodePath,
-          proposition: $scope.selectedProposition,
+          proposition: !dropflag ? $scope.selectedProposition : $scope.draggedProposition,
           author: $scope.selectedProposition.author,
           id: prep.id ? prep.id : undefined,
           paragraphId: $scope.selectedParagraph.paragraphId,
