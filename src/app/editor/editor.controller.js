@@ -1480,10 +1480,11 @@
             // apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
             // apply.hideFast.style.display = 'none'
             $scope.draggedProposition.dropflag = flag;
-            $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
+            $scope.deleteProposition($scope.selectedNode, $scope.selectedParagraph, false, true)
+            
 
             setTimeout(function() {
-              $scope.deleteProposition($scope.selectedNode, $scope.selectedParagraph, false, true)
+              $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
             }, 20);
             
             // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
