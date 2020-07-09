@@ -2948,13 +2948,23 @@
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
                 $scope.selectedParagraph.propositions[i + 1].hiddenForAll !== true  &&
                 $scope.selectedParagraph.propositions[i + 1].hidden !== true  &&
-                $scope.selectedParagraph.propositions[i + 1][$scope.userId] !== 'hidden'
+                $scope.selectedParagraph.propositions[i + 1][$scope.userId] !== 'hidden' &&
                 ) {
-                prep.paragraphPosition = $scope.selectedParagraph.position;
-                prep.position = i + 1;
-                prep.getsOwnProposition = true;
-                break;
-              }
+                  if (prep.draggedProps){
+                    for (var x = 0; x < prep.draggedProps.length; x++){
+                      if (prep.draggedProps[x].id === $scope.selectedParagraph.propositions[i + 1].id){
+                        prep.match = true;
+                      } 
+                    }
+                  }
+                  if (!prep.match){
+                    prep.paragraphPosition = $scope.selectedParagraph.position;
+                    prep.position = i + 1;
+                    prep.getsOwnProposition = true;
+                    prep.match = false;
+                    break;
+                  } 
+                }
             }
             if (!prep.getsOwnProposition) {
               prep.paragraphPosition = $scope.selectedParagraph.position;                //    IF NO POSITION HAS BEEN CALCULATED, GETS OWN PROPOSITION WITH POSITION ON THE END
@@ -2964,7 +2974,7 @@
           }
         }
 
-        if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion && prep.type !== 'rejoinder') {
+        if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion) {
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
           for (var i = 0; i < prep.address.length; i++) {                                          //    CALCULATES PATH TO THE NODE
