@@ -2082,7 +2082,7 @@
           }
           $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
-          prep.ids = [];
+          prep.draggedProps = [];
           for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
             if ((
             $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
@@ -2090,7 +2090,7 @@
             $scope.draggedParagraph.propositions[i].of.id === $scope.draggedProposition.id)){
               prep.hideFast = document.getElementById('wholeprop' + $scope.draggedParagraph.propositions[i].id);
               prep.hideFast.style.display = 'none';
-              prep.ids.push($scope.draggedParagraph.propositions[i].id);
+              prep.draggedProps.push($scope.draggedParagraph.propositions[i]);
             }
           }  
         }
@@ -2942,7 +2942,7 @@
                 console.log("Placing this at the end of the document")
               }
             }
-          } else if (prep.type !== 'rejoinder' && !$scope.draggingRejoinder) {
+          } else {
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
@@ -2975,7 +2975,12 @@
             }
           }
 
-          prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';
+          if (!$scope.draggingRejoinder) {
+            prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';
+          } else {
+            prep.assertionPath = $scope.draggedProposition.nodePath + '.paragraphs[' + $scope.draggedParagraph.position.toString() +
+            '].propositions[' + $scope.draggedProposition.position.toString() + ']';
+          }
           if (prep.assertionDestination && !$scope.draggedProposition) {
             $scope.selectedProposition = eval(prep.assertionPath);   //   SET SELECTEDPROPOSITION EQUAL TO THE PLACE IT IS BEING PUT
           }
@@ -3012,7 +3017,7 @@
           paragraphId: IdFactory.next(),
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           bookId: $scope.bookId,
-          ids: prep.ids ? prep.ids : undefined,
+          draggedProps: prep.draggedProps ? prep.draggedProps : undefined,
           dropflag : $scope.draggedProposition ? true : undefined,
           proposition: {
             id: IdFactory.next(),
@@ -3267,7 +3272,6 @@
               // }
             } else if (payload.proposition.getsOwnProposition) {
 
-
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
               apply.paragraphDestination = eval(apply.paragraphPath);
@@ -3276,17 +3280,33 @@
 
               if (apply.propositionDestination) {
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
-                  apply.paragraphDestination.propositions[i].position++;
-
+                  if (payload.draggedProps){
+                    apply.paragraphDestination.propositions[i].position = 
+                    apply.paragraphDestination.propositions[i].position + payload.draggedProps.length;
+                  } else {
+                    apply.paragraphDestination.propositions[i].position++;
+                  }
                   if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
                     payload.proposition.author !== $scope.userId) {
+                    $scope.selectedParagraph.position = angular.copy(apply.paragraphDestination.position);
                     $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                   }
-                  apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
+                  if (payload.draggedProps){
+                    apply.paragraphDestination.propositions[i + payload.draggedProps.length] = apply.paragraphDestination.propositions[i];
+                  } else {
+                    apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
+                  }             
                 }
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               } else {
-                apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
+                if (!payload.draggedProps){
+                  apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
+                } else {
+                  for (var i = 0; i < payload.draggedProps.length; i ++){
+                    apply.paragraphDestination.propositions[i + payload.proposition.position] = payload.draggedProps[i];
+                  }
+                }
+                
               }
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
@@ -3313,7 +3333,7 @@
                   // if user has selected the paragraph being moved up, update selectedParagraph
                   if ($scope.selectedParagraph){
                     if ($scope.selectedParagraph.paragraphId === apply.nodeDestination.paragraphs[i].id &&
-                    payload.proposition.author !== $scope.userId && !payload.dropflag) {
+                    payload.proposition.author !== $scope.userId) {
                       $scope.selectedParagraph.position = angular.copy(apply.nodeDestination.paragraphs[i].position);
                     }
                   }
@@ -3628,7 +3648,7 @@
             } else if (payload.proposition.type === 'assertion') {
 
 
-
+              // should have an assertion path that is the payload's destination
               temp.assertionPath = payload.proposition.assertionPath;
               temp.assertionDestination = eval(payload.proposition.assertionPath);
               $scope.data[0].dialogue.push({
@@ -3647,6 +3667,8 @@
                 $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
               }
 
+              //makes sure assertions with the same assertionid as the payload have their own paths as their assertionpaths
+              // updates this only on the paragraph where the new one is going 
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
                   apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
@@ -3656,13 +3678,18 @@
                 }
               }
 
-
+              // if the assertionid of the payload matches a proposition,
+              // make its assertionpath the path of the assertion coming in
+              // shouldnt change anything, possible to delete?
+              // updates this only on the paragraph where the new one is going 
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {                   //    UPDATES THE ASSERTIONPATH FOR ALL THE PROPOSITIONS
                   apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
                 }
               }
 
+              // updates assertionpaths of propositions array items to the incoming assertion path
+              // probably doesn't do anything
               for (var i = 0; i < $scope.propositions.length; i++) {
                 if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
                   $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
