@@ -1661,6 +1661,7 @@
 
         if ($scope.draggedProposition){
           for (var i = 0; i < payload.ids.length; i++){
+            console.log("Getting: ", ('wholeprop' + payload.ids[i].id));
             apply.hideFast = document.getElementById('wholeprop' + payload.ids[i].id);
             apply.hideFast.style.display = 'none'
           }
