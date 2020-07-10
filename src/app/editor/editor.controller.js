@@ -1618,9 +1618,9 @@
         }
 
         if ($scope.draggedProposition){
-          for (var i = 0; i < payload.ids.length; i++){
-            console.log("Getting: ", ('wholeprop' + payload.ids[i]));
-            apply.hideFast = document.getElementById('wholeprop' + payload.ids[i]);
+          for (var i = 0; i < prep.ids.length; i++){
+            console.log("Getting: ", ('wholeprop' + prep.ids[i]));
+            apply.hideFast = document.getElementById('wholeprop' + prep.ids[i]);
             apply.hideFast.style.display = 'none'
           }
         }
