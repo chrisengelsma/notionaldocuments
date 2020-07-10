@@ -1573,6 +1573,7 @@
           } else if (!prep.assigned){
             prep.ids = [];
             prep.draggedProps = [];
+            console.log("Dragged proposition: ", $scope.draggedProposition)
             for (var i = 0; i < paragraph.propositions.length; i++){
               if (((
               paragraph.propositions[i].id === $scope.selectedProposition.id) ||
