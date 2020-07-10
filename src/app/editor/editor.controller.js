@@ -1578,14 +1578,15 @@
               paragraph.propositions[i].id === $scope.selectedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.selectedProposition.id) && !$scope.draggedProposition)){
-                console.log("Pushing, selected prop: ", paragraph.propositions[i].text )
+                console.log("Dragged prop slipped through: ", $scope.draggedProposition)
+                console.log("Pushing, selected prop at index ", i,": ", paragraph.propositions[i].text )
                 prep.ids.push(paragraph.propositions[i].id);
                 
               } else if (((
               paragraph.propositions[i].id === $scope.draggedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.draggedProposition.id))){
-                console.log("Pushing, dragged prop: ", paragraph.propositions[i].text )
+                console.log("Pushing, dragged prop at index ", i,": ", paragraph.propositions[i].text )
                 prep.ids.push(paragraph.propositions[i].id);
                 prep.draggedProps.push(paragraph.propositions[i]);
               }
