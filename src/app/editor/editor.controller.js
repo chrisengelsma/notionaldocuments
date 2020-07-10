@@ -1577,6 +1577,7 @@
               paragraph.propositions[i].id === $scope.selectedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
+                console.log("Pushing: ", paragraph.propositions[i].text )
                 prep.ids.push(paragraph.propositions[i].id);
               }
             }
