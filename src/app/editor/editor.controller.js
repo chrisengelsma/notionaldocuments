@@ -1598,6 +1598,7 @@
                 if (prep.ids.length === 1){
                   prep.id = prep.ids[0];
                   console.log("Prep id: ", prep.id)
+                  break;
                 }
 
               }
