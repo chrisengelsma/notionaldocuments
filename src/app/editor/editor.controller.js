@@ -1571,13 +1571,13 @@
             prep.id = $scope.selectProposition.id;
 
           } else if (!prep.assigned){
-            prep.draggedProps = [];
+            prep.ids = [];
             for (var i = 0; i < paragraph.propositions.length; i++){
               if ((
               paragraph.propositions[i].id === $scope.selectedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
-                prep.draggedProps.push(paragraph.propositions[i]);
+                prep.ids.push(paragraph.propositions[i].id);
               }
             }
 
@@ -1585,18 +1585,18 @@
             // will this end up blanking the paragraph?
 
             for (var i = 0 ; i < paragraph.propositions.length; i++){
-              prep.check = paragraph.propositions[i];
+              prep.check = paragraph.propositions[i].id;
 
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
-              !prep.draggedProps.includes(prep.check)){
+              !prep.ids.includes(prep.check)){
 
                 prep.assigned = true;
                 prep.blankPropositionForEveryone = true;
                 prep.hiddenForAll = true;
                 prep.hideOwn = true;
-                if (prep.draggedProps.length === 1){
-                  prep.id = prep.draggedProps[0];
+                if (prep.ids.length === 1){
+                  prep.id = prep.ids[0];
                 }
 
               }
@@ -1630,7 +1630,7 @@
           id: prep.id ? prep.id : undefined,
           paragraphId: $scope.selectedParagraph.paragraphId,
           hiddenForAll: prep.hiddenForAll ? prep.hiddenForAll : undefined,
-          draggedProps: prep.draggedProps ? prep.draggedProps: undefined,
+          ids: prep.ids ? prep.ids : undefined,
           hideNegationForOthers: prep.hideNegationForOthers ? prep.hideNegationForOthers : undefined,
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           blankParagraphForDeleter: (prep.blankParagraphForDeleter ? prep.blankParagraphForDeleter : undefined),
@@ -2084,7 +2084,7 @@
           }
           $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
-          prep.draggedProps = [];
+          $scope.draggedProps = [];
           for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
             if ((
             $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
@@ -2092,7 +2092,7 @@
             $scope.draggedParagraph.propositions[i].of.id === $scope.draggedProposition.id)){
               prep.hideFast = document.getElementById('wholeprop' + $scope.draggedParagraph.propositions[i].id);
               prep.hideFast.style.display = 'none';
-              prep.draggedProps.push($scope.draggedParagraph.propositions[i]);
+              $scope.draggedProps.push($scope.draggedParagraph.propositions[i]);
             }
           }  
         }
@@ -2952,9 +2952,9 @@
                 $scope.selectedParagraph.propositions[i + 1].hidden !== true  &&
                 $scope.selectedParagraph.propositions[i + 1][$scope.userId] !== 'hidden'
                 ) {
-                  if (prep.draggedProps){
-                    for (var x = 0; x < prep.draggedProps.length; x++){
-                      if (prep.draggedProps[x].id === $scope.selectedParagraph.propositions[i + 1].id){
+                  if ($scope.draggedProps){
+                    for (var x = 0; x < $scope.draggedProps.length; x++){
+                      if ($scope.draggedProps[x].id === $scope.selectedParagraph.propositions[i + 1].id){
                         prep.match = true;
                       } 
                     }
@@ -3029,7 +3029,6 @@
           paragraphId: IdFactory.next(),
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           bookId: $scope.bookId,
-          draggedProps: prep.draggedProps ? prep.draggedProps : undefined,
           dropflag : $scope.draggedProposition ? true : undefined,
           proposition: {
             id: IdFactory.next(),
