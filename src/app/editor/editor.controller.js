@@ -1616,6 +1616,14 @@
             }
           }
         }
+
+        if ($scope.draggedProposition){
+          for (var i = 0; i < payload.ids.length; i++){
+            console.log("Getting: ", ('wholeprop' + payload.ids[i]));
+            apply.hideFast = document.getElementById('wholeprop' + payload.ids[i]);
+            apply.hideFast.style.display = 'none'
+          }
+        }
         // make ids an array and work with it only
         // have a multiples flag variable
         // determine ahead of time if it will blank the paragraph, and for whom
@@ -1659,13 +1667,8 @@
           return;
         }
 
-        if ($scope.draggedProposition){
-          for (var i = 0; i < payload.ids.length; i++){
-            console.log("Getting: ", ('wholeprop' + payload.ids[i].id));
-            apply.hideFast = document.getElementById('wholeprop' + payload.ids[i].id);
-            apply.hideFast.style.display = 'none'
-          }
-        }
+        
+
         console.log("Received deletion: ", payload)
         // Node and paragraph destination calcs
         apply.nodeDestination = eval(payload.nodePath);
