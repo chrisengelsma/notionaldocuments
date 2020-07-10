@@ -1576,7 +1576,7 @@
             
 
             for (var i = 0; i < paragraph.propositions.length; i++){
-              console.log("Dragged proposition, and: ", $scope.draggedProposition)
+              console.log("Dragged proposition, and: ", !$scope.draggedProposition)
               console.log('or ',paragraph.propositions[i].id === $scope.selectedProposition.id)
               console.log('or ',(paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.selectedProposition.id))
