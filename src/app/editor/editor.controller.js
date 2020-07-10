@@ -1580,10 +1580,9 @@
               console.log('or ',paragraph.propositions[i].id === $scope.selectedProposition.id)
               console.log('or ',(paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.selectedProposition.id))
-              if (((
-              paragraph.propositions[i].id === $scope.selectedProposition.id) ||
-              (paragraph.propositions[i].type === 'negation' &&
-              paragraph.propositions[i].of.id === $scope.selectedProposition.id) && !$scope.draggedProposition)){
+              if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
+              (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) && 
+              !$scope.draggedProposition){
                 console.log("Dragged prop slipped through: ", $scope.draggedProposition)
                 console.log("Pushing, selected prop at index ", i,": ", paragraph.propositions[i].text )
                 prep.ids.push(paragraph.propositions[i].id);
