@@ -1572,13 +1572,22 @@
 
           } else if (!prep.assigned){
             prep.ids = [];
+            prep.draggedProps = [];
             for (var i = 0; i < paragraph.propositions.length; i++){
-              if ((
+              if (((
               paragraph.propositions[i].id === $scope.selectedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
-              paragraph.propositions[i].of.id === $scope.selectedProposition.id)){
+              paragraph.propositions[i].of.id === $scope.selectedProposition.id) && !$scope.draggedProps)){
                 console.log("Pushing: ", paragraph.propositions[i].text )
                 prep.ids.push(paragraph.propositions[i].id);
+                
+              } else if (((
+              paragraph.propositions[i].id === $scope.draggedProposition.id) ||
+              (paragraph.propositions[i].type === 'negation' &&
+              paragraph.propositions[i].of.id === $scope.draggedProposition.id))){
+                console.log("Pushing: ", paragraph.propositions[i].text )
+                prep.ids.push(paragraph.propositions[i].id);
+                prep.draggedProps.push(paragraph.propositions[i]);
               }
             }
 
