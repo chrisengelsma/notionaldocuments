@@ -1640,7 +1640,7 @@
             
             for (var j = 0; j < prep.ids.length; j++){
               console.log("Getting: ", ('wholeprop' + paragraph.propositions[i].text));
-              if (paragraph.propositions[i].id === prep.ids[j].id){
+              if (paragraph.propositions[i].id === prep.ids[j]){
                 console.log("True at paragraph propositions ", i)
                 paragraph.propositions[i][$scope.userId] = 'hidden';
               }
