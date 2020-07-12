@@ -1637,9 +1637,11 @@
 
         if ($scope.draggedProposition){
           for (var i = 0; i < paragraph.propositions.length; i++){
-            console.log("Getting: ", ('wholeprop' + prep.ids[i]));
+            
             for (var j = 0; j < prep.ids.length; j++){
+              console.log("Getting: ", ('wholeprop' + prep.ids[j]));
               if (paragraph.propositions[i].id === prep.ids[j].id){
+                console.log("True at ", i)
                 paragraph.propositions[i][$scope.userId] = 'hidden';
               }
             }
