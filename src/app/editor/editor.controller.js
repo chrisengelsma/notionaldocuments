@@ -1636,10 +1636,13 @@
         }
 
         if ($scope.draggedProposition){
-          for (var i = 0; i < prep.ids.length; i++){
+          for (var i = 0; i < paragraph.propositions.length; i++){
             console.log("Getting: ", ('wholeprop' + prep.ids[i]));
-            apply.hideFast = document.getElementById('wholeprop' + prep.ids[i]);
-            apply.hideFast.style.display = 'none'
+            for (var j = 0; j < prep.ids.length; j++){
+              if (paragraph.propositions[i].id === payload.ids[j].id){
+                paragraph.propositions[i][$scope.userId] = 'hidden';
+              }
+            }
           }
         }
         // make ids an array and work with it only
@@ -1879,17 +1882,13 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
-            if (payload.id){
-              apply.paragraphDestination.propositions[payload.proposition.position].hiddenForAll = true;
-            } else {
-              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
-                for (var j = 0; j < payload.ids.length; j++){
-                  if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
-                    apply.paragraphDestination.propositions[i].hiddenForAll = true;
-                  }
+            for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+              for (var j = 0; j < payload.ids.length; j++){
+                if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
+                  apply.paragraphDestination.propositions[i].hiddenForAll = true;
                 }
               }
-            }
+            }   
           } else if (payload.hideNegationForOthers){
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
           }
