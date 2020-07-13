@@ -46,6 +46,10 @@
     }, 250);
 
     // Function that clears vestigial stuff saved into the model
+    function isArray(o) {
+      return Object.prototype.toString.call(o) === '[object Array]'
+    }
+
     $scope.makePristine = function () {
       function traverse(x, key, obj) {
         if (isArray(x)) {
@@ -75,9 +79,7 @@
         }
       }
 
-      function isArray(o) {
-        return Object.prototype.toString.call(o) === '[object Array]'
-      }
+      
 
 
       if (!$scope.once){
@@ -560,9 +562,7 @@
           }
         }
 
-        function isArray(o) {
-          return Object.prototype.toString.call(o) === '[object Array]'
-        }
+
 
         // Executes
         traverse($scope.data[0])
@@ -608,9 +608,7 @@
           }
         }
 
-        function isArray(o) {
-          return Object.prototype.toString.call(o) === '[object Array]'
-        }
+
 
         // Executes
         traverse($scope.data[0].dialogue)
@@ -639,9 +637,7 @@
           }
         }
 
-        function isArray(o) {
-          return Object.prototype.toString.call(o) === '[object Array]'
-        }
+
 
         function traverse(x, key, obj) {
           if (isArray(x)) {
@@ -970,9 +966,7 @@
           }
         }
 
-        function isArray(o) {
-          return Object.prototype.toString.call(o) === '[object Array]'
-        }
+
 
         function traverse(x, key, obj) {
           if (isArray(x)) {
