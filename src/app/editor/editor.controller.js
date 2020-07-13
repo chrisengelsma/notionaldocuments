@@ -340,7 +340,7 @@
       $scope.lastItemCursorLayer = 0;
       $scope.demoCounter = 0;
       $scope.cancelListenForDoubleClick;
-      $scope.draggedProposition;
+      $scope.draggedProposition = {};
       var hidden = '';
       var visibilityChange = '';
 
@@ -3926,7 +3926,9 @@
 
         // $scope.initialize();
 
-
+        if (payload.proposition.author === $scope.userId){
+          $scope.draggedProposition = {};
+        }
 
 
         // $scope.makePristine();
@@ -4584,7 +4586,14 @@
       };
 
       var updateDialogue = function(payload, callback) {
-        if ((payload.blankParagraphForDeleter) || payload.hideBlankParagraph) {
+        if ($scope.draggedProposition){
+          $scope.draggedProposition.comparator = payload.proposition.id;
+        } else {
+          $scope.draggedProposition.comparator = '';
+        }
+        
+        if ((payload.blankParagraphForDeleter || payload.hideBlankParagraph) && $scope.draggedProposition.comparator === 
+          payload.proposition.id) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
           //   topic: payload.topic,
