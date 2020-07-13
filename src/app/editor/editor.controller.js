@@ -1468,10 +1468,7 @@
       $scope.dropProposition = function(paragraph, proposition, flag){
         setTimeout(function() {
           $scope.$apply(function() {
-            if (!$scope.draggedProposition.id){
-              console.log("No drag")
-              return;
-            }
+
             apply = {};
             console.log("Dropping")
             // apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
