@@ -1575,18 +1575,18 @@
             
 
             for (var i = 0; i < paragraph.propositions.length; i++){
-              paragraph.propositions[i].of.id === $scope.selectedProposition.id))
+    
               if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
               (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) && 
               !$scope.draggedProposition){
-
+        
                 prep.ids.push(paragraph.propositions[i].id);
                 
               } else if (((
               paragraph.propositions[i].id === $scope.draggedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.draggedProposition.id))){
-          
+       
                 prep.ids.push(paragraph.propositions[i].id);
                 prep.draggedProps.push(paragraph.propositions[i]);
               }
@@ -1597,7 +1597,7 @@
 
             for (var i = 0 ; i < paragraph.propositions.length; i++){
               prep.check = paragraph.propositions[i].id;
-           
+         
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
               !prep.ids.includes(prep.check)){
@@ -1608,7 +1608,7 @@
                 prep.hideOwn = true;
                 if (prep.ids.length === 1){
                   prep.id = prep.ids[0];
-                 
+                  
                   break;
                 }
 
@@ -1634,9 +1634,9 @@
           for (var i = 0; i < paragraph.propositions.length; i++){
             
             for (var j = 0; j < prep.ids.length; j++){
-              
+             
               if (paragraph.propositions[i].id === prep.ids[j]){
-              
+               
                 paragraph.propositions[i][$scope.userId] = 'hidden';
               }
             }
