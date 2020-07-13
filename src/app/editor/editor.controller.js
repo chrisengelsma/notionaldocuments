@@ -50,6 +50,20 @@
       return Object.prototype.toString.call(o) === '[object Array]'
     }
 
+    function traverseArray(arr) {
+      arr.forEach(function (x) {
+        traverse(x)
+      })
+    }
+
+    function traverseObject(obj) {
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          traverse(obj[key], key, obj)
+        }
+      }
+    }
+
     $scope.makePristine = function () {
       function traverse(x, key, obj) {
         if (isArray(x)) {
@@ -65,21 +79,8 @@
         }
       }
 
-      function traverseArray(arr) {
-        arr.forEach(function (x) {
-          traverse(x)
-        })
-      }
 
-      function traverseObject(obj) {
-        for (var key in obj) {
-          if (obj.hasOwnProperty(key)) {
-            traverse(obj[key], key, obj)
-          }
-        }
-      }
 
-      
 
 
       if (!$scope.once){
@@ -548,22 +549,6 @@
           }
         }
 
-        function traverseArray(arr) {
-          arr.forEach(function (x) {
-            traverse(x)
-          })
-        }
-
-        function traverseObject(obj) {
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              traverse(obj[key], key, obj)
-            }
-          }
-        }
-
-
-
         // Executes
         traverse($scope.data[0])
       }
@@ -594,22 +579,6 @@
           }
         }
 
-        function traverseArray(arr) {
-          arr.forEach(function (x) {
-            traverse(x)
-          })
-        }
-
-        function traverseObject(obj) {
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              traverse(obj[key], key, obj)
-            }
-          }
-        }
-
-
-
         // Executes
         traverse($scope.data[0].dialogue)
       }
@@ -623,19 +592,9 @@
       $scope.clearBlankOnBlur = function(){
         console.log('INITIALIZING clear blank on blur')
 
-        function traverseArray(arr) {
-          arr.forEach(function (x) {
-            traverse(x)
-          })
-        }
+        
 
-        function traverseObject(obj) {
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              traverse(obj[key], key, obj)
-            }
-          }
-        }
+        
 
 
 
@@ -949,23 +908,6 @@
             return;
           }
         }
-
-
-
-        function traverseArray(arr) {
-          arr.forEach(function (x) {
-            traverse(x)
-          })
-        }
-
-        function traverseObject(obj) {
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              traverse(obj[key], key, obj)
-            }
-          }
-        }
-
 
 
         function traverse(x, key, obj) {
@@ -2557,7 +2499,6 @@
             prep.newClass = prep.newClass.toString() + '.00' + prep.classBasis.toString();
           }
 
-
           prep.oldNodePath = '$scope.data';                                                           //    BUILD PATH TO THE OLD NODE FROM ITS ADDRESS
           prep.address = angular.copy($scope.selectedNode.address);
           for (var i = 0; i < prep.address.length; i++) {
@@ -2567,15 +2508,13 @@
               prep.oldNodePath = prep.oldNodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-
-
-          prep.nodePath = '$scope.data';                                                              //     ADD LAST COMPONENT OF THE ADDRESS FOR THE NEW NODE
+          prep.nodePath = '$scope.data';  
+                                                                      //     ADD LAST COMPONENT OF THE ADDRESS FOR THE NEW NODE
           if (!$scope.selectedNode.children) {
             prep.address.push(0);
           } else {
             prep.address.push($scope.selectedNode.children.length);
           }
-
 
           for (var i = 0; i < prep.address.length; i++) {                                              // BUILD PATH TO THE NEW NODE
             if (i < prep.address.length - 1) {
@@ -2590,17 +2529,13 @@
           if (!$scope.selectedProposition.text) {                                                          //   SWITCHING SELECTEDPROPOSITION TO THE BLANK TO COLLECT 'OF'
             $scope.selectedProposition = eval(prep.oldNodePath + '.paragraphs[0].propositions[0]');
           }
-
           if (prep.answeredQuestion.charAt(prep.answeredQuestion.length - 1) === '?' && prep.answeredQuestion.substring(0, 8) === 'Where is') {
             prep.topic = 'Location of ' + prep.answeredQuestion.substring(8, prep.answeredQuestion.length - 1);
           } else if (prep.answeredQuestion.charAt(prep.answeredQuestion.length - 1) === '?' && prep.answeredQuestion.substring(0, 6) === 'Who is') {
-
             prep.topic = 'Who ' + prep.answeredQuestion.substring(6, prep.answeredQuestion.length - 1) + ' is';
           } else if (prep.answeredQuestion.charAt(prep.answeredQuestion.length - 1) === '?' && prep.answeredQuestion.substring(0, 7) === 'Who was') {
-
             prep.topic = 'Who ' + prep.answeredQuestion.substring(7, prep.answeredQuestion.length - 1) + ' was';
           } else if (prep.answeredQuestion.charAt(prep.answeredQuestion.length - 1) === '?' && prep.answeredQuestion.substring(0, 10) === 'What makes') {
-
             prep.topic = prep.answeredQuestion.substring(0, prep.answeredQuestion.length - 1);
           } else if (prep.answeredQuestion.charAt(prep.answeredQuestion.length - 1) === '?') {
             prep.topic = prep.answeredQuestion;                                       // SETS PREP TOPIC TO THE QUESTION WITH PUNCTUATION
@@ -2612,13 +2547,8 @@
             author: $scope.selectedProposition.author,
             text: $scope.selectedProposition.text,
           };
-
-
-
-
           prep.type = 'assertion';
           prep.adjustedText = input;
-
         } else {
 
           prep.topic = $scope.selectedNode.topic;
