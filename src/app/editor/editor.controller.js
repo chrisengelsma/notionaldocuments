@@ -981,7 +981,7 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              console.log(x === 'blank', document.activeElement.id, obj['id'], obj.nodePath)
+              
 
               if ((x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath) ||
                 (x === 'blank' && obj.nodePath && visibilityFlag == true)){
@@ -989,7 +989,7 @@
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-                console.log('if conditions')
+              
                 apply = {
                   nodeDestination: eval(obj.nodePath),
                   assigned: false
@@ -1005,10 +1005,10 @@
 
 
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
-                    console.log('for')
+                   
                     if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
                     apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
-                      console.log('for if')
+                  
 
                       for (var k = 0; k < apply.nodeDestination.paragraphs.length; k++){
 
@@ -1016,7 +1016,7 @@
                         !apply.nodeDestination.paragraphs[k].hiddenForAll &&
                         apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
-                         console.log('for for if')
+                       
 
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
@@ -1326,7 +1326,7 @@
           $scope.cancelListenForDoubleClick = false;
           return;
         }
-        console.log("listens for double click")
+        
 
         var string = 'proposition';
         var id = proposition.id;
@@ -1440,7 +1440,7 @@
       $scope.dragProposition = function(node, paragraph, proposition){
         setTimeout(function() {
           $scope.$apply(function() {
-            console.log("Dragging")
+            
             $scope.cancelListenForDoubleClick = true;
             $scope.draggedParagraph = angular.copy(paragraph);
             $scope.draggedProposition = angular.copy(proposition);
@@ -1450,8 +1450,7 @@
               $scope.draggingAssertion = true;
             }
             // $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
-            console.log("Dragged proposition: ", $scope.draggedProposition)
-            console.log("Dragged paragraph: ", $scope.draggedParagraph)
+           
           });
         }, 20);
       }
@@ -1466,7 +1465,7 @@
               $scope.draggedProposition = {};
               $scope.draggingAssertion = false;
               $scope.draggingRejoinder = false;
-              console.log("Dragged proposition: ", $scope.draggedProposition)
+            
             }
           });
         }, 20);
@@ -1576,22 +1575,18 @@
             
 
             for (var i = 0; i < paragraph.propositions.length; i++){
-              console.log("Dragged proposition, and: ", !$scope.draggedProposition)
-              console.log('or ',paragraph.propositions[i].id === $scope.selectedProposition.id)
-              console.log('or ',(paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.selectedProposition.id))
               if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
               (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) && 
               !$scope.draggedProposition){
-                console.log("Dragged prop slipped through: ", $scope.draggedProposition)
-                console.log("Pushing, selected prop at index ", i,": ", paragraph.propositions[i].text )
+
                 prep.ids.push(paragraph.propositions[i].id);
                 
               } else if (((
               paragraph.propositions[i].id === $scope.draggedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.draggedProposition.id))){
-                console.log("Pushing, dragged prop at index ", i,": ", paragraph.propositions[i].text )
+          
                 prep.ids.push(paragraph.propositions[i].id);
                 prep.draggedProps.push(paragraph.propositions[i]);
               }
@@ -1602,7 +1597,7 @@
 
             for (var i = 0 ; i < paragraph.propositions.length; i++){
               prep.check = paragraph.propositions[i].id;
-              console.log("prep.ids["+i+'] includes: ', prep.ids.includes(prep.check))
+           
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
               !prep.ids.includes(prep.check)){
@@ -1613,7 +1608,7 @@
                 prep.hideOwn = true;
                 if (prep.ids.length === 1){
                   prep.id = prep.ids[0];
-                  console.log("Prep id: ", prep.id)
+                 
                   break;
                 }
 
@@ -1639,9 +1634,9 @@
           for (var i = 0; i < paragraph.propositions.length; i++){
             
             for (var j = 0; j < prep.ids.length; j++){
-              console.log("Getting: ", ('wholeprop' + paragraph.propositions[i].text));
+              
               if (paragraph.propositions[i].id === prep.ids[j]){
-                console.log("True at paragraph propositions ", i)
+              
                 paragraph.propositions[i][$scope.userId] = 'hidden';
               }
             }
@@ -2044,7 +2039,7 @@
         }
 
         if (apply.muteIncomingThread){
-          $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
+          $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden';
         }
 
 
