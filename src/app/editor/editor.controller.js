@@ -73,21 +73,14 @@
         } else {
           if (key == 'color'){
             obj.color = '#ffffff';
-
           }
-
         }
       }
-
-
-
-
 
       if (!$scope.once){
         $scope.once = true;
         traverse($scope.data[0])
       }
-
 
       if ($('.cursor').is('.visible-cursor')){
         $('.cursor').removeClass('visible-cursor')
@@ -351,7 +344,6 @@
       var apply = {};
       var temp = {};
 
-
       //   Pastel colors for paragraphs
       $scope.pastels = ['#f9ceee','#e0cdff','#c1f0fb','#dcf9a8','#ffebaf']
       $scope.lighterOtherPastels = ['#ffbec4', '#edf5dd', '#d0f1e5', '#dbe0f1']
@@ -377,7 +369,6 @@
         hidden = "webkitHidden";
         visibilityChange = "webkitvisibilitychange";
       }
-
       var dialogueList = document.getElementById("dialoguelist");
 
       function handleVisibilityChange() {
@@ -396,11 +387,7 @@
       } else {
         // Handle page visibility change
         document.addEventListener(visibilityChange, handleVisibilityChange, false);
-
-
       }
-
-
 
       // Shuffles paragraph color order
       function shuffle(array) {
@@ -444,39 +431,31 @@
             if (key == 'owner'){
               for (var i = 0; i < $scope.userColorTable.length; i++){
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
-
                   var alreadyThere = true;
                   var index = i;
                   break;
                 }
               }
               if (!alreadyThere && x !== $scope.userId && x !== ''){
-
                 $scope.userColorTable.push(
                   {
                     author: x,
                     color: $scope.generateNewColor()
                   }
                 )
-
                 obj.color = $scope.userColorTable[$scope.userColorTable.length-1].color;
-
               } else if (x !== $scope.userId && x !== '') {
-
                 obj.color = $scope.userColorTable[index].color;
               }
             }
               apply = {};
               if (key === 'class' && !obj.threadId){
-
                 var theNode = document.getElementById(obj.nodeId);
                 var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
                 for (var m = 0; m < theNodeParagraphs.length; m++){
-
                   var isFirst = theNodeParagraphs[m].id.toString().slice(9);
                   break;
                 }
-
                 if (isFirst){
                   for (var n = 0; n < obj.paragraphs.length; n++){
                     if (obj.paragraphs[n].paragraphId === isFirst &&
@@ -496,7 +475,6 @@
                 // propositions
                 for (var i = 0; i < obj.paragraphs.length; i++){
                 // for all paragraphs
-
                   for (var j = 0; j < obj.paragraphs[i].propositions.length; j++){
                   // and all propositions
                     if (obj.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
@@ -513,37 +491,6 @@
                     }
                   }
                 }
-                // apply.nodeDestination = eval(obj.nodePath)
-                // for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
-                // // for all paragraph
-                //   for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++){
-                //   // and all propositions
-                //     if (apply.nodeDestination.paragraphs[i].propositions[j][$scope.userId] !== 'hidden' &&
-                //     !apply.nodeDestination.paragraphs[i].propositions[j].hiddenForAll){
-                //       apply.nodeDestination.paragraphs[i].propositions[j].first = true;
-                //       for (var k = j; k < apply.nodeDestination.paragraphs[i].propositions.length; k++){
-                //         if (k > j){
-                //           apply.nodeDestination.paragraphs[i].propositions[k].first = false;
-                //         }
-                //       }
-                //       j = apply.nodeDestination.paragraphs[i].propositions.length;
-                //     } else {
-                //       apply.nodeDestination.paragraphs[i].propositions[j].first = false;
-                //     }
-                //   }
-                //   if (apply.nodeDestination.paragraphs[i][$scope.userId] !== 'hidden' &&
-                //   !apply.nodeDestination.paragraphs[i].hiddenForAll){
-                //     apply.nodeDestination.paragraphs[i].first = true;
-                //     for (var k = i; k < apply.nodeDestination.paragraphs.length; k++){
-                //       if (k > i){
-                //         apply.nodeDestination.paragraphs[k].first = false;
-                //       }
-                //     }
-                //     i = apply.nodeDestination.paragraphs.length;
-                //   } else {
-                //     apply.nodeDestination.first = false;
-                //   }
-                // }
               }
             apply = {};
           }
@@ -574,11 +521,9 @@
 
                 obj.color = $scope.userColorTable[index].color;
               }
-
             }
           }
         }
-
         // Executes
         traverse($scope.data[0].dialogue)
       }
@@ -591,12 +536,6 @@
       //Initializing clear blank on blur
       $scope.clearBlankOnBlur = function(){
         console.log('INITIALIZING clear blank on blur')
-
-        
-
-        
-
-
 
         function traverse(x, key, obj) {
           if (isArray(x)) {
@@ -613,10 +552,8 @@
                 apply = {};
                 apply.nodeDestination = eval(obj.nodePath);
                 apply.assigned = false;
-
                 for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++){
                   apply.paragraphDestination = apply.nodeDestination.paragraphs[i];
-
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
                     if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
                     apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
@@ -626,7 +563,6 @@
                         !apply.nodeDestination.paragraphs[k].hiddenForAll &&
                         apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
-
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
                             if (obj['id'] === apply.paragraphDestination.propositions[l].id &&
@@ -700,8 +636,6 @@
                        blankClickAssigned.id = $scope.data[0].paragraphs[i].propositions[j].id;
                        blankClickAssigned.paragraphPosition = $scope.data[0].paragraphs[i].position;
                        blankClickAssigned.position = $scope.data[0].paragraphs[i].propositions[j].position;
-
-
           }
         }
       }
@@ -721,7 +655,6 @@
         $scope.clearBlankOnBlur();
         blankClickAssigned = {};
       }
-
 
       // If the data doesn't have a dialogue, make the dialogue empty
       if (!$scope.data[0].hasOwnProperty('dialogue')) {
