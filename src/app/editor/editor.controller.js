@@ -2107,16 +2107,16 @@
           $scope.selectedParagraph = paragraph;
           $scope.selectedProposition = proposition;
           $scope.draggedProps = [];
-          for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
-            if ((
-            $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
-            ($scope.draggedParagraph.propositions[i].type === 'negation' &&
-            $scope.draggedParagraph.propositions[i].of.id === $scope.draggedProposition.id)){
-              prep.hideFast = document.getElementById('wholeprop' + $scope.draggedParagraph.propositions[i].id);
-              prep.hideFast.style.display = 'none';
-              $scope.draggedProps.push($scope.draggedParagraph.propositions[i]);
-            }
-          }  
+          // for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
+          //   if ((
+          //   $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
+          //   ($scope.draggedParagraph.propositions[i].type === 'negation' &&
+          //   $scope.draggedParagraph.propositions[i].of.id === $scope.draggedProposition.id)){
+          //     prep.hideFast = document.getElementById('wholeprop' + $scope.draggedParagraph.propositions[i].id);
+          //     prep.hideFast.style.display = 'none';
+          //     $scope.draggedProps.push($scope.draggedParagraph.propositions[i]);
+          //   }
+          // }  
         }
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
