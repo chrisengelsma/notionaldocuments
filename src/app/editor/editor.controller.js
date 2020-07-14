@@ -1781,7 +1781,7 @@
               nodePath: payload.nodePath,
               privateFor: payload.deleter,
               first: true
-            };
+            }; 
 
 
             apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
