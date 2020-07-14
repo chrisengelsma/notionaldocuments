@@ -1766,7 +1766,7 @@
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
-              if (apply.paragraphDestination.propositions[i].id === payload.proposition.id && payload.dropflag){
+              if (payload.ids.includes(apply.paragraphDestination.propositions[i].id) && payload.dropflag){
                 apply.paragraphDestination.propositions[i + 1].droppedElsewhere = true;
               }
             }
