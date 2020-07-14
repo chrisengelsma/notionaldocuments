@@ -50,6 +50,65 @@
       return Object.prototype.toString.call(o) === '[object Array]'
     }
 
+    $scope.setAssertionPaths = function () {
+      function traverse(x, key, obj) {
+        if (isArray(x)) {
+        traverseArray(x)
+        } else if ((typeof x === 'object') && (x !== null)) {
+          traverseObject(x)
+        } else {
+          if (key == 'paragraphId'){
+            for (var i = 0; i < obj.propositions.length; i++){
+              if (obj.propositions[i].type === 'assertion' &&
+                !obj.propositions[i].droppedElsewhere){
+                temp = {};
+                temp.pathToCopy = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
+                + obj.propositions[i].position.toString() + ']';
+                $scope.traverseAssertions(temp.pathToCopy);
+              }
+            }
+          }
+        }
+      }
+
+    $scope.traverseAssertions = function (path) {
+
+      function traverse(x, key, obj) {
+        if (isArray(x)) {
+          traverseArray(x)
+        } else if ((typeof x === 'object') && (x !== null)) {
+          traverseObject(x)
+        } else {
+          if (key == 'paragraphId'){
+            for (var i = 0; i < obj.propositions.length; i++){
+              if (path === obj.propositions[i].assertionId){
+                temp = {};
+                temp.toBeStampedPath = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
+                + obj.propositions[i].position.toString() + ']';
+                temp.toBeStampedDestination = eval(temp.toBeStampedPath);
+                temp.toBeStampedDestination.assertionPath = path;
+              }
+            }
+          }
+        }
+      }
+
+      function traverseArray(arr) {
+        arr.forEach(function (x) {
+          traverse(x)
+        })
+      }
+
+      function traverseObject(obj) {
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            traverse(obj[key], key, obj)
+          }
+        }
+      }
+
+    }
+
     $scope.makePristine = function () {
       function traverse(x, key, obj) {
         if (isArray(x)) {
@@ -1680,8 +1739,6 @@
           return;
         }
 
-        
-
         console.log("Received deletion: ", payload)
         // Node and paragraph destination calcs
         apply.nodeDestination = eval(payload.nodePath);
@@ -1709,6 +1766,9 @@
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
+              if (apply.paragraphDestination.propositions[i].id === payload.proposition.id && payload.dropflag){
+                apply.paragraphDestination.propositions[i + 1].droppedElsewhere = true;
+              }
             }
             apply.paragraphDestination.propositions[0] = {
               id: payload.blankId,
@@ -1755,12 +1815,14 @@
                 }
               }
             }
-            $scope.selectedParagraph = apply.paragraphDestination;
-            $scope.selectedProposition = apply.paragraphDestination.propositions[0];
-            $scope.hasRightFocus.id = $scope.selectedProposition.id
-            $scope.selectedProposition.textSide = true;
-            focusFactory($scope.selectedProposition.id);
-            $('proposition' + $scope.selectedProposition.id).trigger('click');
+            if (!payload.dropflag){
+              $scope.selectedParagraph = apply.paragraphDestination;
+              $scope.selectedProposition = apply.paragraphDestination.propositions[0];
+              $scope.hasRightFocus.id = $scope.selectedProposition.id
+              $scope.selectedProposition.textSide = true;
+              focusFactory($scope.selectedProposition.id);
+              $('proposition' + $scope.selectedProposition.id).trigger('click');
+            }
           } else {
             for (var i = apply.paragraphDestination.propositions.length; i > -1; i--) {
               apply.paragraphDestination.propositions[i].position++;
@@ -1878,6 +1940,9 @@
               for (var j = 0; j < payload.ids.length; j++){
                 if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
+                  if (payload.dropflag){
+                    apply.paragraphDestination.propositions[i].droppedElsewhere = true;
+                  }
                 }
               }
             }   
@@ -1999,25 +2064,26 @@
           }
         }
 
-        for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-          if (apply.paragraphDestination.propositions[i].type === 'assertion' &&
-            apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {
-            apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
-            apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
+        $scope.setAssertionPaths();
+        // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
+        //   if (apply.paragraphDestination.propositions[i].type === 'assertion' &&
+        //     apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {
+        //     apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
+        //     apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
 
-          }
-        }
-        for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-          if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {
-            apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
-          }
-        }
+        //   }
+        // }
+        // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
+        //   if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {
+        //     apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
+        //   }
+        // }
 
-        for (var i = 0; i < $scope.propositions.length; i++) {
-          if ($scope.propositions[i].assertionId === payload.proposition.assertionId) {
-            $scope.propositions[i].assertionPath = apply.propositionPath;
-          }
-        }
+        // for (var i = 0; i < $scope.propositions.length; i++) {
+        //   if ($scope.propositions[i].assertionId === payload.proposition.assertionId) {
+        //     $scope.propositions[i].assertionPath = apply.propositionPath;
+        //   }
+        // }
 
         if(!payload.hideBlank){
           $scope.scroll.threadId = IdFactory.next();
@@ -2583,7 +2649,7 @@
           }
 
           prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition + '].propositions[' + prep.position + ']';
-          
+
           if (!$scope.selectedProposition.text) {                                                          //   SWITCHING SELECTEDPROPOSITION TO THE BLANK TO COLLECT 'OF'
             $scope.selectedProposition = eval(prep.oldNodePath + '.paragraphs[0].propositions[0]');
           }
@@ -3678,34 +3744,35 @@
                 $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden'
               }
 
+              $scope.setAssertionPaths();
               //makes sure assertions with the same assertionid as the payload have their own paths as their assertionpaths
               // updates this only on the paragraph where the new one is going 
-              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-                if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
-                  apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                  apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
-                  apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
+              // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
+              //   if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
+              //     apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+              //     apply.propositionPath = apply.paragraphPath + '.propositions[' + i.toString() + ']';
+              //     apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;
 
-                }
-              }
+              //   }
+              // }
 
               // if the assertionid of the payload matches a proposition,
               // make its assertionpath the path of the assertion coming in
               // shouldnt change anything, possible to delete?
               // updates this only on the paragraph where the new one is going 
-              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
-                if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {                   //    UPDATES THE ASSERTIONPATH FOR ALL THE PROPOSITIONS
-                  apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
-                }
-              }
+              // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
+              //   if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {                   //    UPDATES THE ASSERTIONPATH FOR ALL THE PROPOSITIONS
+              //     apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
+              //   }
+              // }
 
               // updates assertionpaths of propositions array items to the incoming assertion path
               // probably doesn't do anything
-              for (var i = 0; i < $scope.propositions.length; i++) {
-                if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
-                  $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
-                }
-              }
+              // for (var i = 0; i < $scope.propositions.length; i++) {
+              //   if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
+              //     $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
+              //   }
+              // }
 
             } else { // theres a remarkPath
 
