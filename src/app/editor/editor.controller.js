@@ -2207,7 +2207,12 @@
             console.log("Left added: ", paragraph.leftAdd)
           }
           $scope.selectedParagraph = paragraph;
-          $scope.selectedProposition = proposition;
+          if (!proposition){
+            $scope.selectedProposition = {key: 'value'};
+          } else {
+            $scope.selectedProposition = proposition;
+          }
+          
           $scope.draggedProps = [];
           // for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
           //   if ((
