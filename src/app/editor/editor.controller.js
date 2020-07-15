@@ -94,6 +94,8 @@
 
     $scope.traverseAssertions = function (path) {
 
+      traverse($scope.data[0])
+
       function traverse(x, key, obj) {
         if (isArray(x)) {
           traverseArray(x)
