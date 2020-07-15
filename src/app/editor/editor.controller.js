@@ -106,7 +106,7 @@
             var temp = {};
             for (var i = 0; i < obj.propositions.length; i++){
               temp.destination = eval(path);
-              if (destination.assertionId === obj.propositions[i].assertionId){
+              if (temp.destination.assertionId === obj.propositions[i].assertionId){
                 var temp = {};
                 temp.toBeStampedPath = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
