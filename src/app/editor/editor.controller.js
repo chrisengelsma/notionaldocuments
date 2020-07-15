@@ -1559,10 +1559,13 @@
               $scope.cancelDrop = false;
               return;
             }
-            if (proposition.id === $scope.draggedProposition.id){
-              console.log("Returning as matching")
-              return;
+            if (proposition){
+              if (proposition.id === $scope.draggedProposition.id){
+                console.log("Returning as matching")
+                return;
+              }
             }
+            
 
             apply = {};
             console.log("Dropping")
