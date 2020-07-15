@@ -3401,6 +3401,7 @@
                 
               }
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
+                console.log("not dropflag")
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
