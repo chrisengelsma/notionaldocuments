@@ -1966,9 +1966,10 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
+            console.log("Blank for everyone")
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               for (var j = 0; j < payload.ids.length; j++){
-                if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
+                if(payload.ids[j] === apply.paragraphDestination.propositions[i].id){
                   console.log(i, ' hidden for all')
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag){
