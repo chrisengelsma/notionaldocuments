@@ -2245,6 +2245,8 @@
 
         // If it's ended with a colon,
         // it's a topic
+
+        console.log("Selected proposition wth: ",$scope.selectedProposition )
         if (prep.lastChar === ':') {
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
@@ -2321,7 +2323,7 @@
           // and it's an assertion or rejoinder (not a blank)
           // Or if it's a continuation of another negation
           // it's a negation
-        console.log("Selected proposition wth: ",$scope.selectedProposition )
+
         else if (((($scope.selectedProposition.type === 'assertion' || 
           $scope.selectedProposition.type === 'rejoinder') &&
           $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' && 
