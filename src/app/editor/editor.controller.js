@@ -1388,8 +1388,8 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-
-        if ($scope.cancelListenForDoubleClick === true){
+        console.log("listen fires")
+        if ($scope.cancelListenForDoubleClick === true && !$scope.draggedProposition.id){
           console.log("Cancelling and resetting")
           $scope.cancelListenForDoubleClick = false;
           return;
@@ -1554,6 +1554,8 @@
             setTimeout(function() {
               $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
             }, 20);
+            console.log("Clearing dragged proposition")
+            $scope.draggedProposition = {};
             
             // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
             //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
