@@ -64,7 +64,7 @@
           }
         }
       }
-      
+
       function traverse(x, key, obj) {
         if (isArray(x)) {
         traverseArray(x)
@@ -75,7 +75,7 @@
             for (var i = 0; i < obj.propositions.length; i++){
               if (obj.propositions[i].type === 'assertion' &&
                 !obj.propositions[i].droppedElsewhere){
-                temp = {};
+                var temp = {};
                 temp.pathToCopy = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
                 $scope.traverseAssertions(temp.pathToCopy);
@@ -97,7 +97,7 @@
           if (key == 'paragraphId'){
             for (var i = 0; i < obj.propositions.length; i++){
               if (path === obj.propositions[i].assertionId){
-                temp = {};
+                var temp = {};
                 temp.toBeStampedPath = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
                 temp.toBeStampedDestination = eval(temp.toBeStampedPath);
