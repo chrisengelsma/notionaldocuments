@@ -1740,6 +1740,7 @@
           paragraphId: $scope.selectedParagraph.paragraphId,
           hiddenForAll: prep.hiddenForAll ? prep.hiddenForAll : undefined,
           ids: prep.ids ? prep.ids : undefined,
+          draggedProps: prep.draggedProps ? prep.draggedProps : undefined,
           hideNegationForOthers: prep.hideNegationForOthers ? prep.hideNegationForOthers : undefined,
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           blankParagraphForDeleter: (prep.blankParagraphForDeleter ? prep.blankParagraphForDeleter : undefined),
