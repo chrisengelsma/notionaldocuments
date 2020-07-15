@@ -1510,6 +1510,7 @@
           $scope.$apply(function() {
             
             $scope.cancelListenForDoubleClick = true;
+            $scope.cancelDrop = true;
             $scope.draggedParagraph = angular.copy(paragraph);
             $scope.draggedProposition = angular.copy(proposition);
             if ($scope.draggedProposition.type === 'rejoinder'){
@@ -1542,7 +1543,14 @@
       $scope.dropProposition = function(paragraph, proposition, flag){
         setTimeout(function() {
           $scope.$apply(function() {
-
+            console.log("Selected proposition text: ", $scope.selectedProposition.text)
+            if (proposition.id === $scope.draggedProposition.id){
+              return;
+            }
+            if ($scope.cancelDrop){
+              $scope.cancelDrop = false;
+              return;
+            }
             apply = {};
             console.log("Dropping")
             // apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
