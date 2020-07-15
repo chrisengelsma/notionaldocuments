@@ -75,9 +75,11 @@
             for (var i = 0; i < obj.propositions.length; i++){
               if (obj.propositions[i].type === 'assertion' &&
                 !obj.propositions[i].droppedElsewhere){
+                console.log("Assertion at ", i)
                 var temp = {};
                 temp.pathToCopy = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
+                console.log("Path: ", temp.pathToCopy)
                 $scope.traverseAssertions(temp.pathToCopy);
               }
             }
