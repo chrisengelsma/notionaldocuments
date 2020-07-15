@@ -3400,6 +3400,9 @@
                 }
                 
               }
+              console.log(payload.proposition.author === $scope.userId)
+              console.log(payload.textSide === true)
+              console.log(!payload.dropflag)
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
                 console.log("not dropflag")
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
