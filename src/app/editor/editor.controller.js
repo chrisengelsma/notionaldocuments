@@ -3110,7 +3110,7 @@
           paragraphId: IdFactory.next(),
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           bookId: $scope.bookId,
-          dropflag : $scope.draggedProposition ? true : undefined,
+          dropflag : $scope.draggedProposition.id ? true : undefined,
           proposition: {
             id: IdFactory.next(),
             address: prep.address,
