@@ -1545,9 +1545,11 @@
           $scope.$apply(function() {
             console.log("Selected proposition text: ", $scope.selectedProposition.text)
             if (proposition.id === $scope.draggedProposition.id){
+              console.log("Returning as matching")
               return;
             }
             if ($scope.cancelDrop){
+              console.log("Cancelling drop")
               $scope.cancelDrop = false;
               return;
             }
