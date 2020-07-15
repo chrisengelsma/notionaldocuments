@@ -72,6 +72,7 @@
           traverseObject(x)
         } else {
           if (key == 'paragraphId'){
+            console.log("Object: ", obj)
             for (var i = 0; i < obj.propositions.length; i++){
               if (obj.propositions[i].type === 'assertion' &&
                 !obj.propositions[i].droppedElsewhere){
@@ -97,8 +98,10 @@
           traverseObject(x)
         } else {
           if (key == 'paragraphId'){
+            var temp = {};
             for (var i = 0; i < obj.propositions.length; i++){
-              if (path === obj.propositions[i].assertionId){
+              temp.destination = eval(path);
+              if (destination.assertionId === obj.propositions[i].assertionId){
                 var temp = {};
                 temp.toBeStampedPath = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
