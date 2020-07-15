@@ -1969,8 +1969,10 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               for (var j = 0; j < payload.ids.length; j++){
                 if(payload.ids[j] === apply.paragraphDestination.propositions[i]){
+                  console.log(i, ' hidden for all')
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag){
+                    console.log(i, ' dropped elsewhere stamp')
                     apply.paragraphDestination.propositions[i].droppedElsewhere = true;
                   }
                 }
