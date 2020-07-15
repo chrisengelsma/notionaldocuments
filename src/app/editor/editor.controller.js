@@ -51,6 +51,20 @@
     }
 
     $scope.setAssertionPaths = function () {
+      function traverseArray(arr) {
+        arr.forEach(function (x) {
+          traverse(x)
+        })
+      }
+
+      function traverseObject(obj) {
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            traverse(obj[key], key, obj)
+          }
+        }
+      }
+      
       function traverse(x, key, obj) {
         if (isArray(x)) {
         traverseArray(x)
