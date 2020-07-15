@@ -70,6 +70,7 @@
           }
         }
       }
+    }
 
     $scope.traverseAssertions = function (path) {
 
