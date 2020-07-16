@@ -1578,12 +1578,12 @@
 
             setTimeout(function() {
               $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
-             
+              $scope.draggedProposition = {};
               
             }, 20);
 
             setTimeout(function() {
-               $scope.draggedProposition = {};
+               
             }, 5);
             // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
             //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
