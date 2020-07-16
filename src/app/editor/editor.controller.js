@@ -1562,7 +1562,8 @@
             if (proposition){
               if (proposition.id === $scope.draggedProposition.id){
                 console.log("Returning as matching")
-                return;
+                $scope.clearDrag();
+              
               }
             }
             
