@@ -75,15 +75,15 @@
           traverseObject(x)
         } else {
           if (key == 'paragraphId'){
-            console.log("Object: ", obj)
+            
             for (var i = 0; i < obj.propositions.length; i++){
               if (obj.propositions[i].type === 'assertion' &&
                 !obj.propositions[i].droppedElsewhere){
-                console.log("Assertion at ", i)
+               
                 var temp = {};
                 temp.pathToCopy = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
-                console.log("Path: ", temp.pathToCopy)
+               
                 $scope.traverseAssertions(temp.pathToCopy);
               }
             }
@@ -1027,7 +1027,7 @@
       
 
       $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
-        console.log("clear")
+      
         if (proposition){
           if(proposition.type === 'blank'){
             return;
@@ -1398,9 +1398,9 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-        console.log("listen fires")
+       
         if ($scope.cancelListenForDoubleClick === true && !$scope.draggedProposition.id){
-          console.log("Cancelling and resetting")
+         
           $scope.cancelListenForDoubleClick = false;
           return;
         }
@@ -1537,7 +1537,7 @@
       $scope.clearDrag = function () {
         setTimeout(function() {
           $scope.$apply(function() {
-            console.log("Clearing drag")
+         
             if ($scope.draggedProposition){
               $scope.cancelListenForDoubleClick = false;
               $scope.draggedParagraph = {};
@@ -1553,15 +1553,15 @@
       $scope.dropProposition = function(paragraph, proposition, flag){
         setTimeout(function() {
           $scope.$apply(function() {
-            console.log("Selected proposition text: ", $scope.selectedProposition.text)
+         
             if ($scope.cancelDrop){
-              console.log("Cancelling drop")
+           
               $scope.cancelDrop = false;
               return;
             }
             if (proposition){
               if (proposition.id === $scope.draggedProposition.id){
-                console.log("Returning as matching")
+              
                 $scope.clearDrag();
                 return;
               }
@@ -1578,11 +1578,13 @@
 
             setTimeout(function() {
               $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
-              console.log("Clearing dragged proposition")
-              $scope.draggedProposition = {};
+             
+              
             }, 20);
 
-            
+            setTimeout(function() {
+               $scope.draggedProposition = {};
+            }, 5);
             // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
             //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
             //                         $scope.draggedProposition.position.toString() + ']';
@@ -1980,14 +1982,14 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
-            console.log("Blank for everyone")
+           
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               for (var j = 0; j < payload.ids.length; j++){
                 if(payload.ids[j] === apply.paragraphDestination.propositions[i].id){
-                  console.log(i, ' hidden for all')
+                
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag){
-                    console.log(i, ' dropped elsewhere stamp')
+                   
                     apply.paragraphDestination.propositions[i].droppedElsewhere = true;
                   }
                 }
@@ -2192,7 +2194,7 @@
       }
 
       $scope.prepProposition = function(input, thread, proposition, paragraph, event) {
-        console.log('preps prop')
+        console.log('Prep prop')
         if (event){
          event.preventDefault();
         }
@@ -2246,13 +2248,13 @@
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
           input = input + '.';
         }
-        console.log('Resolves')
+        
         //   Topics
 
         // If it's ended with a colon,
         // it's a topic
 
-        console.log("Selected proposition wth: ",$scope.selectedProposition )
+     
         if (prep.lastChar === ':') {
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
@@ -3440,11 +3442,9 @@
                 }
                 
               }
-              console.log(payload.proposition.author === $scope.userId)
-              console.log(payload.textSide === true)
-              console.log(!payload.dropflag)
+  
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
-                console.log("not dropflag")
+              
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
