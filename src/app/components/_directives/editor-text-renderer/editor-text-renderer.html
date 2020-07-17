@@ -39,7 +39,7 @@
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
          ng-if="!paragraph.topAdd"
-         ng-click="draggedProposition.id && cancelListenForDoubleClick && selectedParagraph.id !== paragraph.paragraphId? [selectedNode = node, dropProposition(paragraph, proposition,'top')] : paragraph.owner ? [clearBlankOnBlur(),
+         ng-click="draggedProposition.id && cancelListenForDoubleClick && selectedParagraph.paragraphId !== paragraph.paragraphId? [selectedNode = node, dropProposition(paragraph, proposition,'top')] : paragraph.owner ? [clearBlankOnBlur(),
                     hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
@@ -302,7 +302,7 @@
          ng-class="{'blackline': paragraph.bottomMouseOver === true}"
          ng-mouseover="paragraph.bottomMouseOver = true; paragraph.topMouseOver = false"
          ng-mouseleave="paragraph.bottomMouseOver = false"
-         ng-click="draggedProposition.id && cancelListenForDoubleClick? [selectedNode = node, dropProposition(paragraph, proposition,'bottom')] : [didItRun(), clearBlankOnBlur(), selectParagraph(paragraph),
+         ng-click="draggedProposition.id && cancelListenForDoubleClick && selectedParagraph.paragraphId !== paragraph.paragraphId ? [selectedNode = node, dropProposition(paragraph, proposition,'bottom')] : [didItRun(), clearBlankOnBlur(), selectParagraph(paragraph),
                     selectNode(node), clearTopAndBottomHasFocus(), selectedParagraph.highlightAll = false, selectedParagraph.markAll = false, clearPropositionInput(), paragraph.bottomMouseOver = false, paragraph.topAdd = false, clearEditable(), clearWithBottomAdder(paragraph)]"
          
          ng-if="paragraph.owner && hasBottomFocus.id !== paragraph.paragraphId"
