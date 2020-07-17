@@ -2202,6 +2202,9 @@
         if (event){
          event.preventDefault();
         }
+        if (paragraph.topAdd || paragraph.bottomAdd){
+          $scope.selectedProposition.textSide = true;
+        }
         if ($scope.draggedProposition){
           if($scope.draggedProposition.dropflag === 'top'){
             paragraph.topAdd = true;
