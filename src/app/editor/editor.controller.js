@@ -3649,6 +3649,8 @@
 
                   $scope.selectedProposition =
                   $scope.selectedParagraph.propositions[payload.proposition.position];
+                  console.log("Selected paragraph: ", $scope.selectedParagraph)
+                  console.log("Selected proposition: ", $scope.selectedProposition)
                   $scope.hasRightFocus.id = $scope.selectedProposition.id
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
