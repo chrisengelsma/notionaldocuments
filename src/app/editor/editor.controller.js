@@ -3630,7 +3630,7 @@
 
 
               console.log(payload.proposition.author === $scope.userId)
-              console.llg(payload.textSide === true)
+              console.log(payload.textSide === true)
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
 
