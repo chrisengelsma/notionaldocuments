@@ -785,6 +785,7 @@
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
+                              $scope.setAssertionPaths();
                               return;
                             }
                           }
@@ -1130,6 +1131,7 @@
                               apply = {};                              apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
+                              $scope.setAssertionPaths();
                               return;
                             }
                           }
