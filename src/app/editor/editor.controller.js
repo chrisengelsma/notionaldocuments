@@ -1696,11 +1696,11 @@
 
             for (var i = 0 ; i < paragraph.propositions.length; i++){
               prep.check = paragraph.propositions[i].id;
-              console.log("Prep ids includes ", i,": ", prep.ids.includes(prep.check))
+              console.log(!prep.ids.includes(prep.check))
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
               !prep.ids.includes(prep.check)){
-
+                console.log(i," hit")
                 prep.assigned = true;
                 prep.blankPropositionForEveryone = true;
                 prep.hiddenForAll = true;
