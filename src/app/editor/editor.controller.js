@@ -1696,7 +1696,9 @@
 
             for (var i = 0 ; i < paragraph.propositions.length; i++){
               prep.check = paragraph.propositions[i].id;
-              console.log(!prep.ids.includes(prep.check))
+              console.log(prep.check)
+              console.log(prep.ids)
+              console.log(prep.ids.includes(prep.check))
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
               !prep.ids.includes(prep.check)){
