@@ -72,7 +72,7 @@
           ng-model="inputs.proposition"
           ng-keydown="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? $event.preventDefault : inputs.nothing"
           ng-keyup="$event.keyCode === 13 &&
-                            selectedProposition.dialogueSide != true ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;
+                            selectedProposition.dialogueSide != true ? [selectedProposition.textSide = true, $event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;
                             (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), paragraph.topAdd = false] : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
@@ -292,7 +292,7 @@
                   placeholder="textarea"
                   ng-model="inputs.proposition"
                   ng-keydown="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? $event.preventDefault : inputs.nothing"
-                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), reverseCarriageReturn(node, paragraph), paragraph.topAdd = false] : inputs.nothing;"
+                  ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? [$event.preventDefault(), selectedProposition.textSide = true, proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;  (inputs.proposition === '' && $event.keyCode === 8) ? [$event.preventDefault(), reverseCarriageReturn(node, paragraph), paragraph.topAdd = false] : inputs.nothing;"
                   spellcheck="false"
                   style="color: black; padding-left: 12px; background-color: white"
                   ></span>
