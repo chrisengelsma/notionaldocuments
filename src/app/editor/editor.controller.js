@@ -2206,6 +2206,7 @@
         console.log('bottom add: ', paragraph.bottomAdd)
         if (paragraph.topAdd || paragraph.bottomAdd){
           $scope.selectedProposition.textSide = true;
+          console.log($scope.selectedProposition.textSide)
         }
         if ($scope.draggedProposition){
           if($scope.draggedProposition.dropflag === 'top'){
