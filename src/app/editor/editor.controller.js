@@ -2202,6 +2202,8 @@
         if (event){
          event.preventDefault();
         }
+        console.log('top add: ', paragraph.topAdd)
+        console.log('bottom add: ', paragraph.bottomAdd)
         if (paragraph.topAdd || paragraph.bottomAdd){
           $scope.selectedProposition.textSide = true;
         }
