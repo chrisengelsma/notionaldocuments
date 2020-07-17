@@ -2206,7 +2206,7 @@
         console.log('bottom add: ', paragraph.bottomAdd)
         if (paragraph.topAdd || paragraph.bottomAdd){
           $scope.selectedProposition.textSide = true;
-          console.log($scope.selectedProposition.textSide)
+          
         }
         if ($scope.draggedProposition){
           if($scope.draggedProposition.dropflag === 'top'){
@@ -2264,7 +2264,7 @@
         // If it's ended with a colon,
         // it's a topic
 
-     
+        console.log('Textside: ', $scope.selectedProposition.textSide)
         if (prep.lastChar === ':') {
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
