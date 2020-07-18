@@ -2205,8 +2205,13 @@
         console.log('top add: ', paragraph.topAdd)
         console.log('bottom add: ', paragraph.bottomAdd)
         if (paragraph.topAdd || paragraph.bottomAdd){
-          $scope.selectedProposition.textSide = true;
-          console.log('Textside: ', $scope.selectedProposition.textSide)
+          setTimeout(function() {
+            $scope.$apply(function() {
+              $scope.selectedProposition.textSide = true;
+              console.log('Textside: ', $scope.selectedProposition.textSide)
+            });
+          }, 0);
+          
           
         }
         console.log("Dragged proposition: ", $scope.draggedProposition)
