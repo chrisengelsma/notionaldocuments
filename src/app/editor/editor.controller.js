@@ -1710,8 +1710,7 @@
                 prep.hiddenForAll = true;
                 prep.hideOwn = true;
                 if (prep.ids.length === 1){
-                  prep.id = prep.ids[0];
-                  
+                  prep.id = prep.ids[0]; 
                   break;
                 }
 
@@ -1811,7 +1810,7 @@
         // Inserts a blank at the paragraph and hides all other propositions for the deleter
         if (payload.blankParagraphForDeleter) {
           // Hides the target paragraphs propositions
-          if (payload.deleter === $scope.userId) {
+          if (payload.deleter === $scope.userId && !payload.dropflag) {
             for (var i = apply.paragraphDestination.propositions.length - 1; i > -1; i--) {
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i].position++;
