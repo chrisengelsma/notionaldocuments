@@ -2261,6 +2261,10 @@
           input = input + '.';
         }
         
+        if (paragraph.topAdd || paragraph.bottomAdd){
+          apply.textSide = true;
+          
+        }
         //   Topics
 
         // If it's ended with a colon,
@@ -3155,7 +3159,7 @@
           paragraphPosition: prep.paragraphPosition,
           ofParagraphPosition: (prep.ofParagraphPosition !== undefined ? prep.ofParagraphPosition : undefined),
           blankId: IdFactory.next(),
-          textSide: $scope.selectedProposition.textSide,
+          textSide: $scope.selectedProposition.textSide ? $scope.selectedProposition.textSide : apply.textSide,
           class: (prep.newClass ? prep.newClass : prep.class),
           nodePath: (prep.nodePath ? prep.nodePath : undefined),
           nodeId: IdFactory.next(),
