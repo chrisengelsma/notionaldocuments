@@ -3296,7 +3296,7 @@
                 apply.paragraphDestination = eval(apply.paragraphPath);
                 apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
                 apply.propositionDestination = eval(apply.propositionPath);
-                if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
+                if (payload.proposition.author === $scope.userId && payload.textSide === true) {
                   $scope.selectedNode = apply.nodeDestination;
 
                   $scope.selectedParagraph = apply.paragraphDestination;
@@ -3355,7 +3355,7 @@
                 apply.paragraphDestination = eval(apply.paragraphPath);
                 apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
                 apply.propositionDestination = eval(apply.propositionPath);
-                if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true 
+                if (payload.proposition.author === $scope.userId && payload.textSide === true 
                   && !payload.dropflag) {
                   $scope.selectedNode = apply.nodeDestination;
 
@@ -3735,7 +3735,7 @@
             else {
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
 
-              if (payload.proposition.author === $scope.userId && $scope.selectedProposition.textSide === true) {
+              if (payload.proposition.author === $scope.userId && payload.textSide === true) {
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
