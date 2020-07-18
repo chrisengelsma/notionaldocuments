@@ -1752,7 +1752,7 @@
         prep.payload = {
           class: $scope.selectedNode.class,
           topic: $scope.selectedNode.topic,
-          paragraphPosition: $scope.selectedParagraph.position,
+          paragraphPosition: paragraph.position,
           address: $scope.selectedNode.address,
           nodePath: prep.nodePath,
           proposition: !dropflag ? $scope.selectedProposition : $scope.draggedProposition,
