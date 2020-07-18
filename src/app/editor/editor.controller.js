@@ -2208,6 +2208,7 @@
           $scope.selectedProposition.textSide = true;
           
         }
+        console.log("Dragged proposition: ", $scope.draggedProposition)
         if ($scope.draggedProposition){
           if($scope.draggedProposition.dropflag === 'top'){
             paragraph.topAdd = true;
