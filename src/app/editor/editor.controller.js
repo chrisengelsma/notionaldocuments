@@ -2205,12 +2205,12 @@
         console.log('top add: ', paragraph.topAdd)
         console.log('bottom add: ', paragraph.bottomAdd)
         if (paragraph.topAdd || paragraph.bottomAdd){
-          setTimeout(function() {
+          // setTimeout(function() {
             $scope.$apply(function() {
               $scope.selectedProposition.textSide = true;
               console.log('Textside: ', $scope.selectedProposition.textSide)
             });
-          }, 0);
+          // }, 0);
           
           
         }
