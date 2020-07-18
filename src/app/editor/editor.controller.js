@@ -1601,7 +1601,7 @@
       }
 
       $scope.deleteProposition = function(node, paragraph, allflag, dropflag) {
-
+        console.log("Paragraph: ", paragraph)
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
         for (var i = 0; i < prep.address.length; i++) {
@@ -1676,11 +1676,12 @@
             
 
             for (var i = 0; i < paragraph.propositions.length; i++){
-    
+              console.log("Selected proposition: ", $scope.selectedProposition)
+              console.log("Test: ", paragraph.propositions[i].id === $scope.selectedProposition.id)
               if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
               (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) && 
               !$scope.draggedProposition.id){
-        
+                console.log(i, " hit on one")
                 prep.ids.push(paragraph.propositions[i].id);
                 
               } else if (((
