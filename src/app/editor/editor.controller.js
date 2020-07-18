@@ -1676,8 +1676,9 @@
             
 
             for (var i = 0; i < paragraph.propositions.length; i++){
-              console.log("Selected proposition: ", $scope.selectedProposition)
-              console.log("Test: ", paragraph.propositions[i].id === $scope.selectedProposition.id)
+              console.log('test one ', paragraph.propositions[i].id === $scope.draggedProposition.id)
+              console.log('test two ', paragraph.propositions[i].type === 'negation' &&
+              paragraph.propositions[i].of.id === $scope.draggedProposition.id)
               if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
               (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) && 
               !$scope.draggedProposition.id){
