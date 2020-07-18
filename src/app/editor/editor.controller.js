@@ -1878,6 +1878,7 @@
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
               if ($scope.selectedProposition){
+                console.log("Outer sieve")
                 if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
                   $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                 }
