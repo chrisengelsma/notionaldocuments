@@ -1687,7 +1687,7 @@
               paragraph.propositions[i].id === $scope.draggedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.draggedProposition.id))){
-       
+                console.log(i, " hit on both")
                 prep.ids.push(paragraph.propositions[i].id);
                 prep.draggedProps.push(paragraph.propositions[i]);
               }
