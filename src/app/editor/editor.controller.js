@@ -1575,7 +1575,7 @@
             // apply.hideFast = document.getElementById('wholeprop' + $scope.draggedProposition.id);
             // apply.hideFast.style.display = 'none'
             $scope.draggedProposition.dropflag = flag;
-            $scope.deleteProposition($scope.selectedNode, $scope.selectedParagraph, false, true)
+            $scope.deleteProposition($scope.selectedNode, $scope.draggedParagraph, false, true)
             
 
             setTimeout(function() {
