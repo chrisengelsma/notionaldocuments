@@ -33,7 +33,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">     <!-- {{paragraph.owner}} {{paragraph.first}} -->
+                }">     {{paragraph.position}}
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true && paragraph.first && paragraph.owner}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
