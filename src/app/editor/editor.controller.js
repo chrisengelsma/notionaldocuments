@@ -1875,6 +1875,7 @@
               $('proposition' + $scope.selectedProposition.id).trigger('click');
             }
           } else {
+            console.log("else")
             for (var i = apply.paragraphDestination.propositions.length; i > -1; i--) {
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
@@ -1886,7 +1887,7 @@
                 }
               }
             }
-
+            console.log("past for")
             // Insert new blank proposition for something to grab onto
             apply.paragraphDestination.propositions[0] = {
               id: payload.blankId,
