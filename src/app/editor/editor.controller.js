@@ -1876,7 +1876,7 @@
             }
           } else {
             console.log("else")
-            for (var i = apply.paragraphDestination.propositions.length; i > -1; i--) {
+            for (var i = apply.paragraphDestination.propositions.length-1; i > -1; i--) {
               console.log("Paragraph destination ", apply.paragraphDestination)
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
