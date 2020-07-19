@@ -39,7 +39,7 @@
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
          ng-mouseleave="paragraph.topMouseOver = false"
          ng-if="!paragraph.topAdd"
-         ng-click="(draggedProposition.id && cancelListenForDoubleClick && selectedParagraph.paragraphId !== paragraph.paragraphId) ? [selectedProposition = proposition, selectedNode = node, dropProposition(paragraph, proposition,'top')] : paragraph.owner && !draggedProposition.id ? [clearBlankOnBlur(),
+         ng-click="(draggedProposition.id && cancelListenForDoubleClick && selectedParagraph.paragraphId !== paragraph.paragraphId) ? [selectedProposition = proposition, selectedNode = node, dropProposition(paragraph, proposition,'top')] : paragraph.owner && ? [clearBlankOnBlur(),
                     hideExpandingTextarea(),
                     selectParagraph(paragraph),
                     selectNode(node),
