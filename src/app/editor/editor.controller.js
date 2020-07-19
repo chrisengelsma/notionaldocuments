@@ -1702,7 +1702,10 @@
               prep.check = paragraph.propositions[i].id;
               console.log(prep.check)
               console.log(prep.ids)
-              console.log(prep.ids.includes(prep.check))
+              console.log(!paragraph.propositions[i].hiddenForAll)
+              console.log(paragraph.propositions[i][$scope.userId] !== 'hidden')
+              
+              console.log(!prep.ids.includes(prep.check))
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
               !prep.ids.includes(prep.check)){
