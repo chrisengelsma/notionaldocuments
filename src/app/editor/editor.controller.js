@@ -1579,6 +1579,7 @@
             
 
             setTimeout(function() {
+              console.log("Dragged props: ", $scope.draggedProps)
               $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null, $scope.draggedProps)
               $scope.draggedProposition = {};
               
