@@ -1579,7 +1579,7 @@
             
 
             setTimeout(function() {
-              $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null)
+              $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null, $scope.draggedProps)
               $scope.draggedProposition = {};
               
             }, 20);
@@ -1798,6 +1798,10 @@
         apply.nodeDestination = eval(payload.nodePath);
         apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
         apply.paragraphDestination = eval(apply.paragraphPath);
+
+        if ($scope.draggedProposition){
+          $scope.draggedProps = payload.draggedProps;
+        }
         if (payload.hideParagraphForDeleter && payload.deleter === $scope.userId){
 
           apply.paragraphDestination[$scope.userId] = 'hidden';
@@ -2207,7 +2211,7 @@
         $scope.selectedParagraph = {}
       }
 
-      $scope.prepProposition = function(input, thread, proposition, paragraph, event) {
+      $scope.prepProposition = function(input, thread, proposition, paragraph, event, draggedProps) {
         console.log('Prep prop')
         if (event){
          event.preventDefault();
@@ -2238,7 +2242,7 @@
             $scope.selectedProposition = proposition;
           }
           
-          $scope.draggedProps = [];
+         
           // for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
           //   if ((
           //   $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
@@ -3179,6 +3183,7 @@
           selectedParagraphId: $scope.selectedParagraph.paragraphId,
           bookId: $scope.bookId,
           dropflag : $scope.draggedProposition.id ? true : undefined,
+          draggedProps : draggedProps ? draggedProps : undefined,
           proposition: {
             id: IdFactory.next(),
             address: prep.address,
