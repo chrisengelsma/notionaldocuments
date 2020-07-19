@@ -1800,9 +1800,7 @@
         apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
         apply.paragraphDestination = eval(apply.paragraphPath);
 
-        if ($scope.draggedProposition){
-          $scope.draggedProps = payload.draggedProps;
-        }
+
         if (payload.hideParagraphForDeleter && payload.deleter === $scope.userId){
 
           apply.paragraphDestination[$scope.userId] = 'hidden';
