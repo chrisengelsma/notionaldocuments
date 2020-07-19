@@ -1903,9 +1903,12 @@
               first: true
             };
             apply.paragraphDestination.propositions[0][$scope.userId] = 'hidden';
-            apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
             apply.paragraphDestination[$scope.userId] = 'hidden';
-            apply.paragraphDestination.privateFor = payload.deleter;
+
+            if (!payload.dropflag){
+              apply.paragraphDestination.propositions[0].privateFor = payload.deleter;      
+              apply.paragraphDestination.privateFor = payload.deleter;
+            }
 
             // Sets remarks to hidden in the dialogue
             if (payload.ids){
