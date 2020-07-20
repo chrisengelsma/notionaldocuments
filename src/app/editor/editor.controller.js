@@ -3609,6 +3609,7 @@
                   };
                   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].first = true;
                 } else {
+                  console.log("Else below")
                   apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     first: true,
