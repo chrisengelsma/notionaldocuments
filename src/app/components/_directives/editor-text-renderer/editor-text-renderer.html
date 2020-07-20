@@ -158,7 +158,7 @@
                   ng-if="proposition.first"
                   class="cursor left-cursor">
             </span>
-
+            <!-- 'dragdimmed': draggedProposition.id === proposition.id -->
           <span 
                 ng-hold="proposition.type !== 'blank' && proposition.type !== 'negation' && proposition.author === userId ? [dragProposition(node, paragraph, proposition)] : inputs.nothing"
                 id="proposition{{proposition.id}}"
@@ -172,7 +172,6 @@
                             'rejoining': hasRightFocus === proposition.id && !selectedProposition.dialogueSide && proposition.type === 'negation' && proposition.of.author === userId,
                             'updatecursor': this.contentEditable,
                             'cursorpointer': (proposition.type !== 'negation' && proposition.of.author !== userId),
-                            'dragdimmed': draggedProposition.id === proposition.id
                           }"
                 ng-enter="[proposition.propositionPreSelected = false, updateProposition(node, paragraph, proposition)]"
                 ng-mouseover="[blurLightUpLastVisiblePropositionInParagraph(node, paragraph, $event),proposition.propositionPreSelected = true, paragraph.disableRightCursor = false]"

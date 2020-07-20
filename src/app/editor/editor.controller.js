@@ -1781,6 +1781,10 @@
           dropflag: dropflag
         };
         if (prep.payload.dropflag && prep.payload.draggedProps){
+          
+          for (var i = 0; i < prep.payload.draggedProps.length; i++){
+            prep.payload.draggedProps[i][$scope.userId] = undefined;
+          }
           $scope.draggedProps = prep.payload.draggedProps;
         }
         console.log('Payload to be deleted: ', prep.payload);
@@ -2226,7 +2230,7 @@
           
         }
         console.log("Dragged proposition: ", $scope.draggedProposition)
-        if ($scope.draggedProposition){
+        if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId){
           if($scope.draggedProposition.dropflag === 'top'){
             paragraph.topAdd = true;
             console.log("Top added: ", paragraph.topAdd)
