@@ -3626,6 +3626,7 @@
                       apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
                     }
                   }
+                  console.log("Paragraph: ", apply.nodeDestination.paragraphs[payload.paragraphPosition])
                 }
               } else {
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
