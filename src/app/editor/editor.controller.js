@@ -1780,8 +1780,8 @@
           bookId: $scope.bookId,
           dropflag: dropflag
         };
-        if (payload.dropflag && payload.draggedProps){
-          $scope.draggedProps = payload.draggedProps;
+        if (prep.payload.dropflag && prep.payload.draggedProps){
+          $scope.draggedProps = prep.payload.draggedProps;
         }
         console.log('Payload to be deleted: ', prep.payload);
         chatSocket.emit('deletion', $scope.userId, prep.payload);
