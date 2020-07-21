@@ -75,15 +75,15 @@
           traverseObject(x)
         } else {
           if (key == 'paragraphId'){
-            
+
             for (var i = 0; i < obj.propositions.length; i++){
               if (obj.propositions[i].type === 'assertion' &&
                 !obj.propositions[i].droppedElsewhere){
-               
+
                 var temp = {};
                 temp.pathToCopy = obj.propositions[i].nodePath +'.paragraphs[' + obj.position.toString() + '].propositions['
                 + obj.propositions[i].position.toString() + ']';
-               
+
                 $scope.traverseAssertions(temp.pathToCopy);
               }
             }
@@ -163,7 +163,7 @@
         }
       }
 
-      
+
 
 
       if (!$scope.once){
@@ -659,7 +659,7 @@
           } else if ((typeof x === 'object') && (x !== null)) {
             traverseObject(x)
           } else {
-            
+
             if (key == 'author'){
               for (var i = 0; i < $scope.userColorTable.length; i++){
                 if (x == $scope.userColorTable[i].author && x !== $scope.userId){
@@ -1025,10 +1025,10 @@
         paragraph.cursor = false;
       };
 
-      
+
 
       $scope.clearBlankOnBlur = function(proposition, visibilityFlag){
-      
+
         if (proposition){
           if(proposition.type === 'blank'){
             return;
@@ -1060,7 +1060,7 @@
             traverseObject(x)
           } else {
             if (key === 'type'){
-              
+
 
               if ((x === 'blank' && document.activeElement.id !== obj['id'] && obj.nodePath) ||
                 (x === 'blank' && obj.nodePath && visibilityFlag == true)){
@@ -1068,7 +1068,7 @@
                 // When there are other visible paragraphs in the node
                 // When the blank has right focus
                 // Its found a blank with an id and nodePath
-              
+
                 apply = {
                   nodeDestination: eval(obj.nodePath),
                   assigned: false
@@ -1084,10 +1084,10 @@
 
 
                   for (var j = 0; j < apply.paragraphDestination.propositions.length; j++){
-                   
+
                     if (apply.paragraphDestination.propositions[j].id === obj['id'] &&
                     apply.paragraphDestination.propositions[j].id !== $scope.hasRightFocus.id){
-                  
+
 
                       for (var k = 0; k < apply.nodeDestination.paragraphs.length; k++){
 
@@ -1095,7 +1095,7 @@
                         !apply.nodeDestination.paragraphs[k].hiddenForAll &&
                         apply.nodeDestination.paragraphs[k].paragraphId !== apply.paragraphDestination.paragraphId
                         ){
-                       
+
 
                           apply.assigned = true;
                           for (var l = 0; l < apply.paragraphDestination.propositions.length; l++){
@@ -1400,13 +1400,13 @@
 
       // For when there is a single click on a proposition
       $scope.listenForDoubleClick = function (element, paragraph, proposition) {
-       
+
         if ($scope.cancelListenForDoubleClick === true && !$scope.draggedProposition.id){
-         
+
           $scope.cancelListenForDoubleClick = false;
           return;
         }
-        
+
 
         var string = 'proposition';
         var id = proposition.id;
@@ -1520,7 +1520,7 @@
       $scope.dragProposition = function(node, paragraph, proposition){
         setTimeout(function() {
           $scope.$apply(function() {
-            
+
             $scope.cancelListenForDoubleClick = true;
             $scope.cancelDrop = true;
             $scope.draggedParagraph = angular.copy(paragraph);
@@ -1531,7 +1531,7 @@
               $scope.draggingAssertion = true;
             }
             // $scope.draggedProposition.paragraphPosition = angular.copy(paragraph.position);
-           
+
           });
         }, 20);
       }
@@ -1539,14 +1539,14 @@
       $scope.clearDrag = function () {
         setTimeout(function() {
           $scope.$apply(function() {
-         
+
             if ($scope.draggedProposition){
               $scope.cancelListenForDoubleClick = false;
               $scope.draggedParagraph = {};
               $scope.draggedProposition = {};
               $scope.draggingAssertion = false;
               $scope.draggingRejoinder = false;
-            
+
             }
           });
         }, 20);
@@ -1555,20 +1555,20 @@
       $scope.dropProposition = function(paragraph, proposition, flag){
         setTimeout(function() {
           $scope.$apply(function() {
-         
+
             if ($scope.cancelDrop){
-           
+
               $scope.cancelDrop = false;
               return;
             }
             if (proposition){
               if (proposition.id === $scope.draggedProposition.id){
-              
+
                 $scope.clearDrag();
                 return;
               }
             }
-            
+
 
             apply = {};
             console.log("Dropping")
@@ -1576,17 +1576,17 @@
             // apply.hideFast.style.display = 'none'
             $scope.draggedProposition.dropflag = flag;
             $scope.deleteProposition($scope.selectedNode, $scope.draggedParagraph, false, true)
-            
+
 
             setTimeout(function() {
               console.log("Dragged props: ", $scope.draggedProps)
               $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null, $scope.draggedProps)
               $scope.draggedProposition = {};
-              
+
             }, 20);
 
             setTimeout(function() {
-                
+
             }, 5);
             // apply.pathToBeHidden = $scope.draggedProposition.nodePath + '.paragraphs[' +
             //                         $scope.draggedProposition.paragraphPosition.toString() + '].propositions['
@@ -1674,18 +1674,18 @@
           } else if (!prep.assigned){
             prep.ids = [];
             prep.draggedProps = [];
-            
+
 
             for (var i = 0; i < paragraph.propositions.length; i++){
               console.log('test one ', paragraph.propositions[i].id === $scope.draggedProposition.id)
               console.log('test two ', paragraph.propositions[i].type === 'negation' &&
               paragraph.propositions[i].of.id === $scope.draggedProposition.id)
               if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
-              (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) && 
+              (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) &&
               !$scope.draggedProposition.id){
                 console.log(i, " hit on one")
                 prep.ids.push(paragraph.propositions[i].id);
-                
+
               } else if (((
               paragraph.propositions[i].id === $scope.draggedProposition.id) ||
               (paragraph.propositions[i].type === 'negation' &&
@@ -1705,7 +1705,7 @@
               console.log(prep.ids)
               console.log(!paragraph.propositions[i].hiddenForAll)
               console.log(paragraph.propositions[i][$scope.userId] !== 'hidden')
-              
+
               console.log(!prep.ids.includes(prep.check))
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
               !paragraph.propositions[i].hiddenForAll &&
@@ -1716,7 +1716,7 @@
                 prep.hiddenForAll = true;
                 prep.hideOwn = true;
                 if (prep.ids.length === 1){
-                  prep.id = prep.ids[0]; 
+                  prep.id = prep.ids[0];
                   break;
                 }
 
@@ -1740,11 +1740,11 @@
 
         if ($scope.draggedProposition){
           for (var i = 0; i < paragraph.propositions.length; i++){
-            
+
             for (var j = 0; j < prep.ids.length; j++){
-             
+
               if (paragraph.propositions[i].id === prep.ids[j]){
-               
+
                 paragraph.propositions[i][$scope.userId] = 'hidden';
               }
             }
@@ -1781,7 +1781,7 @@
           dropflag: dropflag
         };
         if (prep.payload.dropflag && prep.payload.draggedProps){
-          
+
           for (var i = 0; i < prep.payload.draggedProps.length; i++){
             prep.payload.draggedProps[i][$scope.userId] = undefined;
           }
@@ -1845,7 +1845,7 @@
               nodePath: payload.nodePath,
               privateFor: payload.deleter,
               first: true
-            }; 
+            };
 
 
             apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
@@ -1919,7 +1919,7 @@
             apply.paragraphDestination[$scope.userId] = 'hidden';
 
             if (!payload.dropflag){
-              apply.paragraphDestination.propositions[0].privateFor = payload.deleter;      
+              apply.paragraphDestination.propositions[0].privateFor = payload.deleter;
               apply.paragraphDestination.privateFor = payload.deleter;
             }
 
@@ -2006,19 +2006,19 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
           if (payload.blankPropositionForEveryone){
-           
+
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               for (var j = 0; j < payload.ids.length; j++){
                 if(payload.ids[j] === apply.paragraphDestination.propositions[i].id){
-                
+
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag){
-                   
+
                     apply.paragraphDestination.propositions[i].droppedElsewhere = true;
                   }
                 }
               }
-            }   
+            }
           } else if (payload.hideNegationForOthers){
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
           }
@@ -2227,7 +2227,7 @@
         if (paragraph.topAdd || paragraph.bottomAdd){
           $scope.selectedProposition.textSide = true;
           console.log('Textside: ', $scope.selectedProposition.textSide)
-          
+
         }
         console.log("Dragged proposition: ", $scope.draggedProposition)
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId){
@@ -2247,8 +2247,8 @@
           } else {
             $scope.selectedProposition = proposition;
           }
-          
-         
+
+
           // for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
           //   if ((
           //   $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
@@ -2258,7 +2258,7 @@
           //     prep.hideFast.style.display = 'none';
           //     $scope.draggedProps.push($scope.draggedParagraph.propositions[i]);
           //   }
-          // }  
+          // }
         }
         if ($scope.selectedParagraph){
           $scope.selectedParagraph.highlightAll = false;
@@ -2280,10 +2280,10 @@
         if (prep.lastChar !== '.' && prep.lastChar !== '?' && prep.lastChar !== '!' && prep.lastChar !== ':' ){
           input = input + '.';
         }
-        
+
         if (paragraph.topAdd || paragraph.bottomAdd){
           apply.textSide = true;
-          
+
         }
         //   Topics
 
@@ -2368,9 +2368,9 @@
           // Or if it's a continuation of another negation
           // it's a negation
 
-        else if (((($scope.selectedProposition.type === 'assertion' || 
+        else if (((($scope.selectedProposition.type === 'assertion' ||
           $scope.selectedProposition.type === 'rejoinder') &&
-          $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' && 
+          $scope.selectedProposition.author !== $scope.userId) || ($scope.selectedProposition.type === 'negation' &&
           $scope.selectedProposition.author === $scope.userId)) && !paragraph.leftAdd) {
 
           // if (prep.lastChar === '?') {
@@ -2644,7 +2644,7 @@
               }
             }
             if (!$scope.draggedProposition){
-              prep.assertionPath = $scope.selectedProposition.assertionPath; 
+              prep.assertionPath = $scope.selectedProposition.assertionPath;
             } else {
               prep.assertionPath = $scope.draggedProposition.assertionPath;
             }
@@ -2725,7 +2725,7 @@
               prep.oldNodePath = prep.oldNodePath + '[' + prep.address[i].toString() + ']';
             }
           }
-          prep.nodePath = '$scope.data';  
+          prep.nodePath = '$scope.data';
                                                                       //     ADD LAST COMPONENT OF THE ADDRESS FOR THE NEW NODE
           if (!$scope.selectedNode.children) {
             prep.address.push(0);
@@ -2778,7 +2778,7 @@
             }
           } else {
             prep.type = 'assertion';
-          } 
+          }
           prep.adjustedText = input;
         }
 
@@ -3115,7 +3115,7 @@
                     for (var x = 0; x < $scope.draggedProps.length; x++){
                       if ($scope.draggedProps[x].id === $scope.selectedParagraph.propositions[i + 1].id){
                         prep.match = true;
-                      } 
+                      }
                     }
                   }
                   if (!prep.match){
@@ -3124,7 +3124,7 @@
                     prep.getsOwnProposition = true;
                     prep.match = false;
                     break;
-                  } 
+                  }
                 }
             }
             if (!prep.getsOwnProposition) {
@@ -3169,7 +3169,7 @@
               author: $scope.draggedProposition.author,
               text: $scope.draggedProposition.text,
             };
-          }     
+          }
         }
 
         prep.adjustedText = prep.adjustedText.replace(/&nbsp;/g, ' ');
@@ -3376,7 +3376,7 @@
                 apply.paragraphDestination = eval(apply.paragraphPath);
                 apply.propositionPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']' + '.propositions[' + payload.proposition.position.toString() + ']';
                 apply.propositionDestination = eval(apply.propositionPath);
-                if (payload.proposition.author === $scope.userId && payload.textSide === true 
+                if (payload.proposition.author === $scope.userId && payload.textSide === true
                   && !payload.dropflag) {
                   $scope.selectedNode = apply.nodeDestination;
 
@@ -3393,7 +3393,7 @@
               }
 
 
-            } 
+            }
 
             else if (payload.proposition.replacesBlank) {
 
@@ -3423,7 +3423,7 @@
               // apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1].hiddenForAll = true;
 
 
-              // if (apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].id === 
+              // if (apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].id ===
               //   $scope.selectedProposition.id && !payload.dropflag) {
               //   $scope.selectedParagraph = apply.nodeDestination.paragraphs[payload.paragraphPosition];
               //   $scope.selectedProposition = apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position + 1];
@@ -3452,7 +3452,7 @@
               if (apply.propositionDestination) {
                 for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                   if (payload.draggedProps){
-                    apply.paragraphDestination.propositions[i].position = 
+                    apply.paragraphDestination.propositions[i].position =
                     apply.paragraphDestination.propositions[i].position + payload.draggedProps.length;
                   } else {
                     apply.paragraphDestination.propositions[i].position++;
@@ -3466,7 +3466,7 @@
                     apply.paragraphDestination.propositions[i + payload.draggedProps.length] = apply.paragraphDestination.propositions[i];
                   } else {
                     apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
-                  }             
+                  }
                 }
                 apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
               } else {
@@ -3477,11 +3477,11 @@
                     apply.paragraphDestination.propositions[i + payload.proposition.position] = payload.draggedProps[i];
                   }
                 }
-                
+
               }
-  
+
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
-              
+
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
                 $scope.hasRightFocus.id = $scope.selectedProposition.id
                 $scope.selectedProposition.textSide = true;
@@ -3621,7 +3621,7 @@
                     position: payload.paragraphPosition,
                     propositions: []
                   };
-                
+
                   for (var i = 0; i < payload.draggedProps.length; i++){
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
@@ -3687,7 +3687,7 @@
                     position: payload.paragraphPosition,
                     propositions: []
                   };
-                  
+
                   for (var i = 0; i < payload.draggedProps.length; i++){
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
@@ -3706,7 +3706,7 @@
               console.log(payload.proposition.author === $scope.userId)
               console.log(payload.textSide === true)
 
-              if (payload.proposition.author === $scope.userId && 
+              if (payload.proposition.author === $scope.userId &&
                   !payload.dropflag && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
 
                 $scope.selectedNode = apply.nodeDestination;
@@ -3725,7 +3725,7 @@
 
                   $scope.selectedProposition =
                   $scope.selectedParagraph.propositions[payload.proposition.position];
-                  
+
                   $scope.hasRightFocus.id = $scope.selectedProposition.id
                   $scope.selectedProposition.textSide = true;
                   focusFactory($scope.selectedProposition.id);
@@ -3775,7 +3775,7 @@
                   }
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
-                  
+
                   for (var i = apply.paragraphDestination.propositions.length - 1; i > (payload.proposition.position + payload.draggedProps.length -1); i--) {
                     apply.paragraphDestination.propositions[i].position++;
                     if ($scope.selectedProposition){
@@ -3807,7 +3807,7 @@
                     position: payload.paragraphPosition,
                     propositions: []
                   };
-                  
+
                   for (var i = 0; i < payload.draggedProps.length; i++){
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
@@ -3930,7 +3930,7 @@
 
               $scope.setAssertionPaths();
               //makes sure assertions with the same assertionid as the payload have their own paths as their assertionpaths
-              // updates this only on the paragraph where the new one is going 
+              // updates this only on the paragraph where the new one is going
               // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
               //   if (apply.paragraphDestination.propositions[i].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
               //     apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
@@ -3943,7 +3943,7 @@
               // if the assertionid of the payload matches a proposition,
               // make its assertionpath the path of the assertion coming in
               // shouldnt change anything, possible to delete?
-              // updates this only on the paragraph where the new one is going 
+              // updates this only on the paragraph where the new one is going
               // for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
               //   if (apply.paragraphDestination.propositions[i].assertionId === payload.proposition.assertionId) {                   //    UPDATES THE ASSERTIONPATH FOR ALL THE PROPOSITIONS
               //     apply.paragraphDestination.propositions[i].assertionPath = apply.propositionPath;                               //    IN THE PARAGRAPH AS APPROPRIATE
@@ -4825,8 +4825,8 @@
         } else {
           $scope.draggedProposition.comparator = '';
         }
-        
-        if ((payload.blankParagraphForDeleter || payload.hideBlankParagraph) && $scope.draggedProposition.comparator === 
+
+        if ((payload.blankParagraphForDeleter || payload.hideBlankParagraph) && $scope.draggedProposition.comparator ===
           payload.proposition.id) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
