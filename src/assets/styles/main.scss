@@ -60,15 +60,15 @@ a:hover {
   padding-right: 15px;
 }
 
-::selection{
-  
+::selection {
+
 }
 
-.remarktopspacer{
+.remarktopspacer {
   height: 10px;
 }
 
-.d-block{
+.d-block {
   height: 90vh;
 }
 
@@ -88,7 +88,7 @@ a:hover {
   cursor: pointer;
 }
 
-.maininput{
+.maininput {
   padding-left: .5px;
 }
 
@@ -117,7 +117,7 @@ a:hover {
   border-top: 1px solid #e5e5e5;
 }
 
-.smallersubject{
+.smallersubject {
   font-size: 16px;
   line-height: 20px;
 }
@@ -149,15 +149,15 @@ code {
 .container {
   /*
 font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;*/
-scroll-behavior: smooth;
-padding-left: 0px;
-padding-right: 0px;
+  scroll-behavior: smooth;
+  padding-left: 0px;
+  padding-right: 0px;
 
 }
 
 
-.thread:hover>.tree-node.tree-node-content.dialoguetopic {
-    background-color: #212121;
+.thread:hover > .tree-node.tree-node-content.dialoguetopic {
+  background-color: #212121;
 }
 
 .subject {
@@ -214,7 +214,7 @@ input {
 .addparagraph {
   background-color: white !important;
   min-height: 20px;
-  
+
   padding-bottom: 6.5px;
 
 }
@@ -264,7 +264,7 @@ input {
   cursor: text;
 }
 
-.cursorpointer{
+.cursorpointer {
   cursor: pointer;
 }
 
@@ -273,7 +273,8 @@ input {
   cursor: pointer;
   min-width: 3px !important;
   min-height: 1px !important;
-  margin-left: 0px; margin-right: 0px
+  margin-left: 0px;
+  margin-right: 0px
 }
 
 .right-textarea {
@@ -385,7 +386,7 @@ input {
 
 
 .underline {
-    border-bottom: 1px solid black; 
+  border-bottom: 1px solid black;
 }
 
 .highlight {
@@ -464,11 +465,11 @@ input {
   font-weight: bold;
 }
 
-.remarkmouseover{
+.remarkmouseover {
   border-bottom: 1px solid black;
 }
 
-.firstthread{
+.firstthread {
   margin-top: 0px;
 }
 
@@ -482,15 +483,15 @@ input {
   cursor: default;
 }
 
-.updatecursor{
+.updatecursor {
   cursor: text;
 }
 
-.left-cursor{
-  
+.left-cursor {
+
 }
 
-.left-text{
+.left-text {
   padding-left: .5px;
 }
 
@@ -535,7 +536,7 @@ input {
   border-bottom: 1px solid #aaaaaa;
 }
 
-.menubutton{
+.menubutton {
   background-color: white;
 }
 
@@ -545,34 +546,32 @@ input {
   cursor: default;
 }
 
-.remark:first-child{
-  margin-top:10px;
-  margin-bottom:0px;
-  margin-right:10px;
+.remark:first-child {
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-right: 10px;
 }
 
-.titled{
-  margin-top: 0px;
+.titled {
   margin-top: 10px;
 }
 
-.remark:last-child{
-  margin-top:0px;
-  margin-bottom:10px;
-  margin-right:10px;
+.remark:last-child {
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
 
 }
 
 .dialogueinput {
   overflow-x: hidden;
-
 }
 
 textarea.expanding {
   margin: 5px;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -588,10 +587,11 @@ textarea.expanding {
 
 }
 
-.downloadbutton{
+.downloadbutton {
   color: black;
   border: none;
-  height: 32.73px; width: 38px;
+  height: 32.73px;
+  width: 38px;
 }
 
 .deleted {
@@ -618,8 +618,7 @@ textarea.expanding {
   display: block;
 }
 
-.dragdimmed{
-  
+.dragdimmed {
   text-shadow: 1.5px 1.5px grey;
 }
 
@@ -632,24 +631,20 @@ textarea.expanding {
   padding-bottom: 10px;
   margin-right: 10px;
 }
- 
+
 
 .tooltip.top {
   padding: 5px 0;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .alignleft {
-   
-  padding-right: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  //margin-left: 5px;
+  //margin-right: 5px;
+  //padding: 10px;
 }
 
-.notyourremark{
+.notyourremark {
   border: 1px solid #d3d3d3;
 }
 
@@ -816,20 +811,20 @@ nav.nav {
   position: relative;
 }
 
-.remarkparagraph{
-  
+.remarkparagraph {
+
 }
 
-.topspacer{
+.topspacer {
   padding-top: 1px
 }
 
-.rejoining{
+.rejoining {
   color: grey;
   border-bottom: 1px solid grey;
 }
 
-.addbelownotowned{
+.addbelownotowned {
   padding-bottom: 6px;
 }
 
@@ -878,26 +873,27 @@ nav.nav {
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Opera and Firefox */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome, Opera and Firefox */
 }
 
 .leftpropositionadder {
   cursor: text;
   margin-left: 3px;
-  //float: left;
-  //background-color: red;
+  float: left;
+  background-color: red;
 }
 
-.bottomaddon{
-  
+.bottomaddon {
+
 }
 
-.notyourspaddingtop{
+.notyourspaddingtop {
   /*padding-top: 5px;*/
 }
 
