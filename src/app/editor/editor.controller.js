@@ -4212,6 +4212,9 @@
 
         }, 30);
 
+
+        console.log("Node: ", apply.nodeDestination)
+
       });
 
       $scope.selectThread = function(thread) {
