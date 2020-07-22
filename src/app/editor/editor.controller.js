@@ -2011,7 +2011,7 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               for (var j = 0; j < payload.ids.length; j++){
                 if(payload.ids[j] === apply.paragraphDestination.propositions[i].id){
-
+                  console.log("Hits, j: ", j, " i: ",i)
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag){
 
