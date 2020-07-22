@@ -9,7 +9,7 @@ var browserSync = require('browser-sync');
 function isOnlyChange(event) {
   return event.type === 'changed';
 }
-
+ 
 gulp.task('watch', ['inject'], function () {
 
   gulp.watch([path.join(conf.paths.src, '**/*.html'), 'bower.json'], ['inject-reload']);
