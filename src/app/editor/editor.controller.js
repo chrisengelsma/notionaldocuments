@@ -24,7 +24,28 @@
     $document,
     $timeout,
     IdFactory,
+    ColorFactory,
     $parse) {
+
+    /**
+     * Changes the menu button color
+     * @param i the menu button index.
+     * @param hover true, if hovering; false, otherwise.
+     */
+    $scope.changeMenuButtonColor = function(i, hover) {
+      if (!hover) {
+        $scope.menuButtons[i].bgColor = '#ffffff';
+      }  else {
+        $scope.menuButtons[i].bgColor = $scope.menuButtons[i].hoverColor;
+      }
+    };
+
+    // For the toolbar button hover colors.
+    $scope.hoverColors = [];
+    for (var i = 0; i < 6; ++i) {
+      $scope.hoverColors.push(ColorFactory.random());
+    }
+
 
     // Check to load profile if we're logged in and profile isn't loaded for some reason
     $interval(function() {
@@ -185,6 +206,8 @@
     $scope.inverted = false;
     // Inverts page colors
     $scope.invert = function() {
+      // Update menu button icon
+
       var css = 'html {-webkit-filter: invert(100%);' +
         '-moz-filter: invert(100%);' +
         '-o-filter: invert(100%);' +
@@ -208,6 +231,15 @@
       }
       head.appendChild(style);
       $scope.inverted = !$scope.inverted;
+
+
+      var icon = $scope.inverted ? 'fas fa-sun' : 'fas fa-moon';
+
+      for (var i = 0; i < $scope.menuButtons.length; i++) {
+        if ($scope.menuButtons[i].key === 'invert') {
+          $scope.menuButtons[i].icon = icon;
+        }
+      }
     };
 
     /**
@@ -338,7 +370,7 @@
     };
 
     $scope.openOptionsModal = function() {
-      var optionsModalInstance = $uibModal.open({
+      $uibModal.open({
         ariaLabelledBy: 'modal-title-editor-options',
         ariaDescribedBy: 'modal-body-editor-options',
         templateUrl: 'app/editor/editor-options-modal/editor-options-modal.html',
@@ -4872,6 +4904,108 @@
         callback();
       };
     }; // end mainLoop
+
+    $scope.onMenuClicked = function(key) {
+      switch (key) {
+        case 'profile':
+          return $scope.openProfileModal();
+        case 'settings':
+          return $scope.openOptionsModal();
+        case 'invert':
+          return $scope.invert();
+        case 'library':
+          return $scope.openLibraryModal();
+        case 'book':
+          return $scope.openAddExistingBookModal();
+        case 'copy':
+          return $scope.copyBookIdToClipboard();
+        case 'new':
+          return $scope.openNewBookModal();
+        case 'nav':
+          return $scope.openNav();
+        case 'export':
+          // TODO
+          return;
+        case 'logout':
+          return $scope.logout();
+        default:
+          return;
+      }
+    };
+
+    $scope.menuButtons = [
+      {
+        key: 'profile',
+        icon: 'fa fa-user',
+        tooltip: 'Profile',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff'
+      },
+      {
+        key: 'settings',
+        icon: 'fa fa-cog',
+        tooltip: 'Settings',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'invert',
+        icon: 'fas fa-sun',
+        tooltip: 'Invert Colors',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'library',
+        icon: 'fa fa-bookmark',
+        tooltip: 'Open your library',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'book',
+        icon: 'fa fa-book',
+        tooltip: 'Add an existing book',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'copy',
+        icon: 'fa fa-share-square',
+        tooltip: 'Copy book id to clipboard',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'new',
+        icon: 'fa fa-plus',
+        tooltip: 'Create a new book',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'nav',
+        icon: 'fa fa-asterisk',
+        tooltip: 'Open nav',
+        hoverColor: ColorFactory.random(),
+        bgColor: '#ffffff',
+      },
+      {
+        key: 'export',
+        icon: 'fa fa-file-export',
+        tooltip: 'Export',
+        hoverColor: '#00c3d5',
+        bgColor: '#ffffff'
+      },
+      {
+        key: 'logout',
+        icon: 'fa fa-sign-out-alt',
+        tooltip: 'Logout',
+        hoverColor: '#ff3c3c',
+        bgColor: '#ffffff',
+        onClick: $scope.logout
+      },
+    ];
 
   }
 
