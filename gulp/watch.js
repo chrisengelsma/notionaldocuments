@@ -19,6 +19,7 @@ gulp.task('nodemon', cb => {
   });
 });
 
+
 gulp.task('browser-sync', ['nodemon'], () => {
   browserSync.init(null, {
     proxy: 'http://localhost:3000',
@@ -27,11 +28,14 @@ gulp.task('browser-sync', ['nodemon'], () => {
   });
 });
 
+
 function isOnlyChange(event) {
   return event.type === 'changed';
 }
 
+
 gulp.task('watch', ['browser-sync', 'inject'], function () {
+
 
   gulp.watch([path.join(conf.paths.src, '**/*.html'), 'bower.json'], ['inject-reload']);
 

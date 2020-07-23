@@ -1550,6 +1550,7 @@
       });
 
       $scope.dragProposition = function(node, paragraph, proposition){
+        console.log("Starting drag")
         setTimeout(function() {
           $scope.$apply(function() {
 
@@ -2042,6 +2043,8 @@
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
               for (var j = 0; j < payload.ids.length; j++){
                 if(payload.ids[j] === apply.paragraphDestination.propositions[i].id){
+
+                  console.log("Hits, j: ", j, " i: ",i)
 
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag){
@@ -4215,6 +4218,13 @@
           var theNodeParagraphs = theNode.querySelectorAll(".paragraph");
           for (var m = 0; m < theNodeParagraphs.length; m++){
             var isFirst = theNodeParagraphs[m].id.toString().slice(9);
+
+            // from 0 to less than .length
+            // if i equals .length -1, breakBelow is false at i
+            // else, define the paragraph owner
+            // if it's the same as i + 1, breakBelow if false, else true
+            // if i is at .length -1, break after
+
             break;
           }
           if (isFirst){
@@ -4235,6 +4245,9 @@
 
 
         }, 30);
+
+
+        console.log("Node: ", apply.nodeDestination)
 
       });
 

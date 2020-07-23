@@ -33,7 +33,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">     {{paragraph.position}}
+                }">     
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true && paragraph.first && paragraph.owner}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -133,7 +133,7 @@
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && proposition.first"
-            >
+
             </span>
             <span ng-mouseover="paragraph.owner === userId ? paragraph.leftMouseOver = true : inputs.notting"
                   ng-mouseleave="paragraph.leftMouseOver = false"
@@ -159,7 +159,8 @@
             </span>
             <!-- 'dragdimmed': draggedProposition.id === proposition.id -->
           <span
-                ng-hold="proposition.type !== 'blank' && proposition.type !== 'negation' && proposition.author === userId ? [dragProposition(node, paragraph, proposition)] : inputs.nothing"
+
+                ng-hold="(proposition.type !== 'blank' && proposition.type !== 'negation' && proposition.author === userId) ? [dragProposition(node, paragraph, proposition)] : inputs.nothing"
                 id="proposition{{proposition.id}}"
                 style=""
                 ng-class="{ 'rejoinder': proposition.type === 'rejoinder',
