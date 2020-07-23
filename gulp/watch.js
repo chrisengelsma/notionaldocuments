@@ -1,16 +1,41 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+const path = require('path');
+const gulp = require('gulp');
+const conf = require('./conf');
 
-var browserSync = require('browser-sync'); 
+const nodemon = require('gulp-nodemon');
+const browserSync = require('browser-sync');
+
+gulp.task('nodemon', cb => {
+  let started = false;
+  return nodemon({
+    script: 'server.js'
+  }).on('start', () => {
+    if (!started) {
+      cb();
+      started = true;
+    }
+  });
+});
+
+
+gulp.task('browser-sync', ['nodemon'], () => {
+  browserSync.init(null, {
+    proxy: 'http://localhost:3000',
+    files: ['dist/**/*.*'],
+    port: 5000
+  });
+});
+
 
 function isOnlyChange(event) {
   return event.type === 'changed';
 }
- 
-gulp.task('watch', ['inject'], function () {
+
+
+gulp.task('watch', ['browser-sync', 'inject'], function () {
+
 
   gulp.watch([path.join(conf.paths.src, '**/*.html'), 'bower.json'], ['inject-reload']);
 
@@ -37,3 +62,5 @@ gulp.task('watch', ['inject'], function () {
     browserSync.reload(event.path);
   });
 });
+
+

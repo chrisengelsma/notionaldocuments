@@ -133,7 +133,7 @@
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
                       spellcheck="false"
                       ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && proposition.first"
-            > 
+
             </span>
             <span ng-mouseover="paragraph.owner === userId ? paragraph.leftMouseOver = true : inputs.notting"
                   ng-mouseleave="paragraph.leftMouseOver = false"
@@ -159,6 +159,7 @@
             </span>
             <!-- 'dragdimmed': draggedProposition.id === proposition.id -->
           <span
+
                 ng-hold="(proposition.type !== 'blank' && proposition.type !== 'negation' && proposition.author === userId) ? [dragProposition(node, paragraph, proposition)] : inputs.nothing"
                 id="proposition{{proposition.id}}"
                 style=""

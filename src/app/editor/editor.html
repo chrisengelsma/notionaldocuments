@@ -42,73 +42,22 @@
               style="text-align: left; "> {{ title ? title : ''}} </span>
         <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
         <input type="button" id="copy-button" value="Copy"> -->
-        <span class="pull-right" style="margin-top: 15px">
-        <button class="btn btn-dark  menubutton"
-                uib-tooltip="Open profile"
-                ng-click="openProfileModal()">{{ profile.emailAddress }}
-        </button>
-
+        <div class="pull-right" style="margin-top: 40px">
 
         <!-- {{selectedProposition.text}} -->
 
-        <button class="btn cog menubutton"
-                uib-tooltip="Settings"
-                ng-click="openOptionsModal()">
-          <i class="fa fa-cog"></i>
+        <button ng-repeat="b in menuButtons"
+                class="btn menubutton"
+                ng-mouseenter="changeMenuButtonColor($index, true)"
+                ng-mouseleave="changeMenuButtonColor($index, false)"
+                uib-tooltip="{{ b.tooltip }}"
+                ng-style="{ 'background-color': b.bgColor }"
+                ng-click="onMenuClicked(b.key)">
+          <i ng-class="b.icon"></i>
+          <span ng-if="b.key === 'profile'">{{ profile.emailAddress }}</span>
         </button>
-        <button class="btn menubutton"
-                uib-tooltip="Invert colors"
-                ng-click="invert()">
-          <i ng-if="inverted" class="fas fa-sun"></i>
-          <i ng-if="!inverted" class="fas fa-moon"></i>
-        </button>
-        <button class="btn menubutton"
-                uib-tooltip="Open your library"
-                ng-click="openLibraryModal()">
-          <i class="fa fa-bookmark"></i>
-        </button>
-        <button class="btn menubutton"
-                uib-tooltip="Add an existing book"
-                ng-click="openAddExistingBookModal()">
-          <i class="fa fa-book"></i>
-        </button>
-        <button class="btn menubutton"
-                uib-tooltip="Copy book id to clipboard"
-                ng-click="copyBookIdToClipboard()">
-          <i class="fa fa-share-square"></i>
-        </button>
-        <button class="btn menubutton"
-                uib-tooltip="Create a new book"
-                ng-click="openNewBookModal()">
-          <i class="fa fa-plus"></i>
-        </button>
-        <!--
-        <button class="btn"
-                ng-class="{ 'btn-light': !options.highlightOwned,
-                            'btn-dark': options.highlightOwned
-                          }"
-                ng-click="options.highlightOwned = !options.highlightOwned">
-          <i class="fa fa-search"></i>
-        </button>
-        -->
-        <button class="btn btn-secondary help menubutton"
-                uib-tooltip="Open nav"
-                ng-click="openNav()">
-          <i class="fa fa-asterisk"></i>
-        </button>
-        <a download="export.txt" style="background-color: white"
-           id="downloadlink">
-          <button class="btn btn-primary help downloadbutton menubutton"
-                  uib-tooltip="Export">
-            <i class="fa fa-file-export"></i>
-          </button>
-        </a>
-        <button class="btn btn-dark signout menubutton"
-                uib-tooltip="Logout"
-                ng-click="logout()">
-          <i class="fa fa-sign-out-alt"></i>
-        </button>
-      </span>
+
+      </div>
         <div class="text-center">
           <a id="treeicon"
              data-toggle="modal"

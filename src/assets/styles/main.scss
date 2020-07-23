@@ -538,6 +538,29 @@ input {
 
 .menubutton {
   background-color: white;
+
+
+  &:hover {
+    border: 1px solid transparent;
+  }
+
+  &.signout:hover {
+    background-color: #ff4054;
+  }
+
+  &.help:hover {
+    background-color: #28a745;
+  }
+
+  &.export:hover {
+    background-color: #35d9ca;
+  }
+
+  &.cog:hover {
+    background-color: white;
+  }
+
+
 }
 
 .remark {
@@ -834,21 +857,6 @@ nav.nav {
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-}
-
-.signout:hover {
-  background-color: #c82333;
-  border: 1px solid transparent;
-}
-
-.help:hover {
-  background-color: #28a745;
-  border: 1px solid transparent;
-}
-
-.cog:hover {
-  background-color: white;
-  border: 1px solid transparent;
 }
 
 .topparagraphadder {
