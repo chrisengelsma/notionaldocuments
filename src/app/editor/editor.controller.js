@@ -497,7 +497,7 @@
 
       function handleVisibilityChange() {
         if (document[hidden]) {
-            console.log('hidden, clearing blank on blur')
+          
             $scope.hasRightFocus = {};
             $scope.clearBlankOnBlur(null, true);
           } else {
@@ -1612,7 +1612,7 @@
 
 
             setTimeout(function() {
-              console.log("Dragged props: ", $scope.draggedProps)
+            
               $scope.prepProposition($scope.draggedProposition.text, null, proposition, paragraph, null, $scope.draggedProps)
               $scope.draggedProposition = {};
 
@@ -1635,7 +1635,7 @@
       }
 
       $scope.deleteProposition = function(node, paragraph, allflag, dropflag) {
-        console.log("Paragraph: ", paragraph)
+       
         prep.address = $scope.selectedNode.address;
         prep.nodePath = '$scope.data';
         for (var i = 0; i < prep.address.length; i++) {
@@ -3651,7 +3651,7 @@
                   };
                   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position].first = true;
                 } else {
-                  console.log("Else below")
+                 
                   apply.nodeDestination.paragraphs[payload.paragraphPosition] =
                   {
                     first: true,
@@ -3668,7 +3668,7 @@
                       apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
                     }
                   }
-                  console.log("Paragraph: ", apply.nodeDestination.paragraphs[payload.paragraphPosition])
+                 
                 }
               } else {
                 for (var i = apply.nodeDestination.paragraphs.length - 1; i > payload.paragraphPosition - 1; i--) {
@@ -3741,8 +3741,7 @@
               apply.paragraphAboveDestination = eval(apply.paragraphAbovePath);
 
 
-              console.log(payload.proposition.author === $scope.userId)
-              console.log(payload.textSide === true)
+          
 
               if (payload.proposition.author === $scope.userId &&
                   !payload.dropflag && payload.textSide === true && payload.proposition.replacesBlankAndMoves) {
@@ -3782,8 +3781,7 @@
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[payload.proposition.position];
                     $scope.hasRightFocus.id = $scope.selectedProposition.id
                     $scope.selectedProposition.textSide = true;
-                    console.log("Selected paragraph: ", $scope.selectedParagraph)
-                    console.log("Selected proposition: ", $scope.selectedProposition)
+               
                     focusFactory($scope.selectedProposition.id);
                     $('proposition' + $scope.selectedProposition.id).trigger('click');
                   }, 30);
@@ -4250,7 +4248,7 @@
         }, 30);
 
 
-        console.log("Node: ", apply.nodeDestination)
+       
 
       });
 
