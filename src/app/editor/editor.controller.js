@@ -3090,6 +3090,7 @@
 
             }
           } else if (paragraph.leftAdd) {
+            console.log("Into leftadd")
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
             for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
@@ -3104,12 +3105,14 @@
             // prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
             // + ']';
             if ($scope.selectedProposition.author == $scope.userId){
+              console.log("Left add if")
               prep.paragraphPosition = $scope.selectedParagraph.position;
               prep.position = $scope.selectedProposition.position;
               prep.insertsLeft = true;
               console.log("Putting it to the left")
               // close off the paragraph above to the user
             } else {
+              console.log("Left add else")
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
                 if (prep.nodeDestination.paragraphs[i].owner == $scope.userId){
                   for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
