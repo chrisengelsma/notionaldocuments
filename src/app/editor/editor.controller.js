@@ -3001,10 +3001,8 @@
             } else {
               prep.candidateParagraphPosition = 410951;
             }
-            prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
-            prep.aboveCandidateParagraphPath = prep.nodePath + '.paragraphs[' + (prep.candidateParagraphPosition -1).toString()
-            
-            + ']';
+            prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString() + ']';
+            prep.aboveCandidateParagraphPath = prep.nodePath + '.paragraphs[' + (prep.candidateParagraphPosition -1).toString() + ']';
             if (eval(prep.candidateParagraphPath)){
               // if there is a paragraph one position above
               // wont find anything due to changing the path, above
