@@ -3019,7 +3019,7 @@
 
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsBelow){
                     console.log("I: ", i )
-                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
+                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length+1; j++){
                       console.log("J: ", j)
                       if (prep.nodeDestination.paragraphs[j]){
                         console.log("if")
@@ -3030,6 +3030,8 @@
                           prep.insertsBelow = true;
                           console.log("Placing this as the last paragraph in the section of one's own document, 1st")
                           break;
+                        } else {
+
                         }
                       } else {
                         prep.paragraphPosition = i;
