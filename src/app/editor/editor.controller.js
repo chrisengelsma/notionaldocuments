@@ -3955,7 +3955,7 @@
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].remarks[0].isDialogueTopic = true;
               $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1].threadId = $scope.scroll.threadId;
 
-            } else if (payload.proposition.type === 'assertion') {
+            } else if (payload.proposition.type === 'assertion' && !payload.dropflag) {
 
 
               // should have an assertion path that is the payload's destination
@@ -4007,7 +4007,7 @@
               //   }
               // }
 
-            } else { // theres a remarkPath
+            } else if (!payload.dropflag) { // theres a remarkPath
 
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
