@@ -4874,7 +4874,7 @@
           $scope.draggedProposition.comparator = '';
         }
 
-        if ((payload.blankParagraphForDeleter || payload.hideBlankParagraph) && $scope.draggedProposition.comparator ===
+        if ((payload.blankParagraphForDeleter || payload.hideBlankParagraph) || $scope.draggedProposition.comparator ===
           payload.proposition.id) {
           // $scope.data[0].dialogue.push({
           //   class: payload.class,
