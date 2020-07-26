@@ -2997,6 +2997,7 @@
             prep.nodeDestination = eval(prep.nodePath)
             if (!$scope.newProp){
               prep.candidateParagraphPosition = $scope.selectedParagraph.position+1;
+              console.log("Prep candidate paragraph position: ", prep.candidateParagraphPosition)
             } else {
               prep.candidateParagraphPosition = 410951;
             }
