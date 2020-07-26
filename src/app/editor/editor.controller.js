@@ -3018,12 +3018,13 @@
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
 
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsBelow){
-
+                    console.log("I: ", i )
                     for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
-
+                      console.log("J: ", j)
                       if (prep.nodeDestination.paragraphs[j]){
+                        console.log("if")
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId){
-
+                          console.log('2nd if')
                           prep.paragraphPosition = j;
                           prep.position = 0;
                           prep.insertsBelow = true;
