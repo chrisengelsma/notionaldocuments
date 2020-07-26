@@ -3018,7 +3018,7 @@
                 prep.insertsBelow = true;
                 console.log("Putting it below, top")
                 
-              } else if (draggedProps && prep.candidateParagraphDestination.owner == $scope.userId && 
+              } else if (prep.candidateParagraphDestination.owner == $scope.userId && 
                 prep.aboveCandidateParagraphDestination.owner == $scope.userId){
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
@@ -3031,7 +3031,7 @@
 
                   if (prep.nodeDestination.paragraphs[i].owner == $scope.userId && !prep.insertsBelow){
                     console.log("I: ", i )
-                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length+1; j++){
+                    for (var j = i+1; j < prep.nodeDestination.paragraphs.length; j++){
                       console.log("J: ", j)
                       if (prep.nodeDestination.paragraphs[j]){
                         console.log("if")
