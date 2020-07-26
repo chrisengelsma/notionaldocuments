@@ -3104,7 +3104,7 @@
             // prep.candidateParagraphPosition = $scope.selectedParagraph.position-1;
             // prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
             // + ']';
-            if ($scope.selectedProposition.author == $scope.userId){
+            if ($scope.selectedProposition.author == $scope.userId || draggedProps){
               console.log("Left add if")
               prep.paragraphPosition = $scope.selectedParagraph.position;
               prep.position = $scope.selectedProposition.position;
@@ -3822,10 +3822,12 @@
                     }
 
                     apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
+                    console.log("Copied up: ", apply.paragraphDestination.propositions[i + 1] )
                   }
                   for (var i = 0; i < payload.draggedProps.length; i++){
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
+                    console.log("Dropped in: ", apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i])
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].nodePath = payload.nodePath;
                     if (i == 0){
                       apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
