@@ -3007,13 +3007,14 @@
               // if there is a paragraph one position above
               // wont find anything due to changing the path, above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
+              console.log("Selected paragraph: ", $scope.selectedParagraph)
               if (prep.candidateParagraphDestination.owner == $scope.userId &&
               $scope.selectedParagraph.owner !== $scope.userId){
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
                 prep.insertsBelow = true;
                 console.log("Putting it below, top")
-                // puts it wrong above
+                
               } else {
 
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
