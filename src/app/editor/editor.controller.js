@@ -3812,7 +3812,7 @@
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
 
-                  for (var i = apply.paragraphDestination.propositions.length - 1; i > (payload.proposition.position + payload.draggedProps.length); i--) {
+                  for (var i = apply.paragraphDestination.propositions.length - 1; i > (payload.proposition.position + payload.draggedProps.length-1); i--) {
                     apply.paragraphDestination.propositions[i].position++;
                     if ($scope.selectedProposition){
                       if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
