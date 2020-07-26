@@ -3529,6 +3529,10 @@
 
               }
 
+              for (var i = 0; i < paragraph.propositions;length; i++){
+                paragraph.propositions[i].position = i;
+              }
+
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
 
                 $scope.selectedProposition = apply.paragraphDestination.propositions[payload.proposition.position];
