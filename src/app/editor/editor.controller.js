@@ -3040,9 +3040,7 @@
                           prep.insertsBelow = true;
                           console.log("Placing this as the last paragraph in the section of one's own document, 1st")
                           break;
-                        } else {
-
-                        }
+                        } 
                       } else {
                         prep.paragraphPosition = i;
                         prep.position = 0;
