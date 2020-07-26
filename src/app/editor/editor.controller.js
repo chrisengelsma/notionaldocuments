@@ -3002,19 +3002,29 @@
               prep.candidateParagraphPosition = 410951;
             }
             prep.candidateParagraphPath = prep.nodePath + '.paragraphs[' + prep.candidateParagraphPosition.toString()
+            prep.aboveCandidateParagraphPath = prep.nodePath + '.paragraphs[' + (prep.candidateParagraphPosition -1).toString()
+            
             + ']';
             if (eval(prep.candidateParagraphPath)){
               // if there is a paragraph one position above
               // wont find anything due to changing the path, above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
+              prep.aboveCandidateParagraphDestination = eval(prep.aboveCandidateParagraphPath)
               console.log("Selected paragraph: ", $scope.selectedParagraph)
               if (prep.candidateParagraphDestination.owner == $scope.userId &&
-              $scope.selectedParagraph.owner !== $scope.userId){
+              $scope.selectedParagraph.owner !== $scope.userId && !draggedProps){
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
                 prep.position = 0;
                 prep.insertsBelow = true;
                 console.log("Putting it below, top")
                 
+              } else if (draggedProps && prep.candidateParagraphDestination.owner == $scope.userId && 
+                prep.aboveCandidateParagraphDestination.owner == $scope.userId){
+                prep.paragraphPosition = prep.candidateParagraphDestination.position;
+                prep.position = 0;
+                prep.insertsBelow = true;
+                console.log("Between own paragraphs drop")
+
               } else {
 
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++){
