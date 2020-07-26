@@ -3529,7 +3529,7 @@
 
               }
 
-              for (var i = 0; i < paragraph.propositions;length; i++){
+              for (var i = 0; i < paragraph.propositions.length; i++){
                 paragraph.propositions[i].position = i;
               }
 
