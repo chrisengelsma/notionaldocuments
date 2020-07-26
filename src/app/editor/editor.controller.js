@@ -3529,8 +3529,8 @@
 
               }
 
-              for (var i = 0; i < paragraph.propositions.length; i++){
-                paragraph.propositions[i].position = i;
+              for (var i = 0; i < apply.paragraphDestination.propositions.length; i++){
+                apply.paragraphDestination.propositions[i].position = i;
               }
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true && !payload.dropflag) {
