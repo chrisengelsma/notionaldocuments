@@ -1,10 +1,28 @@
-
-
-.thread:hover > p.ng-scope  {
-  background-color: #FFFFFF;
+.thread-wrapper {
+  margin: 10px;
 }
 
-.thread:hover {
-  background-color: #FFFFFF;
+.thread {
+  &:hover {
+    > p.ng-scope {
+      background-color: #FFFFFF;
+    }
+
+    background-color: #FFFFFF;
+  }
 }
 
+.remark {
+  margin-bottom: 10px;
+  display: block;
+  cursor: default;
+  padding: 5px;
+
+  &:not(:first-child) {
+    margin-left: 12px;
+  }
+}
+
+.firstthread {
+  margin-top: 0px;
+}
