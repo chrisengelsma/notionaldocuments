@@ -33,7 +33,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">
+                }">{{paragraph.position}}
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true && paragraph.first && paragraph.owner}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -128,8 +128,8 @@
                 ng-keydown="$event.keyCode === 13 && selectedProposition.dialogueSide != true && inputs.proposition != '' ? $event.preventDefault : inputs.nothing"
                 ng-keyup="$event.keyCode === 13 && selectedProposition.dialogueSide !== true ? [proposition.propositionPreSelected = false, prepProposition(inputs.proposition, thread, proposition, paragraph, $event)] : inputs.nothing;
                       (inputs.proposition === '' && $event.keyCode === 8) ? inputs.nothing : inputs.nothing;"
-                spellcheck="false"
-                ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && proposition.first">
+                      spellcheck="false"
+                      ng-if="selectedProposition.id === proposition.id && paragraph.leftAdd == true && proposition.first">
 
           </span>
           <span ng-mouseover="paragraph.owner === userId ? paragraph.leftMouseOver = true : inputs.notting"
@@ -221,9 +221,8 @@
             class="proposition-text"
             ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
 
-          >
-            {{proposition.text}}
-            <!-- {{proposition.position}}{{proposition.assertionPath}}{{proposition.droppedElsewhere}} -->
+                >
+            {{proposition.text}}{{proposition.position}}
           </span>
           <span
             editable-span-ng-model
