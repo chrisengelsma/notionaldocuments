@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   /** @ngInject */
@@ -9,7 +9,7 @@
     $rootScope.redirectToEditor = false;
     $rootScope.editorParams = {};
 
-    $rootScope.$on('$stateChangeStart', function(ev, to, toParams) {
+    $rootScope.$on('$stateChangeStart', function (ev, to, toParams) {
       if ($rootScope.firstEntry) {
         if (to.name === 'main.editor') {
           $rootScope.redirectToEditor = true;
@@ -19,12 +19,7 @@
       }
     });
 
-    $rootScope.$on('$stateChangeError', function(event,
-                                                 toState,
-                                                 toParams,
-                                                 fromState,
-                                                 fromParams,
-                                                 error) {
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       $log.debug(error);
     });
   }

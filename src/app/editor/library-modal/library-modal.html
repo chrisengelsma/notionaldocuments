@@ -12,23 +12,30 @@
       <th>Topic</th>
       <th>Last Modified</th>
       <th>Date Created</th>
+      <th></th>
     </tr>
     </thead>
     <tr class="book-select"
         ng-repeat="book in vm.books"
-        ng-click="vm.selectBook(book.uid)"
         ng-class="{'table-primary': hover }"
         ng-init="hover = false"
         ng-mouseenter="hover = true"
         ng-mouseleave="hover = false">
-      <td>
+      <td ng-click="vm.selectBook(book.uid)">
         {{ book.book.topic }}
       </td>
-      <td>
+      <td ng-click="vm.selectBook(book.uid)">
         {{ book.book.lastModified * 1000 | date:'short' }}
       </td>
-      <td>
+      <td ng-click="vm.selectBook(book.uid)">
         {{ book.book.dateCreated * 1000 | date:'short' }}
+      </td>
+      <td>
+        <button class="btn btn-danger"
+                style="z-index: 15"
+                ng-click="deleteBook(book.uid)">
+          <i class="fa fa-trash"></i>
+        </button>
       </td>
     </tr>
   </table>

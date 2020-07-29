@@ -18,6 +18,7 @@
     profile,
     library,
     $uibModal,
+    $uibModalStack,
     messageFormatter,
     focusFactory,
     Notification,
@@ -445,11 +446,14 @@
       });
     };
 
+    $uibModalStack.dismissAll();
+
     // If a book id is present, load it
     if ($stateParams.bookId) {
       $scope.bookId = $stateParams.bookId;
       $scope.loadData($scope.bookId);
     }
+
 
     // Frontend option variables
     $scope.options = {
@@ -4942,7 +4946,15 @@
 
       // Put at the end of the loop to ensure it gets called at the appropriate time.
       chatSocket.emit('room', $scope.bookId);
+
+
     }; // end mainLoop
+
+    $timeout(function() {
+      if ($rootScope.loginModal) {
+        $rootScope.loginModal.$close();
+      }
+    }, 250);
 
     $scope.onMenuClicked = function (key) {
       switch (key) {

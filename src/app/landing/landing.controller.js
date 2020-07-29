@@ -2,7 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function LandingController($uibModal, $uibModalStack, $state, $log, $document, $rootScope, $scope, $sce) {
+  function LandingController($uibModal, $state, $log, $document, $rootScope, $scope) {
 
     $scope.active = 0;
 

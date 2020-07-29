@@ -1,8 +1,8 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('ndApp')
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
 
       $stateProvider
         .state('main', {
@@ -10,56 +10,56 @@
           abstract: true,
           template: '<ui-view />',
           resolve: {
-            auth: function($rootScope) {
-              
-              firebase.auth().onAuthStateChanged(function(user) {
+            auth: function ($rootScope) {
+
+              firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                   $rootScope.uid = user.uid;
-                  user.getIdToken().then(function(token) {
+                  user.getIdToken().then(function (token) {
                     $rootScope.token = token;
-                  }).catch(function(error) {
+                  }).catch(function (error) {
                     console.error(error);
                   });
                 }
               });
             },
-            apiService: function(auth, ApiService) {
-              
+            apiService: function (auth, ApiService) {
+
               return new ApiService();
             },
-            libraryService: function(LibraryService, library) {
-             
+            libraryService: function (LibraryService, library) {
+
               var libraryService = new LibraryService();
               libraryService.setLibrary(library);
               return libraryService;
             },
-            profileService: function(ProfileService, profile) {
-              
+            profileService: function (ProfileService, profile) {
+
               var profileService = new ProfileService();
               profileService.setProfile(profile);
               return profileService;
             },
-            profile: function($state, apiService) {
-              
-              return apiService.readProfile().then(function(result) {
+            profile: function ($state, apiService) {
+
+              return apiService.readProfile().then(function (result) {
                 if (result.status === 200) {
                   return result.data;
                 } else {
                   return {};
                 }
-              }).catch(function(error) {
+              }).catch(function (error) {
                 console.error(error);
               });
             },
-            library: function($state, apiService) {
+            library: function ($state, apiService) {
               console.log('resolving library');
-              return apiService.readLibrary().then(function(result) {
+              return apiService.readLibrary().then(function (result) {
                 if (result.status === 200) {
                   return result.data;
                 } else {
                   return {};
                 }
-              }).catch(function(error) {
+              }).catch(function (error) {
                 console.error(error);
               });
             },
@@ -78,19 +78,21 @@
           controllerAs: 'vm',
           templateUrl: 'app/landing/landing.html',
           resolve: {
-            requiresNoAuth: function($rootScope, $state) {
-              return firebase.auth().onAuthStateChanged(function(user) {
+            requiresNoAuth: function ($rootScope, $state, $timeout) {
+              return firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                   $rootScope.uid = user.uid;
-                  user.getIdToken().then(function(token) {
+                  user.getIdToken().then(function (token) {
                     $rootScope.token = token;
                     if ($rootScope.redirectToEditor) {
                       $rootScope.redirectToEditor = false;
-                      $state.go('main.editor', $rootScope.editorParams);
+                        $state.go('main.editor', $rootScope.editorParams);
                     } else {
-                      $state.go('main.editor');
+                      $timeout(function () {
+                        $state.go('main.editor');
+                      }, 250);
                     }
-                  }).catch(function(error) {
+                  }).catch(function (error) {
                     console.error(error);
                   });
                 }
