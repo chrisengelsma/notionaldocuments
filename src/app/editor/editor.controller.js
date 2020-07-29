@@ -4946,15 +4946,7 @@
 
       // Put at the end of the loop to ensure it gets called at the appropriate time.
       chatSocket.emit('room', $scope.bookId);
-
-
     }; // end mainLoop
-
-    $timeout(function() {
-      if ($rootScope.loginModal) {
-        $rootScope.loginModal.$close();
-      }
-    }, 250);
 
     $scope.onMenuClicked = function (key) {
       switch (key) {

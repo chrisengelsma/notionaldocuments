@@ -1,6 +1,3 @@
-@mixin break-accessibility {
-}
-
 @keyframes blink {
   from, to {
     color: transparent;
@@ -241,7 +238,8 @@ textarea {
 }
 
 .negation {
-  border-bottom: 1px solid #212121;
+  //border-bottom: 1px solid #212121;
+  border: 2px solid #212121;
   cursor: pointer;
 }
 
