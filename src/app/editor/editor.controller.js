@@ -467,7 +467,6 @@
 
     // Main function
     $scope.mainLoop = function () {
-      chatSocket.emit('room', $scope.bookId);
 
       $scope.treeOptions = {};
       $scope.mousedOverProposition = {};
@@ -4939,6 +4938,10 @@
         }
         callback();
       };
+
+
+      // Put at the end of the loop to ensure it gets called at the appropriate time.
+      chatSocket.emit('room', $scope.bookId);
     }; // end mainLoop
 
     $scope.onMenuClicked = function (key) {
