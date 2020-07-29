@@ -55,25 +55,27 @@ html, body, body.ng-scope {
   width: 100vw;
   font-size: 110%;
   vertical-align: baseline;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 10px;
+  }
+
 }
 
-&::-webkit-scrollbar {
-  width: 5px;
-}
 
 a {
   &:hover {
     text-decoration: none;
   }
-}
-
-&::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-&::-webkit-scrollbar-thumb {
-  background: lightgray;
-  border-radius: 10px;
 }
 
 .modal-footer {
@@ -237,7 +239,7 @@ textarea {
 
 .negation {
   //border-bottom: 1px solid #212121;
-  border: 2px solid #212121;
+  outline: 1px dashed #212121;
   cursor: pointer;
 }
 

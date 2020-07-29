@@ -18,6 +18,7 @@
     profile,
     library,
     $uibModal,
+    $uibModalStack,
     messageFormatter,
     focusFactory,
     Notification,
@@ -445,11 +446,14 @@
       });
     };
 
+    $uibModalStack.dismissAll();
+
     // If a book id is present, load it
     if ($stateParams.bookId) {
       $scope.bookId = $stateParams.bookId;
       $scope.loadData($scope.bookId);
     }
+
 
     // Frontend option variables
     $scope.options = {
