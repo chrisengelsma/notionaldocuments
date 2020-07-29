@@ -13,6 +13,7 @@
     "no-unused-vars": "off",
     "no-debugger": "off",
     "no-prototype-builtins": "off",
+    "no-undef": "off",
     "no-redeclare": "off"
   },
   "globals": {
@@ -22,6 +23,7 @@
     "firebase": true,
     "angular": true,
     "module": true,
-    "inject": true
+    "inject": true,
+    "io": true,
   }
 }

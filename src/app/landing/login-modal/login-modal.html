@@ -17,6 +17,7 @@
                name="email"
                ng-model="vm.user.email"
                required
+               autofocus
                placeholder="Email"
                ng-keyup="$event.keyCode === 13 ? vm.login(form.$valid) : form.nothing">
         <p ng-show="form.email.$invalid && !form.email.$pristine"

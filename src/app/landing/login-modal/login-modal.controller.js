@@ -29,12 +29,6 @@
     vm.cancel = function() {
       $uibModalInstance.dismiss(false);
     };
-
-    // $('#modal-body-login').on('shown.bs.modal', function () {
-    //   $('#email').focus();
-    //   console.log('Modal loaded')
-    // })
-
   }
 
   angular.module('ndApp')

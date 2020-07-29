@@ -1,12 +1,25 @@
-div.under-navbar {
-  padding-top: 75px;
+$font-color: #fff9e5;
+
+.landing-wrapper {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-image: linear-gradient(#185a9d, #43cea2);
 }
 
-h3 {
+.landing-inner {
   text-align: center;
 }
 
-img.overview-img {
-  max-width: 840px;
-  width: 100%;
+.tagline {
+  margin-top: 80px;
+  margin-bottom: 40px;
+  font-size: 40pt;
+  color: $font-color;
+}
+
+.info {
+  margin-top: 40px;
+  font-size: 24pt;
+  color: $font-color;
 }

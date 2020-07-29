@@ -1,11 +1,11 @@
 'use strict';
 
-const path = require('path');
-const gulp = require('gulp');
-const conf = require('./conf');
+var path = require('path');
+var gulp = require('gulp');
+var conf = require('./conf');
 
-const nodemon = require('gulp-nodemon');
-const browserSync = require('browser-sync');
+var nodemon = require('gulp-nodemon');
+var browserSync = require('browser-sync');
 
 gulp.task('nodemon', cb => {
   let started = false;
