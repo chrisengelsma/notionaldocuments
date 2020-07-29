@@ -97,7 +97,7 @@ gulp.task('fonts', function() {
     .concat('bower_components/bootstrap-sass/assets/fonts/bootstrap/*'))
     .pipe($.filter('**/*.{eot,otf,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/bootstrap')));
 });
 
 gulp.task('other', function() {

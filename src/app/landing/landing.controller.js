@@ -1,11 +1,19 @@
-(function() {
+(function () {
   'use strict';
 
   /** @ngInject */
-  function LandingController($uibModal, $uibModalStack, $state, $log, $document, $rootScope) {
+  function LandingController($uibModal, $uibModalStack, $state, $log, $document, $rootScope, $scope, $sce) {
+
+    $scope.active = 0;
+
+    $scope.slides = [
+      {src: 'assets/images/doge.gif', alt: 'Doge', id: 0},
+      {src: 'assets/images/hotdog.gif', alt: 'Hot Dog', id: 1},
+      {src: 'assets/images/cena.gif', alt: 'Cena', id: 2},
+    ];
 
     if ($rootScope.$$listenerCount.openRegisterModal === undefined) {
-      $rootScope.$on('openRegisterModal', function() {
+      $rootScope.$on('openRegisterModal', function () {
         $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title-register',
@@ -14,7 +22,7 @@
           size: 'lg',
           controller: 'RegisterModalController',
           controllerAs: 'vm'
-        }).result.then(function(success) {
+        }).result.then(function (success) {
           if (success) {
             $state.go('main.editor');
           }
@@ -23,7 +31,7 @@
     }
 
     if ($rootScope.$$listenerCount.openLoginModal === undefined) {
-      $rootScope.$on('openLoginModal', function() {
+      $rootScope.$on('openLoginModal', function () {
         $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title-login',
@@ -32,7 +40,7 @@
           size: 'lg',
           controller: 'LoginModalController',
           controllerAs: 'vm'
-        }).result.then(function(success) {
+        }).result.then(function (success) {
           if (success) {
             $state.go('main.editor');
           }

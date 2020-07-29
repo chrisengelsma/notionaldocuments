@@ -8,12 +8,15 @@
   <form name="form">
     <div class="row">
       <div class="form-group col-md-12">
-        <label for="display-name">Display Name</label>
+        <label for="displayName">Display Name</label>
         <input type="text"
                class="form-control"
-               id="display-name"
+               id="displayName"
                name="displayName"
+               required
+               autocomplete="off"
                aria-describedby="displayHelp"
+               ng-keyup="$event.keyCode === 13 ? vm.updateProfile(form.$valid) : form.nothing"
                ng-model="vm.profile.displayName" />
         <small id="displayHelp"
                class="form-text text-muted">The name everyone will see.</small>
@@ -49,10 +52,17 @@
                class="form-control"
                id="email"
                name="email"
+               required
+               autocomplete="off"
+               ng-keyup="$event.keyCode === 13 ? vm.updateProfile(form.$valid) : form.nothing"
                aria-describedby="emailAddressHelp"
                ng-model="vm.profile.emailAddress" />
         <small id="emailAddressHelp"
                class="form-text text-muted">Your preferred contact email.</small>
+        <p ng-show="form.email.$invalid && !form.email.$pristine"
+           class="help-block">
+          Enter a valid email
+        </p>
       </div>
 
     </div>
@@ -67,7 +77,7 @@
   </button>
   <button type="submit"
           ng-disabled="form.$invalid || vm.processing"
-          ng-click="vm.updateProfile()"
+          ng-click="vm.updateProfile(form.$valid)"
           class="btn btn-primary">
     <span>
     <span ng-if="vm.processing">

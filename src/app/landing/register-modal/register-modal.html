@@ -18,6 +18,7 @@
                id="email"
                ng-model="vm.user.email"
                required
+               ng-keyup="$event.keyCode === 13 ? vm.register(form.$valid) : form.nothing"
                placeholder="Email">
         <p ng-show="form.email.$invalid && !form.email.$pristine"
            class="help-block">
@@ -36,6 +37,7 @@
                id="password"
                ng-model="vm.user.password"
                ng-minlength="6"
+               ng-keyup="$event.keyCode === 13 ? vm.register(form.$valid) : form.nothing"
                required
                placeholder="Password">
         <p ng-show="form.password.$invalid && form.password.$error.minlength"
@@ -55,6 +57,7 @@
                id="password-verify"
                ng-model="vm.passwordVerify"
                placeholder="Verify Password"
+               ng-keyup="$event.keyCode === 13 ? vm.register(form.$valid) : form.nothing"
                required
                equal="{{ vm.user.password }}">
         <p ng-show="form.passwordVerify.$error.equal"

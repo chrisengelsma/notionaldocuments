@@ -9,8 +9,8 @@
        ng-class="{titled: title}"
        ng-click="clearDrag()"
        style="line-height: normal;">
-<!--     <span class="app-title"
-          ng-click="clearWithAdder()"> {{ title ? title : ''}} </span> -->
+    <!--     <span class="app-title"
+              ng-click="clearWithAdder()"> {{ title ? title : ''}} </span> -->
     <div id="myNav"
          class="overlay"
          ng-click="closeNav()">
@@ -38,26 +38,41 @@
     <div ng-if="loggedIn()">
       <div>
         <span class="app-title"
-              ng-click="clearWithAdder()"
-              style="text-align: left; "> {{ title ? title : ''}} </span>
+              ng-click="clearWithAdder()">
+          {{ title ? title : ''}}
+        </span>
         <!-- <input type="text" id="copy-input" value="lkjlkjkljkjlj;jkj"/>
         <input type="button" id="copy-button" value="Copy"> -->
         <div class="pull-right" style="margin-top: 40px">
 
-        <!-- {{selectedProposition.text}} -->
+          <!-- {{selectedProposition.text}} -->
 
-        <button ng-repeat="b in menuButtons"
-                class="btn menubutton"
-                ng-mouseenter="changeMenuButtonColor($index, true)"
-                ng-mouseleave="changeMenuButtonColor($index, false)"
-                uib-tooltip="{{ b.tooltip }}"
-                ng-style="{ 'background-color': b.bgColor }"
-                ng-click="onMenuClicked(b.key)">
-          <i ng-class="b.icon"></i>
-          <span ng-if="b.key === 'profile'">{{ profile.emailAddress }}</span>
-        </button>
+          <span ng-repeat="b in menuButtons">
+            <span ng-if="b.key === 'users'">
+              <button uib-popover-template="'connectedUsers.html'"
+                      popover-trigger="mouseenter"
+                      popover-placement="bottom"
+                      uib-tooltip="{{ b.tooltip }}"
+                      class="btn menubutton">
+                <i ng-class="b.icon"></i>
+                <span>{{ roomUsers.length }}</span>
+              </button>
+            </span>
+            <span ng-if="b.key !== 'users'">
+              <button class="btn menubutton"
+                      type="button"
+                      ng-mouseenter="changeMenuButtonColor($index, true)"
+                      ng-mouseleave="changeMenuButtonColor($index, false)"
+                      uib-tooltip="{{ b.tooltip }}"
+                      ng-style="{ 'background-color': b.bgColor }"
+                      ng-click="onMenuClicked(b.key)">
+                <i ng-class="b.icon"></i>
+                <span ng-if="b.key === 'profile'">{{ profile.emailAddress }}</span>
+              </button>
+            </span>
+          </span>
 
-      </div>
+        </div>
         <div class="text-center">
           <a id="treeicon"
              data-toggle="modal"
@@ -120,8 +135,7 @@
               ui-tree-node
               ng-class="{ mousedovernode: node.mouseOver === true }"
               class="angular-ui-tree-node node"
-              id="{{node.nodeId}}"
-              >
+              id="{{node.nodeId}}">
             <nd-editor-text-renderer></nd-editor-text-renderer>
           </li>
         </ol>
@@ -159,7 +173,7 @@
        ng-click="clearDrag()"
        style="">
     <div class="col-md-9">
-      <span ng-if="draggedProposition.id" class="draggedproposition"style="padding-left: 10px; padding-right: 10px;">
+      <span ng-if="draggedProposition.id" class="draggedproposition" style="padding-left: 10px; padding-right: 10px;">
         > {{draggedProposition.text}}
       </span>
     </div>
@@ -171,4 +185,10 @@
          ng-click="selectedProposition.dialogueSide = true; blurDialogue();">
     </div>
   </div><!-- Row -->
+
+  <script type="text/ng-template" id="connectedUsers.html">
+    <span>{{ roomUsers.length }} users connected.</span>
+    <div ng-repeat="u in roomUsers">{{ u }}</div>
+  </script>
 </div><!-- Controller -->
+

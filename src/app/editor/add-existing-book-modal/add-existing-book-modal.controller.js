@@ -2,7 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function AddExistingBookModalController($uibModalInstance, apiService) {
+  function AddExistingBookModalController($uibModalInstance, profileService, apiService) {
     var vm = this;
 
     vm.bookId = '';
@@ -23,7 +23,15 @@
           vm.errors.noBookFound = true;
         } else {
           vm.errors.noBookFound = false;
-          $uibModalInstance.close(vm.bookId);
+          var bookIds = profileService.getBookIds();
+          bookIds.push(vm.bookId);
+          profileService.setBookIds(bookIds);
+          apiService.updateProfile(profileService.getProfile()).then(function() {
+            vm.processing = false;
+            $uibModalInstance.close(vm.bookId);
+          }).catch(function(error) {
+            console.log(error);
+          });
         }
       }).catch(function(error) {
         vm.errors.misc = error;
