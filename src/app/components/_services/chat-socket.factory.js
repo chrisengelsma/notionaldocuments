@@ -2,8 +2,9 @@
   'use strict';
 
   /** @ngInject */
-  function chatSocket(socketFactory) {
-    var socket = socketFactory({ioSocket: io.connect('localhost:3001')});
+  function chatSocket(socketFactory, $rootScope) {
+
+    var socket = socketFactory({ioSocket: io.connect($rootScope.env.socketUrl + ':' + $rootScope.env.socketPort)});
 
     //add strings to the arguments array for each server emission
     socket.forward([
@@ -14,7 +15,7 @@
       'broadcastNameAssignment',
       'userUpdated',
       'roomUsers',
-      'join',
+      'room',
       'leave'
     ]);
 

@@ -8,18 +8,6 @@
     var profile = {};
     var selectedBook = null;
 
-    profileService.prototype = {
-      setProfile: setProfile,
-      getProfile: getProfile,
-      getBookIds: getBookIds,
-      setBookIds: setBookIds,
-      removeBookId: removeBookId,
-      addBookId: addBookId,
-      setSelectedBook: setSelectedBook,
-      getSelectedBook: getSelectedBook,
-      clear: clear
-    };
-
     function setProfile(value) {
       profile = value;
     }
@@ -63,6 +51,18 @@
       profile = {};
       selectedBook = null;
     }
+
+    profileService.prototype = {
+      setProfile: setProfile,
+      getProfile: getProfile,
+      getBookIds: getBookIds,
+      setBookIds: setBookIds,
+      removeBookId: removeBookId,
+      addBookId: addBookId,
+      setSelectedBook: setSelectedBook,
+      getSelectedBook: getSelectedBook,
+      clear: clear
+    };
 
     return profileService;
   }

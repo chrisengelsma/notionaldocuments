@@ -2,7 +2,7 @@
   'use strict';
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, $locationProvider) {
+  function config($logProvider, toastrConfig) {
     // Enable log
     $logProvider.debugEnabled(true);
 
