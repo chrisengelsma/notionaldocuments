@@ -141,8 +141,10 @@ class SocketService {
     this.server = require('http').createServer(this.app);
     this.io = require('socket.io').listen(this.server, {origins: '*:*'});
 
-    this.server.listen(this.port, function () {
-      console.log(`Socket server listening on port ${self.port}`);
+    var url = process.env.PRODUCTION_URL || 'localhost';
+
+    this.server.listen(this.port, url, function () {
+      console.log(`Socket server listening on ${url}:${self.port}`);
     });
   }
 }
