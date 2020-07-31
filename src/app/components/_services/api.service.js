@@ -119,7 +119,7 @@
       return get('/user/' + $rootScope.uid + '/profile');
     }
 
-    function updateProfile() {
+    function updateProfile(profile) {
       return post('/user/' + $rootScope.uid + '/profile', profile);
     }
 
