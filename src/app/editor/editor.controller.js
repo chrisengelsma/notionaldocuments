@@ -72,7 +72,6 @@
             profileService.setProfile(res.data);
             $scope.profile = profileService.getProfile();
             $scope.userId = $rootScope.uid;
-            console.log('EMITTING USER UPDATED HERE, INTERVAL');
             chatSocket.emit('userUpdated', {
               userId: $rootScope.uid,
               displayName: $scope.profile.displayName,
