@@ -1,46 +1,59 @@
-module.exports = function(admin, express) {
+module.exports = function (admin, express) {
   'use strict';
 
-  var router = express.Router(),
-        moment = require('moment'),
-        firebaseMiddleware = require('express-firebase-middleware');
+  var router = express.Router();
+  var moment = require('moment');
+  var firebaseMiddleware = require('express-firebase-middleware');
+
+  router.get('/ping', function (req, res, next) {
+    return res.send('pong');
+  });
 
   var db = admin.database();
 
-  function errorHandler (err, req, res, next) {
+  function errorHandler(err, req, res, next) {
     console.error(err.message);
     res.status(500).end(err.message);
   }
 
   router.use(errorHandler);
-  router.use(function(req, res, next) { next(); });
+  router.use(function (req, res, next) {
+    next();
+  });
 
-  router.get('/library/props/:uid', function(req, res, next) {
+  router.get('/config', function (req, res, next) {
+    return res.status(200).send({
+      socketPort: process.env.SOCKET_PORT,
+      socketUrl: process.env.SOCKET_URL,
+    });
+  });
+
+  router.get('/library/props/:uid', function (req, res, next) {
     var bookId = req.params.uid;
-    db.ref('propositions/' + bookId).once('value').then(function(snap) {
+    db.ref('propositions/' + bookId).once('value').then(function (snap) {
       var result = (snap.val() === null) ? [] : snap.val();
       return res.end(JSON.stringify(result));
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
 
-  router.get('/library/book/:uid', function(req, res, next) {
-    db.ref('books/' + req.params.uid).once('value').then(function(snap) {
+  router.get('/library/book/:uid', function (req, res, next) {
+    db.ref('books/' + req.params.uid).once('value').then(function (snap) {
       res.end(JSON.stringify(snap.val()));
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
 
-  router.get('/library', function(req, res, next) {
-    db.ref('books').once('value').then(function(snap) {
+  router.get('/library', function (req, res, next) {
+    db.ref('books').once('value').then(function (snap) {
       if (snap.val() === null) {
         return res.end();
       } else {
         return res.end(JSON.stringify(snap.val()));
       }
-    }).catch(function(error) {
+    }).catch(function (error) {
       return next(error);
     });
   });
@@ -49,11 +62,11 @@ module.exports = function(admin, express) {
 
 // user =====================================================================
 
-  router.get('/user/:uid/profile', function(req, res, next) {
+  router.get('/user/:uid/profile', function (req, res, next) {
     var uid = req.params.uid;
-    db.ref('users/' + uid).once('value').then(function(snap) {
+    db.ref('users/' + uid).once('value').then(function (snap) {
       res.end(JSON.stringify(snap.val()));
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
@@ -80,71 +93,71 @@ module.exports = function(admin, express) {
     updates[u + '/emailAddress'] = emailAddress;
     updates[u + '/books'] = books;
 
-    db.ref().update(updates).then(function() {
-      db.ref(u).once('value').then(function(snap) {
+    db.ref().update(updates).then(function () {
+      db.ref(u).once('value').then(function (snap) {
         return res.end(JSON.stringify(snap.val()));
-      }).catch(function(error) {
+      }).catch(function (error) {
         next(error);
       });
 
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
 
 // books ====================================================================
 
-  router.post('/library/book', function(req, res, next) {
+  router.post('/library/book', function (req, res, next) {
     var newKey = db.ref().child('books').push().key;
-    db.ref('books/' + newKey).set(req.body.book).then(function() {
+    db.ref('books/' + newKey).set(req.body.book).then(function () {
       res.status(201).end(newKey);
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
 
-  router.post('/library/book/:uid/update', function(req, res, next) {
+  router.post('/library/book/:uid/update', function (req, res, next) {
     var bookId = req.params.uid;
     var book = Object.assign({}, req.body.book);
     var now = moment().unix();
 
     book.lastModified = now;
 
-    db.ref('books/' + bookId).set(book).then(function() {
-      db.ref('books/' + bookId).once('value').then(function(snap) {
+    db.ref('books/' + bookId).set(book).then(function () {
+      db.ref('books/' + bookId).once('value').then(function (snap) {
         res.end(JSON.stringify(snap.val()));
-      }).catch(function(error) {
+      }).catch(function (error) {
         next(error);
       });
 
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
 
-  router.delete('/library/book/:id', function(req, res, next) {
+  router.delete('/library/book/:id', function (req, res, next) {
     var bookId = req.params.id;
-    var bookRef = db.ref('books/'+bookId);
-    bookRef.remove().then(function() {
+    var bookRef = db.ref('books/' + bookId);
+    bookRef.remove().then(function () {
       return res.end();
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });
 
   // propositions ============================================================
 
-  router.post('/library/props/:uid', function(req, res, next) {
+  router.post('/library/props/:uid', function (req, res, next) {
     var bookId = req.params.uid;
     var propositions = Object.assign({}, req.body.propositions);
 
-    db.ref('propositions/' + bookId).set(propositions).then(function() {
-      db.ref('propositions/' + bookId).once('value').then(function(snap) {
+    db.ref('propositions/' + bookId).set(propositions).then(function () {
+      db.ref('propositions/' + bookId).once('value').then(function (snap) {
         return res.end(JSON.stringify(snap.val()));
-      }).catch(function(error) {
+      }).catch(function (error) {
         next(error);
       });
-    }).catch(function(error) {
+    }).catch(function (error) {
       next(error);
     });
   });

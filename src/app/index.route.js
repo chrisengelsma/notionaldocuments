@@ -24,8 +24,14 @@
               });
             },
             apiService: function (auth, ApiService) {
-
+              console.log('resolving api service');
               return new ApiService();
+            },
+            env: function(apiService, $rootScope) {
+              console.log('resolving env');
+              return apiService.getEnv().then(function(result) {
+                $rootScope.env = result.data;
+              });
             },
             libraryService: function (LibraryService, library) {
 
