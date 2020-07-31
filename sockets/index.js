@@ -84,6 +84,10 @@ class SocketService {
         socket.to(bookId).emit('roomUsers', getRoomUsers(bookId));
       });
 
+      socket.on('getUsers', function(bookId) {
+        socket.to(bookId).emit('roomUsers', getRoomUsers(bookId));
+      });
+
       /**
        * Socket for when a user enters a room.
        */

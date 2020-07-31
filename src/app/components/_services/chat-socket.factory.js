@@ -15,6 +15,7 @@
       'broadcastNameAssignment',
       'userUpdated',
       'roomUsers',
+      'getUsers',
       'room',
       'leave'
     ]);

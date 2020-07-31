@@ -37,10 +37,12 @@
     });
 
     $scope.$on('socket:leave', function (event, args) {
+      socket.emit('getUsers', $scope.bookId);
       console.log('user left');
     });
 
     $scope.$on('socket:room', function (event, args) {
+      socket.emit('getUsers', $scope.bookId);
       console.log('user joined');
     });
 
@@ -86,7 +88,12 @@
           }
         });
       } else if ($scope.bookId && $scope.profile && !$scope.roomUsers.includes($scope.profile.displayName)) {
-        $scope.roomUsers.push($scope.profile.displayName);
+        chatSocket.emit('userUpdated', {
+          userId: $rootScope.uid,
+          displayName: $scope.profile.displayName,
+          bookId: $scope.bookId
+        });
+        // $scope.roomUsers.push($scope.profile.displayName);
       }
     }, 250);
 
