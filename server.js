@@ -4,23 +4,27 @@
 require('dotenv').config();
 
 // define globals =====================================
-var express = require('express'),
-  morgan = require('morgan'),
-  path = require('path'),
-  bodyParser = require('body-parser'),
-  admin = require('./server/firebase-admin'),
-  app = module.exports = express(),
-  sockets = require('./sockets');
+const express    = require('express'),
+      morgan     = require('morgan'),
+      path       = require('path'),
+      bodyParser = require('body-parser'),
+      admin      = require('./server/firebase-admin'),
+      http       = require('http'),
+      app        = module.exports = express(),
+      server     = http.createServer(app),
+      io         = require('socket.io').listen(server);
 
+const distDir = path.resolve(__dirname, './dist/');
 
-var distDir = path.resolve(__dirname, './dist');
+const port = process.env.PORT || 3000;
 
-var port = process.env.PORT || 3000;
+// set up our socket server
+require('./sockets/index')(io);
 
 // middleware =========================================
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(distDir));
 
 // application ========================================
@@ -29,21 +33,11 @@ app.use(express.static(distDir));
 var router = require('./server/routes')(admin, express);
 app.use('/', router);
 
-app.listen(port, '0.0.0.0', function (err) {
-  if (err) {
-    gracefullyExit();
-  }
-
+server.listen(port, function() {
   console.log('listening on port', port);
-
-  new sockets.SocketService(app, 3001);
 });
 
 process.on('SIGTERM', gracefullyExit);           // Explicitly close server on kill
 process.on('uncaughtException', gracefullyExit); // Explicitly close server on crash
 
-
-function gracefullyExit(err) {
-  console.error(err);
-  // app.close();
-}
+function gracefullyExit() { server.close(); }
