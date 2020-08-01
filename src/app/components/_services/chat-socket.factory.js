@@ -2,9 +2,9 @@
   'use strict';
 
   /** @ngInject */
-  function chatSocket(socketFactory, $rootScope) {
+  function chatSocket(socketFactory) {
 
-    var socket = socketFactory({ioSocket: io.connect($rootScope.env.socketUrl + ':' + $rootScope.env.socketPort)});
+    var socket = socketFactory();
 
     //add strings to the arguments array for each server emission
     socket.forward([
