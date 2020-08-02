@@ -2571,14 +2571,14 @@
             if (prep.paragraphDestination.propositions[i].assertionId === prep.assertionId &&
               prep.paragraphDestination.propositions[i].type !== 'negation'
               && prep.paragraphDestination.propositions[i].deleted !== true &&
-              !$scope.draggedProposition)
+              !$scope.draggedProposition.id)
               //what about hiddens?
             {
               prep.capacityCount++;
             }
           }
 
-          if (prep.capacityCount > 1 && !$scope.draggedProposition) {
+          if (prep.capacityCount > 1 && !$scope.draggedProposition.id) {
 
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
@@ -2655,7 +2655,7 @@
             }
 
             prep.getsOwnProposition = true;
-            if (!$scope.draggedProposition) {
+            if (!$scope.draggedProposition.id) {
               prep.of = {
                 id: $scope.selectedProposition.id,                                              //   CALCULATIONS FOR A REJOINDER
                 type: $scope.selectedProposition.type,
@@ -2682,7 +2682,7 @@
                 prep.nodePath = prep.nodePath + '[' + prep.address[i].toString() + ']';
               }
             }
-            if (!$scope.draggedProposition) {
+            if (!$scope.draggedProposition.id) {
               prep.assertionPath = $scope.selectedProposition.assertionPath;
               console.log("Not dragged selectedprop assertion path: ", $scope.selectedProposition.assertionPath)
             } else {
@@ -2690,7 +2690,7 @@
             }
             //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
             console.log('DRAGGED PROPOSITION: ', $scope.draggedProposition )
-            if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition) { 
+            if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition.id) { 
               console.log("rejoinder if")                      //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
 
@@ -3206,10 +3206,10 @@
             prep.assertionPath = $scope.draggedProposition.nodePath + '.paragraphs[' + $scope.draggedParagraph.position.toString() +
               '].propositions[' + $scope.draggedProposition.position.toString() + ']';
           }
-          if (prep.assertionDestination && !$scope.draggedProposition) {
+          if (prep.assertionDestination && !$scope.draggedProposition.id) {
             $scope.selectedProposition = eval(prep.assertionPath);   //   SET SELECTEDPROPOSITION EQUAL TO THE PLACE IT IS BEING PUT
           }
-          if (!$scope.draggedProposition) {
+          if (!$scope.draggedProposition.id) {
             prep.of = {
               id: $scope.selectedProposition.id,     //    THE OF WILL BE WHAT'S AT THE PLACE WHERE IT'S PUT
               type: $scope.selectedProposition.type,
