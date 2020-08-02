@@ -4003,7 +4003,7 @@
               // }
 
             } else if (!payload.dropflag) { // theres a remarkPath
-
+              console.log("Goes here")
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
