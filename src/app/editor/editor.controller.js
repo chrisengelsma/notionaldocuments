@@ -4020,7 +4020,9 @@
                     console.log("into if")
                   console.log('dot length: ', apply.nodeDestination.paragraphs[i].propositions.length)
                     apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
+                    console.log("After proproposition path")
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
+                    console.log('After assertion path assignment')
                   }
 
                 }
