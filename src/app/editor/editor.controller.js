@@ -2690,7 +2690,8 @@
             }
             //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
 
-            if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
+            if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition) { 
+              console.log("rejoinder if")                      //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
 
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
@@ -2718,7 +2719,7 @@
                 prep.remarkPath = prep.assertionPath + '.remarks[0]';
               }
             } else if (!$scope.draggedProposition) {
-
+              console.log('rejoinder Else')
               prep.remarkAddress = $scope.selectedProposition.remarkAddress;
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
