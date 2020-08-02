@@ -4026,12 +4026,12 @@
                 }
               }
 
-              console.log("Propositions: ", $scope.propositions)
-              for (var i = 0; i < $scope.propositions.length; i++) {
-                if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
-                  $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
-                }
-              }
+              // console.log("Propositions: ", $scope.propositions)
+              // for (var i = 0; i < $scope.propositions.length; i++) {
+              //   if ($scope.propositions[i].assertionId === payload.proposition.assertionId) { // UPDATES THE ASSERTIONPATH FOR THE PROPOSITIONS
+              //     $scope.propositions[i].assertionPath = apply.propositionPath;               // IN THE PROPOSITIONS ARRAY
+              //   }
+              // }
 
               temp.remarkPath = apply.propositionPath;          // the path to the assertion is the starting basis for the remark path
               temp.remarkDestination = eval(temp.remarkPath);
