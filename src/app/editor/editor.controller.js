@@ -2688,7 +2688,7 @@
               prep.assertionPath = $scope.draggedProposition.assertionPath;
             }
             //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-
+            console.log('DRAGGED PROPOSITION: ', !$scope.draggedProposition )
             if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition) { 
               console.log("rejoinder if")                      //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
