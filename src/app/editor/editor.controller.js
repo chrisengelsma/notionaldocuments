@@ -4015,8 +4015,10 @@
                 console.log("Can does evaluate?")
                 console.log(apply.nodeDestination.paragraphs[i].propositions.length)
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
+                  console.log('into for')
                   if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
+                    console.log("into if")
                     apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
                   }
