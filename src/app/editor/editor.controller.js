@@ -560,7 +560,7 @@
 
       // Warn if the browser doesn't support addEventListener or the Page Visibility API
       if (typeof document.addEventListener === 'undefined' || hidden === undefined) {
-        console.log('');
+        console.log('Not defined hidden');
       } else {
         // Handle page visibility change
         document.addEventListener(visibilityChange, handleVisibilityChange, false);
@@ -1718,20 +1718,18 @@
 
 
             for (var i = 0; i < paragraph.propositions.length; i++) {
-              console.log('test one ', paragraph.propositions[i].id === $scope.draggedProposition.id);
-              console.log('test two ', paragraph.propositions[i].type === 'negation' &&
-                paragraph.propositions[i].of.id === $scope.draggedProposition.id);
+              
               if ((paragraph.propositions[i].id === $scope.selectedProposition.id ||
                 (paragraph.propositions[i].type === 'negation' && paragraph.propositions[i].of.id === $scope.selectedProposition.id)) &&
                 !$scope.draggedProposition.id) {
-                console.log(i, ' hit on one');
+                
                 prep.ids.push(paragraph.propositions[i].id);
 
               } else if (((
                 paragraph.propositions[i].id === $scope.draggedProposition.id) ||
                 (paragraph.propositions[i].type === 'negation' &&
                   paragraph.propositions[i].of.id === $scope.draggedProposition.id))) {
-                console.log(i, ' hit on both');
+                
                 prep.ids.push(paragraph.propositions[i].id);
                 prep.draggedProps.push(paragraph.propositions[i]);
               }
@@ -1742,16 +1740,12 @@
 
             for (var i = 0; i < paragraph.propositions.length; i++) {
               prep.check = paragraph.propositions[i].id;
-              console.log(prep.check);
-              console.log(prep.ids);
-              console.log(!paragraph.propositions[i].hiddenForAll);
-              console.log(paragraph.propositions[i][$scope.userId] !== 'hidden');
-
-              console.log(!prep.ids.includes(prep.check));
+              
+         
               if (paragraph.propositions[i][$scope.userId] !== 'hidden' &&
                 !paragraph.propositions[i].hiddenForAll &&
                 !prep.ids.includes(prep.check)) {
-                console.log(i, ' hit');
+                
                 prep.assigned = true;
                 prep.blankPropositionForEveryone = true;
                 prep.hiddenForAll = true;
@@ -1929,20 +1923,20 @@
               $('proposition' + $scope.selectedProposition.id).trigger('click');
             }
           } else {
-            console.log('else');
+            
             for (var i = apply.paragraphDestination.propositions.length - 1; i > -1; i--) {
-              console.log('Paragraph destination ', apply.paragraphDestination);
+              
               apply.paragraphDestination.propositions[i].position++;
               apply.paragraphDestination.propositions[i].hiddenForAll = true;
               apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
               if ($scope.selectedProposition) {
-                console.log('Outer sieve');
+                
                 if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id) {
                   $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                 }
               }
             }
-            console.log('past for');
+            
             // Insert new blank proposition for something to grab onto
             apply.paragraphDestination.propositions[0] = {
               id: payload.blankId,
@@ -2052,7 +2046,7 @@
               for (var j = 0; j < payload.ids.length; j++) {
                 if (payload.ids[j] === apply.paragraphDestination.propositions[i].id) {
 
-                  console.log('Hits, j: ', j, ' i: ', i);
+                  
 
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
                   if (payload.dropflag) {
@@ -2211,9 +2205,7 @@
           if (eval(apply.mutedParagraphPath)[$scope.userId] === 'hidden') {
             apply.muteIncomingThread = true;
           }
-        } else {
-          console.log('');
-        }
+        } 
 
         if (apply.muteIncomingThread) {
           $scope.data[0].dialogue[$scope.data[0].dialogue.length - 1][$scope.userId] = 'hidden';
@@ -2634,7 +2626,7 @@
 
 
           } else {
-            console.log('big else')
+           
 
             prep.paragraphPosition = $scope.selectedParagraph.position;
             for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
@@ -2684,14 +2676,14 @@
             }
             if (!$scope.draggedProposition.id) {
               prep.assertionPath = $scope.selectedProposition.assertionPath;
-              console.log("Not dragged selectedprop assertion path: ", $scope.selectedProposition.assertionPath)
+          
             } else {
               prep.assertionPath = $scope.draggedProposition.assertionPath;
             }
             //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-            console.log('DRAGGED PROPOSITION: ', $scope.draggedProposition )
+            
             if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition.id) { 
-              console.log("rejoinder if")                      //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
+                                  //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
 
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
@@ -2719,14 +2711,13 @@
                 prep.remarkPath = prep.assertionPath + '.remarks[0]';
               }
             } else if (!$scope.draggedProposition.id) {
-              console.log('rejoinder Else')
-              console.log('assertion path: ', prep.assertionPath)
+             
               prep.remarkAddress = $scope.selectedProposition.remarkAddress;
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
 
             } else {
-              console.log('last else')
+              
               prep.remarkAddress = $scope.draggedProposition.remarkAddress;
               prep.remarkPath = $scope.draggedProposition.remarkPath;
             }
@@ -3015,7 +3006,7 @@
               // wont find anything due to changing the path, above
               prep.candidateParagraphDestination = eval(prep.candidateParagraphPath);
               prep.aboveCandidateParagraphDestination = eval(prep.aboveCandidateParagraphPath);
-              console.log('Selected paragraph: ', $scope.selectedParagraph);
+              
               if (prep.candidateParagraphDestination.owner === $scope.userId &&
                 $scope.selectedParagraph.owner !== $scope.userId && !draggedProps) {
                 prep.paragraphPosition = prep.candidateParagraphDestination.position;
@@ -3035,13 +3026,13 @@
                 for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++) {
 
                   if (prep.nodeDestination.paragraphs[i].owner === $scope.userId && !prep.insertsBelow) {
-                    console.log('I: ', i);
+                    
                     for (var j = i + 1; j < prep.nodeDestination.paragraphs.length; j++) {
-                      console.log('J: ', j);
+                     
                       if (prep.nodeDestination.paragraphs[j]) {
-                        console.log('if');
+                        
                         if (prep.nodeDestination.paragraphs[j].owner !== $scope.userId) {
-                          console.log('2nd if');
+                          
                           prep.paragraphPosition = j;
                           prep.position = 0;
                           prep.insertsBelow = true;
@@ -3320,7 +3311,7 @@
           $scope.$apply(function () {
 
             if (payload.dropflag) {
-              console.log('');
+              console.log('Dropflag');
             }
             console.log('Received proposition: ', payload);
 
@@ -3835,12 +3826,12 @@
                     }
 
                     apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
-                    console.log('Copied up: ', apply.paragraphDestination.propositions[i + 1]);
+                    
                   }
                   for (var i = 0; i < payload.draggedProps.length; i++) {
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
-                    console.log('Dropped in: ', apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i]);
+                    
                     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].nodePath = payload.nodePath;
                     if (i === 0) {
                       apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
@@ -4014,18 +4005,17 @@
 
 
               for (var i = 0; i < apply.nodeDestination.paragraphs.length; i++) {
-                console.log("Can does evaluate?")
-                console.log(apply.nodeDestination.paragraphs[i].propositions.length)
+                
+                
                 for (var j = 0; j < apply.nodeDestination.paragraphs[i].propositions.length; j++) {
-                  console.log('into for')
+                 
                   if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
-                    console.log("into if")
-                  console.log('dot length: ', apply.nodeDestination.paragraphs[i].propositions.length)
+                   
                     apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
-                    console.log("After proproposition path")
+                    
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
-                    console.log('After assertion path assignment')
+                   
                   }
 
                 }
@@ -4041,7 +4031,7 @@
               temp.remarkPath = apply.propositionPath;          // the path to the assertion is the starting basis for the remark path
               temp.remarkDestination = eval(temp.remarkPath);
 
-              console.log('all the way out here: ', payload.proposition.remarkAddress.length)
+           
               for (var i = 0; i < payload.proposition.remarkAddress.length - 1; i++) {
                 temp.remarkPath = temp.remarkPath + '.remarks[' + temp.remarkAddress[i].toString() + ']';   // navigate to the place to put the remark
               }
