@@ -4003,8 +4003,7 @@
               // }
 
             } else if (!payload.dropflag) { // theres a remarkPath
-              console.log("Goes here")
-              console.log("Propositions: ", $scope.propositions)
+              
               temp.remarkAddress = payload.proposition.remarkAddress;
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
@@ -4019,6 +4018,7 @@
                   if (apply.nodeDestination.paragraphs[i].propositions[j].type === 'assertion' &&                                 //    FIND WHERE TEH ASSERTION IS NOW
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionId === payload.proposition.assertionId) {           //    UPDATE ITS PATH
                     console.log("into if")
+                  console.log('dot length: ', apply.nodeDestination.paragraphs[i].propositions.length)
                     apply.propositionPath = payload.nodePath + '.paragraphs[' + i.toString() + '].propositions[' + j.toString() + ']';
                     apply.nodeDestination.paragraphs[i].propositions[j].assertionPath = apply.propositionPath;
                   }
