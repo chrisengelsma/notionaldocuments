@@ -4038,7 +4038,7 @@
               temp.remarkPath = apply.propositionPath;          // the path to the assertion is the starting basis for the remark path
               temp.remarkDestination = eval(temp.remarkPath);
 
-
+              console.log('all the way out here: ', payload.proposition.remarkAddress.length)
               for (var i = 0; i < payload.proposition.remarkAddress.length - 1; i++) {
                 temp.remarkPath = temp.remarkPath + '.remarks[' + temp.remarkAddress[i].toString() + ']';   // navigate to the place to put the remark
               }
