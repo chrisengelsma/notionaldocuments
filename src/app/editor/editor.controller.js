@@ -2684,6 +2684,7 @@
             }
             if (!$scope.draggedProposition) {
               prep.assertionPath = $scope.selectedProposition.assertionPath;
+              console.log("Not dragged selectedprop assertion path: ", $scope.selectedProposition.assertionPath)
             } else {
               prep.assertionPath = $scope.draggedProposition.assertionPath;
             }
@@ -2719,7 +2720,7 @@
               }
             } else if (!$scope.draggedProposition.id) {
               console.log('rejoinder Else')
-              console.log('dragged prop: ', $scope.draggedProposition)
+              console.log('assertion path: ', prep.assertionPath)
               prep.remarkAddress = $scope.selectedProposition.remarkAddress;
               prep.remarkAddress.push(0);
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
