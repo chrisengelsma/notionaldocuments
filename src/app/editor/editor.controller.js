@@ -171,6 +171,7 @@
                 var temp = {};
                 temp.toBeStampedPath = obj.propositions[i].nodePath + '.paragraphs[' + obj.position.toString() + '].propositions['
                   + obj.propositions[i].position.toString() + ']';
+                console.log('Temp to be stamped path: ', temp.toBeStampedPath)
                 temp.toBeStampedDestination = eval(temp.toBeStampedPath);
                 temp.toBeStampedDestination.assertionPath = path;
               }
