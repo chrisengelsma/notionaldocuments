@@ -2269,20 +2269,19 @@
         console.log('bottom add: ', paragraph.bottomAdd);
         if (paragraph.topAdd || paragraph.bottomAdd) {
           $scope.selectedProposition.textSide = true;
-          console.log('Textside: ', $scope.selectedProposition.textSide);
+          
 
         }
-        console.log('Dragged proposition: ', $scope.draggedProposition);
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
-            console.log('Top added: ', paragraph.topAdd);
+            
           } else if ($scope.draggedProposition.dropflag === 'bottom') {
             paragraph.bottomAdd = true;
-            console.log('Bottom added: ', paragraph.bottomAdd);
+          
           } else if ($scope.draggedProposition.dropflag === 'left') {
             paragraph.leftAdd = true;
-            console.log('Left added: ', paragraph.leftAdd);
+        
           }
           $scope.selectedParagraph = paragraph;
           if (!proposition) {
@@ -2333,7 +2332,7 @@
         // If it's ended with a colon,
         // it's a topic
 
-        console.log('Textside: ', $scope.selectedProposition.textSide);
+       
         if (prep.lastChar === ':') {
           // Get rid of the colon
           prep.topic = input.substring(0, input.length - 1);
@@ -2635,7 +2634,7 @@
 
 
           } else {
-
+            console.log('big else')
 
             prep.paragraphPosition = $scope.selectedParagraph.position;
             for (var i = 0; i < $scope.selectedParagraph.propositions.length; i++) {
@@ -2725,6 +2724,7 @@
               prep.remarkPath = prep.assertionPath + '.remarks[0]';
 
             } else {
+              console.log('last else')
               prep.remarkAddress = $scope.draggedProposition.remarkAddress;
               prep.remarkPath = $scope.draggedProposition.remarkPath;
             }
