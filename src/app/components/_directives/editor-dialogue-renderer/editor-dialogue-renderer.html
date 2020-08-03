@@ -38,7 +38,7 @@
       <!-- <div class="remarktopspacer"
            ng-style="{'background-color': remark.color}"></div> -->
       <span class="tree-node tree-node-content remark remarkparagraph"
-            ng-class="{'remarkselected': selectedProposition.id === remark.id,
+            ng-class="{
                      'deleted': remark.deleted === true,
                      'rejoinder': (selectedProposition.of.id === remark.id && selectedProposition.of.type === 'assertion' && selectedProposition.of.author === userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) =='!')),
                      'alignright': (remark.type === 'negation' && remark.dialogueText !== '- Paragraph deleted -'),
