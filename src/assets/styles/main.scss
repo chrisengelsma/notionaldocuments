@@ -347,7 +347,7 @@ textarea {
 }
 
 .underline {
-  border-bottom: 1px solid black;
+  text-decoration: underline;
 }
 
 .highlight {
@@ -485,8 +485,6 @@ textarea.expanding {
 .chatinput {
   display: block;
   background: transparent;
-  padding-left: 20px;
-  padding-right: 20px;
   border: none;
   outline: none !important;
   resize: none;
@@ -514,11 +512,11 @@ textarea.expanding {
 .alignright {
   margin-left: 50px !important;
   display: inline-flex;
-  padding-right: 10px !important;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 10px;
+}
+
+textarea.alignright {
+  max-width: 75%;
+  display: inline-flex;
 }
 
 .tooltip.top {
