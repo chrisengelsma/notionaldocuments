@@ -2050,6 +2050,7 @@
                   
 
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
+                  console.log("hid position ", i)
                   if (payload.dropflag) {
 
                     apply.paragraphDestination.propositions[i].droppedElsewhere = true;
