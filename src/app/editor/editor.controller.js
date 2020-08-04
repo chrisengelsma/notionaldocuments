@@ -2267,6 +2267,8 @@
 
         }
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
+          console.log("Returning!")
+          return;
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
             
@@ -3314,7 +3316,7 @@
           $scope.$apply(function () {
 
             if (payload.dropflag) {
-              return;
+              console.log('Dropflag');
             }
             console.log('Received proposition: ', payload);
 
