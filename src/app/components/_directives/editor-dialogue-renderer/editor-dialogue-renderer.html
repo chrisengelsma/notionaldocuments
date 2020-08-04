@@ -31,10 +31,9 @@
   </p>
 
   <div class="thread-wrapper">
-    <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId"
-       class=""
-       ng-style="{}"
-       style="">
+    <p ng-repeat="remark in thread.remarks track by $index" ng-if="threadAdding !== thread.threadId">
+
+      <span></span>
       <!-- <div class="remarktopspacer"
            ng-style="{'background-color': remark.color}"></div> -->
       <span class="tree-node tree-node-content remark remarkparagraph"
@@ -52,8 +51,7 @@
             ng-style="{'background-color': remark.color}">
           <!-- border-right: 1px solid #aaa; border-left: 1px solid #aaa; -->
 
-		<span style=""
-          ng-class="{'underline': remark.mouseOver === true,
+		<span ng-class="{'underline': remark.mouseOver === true,
                      'remarkupdated': remark.text !== remark.dialogueText || remark.updated,
                      'negation': (selectedProposition.id === remark.id && selectedProposition.type === 'assertion' && selectedProposition.author != userId && (inputs.proposition.charAt(inputs.proposition.length-1) === '!'|| inputs.chatProposition.charAt(inputs.chatProposition.length-1) === '!'))
                     }">{{remark.dialogueText}}</span>
