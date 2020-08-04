@@ -2416,7 +2416,7 @@
           // inaugurate new sections
           //
           //
-
+          console.log("Is negation")
           if ($scope.selectedProposition.type === 'negation') {
             prep.isOfNegation = true;
             for (var i = $scope.selectedProposition.position - 1; i > -1; i--) {
@@ -2471,6 +2471,7 @@
             }
           }
           prep.assertionPath = $scope.selectedProposition.assertionPath;                                   // CALCULATES PATH TO THE ASSERTION
+          console.log("Prep: ", prep)
           if ($scope.selectedProposition.remarkAddress) {      // only if it's a negation of a rejoinder
             if ($scope.selectedProposition.type === 'negation') {
               var start = prep.assertionPath;
