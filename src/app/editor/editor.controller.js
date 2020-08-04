@@ -3898,6 +3898,7 @@
                   apply.paragraphAboveDestination.propositions[i].rejoined = true;
                   apply.paragraphAboveDestination.propositions[i][$scope.userId] = 'hidden';
                   apply.paragraphAboveDestination.propositions[i].hiddenForAll = true;
+                  console.log("Rejoined at ", i)
                 }
               }
             } else if (payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) {
@@ -3906,6 +3907,7 @@
                   apply.paragraphDestination.propositions[i].rejoined = true;
                   apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
+                  console.log("Rejoined at ", i)
                 }
               }
             }
