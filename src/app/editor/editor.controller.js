@@ -3892,7 +3892,7 @@
 
 
             // Hides rejoined propositions
-            if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && payload.proposition.insertsBelow) {
+            if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && payload.proposition.insertsBelow && !payload.dropflag) {
               for (var i = 0; i < apply.paragraphAboveDestination.propositions.length; i++) {
                 if (payload.proposition.of.id === apply.paragraphAboveDestination.propositions[i].id) {
                   apply.paragraphAboveDestination.propositions[i].rejoined = true;
@@ -3901,7 +3901,7 @@
                   console.log("Rejoined at ", i)
                 }
               }
-            } else if (payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) {
+            } else if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && !payload.dropflag) {
               for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
                 if (payload.proposition.of.id === apply.paragraphDestination.propositions[i].id) {
                   apply.paragraphDestination.propositions[i].rejoined = true;
