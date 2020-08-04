@@ -3314,7 +3314,7 @@
           $scope.$apply(function () {
 
             if (payload.dropflag) {
-              console.log('Dropflag');
+              return;
             }
             console.log('Received proposition: ', payload);
 
