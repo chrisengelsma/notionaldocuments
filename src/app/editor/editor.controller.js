@@ -2065,7 +2065,9 @@
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
           }
 
-
+          if (payload.dropflag){
+            return;
+          }
           //dialogue interactivity
           if (!payload.id) {
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
@@ -2278,7 +2280,6 @@
         }
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
 
-          return;
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
             
