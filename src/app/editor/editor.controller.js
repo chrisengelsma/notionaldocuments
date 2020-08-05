@@ -2487,6 +2487,7 @@
           console.log("Prep: ", prep)
           if ($scope.selectedProposition.remarkAddress) {      // only if it's a negation of a rejoinder
             if ($scope.selectedProposition.type === 'negation') {
+              console.log("goes to if")
               var start = prep.assertionPath;
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length - 1; i++) { // calculate the path to the selectedProposition's remark location
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
@@ -2500,6 +2501,7 @@
               endOfAddress = '';
               start = '';
             } else {
+              console.log('goes to else')
               var start = prep.assertionPath; // start with the path taking you to the assertion
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) { // calculate the path to the selectedProposition's remark location
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
