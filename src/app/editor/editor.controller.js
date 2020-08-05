@@ -2041,6 +2041,11 @@
         }
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
+
+          if (payload.dropflag){
+            return;
+          }
+
           if (payload.blankPropositionForEveryone) {
 
             for (var i = 0; i < apply.paragraphDestination.propositions.length; i++) {
@@ -2267,8 +2272,7 @@
 
         }
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
-          console.log("Returning!")
-          return;
+
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
             
