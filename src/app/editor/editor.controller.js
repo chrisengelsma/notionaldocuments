@@ -2065,15 +2065,14 @@
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
           }
 
-          if (payload.dropflag){
-            return;
-          }
+
           //dialogue interactivity
           if (!payload.id) {
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 for (var k = 0; k < payload.ids.length; k++) {
                   if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
+                    console.log("Not Hit. i: ", i, " j: ", j, " k: ", k)
                     $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                     $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                   }
@@ -2085,6 +2084,7 @@
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 for (var k = 0; k < payload.ids.length; k++) {
                   if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
+                    onsole.log("Not dialogue hit. i: ", i, " j: ", j, " k: ", k)
                     $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                     $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                   }
@@ -2095,23 +2095,22 @@
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id) {
+                  console.log('Else hit. i: ', i, " j: ", j)
                   $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                   $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                 }
                 if ($scope.data[0].dialogue[i].remarks[j + 1]) {
                   if ($scope.data[0].dialogue[i].remarks[j + 1].type === 'negation') {
+                    console.log('Else 2nd if hit. i: ', i, " j + 1: ", j + 1)
                     $scope.data[0].dialogue[i].remarks[j + 1][$scope.userId] = 'hidden';
-                    $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
+                    $scope.data[0].dialogue[i].remarks[j+1].hiddenForAll = true;
                   }
                 }
               }
             }
           }
 
-          if (payload.dropflag){
-            console.log("Returning!")
-            return;
-          }
+          
 
           if (payload.deleter === $scope.userId) {
             for (var i = payload.proposition.position; i > -1; i--) {
