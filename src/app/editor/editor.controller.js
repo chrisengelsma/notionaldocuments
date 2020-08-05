@@ -2042,9 +2042,7 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
 
-          if (payload.dropflag){
-            return;
-          }
+          
 
           if (payload.blankPropositionForEveryone) {
 
