@@ -2064,6 +2064,11 @@
           } else if (payload.hideNegationForOthers) {
             apply.paragraphDestination.propositions[payload.proposition.position][$scope.userId] = 'hidden';
           }
+
+          if (payload.dropflag){
+            console.log("Returning!")
+            return;
+          }
           //dialogue interactivity
           if (!payload.id) {
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
@@ -2104,10 +2109,7 @@
             }
           }
 
-          if (payload.dropflag){
-            console.log("Returning!")
-            return;
-          }
+
 
           if (payload.deleter === $scope.userId) {
             for (var i = payload.proposition.position; i > -1; i--) {
