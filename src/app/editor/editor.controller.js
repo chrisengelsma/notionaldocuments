@@ -2042,9 +2042,7 @@
 
         if (payload.blankPropositionForEveryone || payload.hideNegationForOthers) {
 
-          if (payload.dropflag){
-            return;
-          }
+
 
           if (payload.blankPropositionForEveryone) {
 
@@ -2104,6 +2102,11 @@
                 }
               }
             }
+          }
+
+          if (payload.dropflag){
+            console.log("Returning!")
+            return;
           }
 
           if (payload.deleter === $scope.userId) {
