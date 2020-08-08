@@ -104,6 +104,8 @@
 
     $scope.setAssertionPaths = function () {
 
+      return;
+
       traverse($scope.data[0]);
 
       function traverseArray(arr) {
