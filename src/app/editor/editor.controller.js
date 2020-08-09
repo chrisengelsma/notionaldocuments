@@ -104,7 +104,7 @@
 
     $scope.setAssertionPaths = function () {
 
-      return;
+      
 
       traverse($scope.data[0]);
 
@@ -128,7 +128,7 @@
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x);
         } else {
-          if (key === 'paragraphId') {
+          if (key === 'paragraphId' && !obj.isDraggedParagraph) {
 
             for (var i = 0; i < obj.propositions.length; i++) {
               if (obj.propositions[i].type === 'assertion' &&
@@ -146,15 +146,6 @@
       }
     };
 
-    // Signs out
-    $scope.logout = function () {
-      apiService.signOut().then(function () {
-        profileService.clear();
-        libraryService.clear();
-        $state.go('login');
-      });
-    };
-
     $scope.traverseAssertions = function (path) {
 
       traverse($scope.data[0]);
@@ -165,17 +156,18 @@
         } else if ((typeof x === 'object') && (x !== null)) {
           traverseObject(x);
         } else {
-          if (key === 'paragraphId') {
+          if (key === 'paragraphId' && !obj.isDraggedParagraph) {
             var temp = {};
             for (var i = 0; i < obj.propositions.length; i++) {
-              temp.destination = eval(path);
-              if (temp.destination.assertionId === obj.propositions[i].assertionId) {
+              temp.assertionBeingWorkedWith = eval(path);
+              if (temp.assertionBeingWorkedWith.assertionId === obj.propositions[i].assertionId) {
                 var temp = {};
-                temp.toBeStampedPath = obj.propositions[i].nodePath + '.paragraphs[' + obj.position.toString() + '].propositions['
-                  + obj.propositions[i].position.toString() + ']';
-                console.log('Temp to be stamped path: ', temp.toBeStampedPath)
+                temp.toBeStampedPath = obj.propositions[i].nodePath + '.paragraphs[' + obj.position.toString() + 
+                '].propositions[' + obj.propositions[i].position.toString() + ']';
+                
                 temp.toBeStampedDestination = eval(temp.toBeStampedPath);
                 temp.toBeStampedDestination.assertionPath = path;
+                console.log(temp.toBeStampedPath, "'s assertion path was updated to ", path)
               }
             }
           }
@@ -197,6 +189,16 @@
       }
 
     };
+
+    // Signs out
+    $scope.logout = function () {
+      apiService.signOut().then(function () {
+        profileService.clear();
+        libraryService.clear();
+        $state.go('login');
+      });
+    };
+
 
     $scope.makePristine = function () {
       function traverse(x, key, obj) {
@@ -1568,6 +1570,7 @@
             $scope.cancelListenForDoubleClick = true;
             $scope.cancelDrop = true;
             $scope.draggedParagraph = angular.copy(paragraph);
+            $scope.draggedParagraph.isDraggedParagraph = true;
             $scope.draggedProposition = angular.copy(proposition);
             if ($scope.draggedProposition.type === 'rejoinder') {
               $scope.draggingRejoinder = true;
@@ -2272,13 +2275,11 @@
         if (event) {
           event.preventDefault();
         }
-        console.log('top add: ', paragraph.topAdd);
-        console.log('bottom add: ', paragraph.bottomAdd);
+
         if (paragraph.topAdd || paragraph.bottomAdd) {
           $scope.selectedProposition.textSide = true;
-          
-
         }
+
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
 
           if ($scope.draggedProposition.dropflag === 'top') {
@@ -2299,16 +2300,6 @@
           }
 
 
-          // for (var i = 0; i < $scope.draggedParagraph.propositions.length; i++){
-          //   if ((
-          //   $scope.draggedParagraph.propositions[i].id === $scope.draggedProposition.id) ||
-          //   ($scope.draggedParagraph.propositions[i].type === 'negation' &&
-          //   $scope.draggedParagraph.propositions[i].of.id === $scope.draggedProposition.id)){
-          //     prep.hideFast = document.getElementById('wholeprop' + $scope.draggedParagraph.propositions[i].id);
-          //     prep.hideFast.style.display = 'none';
-          //     $scope.draggedProps.push($scope.draggedParagraph.propositions[i]);
-          //   }
-          // }
         }
         if ($scope.selectedParagraph) {
           $scope.selectedParagraph.highlightAll = false;
