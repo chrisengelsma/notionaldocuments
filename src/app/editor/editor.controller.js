@@ -2794,7 +2794,7 @@
             prep.ofParagraphPosition = $scope.selectedParagraph.position;
           }
 
-        } else if (!prep.answeredQuestion && prep.type !== 'topic') {
+        } else if (!prep.answeredQuestion && prep.type !== 'topic' && prep.type !== 'rejoinder') {
           console.log("goes into second if")
           if (paragraph.topAdd) {
             prep.nodePath = '$scope.data';
@@ -3060,7 +3060,7 @@
                 console.log('Placing this at the end of the document');
               }
             }
-          } else {
+          } else if (prep.type !== 'rejoinder') {
             console.log("Goes into weird else")
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
