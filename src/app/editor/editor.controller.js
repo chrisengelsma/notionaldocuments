@@ -137,7 +137,7 @@
             console.log("Object: ", obj)
             for (var i = 0; i < obj.propositions.length; i++) {
               if (obj.propositions[i].type === 'assertion' &&
-                !obj.propositions[i].droppedElsewhere) {
+                obj.propositions[i].droppedElsewhere != true) {
                 console.log("Goes into second if")
 
                 var temp = {};
