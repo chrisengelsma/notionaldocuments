@@ -2482,7 +2482,7 @@
           }
 
           if (prep.capacityCount > 1 && !$scope.draggedProposition.id) {
-            console.log("the if")
+            
 
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
@@ -2729,6 +2729,8 @@
         }
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
+
+          console.log("goes into placeholder if")
           //placeholders only appear after deletions
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
@@ -2793,7 +2795,7 @@
           }
 
         } else if (!prep.answeredQuestion && prep.type !== 'topic') {
-
+          console.log("goes into second if")
           if (paragraph.topAdd) {
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
@@ -3059,6 +3061,7 @@
               }
             }
           } else {
+            console.log("Goes into weird else")
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
