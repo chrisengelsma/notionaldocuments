@@ -2163,8 +2163,7 @@
       };
 
       $scope.getRemarkLocation = function (address, assertionId) {
-        // var temp = {};
-        // temp.location = eval(assertionPath);
+
         for (var i = 0; i < $scope.propositions.length; i++) {
           if ($scope.propositions[i].id === assertionId) {
             break;
@@ -2507,7 +2506,7 @@
             }
 
             prep.assertionPath = $scope.selectedProposition.assertionPath;                    //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-
+            console.log("Assertion path, if: ", prep.assertionPath)
             if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
@@ -2593,7 +2592,7 @@
               prep.assertionPath = $scope.draggedProposition.assertionPath;
             }
             //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-            
+            console.log("Assertion path, else: ", prep.assertionPath)
             if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition.id) { 
                                   //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
@@ -3101,7 +3100,7 @@
           }
 
           if (!$scope.draggingRejoinder) {
-            prep.assertionPath = prep.nodePath + '.paragraphs[' + prep.paragraphPosition.toString() + '].propositions[' + prep.position.toString() + ']';
+            console.log("Here might have been the error")
           } else {
             prep.assertionPath = $scope.draggedProposition.nodePath + '.paragraphs[' + $scope.draggedParagraph.position.toString() +
               '].propositions[' + $scope.draggedProposition.position.toString() + ']';
