@@ -2015,7 +2015,7 @@
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 for (var k = 0; k < payload.ids.length; k++) {
                   if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
-                    onsole.log("Not dialogue hit. i: ", i, " j: ", j, " k: ", k)
+                    console.log("Not dialogue hit. i: ", i, " j: ", j, " k: ", k)
                     $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                     $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                   }
