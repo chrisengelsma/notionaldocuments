@@ -151,6 +151,7 @@
     };
 
     $scope.traverseAssertions = function (path) {
+      console.log("Traversing assertions")
 
       traverse($scope.data[0]);
 
