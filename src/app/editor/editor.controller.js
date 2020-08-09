@@ -134,7 +134,7 @@
         } else {
           if (key === 'paragraphId' && !obj.isDraggedParagraph) {
             console.log("Goes into if")
-
+            console.log("Object: ", obj)
             for (var i = 0; i < obj.propositions.length; i++) {
               if (obj.propositions[i].type === 'assertion' &&
                 !obj.propositions[i].droppedElsewhere) {
