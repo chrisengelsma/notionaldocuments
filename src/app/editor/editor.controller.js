@@ -2003,7 +2003,7 @@
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 for (var k = 0; k < payload.ids.length; k++) {
                   if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
-                    console.log("Not Hit. i: ", i, " j: ", j, " k: ", k)
+                    // console.log("Not Hit. i: ", i, " j: ", j, " k: ", k)
                     $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                     $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                   }
@@ -2015,7 +2015,7 @@
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 for (var k = 0; k < payload.ids.length; k++) {
                   if ($scope.data[0].dialogue[i].remarks[j].id === payload.ids[k]) {
-                    console.log("Not dialogue hit. i: ", i, " j: ", j, " k: ", k)
+                    // console.log("Not dialogue hit. i: ", i, " j: ", j, " k: ", k)
                     $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                     $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                   }
@@ -2026,13 +2026,13 @@
             for (var i = 0; i < $scope.data[0].dialogue.length; i++) {
               for (var j = 0; j < $scope.data[0].dialogue[i].remarks.length - 1; j++) {
                 if ($scope.data[0].dialogue[i].remarks[j].id === payload.proposition.id) {
-                  console.log('Else hit. i: ', i, " j: ", j)
+                  // console.log('Else hit. i: ', i, " j: ", j)
                   $scope.data[0].dialogue[i].remarks[j][$scope.userId] = 'hidden';
                   $scope.data[0].dialogue[i].remarks[j].hiddenForAll = true;
                 }
                 if ($scope.data[0].dialogue[i].remarks[j + 1]) {
                   if ($scope.data[0].dialogue[i].remarks[j + 1].type === 'negation') {
-                    console.log('Else 2nd if hit. i: ', i, " j + 1: ", j + 1)
+                    // console.log('Else 2nd if hit. i: ', i, " j + 1: ", j + 1)
                     $scope.data[0].dialogue[i].remarks[j + 1][$scope.userId] = 'hidden';
                     $scope.data[0].dialogue[i].remarks[j+1].hiddenForAll = true;
                   }
@@ -2323,7 +2323,7 @@
 
           // if (prep.lastChar === '?') {
 
-          console.log("Is negation")
+          
           if ($scope.selectedProposition.type === 'negation') {
             prep.isOfNegation = true;
             for (var i = $scope.selectedProposition.position - 1; i > -1; i--) {
@@ -2378,10 +2378,10 @@
             }
           }
           prep.assertionPath = $scope.selectedProposition.assertionPath;                                   // CALCULATES PATH TO THE ASSERTION
-          console.log("Prep: ", prep)
+         
           if ($scope.selectedProposition.remarkAddress) {      // only if it's a negation of a rejoinder
             if ($scope.selectedProposition.type === 'negation') {
-              console.log("goes to if")
+              
               var start = prep.assertionPath;
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length - 1; i++) { // calculate the path to the selectedProposition's remark location
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
@@ -2395,7 +2395,7 @@
               endOfAddress = '';
               start = '';
             } else {
-              console.log('goes to else')
+              
               var start = prep.assertionPath; // start with the path taking you to the assertion
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) { // calculate the path to the selectedProposition's remark location
                 start = start + '.remarks[' + $scope.selectedProposition.remarkAddress[i].toString() + ']';
@@ -2426,7 +2426,7 @@
               } else {
                 prep.remarkAddress = [0];                     //   otherwise it's a first negation
                 prep.remarkPath = prep.assertionPath + '.remarks[0]';
-                console.log('This was not expected to trigger');
+                // console.log('This was not expected to trigger');
               }
             } else {
               var start = prep.assertionPath;
@@ -2507,7 +2507,7 @@
             }
 
             prep.assertionPath = $scope.selectedProposition.assertionPath;                    //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-            console.log("Assertion path, if: ", prep.assertionPath)
+           
             if ($scope.selectedProposition.remarkAddress.length > 0) {                       //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
               for (var i = 0; i < $scope.selectedProposition.remarkAddress.length; i++) {                    // calculate the path to the selectedProposition's remark location
@@ -2538,7 +2538,7 @@
 
 
           } else {
-            console.log("The else")
+            // console.log("The else")
            
 
             prep.paragraphPosition = $scope.selectedParagraph.position;
@@ -2594,7 +2594,7 @@
               prep.assertionPath = $scope.draggedProposition.assertionPath;
             }
             //  IT WILL HAVE THE SAME ASSERTION PATH AS SELECTEDPROPOSITION
-            console.log("Assertion path, else: ", prep.assertionPath)
+            // console.log("Assertion path, else: ", prep.assertionPath)
             if ($scope.selectedProposition.remarkAddress.length > 0 && !$scope.draggedProposition.id) { 
                                   //      IF SELECTED PROPOSITION IS A NEGATION OF A REJOINDER
               var start = $scope.selectedProposition.assertionPath;                               // start with the path taking you to the assertion
@@ -2730,7 +2730,7 @@
 
         if ($scope.selectedProposition.type === 'blank' && prep.type !== 'topic') {
 
-          console.log("goes into placeholder if")
+          // console.log("goes into placeholder if")
           //placeholders only appear after deletions
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
@@ -4380,7 +4380,7 @@
       };
 
       $scope.blurLightUpLastVisiblePropositionInParagraph = function (node, paragraph, event) {
-        console.log('B P');
+        // console.log('B P');
         for (var i = paragraph.propositions.length - 1; i > -1; i--) {
           if (paragraph.propositions[i][$scope.userId] !== 'hidden' && paragraph.propositions[i].hiddenForAll !== true &&
             paragraph.propositions[i].preSelected === true) {
@@ -4391,7 +4391,7 @@
       };
 
       $scope.lightUpLastVisiblePropositionInParagraph = function (node, paragraph, event) {
-        console.log('L P');
+        // console.log('L P');
         if (event.target.localName !== 'ol') {
           return;
         }
