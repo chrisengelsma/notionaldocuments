@@ -104,9 +104,13 @@
 
     $scope.setAssertionPaths = function () {
 
-      
+      setTimeout(function () {
+        $scope.$apply(function () {
+          traverse($scope.data[0]);
+        });
+      }, 20);
 
-      traverse($scope.data[0]);
+      
 
       function traverseArray(arr) {
         arr.forEach(function (x) {
