@@ -104,11 +104,11 @@
 
     $scope.setAssertionPaths = function () {
 
-      setTimeout(function () {
-        $scope.$apply(function () {
+      // setTimeout(function () {
+      //   $scope.$apply(function () {
           traverse($scope.data[0]);
-        });
-      }, 20);
+      //   });
+      // }, 20);
 
       
 
