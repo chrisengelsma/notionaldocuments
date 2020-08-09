@@ -103,7 +103,7 @@
     }
 
     $scope.setAssertionPaths = function () {
-
+      console.log("Setting assertion paths")
       // setTimeout(function () {
       //   $scope.$apply(function () {
           traverse($scope.data[0]);
