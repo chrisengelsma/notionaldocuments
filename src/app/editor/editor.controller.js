@@ -2192,6 +2192,7 @@
         
 
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
+          console.log("Dragged proposition: ", $scope.draggedProposition)
 
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
