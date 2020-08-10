@@ -1549,17 +1549,17 @@
 
       $scope.dropProposition = function (paragraph, proposition, flag) {
         // setTimeout(function () {
-          $scope.$apply(function () {
-            if (flag === 'left'){
-              paragraph.leftAdd = true;
-            }
-          });
+
         // }, 0);
 
 
 
         setTimeout(function () {
           $scope.$apply(function () {
+
+            if (flag === 'left'){
+              paragraph.leftAdd = true;
+            }
 
             console.log("Paragraph: ", paragraph)
 
