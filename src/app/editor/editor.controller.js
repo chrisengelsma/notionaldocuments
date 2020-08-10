@@ -1551,6 +1551,8 @@
         setTimeout(function () {
           $scope.$apply(function () {
 
+            console.log("Paragraph: ", paragraph)
+
             if ($scope.cancelDrop) {
 
               $scope.cancelDrop = false;
@@ -2195,7 +2197,7 @@
 
           console.log("Dragged proposition dropflag: ", $scope.draggedProposition.dropflag)
 
-          console.log("The paragraph before: ", paragraph)
+          console.log("Satisfies condition for left: ", $scope.draggedProposition.dropflag === 'left')
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
             
