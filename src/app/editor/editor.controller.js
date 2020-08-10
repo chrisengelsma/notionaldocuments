@@ -4073,6 +4073,7 @@
 
         }, 30);
 
+        $scope.setAssertionPaths();
 
       });
 
