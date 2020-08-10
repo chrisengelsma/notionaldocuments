@@ -3730,7 +3730,7 @@
                 }, 30);
               }
             } else {
-              
+              console.log("Breaks here eh?")
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
