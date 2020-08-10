@@ -133,19 +133,17 @@
           traverseObject(x);
         } else {
           if (key === 'paragraphId' && !obj.isDraggedParagraph) {
-            console.log("Goes into if")
-            console.log("Object: ", obj)
+           
             for (var i = 0; i < obj.propositions.length; i++) {
               var theProp = obj.propositions[i];
-              console.log("Prop: ", theProp)
-              console.log("Should be true: ", !theProp.droppedElsewhere)
+        
               if (theProp.type === 'assertion' && !theProp.droppedElsewhere) {
-                console.log("Goes into second if")
+            
 
                 var temp = {};
                 temp.pathToCopy = theProp.nodePath + '.paragraphs[' + obj.position.toString() + '].propositions['
                   + theProp.position.toString() + ']';
-                  console.log("Path to copy: ", temp.pathToCopy)
+                 
 
                 $scope.traverseAssertions(temp.pathToCopy);
               }
@@ -1992,7 +1990,7 @@
                   
 
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
-                  console.log("hid position ", i)
+                 
                   if (payload.dropflag) {
 
                     apply.paragraphDestination.propositions[i].droppedElsewhere = true;
@@ -2803,7 +2801,7 @@
           }
 
         } else if (!prep.answeredQuestion && prep.type !== 'topic' && prep.type !== 'rejoinder') {
-          console.log("goes into second if")
+         
           if (paragraph.topAdd) {
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
@@ -3019,7 +3017,7 @@
 
             }
           } else if (paragraph.leftAdd) {
-            console.log('Into leftadd');
+            
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
             for (var i = 0; i < prep.address.length; i++) {                                          //     BUILDS THE ADDRESS TO THE NODE WHERE THE PROPOSITION GOES
@@ -3032,14 +3030,14 @@
             prep.nodeDestination = eval(prep.nodePath);
 
             if ($scope.selectedProposition.author === $scope.userId || draggedProps) {
-              console.log('Left add if');
+             
               prep.paragraphPosition = $scope.selectedParagraph.position;
               prep.position = $scope.selectedProposition.position;
               prep.insertsLeft = true;
-              console.log('Putting it to the left');
+             
               // close off the paragraph above to the user
             } else {
-              console.log('Left add else');
+             
               for (var i = 0; i < prep.nodeDestination.paragraphs.length; i++) {
                 if (prep.nodeDestination.paragraphs[i].owner === $scope.userId) {
                   for (var j = i + 1; j < prep.nodeDestination.paragraphs.length; j++) {
@@ -3069,7 +3067,7 @@
               }
             }
           } else if (prep.type !== 'rejoinder') {
-            console.log("Goes into weird else")
+          
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
@@ -3112,9 +3110,7 @@
             }
           }
 
-          if (!$scope.draggingRejoinder) {
-            console.log("Here might have been the error")
-          } else {
+          if ($scope.draggingRejoinder) {
             prep.assertionPath = $scope.draggedProposition.nodePath + '.paragraphs[' + $scope.draggedParagraph.position.toString() +
               '].propositions[' + $scope.draggedProposition.position.toString() + ']';
           }
@@ -3731,7 +3727,7 @@
                 }, 30);
               }
             } else {
-              console.log("Do break?")
+              
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
@@ -3751,7 +3747,7 @@
                   apply.paragraphAboveDestination.propositions[i].rejoined = true;
                   apply.paragraphAboveDestination.propositions[i][$scope.userId] = 'hidden';
                   apply.paragraphAboveDestination.propositions[i].hiddenForAll = true;
-                  console.log("Rejoined at ", i)
+                  
                 }
               }
             } else if ((payload.proposition.type === 'rejoinder' || payload.proposition.answeredQuestion) && !payload.dropflag) {
@@ -3760,7 +3756,7 @@
                   apply.paragraphDestination.propositions[i].rejoined = true;
                   apply.paragraphDestination.propositions[i][$scope.userId] = 'hidden';
                   apply.paragraphDestination.propositions[i].hiddenForAll = true;
-                  console.log("Rejoined at ", i)
+                  
                 }
               }
             }
@@ -4073,7 +4069,7 @@
           $scope.setAssertionPaths();
         }, 30);
 
-        
+
 
       });
 
