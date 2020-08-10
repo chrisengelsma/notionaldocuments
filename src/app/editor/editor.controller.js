@@ -2192,8 +2192,10 @@
         
 
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
-          console.log("Dragged proposition: ", $scope.draggedProposition)
 
+          console.log("Dragged proposition dropflag: ", $scope.draggedProposition.dropflag)
+
+          console.log("The paragraph before: ", paragraph)
           if ($scope.draggedProposition.dropflag === 'top') {
             paragraph.topAdd = true;
             
@@ -2204,6 +2206,7 @@
             paragraph.leftAdd = true;
         
           }
+          console.log("The paragraph after: ", paragraph)
 
           if (paragraph.topAdd || paragraph.bottomAdd || paragraph.leftAdd) {
             $scope.selectedProposition.textSide = true;
