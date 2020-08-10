@@ -2189,9 +2189,7 @@
           event.preventDefault();
         }
 
-        if (paragraph.topAdd || paragraph.bottomAdd) {
-          $scope.selectedProposition.textSide = true;
-        }
+        
 
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
 
@@ -2205,6 +2203,11 @@
             paragraph.leftAdd = true;
         
           }
+
+          if (paragraph.topAdd || paragraph.bottomAdd || paragraph.leftAdd) {
+            $scope.selectedProposition.textSide = true;
+          }
+
           $scope.selectedParagraph = paragraph;
           if (!proposition) {
             $scope.selectedProposition = {key: 'value'};
@@ -2235,7 +2238,7 @@
           input = input + '.';
         }
 
-        if (paragraph.topAdd || paragraph.bottomAdd) {
+        if (paragraph.topAdd || paragraph.bottomAdd || paragraph.leftAdd) {
           apply.textSide = true;
 
         }
