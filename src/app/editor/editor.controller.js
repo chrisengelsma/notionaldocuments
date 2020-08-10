@@ -4070,10 +4070,10 @@
             }
           }
 
-
+          $scope.setAssertionPaths();
         }, 30);
 
-        $scope.setAssertionPaths();
+        
 
       });
 
