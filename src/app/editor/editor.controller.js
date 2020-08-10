@@ -2201,8 +2201,6 @@
           event.preventDefault();
         }
 
-        
-
         if ($scope.draggedProposition && $scope.draggedProposition.author === $scope.userId) {
 
           console.log("Dragged proposition dropflag: ", $scope.draggedProposition.dropflag)
@@ -2216,7 +2214,10 @@
           
           } else if ($scope.draggedProposition.dropflag === 'left') {
             console.log("Enters left add")
-            paragraph.leftAdd = true;
+            $scope.$apply(function () {
+              paragraph.leftAdd = true;
+            });
+            
           }
           console.log("The paragraph after: ", paragraph)
 
