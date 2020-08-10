@@ -136,13 +136,14 @@
             console.log("Goes into if")
             console.log("Object: ", obj)
             for (var i = 0; i < obj.propositions.length; i++) {
-              if (obj.propositions[i].type === 'assertion' &&
-                obj.propositions[i].droppedElsewhere != true) {
+              var theProp = obj.propositions[i];
+              console.log("Prop: ", theProp)
+              if (theProp.type === 'assertion' && !theProp.droppedElsewhere) {
                 console.log("Goes into second if")
 
                 var temp = {};
-                temp.pathToCopy = obj.propositions[i].nodePath + '.paragraphs[' + obj.position.toString() + '].propositions['
-                  + obj.propositions[i].position.toString() + ']';
+                temp.pathToCopy = theProp.nodePath + '.paragraphs[' + obj.position.toString() + '].propositions['
+                  + theProp.position.toString() + ']';
                   console.log("Path to copy: ", temp.pathToCopy)
 
                 $scope.traverseAssertions(temp.pathToCopy);
@@ -153,8 +154,10 @@
       }
     };
 
+    // no clue why it is not traversing the assertions with the drag
+
     $scope.traverseAssertions = function (path) {
-      console.log("Traversing assertions")
+      console.log("Traversing assertions for assertion at ", path)
 
       traverse($scope.data[0]);
 
