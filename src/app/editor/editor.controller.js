@@ -1548,13 +1548,13 @@
       };
 
       $scope.dropProposition = function (paragraph, proposition, flag) {
-        setTimeout(function () {
+        // setTimeout(function () {
           $scope.$apply(function () {
             if (flag = 'left'){
               paragraph.leftAdd = true;
             }
           });
-        }, 0);
+        // }, 0);
 
 
 
