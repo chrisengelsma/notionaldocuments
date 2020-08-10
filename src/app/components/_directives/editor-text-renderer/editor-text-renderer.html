@@ -101,7 +101,7 @@
                 ng-mouseover="paragraph.owner === userId ? [paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true] : inputs.notting"
                 ng-mouseleave="[paragraph.leftMouseOver = false, paragraph.disableRightCursor = false]"
                 event-focus="click"
-                ng-click="draggedProposition.id && cancelListenForDoubleClick? [selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
+                ng-click="draggedProposition.id && cancelListenForDoubleClick? [paragraph.leftAdd = true, selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
                   clearWithLeftAdder(),
                   clearPropositionInput(),
                   clearBlankOnBlur(),
