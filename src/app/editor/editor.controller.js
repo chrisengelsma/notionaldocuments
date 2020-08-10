@@ -138,6 +138,7 @@
             for (var i = 0; i < obj.propositions.length; i++) {
               var theProp = obj.propositions[i];
               console.log("Prop: ", theProp)
+              console.log("Should be true: ", !theProp.droppedElsewhere)
               if (theProp.type === 'assertion' && !theProp.droppedElsewhere) {
                 console.log("Goes into second if")
 
