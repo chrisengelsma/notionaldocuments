@@ -2818,8 +2818,8 @@
             prep.ofParagraphPosition = $scope.selectedParagraph.position;
           }
 
-        } else if (!prep.answeredQuestion && prep.type !== 'topic' && (prep.type !== 'rejoinder' && !$scope.draggedProposition.leftFlagBecauseLeftIsSpecial)) {
-          console.log("Left is STILL SO special, so its assigned and stuff: ", $scope.draggedProposition.leftFlagBecauseLeftIsSpecial == true)
+        } else if (!prep.answeredQuestion && prep.type !== 'topic' && (prep.type !== 'rejoinder' || $scope.draggedProposition.leftFlagBecauseLeftIsSpecial)) {
+          console.log("SHOULD FINALLY BE ASSIGNED EH ", $scope.draggedProposition.leftFlagBecauseLeftIsSpecial == true)
           if (paragraph.topAdd) {
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
