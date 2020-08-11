@@ -2215,6 +2215,7 @@
           } else if ($scope.draggedProposition.dropflag === 'left') {
             console.log("Enters left add")
             $scope.draggedProposition.leftFlagBecauseLeftIsSpecial = true;
+            console.log("Left is special, so its assigned and stuff: ", $scope.draggedProposition.leftFlagBecauseLeftIsSpecial == true)
           }
           console.log("The paragraph after: ", paragraph)
 
@@ -2260,7 +2261,7 @@
 
         // If it's ended with a colon,
         // it's a topic
-
+        console.log("Left is STILL special, so its assigned and stuff: ", $scope.draggedProposition.leftFlagBecauseLeftIsSpecial == true)
        
         if (prep.lastChar === ':') {
           // Get rid of the colon
@@ -2817,8 +2818,8 @@
             prep.ofParagraphPosition = $scope.selectedParagraph.position;
           }
 
-        } else if (!prep.answeredQuestion && prep.type !== 'topic' && prep.type !== 'rejoinder') {
-         
+        } else if (!prep.answeredQuestion && prep.type !== 'topic' && (prep.type !== 'rejoinder' && !$scope.draggedProposition.leftFlagBecauseLeftIsSpecial)) {
+          console.log("Left is STILL SO special, so its assigned and stuff: ", $scope.draggedProposition.leftFlagBecauseLeftIsSpecial == true)
           if (paragraph.topAdd) {
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;
