@@ -2214,10 +2214,7 @@
           
           } else if ($scope.draggedProposition.dropflag === 'left') {
             console.log("Enters left add")
-            $scope.$apply(function () {
-              paragraph.leftAdd = true;
-            });
-            
+            $scope.draggedProposition.leftFlagBecauseLeftIsSpecial = true;
           }
           console.log("The paragraph after: ", paragraph)
 
@@ -3036,7 +3033,7 @@
 
 
             }
-          } else if (paragraph.leftAdd) {
+          } else if (paragraph.leftAdd || $scope.draggedProposition.leftFlagBecauseLeftIsSpecial) {
             
             prep.nodePath = '$scope.data';
             prep.address = $scope.selectedNode.address;

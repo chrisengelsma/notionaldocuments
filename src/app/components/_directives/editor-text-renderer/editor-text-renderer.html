@@ -135,7 +135,7 @@
           <span ng-mouseover="paragraph.owner === userId ? paragraph.leftMouseOver = true : inputs.notting"
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
-                ng-click="draggedProposition.id && cancelListenForDoubleClick && paragraph.owner === userId ? [paragraph.leftAdd, selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
+                ng-click="draggedProposition.id && cancelListenForDoubleClick && paragraph.owner === userId ? [$scope.draggedProposition.leftFlagBecauseLeftIsSpecial = true, paragraph.leftAdd, selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
                     clearWithLeftAdder(),
                     clearPropositionInput(),
                     paragraph.topAdd = false,
