@@ -3658,7 +3658,7 @@
                 }, 30);
               }
             } else if (payload.proposition.insertsLeft) {
-
+              console.log("Goes into left")
 
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
@@ -3682,7 +3682,7 @@
                   }
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
-
+                  console.log("Its dragged so yeah")
                   for (var i = apply.paragraphDestination.propositions.length - 1; i > (payload.proposition.position + payload.draggedProps.length - 2); i--) {
                     apply.paragraphDestination.propositions[i].position++;
                     if ($scope.selectedProposition) {
