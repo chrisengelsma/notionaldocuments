@@ -3695,15 +3695,16 @@
                     apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                     
                   }
-                  for (var i = 0; i < payload.draggedProps.length; i++) {
-                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
-                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
+                  return;
+                  // for (var i = 0; i < payload.draggedProps.length; i++) {
+                  //   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
+                  //   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
                     
-                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].nodePath = payload.nodePath;
-                    if (i === 0) {
-                      apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
-                    }
-                  }
+                  //   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].nodePath = payload.nodePath;
+                  //   if (i === 0) {
+                  //     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
+                  //   }
+                  // }
                 }
               } else {
                 if (!payload.draggedProps) {
