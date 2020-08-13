@@ -3705,6 +3705,7 @@
                     }
 
                     apply.paragraphDestination.propositions[i + payload.draggedProps.length] = apply.paragraphDestination.propositions[i];
+                    console.log(apply.paragraphDestination.propositions[i + payload.draggedProps.length].text, " was copied up to ", (i + payload.draggedProps.length));
                     
                   }
                   
