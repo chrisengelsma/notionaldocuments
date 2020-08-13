@@ -3396,13 +3396,23 @@
                     apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
                   }
                 }
-                apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
+                if (!payload.draggedProps){
+                  apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
+                } else {
+                  for (var i = payload.proposition.position; i < (payload.proposition.position + payload.draggedProps.length); i++){
+                    for (var j = 0; j < payload.draggedProps.length; j++){
+                      apply.paragraphDestination.propositions[i] = payload.draggedProps[j];
+                      apply.paragraphDestination.propositions[i].position = i;
+                    }
+                  }
+                }
               } else {
                 if (!payload.draggedProps) {
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
                   for (var i = 0; i < payload.draggedProps.length; i++) {
                     apply.paragraphDestination.propositions[i + payload.proposition.position] = payload.draggedProps[i];
+                    apply.paragraphDestination.propositions[i + payload.proposition.position].position = (i + payload.proposition.position);
                   }
                 }
 
