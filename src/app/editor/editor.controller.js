@@ -3683,8 +3683,10 @@
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
                   
-                  for (var i = apply.paragraphDestination.propositions.length - 1; i > (payload.proposition.position + payload.draggedProps.length - 2); i--) {
-                    apply.paragraphDestination.propositions[i].position++;
+                  for (var i = apply.paragraphDestination.propositions.length - 1; 
+                    i > (0 + payload.draggedProps.length - 2); 
+                    i--) {
+                    apply.paragraphDestination.propositions[i].position = apply.paragraphDestination.propositions[i].position + payload.draggedProps.length;
                     if ($scope.selectedProposition) {
                       if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
                         payload.proposition.author !== $scope.userId) {
@@ -3692,19 +3694,19 @@
                       }
                     }
 
-                    apply.paragraphDestination.propositions[i + 1] = apply.paragraphDestination.propositions[i];
+                    apply.paragraphDestination.propositions[i + payload.draggedProps.length] = apply.paragraphDestination.propositions[i];
                     
                   }
-                  return;
-                  // for (var i = 0; i < payload.draggedProps.length; i++) {
-                  //   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
-                  //   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
+                  
+                  for (var i = 0; i < payload.draggedProps.length; i++) {
+                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i] = payload.draggedProps[i];
+                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].position = i;
                     
-                  //   apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].nodePath = payload.nodePath;
-                  //   if (i === 0) {
-                  //     apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
-                  //   }
-                  // }
+                    apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].nodePath = payload.nodePath;
+                    if (i === 0) {
+                      apply.nodeDestination.paragraphs[payload.paragraphPosition].propositions[i].first = true;
+                    }
+                  }
                 }
               } else {
                 if (!payload.draggedProps) {
