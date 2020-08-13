@@ -160,6 +160,8 @@
               };
             }
           }
+
+          console.log("Book: ", $scope.data[0])
         }
       }
     };
@@ -167,7 +169,7 @@
     // no clue why it is not traversing the assertions with the drag
 
     $scope.traverseAssertions = function (path) {
-      console.log("Traversing assertions for assertion at ", path)
+      // console.log("Traversing assertions for assertion at ", path)
 
       traverse($scope.data[0]);
 
@@ -188,7 +190,7 @@
                 
                 temp.toBeStampedDestination = eval(temp.toBeStampedPath);
                 temp.toBeStampedDestination.assertionPath = path;
-                console.log(temp.toBeStampedPath, "'s assertion path was updated to ", path)
+                // console.log(temp.toBeStampedPath, "'s assertion path was updated to ", path)
               }
             }
           }
@@ -1572,7 +1574,7 @@
               paragraph.leftAdd = true;
             }
 
-            console.log("Paragraph: ", paragraph)
+            
 
             if ($scope.cancelDrop) {
 
@@ -3679,7 +3681,7 @@
                 }, 30);
               }
             } else if (payload.proposition.insertsLeft) {
-              console.log("Goes into left")
+          
 
               apply.nodeDestination = eval(payload.nodePath);
               apply.paragraphPath = payload.nodePath + '.paragraphs[' + payload.paragraphPosition.toString() + ']';
@@ -3689,7 +3691,7 @@
                 '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
               if (apply.propositionDestination) {
-                console.log("Goes into proposition destination")
+           
                 if (!payload.draggedProps) {
                   for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                     apply.paragraphDestination.propositions[i].position++;
@@ -3704,7 +3706,7 @@
                   }
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
-                  console.log("There are dragged props")
+                  
                   for (var i = apply.paragraphDestination.propositions.length - 1; i > (0 + payload.draggedProps.length - 3); i--) {
                     console.log('I: ', i)
                     apply.paragraphDestination.propositions[i].position = apply.paragraphDestination.propositions[i].position + payload.draggedProps.length;
@@ -3714,9 +3716,9 @@
                         $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                       }
                     }
-                    console.log("Past the ifs")
+                   
                     apply.paragraphDestination.propositions[i + payload.draggedProps.length] = apply.paragraphDestination.propositions[i];
-                    console.log(apply.paragraphDestination.propositions[i + payload.draggedProps.length].text, " was copied up to ", (i + payload.draggedProps.length));
+                    // console.log(apply.paragraphDestination.propositions[i + payload.draggedProps.length].text, " was copied up to ", (i + payload.draggedProps.length));
                     
                   }
                   
@@ -3768,7 +3770,7 @@
                 }, 30);
               }
             } else {
-              console.log("Breaks here eh?")
+              
               apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
 
               if (payload.proposition.author === $scope.userId && payload.textSide === true) {
