@@ -3678,6 +3678,7 @@
                 '.propositions[' + payload.proposition.position.toString() + ']';
               apply.propositionDestination = eval(apply.propositionPath);
               if (apply.propositionDestination) {
+                console.log("Goes into proposition destination")
                 if (!payload.draggedProps) {
                   for (var i = apply.paragraphDestination.propositions.length - 1; i > payload.proposition.position - 1; i--) {
                     apply.paragraphDestination.propositions[i].position++;
@@ -3692,7 +3693,7 @@
                   }
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
-                  
+                  console.log("There are dragged props")
                   for (var i = apply.paragraphDestination.propositions.length - 1; 
                     i > (0 + payload.draggedProps.length - 2); 
                     i--) {
