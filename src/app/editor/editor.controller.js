@@ -154,7 +154,7 @@
             // then its a proposition
             if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
               obj = {
-                position: obj.position
+                position: obj.position,
                 type: obj.type,
                 author: obj.author
               };
