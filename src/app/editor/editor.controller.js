@@ -3694,7 +3694,7 @@
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
                   console.log("There are dragged props")
-                  for (var i = apply.paragraphDestination.propositions.length - 1; i > (0 + payload.draggedProps.length - 2); i--) {
+                  for (var i = apply.paragraphDestination.propositions.length - 1; i > (0 + payload.draggedProps.length - 3); i--) {
                     console.log('I: ', i)
                     apply.paragraphDestination.propositions[i].position = apply.paragraphDestination.propositions[i].position + payload.draggedProps.length;
                     if ($scope.selectedProposition) {
