@@ -161,8 +161,9 @@
             }
           }
 
-          console.log("Book: ", $scope.data[0])
+
         }
+        console.log("Book: ", $scope.data[0])
       }
     };
 
