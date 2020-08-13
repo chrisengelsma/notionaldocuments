@@ -3694,9 +3694,8 @@
                   apply.paragraphDestination.propositions[payload.proposition.position] = payload.proposition;
                 } else {
                   console.log("There are dragged props")
-                  for (var i = apply.paragraphDestination.propositions.length - 1; 
-                    i > (0 + payload.draggedProps.length - 2); 
-                    i--) {
+                  for (var i = apply.paragraphDestination.propositions.length - 1; i > (0 + payload.draggedProps.length - 2); i--) {
+                    console.log('I: ', i)
                     apply.paragraphDestination.propositions[i].position = apply.paragraphDestination.propositions[i].position + payload.draggedProps.length;
                     if ($scope.selectedProposition) {
                       if ($scope.selectedProposition.id === apply.paragraphDestination.propositions[i].id &&
@@ -3704,7 +3703,7 @@
                         $scope.selectedProposition.position = angular.copy(apply.paragraphDestination.propositions[i].position);
                       }
                     }
-
+                    console.log("Past the ifs")
                     apply.paragraphDestination.propositions[i + payload.draggedProps.length] = apply.paragraphDestination.propositions[i];
                     console.log(apply.paragraphDestination.propositions[i + payload.draggedProps.length].text, " was copied up to ", (i + payload.draggedProps.length));
                     
