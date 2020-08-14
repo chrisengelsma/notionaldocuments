@@ -165,6 +165,7 @@
                 type: objCopy.type,
                 author: objCopy.author
               };
+              console.log("Now the object is: ", obj)
             }
           }
 
