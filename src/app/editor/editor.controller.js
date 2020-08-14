@@ -150,6 +150,9 @@
             }
           }
 
+
+          // have to exclude dragged propositions, other propositions
+          // maybe isDraggedProposition key
           if (key === 'type'){
             // then its a proposition
             if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
@@ -163,8 +166,9 @@
 
 
         }
-        console.log("Book: ", $scope.data[0])
+        
       }
+      console.log("Book: ", $scope.data[0])
     };
 
     // no clue why it is not traversing the assertions with the drag
