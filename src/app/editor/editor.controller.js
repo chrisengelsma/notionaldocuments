@@ -860,10 +860,11 @@
                               chatSocket.emit('deletion', $scope.userId, apply.payload, $scope.bookId);
                               apply = {};
                               // $scope.hasRightFocus.id = '';
+                              $scope.setAssertionPaths();
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
-                              $scope.setAssertionPaths();
+                              
                               return;
                             }
                           }
@@ -1183,10 +1184,11 @@
                               console.log('Payload to be deleted: ', apply.payload);
                               chatSocket.emit('deletion', $scope.userId, apply.payload, $scope.bookId);
                               apply = {};
+                              $scope.setAssertionPaths();
                               apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
                               apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
                               profileService.setSelectedBook($scope.data[0]);
-                              $scope.setAssertionPaths();
+                              
                               return;
                             }
                           }
@@ -4066,6 +4068,7 @@
             apiService.updateBook($scope.bookId, JSON.parse(angular.toJson($scope.data[0])));
             apiService.updatePropositions($scope.bookId, JSON.parse(angular.toJson($scope.propositions)));
             profileService.setSelectedBook($scope.data[0]);
+            $scope.setAssertionPaths();
           });
         }, 30);                                             // HAS A TIMEOUT
 
@@ -4116,7 +4119,7 @@
             }
           }
 
-          $scope.setAssertionPaths();
+          
         }, 30);
 
 
