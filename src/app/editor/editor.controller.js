@@ -163,7 +163,7 @@
               obj = {
                 position: objCopy.position,
                 type: objCopy.type,
-                author: objCopy.author
+                author: "Mark Twain"
               };
               console.log("Now the object is: ", obj)
               console.log("Now the book is: ", $scope.data[0])
