@@ -158,8 +158,9 @@
             console.log("Object: ", obj)
             if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
               console.log("Goes into if")
-              var objCopy = angular.copy(obj);
-              obj['author'] = 'Mark Twain';
+              delete obj['dialogueSide']
+              delete obj['propositionPreSelected']
+              delete obj['textSide']
 
               console.log("Now the object is: ", obj)
               console.log("Now the book is: ", $scope.data[0])
