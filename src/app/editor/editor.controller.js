@@ -159,12 +159,8 @@
             if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
               console.log("Goes into if")
               var objCopy = angular.copy(obj);
-              obj = {};
-              obj = {
-                position: objCopy.position,
-                type: objCopy.type,
-                author: "Mark Twain"
-              };
+              obj['author'] = 'Mark Twain';
+
               console.log("Now the object is: ", obj)
               console.log("Now the book is: ", $scope.data[0])
             }
