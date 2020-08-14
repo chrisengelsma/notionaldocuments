@@ -151,22 +151,30 @@
           }
 
 
-          // have to exclude dragged propositions, other propositions
-          // maybe isDraggedProposition key
           if (key === 'type'){
             // then its a proposition
             console.log("Object: ", obj)
-            if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
+            if ((obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere) && ){
               console.log("Goes into if")
               delete obj['dialogueSide']
               delete obj['propositionPreSelected']
-              delete obj['textSide']
+              delete obj['insertsBelow']
+              delete obj['replacesBlankAndMoves']
 
               console.log("Now the object is: ", obj)
               console.log("Now the book is: ", $scope.data[0])
             }
           }
 
+          //paragraphs
+          if (key === 'paragraphId' && !obj.isDraggedParagraph){
+
+          }
+
+          // remarks
+          // if (key === ){
+            
+          // }
 
         }
         
