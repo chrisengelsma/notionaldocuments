@@ -166,6 +166,7 @@
                 author: objCopy.author
               };
               console.log("Now the object is: ", obj)
+              console.log("Now the book is: ", $scope.data[0])
             }
           }
 
@@ -173,7 +174,7 @@
         }
         
       }
-      console.log("Book: ", $scope.data[0])
+      
     };
 
     // no clue why it is not traversing the assertions with the drag
