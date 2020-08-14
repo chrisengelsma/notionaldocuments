@@ -154,7 +154,7 @@
           if (key === 'type'){
             // then its a proposition
             console.log("Object: ", obj)
-            if ((obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere) && ){
+            if ((obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere) ){
               console.log("Goes into if")
               delete obj['dialogueSide']
               delete obj['propositionPreSelected']
@@ -173,7 +173,7 @@
 
           // remarks
           // if (key === ){
-            
+
           // }
 
         }
