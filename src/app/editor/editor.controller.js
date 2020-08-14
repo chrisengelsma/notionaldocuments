@@ -157,6 +157,7 @@
             // then its a proposition
             console.log("Object: ", obj)
             if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
+              console.log("Goes into if")
               obj = {
                 position: obj.position,
                 type: obj.type,
