@@ -158,10 +158,12 @@
             console.log("Object: ", obj)
             if (obj.rejoined || obj.hiddenForAll || obj.droppedElsewhere){
               console.log("Goes into if")
+              var objCopy = angular.copy(obj);
+              obj = {};
               obj = {
-                position: obj.position,
-                type: obj.type,
-                author: obj.author
+                position: objCopy.position,
+                type: objCopy.type,
+                author: objCopy.author
               };
             }
           }
