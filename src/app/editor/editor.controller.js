@@ -161,8 +161,11 @@
               delete obj['insertsBelow']
               delete obj['replacesBlankAndMoves']
 
+
               console.log("Now the object is: ", obj)
               console.log("Now the book is: ", $scope.data[0])
+            } else {
+              delete obj['textSide']
             }
           }
 
