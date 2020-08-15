@@ -222,7 +222,7 @@
             ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
 
                 >
-            {{proposition.text}}
+            <!-- {{proposition.position}}  -->{{proposition.text}}<!-- {{proposition.assertionPath}} -->
           </span>
           <span
             editable-span-ng-model
@@ -230,7 +230,7 @@
             title="{{proposition.id}}"
             class="right-text right-textarea maininput"
             ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
-            ng-class="{'negation': (!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation' && selectedProposition.author !== userId)}"
+            ng-class="{'negation': ((!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation' && selectedProposition.author !== userId) || (!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type === 'negation' && selectedProposition.author === userId))}"
             ng-click="draggedProposition.id && cancelListenForDoubleClick? [selectedNode = node, dropProposition(paragraph, proposition,'right')] : [assignRightFocus(proposition), paragraph.disableRightCursor = true, hasRightFocus.id = proposition.id ]"
             ng-mouseover="paragraph.disableRightCursor = false"
             ng-model="inputs.proposition"
