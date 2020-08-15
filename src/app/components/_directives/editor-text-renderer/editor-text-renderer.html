@@ -33,7 +33,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">
+                }">{{paragraph.position}}
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true && paragraph.first && paragraph.owner}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -222,7 +222,7 @@
             ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
 
                 >
-            <!-- {{proposition.position}}  -->{{proposition.text}}<!-- {{proposition.assertionPath}} -->
+            {{proposition.position}} {{proposition.text}}{{proposition.assertionPath}}
           </span>
           <span
             editable-span-ng-model
