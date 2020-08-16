@@ -2540,7 +2540,7 @@
           }
 
           if (prep.capacityCount > 1 && !$scope.draggedProposition.id) {
-            
+            console.log("The if")
 
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
             prep.position = 0;
@@ -2596,7 +2596,7 @@
 
 
           } else {
-            // console.log("The else")
+            console.log("The else")
            
 
             prep.paragraphPosition = $scope.selectedParagraph.position;
