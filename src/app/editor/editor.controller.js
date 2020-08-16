@@ -2774,19 +2774,7 @@
 
           prep.topic = $scope.selectedNode.topic;
           prep.class = $scope.selectedNode.class;
-          if ($scope.draggedProposition) {
-            console.log("Sieve")
-            if ($scope.draggingRejoinder) {
-              console.log("Does the rejoinder")
-              prep.type = 'rejoinder';
-            } else {
-              console.log("Does the assertion")
-              prep.type = 'assertion';
-            }
-          } else {
-            console.log("Does the else")
-            prep.type = 'assertion';
-          }
+          
           prep.adjustedText = input;
         }
 
@@ -3158,6 +3146,19 @@
 
         if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion) {
           console.log("Not topic not negation not andswered question")
+          if ($scope.draggedProposition) {
+            console.log("Sieve")
+            if ($scope.draggingRejoinder) {
+              console.log("Does the rejoinder")
+              prep.type = 'rejoinder';
+            } else {
+              console.log("Does the assertion")
+              prep.type = 'assertion';
+            }
+          } else {
+            console.log("Does the else")
+            prep.type = 'assertion';
+          }
           prep.nodePath = '$scope.data';
           prep.address = $scope.selectedNode.address;
           for (var i = 0; i < prep.address.length; i++) {                                          //    CALCULATES PATH TO THE NODE
