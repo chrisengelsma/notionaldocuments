@@ -2774,7 +2774,19 @@
 
           prep.topic = $scope.selectedNode.topic;
           prep.class = $scope.selectedNode.class;
-          
+          if ($scope.draggedProposition) {
+            console.log("Sieve")
+            if ($scope.draggingRejoinder) {
+              console.log("Does the rejoinder")
+              prep.type = 'rejoinder';
+            } else {
+              console.log("Does the assertion")
+              prep.type = 'assertion';
+            }
+          } else {
+            console.log("Does the else")
+            prep.type = 'assertion';
+          }
           prep.adjustedText = input;
         }
 
