@@ -3156,7 +3156,7 @@
           }
         }
 
-        if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion) {
+        if (prep.type !== 'topic' && prep.type !== 'negation' && !prep.answeredQuestion && !prep.getsOwnProposition) {
           console.log("Not topic not negation not andswered question")
           if ($scope.draggedProposition) {
             console.log("Sieve")
