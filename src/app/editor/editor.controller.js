@@ -2539,7 +2539,7 @@
             }
           }
 
-          if (prep.capacityCount > 1 && !$scope.draggedProposition.id) {
+          if (prep.capacityCount > 1 && !$scope.draggingRejoinder) {
             console.log("The if")
 
             prep.paragraphPosition = $scope.selectedParagraph.position + 1;
