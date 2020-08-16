@@ -2500,6 +2500,8 @@
           }
 
 
+
+
         } else if (($scope.selectedProposition.of &&                                                //   REJOINDER
           $scope.selectedProposition.of.author === $scope.userId &&
           $scope.selectedProposition.type === 'negation' &&
@@ -3117,7 +3119,7 @@
               }
             }
           } else if (prep.type !== 'rejoinder') {
-          
+            console.log("Goes into match complex")
             for (var i = $scope.selectedProposition.position; i < $scope.selectedParagraph.propositions.length; i++) {                 //     OTHERWISE ITS WITHIN AN EXISTING PARAGRAPH
               if ($scope.selectedParagraph.propositions[i + 1] &&
                 $scope.selectedParagraph.propositions[i + 1].type !== 'negation' &&
