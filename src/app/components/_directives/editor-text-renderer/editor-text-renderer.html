@@ -33,7 +33,7 @@
       ng-class="{ paragraphcursor: paragraph.cursor === true,
                   paragraphoffcursor: paragraph.cursor === false,
                   topspacer: !$paragraph.first || paragraph.propositions[0].type === 'blank' || hasTopFocus === paragraph.paragraphId && cowsComeHome
-                }">
+                }"><!-- {{paragraph.position}} -->
     <div class="topparagraphadder"
          ng-class="{'blackline': paragraph.topMouseOver === true && paragraph.first && paragraph.owner}"
          ng-mouseover="paragraph.topMouseOver = true; paragraph.bottomMouseOver = false"
@@ -101,7 +101,7 @@
                 ng-mouseover="paragraph.owner === userId ? [paragraph.leftMouseOver = true, paragraph.topMouseOver = false, paragraph.bottomMouseOver = false, paragraph.disableRightCursor = true] : inputs.notting"
                 ng-mouseleave="[paragraph.leftMouseOver = false, paragraph.disableRightCursor = false]"
                 event-focus="click"
-                ng-click="draggedProposition.id && cancelListenForDoubleClick? [selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
+                ng-click="draggedProposition.id && cancelListenForDoubleClick? [paragraph.leftAdd = true, selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
                   clearWithLeftAdder(),
                   clearPropositionInput(),
                   clearBlankOnBlur(),
@@ -135,7 +135,7 @@
           <span ng-mouseover="paragraph.owner === userId ? paragraph.leftMouseOver = true : inputs.notting"
                 ng-mouseleave="paragraph.leftMouseOver = false"
                 event-focus="click"
-                ng-click="draggedProposition.id && cancelListenForDoubleClick && paragraph.owner === userId ? [selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
+                ng-click="draggedProposition.id && cancelListenForDoubleClick && paragraph.owner === userId ? [$scope.draggedProposition.leftFlagBecauseLeftIsSpecial = true, paragraph.leftAdd, selectedNode = node, dropProposition(paragraph, proposition,'left')] : paragraph.owner === userId ? [
                     clearWithLeftAdder(),
                     clearPropositionInput(),
                     paragraph.topAdd = false,
@@ -222,7 +222,7 @@
             ng-blur="[focusouteditable(this), paragraph.disableRightCursor = false]"
 
                 >
-            {{proposition.text}}
+            <!-- {{proposition.position}} --> {{proposition.text}}<!-- {{proposition.assertionPath}} -->
           </span>
           <span
             editable-span-ng-model
@@ -230,7 +230,7 @@
             title="{{proposition.id}}"
             class="right-text right-textarea maininput"
             ng-if="selectedProposition.id === proposition.id && paragraph.topAdd != true && paragraph.bottomAdd != true && paragraph.leftAdd != true"
-            ng-class="{'negation': (!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation' && selectedProposition.author !== userId)}"
+            ng-class="{'negation': ((!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type !== 'negation' && selectedProposition.author !== userId) || (!proposition.leftAdd && selectedProposition.type !== 'blank' && selectedProposition.type === 'negation' && selectedProposition.author === userId))}"
             ng-click="draggedProposition.id && cancelListenForDoubleClick? [selectedNode = node, dropProposition(paragraph, proposition,'right')] : [assignRightFocus(proposition), paragraph.disableRightCursor = true, hasRightFocus.id = proposition.id ]"
             ng-mouseover="paragraph.disableRightCursor = false"
             ng-model="inputs.proposition"
